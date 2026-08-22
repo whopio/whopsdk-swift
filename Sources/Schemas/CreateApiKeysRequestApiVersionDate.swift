@@ -1,0 +1,30 @@
+import Foundation
+
+/// Dated API version used when requests authenticated with this key omit the `Api-Version-Date` header. New keys default to the latest version.
+public enum CreateApiKeysRequestApiVersionDate: String, Codable, Hashable, CaseIterable, Sendable {
+    case twoThousandTwentyFive0101 = "2025-01-01"
+    case twoThousandTwentySix0608 = "2026-06-08"
+    case twoThousandTwentySix0609 = "2026-06-09"
+    case twoThousandTwentySix0620 = "2026-06-20"
+    case twoThousandTwentySix0701 = "2026-07-01"
+    case twoThousandTwentySix0708 = "2026-07-08"
+    case twoThousandTwentySix07081 = "2026-07-08-1"
+    case twoThousandTwentySix0718 = "2026-07-18"
+    case twoThousandTwentySix0720 = "2026-07-20"
+    case twoThousandTwentySix0722 = "2026-07-22"
+    case twoThousandTwentySix0723 = "2026-07-23"
+    case twoThousandTwentySix0725 = "2026-07-25"
+    case twoThousandTwentySix0726 = "2026-07-26"
+    case twoThousandTwentySix0727 = "2026-07-27"
+    case twoThousandTwentySix0729 = "2026-07-29"
+    case twoThousandTwentySix07291 = "2026-07-29-1"
+    case twoThousandTwentySix0731 = "2026-07-31"
+    case twoThousandTwentySix0803 = "2026-08-03"
+    case twoThousandTwentySix0805 = "2026-08-05"
+    case twoThousandTwentySix08051 = "2026-08-05-1"
+    case twoThousandTwentySix0810 = "2026-08-10"
+    case twoThousandTwentySix0812 = "2026-08-12"
+    case twoThousandTwentySix0813 = "2026-08-13"
+    case twoThousandTwentySix0814 = "2026-08-14"
+    case twoThousandTwentySix0821 = "2026-08-21"
+}
