@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: release-whopsdk-swift
+  group: release-whopsdk-swift-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -25,6 +25,7 @@ env:
 
 jobs:
   decide:
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     outputs:
       release: ${{ steps.gate.outputs.release }}
@@ -33,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 2
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Decide whether to release
@@ -41,16 +42,34 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
+          BEFORE: ${{ github.event.before }}
           REPO_URL: ${{ github.server_url }}/${{ github.repository }}.git
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
           emit() { echo "$1=$2" >> "$GITHUB_OUTPUT"; }
 
+          if [ "$EVENT" = "pull_request" ] || [ "$DRY_RUN" = "true" ]; then
+            dry=true
+          else
+            dry=false
+          fi
+          emit dry "$dry"
+          echo "event=$EVENT dry=$dry"
+
+          refuse() {
+            if [ "$dry" = "true" ]; then
+              echo "::warning::[dry] a real release would stop here: $*"
+              return 0
+            fi
+            echo "::error::$*"
+            exit 1
+          }
+
           if [ ! -f "$VERSION_FILE" ]; then
             echo "::notice::${VERSION_FILE} does not exist — this is not a tree this workflow can release."
             emit release false
-            emit dry true
             emit version ""
             exit 0
           fi
@@ -77,43 +96,54 @@ jobs:
             exit 1
           fi
 
-          if [ "$EVENT" = "pull_request" ] || [ "$DRY_RUN" = "true" ]; then
-            echo "Dry run: resolving, building and testing, tagging nothing."
-            emit release true
-            emit dry true
-            exit 0
+          base=""
+          if [ "$EVENT" = "push" ] && [ -n "$BEFORE" ] \
+            && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
+            && git rev-parse --verify --quiet "${BEFORE}^{commit}" >/dev/null; then
+            base=$BEFORE
+          elif git rev-parse --verify --quiet "HEAD^" >/dev/null; then
+            base=HEAD^
+            if [ "$EVENT" = "push" ]; then
+              echo "::warning::the pushed range starts at '${BEFORE}', which is not in this checkout; falling back to HEAD^, which sees only the last commit of the push."
+            fi
           fi
 
-          emit dry false
-
-          if [ "$EVENT" = "push" ]; then
-            changed=$(git diff --name-only HEAD^ HEAD)
+          if [ -z "$base" ]; then
+            echo "::notice::there is no earlier commit to diff against; the only-version-changed check has nothing to compare."
+          else
+            echo "diffing ${base}..HEAD"
+            changed=$(git diff --name-only "$base" HEAD)
+            body=$(git diff -U0 "$base" HEAD -- "$VERSION_FILE" | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' || true)
+            other=$(printf '%s\n' "$body" | grep -cvE '^[+-]public let sdkVersion = ' || true)
+            unexpected=$(printf '%s\n' "$changed" | grep -vxE 'Sources/Version\.swift|\.fern/metadata\.json|README\.md' || true)
 
             if ! printf '%s\n' "$changed" | grep -qx 'Sources/Version\.swift'; then
-              echo "::error::a release push must change ${VERSION_FILE}. Changed:"
-              printf '%s\n' "$changed"
-              exit 1
+              summary="a release push must change ${VERSION_FILE}. Changed $(printf '%s\n' "$changed" | grep -c . || true) file(s), first few: $(printf '%s\n' "$changed" | awk 'NR <= 5' | tr '\n' ' ')"
+            elif [ -n "$unexpected" ]; then
+              summary="a release push must touch only the version stamps. A regeneration reaching this point would tag an unreviewed tree. $(printf '%s\n' "$unexpected" | grep -c . || true) unexpected file(s), first few: $(printf '%s\n' "$unexpected" | awk 'NR <= 5' | tr '\n' ' ')"
+            elif [ "$other" -ne 0 ]; then
+              summary="a release push must change only the sdkVersion line. Diff: $(printf '%s\n' "$body" | awk 'NR <= 10' | tr '\n' ' ')"
+            else
+              summary=""
             fi
 
-            unexpected=$(printf '%s\n' "$changed" | grep -vxE 'Sources/Version\.swift|\.fern/metadata\.json|README\.md' || true)
-            if [ -n "$unexpected" ]; then
-              echo "::error::a release push must touch only the version stamps. A regeneration reaching this point would tag an unreviewed tree. Unexpected files:"
-              printf '%s\n' "$unexpected"
-              exit 1
-            fi
-
-            body=$(git diff -U0 HEAD^ HEAD -- "$VERSION_FILE" | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' || true)
-            if [ "$(printf '%s\n' "$body" | grep -cvE '^[+-]public let sdkVersion = ')" -ne 0 ]; then
-              echo "::error::a release push must change only the sdkVersion line. Diff:"
-              printf '%s\n' "$body"
-              exit 1
+            if [ -z "$summary" ]; then
+              echo "${base}..HEAD changes the version stamps and nothing else."
+            elif [ "$EVENT" = "push" ]; then
+              refuse "$summary"
+            else
+              echo "::notice::[${EVENT}] this is not a release push, so the diff is informational: ${summary}"
             fi
           fi
 
-          meta=$(jq -r '.sdkVersion // empty' .fern/metadata.json)
-          if [ -n "$meta" ] && [ "$meta" != "$version" ]; then
-            echo "::error::.fern/metadata.json reports sdkVersion ${meta} but ${VERSION_FILE} says ${version}. The tag points at this commit, so CI cannot correct the stamps after the fact — fix them in the bump commit."
-            exit 1
+          if [ ! -f .fern/metadata.json ]; then
+            refuse ".fern/metadata.json does not exist, so nothing corroborates ${VERSION_FILE}'s ${version}. Fern writes it on every generation."
+          elif ! meta=$(jq -er '.sdkVersion' .fern/metadata.json 2>/dev/null); then
+            refuse ".fern/metadata.json carries no readable sdkVersion, so nothing corroborates ${VERSION_FILE}'s ${version}. The tag points at this commit, so CI cannot correct the stamps after the fact — fix them in the bump commit."
+          elif [ "$meta" != "$version" ]; then
+            refuse ".fern/metadata.json reports sdkVersion ${meta} but ${VERSION_FILE} says ${version}. The tag points at this commit, so CI cannot correct the stamps after the fact — fix them in the bump commit."
+          else
+            echo ".fern/metadata.json agrees: ${meta}"
           fi
 
           readme=$(grep -oE 'whopsdk-swift", from: "[0-9]+\.[0-9]+\.[0-9]+"' README.md | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1 || true)
@@ -126,31 +156,59 @@ jobs:
           rc=$?
           set -e
 
+          tagged=unknown
           case "$rc" in
             0)
-              echo "::notice::${version} is already tagged on the remote; nothing to release."
-              emit release false
-              exit 0
+              tagged=yes
+              echo "${version} is already tagged on the remote."
               ;;
-            2) ;;
+            2)
+              tagged=no
+              echo "the remote has no ${version} tag."
+              ;;
             *)
-              echo "::error::git ls-remote against ${REPO_URL} exited ${rc}, so this job cannot tell whether ${version} is already released. If the repository is still private, this is expected: SwiftPM resolves a package over anonymous git, so the repository must be public before it can be consumed at all."
-              exit 1
+              refuse "git ls-remote against ${REPO_URL} exited ${rc}, so this job cannot tell whether ${version} is already released. If the repository is still private, this is expected: SwiftPM resolves a package over anonymous git, so the repository must be public before it can be consumed at all."
               ;;
           esac
 
-          latest=$(git ls-remote --tags --refs "$REPO_URL" \
-            | awk -F'refs/tags/' '{print $2}' \
-            | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
-            | sort -V | tail -1 || true)
+          set +e
+          tags=$(git ls-remote --tags --refs "$REPO_URL" 2>/dev/null)
+          trc=$?
+          set -e
 
-          if [ -n "$latest" ]; then
-            echo "Highest tag on the remote: $latest"
-            highest=$(printf '%s\n%s\n' "$latest" "$version" | sort -V | tail -1)
-            if [ "$highest" = "$latest" ]; then
-              echo "::error::${VERSION_FILE} is at ${version} but the remote is already tagged ${latest}. This branch was generated before that release; regenerate it before merging."
-              exit 1
+          if [ "$trc" -ne 0 ]; then
+            refuse "git ls-remote --tags against ${REPO_URL} exited ${trc}, so this job cannot tell whether ${version} regresses past a release that already happened. An empty tag list and an unreachable remote are not the same answer."
+          else
+            latest=$(printf '%s\n' "$tags" \
+              | awk -F'refs/tags/' 'NF > 1 { print $2 }' \
+              | sed 's/^v//' \
+              | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+              | sort -V | tail -1 || true)
+
+            if [ -z "$latest" ]; then
+              echo "the remote carries no release tag yet."
+            else
+              echo "Highest release tag on the remote, ignoring any v prefix: $latest"
+              highest=$(printf '%s\n%s\n' "$latest" "$version" | sort -V | tail -1)
+              if [ "$highest" = "$latest" ] && [ "$latest" != "$version" ]; then
+                refuse "${VERSION_FILE} is at ${version} but the remote is already tagged ${latest}. This branch was generated before that release; regenerate it before merging."
+              fi
             fi
+          fi
+
+          if [ "$dry" = "true" ]; then
+            echo "Dry run: resolving, building and testing, tagging nothing."
+            emit release true
+            exit 0
+          fi
+
+          if [ "$tagged" = "yes" ]; then
+            if gh release view "$version" >/dev/null 2>&1; then
+              echo "::notice::${version} is already tagged and released; nothing to do."
+              emit release false
+              exit 0
+            fi
+            echo "::warning::${version} is tagged on the remote but has no GitHub release. Continuing so the release job can create the missing one; the tag itself will not be moved."
           fi
 
           emit release true
@@ -183,22 +241,44 @@ jobs:
         run: |
           set -euo pipefail
           bt=$(printf '\140')
-          escaped=0
+
+          enums=""
           for f in $(grep -rlE "^ *case ${bt}self${bt}" Sources || true); do
             enum=$(sed -n 's/^public enum \([A-Za-z0-9_]*\).*/\1/p' "$f" | head -1)
             [ -n "$enum" ] || continue
-            for t in $(grep -rl ": ${enum}.self" Tests || true); do
-              hits=$(grep -c ": ${enum}\.self[,)]" "$t")
-              sed -i "s/: ${enum}\.self\([,)]\)/: ${enum}.${bt}self${bt}\1/g" "$t"
+            enums="${enums} ${enum}"
+          done
+
+          escaped=0
+          for enum in $enums; do
+            pattern=": ${enum}\.self\b"
+            for t in $(grep -rlE "$pattern" Tests || true); do
+              hits=$(grep -cE "$pattern" "$t" || true)
+              sed -i -E "s/${pattern}/: ${enum}.${bt}self${bt}/g" "$t"
               echo "escaped ${hits} reference(s) to ${enum}.self in ${t}"
               escaped=$((escaped + hits))
             done
           done
-          if [ "$escaped" -eq 0 ]; then
-            echo "::notice::nothing to escape — fern-swift-sdk now emits backticked self cases, so this step can be deleted."
-          else
+
+          if [ "$escaped" -gt 0 ]; then
             echo "::warning::rewrote ${escaped} generated test reference(s) that fern-swift-sdk emitted as a metatype instead of an enum case. Sources/ is unaffected and the tag still points at the committed tree."
+            exit 0
           fi
+
+          if [ -z "$enums" ]; then
+            echo "::notice::no generated enum declares a ${bt}self${bt} case, so there is nothing this step could repair."
+            exit 0
+          fi
+
+          residual=$(for enum in $enums; do grep -rnE "${enum}\.self\b" Tests || true; done)
+
+          if [ -n "$residual" ]; then
+            echo "::warning::the escape pattern matched nothing, yet Tests still reference these enums' .self. fern-swift-sdk changed what it emits and this step no longer repairs it — swift test below is the verdict:"
+            printf '%s\n' "$residual"
+            exit 0
+          fi
+
+          echo "::notice::nothing to escape — fern-swift-sdk now emits backticked self cases, so this step can be deleted."
 
       - name: Run the generated test suite
         run: swift test
@@ -278,5 +358,6 @@ jobs:
           if gh release view "${VERSION}" >/dev/null 2>&1; then
             echo "::notice::release ${VERSION} already exists."
           else
-            gh release create "${VERSION}" --title "${VERSION}" --generate-notes
+            gh release create "${VERSION}" --title "${VERSION}" --generate-notes || \
+              gh release view "${VERSION}" >/dev/null
           fi
