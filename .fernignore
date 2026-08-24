@@ -8,8 +8,62 @@
 # this git repository and its tags directly, so the tag *is* the release. The workflow
 # tags main when a merge lands a Sources/Version.swift that the remote has no tag for.
 #
-# Unlike the Ruby and Java generators, fern-swift-sdk 0.36.0 emits no .github directory
-# at all, so there is no generated ci.yml holding a second, tag-triggered publish job.
-# Verified against the generated tree on 2026-08-21; if a future generator version starts
-# emitting one, add .github/workflows/ci.yml here alongside a hand-written copy.
+# ci.yml is hand-written too, for the opposite reason to whopsdk-ruby's. fern-swift-sdk
+# 0.36.0 emits no .github directory at all — no ci.yml, no publish job — so nothing
+# compiles this tree, nothing runs its 411 generated tests and nothing notices when a
+# regeneration reverts one of the patches below. Verified against the generated tree on
+# 2026-08-21; if a future generator version starts emitting a ci.yml, reconcile the two
+# rather than dropping this one.
+#
+# The three files under Sources/Core are GENERATED files carrying hand-written patches, so
+# every entry here freezes that file at fern-swift-sdk 0.36.0. That cost is bounded: all
+# three are template/asIs files whose only spec-derived content is the SDK's own error-enum
+# name and the retry status list, so they do not drift as the API grows — unlike, say,
+# Sources/Whop.swift, which gains a property per resource and is why the Api-Version-Date
+# default lives in HTTPClient rather than in the constructor where Fern puts it. Each patch
+# is asserted by name in ci.yml's hand-written-guards job, so a regeneration that reverts
+# one fails there instead of on a caller's machine. Delete an entry and its patch when the
+# generator fixes the defect upstream.
+#
+#   - Serde.swift — sets `outputFormatting = [.sortedKeys]` on the request encoder.
+#     Foundation promises no key order for a keyed container, so without it one request
+#     value encodes to different bytes on different calls. Whop fingerprints
+#     Idempotency-Key over the request body, so the API's double-charge protection is
+#     unreachable from Swift until this is set. `outputFormatting` appears nowhere in
+#     fern-swift-sdk 0.36.0's bundle, so no generator config can produce it.
+#
+#   - KeyedDecodingContainer+Nullable.swift — adds an absent-tolerant `decode` overload for
+#     `Nullable<T>`. Generated models read every nullable response field with
+#     `container.decode`, which throws `keyNotFound` on a missing key, so a pinned older
+#     Api-Version-Date or any legitimately downgraded payload fails the WHOLE response.
+#     The overload is more specialized than the stdlib's generic `decode`, so it wins
+#     overload resolution at 954 generated call sites without any of them changing. The
+#     `nullableAsOptional: true` generator config reaches the same outcome by turning every
+#     `Nullable<T>` into `T?`, but it also erases the null-vs-omitted distinction on request
+#     bodies, which a PATCH surface needs.
+#
+#   - HTTPClient.swift — four fixes, all in the one file that already owns the wire:
+#       * sends the Api-Version-Date the SDK was generated against. Fern's IR carries the
+#         default (`clientDefault`, from `x-fern-default`) and fern-swift-sdk parses it and
+#         never reads it, hardcoding `nil` instead, so an unpinned Swift caller is served
+#         the API's OLDEST contract and cannot read products at all.
+#       * sends User-Agent and the X-Fern-SDK-* identity headers. The generator emits none,
+#         so `Sources/Version.swift` was dead code and a Swift caller was indistinguishable
+#         in Whop's access logs from any other program on the platform.
+#       * encodes array query parameters as repeated bare keys. `QueryParameter.toString()`
+#         renders `.stringArray` as one comma-joined value, which is lossy for any id that
+#         can contain a comma.
+#       * reads `RequestOptions.additionalBodyParameters`, which is public and documented
+#         and which `buildRequestBody` accepted and ignored; and surfaces cancellation as
+#         `WhopSDKError` at every retry setting rather than a bare `CancellationError` on
+#         all but the last attempt.
+#
+# LICENSE is deliberately NOT listed. Fern writes it from `license: Apache-2.0` in the
+# swift-release github block of whop-monorepo's sdks/fern/generators.yml, the same way
+# whopsdk-ruby and whopsdk-python get theirs — neither of which .fernignores it. The file
+# is committed here so the repository has one before the next regeneration lands.
+.github/workflows/ci.yml
 .github/workflows/publish-main.yml
+Sources/Core/Networking/HTTPClient.swift
+Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift
+Sources/Core/Serde/Serde.swift
