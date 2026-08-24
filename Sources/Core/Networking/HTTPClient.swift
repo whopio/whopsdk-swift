@@ -9,6 +9,24 @@ final class HTTPClient: Swift.Sendable {
     private static let maxRetryDelay: Foundation.TimeInterval = 60.0  // 60 seconds
     private static let jitterFactor: Swift.Double = 0.2  // 20% jitter
 
+    private static let apiVersionDateHeader = "Api-Version-Date"
+
+    /// The newest Api-Version-Date this SDK was generated against.
+    ///
+    /// Read off a generated enum rather than written down, so a regeneration carries it
+    /// forward on its own and it can never drift from the models in the same tree. An
+    /// unversioned request is served the API's OLDEST contract, which no generated model
+    /// matches, so the SDK has to send one.
+    private static let generatedAgainstApiVersionDate: Swift.String? =
+        ApiKeyApiVersionDate.allCases.last?.rawValue
+
+    private static let platformHeaders: [Swift.String: Swift.String] = [
+        "User-Agent": "WhopSDK/\(sdkVersion) (Swift)",
+        "X-Fern-Language": "Swift",
+        "X-Fern-SDK-Name": "WhopSDK",
+        "X-Fern-SDK-Version": sdkVersion,
+    ]
+
     init(config: ClientConfig) {
         self.clientConfig = config
     }
@@ -153,11 +171,21 @@ final class HTTPClient: Swift.Sendable {
             )
         }
         if !requestQueryParams.isEmpty {
-            let baseItems: [Foundation.URLQueryItem] = requestQueryParams.compactMap { key, value in
-                guard let unwrapped = value else { return nil }
+            let baseItems: [Foundation.URLQueryItem] = requestQueryParams.sorted {
+                $0.key < $1.key
+            }.flatMap { key, value -> [Foundation.URLQueryItem] in
+                guard let unwrapped = value else { return [] }
+                // An array filter has to reach the server as repeated bare keys.
+                // QueryParameter.toString() renders `.stringArray` as one comma-joined
+                // value, which is lossy the moment a value can itself contain a comma.
+                if case .stringArray(let values) = unwrapped {
+                    return values.filter { !$0.isEmpty }.map {
+                        Foundation.URLQueryItem(name: key, value: $0)
+                    }
+                }
                 let stringValue = unwrapped.toString()
-                guard !stringValue.isEmpty else { return nil }
-                return Foundation.URLQueryItem(name: key, value: stringValue)
+                guard !stringValue.isEmpty else { return [] }
+                return [Foundation.URLQueryItem(name: key, value: stringValue)]
             }
             if !baseItems.isEmpty {
                 components.queryItems = baseItems
@@ -187,7 +215,13 @@ final class HTTPClient: Swift.Sendable {
         requestHeaders: [Swift.String: Swift.String?],
         requestOptions: RequestOptions? = nil
     ) async throws -> [Swift.String: Swift.String] {
-        var headers = clientConfig.headers ?? [:]
+        var headers = Self.platformHeaders
+        if let generatedAgainst = Self.generatedAgainstApiVersionDate {
+            headers[Self.apiVersionDateHeader] = generatedAgainst
+        }
+        for (key, value) in clientConfig.headers ?? [:] {
+            headers[key] = value
+        }
 
         headers["Content-Type"] = buildContentTypeHeader(
             requestBody: requestBody,
@@ -250,7 +284,13 @@ final class HTTPClient: Swift.Sendable {
         switch requestBody {
         case .jsonEncodable(let encodableBody):
             do {
-                return try jsonEncoder.encode(encodableBody)
+                let encoded = try jsonEncoder.encode(encodableBody)
+                guard let additional = requestOptions?.additionalBodyParameters,
+                    !additional.isEmpty
+                else {
+                    return encoded
+                }
+                return merging(additional, into: encoded)
             } catch {
                 preconditionFailure(
                     "Failed to encode request body: \(error) - this indicates an unexpected error in the SDK."
@@ -261,6 +301,27 @@ final class HTTPClient: Swift.Sendable {
         case .multipartFormData(let multipartData):
             return multipartData.data()
         }
+    }
+
+    private func merging(
+        _ additional: [Swift.String: Swift.String], into encoded: Foundation.Data
+    ) -> Foundation.Data {
+        guard
+            var object = (try? Foundation.JSONSerialization.jsonObject(with: encoded))
+                as? [Swift.String: Any]
+        else {
+            return encoded
+        }
+        for (key, value) in additional {
+            object[key] = value
+        }
+        guard
+            let merged = try? Foundation.JSONSerialization.data(
+                withJSONObject: object, options: [.sortedKeys])
+        else {
+            return encoded
+        }
+        return merged
     }
 
     private func executeRequestWithURLSession(
@@ -288,8 +349,7 @@ final class HTTPClient: Swift.Sendable {
 
                 if attempt < maxRetries && shouldRetry(statusCode: httpResponse.statusCode) {
                     let delay = getRetryDelay(response: httpResponse, retryAttempt: attempt)
-                    try await _Concurrency.Task.sleep(
-                        nanoseconds: Swift.UInt64(delay * 1_000_000_000))
+                    try await sleepBetweenRetries(seconds: delay)
                     continue
                 }
 
@@ -298,6 +358,15 @@ final class HTTPClient: Swift.Sendable {
                     data: data
                 )
             } catch {
+                // Cancellation is the caller's own decision, so it is never retried and
+                // always leaves through WhopSDKError. Without this it escapes as
+                // URLError.cancelled wrapped in .networkError on the last attempt and as a
+                // bare CancellationError out of the retry sleep on every earlier one, so
+                // what a caller catches depends on maxRetries.
+                if Self.isCancellation(error) {
+                    throw WhopSDKError.networkError(error)
+                }
+
                 let clientError: WhopSDKError?
 
                 // Treat timeouts as a first-class, non-retryable error
@@ -318,9 +387,7 @@ final class HTTPClient: Swift.Sendable {
                 }
                 let delay = Self.initialRetryDelay * pow(2.0, Swift.Double(attempt))
                 let cappedDelay = min(delay, Self.maxRetryDelay)
-                let jitteredDelay = addSymmetricJitter(to: cappedDelay)
-                try await _Concurrency.Task.sleep(
-                    nanoseconds: Swift.UInt64(jitteredDelay * 1_000_000_000))
+                try await sleepBetweenRetries(seconds: addSymmetricJitter(to: cappedDelay))
             }
         }
 
@@ -328,6 +395,24 @@ final class HTTPClient: Swift.Sendable {
             throw makeErrorFromResponse(statusCode: httpResponse.statusCode, data: data)
         }
         throw WhopSDKError.invalidResponse
+    }
+
+    private static func isCancellation(_ error: Swift.Error) -> Swift.Bool {
+        if error is _Concurrency.CancellationError {
+            return true
+        }
+        if let urlError = error as? Foundation.URLError, urlError.code == .cancelled {
+            return true
+        }
+        return false
+    }
+
+    private func sleepBetweenRetries(seconds: Foundation.TimeInterval) async throws {
+        do {
+            try await _Concurrency.Task.sleep(nanoseconds: Swift.UInt64(seconds * 1_000_000_000))
+        } catch {
+            throw WhopSDKError.networkError(error)
+        }
     }
 
     private func shouldRetry(statusCode: Swift.Int) -> Swift.Bool {
