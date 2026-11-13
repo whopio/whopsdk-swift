@@ -6,5 +6,11 @@ generations:
     timestamp: 2026-11-13T19:55:26.454Z
     cli_version: unknown
     generator_versions: {}
-current_generation: dab9408b057bf156682dfec02d370a493a20f77f
+  - commit_sha: 33891ac6ecb73654af2e2fa2c927b0b8dca09a28
+    tree_hash: 6d193f22f50e152b55330e66b3b3f6f6addf13a2
+    timestamp: 2026-11-13T19:55:28.018Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-swift-sdk: 0.37.3
+current_generation: 33891ac6ecb73654af2e2fa2c927b0b8dca09a28
 patches: []
