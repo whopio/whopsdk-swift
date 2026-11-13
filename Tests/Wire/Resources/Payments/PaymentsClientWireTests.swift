@@ -11,169 +11,246 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "amount_after_fees": 6.9,
-                      "application_fee": {
-                        "amount": 6.9,
-                        "amount_captured": 6.9,
-                        "amount_refunded": 6.9,
-                        "created_at": "2023-12-01T05:00:00Z",
+                      "account_id": "biz_xxxxxxxxxxxxxx",
+                      "amount_after_fees": {
+                        "amount": "-1234.56",
                         "currency": "usd",
-                        "id": "apfee_xxxxxxxxxxxx"
+                        "decimals": 2,
+                        "display_decimals": 2
                       },
-                      "auto_refunded": true,
+                      "auto_capture_at": "auto_capture_at",
+                      "auto_refunded": false,
                       "billing_address": {
-                        "city": null,
-                        "country": null,
-                        "line1": null,
-                        "line2": null,
-                        "name": null,
-                        "postal_code": null,
-                        "state": null
+                        "city": "Austin",
+                        "country": "US",
+                        "line1": "1114 Bouldin Ave",
+                        "line2": "Unit B",
+                        "name": "Dana Whitfield",
+                        "postal_code": "78704",
+                        "state": "TX"
                       },
                       "billing_reason": "subscription_create",
-                      "card_brand": "mastercard",
-                      "card_last4": "4242",
-                      "checkout_configuration_id": "ch_xxxxxxxxxxxxxxx",
-                      "company": {
-                        "id": "biz_xxxxxxxxxxxxxx",
-                        "route": "route",
-                        "title": "title"
-                      },
-                      "created_at": "2023-12-01T05:00:00Z",
+                      "capture_expires_at": "capture_expires_at",
+                      "checkout_configuration_id": "checkout_configuration_id",
+                      "checkout_origin": "checkout_origin",
+                      "checkout_surface": "hosted_checkout",
+                      "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                      "created_at": "2026-01-01T12:00:00.000Z",
                       "currency": "usd",
-                      "customer_phone": "customer_phone",
+                      "customer_email": "marcus@shinetime.example",
+                      "customer_phone": "+xxxxxxxxxxx",
                       "decline_code": "insufficient_funds",
-                      "dispute_alerted_at": "2023-12-01T05:00:00Z",
+                      "dispute_alerted_at": "dispute_alerted_at",
+                      "dispute_created_at": "dispute_created_at",
                       "failure_message": "failure_message",
+                      "financing_installments_count": 1.1,
+                      "holds": [
+                        {
+                          "amount": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "percentage": null,
+                          "release_at": null,
+                          "type": "reserve"
+                        }
+                      ],
                       "id": "pay_xxxxxxxxxxxxxx",
-                      "last_payment_attempt": "2023-12-01T05:00:00Z",
-                      "member": {
-                        "id": "id",
-                        "phone": null
-                      },
-                      "membership": {
-                        "id": "mem_xxxxxxxxxxxxxx",
-                        "phone_number": null,
-                        "status": "trialing"
-                      },
+                      "ip_address": "ip_address",
+                      "last_payment_attempt_at": "last_payment_attempt_at",
+                      "line_items": [
+                        {
+                          "id": "li_xxxxxxxxxxxxxx",
+                          "label": "Ceramic Coating Package",
+                          "product_id": "prod_xxxxxxxxxxxxxx",
+                          "product_title": "Ceramic Coating Package",
+                          "quantity": 1,
+                          "sku": null,
+                          "subtotal": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "variant_id": "plan_xxxxxxxxxxxxxx",
+                          "variant_title": "Ceramic Coating — Full Vehicle"
+                        }
+                      ],
+                      "member_id": "mber_xxxxxxxxxxxxxx",
+                      "membership_id": "mem_xxxxxxxxxxxxxx",
                       "metadata": {
-                        "key": "value"
+                        "order_ref": "SHINE-4417"
                       },
-                      "needs_tracking": true,
-                      "next_payment_attempt": "2023-12-01T05:00:00Z",
-                      "paid_at": "2023-12-01T05:00:00Z",
+                      "missing_tracking": false,
+                      "needs_tracking": false,
+                      "next_payment_attempt_at": "next_payment_attempt_at",
+                      "paid_at": "2026-01-01T12:00:00.000Z",
                       "payment_instrument": {
-                        "card": null,
-                        "display_name": "display_name",
+                        "card": {
+                          "brand": "visa",
+                          "exp_month": 10,
+                          "exp_year": 2031,
+                          "issuer_identification_number": "41111111",
+                          "last4": "4242",
+                          "network_transaction_id": "016153570198200"
+                        },
+                        "display_name": "Visa •••• 4242",
                         "icons": {
                           "card": {
                             "dark": {
-                              "png_1x": "png_1x",
-                              "png_2x": "png_2x",
-                              "png_4x": "png_4x",
-                              "svg": "svg"
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                             },
                             "light": {
-                              "png_1x": "png_1x",
-                              "png_2x": "png_2x",
-                              "png_4x": "png_4x",
-                              "svg": "svg"
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                             }
                           },
                           "square": {
                             "dark": {
-                              "png_1x": "png_1x",
-                              "png_2x": "png_2x",
-                              "png_4x": "png_4x",
-                              "svg": "svg"
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                             },
                             "light": {
-                              "png_1x": "png_1x",
-                              "png_2x": "png_2x",
-                              "png_4x": "png_4x",
-                              "svg": "svg"
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                             }
                           }
                         },
-                        "installment_count": 42,
-                        "payment_method_type": "payment_method_type"
+                        "installment_count": null,
+                        "payment_method_type": "card"
                       },
-                      "payment_method": {
-                        "card": {
-                          "brand": null,
-                          "exp_month": 42,
-                          "exp_year": 42,
-                          "fingerprint": null,
-                          "last4": "4242"
-                        },
-                        "created_at": "2023-12-01T05:00:00Z",
-                        "id": "payt_xxxxxxxxxxxxx",
-                        "payment_method_type": "acss_debit"
-                      },
+                      "payment_method_id": "payt_xxxxxxxxxxxxxx",
                       "payment_method_type": "acss_debit",
-                      "payments_failed": 42,
-                      "plan": {
-                        "id": "plan_xxxxxxxxxxxxx",
-                        "internal_notes": null,
-                        "metadata": null
+                      "payment_rule_matches": [
+                        {
+                          "action": "allow",
+                          "id": "id",
+                          "name": null
+                        }
+                      ],
+                      "payments_failed": 0,
+                      "presentment_refunded_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
                       },
-                      "product": {
-                        "id": "prod_xxxxxxxxxxxxx",
-                        "metadata": null,
-                        "route": "pickaxe-analytics",
-                        "title": "Pickaxe Analytics"
+                      "presentment_tax_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
                       },
-                      "promo_code": {
-                        "amount_off": 6.9,
-                        "base_currency": "usd",
-                        "code": null,
-                        "id": "promo_xxxxxxxxxxxx",
-                        "number_of_intervals": 42,
-                        "promo_type": "percentage"
+                      "presentment_total": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
                       },
-                      "refundable": true,
-                      "refunded_amount": 6.9,
-                      "refunded_at": "2023-12-01T05:00:00Z",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "promo_code_id": "promo_code_id",
+                      "quote_id": "quote_id",
+                      "recovery_url": "recovery_url",
+                      "refundable": false,
+                      "refunded_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "refunded_at": "refunded_at",
+                      "response_due_at": "response_due_at",
                       "retryable": true,
-                      "settlement_currency": "usd",
-                      "shipment": {
-                        "carrier": "usps",
-                        "id": "ship_xxxxxxxxxxxxx",
-                        "status": "unknown",
-                        "tracking_number": "9400111899223456789012",
-                        "tracking_url": "https://track.aftership.com/9400111899223456789012"
+                      "risk_score": 1.1,
+                      "risk_signals": {
+                        "key": "value"
                       },
+                      "settlement_time_at": "settlement_time_at",
+                      "shipment_id": "shipment_id",
                       "shipping_address": {
-                        "city": null,
-                        "country": null,
-                        "line1": null,
-                        "line2": null,
-                        "name": null,
-                        "postal_code": null,
-                        "state": null
+                        "city": "Austin",
+                        "country": "US",
+                        "line1": "1114 Bouldin Ave",
+                        "line2": "Unit B",
+                        "name": "Dana Whitfield",
+                        "postal_code": "78704",
+                        "state": "TX"
                       },
                       "status": "draft",
                       "substatus": "succeeded",
-                      "subtotal": 6.9,
-                      "tax_amount": 6.9,
-                      "tax_behavior": "exclusive",
-                      "total": 6.9,
-                      "updated_at": "2023-12-01T05:00:00Z",
-                      "usd_total": 6.9,
-                      "user": {
-                        "email": "john.doe@example.com",
-                        "id": "user_xxxxxxxxxxxxx",
-                        "name": "John Doe",
-                        "username": "johndoe42"
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
                       },
-                      "voidable": true
+                      "tax_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "tax_behavior": "exclusive",
+                      "tax_refunded_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "three_ds_verified": false,
+                      "total": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "usd_total": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "user": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "user_agent": "user_agent",
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "verification_checks": {
+                        "address_line1": "PASS",
+                        "arn": "74123456789",
+                        "authorization_code": "A1B2C3",
+                        "card_holder_name": "PASS",
+                        "card_security_code": "PASS",
+                        "zip_code": "PASS"
+                      },
+                      "voidable": false,
+                      "wuid": "wuid"
                     }
                   ],
                   "page_info": {
                     "end_cursor": "end_cursor",
-                    "has_next_page": true,
-                    "has_previous_page": true,
-                    "start_cursor": "start_cursor"
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "WyJjdXJzb3IiLDFd",
+                    "total_count": 1,
+                    "total_count_capped": true
                   }
                 }
                 """#.utf8
@@ -186,180 +263,261 @@ import WhopSDK
         )
         let expectedResponse = ListPaymentsResponse(
             data: [
-                PaymentListItem(
-                    amountAfterFees: 6.9,
-                    applicationFee: Nullable<PaymentListItemApplicationFee>.value(PaymentListItemApplicationFee(
-                        amount: 6.9,
-                        amountCaptured: 6.9,
-                        amountRefunded: 6.9,
-                        createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                        currency: Currencies.usd,
-                        id: "apfee_xxxxxxxxxxxx"
-                    )),
-                    autoRefunded: true,
-                    billingAddress: Nullable<PaymentListItemBillingAddress>.value(PaymentListItemBillingAddress(
-                        city: .null,
-                        country: .null,
-                        line1: .null,
-                        line2: .null,
-                        name: .null,
-                        postalCode: .null,
-                        state: .null
+                Payment(
+                    accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+                    amountAfterFees: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+                    autoRefunded: false,
+                    billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                        city: Nullable<String>.value("Austin"),
+                        country: Nullable<String>.value("US"),
+                        line1: Nullable<String>.value("1114 Bouldin Ave"),
+                        line2: Nullable<String>.value("Unit B"),
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        postalCode: Nullable<String>.value("78704"),
+                        state: Nullable<String>.value("TX")
                     )),
                     billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-                    cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    cardLast4: Nullable<String>.value("4242"),
-                    checkoutConfigurationId: Nullable<String>.value("ch_xxxxxxxxxxxxxxx"),
-                    company: Nullable<PaymentListItemCompany>.value(PaymentListItemCompany(
-                        id: "biz_xxxxxxxxxxxxxx",
-                        route: "route",
-                        title: "title"
-                    )),
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+                    captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+                    checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+                    checkoutOrigin: Nullable<String>.value("checkout_origin"),
+                    checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+                    clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
                     currency: Currencies.usd,
-                    customerPhone: Nullable<String>.value("customer_phone"),
+                    customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+                    customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
                     declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
-                    disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
+                    disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+                    disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
                     failureMessage: Nullable<String>.value("failure_message"),
+                    financingInstallmentsCount: Nullable<Double>.value(1.1),
+                    holds: [
+                        PaymentHold(
+                            amount: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            percentage: .null,
+                            releaseAt: .null,
+                            type: PaymentHoldType.reserve
+                        )
+                    ],
                     id: "pay_xxxxxxxxxxxxxx",
-                    lastPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    member: Nullable<PaymentListItemMember>.value(PaymentListItemMember(
-                        id: "id",
-                        phone: .null
-                    )),
-                    membership: Nullable<PaymentListItemMembership>.value(PaymentListItemMembership(
-                        id: "mem_xxxxxxxxxxxxxx",
-                        phoneNumber: .null,
-                        status: MembershipStatus.trialing
-                    )),
+                    ipAddress: Nullable<String>.value("ip_address"),
+                    lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+                    lineItems: [
+                        ReceiptLineItem(
+                            id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                            label: Nullable<String>.value("Ceramic Coating Package"),
+                            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                            productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                            quantity: 1,
+                            sku: .null,
+                            subtotal: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                            variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                        )
+                    ],
+                    memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+                    membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
                     metadata: Nullable<[String: JSONValue]>.value([
-                        "key": JSONValue.string("value")
+                        "order_ref": JSONValue.string("SHINE-4417")
                     ]),
-                    needsTracking: Nullable<Bool>.value(true),
-                    nextPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    paymentInstrument: Nullable<PaymentListItemPaymentInstrument>.value(PaymentListItemPaymentInstrument(
-                        card: .null,
-                        displayName: "display_name",
-                        icons: PaymentListItemPaymentInstrumentIcons(
-                            card: PaymentListItemPaymentInstrumentIconsCard(
-                                dark: PaymentListItemPaymentInstrumentIconsCardDark(
-                                    png1X: "png_1x",
-                                    png2X: "png_2x",
-                                    png4X: "png_4x",
-                                    svg: "svg"
+                    missingTracking: Nullable<Bool>.value(false),
+                    needsTracking: Nullable<Bool>.value(false),
+                    nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+                    paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+                    paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                        card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                            brand: Nullable<String>.value("visa"),
+                            expMonth: Nullable<Double>.value(10),
+                            expYear: Nullable<Double>.value(2031),
+                            issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                            last4: Nullable<String>.value("4242"),
+                            networkTransactionId: Nullable<String>.value("016153570198200")
+                        )),
+                        displayName: "Visa •••• 4242",
+                        icons: PaymentMethodIcons(
+                            card: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                                 ),
-                                light: PaymentListItemPaymentInstrumentIconsCardLight(
-                                    png1X: "png_1x",
-                                    png2X: "png_2x",
-                                    png4X: "png_4x",
-                                    svg: "svg"
+                                light: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                                 )
                             ),
-                            square: PaymentListItemPaymentInstrumentIconsSquare(
-                                dark: PaymentListItemPaymentInstrumentIconsSquareDark(
-                                    png1X: "png_1x",
-                                    png2X: "png_2x",
-                                    png4X: "png_4x",
-                                    svg: "svg"
+                            square: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                                 ),
-                                light: PaymentListItemPaymentInstrumentIconsSquareLight(
-                                    png1X: "png_1x",
-                                    png2X: "png_2x",
-                                    png4X: "png_4x",
-                                    svg: "svg"
+                                light: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                                 )
                             )
                         ),
-                        installmentCount: Nullable<Int>.value(42),
-                        paymentMethodType: "payment_method_type"
+                        installmentCount: .null,
+                        paymentMethodType: "card"
                     )),
-                    paymentMethod: Nullable<PaymentListItemPaymentMethod>.value(PaymentListItemPaymentMethod(
-                        card: Nullable<PaymentListItemPaymentMethodCard>.value(PaymentListItemPaymentMethodCard(
-                            brand: .null,
-                            expMonth: Nullable<Int>.value(42),
-                            expYear: Nullable<Int>.value(42),
-                            fingerprint: .null,
-                            last4: Nullable<String>.value("4242")
-                        )),
-                        createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                        id: "payt_xxxxxxxxxxxxx",
-                        paymentMethodType: PaymentMethodTypes.acssDebit
-                    )),
+                    paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
                     paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-                    paymentsFailed: Nullable<Int>.value(42),
-                    plan: Nullable<PaymentListItemPlan>.value(PaymentListItemPlan(
-                        id: "plan_xxxxxxxxxxxxx",
-                        internalNotes: .null,
-                        metadata: .null
+                    paymentRuleMatches: [
+                        PaymentRuleMatch(
+                            action: PaymentRuleMatchAction.allow,
+                            id: "id",
+                            name: .null
+                        )
+                    ],
+                    paymentsFailed: 0,
+                    presentmentRefundedAmount: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
                     )),
-                    product: Nullable<PaymentListItemProduct>.value(PaymentListItemProduct(
-                        id: "prod_xxxxxxxxxxxxx",
-                        metadata: .null,
-                        route: "pickaxe-analytics",
-                        title: "Pickaxe Analytics"
+                    presentmentTaxAmount: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
                     )),
-                    promoCode: Nullable<PaymentListItemPromoCode>.value(PaymentListItemPromoCode(
-                        amountOff: 6.9,
-                        baseCurrency: Currencies.usd,
-                        code: .null,
-                        id: "promo_xxxxxxxxxxxx",
-                        numberOfIntervals: Nullable<Int>.value(42),
-                        promoType: PromoTypes.percentage
+                    presentmentTotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
                     )),
-                    refundable: true,
-                    refundedAmount: Nullable<Double>.value(6.9),
-                    refundedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    promoCodeId: Nullable<String>.value("promo_code_id"),
+                    quoteId: Nullable<String>.value("quote_id"),
+                    recoveryUrl: Nullable<String>.value("recovery_url"),
+                    refundable: false,
+                    refundedAmount: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    refundedAt: Nullable<String>.value("refunded_at"),
+                    responseDueAt: Nullable<String>.value("response_due_at"),
                     retryable: true,
-                    settlementCurrency: Currencies.usd,
-                    shipment: Nullable<PaymentListItemShipment>.value(PaymentListItemShipment(
-                        carrier: Nullable<String>.value("usps"),
-                        id: "ship_xxxxxxxxxxxxx",
-                        status: ShipmentStatuses.unknown,
-                        trackingNumber: "9400111899223456789012",
-                        trackingUrl: "https://track.aftership.com/9400111899223456789012"
+                    riskScore: Nullable<Double>.value(1.1),
+                    riskSignals: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+                    shipmentId: Nullable<String>.value("shipment_id"),
+                    shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                        city: Nullable<String>.value("Austin"),
+                        country: Nullable<String>.value("US"),
+                        line1: Nullable<String>.value("1114 Bouldin Ave"),
+                        line2: Nullable<String>.value("Unit B"),
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        postalCode: Nullable<String>.value("78704"),
+                        state: Nullable<String>.value("TX")
                     )),
-                    shippingAddress: Nullable<PaymentListItemShippingAddress>.value(PaymentListItemShippingAddress(
-                        city: .null,
-                        country: .null,
-                        line1: .null,
-                        line2: .null,
-                        name: .null,
-                        postalCode: .null,
-                        state: .null
-                    )),
-                    status: Nullable<ReceiptStatus>.value(ReceiptStatus.draft),
+                    status: ReceiptStatus.draft,
                     substatus: FriendlyReceiptStatus.succeeded,
-                    subtotal: Nullable<Double>.value(6.9),
-                    taxAmount: Nullable<Double>.value(6.9),
-                    taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-                    total: Nullable<Double>.value(6.9),
-                    updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    usdTotal: Nullable<Double>.value(6.9),
-                    user: Nullable<PaymentListItemUser>.value(PaymentListItemUser(
-                        email: Nullable<String>.value("john.doe@example.com"),
-                        id: "user_xxxxxxxxxxxxx",
-                        name: Nullable<String>.value("John Doe"),
-                        username: "johndoe42"
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
                     )),
-                    voidable: true
+                    taxAmount: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
+                    taxRefundedAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    threeDsVerified: false,
+                    total: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    usdTotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    user: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )),
+                    userAgent: Nullable<String>.value("user_agent"),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
+                        addressLine1: Nullable<String>.value("PASS"),
+                        arn: Nullable<String>.value("74123456789"),
+                        authorizationCode: Nullable<String>.value("A1B2C3"),
+                        cardHolderName: Nullable<String>.value("PASS"),
+                        cardSecurityCode: Nullable<String>.value("PASS"),
+                        zipCode: Nullable<String>.value("PASS")
+                    )),
+                    voidable: false,
+                    wuid: Nullable<String>.value("wuid")
                 )
             ],
-            pageInfo: PageInfo(
+            pageInfo: ListPaymentsResponsePageInfo(
                 endCursor: Nullable<String>.value("end_cursor"),
-                hasNextPage: true,
-                hasPreviousPage: true,
-                startCursor: Nullable<String>.value("start_cursor")
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
             )
         )
         let response = try await client.payments.list(
-            first: 42,
-            last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
-            createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            updatedBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            updatedAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            currencies: [
+                "eur"
+            ],
+            minAmount: 995,
+            maxAmount: 995,
+            variantIds: [
+                "plan_xxxxxxxxxxxxx"
+            ],
+            productIds: [
+                "prod_xxxxxxxxxxxxx"
+            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -371,237 +529,237 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "amount_after_fees": 6.9,
-                  "application_fee": {
-                    "amount": 6.9,
-                    "amount_captured": 6.9,
-                    "amount_refunded": 6.9,
-                    "created_at": "2023-12-01T05:00:00Z",
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount_after_fees": {
+                    "amount": "-1234.56",
                     "currency": "usd",
-                    "id": "apfee_xxxxxxxxxxxx"
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
-                  "auto_refunded": true,
+                  "auto_capture_at": "auto_capture_at",
+                  "auto_refunded": false,
                   "billing_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
                   },
                   "billing_reason": "subscription_create",
-                  "card_brand": "mastercard",
-                  "card_exp_month": 6,
-                  "card_exp_year": 2027,
-                  "card_last4": "4242",
-                  "checkout_configuration_id": "ch_xxxxxxxxxxxxxxx",
-                  "company": {
-                    "id": "biz_xxxxxxxxxxxxxx",
-                    "route": "route",
-                    "title": "title"
-                  },
-                  "created_at": "2023-12-01T05:00:00Z",
+                  "capture_expires_at": "capture_expires_at",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "checkout_origin": "checkout_origin",
+                  "checkout_surface": "hosted_checkout",
+                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
-                  "customer_phone": "customer_phone",
+                  "customer_email": "marcus@shinetime.example",
+                  "customer_phone": "+xxxxxxxxxxx",
                   "decline_code": "insufficient_funds",
-                  "dispute_alerted_at": "2023-12-01T05:00:00Z",
-                  "disputes": [
-                    {
-                      "amount": 6.9,
-                      "currency": "usd",
-                      "editable": true,
-                      "id": "dspt_xxxxxxxxxxxxx",
-                      "needs_response_by": "2023-12-01T05:00:00Z",
-                      "notes": "Customer used the product for 3 months before disputing.",
-                      "reason": "Product Not Received",
-                      "status": "warning_needs_response"
-                    }
-                  ],
+                  "dispute_alerted_at": "dispute_alerted_at",
+                  "dispute_created_at": "dispute_created_at",
                   "failure_message": "failure_message",
-                  "financing_installments_count": 42,
-                  "financing_transactions": [
+                  "financing_installments_count": 1.1,
+                  "holds": [
                     {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "id": "ptx_xxxxxxxxxxxxxx",
-                      "status": "succeeded",
-                      "transaction_type": "purchase"
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "percentage": 1.1,
+                      "release_at": "release_at",
+                      "type": "reserve"
                     }
                   ],
                   "id": "pay_xxxxxxxxxxxxxx",
-                  "last_payment_attempt": "2023-12-01T05:00:00Z",
-                  "member": {
-                    "id": "id",
-                    "phone": "phone"
-                  },
-                  "membership": {
-                    "id": "mem_xxxxxxxxxxxxxx",
-                    "phone_number": "phone_number",
-                    "status": "trialing"
-                  },
+                  "ip_address": "ip_address",
+                  "last_payment_attempt_at": "last_payment_attempt_at",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
+                  "member_id": "mber_xxxxxxxxxxxxxx",
+                  "membership_id": "mem_xxxxxxxxxxxxxx",
                   "metadata": {
-                    "key": "value"
+                    "order_ref": "SHINE-4417"
                   },
-                  "needs_tracking": true,
-                  "next_payment_attempt": "2023-12-01T05:00:00Z",
-                  "paid_at": "2023-12-01T05:00:00Z",
+                  "missing_tracking": false,
+                  "needs_tracking": false,
+                  "next_payment_attempt_at": "next_payment_attempt_at",
+                  "paid_at": "2026-01-01T12:00:00.000Z",
                   "payment_instrument": {
                     "card": {
-                      "brand": "brand",
-                      "last4": "last4"
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
                     },
-                    "display_name": "display_name",
+                    "display_name": "Visa •••• 4242",
                     "icons": {
                       "card": {
                         "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         },
                         "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         }
                       },
                       "square": {
                         "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         },
                         "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         }
                       }
                     },
-                    "installment_count": 42,
-                    "payment_method_type": "payment_method_type"
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
                   },
-                  "payment_method": {
-                    "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "fingerprint": "fingerprint",
-                      "last4": "4242"
-                    },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "payment_method_type": "acss_debit"
-                  },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
                   "payment_method_type": "acss_debit",
-                  "payments_failed": 42,
-                  "plan": {
-                    "id": "plan_xxxxxxxxxxxxx",
-                    "internal_notes": "internal_notes",
-                    "metadata": {
-                      "key": "value"
-                    }
-                  },
-                  "product": {
-                    "id": "prod_xxxxxxxxxxxxx",
-                    "metadata": {
-                      "key": "value"
-                    },
-                    "route": "pickaxe-analytics",
-                    "title": "Pickaxe Analytics"
-                  },
-                  "promo_code": {
-                    "amount_off": 6.9,
-                    "base_currency": "usd",
-                    "code": "code",
-                    "id": "promo_xxxxxxxxxxxx",
-                    "number_of_intervals": 42,
-                    "promo_type": "percentage"
-                  },
-                  "refundable": true,
-                  "refunded_amount": 6.9,
-                  "refunded_at": "2023-12-01T05:00:00Z",
-                  "refunds": [
+                  "payment_rule_matches": [
                     {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "currency": "usd",
-                      "id": "rf_xxxxxxxxxxxxxxx",
-                      "status": "pending"
+                      "action": "allow",
+                      "id": "id",
+                      "name": "name"
                     }
                   ],
-                  "resolutions": [
-                    {
-                      "customer_appealed": true,
-                      "customer_response_actions": [
-                        "respond"
-                      ],
-                      "due_date": "2023-12-01T05:00:00Z",
-                      "id": "reso_xxxxxxxxxxxxx",
-                      "issue": "forgot_to_cancel",
-                      "merchant_appealed": true,
-                      "merchant_response_actions": [
-                        "accept"
-                      ],
-                      "platform_response_actions": [
-                        "request_buyer_info"
-                      ],
-                      "status": "merchant_response_needed"
-                    }
-                  ],
+                  "payments_failed": 0,
+                  "presentment_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "product_id": "prod_xxxxxxxxxxxxxx",
+                  "promo_code_id": "promo_code_id",
+                  "quote_id": "quote_id",
+                  "recovery_url": "recovery_url",
+                  "refundable": false,
+                  "refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "refunded_at": "refunded_at",
+                  "response_due_at": "response_due_at",
                   "retryable": true,
-                  "risk_score": 42,
+                  "risk_score": 1.1,
                   "risk_signals": {
                     "key": "value"
                   },
-                  "settlement_amount": 6.9,
-                  "settlement_currency": "usd",
-                  "settlement_exchange_rate": 6.9,
-                  "settlement_time_at": "2023-12-01T05:00:00Z",
-                  "shipment": {
-                    "carrier": "usps",
-                    "id": "ship_xxxxxxxxxxxxx",
-                    "status": "unknown",
-                    "tracking_number": "9400111899223456789012",
-                    "tracking_url": "https://track.aftership.com/9400111899223456789012"
-                  },
+                  "settlement_time_at": "settlement_time_at",
+                  "shipment_id": "shipment_id",
                   "shipping_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
                   },
                   "status": "draft",
                   "substatus": "succeeded",
-                  "subtotal": 6.9,
-                  "tax_amount": 6.9,
+                  "subtotal": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "tax_behavior": "exclusive",
-                  "tax_refunded_amount": 6.9,
-                  "three_ds_verified": true,
-                  "total": 6.9,
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "usd_total": 6.9,
+                  "tax_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "three_ds_verified": false,
+                  "total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "usd_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "user": {
-                    "email": "john.doe@example.com",
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
                   },
+                  "user_agent": "user_agent",
+                  "variant_id": "plan_xxxxxxxxxxxxxx",
                   "verification_checks": {
-                    "address_line1": "address_line1",
-                    "card_holder_name": "card_holder_name",
-                    "card_security_code": "card_security_code",
-                    "zip_code": "zip_code"
+                    "address_line1": "PASS",
+                    "arn": "74123456789",
+                    "authorization_code": "A1B2C3",
+                    "card_holder_name": "PASS",
+                    "card_security_code": "PASS",
+                    "zip_code": "PASS"
                   },
-                  "voidable": true,
-                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_v1_xxxx"
+                  "voidable": false,
+                  "wuid": "wuid"
                 }
                 """#.utf8
             )
@@ -611,249 +769,347 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CreatePaymentsResponse(
-            amountAfterFees: 6.9,
-            applicationFee: Nullable<PaymentApplicationFee>.value(PaymentApplicationFee(
-                amount: 6.9,
-                amountCaptured: 6.9,
-                amountRefunded: 6.9,
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                currency: Currencies.usd,
-                id: "apfee_xxxxxxxxxxxx"
-            )),
-            autoRefunded: true,
-            billingAddress: Nullable<PaymentBillingAddress>.value(PaymentBillingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
+        let expectedResponse = Payment(
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amountAfterFees: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            autoRefunded: false,
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
             )),
             billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-            cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-            cardExpMonth: Nullable<Int>.value(6),
-            cardExpYear: Nullable<Int>.value(2027),
-            cardLast4: Nullable<String>.value("4242"),
-            checkoutConfigurationId: Nullable<String>.value("ch_xxxxxxxxxxxxxxx"),
-            company: Nullable<PaymentCompany>.value(PaymentCompany(
-                id: "biz_xxxxxxxxxxxxxx",
-                route: "route",
-                title: "title"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            checkoutOrigin: Nullable<String>.value("checkout_origin"),
+            checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
             currency: Currencies.usd,
-            customerPhone: Nullable<String>.value("customer_phone"),
+            customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+            customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
             declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
-            disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            disputes: Nullable<[PaymentDisputesItem]>.value([
-                PaymentDisputesItem(
-                    amount: 6.9,
-                    currency: Currencies.usd,
-                    editable: Nullable<Bool>.value(true),
-                    id: "dspt_xxxxxxxxxxxxx",
-                    needsResponseBy: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    notes: Nullable<String>.value("Customer used the product for 3 months before disputing."),
-                    reason: Nullable<String>.value("Product Not Received"),
-                    status: DisputeStatuses.warningNeedsResponse
-                )
-            ]),
+            disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+            disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
             failureMessage: Nullable<String>.value("failure_message"),
-            financingInstallmentsCount: Nullable<Int>.value(42),
-            financingTransactions: [
-                PaymentFinancingTransactionsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    id: "ptx_xxxxxxxxxxxxxx",
-                    status: PaymentTransactionStatuses.succeeded,
-                    transactionType: PaymentTransactionTypes.purchase
+            financingInstallmentsCount: Nullable<Double>.value(1.1),
+            holds: [
+                PaymentHold(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    percentage: Nullable<Double>.value(1.1),
+                    releaseAt: Nullable<String>.value("release_at"),
+                    type: PaymentHoldType.reserve
                 )
             ],
             id: "pay_xxxxxxxxxxxxxx",
-            lastPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            member: Nullable<PaymentMember>.value(PaymentMember(
-                id: "id",
-                phone: Nullable<String>.value("phone")
-            )),
-            membership: Nullable<PaymentMembership>.value(PaymentMembership(
-                id: "mem_xxxxxxxxxxxxxx",
-                phoneNumber: Nullable<String>.value("phone_number"),
-                status: MembershipStatus.trialing
-            )),
+            ipAddress: Nullable<String>.value("ip_address"),
+            lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+            membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
             metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
+                "order_ref": JSONValue.string("SHINE-4417")
             ]),
-            needsTracking: Nullable<Bool>.value(true),
-            nextPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paymentInstrument: Nullable<PaymentPaymentInstrument>.value(PaymentPaymentInstrument(
-                card: Nullable<PaymentPaymentInstrumentCard>.value(PaymentPaymentInstrumentCard(
-                    brand: "brand",
-                    last4: Nullable<String>.value("last4")
+            missingTracking: Nullable<Bool>.value(false),
+            needsTracking: Nullable<Bool>.value(false),
+            nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+            paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
                 )),
-                displayName: "display_name",
-                icons: PaymentPaymentInstrumentIcons(
-                    card: PaymentPaymentInstrumentIconsCard(
-                        dark: PaymentPaymentInstrumentIconsCardDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         ),
-                        light: PaymentPaymentInstrumentIconsCardLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         )
                     ),
-                    square: PaymentPaymentInstrumentIconsSquare(
-                        dark: PaymentPaymentInstrumentIconsSquareDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         ),
-                        light: PaymentPaymentInstrumentIconsSquareLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         )
                     )
                 ),
-                installmentCount: Nullable<Int>.value(42),
-                paymentMethodType: "payment_method_type"
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
             )),
-            paymentMethod: Nullable<PaymentPaymentMethod>.value(PaymentPaymentMethod(
-                card: Nullable<PaymentPaymentMethodCard>.value(PaymentPaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    fingerprint: Nullable<String>.value("fingerprint"),
-                    last4: Nullable<String>.value("4242")
-                )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                paymentMethodType: PaymentMethodTypes.acssDebit
-            )),
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
             paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-            paymentsFailed: Nullable<Int>.value(42),
-            plan: Nullable<PaymentPlan>.value(PaymentPlan(
-                id: "plan_xxxxxxxxxxxxx",
-                internalNotes: Nullable<String>.value("internal_notes"),
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ])
-            )),
-            product: Nullable<PaymentProduct>.value(PaymentProduct(
-                id: "prod_xxxxxxxxxxxxx",
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ]),
-                route: "pickaxe-analytics",
-                title: "Pickaxe Analytics"
-            )),
-            promoCode: Nullable<PaymentPromoCode>.value(PaymentPromoCode(
-                amountOff: 6.9,
-                baseCurrency: Currencies.usd,
-                code: Nullable<String>.value("code"),
-                id: "promo_xxxxxxxxxxxx",
-                numberOfIntervals: Nullable<Int>.value(42),
-                promoType: PromoTypes.percentage
-            )),
-            refundable: true,
-            refundedAmount: Nullable<Double>.value(6.9),
-            refundedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            refunds: [
-                PaymentRefundsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    currency: Currencies.usd,
-                    id: "rf_xxxxxxxxxxxxxxx",
-                    status: RefundStatuses.pending
+            paymentRuleMatches: [
+                PaymentRuleMatch(
+                    action: PaymentRuleMatchAction.allow,
+                    id: "id",
+                    name: Nullable<String>.value("name")
                 )
             ],
-            resolutions: Nullable<[PaymentResolutionsItem]>.value([
-                PaymentResolutionsItem(
-                    customerAppealed: true,
-                    customerResponseActions: [
-                        ResolutionCenterCaseCustomerResponses.respond
-                    ],
-                    dueDate: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    id: "reso_xxxxxxxxxxxxx",
-                    issue: ResolutionCenterCaseIssueTypes.forgotToCancel,
-                    merchantAppealed: true,
-                    merchantResponseActions: [
-                        ResolutionCenterCaseMerchantResponses.accept
-                    ],
-                    platformResponseActions: [
-                        ResolutionCenterCasePlatformResponses.requestBuyerInfo
-                    ],
-                    status: ResolutionCenterCaseStatuses.merchantResponseNeeded
-                )
-            ]),
+            paymentsFailed: 0,
+            presentmentRefundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTaxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            quoteId: Nullable<String>.value("quote_id"),
+            recoveryUrl: Nullable<String>.value("recovery_url"),
+            refundable: false,
+            refundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            refundedAt: Nullable<String>.value("refunded_at"),
+            responseDueAt: Nullable<String>.value("response_due_at"),
             retryable: true,
-            riskScore: Nullable<Int>.value(42),
+            riskScore: Nullable<Double>.value(1.1),
             riskSignals: Nullable<[String: JSONValue]>.value([
                 "key": JSONValue.string("value")
             ]),
-            settlementAmount: 6.9,
-            settlementCurrency: Currencies.usd,
-            settlementExchangeRate: Nullable<Double>.value(6.9),
-            settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            shipment: Nullable<PaymentShipment>.value(PaymentShipment(
-                carrier: Nullable<String>.value("usps"),
-                id: "ship_xxxxxxxxxxxxx",
-                status: ShipmentStatuses.unknown,
-                trackingNumber: "9400111899223456789012",
-                trackingUrl: "https://track.aftership.com/9400111899223456789012"
+            settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+            shipmentId: Nullable<String>.value("shipment_id"),
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
             )),
-            shippingAddress: Nullable<PaymentShippingAddress>.value(PaymentShippingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            status: Nullable<ReceiptStatus>.value(ReceiptStatus.draft),
+            status: ReceiptStatus.draft,
             substatus: FriendlyReceiptStatus.succeeded,
-            subtotal: Nullable<Double>.value(6.9),
-            taxAmount: Nullable<Double>.value(6.9),
+            subtotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
             taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-            taxRefundedAmount: Nullable<Double>.value(6.9),
-            threeDsVerified: true,
-            total: Nullable<Double>.value(6.9),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            usdTotal: Nullable<Double>.value(6.9),
-            user: Nullable<PaymentUser>.value(PaymentUser(
-                email: Nullable<String>.value("john.doe@example.com"),
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
+            taxRefundedAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            threeDsVerified: false,
+            total: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
             )),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            usdTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            userAgent: Nullable<String>.value("user_agent"),
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
-                addressLine1: Nullable<String>.value("address_line1"),
-                cardHolderName: Nullable<String>.value("card_holder_name"),
-                cardSecurityCode: Nullable<String>.value("card_security_code"),
-                zipCode: Nullable<String>.value("zip_code")
+                addressLine1: Nullable<String>.value("PASS"),
+                arn: Nullable<String>.value("74123456789"),
+                authorizationCode: Nullable<String>.value("A1B2C3"),
+                cardHolderName: Nullable<String>.value("PASS"),
+                cardSecurityCode: Nullable<String>.value("PASS"),
+                zipCode: Nullable<String>.value("PASS")
             )),
-            voidable: true,
-            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_v1_xxxx")
+            voidable: false,
+            wuid: Nullable<String>.value("wuid")
         )
         let response = try await client.payments.create(
-            request: CreatePaymentsRequest.createPaymentsRequestZero(
-                CreatePaymentsRequestZero(
-                    companyId: "biz_xxxxxxxxxxxxxx",
-                    confirmationToken: "confirmation_token",
-                    plan: CreatePaymentsRequestZeroPlan(
-                        currency: .usd
-                    )
-                )
+            request: .init(accountId: "biz_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func summary1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "groups": {
+                    "currency": {
+                      "usd": 1
+                    },
+                    "substatus": {
+                      "auto_refunded": 0,
+                      "blocked": 0,
+                      "canceled": 0,
+                      "dispute_closed": 0,
+                      "dispute_lost": 0,
+                      "dispute_needs_response": 0,
+                      "dispute_under_review": 0,
+                      "dispute_warning": 0,
+                      "dispute_warning_closed": 0,
+                      "dispute_warning_needs_response": 0,
+                      "dispute_warning_under_review": 0,
+                      "dispute_won": 0,
+                      "drafted": 0,
+                      "failed": 0,
+                      "incomplete": 1,
+                      "partially_refunded": 0,
+                      "past_due": 0,
+                      "pending": 0,
+                      "price_too_low": 0,
+                      "refunded": 0,
+                      "requires_capture": 0,
+                      "resolution_lost": 0,
+                      "resolution_needs_response": 0,
+                      "resolution_under_review": 0,
+                      "resolution_won": 0,
+                      "succeeded": 0,
+                      "uncollectible": 0,
+                      "unresolved": 0
+                    }
+                  },
+                  "total": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SummaryPaymentsResponse(
+            groups: SummaryPaymentsResponseGroups(
+                currency: Optional([
+                    "usd": 1
+                ]),
+                substatus: Optional(SummaryPaymentsResponseGroupsSubstatus(
+                    autoRefunded: 0,
+                    blocked: 0,
+                    canceled: 0,
+                    disputeClosed: 0,
+                    disputeLost: 0,
+                    disputeNeedsResponse: 0,
+                    disputeUnderReview: 0,
+                    disputeWarning: 0,
+                    disputeWarningClosed: 0,
+                    disputeWarningNeedsResponse: 0,
+                    disputeWarningUnderReview: 0,
+                    disputeWon: 0,
+                    drafted: 0,
+                    failed: 0,
+                    incomplete: 1,
+                    partiallyRefunded: 0,
+                    pastDue: 0,
+                    pending: 0,
+                    priceTooLow: 0,
+                    refunded: 0,
+                    requiresCapture: 0,
+                    resolutionLost: 0,
+                    resolutionNeedsResponse: 0,
+                    resolutionUnderReview: 0,
+                    resolutionWon: 0,
+                    succeeded: 0,
+                    uncollectible: 0,
+                    unresolved: 0
+                ))
             ),
+            total: 1
+        )
+        let response = try await client.payments.summary(
+            currencies: [
+                "usd"
+            ],
+            minAmount: 995,
+            maxAmount: 995,
+            variantIds: [
+                "plan_xxxxxxxxxxxxx"
+            ],
+            productIds: [
+                "prod_xxxxxxxxxxxxx"
+            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -865,776 +1121,237 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "amount_after_fees": 6.9,
-                  "application_fee": {
-                    "amount": 6.9,
-                    "amount_captured": 6.9,
-                    "amount_refunded": 6.9,
-                    "created_at": "2023-12-01T05:00:00Z",
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount_after_fees": {
+                    "amount": "-1234.56",
                     "currency": "usd",
-                    "id": "apfee_xxxxxxxxxxxx"
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
-                  "auto_refunded": true,
+                  "auto_capture_at": "auto_capture_at",
+                  "auto_refunded": false,
                   "billing_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
                   },
                   "billing_reason": "subscription_create",
-                  "card_brand": "mastercard",
-                  "card_exp_month": 6,
-                  "card_exp_year": 2027,
-                  "card_last4": "4242",
-                  "checkout_configuration_id": "ch_xxxxxxxxxxxxxxx",
-                  "company": {
-                    "id": "biz_xxxxxxxxxxxxxx",
-                    "route": "route",
-                    "title": "title"
-                  },
-                  "created_at": "2023-12-01T05:00:00Z",
+                  "capture_expires_at": "capture_expires_at",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "checkout_origin": "checkout_origin",
+                  "checkout_surface": "hosted_checkout",
+                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
-                  "customer_phone": "customer_phone",
+                  "customer_email": "marcus@shinetime.example",
+                  "customer_phone": "+xxxxxxxxxxx",
                   "decline_code": "insufficient_funds",
-                  "dispute_alerted_at": "2023-12-01T05:00:00Z",
-                  "disputes": [
-                    {
-                      "amount": 6.9,
-                      "currency": "usd",
-                      "editable": true,
-                      "id": "dspt_xxxxxxxxxxxxx",
-                      "needs_response_by": "2023-12-01T05:00:00Z",
-                      "notes": "Customer used the product for 3 months before disputing.",
-                      "reason": "Product Not Received",
-                      "status": "warning_needs_response"
-                    }
-                  ],
+                  "dispute_alerted_at": "dispute_alerted_at",
+                  "dispute_created_at": "dispute_created_at",
                   "failure_message": "failure_message",
-                  "financing_installments_count": 42,
-                  "financing_transactions": [
+                  "financing_installments_count": 1.1,
+                  "holds": [
                     {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "id": "ptx_xxxxxxxxxxxxxx",
-                      "status": "succeeded",
-                      "transaction_type": "purchase"
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "percentage": 1.1,
+                      "release_at": "release_at",
+                      "type": "reserve"
                     }
                   ],
                   "id": "pay_xxxxxxxxxxxxxx",
-                  "last_payment_attempt": "2023-12-01T05:00:00Z",
-                  "member": {
-                    "id": "id",
-                    "phone": "phone"
-                  },
-                  "membership": {
-                    "id": "mem_xxxxxxxxxxxxxx",
-                    "phone_number": "phone_number",
-                    "status": "trialing"
-                  },
+                  "ip_address": "ip_address",
+                  "last_payment_attempt_at": "last_payment_attempt_at",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
+                  "member_id": "mber_xxxxxxxxxxxxxx",
+                  "membership_id": "mem_xxxxxxxxxxxxxx",
                   "metadata": {
-                    "key": "value"
+                    "order_ref": "SHINE-4417"
                   },
-                  "needs_tracking": true,
-                  "next_payment_attempt": "2023-12-01T05:00:00Z",
-                  "paid_at": "2023-12-01T05:00:00Z",
+                  "missing_tracking": false,
+                  "needs_tracking": false,
+                  "next_payment_attempt_at": "next_payment_attempt_at",
+                  "paid_at": "2026-01-01T12:00:00.000Z",
                   "payment_instrument": {
                     "card": {
-                      "brand": "brand",
-                      "last4": "last4"
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
                     },
-                    "display_name": "display_name",
+                    "display_name": "Visa •••• 4242",
                     "icons": {
                       "card": {
                         "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         },
                         "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         }
                       },
                       "square": {
                         "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         },
                         "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         }
                       }
                     },
-                    "installment_count": 42,
-                    "payment_method_type": "payment_method_type"
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
                   },
-                  "payment_method": {
-                    "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "fingerprint": "fingerprint",
-                      "last4": "4242"
-                    },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "payment_method_type": "acss_debit"
-                  },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
                   "payment_method_type": "acss_debit",
-                  "payments_failed": 42,
-                  "plan": {
-                    "id": "plan_xxxxxxxxxxxxx",
-                    "internal_notes": "internal_notes",
-                    "metadata": {
-                      "key": "value"
-                    }
-                  },
-                  "product": {
-                    "id": "prod_xxxxxxxxxxxxx",
-                    "metadata": {
-                      "key": "value"
-                    },
-                    "route": "pickaxe-analytics",
-                    "title": "Pickaxe Analytics"
-                  },
-                  "promo_code": {
-                    "amount_off": 6.9,
-                    "base_currency": "usd",
-                    "code": "code",
-                    "id": "promo_xxxxxxxxxxxx",
-                    "number_of_intervals": 42,
-                    "promo_type": "percentage"
-                  },
-                  "refundable": true,
-                  "refunded_amount": 6.9,
-                  "refunded_at": "2023-12-01T05:00:00Z",
-                  "refunds": [
+                  "payment_rule_matches": [
                     {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "currency": "usd",
-                      "id": "rf_xxxxxxxxxxxxxxx",
-                      "status": "pending"
+                      "action": "allow",
+                      "id": "id",
+                      "name": "name"
                     }
                   ],
-                  "resolutions": [
-                    {
-                      "customer_appealed": true,
-                      "customer_response_actions": [
-                        "respond"
-                      ],
-                      "due_date": "2023-12-01T05:00:00Z",
-                      "id": "reso_xxxxxxxxxxxxx",
-                      "issue": "forgot_to_cancel",
-                      "merchant_appealed": true,
-                      "merchant_response_actions": [
-                        "accept"
-                      ],
-                      "platform_response_actions": [
-                        "request_buyer_info"
-                      ],
-                      "status": "merchant_response_needed"
-                    }
-                  ],
-                  "retryable": true,
-                  "risk_score": 42,
-                  "risk_signals": {
-                    "key": "value"
-                  },
-                  "settlement_amount": 6.9,
-                  "settlement_currency": "usd",
-                  "settlement_exchange_rate": 6.9,
-                  "settlement_time_at": "2023-12-01T05:00:00Z",
-                  "shipment": {
-                    "carrier": "usps",
-                    "id": "ship_xxxxxxxxxxxxx",
-                    "status": "unknown",
-                    "tracking_number": "9400111899223456789012",
-                    "tracking_url": "https://track.aftership.com/9400111899223456789012"
-                  },
-                  "shipping_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
-                  },
-                  "status": "draft",
-                  "substatus": "succeeded",
-                  "subtotal": 6.9,
-                  "tax_amount": 6.9,
-                  "tax_behavior": "exclusive",
-                  "tax_refunded_amount": 6.9,
-                  "three_ds_verified": true,
-                  "total": 6.9,
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "usd_total": 6.9,
-                  "user": {
-                    "email": "john.doe@example.com",
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
-                  },
-                  "verification_checks": {
-                    "address_line1": "address_line1",
-                    "card_holder_name": "card_holder_name",
-                    "card_security_code": "card_security_code",
-                    "zip_code": "zip_code"
-                  },
-                  "voidable": true,
-                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_v1_xxxx"
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = RetrievePaymentsResponse(
-            amountAfterFees: 6.9,
-            applicationFee: Nullable<PaymentApplicationFee>.value(PaymentApplicationFee(
-                amount: 6.9,
-                amountCaptured: 6.9,
-                amountRefunded: 6.9,
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                currency: Currencies.usd,
-                id: "apfee_xxxxxxxxxxxx"
-            )),
-            autoRefunded: true,
-            billingAddress: Nullable<PaymentBillingAddress>.value(PaymentBillingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-            cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-            cardExpMonth: Nullable<Int>.value(6),
-            cardExpYear: Nullable<Int>.value(2027),
-            cardLast4: Nullable<String>.value("4242"),
-            checkoutConfigurationId: Nullable<String>.value("ch_xxxxxxxxxxxxxxx"),
-            company: Nullable<PaymentCompany>.value(PaymentCompany(
-                id: "biz_xxxxxxxxxxxxxx",
-                route: "route",
-                title: "title"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            currency: Currencies.usd,
-            customerPhone: Nullable<String>.value("customer_phone"),
-            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
-            disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            disputes: Nullable<[PaymentDisputesItem]>.value([
-                PaymentDisputesItem(
-                    amount: 6.9,
-                    currency: Currencies.usd,
-                    editable: Nullable<Bool>.value(true),
-                    id: "dspt_xxxxxxxxxxxxx",
-                    needsResponseBy: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    notes: Nullable<String>.value("Customer used the product for 3 months before disputing."),
-                    reason: Nullable<String>.value("Product Not Received"),
-                    status: DisputeStatuses.warningNeedsResponse
-                )
-            ]),
-            failureMessage: Nullable<String>.value("failure_message"),
-            financingInstallmentsCount: Nullable<Int>.value(42),
-            financingTransactions: [
-                PaymentFinancingTransactionsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    id: "ptx_xxxxxxxxxxxxxx",
-                    status: PaymentTransactionStatuses.succeeded,
-                    transactionType: PaymentTransactionTypes.purchase
-                )
-            ],
-            id: "pay_xxxxxxxxxxxxxx",
-            lastPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            member: Nullable<PaymentMember>.value(PaymentMember(
-                id: "id",
-                phone: Nullable<String>.value("phone")
-            )),
-            membership: Nullable<PaymentMembership>.value(PaymentMembership(
-                id: "mem_xxxxxxxxxxxxxx",
-                phoneNumber: Nullable<String>.value("phone_number"),
-                status: MembershipStatus.trialing
-            )),
-            metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
-            ]),
-            needsTracking: Nullable<Bool>.value(true),
-            nextPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paymentInstrument: Nullable<PaymentPaymentInstrument>.value(PaymentPaymentInstrument(
-                card: Nullable<PaymentPaymentInstrumentCard>.value(PaymentPaymentInstrumentCard(
-                    brand: "brand",
-                    last4: Nullable<String>.value("last4")
-                )),
-                displayName: "display_name",
-                icons: PaymentPaymentInstrumentIcons(
-                    card: PaymentPaymentInstrumentIconsCard(
-                        dark: PaymentPaymentInstrumentIconsCardDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        ),
-                        light: PaymentPaymentInstrumentIconsCardLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        )
-                    ),
-                    square: PaymentPaymentInstrumentIconsSquare(
-                        dark: PaymentPaymentInstrumentIconsSquareDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        ),
-                        light: PaymentPaymentInstrumentIconsSquareLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        )
-                    )
-                ),
-                installmentCount: Nullable<Int>.value(42),
-                paymentMethodType: "payment_method_type"
-            )),
-            paymentMethod: Nullable<PaymentPaymentMethod>.value(PaymentPaymentMethod(
-                card: Nullable<PaymentPaymentMethodCard>.value(PaymentPaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    fingerprint: Nullable<String>.value("fingerprint"),
-                    last4: Nullable<String>.value("4242")
-                )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                paymentMethodType: PaymentMethodTypes.acssDebit
-            )),
-            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-            paymentsFailed: Nullable<Int>.value(42),
-            plan: Nullable<PaymentPlan>.value(PaymentPlan(
-                id: "plan_xxxxxxxxxxxxx",
-                internalNotes: Nullable<String>.value("internal_notes"),
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ])
-            )),
-            product: Nullable<PaymentProduct>.value(PaymentProduct(
-                id: "prod_xxxxxxxxxxxxx",
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ]),
-                route: "pickaxe-analytics",
-                title: "Pickaxe Analytics"
-            )),
-            promoCode: Nullable<PaymentPromoCode>.value(PaymentPromoCode(
-                amountOff: 6.9,
-                baseCurrency: Currencies.usd,
-                code: Nullable<String>.value("code"),
-                id: "promo_xxxxxxxxxxxx",
-                numberOfIntervals: Nullable<Int>.value(42),
-                promoType: PromoTypes.percentage
-            )),
-            refundable: true,
-            refundedAmount: Nullable<Double>.value(6.9),
-            refundedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            refunds: [
-                PaymentRefundsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    currency: Currencies.usd,
-                    id: "rf_xxxxxxxxxxxxxxx",
-                    status: RefundStatuses.pending
-                )
-            ],
-            resolutions: Nullable<[PaymentResolutionsItem]>.value([
-                PaymentResolutionsItem(
-                    customerAppealed: true,
-                    customerResponseActions: [
-                        ResolutionCenterCaseCustomerResponses.respond
-                    ],
-                    dueDate: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    id: "reso_xxxxxxxxxxxxx",
-                    issue: ResolutionCenterCaseIssueTypes.forgotToCancel,
-                    merchantAppealed: true,
-                    merchantResponseActions: [
-                        ResolutionCenterCaseMerchantResponses.accept
-                    ],
-                    platformResponseActions: [
-                        ResolutionCenterCasePlatformResponses.requestBuyerInfo
-                    ],
-                    status: ResolutionCenterCaseStatuses.merchantResponseNeeded
-                )
-            ]),
-            retryable: true,
-            riskScore: Nullable<Int>.value(42),
-            riskSignals: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
-            ]),
-            settlementAmount: 6.9,
-            settlementCurrency: Currencies.usd,
-            settlementExchangeRate: Nullable<Double>.value(6.9),
-            settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            shipment: Nullable<PaymentShipment>.value(PaymentShipment(
-                carrier: Nullable<String>.value("usps"),
-                id: "ship_xxxxxxxxxxxxx",
-                status: ShipmentStatuses.unknown,
-                trackingNumber: "9400111899223456789012",
-                trackingUrl: "https://track.aftership.com/9400111899223456789012"
-            )),
-            shippingAddress: Nullable<PaymentShippingAddress>.value(PaymentShippingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            status: Nullable<ReceiptStatus>.value(ReceiptStatus.draft),
-            substatus: FriendlyReceiptStatus.succeeded,
-            subtotal: Nullable<Double>.value(6.9),
-            taxAmount: Nullable<Double>.value(6.9),
-            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-            taxRefundedAmount: Nullable<Double>.value(6.9),
-            threeDsVerified: true,
-            total: Nullable<Double>.value(6.9),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            usdTotal: Nullable<Double>.value(6.9),
-            user: Nullable<PaymentUser>.value(PaymentUser(
-                email: Nullable<String>.value("john.doe@example.com"),
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
-            )),
-            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
-                addressLine1: Nullable<String>.value("address_line1"),
-                cardHolderName: Nullable<String>.value("card_holder_name"),
-                cardSecurityCode: Nullable<String>.value("card_security_code"),
-                zipCode: Nullable<String>.value("zip_code")
-            )),
-            voidable: true,
-            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_v1_xxxx")
-        )
-        let response = try await client.payments.retrieve(
-            id: "pay_xxxxxxxxxxxxxx",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func listFees1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "data": [
-                    {
-                      "amount": 6.9,
-                      "currency": "usd",
-                      "name": "name",
-                      "type": "stripe_domestic_processing_fee"
-                    }
-                  ],
-                  "page_info": {
-                    "end_cursor": "end_cursor",
-                    "has_next_page": true,
-                    "has_previous_page": true,
-                    "start_cursor": "start_cursor"
-                  }
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = ListFeesPaymentsResponse(
-            data: [
-                ListFeesPaymentsResponseDataItem(
-                    amount: 6.9,
-                    currency: Currencies.usd,
-                    name: "name",
-                    type: SpecificFeeOrigins.stripeDomesticProcessingFee
-                )
-            ],
-            pageInfo: PageInfo(
-                endCursor: Nullable<String>.value("end_cursor"),
-                hasNextPage: true,
-                hasPreviousPage: true,
-                startCursor: Nullable<String>.value("start_cursor")
-            )
-        )
-        let response = try await client.payments.listFees(
-            id: "pay_xxxxxxxxxxxxxx",
-            first: 42,
-            last: 42,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func refund1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "amount_after_fees": 6.9,
-                  "application_fee": {
-                    "amount": 6.9,
-                    "amount_captured": 6.9,
-                    "amount_refunded": 6.9,
-                    "created_at": "2023-12-01T05:00:00Z",
+                  "payments_failed": 0,
+                  "presentment_refunded_amount": {
+                    "amount": "-1234.56",
                     "currency": "usd",
-                    "id": "apfee_xxxxxxxxxxxx"
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
-                  "auto_refunded": true,
-                  "billing_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
+                  "presentment_tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
-                  "billing_reason": "subscription_create",
-                  "card_brand": "mastercard",
-                  "card_exp_month": 6,
-                  "card_exp_year": 2027,
-                  "card_last4": "4242",
-                  "checkout_configuration_id": "ch_xxxxxxxxxxxxxxx",
-                  "company": {
-                    "id": "biz_xxxxxxxxxxxxxx",
-                    "route": "route",
-                    "title": "title"
+                  "presentment_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "currency": "usd",
-                  "customer_phone": "customer_phone",
-                  "decline_code": "insufficient_funds",
-                  "dispute_alerted_at": "2023-12-01T05:00:00Z",
-                  "disputes": [
-                    {
-                      "amount": 6.9,
-                      "currency": "usd",
-                      "editable": true,
-                      "id": "dspt_xxxxxxxxxxxxx",
-                      "needs_response_by": "2023-12-01T05:00:00Z",
-                      "notes": "Customer used the product for 3 months before disputing.",
-                      "reason": "Product Not Received",
-                      "status": "warning_needs_response"
-                    }
-                  ],
-                  "failure_message": "failure_message",
-                  "financing_installments_count": 42,
-                  "financing_transactions": [
-                    {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "id": "ptx_xxxxxxxxxxxxxx",
-                      "status": "succeeded",
-                      "transaction_type": "purchase"
-                    }
-                  ],
-                  "id": "pay_xxxxxxxxxxxxxx",
-                  "last_payment_attempt": "2023-12-01T05:00:00Z",
-                  "member": {
-                    "id": "id",
-                    "phone": "phone"
+                  "product_id": "prod_xxxxxxxxxxxxxx",
+                  "promo_code_id": "promo_code_id",
+                  "quote_id": "quote_id",
+                  "recovery_url": "recovery_url",
+                  "refundable": false,
+                  "refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
-                  "membership": {
-                    "id": "mem_xxxxxxxxxxxxxx",
-                    "phone_number": "phone_number",
-                    "status": "trialing"
-                  },
-                  "metadata": {
-                    "key": "value"
-                  },
-                  "needs_tracking": true,
-                  "next_payment_attempt": "2023-12-01T05:00:00Z",
-                  "paid_at": "2023-12-01T05:00:00Z",
-                  "payment_instrument": {
-                    "card": {
-                      "brand": "brand",
-                      "last4": "last4"
-                    },
-                    "display_name": "display_name",
-                    "icons": {
-                      "card": {
-                        "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        },
-                        "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        }
-                      },
-                      "square": {
-                        "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        },
-                        "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        }
-                      }
-                    },
-                    "installment_count": 42,
-                    "payment_method_type": "payment_method_type"
-                  },
-                  "payment_method": {
-                    "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "fingerprint": "fingerprint",
-                      "last4": "4242"
-                    },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "payment_method_type": "acss_debit"
-                  },
-                  "payment_method_type": "acss_debit",
-                  "payments_failed": 42,
-                  "plan": {
-                    "id": "plan_xxxxxxxxxxxxx",
-                    "internal_notes": "internal_notes",
-                    "metadata": {
-                      "key": "value"
-                    }
-                  },
-                  "product": {
-                    "id": "prod_xxxxxxxxxxxxx",
-                    "metadata": {
-                      "key": "value"
-                    },
-                    "route": "pickaxe-analytics",
-                    "title": "Pickaxe Analytics"
-                  },
-                  "promo_code": {
-                    "amount_off": 6.9,
-                    "base_currency": "usd",
-                    "code": "code",
-                    "id": "promo_xxxxxxxxxxxx",
-                    "number_of_intervals": 42,
-                    "promo_type": "percentage"
-                  },
-                  "refundable": true,
-                  "refunded_amount": 6.9,
-                  "refunded_at": "2023-12-01T05:00:00Z",
-                  "refunds": [
-                    {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "currency": "usd",
-                      "id": "rf_xxxxxxxxxxxxxxx",
-                      "status": "pending"
-                    }
-                  ],
-                  "resolutions": [
-                    {
-                      "customer_appealed": true,
-                      "customer_response_actions": [
-                        "respond"
-                      ],
-                      "due_date": "2023-12-01T05:00:00Z",
-                      "id": "reso_xxxxxxxxxxxxx",
-                      "issue": "forgot_to_cancel",
-                      "merchant_appealed": true,
-                      "merchant_response_actions": [
-                        "accept"
-                      ],
-                      "platform_response_actions": [
-                        "request_buyer_info"
-                      ],
-                      "status": "merchant_response_needed"
-                    }
-                  ],
+                  "refunded_at": "refunded_at",
+                  "response_due_at": "response_due_at",
                   "retryable": true,
-                  "risk_score": 42,
+                  "risk_score": 1.1,
                   "risk_signals": {
                     "key": "value"
                   },
-                  "settlement_amount": 6.9,
-                  "settlement_currency": "usd",
-                  "settlement_exchange_rate": 6.9,
-                  "settlement_time_at": "2023-12-01T05:00:00Z",
-                  "shipment": {
-                    "carrier": "usps",
-                    "id": "ship_xxxxxxxxxxxxx",
-                    "status": "unknown",
-                    "tracking_number": "9400111899223456789012",
-                    "tracking_url": "https://track.aftership.com/9400111899223456789012"
-                  },
+                  "settlement_time_at": "settlement_time_at",
+                  "shipment_id": "shipment_id",
                   "shipping_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
                   },
                   "status": "draft",
                   "substatus": "succeeded",
-                  "subtotal": 6.9,
-                  "tax_amount": 6.9,
+                  "subtotal": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "tax_behavior": "exclusive",
-                  "tax_refunded_amount": 6.9,
-                  "three_ds_verified": true,
-                  "total": 6.9,
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "usd_total": 6.9,
+                  "tax_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "three_ds_verified": false,
+                  "total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "usd_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "user": {
-                    "email": "john.doe@example.com",
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
                   },
+                  "user_agent": "user_agent",
+                  "variant_id": "plan_xxxxxxxxxxxxxx",
                   "verification_checks": {
-                    "address_line1": "address_line1",
-                    "card_holder_name": "card_holder_name",
-                    "card_security_code": "card_security_code",
-                    "zip_code": "zip_code"
+                    "address_line1": "PASS",
+                    "arn": "74123456789",
+                    "authorization_code": "A1B2C3",
+                    "card_holder_name": "PASS",
+                    "card_security_code": "PASS",
+                    "zip_code": "PASS"
                   },
-                  "voidable": true
+                  "voidable": false,
+                  "wuid": "wuid"
                 }
                 """#.utf8
             )
@@ -1645,1219 +1362,744 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Payment(
-            amountAfterFees: 6.9,
-            applicationFee: Nullable<PaymentApplicationFee>.value(PaymentApplicationFee(
-                amount: 6.9,
-                amountCaptured: 6.9,
-                amountRefunded: 6.9,
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                currency: Currencies.usd,
-                id: "apfee_xxxxxxxxxxxx"
-            )),
-            autoRefunded: true,
-            billingAddress: Nullable<PaymentBillingAddress>.value(PaymentBillingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amountAfterFees: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            autoRefunded: false,
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
             )),
             billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-            cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-            cardExpMonth: Nullable<Int>.value(6),
-            cardExpYear: Nullable<Int>.value(2027),
-            cardLast4: Nullable<String>.value("4242"),
-            checkoutConfigurationId: Nullable<String>.value("ch_xxxxxxxxxxxxxxx"),
-            company: Nullable<PaymentCompany>.value(PaymentCompany(
-                id: "biz_xxxxxxxxxxxxxx",
-                route: "route",
-                title: "title"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            checkoutOrigin: Nullable<String>.value("checkout_origin"),
+            checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
             currency: Currencies.usd,
-            customerPhone: Nullable<String>.value("customer_phone"),
+            customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+            customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
             declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
-            disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            disputes: Nullable<[PaymentDisputesItem]>.value([
-                PaymentDisputesItem(
-                    amount: 6.9,
-                    currency: Currencies.usd,
-                    editable: Nullable<Bool>.value(true),
-                    id: "dspt_xxxxxxxxxxxxx",
-                    needsResponseBy: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    notes: Nullable<String>.value("Customer used the product for 3 months before disputing."),
-                    reason: Nullable<String>.value("Product Not Received"),
-                    status: DisputeStatuses.warningNeedsResponse
-                )
-            ]),
+            disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+            disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
             failureMessage: Nullable<String>.value("failure_message"),
-            financingInstallmentsCount: Nullable<Int>.value(42),
-            financingTransactions: [
-                PaymentFinancingTransactionsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    id: "ptx_xxxxxxxxxxxxxx",
-                    status: PaymentTransactionStatuses.succeeded,
-                    transactionType: PaymentTransactionTypes.purchase
+            financingInstallmentsCount: Nullable<Double>.value(1.1),
+            holds: [
+                PaymentHold(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    percentage: Nullable<Double>.value(1.1),
+                    releaseAt: Nullable<String>.value("release_at"),
+                    type: PaymentHoldType.reserve
                 )
             ],
             id: "pay_xxxxxxxxxxxxxx",
-            lastPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            member: Nullable<PaymentMember>.value(PaymentMember(
-                id: "id",
-                phone: Nullable<String>.value("phone")
-            )),
-            membership: Nullable<PaymentMembership>.value(PaymentMembership(
-                id: "mem_xxxxxxxxxxxxxx",
-                phoneNumber: Nullable<String>.value("phone_number"),
-                status: MembershipStatus.trialing
-            )),
+            ipAddress: Nullable<String>.value("ip_address"),
+            lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+            membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
             metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
+                "order_ref": JSONValue.string("SHINE-4417")
             ]),
-            needsTracking: Nullable<Bool>.value(true),
-            nextPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paymentInstrument: Nullable<PaymentPaymentInstrument>.value(PaymentPaymentInstrument(
-                card: Nullable<PaymentPaymentInstrumentCard>.value(PaymentPaymentInstrumentCard(
-                    brand: "brand",
-                    last4: Nullable<String>.value("last4")
+            missingTracking: Nullable<Bool>.value(false),
+            needsTracking: Nullable<Bool>.value(false),
+            nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+            paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
                 )),
-                displayName: "display_name",
-                icons: PaymentPaymentInstrumentIcons(
-                    card: PaymentPaymentInstrumentIconsCard(
-                        dark: PaymentPaymentInstrumentIconsCardDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         ),
-                        light: PaymentPaymentInstrumentIconsCardLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         )
                     ),
-                    square: PaymentPaymentInstrumentIconsSquare(
-                        dark: PaymentPaymentInstrumentIconsSquareDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         ),
-                        light: PaymentPaymentInstrumentIconsSquareLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
                         )
                     )
                 ),
-                installmentCount: Nullable<Int>.value(42),
-                paymentMethodType: "payment_method_type"
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
             )),
-            paymentMethod: Nullable<PaymentPaymentMethod>.value(PaymentPaymentMethod(
-                card: Nullable<PaymentPaymentMethodCard>.value(PaymentPaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    fingerprint: Nullable<String>.value("fingerprint"),
-                    last4: Nullable<String>.value("4242")
-                )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                paymentMethodType: PaymentMethodTypes.acssDebit
-            )),
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
             paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-            paymentsFailed: Nullable<Int>.value(42),
-            plan: Nullable<PaymentPlan>.value(PaymentPlan(
-                id: "plan_xxxxxxxxxxxxx",
-                internalNotes: Nullable<String>.value("internal_notes"),
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ])
-            )),
-            product: Nullable<PaymentProduct>.value(PaymentProduct(
-                id: "prod_xxxxxxxxxxxxx",
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ]),
-                route: "pickaxe-analytics",
-                title: "Pickaxe Analytics"
-            )),
-            promoCode: Nullable<PaymentPromoCode>.value(PaymentPromoCode(
-                amountOff: 6.9,
-                baseCurrency: Currencies.usd,
-                code: Nullable<String>.value("code"),
-                id: "promo_xxxxxxxxxxxx",
-                numberOfIntervals: Nullable<Int>.value(42),
-                promoType: PromoTypes.percentage
-            )),
-            refundable: true,
-            refundedAmount: Nullable<Double>.value(6.9),
-            refundedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            refunds: [
-                PaymentRefundsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    currency: Currencies.usd,
-                    id: "rf_xxxxxxxxxxxxxxx",
-                    status: RefundStatuses.pending
+            paymentRuleMatches: [
+                PaymentRuleMatch(
+                    action: PaymentRuleMatchAction.allow,
+                    id: "id",
+                    name: Nullable<String>.value("name")
                 )
             ],
-            resolutions: Nullable<[PaymentResolutionsItem]>.value([
-                PaymentResolutionsItem(
-                    customerAppealed: true,
-                    customerResponseActions: [
-                        ResolutionCenterCaseCustomerResponses.respond
-                    ],
-                    dueDate: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    id: "reso_xxxxxxxxxxxxx",
-                    issue: ResolutionCenterCaseIssueTypes.forgotToCancel,
-                    merchantAppealed: true,
-                    merchantResponseActions: [
-                        ResolutionCenterCaseMerchantResponses.accept
-                    ],
-                    platformResponseActions: [
-                        ResolutionCenterCasePlatformResponses.requestBuyerInfo
-                    ],
-                    status: ResolutionCenterCaseStatuses.merchantResponseNeeded
-                )
-            ]),
+            paymentsFailed: 0,
+            presentmentRefundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTaxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            quoteId: Nullable<String>.value("quote_id"),
+            recoveryUrl: Nullable<String>.value("recovery_url"),
+            refundable: false,
+            refundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            refundedAt: Nullable<String>.value("refunded_at"),
+            responseDueAt: Nullable<String>.value("response_due_at"),
             retryable: true,
-            riskScore: Nullable<Int>.value(42),
+            riskScore: Nullable<Double>.value(1.1),
             riskSignals: Nullable<[String: JSONValue]>.value([
                 "key": JSONValue.string("value")
             ]),
-            settlementAmount: 6.9,
-            settlementCurrency: Currencies.usd,
-            settlementExchangeRate: Nullable<Double>.value(6.9),
-            settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            shipment: Nullable<PaymentShipment>.value(PaymentShipment(
-                carrier: Nullable<String>.value("usps"),
-                id: "ship_xxxxxxxxxxxxx",
-                status: ShipmentStatuses.unknown,
-                trackingNumber: "9400111899223456789012",
-                trackingUrl: "https://track.aftership.com/9400111899223456789012"
+            settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+            shipmentId: Nullable<String>.value("shipment_id"),
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
             )),
-            shippingAddress: Nullable<PaymentShippingAddress>.value(PaymentShippingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            status: Nullable<ReceiptStatus>.value(ReceiptStatus.draft),
+            status: ReceiptStatus.draft,
             substatus: FriendlyReceiptStatus.succeeded,
-            subtotal: Nullable<Double>.value(6.9),
-            taxAmount: Nullable<Double>.value(6.9),
+            subtotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
             taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-            taxRefundedAmount: Nullable<Double>.value(6.9),
-            threeDsVerified: true,
-            total: Nullable<Double>.value(6.9),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            usdTotal: Nullable<Double>.value(6.9),
-            user: Nullable<PaymentUser>.value(PaymentUser(
-                email: Nullable<String>.value("john.doe@example.com"),
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
+            taxRefundedAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            threeDsVerified: false,
+            total: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
             )),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            usdTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            userAgent: Nullable<String>.value("user_agent"),
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
-                addressLine1: Nullable<String>.value("address_line1"),
-                cardHolderName: Nullable<String>.value("card_holder_name"),
-                cardSecurityCode: Nullable<String>.value("card_security_code"),
-                zipCode: Nullable<String>.value("zip_code")
+                addressLine1: Nullable<String>.value("PASS"),
+                arn: Nullable<String>.value("74123456789"),
+                authorizationCode: Nullable<String>.value("A1B2C3"),
+                cardHolderName: Nullable<String>.value("PASS"),
+                cardSecurityCode: Nullable<String>.value("PASS"),
+                zipCode: Nullable<String>.value("PASS")
             )),
-            voidable: true
+            voidable: false,
+            wuid: Nullable<String>.value("wuid")
         )
-        let response = try await client.payments.refund(
+        let response = try await client.payments.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount_after_fees": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "auto_refunded": false,
+                  "billing_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "billing_reason": "subscription_create",
+                  "capture_expires_at": "capture_expires_at",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "checkout_origin": "checkout_origin",
+                  "checkout_surface": "hosted_checkout",
+                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "currency": "usd",
+                  "customer_email": "marcus@shinetime.example",
+                  "customer_phone": "+xxxxxxxxxxx",
+                  "decline_code": "insufficient_funds",
+                  "dispute_alerted_at": "dispute_alerted_at",
+                  "dispute_created_at": "dispute_created_at",
+                  "failure_message": "failure_message",
+                  "financing_installments_count": 1.1,
+                  "holds": [
+                    {
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "percentage": 1.1,
+                      "release_at": "release_at",
+                      "type": "reserve"
+                    }
+                  ],
+                  "id": "pay_xxxxxxxxxxxxxx",
+                  "ip_address": "ip_address",
+                  "last_payment_attempt_at": "last_payment_attempt_at",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
+                  "member_id": "mber_xxxxxxxxxxxxxx",
+                  "membership_id": "mem_xxxxxxxxxxxxxx",
+                  "metadata": {
+                    "order_ref": "SHINE-4417"
+                  },
+                  "missing_tracking": false,
+                  "needs_tracking": false,
+                  "next_payment_attempt_at": "next_payment_attempt_at",
+                  "paid_at": "2026-01-01T12:00:00.000Z",
+                  "payment_instrument": {
+                    "card": {
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
+                    },
+                    "display_name": "Visa •••• 4242",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      }
+                    },
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
+                  },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                  "payment_method_type": "acss_debit",
+                  "payment_rule_matches": [
+                    {
+                      "action": "allow",
+                      "id": "id",
+                      "name": "name"
+                    }
+                  ],
+                  "payments_failed": 0,
+                  "presentment_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "product_id": "prod_xxxxxxxxxxxxxx",
+                  "promo_code_id": "promo_code_id",
+                  "quote_id": "quote_id",
+                  "recovery_url": "recovery_url",
+                  "refundable": false,
+                  "refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "refunded_at": "refunded_at",
+                  "response_due_at": "response_due_at",
+                  "retryable": true,
+                  "risk_score": 1.1,
+                  "risk_signals": {
+                    "key": "value"
+                  },
+                  "settlement_time_at": "settlement_time_at",
+                  "shipment_id": "shipment_id",
+                  "shipping_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "status": "draft",
+                  "substatus": "succeeded",
+                  "subtotal": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_behavior": "exclusive",
+                  "tax_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "three_ds_verified": false,
+                  "total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "usd_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "user": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "user_agent": "user_agent",
+                  "variant_id": "plan_xxxxxxxxxxxxxx",
+                  "verification_checks": {
+                    "address_line1": "PASS",
+                    "arn": "74123456789",
+                    "authorization_code": "A1B2C3",
+                    "card_holder_name": "PASS",
+                    "card_security_code": "PASS",
+                    "zip_code": "PASS"
+                  },
+                  "voidable": false,
+                  "wuid": "wuid"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Payment(
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amountAfterFees: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            autoRefunded: false,
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
+            captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            checkoutOrigin: Nullable<String>.value("checkout_origin"),
+            checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            currency: Currencies.usd,
+            customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+            customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
+            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
+            disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+            disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
+            failureMessage: Nullable<String>.value("failure_message"),
+            financingInstallmentsCount: Nullable<Double>.value(1.1),
+            holds: [
+                PaymentHold(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    percentage: Nullable<Double>.value(1.1),
+                    releaseAt: Nullable<String>.value("release_at"),
+                    type: PaymentHoldType.reserve
+                )
+            ],
             id: "pay_xxxxxxxxxxxxxx",
+            ipAddress: Nullable<String>.value("ip_address"),
+            lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+            membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "order_ref": JSONValue.string("SHINE-4417")
+            ]),
+            missingTracking: Nullable<Bool>.value(false),
+            needsTracking: Nullable<Bool>.value(false),
+            nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+            paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
+                )),
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
+            )),
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            paymentRuleMatches: [
+                PaymentRuleMatch(
+                    action: PaymentRuleMatchAction.allow,
+                    id: "id",
+                    name: Nullable<String>.value("name")
+                )
+            ],
+            paymentsFailed: 0,
+            presentmentRefundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTaxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            quoteId: Nullable<String>.value("quote_id"),
+            recoveryUrl: Nullable<String>.value("recovery_url"),
+            refundable: false,
+            refundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            refundedAt: Nullable<String>.value("refunded_at"),
+            responseDueAt: Nullable<String>.value("response_due_at"),
+            retryable: true,
+            riskScore: Nullable<Double>.value(1.1),
+            riskSignals: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+            shipmentId: Nullable<String>.value("shipment_id"),
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            status: ReceiptStatus.draft,
+            substatus: FriendlyReceiptStatus.succeeded,
+            subtotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
+            taxRefundedAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            threeDsVerified: false,
+            total: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            usdTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            userAgent: Nullable<String>.value("user_agent"),
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
+                addressLine1: Nullable<String>.value("PASS"),
+                arn: Nullable<String>.value("74123456789"),
+                authorizationCode: Nullable<String>.value("A1B2C3"),
+                cardHolderName: Nullable<String>.value("PASS"),
+                cardSecurityCode: Nullable<String>.value("PASS"),
+                zipCode: Nullable<String>.value("PASS")
+            )),
+            voidable: false,
+            wuid: Nullable<String>.value("wuid")
+        )
+        let response = try await client.payments.update(
+            id: "id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func retry1() async throws -> Void {
+    @Test func capture1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
                 {
-                  "amount_after_fees": 6.9,
-                  "application_fee": {
-                    "amount": 6.9,
-                    "amount_captured": 6.9,
-                    "amount_refunded": 6.9,
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "currency": "usd",
-                    "id": "apfee_xxxxxxxxxxxx"
-                  },
-                  "auto_refunded": true,
-                  "billing_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
-                  },
-                  "billing_reason": "subscription_create",
-                  "card_brand": "mastercard",
-                  "card_exp_month": 6,
-                  "card_exp_year": 2027,
-                  "card_last4": "4242",
-                  "checkout_configuration_id": "ch_xxxxxxxxxxxxxxx",
-                  "company": {
+                  "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "route": "route",
-                    "title": "title"
+                    "title": "Acme Bookkeeping"
                   },
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "currency": "usd",
-                  "customer_phone": "customer_phone",
-                  "decline_code": "insufficient_funds",
-                  "dispute_alerted_at": "2023-12-01T05:00:00Z",
-                  "disputes": [
-                    {
-                      "amount": 6.9,
-                      "currency": "usd",
-                      "editable": true,
-                      "id": "dspt_xxxxxxxxxxxxx",
-                      "needs_response_by": "2023-12-01T05:00:00Z",
-                      "notes": "Customer used the product for 3 months before disputing.",
-                      "reason": "Product Not Received",
-                      "status": "warning_needs_response"
-                    }
-                  ],
-                  "failure_message": "failure_message",
-                  "financing_installments_count": 42,
-                  "financing_transactions": [
-                    {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "id": "ptx_xxxxxxxxxxxxxx",
-                      "status": "succeeded",
-                      "transaction_type": "purchase"
-                    }
-                  ],
-                  "id": "pay_xxxxxxxxxxxxxx",
-                  "last_payment_attempt": "2023-12-01T05:00:00Z",
-                  "member": {
-                    "id": "id",
-                    "phone": "phone"
-                  },
-                  "membership": {
-                    "id": "mem_xxxxxxxxxxxxxx",
-                    "phone_number": "phone_number",
-                    "status": "trialing"
-                  },
-                  "metadata": {
-                    "key": "value"
-                  },
-                  "needs_tracking": true,
-                  "next_payment_attempt": "2023-12-01T05:00:00Z",
-                  "paid_at": "2023-12-01T05:00:00Z",
-                  "payment_instrument": {
-                    "card": {
-                      "brand": "brand",
-                      "last4": "last4"
-                    },
-                    "display_name": "display_name",
-                    "icons": {
-                      "card": {
-                        "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        },
-                        "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        }
-                      },
-                      "square": {
-                        "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        },
-                        "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        }
-                      }
-                    },
-                    "installment_count": 42,
-                    "payment_method_type": "payment_method_type"
-                  },
-                  "payment_method": {
-                    "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "fingerprint": "fingerprint",
-                      "last4": "4242"
-                    },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "payment_method_type": "acss_debit"
-                  },
-                  "payment_method_type": "acss_debit",
-                  "payments_failed": 42,
-                  "plan": {
-                    "id": "plan_xxxxxxxxxxxxx",
-                    "internal_notes": "internal_notes",
-                    "metadata": {
-                      "key": "value"
-                    }
-                  },
-                  "product": {
-                    "id": "prod_xxxxxxxxxxxxx",
-                    "metadata": {
-                      "key": "value"
-                    },
-                    "route": "pickaxe-analytics",
-                    "title": "Pickaxe Analytics"
-                  },
-                  "promo_code": {
-                    "amount_off": 6.9,
-                    "base_currency": "usd",
-                    "code": "code",
-                    "id": "promo_xxxxxxxxxxxx",
-                    "number_of_intervals": 42,
-                    "promo_type": "percentage"
-                  },
-                  "refundable": true,
-                  "refunded_amount": 6.9,
-                  "refunded_at": "2023-12-01T05:00:00Z",
-                  "refunds": [
-                    {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "currency": "usd",
-                      "id": "rf_xxxxxxxxxxxxxxx",
-                      "status": "pending"
-                    }
-                  ],
-                  "resolutions": [
-                    {
-                      "customer_appealed": true,
-                      "customer_response_actions": [
-                        "respond"
-                      ],
-                      "due_date": "2023-12-01T05:00:00Z",
-                      "id": "reso_xxxxxxxxxxxxx",
-                      "issue": "forgot_to_cancel",
-                      "merchant_appealed": true,
-                      "merchant_response_actions": [
-                        "accept"
-                      ],
-                      "platform_response_actions": [
-                        "request_buyer_info"
-                      ],
-                      "status": "merchant_response_needed"
-                    }
-                  ],
-                  "retryable": true,
-                  "risk_score": 42,
-                  "risk_signals": {
-                    "key": "value"
-                  },
-                  "settlement_amount": 6.9,
-                  "settlement_currency": "usd",
-                  "settlement_exchange_rate": 6.9,
-                  "settlement_time_at": "2023-12-01T05:00:00Z",
-                  "shipment": {
-                    "carrier": "usps",
-                    "id": "ship_xxxxxxxxxxxxx",
-                    "status": "unknown",
-                    "tracking_number": "9400111899223456789012",
-                    "tracking_url": "https://track.aftership.com/9400111899223456789012"
-                  },
-                  "shipping_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
-                  },
-                  "status": "draft",
-                  "substatus": "succeeded",
-                  "subtotal": 6.9,
-                  "tax_amount": 6.9,
-                  "tax_behavior": "exclusive",
-                  "tax_refunded_amount": 6.9,
-                  "three_ds_verified": true,
-                  "total": 6.9,
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "usd_total": 6.9,
-                  "user": {
-                    "email": "john.doe@example.com",
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
-                  },
-                  "verification_checks": {
-                    "address_line1": "address_line1",
-                    "card_holder_name": "card_holder_name",
-                    "card_security_code": "card_security_code",
-                    "zip_code": "zip_code"
-                  },
-                  "voidable": true
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = Payment(
-            amountAfterFees: 6.9,
-            applicationFee: Nullable<PaymentApplicationFee>.value(PaymentApplicationFee(
-                amount: 6.9,
-                amountCaptured: 6.9,
-                amountRefunded: 6.9,
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                currency: Currencies.usd,
-                id: "apfee_xxxxxxxxxxxx"
-            )),
-            autoRefunded: true,
-            billingAddress: Nullable<PaymentBillingAddress>.value(PaymentBillingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-            cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-            cardExpMonth: Nullable<Int>.value(6),
-            cardExpYear: Nullable<Int>.value(2027),
-            cardLast4: Nullable<String>.value("4242"),
-            checkoutConfigurationId: Nullable<String>.value("ch_xxxxxxxxxxxxxxx"),
-            company: Nullable<PaymentCompany>.value(PaymentCompany(
-                id: "biz_xxxxxxxxxxxxxx",
-                route: "route",
-                title: "title"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            currency: Currencies.usd,
-            customerPhone: Nullable<String>.value("customer_phone"),
-            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
-            disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            disputes: Nullable<[PaymentDisputesItem]>.value([
-                PaymentDisputesItem(
-                    amount: 6.9,
-                    currency: Currencies.usd,
-                    editable: Nullable<Bool>.value(true),
-                    id: "dspt_xxxxxxxxxxxxx",
-                    needsResponseBy: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    notes: Nullable<String>.value("Customer used the product for 3 months before disputing."),
-                    reason: Nullable<String>.value("Product Not Received"),
-                    status: DisputeStatuses.warningNeedsResponse
-                )
-            ]),
-            failureMessage: Nullable<String>.value("failure_message"),
-            financingInstallmentsCount: Nullable<Int>.value(42),
-            financingTransactions: [
-                PaymentFinancingTransactionsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    id: "ptx_xxxxxxxxxxxxxx",
-                    status: PaymentTransactionStatuses.succeeded,
-                    transactionType: PaymentTransactionTypes.purchase
-                )
-            ],
-            id: "pay_xxxxxxxxxxxxxx",
-            lastPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            member: Nullable<PaymentMember>.value(PaymentMember(
-                id: "id",
-                phone: Nullable<String>.value("phone")
-            )),
-            membership: Nullable<PaymentMembership>.value(PaymentMembership(
-                id: "mem_xxxxxxxxxxxxxx",
-                phoneNumber: Nullable<String>.value("phone_number"),
-                status: MembershipStatus.trialing
-            )),
-            metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
-            ]),
-            needsTracking: Nullable<Bool>.value(true),
-            nextPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paymentInstrument: Nullable<PaymentPaymentInstrument>.value(PaymentPaymentInstrument(
-                card: Nullable<PaymentPaymentInstrumentCard>.value(PaymentPaymentInstrumentCard(
-                    brand: "brand",
-                    last4: Nullable<String>.value("last4")
-                )),
-                displayName: "display_name",
-                icons: PaymentPaymentInstrumentIcons(
-                    card: PaymentPaymentInstrumentIconsCard(
-                        dark: PaymentPaymentInstrumentIconsCardDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        ),
-                        light: PaymentPaymentInstrumentIconsCardLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        )
-                    ),
-                    square: PaymentPaymentInstrumentIconsSquare(
-                        dark: PaymentPaymentInstrumentIconsSquareDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        ),
-                        light: PaymentPaymentInstrumentIconsSquareLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        )
-                    )
-                ),
-                installmentCount: Nullable<Int>.value(42),
-                paymentMethodType: "payment_method_type"
-            )),
-            paymentMethod: Nullable<PaymentPaymentMethod>.value(PaymentPaymentMethod(
-                card: Nullable<PaymentPaymentMethodCard>.value(PaymentPaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    fingerprint: Nullable<String>.value("fingerprint"),
-                    last4: Nullable<String>.value("4242")
-                )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                paymentMethodType: PaymentMethodTypes.acssDebit
-            )),
-            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-            paymentsFailed: Nullable<Int>.value(42),
-            plan: Nullable<PaymentPlan>.value(PaymentPlan(
-                id: "plan_xxxxxxxxxxxxx",
-                internalNotes: Nullable<String>.value("internal_notes"),
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ])
-            )),
-            product: Nullable<PaymentProduct>.value(PaymentProduct(
-                id: "prod_xxxxxxxxxxxxx",
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ]),
-                route: "pickaxe-analytics",
-                title: "Pickaxe Analytics"
-            )),
-            promoCode: Nullable<PaymentPromoCode>.value(PaymentPromoCode(
-                amountOff: 6.9,
-                baseCurrency: Currencies.usd,
-                code: Nullable<String>.value("code"),
-                id: "promo_xxxxxxxxxxxx",
-                numberOfIntervals: Nullable<Int>.value(42),
-                promoType: PromoTypes.percentage
-            )),
-            refundable: true,
-            refundedAmount: Nullable<Double>.value(6.9),
-            refundedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            refunds: [
-                PaymentRefundsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    currency: Currencies.usd,
-                    id: "rf_xxxxxxxxxxxxxxx",
-                    status: RefundStatuses.pending
-                )
-            ],
-            resolutions: Nullable<[PaymentResolutionsItem]>.value([
-                PaymentResolutionsItem(
-                    customerAppealed: true,
-                    customerResponseActions: [
-                        ResolutionCenterCaseCustomerResponses.respond
-                    ],
-                    dueDate: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    id: "reso_xxxxxxxxxxxxx",
-                    issue: ResolutionCenterCaseIssueTypes.forgotToCancel,
-                    merchantAppealed: true,
-                    merchantResponseActions: [
-                        ResolutionCenterCaseMerchantResponses.accept
-                    ],
-                    platformResponseActions: [
-                        ResolutionCenterCasePlatformResponses.requestBuyerInfo
-                    ],
-                    status: ResolutionCenterCaseStatuses.merchantResponseNeeded
-                )
-            ]),
-            retryable: true,
-            riskScore: Nullable<Int>.value(42),
-            riskSignals: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
-            ]),
-            settlementAmount: 6.9,
-            settlementCurrency: Currencies.usd,
-            settlementExchangeRate: Nullable<Double>.value(6.9),
-            settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            shipment: Nullable<PaymentShipment>.value(PaymentShipment(
-                carrier: Nullable<String>.value("usps"),
-                id: "ship_xxxxxxxxxxxxx",
-                status: ShipmentStatuses.unknown,
-                trackingNumber: "9400111899223456789012",
-                trackingUrl: "https://track.aftership.com/9400111899223456789012"
-            )),
-            shippingAddress: Nullable<PaymentShippingAddress>.value(PaymentShippingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            status: Nullable<ReceiptStatus>.value(ReceiptStatus.draft),
-            substatus: FriendlyReceiptStatus.succeeded,
-            subtotal: Nullable<Double>.value(6.9),
-            taxAmount: Nullable<Double>.value(6.9),
-            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-            taxRefundedAmount: Nullable<Double>.value(6.9),
-            threeDsVerified: true,
-            total: Nullable<Double>.value(6.9),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            usdTotal: Nullable<Double>.value(6.9),
-            user: Nullable<PaymentUser>.value(PaymentUser(
-                email: Nullable<String>.value("john.doe@example.com"),
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
-            )),
-            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
-                addressLine1: Nullable<String>.value("address_line1"),
-                cardHolderName: Nullable<String>.value("card_holder_name"),
-                cardSecurityCode: Nullable<String>.value("card_security_code"),
-                zipCode: Nullable<String>.value("zip_code")
-            )),
-            voidable: true
-        )
-        let response = try await client.payments.retry(
-            id: "pay_xxxxxxxxxxxxxx",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func void1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "amount_after_fees": 6.9,
-                  "application_fee": {
-                    "amount": 6.9,
-                    "amount_captured": 6.9,
-                    "amount_refunded": 6.9,
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "currency": "usd",
-                    "id": "apfee_xxxxxxxxxxxx"
-                  },
-                  "auto_refunded": true,
-                  "billing_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
-                  },
-                  "billing_reason": "subscription_create",
-                  "card_brand": "mastercard",
-                  "card_exp_month": 6,
-                  "card_exp_year": 2027,
-                  "card_last4": "4242",
-                  "checkout_configuration_id": "ch_xxxxxxxxxxxxxxx",
-                  "company": {
-                    "id": "biz_xxxxxxxxxxxxxx",
-                    "route": "route",
-                    "title": "title"
-                  },
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "currency": "usd",
-                  "customer_phone": "customer_phone",
-                  "decline_code": "insufficient_funds",
-                  "dispute_alerted_at": "2023-12-01T05:00:00Z",
-                  "disputes": [
-                    {
-                      "amount": 6.9,
-                      "currency": "usd",
-                      "editable": true,
-                      "id": "dspt_xxxxxxxxxxxxx",
-                      "needs_response_by": "2023-12-01T05:00:00Z",
-                      "notes": "Customer used the product for 3 months before disputing.",
-                      "reason": "Product Not Received",
-                      "status": "warning_needs_response"
-                    }
-                  ],
-                  "failure_message": "failure_message",
-                  "financing_installments_count": 42,
-                  "financing_transactions": [
-                    {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "id": "ptx_xxxxxxxxxxxxxx",
-                      "status": "succeeded",
-                      "transaction_type": "purchase"
-                    }
-                  ],
-                  "id": "pay_xxxxxxxxxxxxxx",
-                  "last_payment_attempt": "2023-12-01T05:00:00Z",
-                  "member": {
-                    "id": "id",
-                    "phone": "phone"
-                  },
-                  "membership": {
-                    "id": "mem_xxxxxxxxxxxxxx",
-                    "phone_number": "phone_number",
-                    "status": "trialing"
-                  },
-                  "metadata": {
-                    "key": "value"
-                  },
-                  "needs_tracking": true,
-                  "next_payment_attempt": "2023-12-01T05:00:00Z",
-                  "paid_at": "2023-12-01T05:00:00Z",
-                  "payment_instrument": {
-                    "card": {
-                      "brand": "brand",
-                      "last4": "last4"
-                    },
-                    "display_name": "display_name",
-                    "icons": {
-                      "card": {
-                        "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        },
-                        "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        }
-                      },
-                      "square": {
-                        "dark": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        },
-                        "light": {
-                          "png_1x": "png_1x",
-                          "png_2x": "png_2x",
-                          "png_4x": "png_4x",
-                          "svg": "svg"
-                        }
-                      }
-                    },
-                    "installment_count": 42,
-                    "payment_method_type": "payment_method_type"
-                  },
-                  "payment_method": {
-                    "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "fingerprint": "fingerprint",
-                      "last4": "4242"
-                    },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "payment_method_type": "acss_debit"
-                  },
-                  "payment_method_type": "acss_debit",
-                  "payments_failed": 42,
-                  "plan": {
-                    "id": "plan_xxxxxxxxxxxxx",
-                    "internal_notes": "internal_notes",
-                    "metadata": {
-                      "key": "value"
-                    }
-                  },
-                  "product": {
-                    "id": "prod_xxxxxxxxxxxxx",
-                    "metadata": {
-                      "key": "value"
-                    },
-                    "route": "pickaxe-analytics",
-                    "title": "Pickaxe Analytics"
-                  },
-                  "promo_code": {
-                    "amount_off": 6.9,
-                    "base_currency": "usd",
-                    "code": "code",
-                    "id": "promo_xxxxxxxxxxxx",
-                    "number_of_intervals": 42,
-                    "promo_type": "percentage"
-                  },
-                  "refundable": true,
-                  "refunded_amount": 6.9,
-                  "refunded_at": "2023-12-01T05:00:00Z",
-                  "refunds": [
-                    {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "currency": "usd",
-                      "id": "rf_xxxxxxxxxxxxxxx",
-                      "status": "pending"
-                    }
-                  ],
-                  "resolutions": [
-                    {
-                      "customer_appealed": true,
-                      "customer_response_actions": [
-                        "respond"
-                      ],
-                      "due_date": "2023-12-01T05:00:00Z",
-                      "id": "reso_xxxxxxxxxxxxx",
-                      "issue": "forgot_to_cancel",
-                      "merchant_appealed": true,
-                      "merchant_response_actions": [
-                        "accept"
-                      ],
-                      "platform_response_actions": [
-                        "request_buyer_info"
-                      ],
-                      "status": "merchant_response_needed"
-                    }
-                  ],
-                  "retryable": true,
-                  "risk_score": 42,
-                  "risk_signals": {
-                    "key": "value"
-                  },
-                  "settlement_amount": 6.9,
-                  "settlement_currency": "usd",
-                  "settlement_exchange_rate": 6.9,
-                  "settlement_time_at": "2023-12-01T05:00:00Z",
-                  "shipment": {
-                    "carrier": "usps",
-                    "id": "ship_xxxxxxxxxxxxx",
-                    "status": "unknown",
-                    "tracking_number": "9400111899223456789012",
-                    "tracking_url": "https://track.aftership.com/9400111899223456789012"
-                  },
-                  "shipping_address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "name": "name",
-                    "postal_code": "postal_code",
-                    "state": "state"
-                  },
-                  "status": "draft",
-                  "substatus": "succeeded",
-                  "subtotal": 6.9,
-                  "tax_amount": 6.9,
-                  "tax_behavior": "exclusive",
-                  "tax_refunded_amount": 6.9,
-                  "three_ds_verified": true,
-                  "total": 6.9,
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "usd_total": 6.9,
-                  "user": {
-                    "email": "john.doe@example.com",
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
-                  },
-                  "verification_checks": {
-                    "address_line1": "address_line1",
-                    "card_holder_name": "card_holder_name",
-                    "card_security_code": "card_security_code",
-                    "zip_code": "zip_code"
-                  },
-                  "voidable": true
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = Payment(
-            amountAfterFees: 6.9,
-            applicationFee: Nullable<PaymentApplicationFee>.value(PaymentApplicationFee(
-                amount: 6.9,
-                amountCaptured: 6.9,
-                amountRefunded: 6.9,
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                currency: Currencies.usd,
-                id: "apfee_xxxxxxxxxxxx"
-            )),
-            autoRefunded: true,
-            billingAddress: Nullable<PaymentBillingAddress>.value(PaymentBillingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-            cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-            cardExpMonth: Nullable<Int>.value(6),
-            cardExpYear: Nullable<Int>.value(2027),
-            cardLast4: Nullable<String>.value("4242"),
-            checkoutConfigurationId: Nullable<String>.value("ch_xxxxxxxxxxxxxxx"),
-            company: Nullable<PaymentCompany>.value(PaymentCompany(
-                id: "biz_xxxxxxxxxxxxxx",
-                route: "route",
-                title: "title"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            currency: Currencies.usd,
-            customerPhone: Nullable<String>.value("customer_phone"),
-            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
-            disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            disputes: Nullable<[PaymentDisputesItem]>.value([
-                PaymentDisputesItem(
-                    amount: 6.9,
-                    currency: Currencies.usd,
-                    editable: Nullable<Bool>.value(true),
-                    id: "dspt_xxxxxxxxxxxxx",
-                    needsResponseBy: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    notes: Nullable<String>.value("Customer used the product for 3 months before disputing."),
-                    reason: Nullable<String>.value("Product Not Received"),
-                    status: DisputeStatuses.warningNeedsResponse
-                )
-            ]),
-            failureMessage: Nullable<String>.value("failure_message"),
-            financingInstallmentsCount: Nullable<Int>.value(42),
-            financingTransactions: [
-                PaymentFinancingTransactionsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    id: "ptx_xxxxxxxxxxxxxx",
-                    status: PaymentTransactionStatuses.succeeded,
-                    transactionType: PaymentTransactionTypes.purchase
-                )
-            ],
-            id: "pay_xxxxxxxxxxxxxx",
-            lastPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            member: Nullable<PaymentMember>.value(PaymentMember(
-                id: "id",
-                phone: Nullable<String>.value("phone")
-            )),
-            membership: Nullable<PaymentMembership>.value(PaymentMembership(
-                id: "mem_xxxxxxxxxxxxxx",
-                phoneNumber: Nullable<String>.value("phone_number"),
-                status: MembershipStatus.trialing
-            )),
-            metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
-            ]),
-            needsTracking: Nullable<Bool>.value(true),
-            nextPaymentAttempt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            paymentInstrument: Nullable<PaymentPaymentInstrument>.value(PaymentPaymentInstrument(
-                card: Nullable<PaymentPaymentInstrumentCard>.value(PaymentPaymentInstrumentCard(
-                    brand: "brand",
-                    last4: Nullable<String>.value("last4")
-                )),
-                displayName: "display_name",
-                icons: PaymentPaymentInstrumentIcons(
-                    card: PaymentPaymentInstrumentIconsCard(
-                        dark: PaymentPaymentInstrumentIconsCardDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        ),
-                        light: PaymentPaymentInstrumentIconsCardLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        )
-                    ),
-                    square: PaymentPaymentInstrumentIconsSquare(
-                        dark: PaymentPaymentInstrumentIconsSquareDark(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        ),
-                        light: PaymentPaymentInstrumentIconsSquareLight(
-                            png1X: "png_1x",
-                            png2X: "png_2x",
-                            png4X: "png_4x",
-                            svg: "svg"
-                        )
-                    )
-                ),
-                installmentCount: Nullable<Int>.value(42),
-                paymentMethodType: "payment_method_type"
-            )),
-            paymentMethod: Nullable<PaymentPaymentMethod>.value(PaymentPaymentMethod(
-                card: Nullable<PaymentPaymentMethodCard>.value(PaymentPaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    fingerprint: Nullable<String>.value("fingerprint"),
-                    last4: Nullable<String>.value("4242")
-                )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                paymentMethodType: PaymentMethodTypes.acssDebit
-            )),
-            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-            paymentsFailed: Nullable<Int>.value(42),
-            plan: Nullable<PaymentPlan>.value(PaymentPlan(
-                id: "plan_xxxxxxxxxxxxx",
-                internalNotes: Nullable<String>.value("internal_notes"),
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ])
-            )),
-            product: Nullable<PaymentProduct>.value(PaymentProduct(
-                id: "prod_xxxxxxxxxxxxx",
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ]),
-                route: "pickaxe-analytics",
-                title: "Pickaxe Analytics"
-            )),
-            promoCode: Nullable<PaymentPromoCode>.value(PaymentPromoCode(
-                amountOff: 6.9,
-                baseCurrency: Currencies.usd,
-                code: Nullable<String>.value("code"),
-                id: "promo_xxxxxxxxxxxx",
-                numberOfIntervals: Nullable<Int>.value(42),
-                promoType: PromoTypes.percentage
-            )),
-            refundable: true,
-            refundedAmount: Nullable<Double>.value(6.9),
-            refundedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            refunds: [
-                PaymentRefundsItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    currency: Currencies.usd,
-                    id: "rf_xxxxxxxxxxxxxxx",
-                    status: RefundStatuses.pending
-                )
-            ],
-            resolutions: Nullable<[PaymentResolutionsItem]>.value([
-                PaymentResolutionsItem(
-                    customerAppealed: true,
-                    customerResponseActions: [
-                        ResolutionCenterCaseCustomerResponses.respond
-                    ],
-                    dueDate: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    id: "reso_xxxxxxxxxxxxx",
-                    issue: ResolutionCenterCaseIssueTypes.forgotToCancel,
-                    merchantAppealed: true,
-                    merchantResponseActions: [
-                        ResolutionCenterCaseMerchantResponses.accept
-                    ],
-                    platformResponseActions: [
-                        ResolutionCenterCasePlatformResponses.requestBuyerInfo
-                    ],
-                    status: ResolutionCenterCaseStatuses.merchantResponseNeeded
-                )
-            ]),
-            retryable: true,
-            riskScore: Nullable<Int>.value(42),
-            riskSignals: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
-            ]),
-            settlementAmount: 6.9,
-            settlementCurrency: Currencies.usd,
-            settlementExchangeRate: Nullable<Double>.value(6.9),
-            settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            shipment: Nullable<PaymentShipment>.value(PaymentShipment(
-                carrier: Nullable<String>.value("usps"),
-                id: "ship_xxxxxxxxxxxxx",
-                status: ShipmentStatuses.unknown,
-                trackingNumber: "9400111899223456789012",
-                trackingUrl: "https://track.aftership.com/9400111899223456789012"
-            )),
-            shippingAddress: Nullable<PaymentShippingAddress>.value(PaymentShippingAddress(
-                city: Nullable<String>.value("city"),
-                country: Nullable<String>.value("country"),
-                line1: Nullable<String>.value("line1"),
-                line2: Nullable<String>.value("line2"),
-                name: Nullable<String>.value("name"),
-                postalCode: Nullable<String>.value("postal_code"),
-                state: Nullable<String>.value("state")
-            )),
-            status: Nullable<ReceiptStatus>.value(ReceiptStatus.draft),
-            substatus: FriendlyReceiptStatus.succeeded,
-            subtotal: Nullable<Double>.value(6.9),
-            taxAmount: Nullable<Double>.value(6.9),
-            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-            taxRefundedAmount: Nullable<Double>.value(6.9),
-            threeDsVerified: true,
-            total: Nullable<Double>.value(6.9),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            usdTotal: Nullable<Double>.value(6.9),
-            user: Nullable<PaymentUser>.value(PaymentUser(
-                email: Nullable<String>.value("john.doe@example.com"),
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
-            )),
-            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
-                addressLine1: Nullable<String>.value("address_line1"),
-                cardHolderName: Nullable<String>.value("card_holder_name"),
-                cardSecurityCode: Nullable<String>.value("card_security_code"),
-                zipCode: Nullable<String>.value("zip_code")
-            )),
-            voidable: true
-        )
-        let response = try await client.payments.void(
-            id: "pay_xxxxxxxxxxxxxx",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updateReturnUrl1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
+                  "auto_capture_at": "auto_capture_at",
+                  "capture_expires_at": "2026-01-01T12:00:00.000Z",
                   "id": "pay_xxxxxxxxxxxxxx",
                   "last_payment_error": {
                     "code": "processing_error",
@@ -2889,6 +2131,1742 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = PaymentStatus(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "biz_xxxxxxxxxxxxxx",
+                title: "Acme Bookkeeping"
+            )),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            captureExpiresAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            id: "pay_xxxxxxxxxxxxxx",
+            lastPaymentError: Nullable<PaymentLastPaymentError>.value(PaymentLastPaymentError(
+                code: Nullable<String>.value("processing_error"),
+                declineCode: Nullable<PaymentLastPaymentErrorDeclineCode>.value(PaymentLastPaymentErrorDeclineCode.insufficientFunds),
+                message: Nullable<String>.value("Your card was declined.")
+            )),
+            nextAction: Nullable<PaymentNextAction>.value(PaymentNextAction.awaitConfirmation(
+                .init(
+                    data: PaymentNextActionAwaitConfirmationData(
+                        expiresAt: "2026-01-01T12:00:00.000Z"
+                    ),
+                    render: [
+                        PaymentNextActionAwaitConfirmationRenderItem.inline
+                    ],
+                    additionalProperties: [
+                        "type": JSONValue.string("await_confirmation")
+                    ]
+                )
+            )),
+            object: "payment_status",
+            processingDetails: Nullable<PaymentProcessingDetails>.value(PaymentProcessingDetails(
+                expectedBy: Nullable<String>.value("2026-01-01T12:00:00.000Z")
+            )),
+            returnUrl: Nullable<String>.value("https://shinetime.example/checkout/done"),
+            status: PaymentStatusStatus.requiresConfirmation
+        )
+        let response = try await client.payments.capture(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listFees1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "collected_at": "2026-01-01T12:00:00.000Z",
+                      "description": "description",
+                      "label": "Processing fee",
+                      "origin": "stripe_domestic_processing_fee",
+                      "settlement_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "type": "whop_fee"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListFeesPaymentsResponse(
+            data: [
+                PaymentFee(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    collectedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+                    description: Nullable<String>.value("description"),
+                    label: "Processing fee",
+                    origin: PaymentFeeOrigin.stripeDomesticProcessingFee,
+                    settlementAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    type: PaymentFeeType.whopFee
+                )
+            ],
+            pageInfo: ListFeesPaymentsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.payments.listFees(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func generatePdf1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "expires_at": "2026-01-01T12:00:00.000Z",
+                  "url": "https://content.whop.com/exports/2026-01-01/pdfs/receipt_pay_xxxxxxxxxxxxxx.pdf"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PaymentPdf(
+            expiresAt: "2026-01-01T12:00:00.000Z",
+            url: "https://content.whop.com/exports/2026-01-01/pdfs/receipt_pay_xxxxxxxxxxxxxx.pdf"
+        )
+        let response = try await client.payments.generatePdf(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func refund1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount_after_fees": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "auto_refunded": false,
+                  "billing_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "billing_reason": "subscription_create",
+                  "capture_expires_at": "capture_expires_at",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "checkout_origin": "checkout_origin",
+                  "checkout_surface": "hosted_checkout",
+                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "currency": "usd",
+                  "customer_email": "marcus@shinetime.example",
+                  "customer_phone": "+xxxxxxxxxxx",
+                  "decline_code": "insufficient_funds",
+                  "dispute_alerted_at": "dispute_alerted_at",
+                  "dispute_created_at": "dispute_created_at",
+                  "failure_message": "failure_message",
+                  "financing_installments_count": 1.1,
+                  "holds": [
+                    {
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "percentage": 1.1,
+                      "release_at": "release_at",
+                      "type": "reserve"
+                    }
+                  ],
+                  "id": "pay_xxxxxxxxxxxxxx",
+                  "ip_address": "ip_address",
+                  "last_payment_attempt_at": "last_payment_attempt_at",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
+                  "member_id": "mber_xxxxxxxxxxxxxx",
+                  "membership_id": "mem_xxxxxxxxxxxxxx",
+                  "metadata": {
+                    "order_ref": "SHINE-4417"
+                  },
+                  "missing_tracking": false,
+                  "needs_tracking": false,
+                  "next_payment_attempt_at": "next_payment_attempt_at",
+                  "paid_at": "2026-01-01T12:00:00.000Z",
+                  "payment_instrument": {
+                    "card": {
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
+                    },
+                    "display_name": "Visa •••• 4242",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      }
+                    },
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
+                  },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                  "payment_method_type": "acss_debit",
+                  "payment_rule_matches": [
+                    {
+                      "action": "allow",
+                      "id": "id",
+                      "name": "name"
+                    }
+                  ],
+                  "payments_failed": 0,
+                  "presentment_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "product_id": "prod_xxxxxxxxxxxxxx",
+                  "promo_code_id": "promo_code_id",
+                  "quote_id": "quote_id",
+                  "recovery_url": "recovery_url",
+                  "refundable": false,
+                  "refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "refunded_at": "refunded_at",
+                  "response_due_at": "response_due_at",
+                  "retryable": true,
+                  "risk_score": 1.1,
+                  "risk_signals": {
+                    "key": "value"
+                  },
+                  "settlement_time_at": "settlement_time_at",
+                  "shipment_id": "shipment_id",
+                  "shipping_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "status": "draft",
+                  "substatus": "succeeded",
+                  "subtotal": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_behavior": "exclusive",
+                  "tax_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "three_ds_verified": false,
+                  "total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "usd_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "user": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "user_agent": "user_agent",
+                  "variant_id": "plan_xxxxxxxxxxxxxx",
+                  "verification_checks": {
+                    "address_line1": "PASS",
+                    "arn": "74123456789",
+                    "authorization_code": "A1B2C3",
+                    "card_holder_name": "PASS",
+                    "card_security_code": "PASS",
+                    "zip_code": "PASS"
+                  },
+                  "voidable": false,
+                  "wuid": "wuid"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Payment(
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amountAfterFees: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            autoRefunded: false,
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
+            captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            checkoutOrigin: Nullable<String>.value("checkout_origin"),
+            checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            currency: Currencies.usd,
+            customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+            customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
+            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
+            disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+            disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
+            failureMessage: Nullable<String>.value("failure_message"),
+            financingInstallmentsCount: Nullable<Double>.value(1.1),
+            holds: [
+                PaymentHold(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    percentage: Nullable<Double>.value(1.1),
+                    releaseAt: Nullable<String>.value("release_at"),
+                    type: PaymentHoldType.reserve
+                )
+            ],
+            id: "pay_xxxxxxxxxxxxxx",
+            ipAddress: Nullable<String>.value("ip_address"),
+            lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+            membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "order_ref": JSONValue.string("SHINE-4417")
+            ]),
+            missingTracking: Nullable<Bool>.value(false),
+            needsTracking: Nullable<Bool>.value(false),
+            nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+            paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
+                )),
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
+            )),
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            paymentRuleMatches: [
+                PaymentRuleMatch(
+                    action: PaymentRuleMatchAction.allow,
+                    id: "id",
+                    name: Nullable<String>.value("name")
+                )
+            ],
+            paymentsFailed: 0,
+            presentmentRefundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTaxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            quoteId: Nullable<String>.value("quote_id"),
+            recoveryUrl: Nullable<String>.value("recovery_url"),
+            refundable: false,
+            refundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            refundedAt: Nullable<String>.value("refunded_at"),
+            responseDueAt: Nullable<String>.value("response_due_at"),
+            retryable: true,
+            riskScore: Nullable<Double>.value(1.1),
+            riskSignals: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+            shipmentId: Nullable<String>.value("shipment_id"),
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            status: ReceiptStatus.draft,
+            substatus: FriendlyReceiptStatus.succeeded,
+            subtotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
+            taxRefundedAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            threeDsVerified: false,
+            total: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            usdTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            userAgent: Nullable<String>.value("user_agent"),
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
+                addressLine1: Nullable<String>.value("PASS"),
+                arn: Nullable<String>.value("74123456789"),
+                authorizationCode: Nullable<String>.value("A1B2C3"),
+                cardHolderName: Nullable<String>.value("PASS"),
+                cardSecurityCode: Nullable<String>.value("PASS"),
+                zipCode: Nullable<String>.value("PASS")
+            )),
+            voidable: false,
+            wuid: Nullable<String>.value("wuid")
+        )
+        let response = try await client.payments.refund(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retry1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount_after_fees": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "auto_refunded": false,
+                  "billing_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "billing_reason": "subscription_create",
+                  "capture_expires_at": "capture_expires_at",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "checkout_origin": "checkout_origin",
+                  "checkout_surface": "hosted_checkout",
+                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "currency": "usd",
+                  "customer_email": "marcus@shinetime.example",
+                  "customer_phone": "+xxxxxxxxxxx",
+                  "decline_code": "insufficient_funds",
+                  "dispute_alerted_at": "dispute_alerted_at",
+                  "dispute_created_at": "dispute_created_at",
+                  "failure_message": "failure_message",
+                  "financing_installments_count": 1.1,
+                  "holds": [
+                    {
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "percentage": 1.1,
+                      "release_at": "release_at",
+                      "type": "reserve"
+                    }
+                  ],
+                  "id": "pay_xxxxxxxxxxxxxx",
+                  "ip_address": "ip_address",
+                  "last_payment_attempt_at": "last_payment_attempt_at",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
+                  "member_id": "mber_xxxxxxxxxxxxxx",
+                  "membership_id": "mem_xxxxxxxxxxxxxx",
+                  "metadata": {
+                    "order_ref": "SHINE-4417"
+                  },
+                  "missing_tracking": false,
+                  "needs_tracking": false,
+                  "next_payment_attempt_at": "next_payment_attempt_at",
+                  "paid_at": "2026-01-01T12:00:00.000Z",
+                  "payment_instrument": {
+                    "card": {
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
+                    },
+                    "display_name": "Visa •••• 4242",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      }
+                    },
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
+                  },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                  "payment_method_type": "acss_debit",
+                  "payment_rule_matches": [
+                    {
+                      "action": "allow",
+                      "id": "id",
+                      "name": "name"
+                    }
+                  ],
+                  "payments_failed": 0,
+                  "presentment_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "product_id": "prod_xxxxxxxxxxxxxx",
+                  "promo_code_id": "promo_code_id",
+                  "quote_id": "quote_id",
+                  "recovery_url": "recovery_url",
+                  "refundable": false,
+                  "refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "refunded_at": "refunded_at",
+                  "response_due_at": "response_due_at",
+                  "retryable": true,
+                  "risk_score": 1.1,
+                  "risk_signals": {
+                    "key": "value"
+                  },
+                  "settlement_time_at": "settlement_time_at",
+                  "shipment_id": "shipment_id",
+                  "shipping_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "status": "draft",
+                  "substatus": "succeeded",
+                  "subtotal": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_behavior": "exclusive",
+                  "tax_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "three_ds_verified": false,
+                  "total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "usd_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "user": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "user_agent": "user_agent",
+                  "variant_id": "plan_xxxxxxxxxxxxxx",
+                  "verification_checks": {
+                    "address_line1": "PASS",
+                    "arn": "74123456789",
+                    "authorization_code": "A1B2C3",
+                    "card_holder_name": "PASS",
+                    "card_security_code": "PASS",
+                    "zip_code": "PASS"
+                  },
+                  "voidable": false,
+                  "wuid": "wuid"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Payment(
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amountAfterFees: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            autoRefunded: false,
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
+            captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            checkoutOrigin: Nullable<String>.value("checkout_origin"),
+            checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            currency: Currencies.usd,
+            customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+            customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
+            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
+            disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+            disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
+            failureMessage: Nullable<String>.value("failure_message"),
+            financingInstallmentsCount: Nullable<Double>.value(1.1),
+            holds: [
+                PaymentHold(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    percentage: Nullable<Double>.value(1.1),
+                    releaseAt: Nullable<String>.value("release_at"),
+                    type: PaymentHoldType.reserve
+                )
+            ],
+            id: "pay_xxxxxxxxxxxxxx",
+            ipAddress: Nullable<String>.value("ip_address"),
+            lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+            membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "order_ref": JSONValue.string("SHINE-4417")
+            ]),
+            missingTracking: Nullable<Bool>.value(false),
+            needsTracking: Nullable<Bool>.value(false),
+            nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+            paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
+                )),
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
+            )),
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            paymentRuleMatches: [
+                PaymentRuleMatch(
+                    action: PaymentRuleMatchAction.allow,
+                    id: "id",
+                    name: Nullable<String>.value("name")
+                )
+            ],
+            paymentsFailed: 0,
+            presentmentRefundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTaxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            quoteId: Nullable<String>.value("quote_id"),
+            recoveryUrl: Nullable<String>.value("recovery_url"),
+            refundable: false,
+            refundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            refundedAt: Nullable<String>.value("refunded_at"),
+            responseDueAt: Nullable<String>.value("response_due_at"),
+            retryable: true,
+            riskScore: Nullable<Double>.value(1.1),
+            riskSignals: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+            shipmentId: Nullable<String>.value("shipment_id"),
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            status: ReceiptStatus.draft,
+            substatus: FriendlyReceiptStatus.succeeded,
+            subtotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
+            taxRefundedAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            threeDsVerified: false,
+            total: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            usdTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            userAgent: Nullable<String>.value("user_agent"),
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
+                addressLine1: Nullable<String>.value("PASS"),
+                arn: Nullable<String>.value("74123456789"),
+                authorizationCode: Nullable<String>.value("A1B2C3"),
+                cardHolderName: Nullable<String>.value("PASS"),
+                cardSecurityCode: Nullable<String>.value("PASS"),
+                zipCode: Nullable<String>.value("PASS")
+            )),
+            voidable: false,
+            wuid: Nullable<String>.value("wuid")
+        )
+        let response = try await client.payments.retry(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func void1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount_after_fees": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "auto_refunded": false,
+                  "billing_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "billing_reason": "subscription_create",
+                  "capture_expires_at": "capture_expires_at",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "checkout_origin": "checkout_origin",
+                  "checkout_surface": "hosted_checkout",
+                  "client_secret": "pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "currency": "usd",
+                  "customer_email": "marcus@shinetime.example",
+                  "customer_phone": "+xxxxxxxxxxx",
+                  "decline_code": "insufficient_funds",
+                  "dispute_alerted_at": "dispute_alerted_at",
+                  "dispute_created_at": "dispute_created_at",
+                  "failure_message": "failure_message",
+                  "financing_installments_count": 1.1,
+                  "holds": [
+                    {
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "percentage": 1.1,
+                      "release_at": "release_at",
+                      "type": "reserve"
+                    }
+                  ],
+                  "id": "pay_xxxxxxxxxxxxxx",
+                  "ip_address": "ip_address",
+                  "last_payment_attempt_at": "last_payment_attempt_at",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
+                  "member_id": "mber_xxxxxxxxxxxxxx",
+                  "membership_id": "mem_xxxxxxxxxxxxxx",
+                  "metadata": {
+                    "order_ref": "SHINE-4417"
+                  },
+                  "missing_tracking": false,
+                  "needs_tracking": false,
+                  "next_payment_attempt_at": "next_payment_attempt_at",
+                  "paid_at": "2026-01-01T12:00:00.000Z",
+                  "payment_instrument": {
+                    "card": {
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
+                    },
+                    "display_name": "Visa •••• 4242",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      }
+                    },
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
+                  },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                  "payment_method_type": "acss_debit",
+                  "payment_rule_matches": [
+                    {
+                      "action": "allow",
+                      "id": "id",
+                      "name": "name"
+                    }
+                  ],
+                  "payments_failed": 0,
+                  "presentment_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "presentment_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "product_id": "prod_xxxxxxxxxxxxxx",
+                  "promo_code_id": "promo_code_id",
+                  "quote_id": "quote_id",
+                  "recovery_url": "recovery_url",
+                  "refundable": false,
+                  "refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "refunded_at": "refunded_at",
+                  "response_due_at": "response_due_at",
+                  "retryable": true,
+                  "risk_score": 1.1,
+                  "risk_signals": {
+                    "key": "value"
+                  },
+                  "settlement_time_at": "settlement_time_at",
+                  "shipment_id": "shipment_id",
+                  "shipping_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "1114 Bouldin Ave",
+                    "line2": "Unit B",
+                    "name": "Dana Whitfield",
+                    "postal_code": "78704",
+                    "state": "TX"
+                  },
+                  "status": "draft",
+                  "substatus": "succeeded",
+                  "subtotal": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "tax_behavior": "exclusive",
+                  "tax_refunded_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "three_ds_verified": false,
+                  "total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "usd_total": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "user": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "user_agent": "user_agent",
+                  "variant_id": "plan_xxxxxxxxxxxxxx",
+                  "verification_checks": {
+                    "address_line1": "PASS",
+                    "arn": "74123456789",
+                    "authorization_code": "A1B2C3",
+                    "card_holder_name": "PASS",
+                    "card_security_code": "PASS",
+                    "zip_code": "PASS"
+                  },
+                  "voidable": false,
+                  "wuid": "wuid"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Payment(
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amountAfterFees: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            autoRefunded: false,
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
+            captureExpiresAt: Nullable<String>.value("capture_expires_at"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            checkoutOrigin: Nullable<String>.value("checkout_origin"),
+            checkoutSurface: Nullable<PaymentCheckoutSurface>.value(PaymentCheckoutSurface.hostedCheckout),
+            clientSecret: Nullable<String>.value("pay_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            currency: Currencies.usd,
+            customerEmail: Nullable<String>.value("marcus@shinetime.example"),
+            customerPhone: Nullable<String>.value("+xxxxxxxxxxx"),
+            declineCode: Nullable<PaymentDeclineCodes>.value(PaymentDeclineCodes.insufficientFunds),
+            disputeAlertedAt: Nullable<String>.value("dispute_alerted_at"),
+            disputeCreatedAt: Nullable<String>.value("dispute_created_at"),
+            failureMessage: Nullable<String>.value("failure_message"),
+            financingInstallmentsCount: Nullable<Double>.value(1.1),
+            holds: [
+                PaymentHold(
+                    amount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    percentage: Nullable<Double>.value(1.1),
+                    releaseAt: Nullable<String>.value("release_at"),
+                    type: PaymentHoldType.reserve
+                )
+            ],
+            id: "pay_xxxxxxxxxxxxxx",
+            ipAddress: Nullable<String>.value("ip_address"),
+            lastPaymentAttemptAt: Nullable<String>.value("last_payment_attempt_at"),
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
+            membershipId: Nullable<String>.value("mem_xxxxxxxxxxxxxx"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "order_ref": JSONValue.string("SHINE-4417")
+            ]),
+            missingTracking: Nullable<Bool>.value(false),
+            needsTracking: Nullable<Bool>.value(false),
+            nextPaymentAttemptAt: Nullable<String>.value("next_payment_attempt_at"),
+            paidAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
+                )),
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
+            )),
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            paymentRuleMatches: [
+                PaymentRuleMatch(
+                    action: PaymentRuleMatchAction.allow,
+                    id: "id",
+                    name: Nullable<String>.value("name")
+                )
+            ],
+            paymentsFailed: 0,
+            presentmentRefundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTaxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            presentmentTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            quoteId: Nullable<String>.value("quote_id"),
+            recoveryUrl: Nullable<String>.value("recovery_url"),
+            refundable: false,
+            refundedAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            refundedAt: Nullable<String>.value("refunded_at"),
+            responseDueAt: Nullable<String>.value("response_due_at"),
+            retryable: true,
+            riskScore: Nullable<Double>.value(1.1),
+            riskSignals: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            settlementTimeAt: Nullable<String>.value("settlement_time_at"),
+            shipmentId: Nullable<String>.value("shipment_id"),
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("Austin"),
+                country: Nullable<String>.value("US"),
+                line1: Nullable<String>.value("1114 Bouldin Ave"),
+                line2: Nullable<String>.value("Unit B"),
+                name: Nullable<String>.value("Dana Whitfield"),
+                postalCode: Nullable<String>.value("78704"),
+                state: Nullable<String>.value("TX")
+            )),
+            status: ReceiptStatus.draft,
+            substatus: FriendlyReceiptStatus.succeeded,
+            subtotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxAmount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
+            taxRefundedAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            threeDsVerified: false,
+            total: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            usdTotal: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )),
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            userAgent: Nullable<String>.value("user_agent"),
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+            verificationChecks: Nullable<PaymentVerificationChecks>.value(PaymentVerificationChecks(
+                addressLine1: Nullable<String>.value("PASS"),
+                arn: Nullable<String>.value("74123456789"),
+                authorizationCode: Nullable<String>.value("A1B2C3"),
+                cardHolderName: Nullable<String>.value("PASS"),
+                cardSecurityCode: Nullable<String>.value("PASS"),
+                zipCode: Nullable<String>.value("PASS")
+            )),
+            voidable: false,
+            wuid: Nullable<String>.value("wuid")
+        )
+        let response = try await client.payments.void(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func resume1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "biz_xxxxxxxxxxxxxx",
+                    "title": "Acme Bookkeeping"
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "capture_expires_at": "2026-01-01T12:00:00.000Z",
+                  "id": "pay_xxxxxxxxxxxxxx",
+                  "last_payment_error": {
+                    "code": "processing_error",
+                    "decline_code": "insufficient_funds",
+                    "message": "Your card was declined."
+                  },
+                  "next_action": {
+                    "data": {
+                      "expires_at": "2026-01-01T12:00:00.000Z"
+                    },
+                    "render": [
+                      "inline"
+                    ],
+                    "type": "await_confirmation"
+                  },
+                  "object": "payment_status",
+                  "processing_details": {
+                    "expected_by": "2026-01-01T12:00:00.000Z"
+                  },
+                  "return_url": "https://shinetime.example/checkout/done",
+                  "status": "requires_confirmation"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PaymentStatus(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "biz_xxxxxxxxxxxxxx",
+                title: "Acme Bookkeeping"
+            )),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            captureExpiresAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            id: "pay_xxxxxxxxxxxxxx",
+            lastPaymentError: Nullable<PaymentLastPaymentError>.value(PaymentLastPaymentError(
+                code: Nullable<String>.value("processing_error"),
+                declineCode: Nullable<PaymentLastPaymentErrorDeclineCode>.value(PaymentLastPaymentErrorDeclineCode.insufficientFunds),
+                message: Nullable<String>.value("Your card was declined.")
+            )),
+            nextAction: Nullable<PaymentNextAction>.value(PaymentNextAction.awaitConfirmation(
+                .init(
+                    data: PaymentNextActionAwaitConfirmationData(
+                        expiresAt: "2026-01-01T12:00:00.000Z"
+                    ),
+                    render: [
+                        PaymentNextActionAwaitConfirmationRenderItem.inline
+                    ],
+                    additionalProperties: [
+                        "type": JSONValue.string("await_confirmation")
+                    ]
+                )
+            )),
+            object: "payment_status",
+            processingDetails: Nullable<PaymentProcessingDetails>.value(PaymentProcessingDetails(
+                expectedBy: Nullable<String>.value("2026-01-01T12:00:00.000Z")
+            )),
+            returnUrl: Nullable<String>.value("https://shinetime.example/checkout/done"),
+            status: PaymentStatusStatus.requiresConfirmation
+        )
+        let response = try await client.payments.resume(
+            paymentId: "payment_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateReturnUrl1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "biz_xxxxxxxxxxxxxx",
+                    "title": "Acme Bookkeeping"
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "capture_expires_at": "2026-01-01T12:00:00.000Z",
+                  "id": "pay_xxxxxxxxxxxxxx",
+                  "last_payment_error": {
+                    "code": "processing_error",
+                    "decline_code": "insufficient_funds",
+                    "message": "Your card was declined."
+                  },
+                  "next_action": {
+                    "data": {
+                      "expires_at": "2026-01-01T12:00:00.000Z"
+                    },
+                    "render": [
+                      "inline"
+                    ],
+                    "type": "await_confirmation"
+                  },
+                  "object": "payment_status",
+                  "processing_details": {
+                    "expected_by": "2026-01-01T12:00:00.000Z"
+                  },
+                  "return_url": "https://shinetime.example/checkout/done",
+                  "status": "requires_confirmation"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PaymentStatus(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "biz_xxxxxxxxxxxxxx",
+                title: "Acme Bookkeeping"
+            )),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            captureExpiresAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             id: "pay_xxxxxxxxxxxxxx",
             lastPaymentError: Nullable<PaymentLastPaymentError>.value(PaymentLastPaymentError(
                 code: Nullable<String>.value("processing_error"),
@@ -2929,6 +3907,12 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "account": {
+                    "id": "biz_xxxxxxxxxxxxxx",
+                    "title": "Acme Bookkeeping"
+                  },
+                  "auto_capture_at": "auto_capture_at",
+                  "capture_expires_at": "2026-01-01T12:00:00.000Z",
                   "id": "pay_xxxxxxxxxxxxxx",
                   "last_payment_error": {
                     "code": "processing_error",
@@ -2960,6 +3944,12 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = PaymentStatus(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "biz_xxxxxxxxxxxxxx",
+                title: "Acme Bookkeeping"
+            )),
+            autoCaptureAt: Nullable<String>.value("auto_capture_at"),
+            captureExpiresAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             id: "pay_xxxxxxxxxxxxxx",
             lastPaymentError: Nullable<PaymentLastPaymentError>.value(PaymentLastPaymentError(
                 code: Nullable<String>.value("processing_error"),

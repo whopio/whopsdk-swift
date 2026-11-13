@@ -1,10 +1,7 @@
 import Foundation
 
-/// Input type for a single poll option
 public struct CreateMessagesRequestPollOptionsItem: Codable, Hashable, Sendable {
-    /// Sequential ID for the poll option (starting from '1')
     public let id: String
-    /// The text of the poll option
     public let text: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

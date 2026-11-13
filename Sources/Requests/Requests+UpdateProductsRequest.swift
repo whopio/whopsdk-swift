@@ -4,9 +4,11 @@ extension Requests {
     public struct UpdateProductsRequest: Codable, Hashable, Sendable {
         /// A wide image for the product, shown on the product page and on listing cards. Pass `{ id }` for an existing attachment or `{ direct_upload_id }` for a completed direct upload; `null` removes it.
         public let bannerImage: Nullable<UpdateProductsRequestBannerImage>?
-        /// A written description displayed on the product page.
+        /// A written description displayed on the product page. Maximum 1,500 characters.
         public let description: Nullable<String>?
-        /// A short marketing headline for the product page.
+        /// Images or videos displayed in the product gallery, in display order. Replaces the existing gallery. Send an empty array to clear it; omit or pass null to leave it unchanged. A banner image does not populate the gallery.
+        public let galleryImages: Nullable<[UpdateProductsRequestGalleryImagesItem]>?
+        /// A short marketing headline for the product page. Maximum 80 characters.
         public let headline: Nullable<String>?
         /// Labels used to group products into collections. Replaces the existing labels. Send an empty array to clear them.
         public let labels: Nullable<[String]>?
@@ -16,7 +18,7 @@ extension Requests {
         public let productTaxCodeId: Nullable<String>?
         /// Whether to send an automated welcome message via support chat when a user joins this product.
         public let sendWelcomeMessage: Nullable<Bool>?
-        /// The display name of the product.
+        /// The display name of the product. Maximum 80 characters.
         public let title: String?
         /// Whether the product is visible to customers.
         public let visibility: String?
@@ -26,6 +28,7 @@ extension Requests {
         public init(
             bannerImage: Nullable<UpdateProductsRequestBannerImage>? = nil,
             description: Nullable<String>? = nil,
+            galleryImages: Nullable<[UpdateProductsRequestGalleryImagesItem]>? = nil,
             headline: Nullable<String>? = nil,
             labels: Nullable<[String]>? = nil,
             metadata: Nullable<[String: JSONValue]>? = nil,
@@ -37,6 +40,7 @@ extension Requests {
         ) {
             self.bannerImage = bannerImage
             self.description = description
+            self.galleryImages = galleryImages
             self.headline = headline
             self.labels = labels
             self.metadata = metadata
@@ -51,6 +55,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bannerImage = try container.decodeNullableIfPresent(UpdateProductsRequestBannerImage.self, forKey: .bannerImage)
             self.description = try container.decodeNullableIfPresent(String.self, forKey: .description)
+            self.galleryImages = try container.decodeNullableIfPresent([UpdateProductsRequestGalleryImagesItem].self, forKey: .galleryImages)
             self.headline = try container.decodeNullableIfPresent(String.self, forKey: .headline)
             self.labels = try container.decodeNullableIfPresent([String].self, forKey: .labels)
             self.metadata = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .metadata)
@@ -66,6 +71,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeNullableIfPresent(self.bannerImage, forKey: .bannerImage)
             try container.encodeNullableIfPresent(self.description, forKey: .description)
+            try container.encodeNullableIfPresent(self.galleryImages, forKey: .galleryImages)
             try container.encodeNullableIfPresent(self.headline, forKey: .headline)
             try container.encodeNullableIfPresent(self.labels, forKey: .labels)
             try container.encodeNullableIfPresent(self.metadata, forKey: .metadata)
@@ -79,6 +85,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case bannerImage = "banner_image"
             case description
+            case galleryImages = "gallery_images"
             case headline
             case labels
             case metadata

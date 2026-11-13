@@ -7,6 +7,7 @@ public enum CancelOptions: String, Codable, Hashable, CaseIterable, Sendable {
     case missingFeatures = "missing_features"
     case technicalIssues = "technical_issues"
     case badExperience = "bad_experience"
+    case unused
     case other
     case testing
 }

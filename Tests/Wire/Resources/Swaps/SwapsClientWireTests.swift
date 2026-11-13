@@ -12,13 +12,15 @@ import WhopSDK
                   "data": [
                     {
                       "account_id": "biz_xxxxxxxxxxxxxx",
+                      "amount": "0.052341",
                       "error": "Swap reverted: quoted price moved beyond the slippage tolerance",
                       "id": "vault-swap-cwal_xxxxxxxxxxxxxx",
                       "object": "swap",
                       "status": "queued",
                       "tx_hashes": [
                         "0xabc"
-                      ]
+                      ],
+                      "user_id": "user_id"
                     }
                   ]
                 }
@@ -34,20 +36,19 @@ import WhopSDK
             data: [
                 ListSwapsResponseDataItem(
                     accountId: "biz_xxxxxxxxxxxxxx",
+                    amount: Nullable<String>.value("0.052341"),
                     error: Optional(Nullable<String>.value("Swap reverted: quoted price moved beyond the slippage tolerance")),
                     id: "vault-swap-cwal_xxxxxxxxxxxxxx",
                     object: ListSwapsResponseDataItemObject.swap,
                     status: ListSwapsResponseDataItemStatus.queued,
                     txHashes: [
                         "0xabc"
-                    ]
+                    ],
+                    userId: Nullable<String>.value("user_id")
                 )
             ]
         )
-        let response = try await client.swaps.list(
-            accountId: "account_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
+        let response = try await client.swaps.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -58,6 +59,7 @@ import WhopSDK
                 #"""
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount": "100.0",
                   "amount_in": 131.4,
                   "amount_out": 180,
                   "amount_out_expected": "98.9",
@@ -72,7 +74,8 @@ import WhopSDK
                   "to_chain": "ethereum",
                   "to_token": {
                     "symbol": "cad"
-                  }
+                  },
+                  "user_id": "user_id"
                 }
                 """#.utf8
             )
@@ -84,6 +87,7 @@ import WhopSDK
         )
         let expectedResponse = CreateSwapsResponse(
             accountId: "biz_xxxxxxxxxxxxxx",
+            amount: Optional(Nullable<String>.value("100.0")),
             amountIn: Optional(Nullable<Double>.value(131.4)),
             amountOut: Optional(Nullable<Double>.value(180)),
             amountOutExpected: Optional("98.9"),
@@ -98,11 +102,11 @@ import WhopSDK
             toChain: Optional("ethereum"),
             toToken: Optional(Nullable<CreateSwapsResponseToToken>.value(CreateSwapsResponseToToken(
                 symbol: Optional("cad")
-            )))
+            ))),
+            userId: Nullable<String>.value("user_id")
         )
         let response = try await client.swaps.create(
             request: .init(
-                accountId: "biz_xxxxxxxxxxxxxx",
                 fromToken: "usd",
                 toToken: "cad"
             ),
@@ -202,13 +206,15 @@ import WhopSDK
                 #"""
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount": "0.052341",
                   "error": "Swap reverted: quoted price moved beyond the slippage tolerance",
                   "id": "vault-swap-cwal_xxxxxxxxxxxxxx",
                   "object": "swap",
                   "status": "queued",
                   "tx_hashes": [
                     "0xabc"
-                  ]
+                  ],
+                  "user_id": "user_id"
                 }
                 """#.utf8
             )
@@ -220,13 +226,15 @@ import WhopSDK
         )
         let expectedResponse = RetrieveSwapsResponse(
             accountId: "biz_xxxxxxxxxxxxxx",
+            amount: Nullable<String>.value("0.052341"),
             error: Optional(Nullable<String>.value("Swap reverted: quoted price moved beyond the slippage tolerance")),
             id: "vault-swap-cwal_xxxxxxxxxxxxxx",
             object: RetrieveSwapsResponseObject.swap,
             status: RetrieveSwapsResponseStatus.queued,
             txHashes: [
                 "0xabc"
-            ]
+            ],
+            userId: Nullable<String>.value("user_id")
         )
         let response = try await client.swaps.retrieve(
             id: "id",

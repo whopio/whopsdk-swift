@@ -1,12 +1,12 @@
 {
-  "cliVersion": "5.90.1",
+  "cliVersion": "5.213.0",
   "generatorName": "fernapi/fern-swift-sdk",
-  "generatorVersion": "0.36.0",
+  "generatorVersion": "0.37.3",
   "generatorConfig": {
     "moduleName": "WhopSDK",
     "clientClassName": "Whop"
   },
-  "originGitCommit": "a26a97d2d8ee29f78819a299712fb3b4086d634e",
+  "originGitCommit": "8da3dbce947ae209e4f8eec2b5af27d0ca0ef8e2",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
   "requestedVersion": "1.0.11",

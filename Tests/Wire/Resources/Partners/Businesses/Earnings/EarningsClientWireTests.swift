@@ -18,7 +18,8 @@ import WhopSDK
                         "title": "Gleam Mobile Detailing"
                       },
                       "cancelation_reason": "payment_refunded",
-                      "commission_amount_usd": "1.00",
+                      "commission_amount_usd": "3.00",
+                      "covered_by_commission_advance": false,
                       "created_at": "2026-01-01T12:00:00Z",
                       "financial_activity": [
                         {
@@ -40,6 +41,12 @@ import WhopSDK
                         "route": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "title": "Ceramic Coating Package"
                       },
+                      "projected_commission_amount_usd": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
                       "resource": {
                         "alternative_payment_method": {
                           "image_url": "https://content.whop.com/core/pm_cashapp.svg",
@@ -56,11 +63,11 @@ import WhopSDK
                       },
                       "second_tier": false,
                       "status": "awaiting_settlement",
-                      "transaction_amount_usd": "10.00"
+                      "transaction_amount_usd": "30.00"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -84,7 +91,8 @@ import WhopSDK
                         title: "Gleam Mobile Detailing"
                     )),
                     cancelationReason: Nullable<String>.value("payment_refunded"),
-                    commissionAmountUsd: Nullable<String>.value("1.00"),
+                    commissionAmountUsd: Nullable<String>.value("3.00"),
+                    coveredByCommissionAdvance: false,
                     createdAt: try! Date("2026-01-01T12:00:00Z", strategy: .iso8601),
                     financialActivity: Nullable<[ListEarningsResponseDataItemFinancialActivityItem]>.value([
                         ListEarningsResponseDataItemFinancialActivityItem(
@@ -106,6 +114,12 @@ import WhopSDK
                         route: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         title: "Ceramic Coating Package"
                     )),
+                    projectedCommissionAmountUsd: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
                     resource: Nullable<ListEarningsResponseDataItemResource>.value(ListEarningsResponseDataItemResource.nullableListEarningsResponseDataItemResourceAlternativePaymentMethod(
                         Nullable<ListEarningsResponseDataItemResourceAlternativePaymentMethod>.value(ListEarningsResponseDataItemResourceAlternativePaymentMethod(
                             alternativePaymentMethod: Nullable<ListEarningsResponseDataItemResourceAlternativePaymentMethodAlternativePaymentMethod>.value(ListEarningsResponseDataItemResourceAlternativePaymentMethodAlternativePaymentMethod(
@@ -124,11 +138,11 @@ import WhopSDK
                     )),
                     secondTier: false,
                     status: ListEarningsResponseDataItemStatus.awaitingSettlement,
-                    transactionAmountUsd: "10.00"
+                    transactionAmountUsd: "30.00"
                 )
             ],
             pageInfo: ListEarningsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")

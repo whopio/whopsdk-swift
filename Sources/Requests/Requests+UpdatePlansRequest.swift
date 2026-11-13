@@ -2,63 +2,43 @@ import Foundation
 
 extension Requests {
     public struct UpdatePlansRequest: Codable, Hashable, Sendable {
-        /// Whether this plan accepts local currency payments via adaptive pricing.
         public let adaptivePricingEnabled: Nullable<Bool>?
-        /// Recurring billing interval in days, such as 30 for monthly or 365 for annual.
+        public let allowMultipleQuantity: Bool?
+        public let attributes: Nullable<[String: JSONValue]>?
         public let billingPeriod: Nullable<Int>?
-        /// How many renewals the retention discount applies to. Required when `offer_cancel_discount` is true.
         public let cancelDiscountIntervals: Nullable<Int>?
-        /// Percentage taken off each discounted renewal. Required when `offer_cancel_discount` is true.
         public let cancelDiscountPercentage: Nullable<Int>?
-        /// Checkout styling overrides for this plan.
         public let checkoutStyling: Nullable<[String: JSONValue]>?
-        /// The three-letter ISO currency code for the plan's pricing. Defaults to USD.
         public let currency: String?
-        /// An array of custom field definitions to collect from customers at checkout. Omitting this field clears existing custom fields.
         public let customFields: Nullable<[UpdatePlansRequestCustomFieldsItem]>?
-        /// A text description of the plan displayed to customers on the product page.
         public let description: Nullable<String>?
-        /// Access duration in days before the membership expires.
         public let expirationDays: Nullable<Int>?
-        /// An image displayed on the product page to represent this plan.
         public let image: Nullable<UpdatePlansRequestImage>?
-        /// Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
         public let initialPrice: Nullable<Double>?
-        /// Private notes visible only to the account owner. Not shown to customers.
         public let internalNotes: Nullable<String>?
-        /// Custom key-value pairs to store on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` (a checkout call-to-action button label — one of the product custom CTA values, e.g. `subscribe`, `get_offer`) and `custom_cta_url` (a URL the button links to; web or `tel:`) override the product's call to action for this plan and are validated on save.
         public let metadata: Nullable<[String: JSONValue]>?
-        /// Whether to offer a retention discount when a customer attempts to cancel.
         public let offerCancelDiscount: Nullable<Bool>?
-        /// Override the default tax classification for this specific plan.
         public let overrideTaxType: String?
-        /// Explicit payment method configuration for the plan. When not provided, the account's defaults apply.
         public let paymentMethodConfiguration: Nullable<UpdatePlansRequestPaymentMethodConfiguration>?
-        /// Sales method for this plan.
         public let releaseMethod: String?
-        /// The amount charged each billing period for recurring plans, in the plan's currency.
         public let renewalPrice: Nullable<Double>?
-        /// The maximum number of units available for purchase. Ignored when unlimited_stock is true.
+        public let sku: Nullable<String>?
+        public let splitPayRequiredPayments: Nullable<Int>?
         public let stock: Nullable<Int>?
-        /// A comparison price displayed with a strikethrough for the initial price.
         public let strikeThroughInitialPrice: Nullable<Double>?
-        /// A comparison price displayed with a strikethrough for the renewal price.
         public let strikeThroughRenewalPrice: Nullable<Double>?
-        /// 3D Secure behavior for this plan. Send `null` to inherit the account default.
         public let threeDsLevel: Nullable<UpdatePlansRequestThreeDsLevel>?
-        /// The display name of the plan shown to customers on the product page.
         public let title: Nullable<String>?
-        /// Free trial duration before the first recurring charge.
         public let trialPeriodDays: Nullable<Int>?
-        /// Whether the plan has unlimited stock. When true, the stock field is ignored.
         public let unlimitedStock: Nullable<Bool>?
-        /// Whether the plan is visible to customers or hidden from public view.
         public let visibility: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             adaptivePricingEnabled: Nullable<Bool>? = nil,
+            allowMultipleQuantity: Bool? = nil,
+            attributes: Nullable<[String: JSONValue]>? = nil,
             billingPeriod: Nullable<Int>? = nil,
             cancelDiscountIntervals: Nullable<Int>? = nil,
             cancelDiscountPercentage: Nullable<Int>? = nil,
@@ -76,6 +56,8 @@ extension Requests {
             paymentMethodConfiguration: Nullable<UpdatePlansRequestPaymentMethodConfiguration>? = nil,
             releaseMethod: String? = nil,
             renewalPrice: Nullable<Double>? = nil,
+            sku: Nullable<String>? = nil,
+            splitPayRequiredPayments: Nullable<Int>? = nil,
             stock: Nullable<Int>? = nil,
             strikeThroughInitialPrice: Nullable<Double>? = nil,
             strikeThroughRenewalPrice: Nullable<Double>? = nil,
@@ -87,6 +69,8 @@ extension Requests {
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.adaptivePricingEnabled = adaptivePricingEnabled
+            self.allowMultipleQuantity = allowMultipleQuantity
+            self.attributes = attributes
             self.billingPeriod = billingPeriod
             self.cancelDiscountIntervals = cancelDiscountIntervals
             self.cancelDiscountPercentage = cancelDiscountPercentage
@@ -104,6 +88,8 @@ extension Requests {
             self.paymentMethodConfiguration = paymentMethodConfiguration
             self.releaseMethod = releaseMethod
             self.renewalPrice = renewalPrice
+            self.sku = sku
+            self.splitPayRequiredPayments = splitPayRequiredPayments
             self.stock = stock
             self.strikeThroughInitialPrice = strikeThroughInitialPrice
             self.strikeThroughRenewalPrice = strikeThroughRenewalPrice
@@ -118,6 +104,8 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.adaptivePricingEnabled = try container.decodeNullableIfPresent(Bool.self, forKey: .adaptivePricingEnabled)
+            self.allowMultipleQuantity = try container.decodeIfPresent(Bool.self, forKey: .allowMultipleQuantity)
+            self.attributes = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .attributes)
             self.billingPeriod = try container.decodeNullableIfPresent(Int.self, forKey: .billingPeriod)
             self.cancelDiscountIntervals = try container.decodeNullableIfPresent(Int.self, forKey: .cancelDiscountIntervals)
             self.cancelDiscountPercentage = try container.decodeNullableIfPresent(Int.self, forKey: .cancelDiscountPercentage)
@@ -135,6 +123,8 @@ extension Requests {
             self.paymentMethodConfiguration = try container.decodeNullableIfPresent(UpdatePlansRequestPaymentMethodConfiguration.self, forKey: .paymentMethodConfiguration)
             self.releaseMethod = try container.decodeIfPresent(String.self, forKey: .releaseMethod)
             self.renewalPrice = try container.decodeNullableIfPresent(Double.self, forKey: .renewalPrice)
+            self.sku = try container.decodeNullableIfPresent(String.self, forKey: .sku)
+            self.splitPayRequiredPayments = try container.decodeNullableIfPresent(Int.self, forKey: .splitPayRequiredPayments)
             self.stock = try container.decodeNullableIfPresent(Int.self, forKey: .stock)
             self.strikeThroughInitialPrice = try container.decodeNullableIfPresent(Double.self, forKey: .strikeThroughInitialPrice)
             self.strikeThroughRenewalPrice = try container.decodeNullableIfPresent(Double.self, forKey: .strikeThroughRenewalPrice)
@@ -150,6 +140,8 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeNullableIfPresent(self.adaptivePricingEnabled, forKey: .adaptivePricingEnabled)
+            try container.encodeIfPresent(self.allowMultipleQuantity, forKey: .allowMultipleQuantity)
+            try container.encodeNullableIfPresent(self.attributes, forKey: .attributes)
             try container.encodeNullableIfPresent(self.billingPeriod, forKey: .billingPeriod)
             try container.encodeNullableIfPresent(self.cancelDiscountIntervals, forKey: .cancelDiscountIntervals)
             try container.encodeNullableIfPresent(self.cancelDiscountPercentage, forKey: .cancelDiscountPercentage)
@@ -167,6 +159,8 @@ extension Requests {
             try container.encodeNullableIfPresent(self.paymentMethodConfiguration, forKey: .paymentMethodConfiguration)
             try container.encodeIfPresent(self.releaseMethod, forKey: .releaseMethod)
             try container.encodeNullableIfPresent(self.renewalPrice, forKey: .renewalPrice)
+            try container.encodeNullableIfPresent(self.sku, forKey: .sku)
+            try container.encodeNullableIfPresent(self.splitPayRequiredPayments, forKey: .splitPayRequiredPayments)
             try container.encodeNullableIfPresent(self.stock, forKey: .stock)
             try container.encodeNullableIfPresent(self.strikeThroughInitialPrice, forKey: .strikeThroughInitialPrice)
             try container.encodeNullableIfPresent(self.strikeThroughRenewalPrice, forKey: .strikeThroughRenewalPrice)
@@ -180,6 +174,8 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case adaptivePricingEnabled = "adaptive_pricing_enabled"
+            case allowMultipleQuantity = "allow_multiple_quantity"
+            case attributes
             case billingPeriod = "billing_period"
             case cancelDiscountIntervals = "cancel_discount_intervals"
             case cancelDiscountPercentage = "cancel_discount_percentage"
@@ -197,6 +193,8 @@ extension Requests {
             case paymentMethodConfiguration = "payment_method_configuration"
             case releaseMethod = "release_method"
             case renewalPrice = "renewal_price"
+            case sku
+            case splitPayRequiredPayments = "split_pay_required_payments"
             case stock
             case strikeThroughInitialPrice = "strike_through_initial_price"
             case strikeThroughRenewalPrice = "strike_through_renewal_price"

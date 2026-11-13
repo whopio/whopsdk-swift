@@ -25,10 +25,10 @@ import WhopSDK
                       "lookalike_starting_ratio": 0.02,
                       "match_rates": [
                         {
-                          "lower_bound": 40,
+                          "lower_bound": null,
                           "platform": "meta",
                           "status": null,
-                          "upper_bound": 50
+                          "upper_bound": null
                         }
                       ],
                       "matched_rows": 0,
@@ -46,7 +46,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -77,10 +77,10 @@ import WhopSDK
                     lookalikeStartingRatio: Nullable<Double>.value(0.02),
                     matchRates: [
                         AudienceMatchRate(
-                            lowerBound: Nullable<Double>.value(40),
+                            lowerBound: .null,
                             platform: AudienceMatchRatePlatform.meta,
                             status: .null,
-                            upperBound: Nullable<Double>.value(50)
+                            upperBound: .null
                         )
                     ],
                     matchedRows: 0,
@@ -98,7 +98,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListAudiencesResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -131,10 +131,10 @@ import WhopSDK
                   "lookalike_starting_ratio": 0.02,
                   "match_rates": [
                     {
-                      "lower_bound": 40,
+                      "lower_bound": 1.1,
                       "platform": "meta",
                       "status": "calculating",
-                      "upper_bound": 50
+                      "upper_bound": 1.1
                     }
                   ],
                   "matched_rows": 0,
@@ -174,10 +174,10 @@ import WhopSDK
                 lookalikeStartingRatio: Nullable<Double>.value(0.02),
                 matchRates: [
                     AudienceMatchRate(
-                        lowerBound: Nullable<Double>.value(40),
+                        lowerBound: Nullable<Double>.value(1.1),
                         platform: AudienceMatchRatePlatform.meta,
                         status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
-                        upperBound: Nullable<Double>.value(50)
+                        upperBound: Nullable<Double>.value(1.1)
                     )
                 ],
                 matchedRows: 0,
@@ -247,10 +247,10 @@ import WhopSDK
                   "lookalike_starting_ratio": 0.02,
                   "match_rates": [
                     {
-                      "lower_bound": 40,
+                      "lower_bound": 1.1,
                       "platform": "meta",
                       "status": "calculating",
-                      "upper_bound": 50
+                      "upper_bound": 1.1
                     }
                   ],
                   "matched_rows": 0,
@@ -289,10 +289,10 @@ import WhopSDK
             lookalikeStartingRatio: Nullable<Double>.value(0.02),
             matchRates: [
                 AudienceMatchRate(
-                    lowerBound: Nullable<Double>.value(40),
+                    lowerBound: Nullable<Double>.value(1.1),
                     platform: AudienceMatchRatePlatform.meta,
                     status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
-                    upperBound: Nullable<Double>.value(50)
+                    upperBound: Nullable<Double>.value(1.1)
                 )
             ],
             matchedRows: 0,
@@ -336,10 +336,10 @@ import WhopSDK
                   "lookalike_starting_ratio": 0.02,
                   "match_rates": [
                     {
-                      "lower_bound": 40,
+                      "lower_bound": 1.1,
                       "platform": "meta",
                       "status": "calculating",
-                      "upper_bound": 50
+                      "upper_bound": 1.1
                     }
                   ],
                   "matched_rows": 0,
@@ -378,10 +378,10 @@ import WhopSDK
             lookalikeStartingRatio: Nullable<Double>.value(0.02),
             matchRates: [
                 AudienceMatchRate(
-                    lowerBound: Nullable<Double>.value(40),
+                    lowerBound: Nullable<Double>.value(1.1),
                     platform: AudienceMatchRatePlatform.meta,
                     status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
-                    upperBound: Nullable<Double>.value(50)
+                    upperBound: Nullable<Double>.value(1.1)
                 )
             ],
             matchedRows: 0,

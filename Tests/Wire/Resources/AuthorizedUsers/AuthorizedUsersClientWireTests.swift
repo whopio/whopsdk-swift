@@ -67,10 +67,10 @@ import WhopSDK
         let response = try await client.authorizedUsers.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
             userId: "user_xxxxxxxxxxxxx",
             createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -119,7 +119,7 @@ import WhopSDK
         )
         let response = try await client.authorizedUsers.create(
             request: .init(
-                companyId: "biz_xxxxxxxxxxxxxx",
+                accountId: "biz_xxxxxxxxxxxxxx",
                 role: .owner,
                 userId: "user_xxxxxxxxxxxxx"
             ),
@@ -193,7 +193,7 @@ import WhopSDK
         let expectedResponse = true
         let response = try await client.authorizedUsers.delete(
             id: "ausr_xxxxxxxxxxxxx",
-            companyId: "biz_xxxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

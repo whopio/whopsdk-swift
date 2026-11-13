@@ -33,11 +33,18 @@ import WhopSDK
                       "experience_id": "exp_xxxxxxxxxxxxxx",
                       "funding_account": {
                         "id": "biz_xxxxxxxxxxxxxx",
-                        "title": "Shine Time Auto Detailing"
+                        "title": "Acme Bookkeeping"
                       },
                       "gross_paid_out_amount": 0,
                       "gross_reward_amount": 15,
+                      "hosting_account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "route": "shine-time-auto-detailing",
+                        "title": "Shine Time Auto Detailing"
+                      },
                       "id": "bnty_xxxxxxxxxxxxxx",
+                      "min_total_verified_duration_seconds": 1,
                       "net_reward_amount": 10.5,
                       "poster": {
                         "id": "user_xxxxxxxxxxxxxx",
@@ -59,7 +66,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -98,11 +105,18 @@ import WhopSDK
                     experienceId: Nullable<String>.value("exp_xxxxxxxxxxxxxx"),
                     fundingAccount: Nullable<AccountSummary>.value(AccountSummary(
                         id: "biz_xxxxxxxxxxxxxx",
-                        title: "Shine Time Auto Detailing"
+                        title: "Acme Bookkeeping"
                     )),
                     grossPaidOutAmount: 0,
                     grossRewardAmount: 15,
+                    hostingAccount: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                        id: "biz_xxxxxxxxxxxxxx",
+                        logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        route: "shine-time-auto-detailing",
+                        title: "Shine Time Auto Detailing"
+                    )),
                     id: "bnty_xxxxxxxxxxxxxx",
+                    minTotalVerifiedDurationSeconds: Nullable<Int>.value(1),
                     netRewardAmount: 10.5,
                     poster: UserSummary(
                         id: "user_xxxxxxxxxxxxxx",
@@ -124,7 +138,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListBountiesResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -146,10 +160,25 @@ import WhopSDK
                   "accepted_submissions_count": 0,
                   "accepted_submissions_limit": 3,
                   "accepted_submissions_per_user_limit": 1,
+                  "active_proof_livestream_feeds": [
+                    {
+                      "host": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "id": "id",
+                      "title": "title"
+                    }
+                  ],
                   "affiliate_share_amount": 5.6,
                   "allowed_country_codes": [
                     "US"
                   ],
+                  "awaiting_review_submissions_count": 0,
                   "budget_amount": 120,
                   "business_goal_type": "clipping",
                   "cancel_requested_at": "2026-01-01T12:00:00.000Z",
@@ -192,6 +221,7 @@ import WhopSDK
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
+                  "denied_submissions_count": 0,
                   "description": "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
                   "discussion_experience_id": "discussion_experience_id",
                   "discussion_feed_id": "discussion_feed_id",
@@ -199,16 +229,18 @@ import WhopSDK
                   "experience_id": "exp_xxxxxxxxxxxxxx",
                   "funding_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "gross_paid_out_amount": 0,
                   "gross_reward_amount": 40,
                   "hosting_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
+                    "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-auto-detailing",
                     "title": "Shine Time Auto Detailing"
                   },
                   "id": "bnty_xxxxxxxxxxxxxx",
+                  "min_total_verified_duration_seconds": 14400,
                   "net_reward_amount": 28,
                   "poster": {
                     "id": "user_xxxxxxxxxxxxxx",
@@ -243,10 +275,25 @@ import WhopSDK
             acceptedSubmissionsCount: 0,
             acceptedSubmissionsLimit: 3,
             acceptedSubmissionsPerUserLimit: 1,
+            activeProofLivestreamFeeds: [
+                BountyActiveLivestreamFeed(
+                    host: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )),
+                    id: "id",
+                    title: "title"
+                )
+            ],
             affiliateShareAmount: 5.6,
             allowedCountryCodes: [
                 "US"
             ],
+            awaitingReviewSubmissionsCount: 0,
             budgetAmount: 120,
             businessGoalType: Nullable<BountyBusinessGoalType>.value(BountyBusinessGoalType.clipping),
             cancelRequestedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
@@ -289,6 +336,7 @@ import WhopSDK
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: BountyCurrency.usd,
+            deniedSubmissionsCount: 0,
             description: "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
             discussionExperienceId: Nullable<String>.value("discussion_experience_id"),
             discussionFeedId: Nullable<String>.value("discussion_feed_id"),
@@ -296,16 +344,18 @@ import WhopSDK
             experienceId: Nullable<String>.value("exp_xxxxxxxxxxxxxx"),
             fundingAccount: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             grossPaidOutAmount: 0,
             grossRewardAmount: 40,
             hostingAccount: Nullable<StorefrontAccount>.value(StorefrontAccount(
                 id: "biz_xxxxxxxxxxxxxx",
+                logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-auto-detailing",
                 title: "Shine Time Auto Detailing"
             )),
             id: "bnty_xxxxxxxxxxxxxx",
+            minTotalVerifiedDurationSeconds: Nullable<Int>.value(14400),
             netRewardAmount: 28,
             poster: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
@@ -348,10 +398,25 @@ import WhopSDK
                   "accepted_submissions_count": 0,
                   "accepted_submissions_limit": 3,
                   "accepted_submissions_per_user_limit": 1,
+                  "active_proof_livestream_feeds": [
+                    {
+                      "host": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "id": "id",
+                      "title": "title"
+                    }
+                  ],
                   "affiliate_share_amount": 5.6,
                   "allowed_country_codes": [
                     "US"
                   ],
+                  "awaiting_review_submissions_count": 0,
                   "budget_amount": 120,
                   "business_goal_type": "clipping",
                   "cancel_requested_at": "2026-01-01T12:00:00.000Z",
@@ -394,6 +459,7 @@ import WhopSDK
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
+                  "denied_submissions_count": 0,
                   "description": "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
                   "discussion_experience_id": "discussion_experience_id",
                   "discussion_feed_id": "discussion_feed_id",
@@ -401,16 +467,18 @@ import WhopSDK
                   "experience_id": "exp_xxxxxxxxxxxxxx",
                   "funding_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "gross_paid_out_amount": 0,
                   "gross_reward_amount": 40,
                   "hosting_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
+                    "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-auto-detailing",
                     "title": "Shine Time Auto Detailing"
                   },
                   "id": "bnty_xxxxxxxxxxxxxx",
+                  "min_total_verified_duration_seconds": 14400,
                   "net_reward_amount": 28,
                   "poster": {
                     "id": "user_xxxxxxxxxxxxxx",
@@ -445,10 +513,25 @@ import WhopSDK
             acceptedSubmissionsCount: 0,
             acceptedSubmissionsLimit: 3,
             acceptedSubmissionsPerUserLimit: 1,
+            activeProofLivestreamFeeds: [
+                BountyActiveLivestreamFeed(
+                    host: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )),
+                    id: "id",
+                    title: "title"
+                )
+            ],
             affiliateShareAmount: 5.6,
             allowedCountryCodes: [
                 "US"
             ],
+            awaitingReviewSubmissionsCount: 0,
             budgetAmount: 120,
             businessGoalType: Nullable<BountyBusinessGoalType>.value(BountyBusinessGoalType.clipping),
             cancelRequestedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
@@ -491,6 +574,7 @@ import WhopSDK
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: BountyCurrency.usd,
+            deniedSubmissionsCount: 0,
             description: "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
             discussionExperienceId: Nullable<String>.value("discussion_experience_id"),
             discussionFeedId: Nullable<String>.value("discussion_feed_id"),
@@ -498,16 +582,18 @@ import WhopSDK
             experienceId: Nullable<String>.value("exp_xxxxxxxxxxxxxx"),
             fundingAccount: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             grossPaidOutAmount: 0,
             grossRewardAmount: 40,
             hostingAccount: Nullable<StorefrontAccount>.value(StorefrontAccount(
                 id: "biz_xxxxxxxxxxxxxx",
+                logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-auto-detailing",
                 title: "Shine Time Auto Detailing"
             )),
             id: "bnty_xxxxxxxxxxxxxx",
+            minTotalVerifiedDurationSeconds: Nullable<Int>.value(14400),
             netRewardAmount: 28,
             poster: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
@@ -546,10 +632,25 @@ import WhopSDK
                   "accepted_submissions_count": 0,
                   "accepted_submissions_limit": 3,
                   "accepted_submissions_per_user_limit": 1,
+                  "active_proof_livestream_feeds": [
+                    {
+                      "host": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "id": "id",
+                      "title": "title"
+                    }
+                  ],
                   "affiliate_share_amount": 5.6,
                   "allowed_country_codes": [
                     "US"
                   ],
+                  "awaiting_review_submissions_count": 0,
                   "budget_amount": 120,
                   "business_goal_type": "clipping",
                   "cancel_requested_at": "2026-01-01T12:00:00.000Z",
@@ -592,6 +693,7 @@ import WhopSDK
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
+                  "denied_submissions_count": 0,
                   "description": "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
                   "discussion_experience_id": "discussion_experience_id",
                   "discussion_feed_id": "discussion_feed_id",
@@ -599,16 +701,18 @@ import WhopSDK
                   "experience_id": "exp_xxxxxxxxxxxxxx",
                   "funding_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "gross_paid_out_amount": 0,
                   "gross_reward_amount": 40,
                   "hosting_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
+                    "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-auto-detailing",
                     "title": "Shine Time Auto Detailing"
                   },
                   "id": "bnty_xxxxxxxxxxxxxx",
+                  "min_total_verified_duration_seconds": 14400,
                   "net_reward_amount": 28,
                   "poster": {
                     "id": "user_xxxxxxxxxxxxxx",
@@ -643,10 +747,25 @@ import WhopSDK
             acceptedSubmissionsCount: 0,
             acceptedSubmissionsLimit: 3,
             acceptedSubmissionsPerUserLimit: 1,
+            activeProofLivestreamFeeds: [
+                BountyActiveLivestreamFeed(
+                    host: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )),
+                    id: "id",
+                    title: "title"
+                )
+            ],
             affiliateShareAmount: 5.6,
             allowedCountryCodes: [
                 "US"
             ],
+            awaitingReviewSubmissionsCount: 0,
             budgetAmount: 120,
             businessGoalType: Nullable<BountyBusinessGoalType>.value(BountyBusinessGoalType.clipping),
             cancelRequestedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
@@ -689,6 +808,7 @@ import WhopSDK
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: BountyCurrency.usd,
+            deniedSubmissionsCount: 0,
             description: "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
             discussionExperienceId: Nullable<String>.value("discussion_experience_id"),
             discussionFeedId: Nullable<String>.value("discussion_feed_id"),
@@ -696,16 +816,18 @@ import WhopSDK
             experienceId: Nullable<String>.value("exp_xxxxxxxxxxxxxx"),
             fundingAccount: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             grossPaidOutAmount: 0,
             grossRewardAmount: 40,
             hostingAccount: Nullable<StorefrontAccount>.value(StorefrontAccount(
                 id: "biz_xxxxxxxxxxxxxx",
+                logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-auto-detailing",
                 title: "Shine Time Auto Detailing"
             )),
             id: "bnty_xxxxxxxxxxxxxx",
+            minTotalVerifiedDurationSeconds: Nullable<Int>.value(14400),
             netRewardAmount: 28,
             poster: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
@@ -745,10 +867,25 @@ import WhopSDK
                   "accepted_submissions_count": 0,
                   "accepted_submissions_limit": 3,
                   "accepted_submissions_per_user_limit": 1,
+                  "active_proof_livestream_feeds": [
+                    {
+                      "host": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "id": "id",
+                      "title": "title"
+                    }
+                  ],
                   "affiliate_share_amount": 5.6,
                   "allowed_country_codes": [
                     "US"
                   ],
+                  "awaiting_review_submissions_count": 0,
                   "budget_amount": 120,
                   "business_goal_type": "clipping",
                   "cancel_requested_at": "2026-01-01T12:00:00.000Z",
@@ -791,6 +928,7 @@ import WhopSDK
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
+                  "denied_submissions_count": 0,
                   "description": "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
                   "discussion_experience_id": "discussion_experience_id",
                   "discussion_feed_id": "discussion_feed_id",
@@ -798,16 +936,18 @@ import WhopSDK
                   "experience_id": "exp_xxxxxxxxxxxxxx",
                   "funding_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "gross_paid_out_amount": 0,
                   "gross_reward_amount": 40,
                   "hosting_account": {
                     "id": "biz_xxxxxxxxxxxxxx",
+                    "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-auto-detailing",
                     "title": "Shine Time Auto Detailing"
                   },
                   "id": "bnty_xxxxxxxxxxxxxx",
+                  "min_total_verified_duration_seconds": 14400,
                   "net_reward_amount": 28,
                   "poster": {
                     "id": "user_xxxxxxxxxxxxxx",
@@ -842,10 +982,25 @@ import WhopSDK
             acceptedSubmissionsCount: 0,
             acceptedSubmissionsLimit: 3,
             acceptedSubmissionsPerUserLimit: 1,
+            activeProofLivestreamFeeds: [
+                BountyActiveLivestreamFeed(
+                    host: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )),
+                    id: "id",
+                    title: "title"
+                )
+            ],
             affiliateShareAmount: 5.6,
             allowedCountryCodes: [
                 "US"
             ],
+            awaitingReviewSubmissionsCount: 0,
             budgetAmount: 120,
             businessGoalType: Nullable<BountyBusinessGoalType>.value(BountyBusinessGoalType.clipping),
             cancelRequestedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
@@ -888,6 +1043,7 @@ import WhopSDK
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: BountyCurrency.usd,
+            deniedSubmissionsCount: 0,
             description: "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
             discussionExperienceId: Nullable<String>.value("discussion_experience_id"),
             discussionFeedId: Nullable<String>.value("discussion_feed_id"),
@@ -895,16 +1051,18 @@ import WhopSDK
             experienceId: Nullable<String>.value("exp_xxxxxxxxxxxxxx"),
             fundingAccount: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             grossPaidOutAmount: 0,
             grossRewardAmount: 40,
             hostingAccount: Nullable<StorefrontAccount>.value(StorefrontAccount(
                 id: "biz_xxxxxxxxxxxxxx",
+                logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-auto-detailing",
                 title: "Shine Time Auto Detailing"
             )),
             id: "bnty_xxxxxxxxxxxxxx",
+            minTotalVerifiedDurationSeconds: Nullable<Int>.value(14400),
             netRewardAmount: 28,
             poster: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",

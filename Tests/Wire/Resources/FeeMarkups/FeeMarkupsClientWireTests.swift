@@ -57,7 +57,7 @@ import WhopSDK
         let response = try await client.feeMarkups.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -96,7 +96,7 @@ import WhopSDK
         )
         let response = try await client.feeMarkups.create(
             request: .init(
-                companyId: "biz_xxxxxxxxxxxxxx",
+                accountId: "biz_xxxxxxxxxxxxxx",
                 feeType: .cryptoWithdrawalMarkup
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

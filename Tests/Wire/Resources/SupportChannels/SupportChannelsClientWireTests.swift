@@ -11,6 +11,7 @@ import WhopSDK
                 {
                   "data": [
                     {
+                      "account_id": "account_id",
                       "company_id": "company_id",
                       "custom_name": "Project Alpha Team",
                       "customer_user": {
@@ -19,8 +20,29 @@ import WhopSDK
                         "username": "johndoe42"
                       },
                       "id": "id",
+                      "last_message": {
+                        "attachments": [
+                          {
+                            "content_type": "image/jpeg",
+                            "filename": "document.pdf"
+                          }
+                        ],
+                        "content": "Hey, are you available for a **quick call**?",
+                        "created_at": "2023-12-01T05:00:00Z",
+                        "gifs": [
+                          {
+                            "slug": "slug"
+                          }
+                        ],
+                        "id": "id",
+                        "poll": null,
+                        "user_id": "user_id"
+                      },
                       "last_message_at": "2023-12-01T05:00:00Z",
-                      "resolved_at": "2023-12-01T05:00:00Z"
+                      "needs_reply": true,
+                      "participated": true,
+                      "resolved_at": "2023-12-01T05:00:00Z",
+                      "unread": true
                     }
                   ],
                   "page_info": {
@@ -41,6 +63,7 @@ import WhopSDK
         let expectedResponse = ListSupportChannelsResponse(
             data: [
                 SupportChannelListItem(
+                    accountId: Nullable<String>.value("account_id"),
                     companyId: Nullable<String>.value("company_id"),
                     customName: Nullable<String>.value("Project Alpha Team"),
                     customerUser: Nullable<SupportChannelListItemCustomerUser>.value(SupportChannelListItemCustomerUser(
@@ -49,8 +72,29 @@ import WhopSDK
                         username: "johndoe42"
                     )),
                     id: "id",
+                    lastMessage: Nullable<SupportChannelListItemLastMessage>.value(SupportChannelListItemLastMessage(
+                        attachments: [
+                            SupportChannelListItemLastMessageAttachmentsItem(
+                                contentType: Nullable<String>.value("image/jpeg"),
+                                filename: Nullable<String>.value("document.pdf")
+                            )
+                        ],
+                        content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
+                        createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+                        gifs: [
+                            SupportChannelListItemLastMessageGifsItem(
+                                slug: "slug"
+                            )
+                        ],
+                        id: "id",
+                        poll: .null,
+                        userId: "user_id"
+                    )),
                     lastMessageAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    resolvedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601))
+                    needsReply: Nullable<Bool>.value(true),
+                    participated: Nullable<Bool>.value(true),
+                    resolvedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
+                    unread: Nullable<Bool>.value(true)
                 )
             ],
             pageInfo: PageInfo(
@@ -63,7 +107,7 @@ import WhopSDK
         let response = try await client.supportChannels.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -75,6 +119,7 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "account_id": "account_id",
                   "company_id": "company_id",
                   "custom_name": "Project Alpha Team",
                   "customer_user": {
@@ -83,8 +128,35 @@ import WhopSDK
                     "username": "johndoe42"
                   },
                   "id": "id",
+                  "last_message": {
+                    "attachments": [
+                      {
+                        "content_type": "image/jpeg",
+                        "filename": "document.pdf"
+                      }
+                    ],
+                    "content": "Hey, are you available for a **quick call**?",
+                    "created_at": "2023-12-01T05:00:00Z",
+                    "gifs": [
+                      {
+                        "slug": "slug"
+                      }
+                    ],
+                    "id": "id",
+                    "poll": {
+                      "options": [
+                        {
+                          "id": "id"
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
                   "last_message_at": "2023-12-01T05:00:00Z",
-                  "resolved_at": "2023-12-01T05:00:00Z"
+                  "needs_reply": true,
+                  "participated": true,
+                  "resolved_at": "2023-12-01T05:00:00Z",
+                  "unread": true
                 }
                 """#.utf8
             )
@@ -95,6 +167,7 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = SupportChannel(
+            accountId: Nullable<String>.value("account_id"),
             companyId: Nullable<String>.value("company_id"),
             customName: Nullable<String>.value("Project Alpha Team"),
             customerUser: Nullable<SupportChannelCustomerUser>.value(SupportChannelCustomerUser(
@@ -103,12 +176,39 @@ import WhopSDK
                 username: "johndoe42"
             )),
             id: "id",
+            lastMessage: Nullable<SupportChannelLastMessage>.value(SupportChannelLastMessage(
+                attachments: [
+                    SupportChannelLastMessageAttachmentsItem(
+                        contentType: Nullable<String>.value("image/jpeg"),
+                        filename: Nullable<String>.value("document.pdf")
+                    )
+                ],
+                content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
+                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+                gifs: [
+                    SupportChannelLastMessageGifsItem(
+                        slug: "slug"
+                    )
+                ],
+                id: "id",
+                poll: Nullable<SupportChannelLastMessagePoll>.value(SupportChannelLastMessagePoll(
+                    options: Nullable<[SupportChannelLastMessagePollOptionsItem]>.value([
+                        SupportChannelLastMessagePollOptionsItem(
+                            id: "id"
+                        )
+                    ])
+                )),
+                userId: "user_id"
+            )),
             lastMessageAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            resolvedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601))
+            needsReply: Nullable<Bool>.value(true),
+            participated: Nullable<Bool>.value(true),
+            resolvedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
+            unread: Nullable<Bool>.value(true)
         )
         let response = try await client.supportChannels.create(
             request: .init(
-                companyId: "biz_xxxxxxxxxxxxxx",
+                accountId: "biz_xxxxxxxxxxxxxx",
                 userId: "user_xxxxxxxxxxxxx"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -122,6 +222,7 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "account_id": "account_id",
                   "company_id": "company_id",
                   "custom_name": "Project Alpha Team",
                   "customer_user": {
@@ -130,8 +231,35 @@ import WhopSDK
                     "username": "johndoe42"
                   },
                   "id": "id",
+                  "last_message": {
+                    "attachments": [
+                      {
+                        "content_type": "image/jpeg",
+                        "filename": "document.pdf"
+                      }
+                    ],
+                    "content": "Hey, are you available for a **quick call**?",
+                    "created_at": "2023-12-01T05:00:00Z",
+                    "gifs": [
+                      {
+                        "slug": "slug"
+                      }
+                    ],
+                    "id": "id",
+                    "poll": {
+                      "options": [
+                        {
+                          "id": "id"
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
                   "last_message_at": "2023-12-01T05:00:00Z",
-                  "resolved_at": "2023-12-01T05:00:00Z"
+                  "needs_reply": true,
+                  "participated": true,
+                  "resolved_at": "2023-12-01T05:00:00Z",
+                  "unread": true
                 }
                 """#.utf8
             )
@@ -142,6 +270,7 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = SupportChannel(
+            accountId: Nullable<String>.value("account_id"),
             companyId: Nullable<String>.value("company_id"),
             customName: Nullable<String>.value("Project Alpha Team"),
             customerUser: Nullable<SupportChannelCustomerUser>.value(SupportChannelCustomerUser(
@@ -150,8 +279,35 @@ import WhopSDK
                 username: "johndoe42"
             )),
             id: "id",
+            lastMessage: Nullable<SupportChannelLastMessage>.value(SupportChannelLastMessage(
+                attachments: [
+                    SupportChannelLastMessageAttachmentsItem(
+                        contentType: Nullable<String>.value("image/jpeg"),
+                        filename: Nullable<String>.value("document.pdf")
+                    )
+                ],
+                content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
+                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+                gifs: [
+                    SupportChannelLastMessageGifsItem(
+                        slug: "slug"
+                    )
+                ],
+                id: "id",
+                poll: Nullable<SupportChannelLastMessagePoll>.value(SupportChannelLastMessagePoll(
+                    options: Nullable<[SupportChannelLastMessagePollOptionsItem]>.value([
+                        SupportChannelLastMessagePollOptionsItem(
+                            id: "id"
+                        )
+                    ])
+                )),
+                userId: "user_id"
+            )),
             lastMessageAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            resolvedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601))
+            needsReply: Nullable<Bool>.value(true),
+            participated: Nullable<Bool>.value(true),
+            resolvedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
+            unread: Nullable<Bool>.value(true)
         )
         let response = try await client.supportChannels.retrieve(
             id: "id",

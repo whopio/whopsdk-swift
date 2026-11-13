@@ -9,16 +9,18 @@ public struct SocialAccount: Codable, Hashable, Sendable {
     public let id: String
     /// The display name of the social account on the platform.
     public let name: Nullable<String>
-    /// The social account this one belongs to on the platform, such as the Facebook page that owns an Instagram account. Null when the social account stands on its own.
+    /// The social account this one belongs to on the platform, such as the Facebook page that owns an Instagram account. Null when the social account stands on its own, or when it is a partner.
     public let parentSocialAccount: Nullable<SocialAccountParent>
+    /// Always `null`. Partnership ads are no longer available.
+    public let partnershipStatus: Nullable<String>
     /// The platform the social account exists on.
     public let platform: SocialAccountPlatform
     /// The URL where the profile picture of the social account can be accessed.
     public let profilePictureUrl: Nullable<String>
     public let scopes: [String]
-    /// The URL where the social account can be accessed on the platform. Null while a Whop-owned page is still being provisioned.
+    /// The URL where the social account can be accessed on the platform. Null while a Whop-owned account is still being provisioned.
     public let url: Nullable<String>
-    /// The username of the social account on the platform. Null while a Whop-owned page is still being provisioned.
+    /// The username of the social account on the platform. Null while a Whop-owned account is still being provisioned, and on platforms without usernames, such as Klaviyo.
     public let username: Nullable<String>
     /// Whether the social account is verified on the platform.
     public let verified: Bool
@@ -31,6 +33,7 @@ public struct SocialAccount: Codable, Hashable, Sendable {
         id: String,
         name: Nullable<String>,
         parentSocialAccount: Nullable<SocialAccountParent>,
+        partnershipStatus: Nullable<String>,
         platform: SocialAccountPlatform,
         profilePictureUrl: Nullable<String>,
         scopes: [String],
@@ -44,6 +47,7 @@ public struct SocialAccount: Codable, Hashable, Sendable {
         self.id = id
         self.name = name
         self.parentSocialAccount = parentSocialAccount
+        self.partnershipStatus = partnershipStatus
         self.platform = platform
         self.profilePictureUrl = profilePictureUrl
         self.scopes = scopes
@@ -60,6 +64,7 @@ public struct SocialAccount: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.name = try container.decode(Nullable<String>.self, forKey: .name)
         self.parentSocialAccount = try container.decode(Nullable<SocialAccountParent>.self, forKey: .parentSocialAccount)
+        self.partnershipStatus = try container.decode(Nullable<String>.self, forKey: .partnershipStatus)
         self.platform = try container.decode(SocialAccountPlatform.self, forKey: .platform)
         self.profilePictureUrl = try container.decode(Nullable<String>.self, forKey: .profilePictureUrl)
         self.scopes = try container.decode([String].self, forKey: .scopes)
@@ -77,6 +82,7 @@ public struct SocialAccount: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.parentSocialAccount, forKey: .parentSocialAccount)
+        try container.encode(self.partnershipStatus, forKey: .partnershipStatus)
         try container.encode(self.platform, forKey: .platform)
         try container.encode(self.profilePictureUrl, forKey: .profilePictureUrl)
         try container.encode(self.scopes, forKey: .scopes)
@@ -92,6 +98,7 @@ public struct SocialAccount: Codable, Hashable, Sendable {
         case id
         case name
         case parentSocialAccount = "parent_social_account"
+        case partnershipStatus = "partnership_status"
         case platform
         case profilePictureUrl = "profile_picture_url"
         case scopes

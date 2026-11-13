@@ -11,6 +11,7 @@ import WhopSDK
                 {
                   "data": [
                     {
+                      "agent_identifier": "general",
                       "blended_token_usage": "123.45",
                       "created_at": "2023-12-01T05:00:00Z",
                       "id": "aich_xxxxxxxxxxxxx",
@@ -42,6 +43,7 @@ import WhopSDK
         let expectedResponse = ListAiChatsResponse(
             data: [
                 AiChatListItem(
+                    agentIdentifier: AiChatAgentIdentifiers.general,
                     blendedTokenUsage: "123.45",
                     createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
                     id: "aich_xxxxxxxxxxxxx",
@@ -76,6 +78,7 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "agent_identifier": "general",
                   "blended_token_usage": "123.45",
                   "created_at": "2023-12-01T05:00:00Z",
                   "id": "aich_xxxxxxxxxxxxx",
@@ -97,6 +100,7 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = AiChat(
+            agentIdentifier: AiChatAgentIdentifiers.general,
             blendedTokenUsage: "123.45",
             createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             id: "aich_xxxxxxxxxxxxx",
@@ -122,6 +126,7 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "agent_identifier": "general",
                   "blended_token_usage": "123.45",
                   "created_at": "2023-12-01T05:00:00Z",
                   "id": "aich_xxxxxxxxxxxxx",
@@ -143,6 +148,7 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = AiChat(
+            agentIdentifier: AiChatAgentIdentifiers.general,
             blendedTokenUsage: "123.45",
             createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             id: "aich_xxxxxxxxxxxxx",
@@ -190,6 +196,7 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "agent_identifier": "general",
                   "blended_token_usage": "123.45",
                   "created_at": "2023-12-01T05:00:00Z",
                   "id": "aich_xxxxxxxxxxxxx",
@@ -211,6 +218,7 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = AiChat(
+            agentIdentifier: AiChatAgentIdentifiers.general,
             blendedTokenUsage: "123.45",
             createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             id: "aich_xxxxxxxxxxxxx",

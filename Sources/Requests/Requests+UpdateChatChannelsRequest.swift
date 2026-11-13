@@ -8,7 +8,7 @@ extension Requests {
         public let banUrls: Nullable<Bool>?
         /// A list of words that are automatically blocked from messages in this chat channel. For example, ['spam', 'scam'].
         public let bannedWords: Nullable<[String]>?
-        /// The minimum number of seconds a user must wait between sending messages in this chat channel.
+        /// The minimum number of seconds a user must wait between sending messages in this chat channel. Pass null or 0 to remove the cooldown.
         public let userPostsCooldownSeconds: Nullable<Int>?
         /// Controls which roles are allowed to send messages in this chat channel.
         public let whoCanPost: Nullable<WhoCanPostTypes>?

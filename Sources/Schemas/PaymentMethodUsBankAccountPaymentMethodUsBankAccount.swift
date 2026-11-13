@@ -3,18 +3,18 @@ import Foundation
 /// The bank account-specific details for this payment method, including bank name and last four digits.
 public struct PaymentMethodUsBankAccountPaymentMethodUsBankAccount: Codable, Hashable, Sendable {
     /// The type of bank account (e.g., checking, savings).
-    public let accountType: String
+    public let accountType: Nullable<String>
     /// The name of the financial institution holding the account.
-    public let bankName: String
+    public let bankName: Nullable<String>
     /// The last four digits of the bank account number.
-    public let last4: String
+    public let last4: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        accountType: String,
-        bankName: String,
-        last4: String,
+        accountType: Nullable<String>,
+        bankName: Nullable<String>,
+        last4: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.accountType = accountType
@@ -25,9 +25,9 @@ public struct PaymentMethodUsBankAccountPaymentMethodUsBankAccount: Codable, Has
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountType = try container.decode(String.self, forKey: .accountType)
-        self.bankName = try container.decode(String.self, forKey: .bankName)
-        self.last4 = try container.decode(String.self, forKey: .last4)
+        self.accountType = try container.decode(Nullable<String>.self, forKey: .accountType)
+        self.bankName = try container.decode(Nullable<String>.self, forKey: .bankName)
+        self.last4 = try container.decode(Nullable<String>.self, forKey: .last4)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

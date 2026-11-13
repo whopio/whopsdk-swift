@@ -51,7 +51,7 @@ import WhopSDK
         let response = try await client.dmChannels.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

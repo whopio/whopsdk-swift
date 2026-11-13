@@ -1,6 +1,6 @@
 import Foundation
 
-/// Tax ID type, for example `eu_vat`, `gb_vat`, or `us_ein`.
+/// Tax ID type, for example `eu_vat`, `gb_vat`, or `us_ein`. See the [tax IDs guide](/developer/guides/tax-ids) for an example of each type.
 public enum UpdateAccountsRequestTaxIdentifiersItemTaxIdType: String, Codable, Hashable, CaseIterable, Sendable {
     case adNrt = "ad_nrt"
     case aoTin = "ao_tin"

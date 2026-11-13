@@ -1,6 +1,6 @@
 import Foundation
 
-/// Payment method overrides for this checkout. `null` when it uses the plan or platform defaults.
+/// Payment method overrides for this checkout. `null` when it uses the variant or platform defaults.
 public struct CreateCheckoutConfigurationsResponsePaymentMethodConfiguration: Codable, Hashable, Sendable {
     /// Payment methods explicitly disabled for checkout.
     public let disabled: [String]?

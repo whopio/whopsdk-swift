@@ -11,9 +11,12 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "description": "Share of paid receipts in the selected sales cohort disputed within 14 days of purchase.",
-                      "key": "snapshot_cohorted_dispute_rate_14d_attr",
-                      "name": "Cohorted dispute rate (14-day attribution)",
+                      "breakdowns": [
+                        "component"
+                      ],
+                      "description": "A 0 to 100 campaign score at each interval, over the hours since the current claim (at most the last 7 days) that the campaign was active or paused: half the share of its daily budget it charged in those hours, half the share of those hours it charged in. A claim that hasn't charged yet is not scored for its first 24 such hours. Several ad_xxxxxxxxxxxxxx_ids (up to 100) average their scores weighted by daily budget. breakdown_by=component, for one campaign, adds each part's score and weight and the totals behind them. A runner reads the campaigns they run; staff read any campaign with account_id=global.",
+                      "key": "ad_xxxxxxxxxxxxxx_score",
+                      "name": "Ad campaign score",
                       "properties": [
                         "source"
                       ],
@@ -35,9 +38,12 @@ import WhopSDK
         let expectedResponse = ListStatsResponse(
             data: [
                 ListStatsResponseDataItem(
-                    description: "Share of paid receipts in the selected sales cohort disputed within 14 days of purchase.",
-                    key: "snapshot_cohorted_dispute_rate_14d_attr",
-                    name: "Cohorted dispute rate (14-day attribution)",
+                    breakdowns: Optional([
+                        "component"
+                    ]),
+                    description: "A 0 to 100 campaign score at each interval, over the hours since the current claim (at most the last 7 days) that the campaign was active or paused: half the share of its daily budget it charged in those hours, half the share of those hours it charged in. A claim that hasn't charged yet is not scored for its first 24 such hours. Several ad_xxxxxxxxxxxxxx_ids (up to 100) average their scores weighted by daily budget. breakdown_by=component, for one campaign, adds each part's score and weight and the totals behind them. A runner reads the campaigns they run; staff read any campaign with account_id=global.",
+                    key: "ad_xxxxxxxxxxxxxx_score",
+                    name: "Ad campaign score",
                     properties: [
                         "source"
                     ],
@@ -52,200 +58,6 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
-    @Test func describeStats1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "nodes": [
-                    "nodes"
-                  ],
-                  "views": [
-                    "views"
-                  ],
-                  "metrics": [
-                    {
-                      "name": "name",
-                      "node_path": "node_path",
-                      "supported_engines": [
-                        "supported_engines"
-                      ]
-                    }
-                  ],
-                  "debug": {
-                    "request_id": "request_id"
-                  },
-                  "typename": "DescribeRoot"
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = DescribeStatsResponse.describeRoot(
-            .init(
-                nodes: [
-                    "nodes"
-                ],
-                views: [
-                    "views"
-                ],
-                metrics: [
-                    DescribeStatsResponseDescribeRootMetricsItem(
-                        name: "name",
-                        nodePath: "node_path",
-                        supportedEngines: [
-                            "supported_engines"
-                        ]
-                    )
-                ],
-                debug: Nullable<DescribeStatsResponseDescribeRootDebug>.value(DescribeStatsResponseDescribeRootDebug(
-                    requestId: Nullable<String>.value("request_id")
-                )),
-                additionalProperties: [
-                    "typename": JSONValue.string("DescribeRoot")
-                ]
-            )
-        )
-        let response = try await client.stats.describeStats(
-            companyId: "biz_xxxxxxxxxxxxxx",
-            userId: "user_xxxxxxxxxxxxx",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func metricStats1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "columns": [
-                    "columns"
-                  ],
-                  "data": [
-                    {
-                      "key": "value"
-                    }
-                  ],
-                  "debug": {
-                    "engine": "engine",
-                    "request_id": "request_id",
-                    "sql": "sql"
-                  },
-                  "node": "node",
-                  "pagination": {
-                    "next_cursor": "next_cursor"
-                  },
-                  "typename": "Result"
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = MetricStatsResponse(
-            columns: Nullable<[String]>.value([
-                "columns"
-            ]),
-            data: Nullable<[[String: JSONValue]]>.value([
-                [
-                    "key": JSONValue.string("value")
-                ]
-            ]),
-            debug: Nullable<MetricStatsResponseDebug>.value(MetricStatsResponseDebug(
-                engine: Nullable<String>.value("engine"),
-                requestId: Nullable<String>.value("request_id"),
-                sql: Nullable<String>.value("sql")
-            )),
-            node: Nullable<String>.value("node"),
-            pagination: Nullable<MetricStatsResponsePagination>.value(MetricStatsResponsePagination(
-                nextCursor: Nullable<String>.value("next_cursor")
-            )),
-            typename: MetricStatsResponseTypename.result
-        )
-        let response = try await client.stats.metricStats(
-            resource: "resource",
-            from: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            to: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            companyId: "biz_xxxxxxxxxxxxxx",
-            userId: "user_xxxxxxxxxxxxx",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func rawStats1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "columns": [
-                    "columns"
-                  ],
-                  "data": [
-                    {
-                      "key": "value"
-                    }
-                  ],
-                  "debug": {
-                    "engine": "engine",
-                    "request_id": "request_id",
-                    "sql": "sql"
-                  },
-                  "node": "node",
-                  "pagination": {
-                    "next_cursor": "next_cursor"
-                  }
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = RawStatsResponse(
-            columns: Nullable<[String]>.value([
-                "columns"
-            ]),
-            data: Nullable<[[String: JSONValue]]>.value([
-                [
-                    "key": JSONValue.string("value")
-                ]
-            ]),
-            debug: Nullable<RawStatsResponseDebug>.value(RawStatsResponseDebug(
-                engine: Nullable<String>.value("engine"),
-                requestId: Nullable<String>.value("request_id"),
-                sql: Nullable<String>.value("sql")
-            )),
-            node: Nullable<String>.value("node"),
-            pagination: Nullable<RawStatsResponsePagination>.value(RawStatsResponsePagination(
-                nextCursor: Nullable<String>.value("next_cursor")
-            ))
-        )
-        let response = try await client.stats.rawStats(
-            resource: "resource",
-            from: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            to: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            limit: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
-            userId: "user_xxxxxxxxxxxxx",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -253,23 +65,45 @@ import WhopSDK
                 #"""
                 {
                   "data": {
+                    "complete": true,
                     "currency": "usd",
                     "points": [
                       {
                         "breakdown": [
                           {
-                            "name": "spend",
-                            "value": 2.82
+                            "name": "control",
+                            "steps": [
+                              {
+                                "conversion_rate": 100,
+                                "count": 100,
+                                "step": 1
+                              }
+                            ],
+                            "value": 10
+                          }
+                        ],
+                        "steps": [
+                          {
+                            "conversion_rate": 100,
+                            "count": 100,
+                            "step": 1
                           }
                         ],
                         "timestamp": 1767268800,
-                        "value": 16.67
+                        "value": 12
                       }
                     ],
                     "totals": [
                       {
-                        "name": "spend",
-                        "value": 2.82
+                        "name": "funnel",
+                        "steps": [
+                          {
+                            "conversion_rate": 100,
+                            "count": 100,
+                            "step": 1
+                          }
+                        ],
+                        "value": 12
                       }
                     ]
                   }
@@ -284,23 +118,45 @@ import WhopSDK
         )
         let expectedResponse = RetrieveStatsResponse(
             data: RetrieveStatsResponseData(
+                complete: Optional(Nullable<Bool>.value(true)),
                 currency: Optional(Nullable<String>.value("usd")),
                 points: [
                     RetrieveStatsResponseDataPointsItem(
                         breakdown: Optional([
                             RetrieveStatsResponseDataPointsItemBreakdownItem(
-                                name: "spend",
-                                value: Nullable<Double>.value(2.82)
+                                name: "control",
+                                steps: Optional([
+                                    FunnelStepResult(
+                                        conversionRate: Nullable<Double>.value(100),
+                                        count: 100,
+                                        step: 1
+                                    )
+                                ]),
+                                value: Nullable<Double>.value(10)
+                            )
+                        ]),
+                        steps: Optional([
+                            FunnelStepResult(
+                                conversionRate: Nullable<Double>.value(100),
+                                count: 100,
+                                step: 1
                             )
                         ]),
                         timestamp: 1767268800,
-                        value: Nullable<Double>.value(16.67)
+                        value: Nullable<Double>.value(12)
                     )
                 ],
                 totals: Optional(Nullable<[RetrieveStatsResponseDataTotalsItem]>.value([
                     RetrieveStatsResponseDataTotalsItem(
-                        name: "spend",
-                        value: Nullable<Double>.value(2.82)
+                        name: "funnel",
+                        steps: Optional([
+                            FunnelStepResult(
+                                conversionRate: Nullable<Double>.value(100),
+                                count: 100,
+                                step: 1
+                            )
+                        ]),
+                        value: Nullable<Double>.value(12)
                     )
                 ]))
             )

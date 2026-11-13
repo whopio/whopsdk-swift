@@ -26,12 +26,13 @@ import WhopSDK
                       "id": "hook_xxxxxxxxxxxxxx",
                       "last_failure_at": "2026-01-01T12:00:00.000Z",
                       "resource_id": "biz_xxxxxxxxxxxxxx",
+                      "title": "title",
                       "url": "https://example.com/shine-time/whop",
                       "webhook_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -63,21 +64,19 @@ import WhopSDK
                     id: "hook_xxxxxxxxxxxxxx",
                     lastFailureAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
                     resourceId: "biz_xxxxxxxxxxxxxx",
+                    title: Nullable<String>.value("title"),
                     url: "https://example.com/shine-time/whop",
                     webhookSecret: Nullable<String>.value("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
                 )
             ],
             pageInfo: ListWebhooksResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
             )
         )
-        let response = try await client.webhooks.list(
-            accountId: "account_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
+        let response = try await client.webhooks.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -105,6 +104,7 @@ import WhopSDK
                   "testable_events": [
                     "account.updated"
                   ],
+                  "title": "Production",
                   "url": "https://example.com/hooks",
                   "webhook_secret": "ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                 }
@@ -135,6 +135,7 @@ import WhopSDK
             testableEvents: [
                 WebhookTestableEventsItem.accountUpdated
             ],
+            title: Nullable<String>.value("Production"),
             url: "https://example.com/hooks",
             webhookSecret: Nullable<String>.value("ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         )
@@ -169,6 +170,7 @@ import WhopSDK
                   "testable_events": [
                     "account.updated"
                   ],
+                  "title": "Production",
                   "url": "https://example.com/hooks",
                   "webhook_secret": "ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                 }
@@ -199,6 +201,7 @@ import WhopSDK
             testableEvents: [
                 WebhookTestableEventsItem.accountUpdated
             ],
+            title: Nullable<String>.value("Production"),
             url: "https://example.com/hooks",
             webhookSecret: Nullable<String>.value("ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         )
@@ -261,6 +264,7 @@ import WhopSDK
                   "testable_events": [
                     "account.updated"
                   ],
+                  "title": "Production",
                   "url": "https://example.com/hooks",
                   "webhook_secret": "ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                 }
@@ -291,6 +295,7 @@ import WhopSDK
             testableEvents: [
                 WebhookTestableEventsItem.accountUpdated
             ],
+            title: Nullable<String>.value("Production"),
             url: "https://example.com/hooks",
             webhookSecret: Nullable<String>.value("ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         )
@@ -326,12 +331,13 @@ import WhopSDK
                       },
                       "response_code": 200,
                       "sent_at": "2026-01-01T12:00:00.000Z",
+                      "status": "success",
                       "success": true,
                       "total_time": 0.31
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--xxxxxxxxxxxxxxxx--xxxxxxxxxxxxxxxxxxxxxx",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "start_cursor"
@@ -366,12 +372,13 @@ import WhopSDK
                     ]),
                     responseCode: 200,
                     sentAt: "2026-01-01T12:00:00.000Z",
+                    status: WebhookDeliveryStatus.success,
                     success: true,
                     totalTime: 0.31
                 )
             ],
             pageInfo: ListDeliveriesWebhooksResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--xxxxxxxxxxxxxxxx--xxxxxxxxxxxxxxxxxxxxxx"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("start_cursor")
@@ -379,6 +386,7 @@ import WhopSDK
         )
         let response = try await client.webhooks.listDeliveries(
             id: "id",
+            resourceId: "pay_xxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -469,68 +477,6 @@ import WhopSDK
         let response = try await client.webhooks.test(
             id: "id",
             request: .init(event: "payment.succeeded"),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func deliveriesWebhook1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "data": [
-                    {
-                      "request_body": {
-                        "key": "value"
-                      },
-                      "resource_id": "resource_id",
-                      "response_body": {
-                        "key": "value"
-                      },
-                      "response_code": 42,
-                      "sent_at": "2023-12-01T05:00:00Z",
-                      "total_time": 6.9
-                    }
-                  ],
-                  "page_info": {
-                    "end_cursor": "end_cursor",
-                    "has_next_page": true
-                  }
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = DeliveriesWebhookResponse(
-            data: [
-                DeliveriesWebhookResponseDataItem(
-                    requestBody: [
-                        "key": JSONValue.string("value")
-                    ],
-                    resourceId: "resource_id",
-                    responseBody: [
-                        "key": JSONValue.string("value")
-                    ],
-                    responseCode: 42,
-                    sentAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    totalTime: 6.9
-                )
-            ],
-            pageInfo: DeliveriesWebhookResponsePageInfo(
-                endCursor: Nullable<String>.value("end_cursor"),
-                hasNextPage: true
-            )
-        )
-        let response = try await client.webhooks.deliveriesWebhook(
-            webhookId: "webhook_id",
-            first: 42,
-            last: 42,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

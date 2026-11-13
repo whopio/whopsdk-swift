@@ -8,7 +8,7 @@ extension Requests {
         public let durationSeconds: Int?
         /// What to generate. Up to 2,000 characters.
         public let prompt: String
-        /// Optional reference image file IDs (`file_` prefixed), up to 4. For video, a single reference seeds the opening frame; multiple references guide subject and style instead.
+        /// Optional reference file IDs (`file_` prefixed), up to 4. Images guide the output: for video, a single image seeds the opening frame; multiple images guide subject and style instead. Include one video to remake it: its motion and scene are kept and the images are swapped in. Video only; needs an image and can't be combined with `duration_seconds`. The output matches the video's length, up to 30 seconds, and is billed on it.
         public let referenceMedia: [String]?
         /// Video resolution. Video only; defaults to `1080p`. `1080p` is not supported by Seedance 2.0 Fast or Mini; `4k` is only supported by Seedance 2.0.
         public let resolution: GenerateMediaRequestResolution?

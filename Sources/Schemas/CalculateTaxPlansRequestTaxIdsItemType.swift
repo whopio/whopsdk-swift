@@ -1,6 +1,5 @@
 import Foundation
 
-/// Tax ID type, such as `eu_vat` for an EU VAT number.
 public enum CalculateTaxPlansRequestTaxIdsItemType: String, Codable, Hashable, CaseIterable, Sendable {
     case adNrt = "ad_nrt"
     case aoTin = "ao_tin"

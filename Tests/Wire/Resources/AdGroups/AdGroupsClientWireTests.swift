@@ -26,6 +26,8 @@ import WhopSDK
                       },
                       "bid_type": "minimum_cost",
                       "budget_amount": 60,
+                      "budget_amount_local": 60,
+                      "budget_currency": "usd",
                       "budget_type": "daily",
                       "click_through_rate": 0.025,
                       "clicks": 5500,
@@ -34,7 +36,6 @@ import WhopSDK
                       "contact_value": 2640,
                       "contacts": 88,
                       "conversion_event": "purchase",
-                      "conversion_location": "website",
                       "cost_per_added_to_cart": 8,
                       "cost_per_click": 0.24,
                       "cost_per_completed_registration": 24,
@@ -57,7 +58,51 @@ import WhopSDK
                         "gift_card_purchased": 750,
                         "quote_requested": 0
                       },
-                      "delivery_status": "all_ads_rejected",
+                      "delivery_schedule": {
+                        "friday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "monday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "saturday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "sunday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "thursday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "tuesday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "wednesday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ]
+                      },
+                      "delivery_status": "in_appeal",
                       "demographics": {
                         "automatic": false,
                         "gender": "all",
@@ -65,27 +110,6 @@ import WhopSDK
                         "minimum_age": 21
                       },
                       "desired_cost_per_result": 40,
-                      "detailed_targeting": {
-                        "behaviors": [
-                          {
-                            "id": "6007101291578",
-                            "name": "Recent vehicle purchase (30 days)"
-                          }
-                        ],
-                        "demographics": [
-                          {
-                            "id": "6002714398172",
-                            "name": "Recently moved",
-                            "type": "life_events"
-                          }
-                        ],
-                        "interests": [
-                          {
-                            "id": "6003193685204",
-                            "name": "Car wash"
-                          }
-                        ]
-                      },
                       "devices": {
                         "operating_systems": [
                           {
@@ -97,21 +121,25 @@ import WhopSDK
                           "mobile"
                         ]
                       },
-                      "dynamic_creative": false,
                       "ends_at": "2026-01-01T12:00:00.000Z",
                       "frequency": 1.1,
-                      "frequency_cap": {
-                        "maximum_impressions": 3,
-                        "per_days": 7
-                      },
                       "id": "adgrp_xxxxxxxxxxxxxx",
                       "impressions": 220000,
                       "issues": [
                         {
+                          "category": "information",
                           "id": "adiss_xxxxxxxxxxxxxx",
-                          "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                          "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                           "resource_id": "ad_xxxxxxxxxxxxxx",
-                          "resource_type": "ad_campaign"
+                          "resource_type": "ad_campaign",
+                          "title": "Ad issue"
+                        }
+                      ],
+                      "keywords": [
+                        {
+                          "match_type": "broad",
+                          "negative": true,
+                          "text": "text"
                         }
                       ],
                       "languages": [
@@ -119,19 +147,12 @@ import WhopSDK
                       ],
                       "lead_value": 3960,
                       "leads": 132,
-                      "message_apps": [
-                        "messenger"
-                      ],
-                      "minimum_daily_spend": 25,
-                      "optimization_goal": "conversions",
-                      "placements": [
-                        {
-                          "platform": "facebook",
-                          "positions": [
-                            "feed"
-                          ]
-                        }
-                      ],
+                      "learning_progress": {
+                        "conversion_threshold": 1,
+                        "conversions": 1,
+                        "progress_percent": 1.1
+                      },
+                      "link_clicks": 4400,
                       "purchase_value": 7920,
                       "purchases": 44,
                       "reach": 0,
@@ -162,7 +183,7 @@ import WhopSDK
                             "US-TX"
                           ],
                           "zips": [
-                            "78756"
+                            "US:78756"
                           ]
                         },
                         "include": {
@@ -191,7 +212,7 @@ import WhopSDK
                             "US-TX"
                           ],
                           "zips": [
-                            "78756"
+                            "US:78756"
                           ]
                         }
                       },
@@ -216,7 +237,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -248,6 +269,8 @@ import WhopSDK
                     ),
                     bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
                     budgetAmount: Nullable<Double>.value(60),
+                    budgetAmountLocal: Nullable<Double>.value(60),
+                    budgetCurrency: "usd",
                     budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
                     clickThroughRate: 0.025,
                     clicks: 5500,
@@ -255,10 +278,9 @@ import WhopSDK
                     completedRegistrations: 55,
                     contactValue: 2640,
                     contacts: 88,
-                    conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+                    conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                         ConversionEventZero.purchase
-                    ))),
-                    conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+                    )),
                     costPerAddedToCart: Nullable<Double>.value(8),
                     costPerClick: 0.24,
                     costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -281,7 +303,51 @@ import WhopSDK
                         "gift_card_purchased": JSONValue.number(750), 
                         "quote_requested": JSONValue.number(0)
                     ],
-                    deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+                    deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                        friday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        monday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        saturday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        sunday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        thursday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        tuesday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        wednesday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ])
+                    )),
+                    deliveryStatus: AdGroupDeliveryStatus.inAppeal,
                     demographics: AdGroupDemographics(
                         automatic: false,
                         gender: AdGroupDemographicsGender.all,
@@ -289,27 +355,6 @@ import WhopSDK
                         minimumAge: Nullable<Double>.value(21)
                     ),
                     desiredCostPerResult: Nullable<Double>.value(40),
-                    detailedTargeting: AdGroupDetailedTargeting(
-                        behaviors: [
-                            AdGroupBehaviorCategory(
-                                id: "6007101291578",
-                                name: Optional("Recent vehicle purchase (30 days)")
-                            )
-                        ],
-                        demographics: [
-                            AdGroupDemographicCategory(
-                                id: "6002714398172",
-                                name: Optional("Recently moved"),
-                                type: AdGroupDemographicCategoryType.lifeEvents
-                            )
-                        ],
-                        interests: [
-                            AdGroupTargetingCategory(
-                                id: "6003193685204",
-                                name: Optional("Car wash")
-                            )
-                        ]
-                    ),
                     devices: AdGroupDevices(
                         operatingSystems: [
                             AdGroupOperatingSystem(
@@ -321,41 +366,38 @@ import WhopSDK
                             AdGroupDevicesPlatformsItem.mobile
                         ]
                     ),
-                    dynamicCreative: Optional(false),
                     endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
                     frequency: Nullable<Double>.value(1.1),
-                    frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                        maximumImpressions: 3,
-                        perDays: Nullable<Double>.value(7)
-                    )),
                     id: "adgrp_xxxxxxxxxxxxxx",
                     impressions: 220000,
                     issues: [
                         AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
                             id: "adiss_xxxxxxxxxxxxxx",
-                            message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                            message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                             resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                            resourceType: AdPlatformIssueResourceType.adCampaign
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "Ad issue"
                         )
                     ],
+                    keywords: Optional([
+                        AdGroupKeyword(
+                            matchType: AdGroupKeywordMatchType.broad,
+                            negative: true,
+                            text: "text"
+                        )
+                    ]),
                     languages: [
                         "en"
                     ],
                     leadValue: 3960,
                     leads: 132,
-                    messageApps: Optional([
-                        AdGroupMessageAppsItem.messenger
-                    ]),
-                    minimumDailySpend: Optional(Nullable<Double>.value(25)),
-                    optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-                    placements: [
-                        AdGroupPlacement(
-                            platform: AdGroupPlacementPlatform.facebook,
-                            positions: [
-                                "feed"
-                            ]
-                        )
-                    ],
+                    learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                        conversionThreshold: 1,
+                        conversions: 1,
+                        progressPercent: 1.1
+                    )),
+                    linkClicks: 4400,
                     purchaseValue: 7920,
                     purchases: 44,
                     reach: 0,
@@ -386,7 +428,7 @@ import WhopSDK
                                 "US-TX"
                             ],
                             zips: [
-                                "78756"
+                                "US:78756"
                             ]
                         ),
                         include: AdGroupGeoLocations(
@@ -415,7 +457,7 @@ import WhopSDK
                                 "US-TX"
                             ],
                             zips: [
-                                "78756"
+                                "US:78756"
                             ]
                         )
                     ),
@@ -440,7 +482,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListAdGroupsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -476,6 +518,8 @@ import WhopSDK
                   },
                   "bid_type": "minimum_cost",
                   "budget_amount": 60,
+                  "budget_amount_local": 60,
+                  "budget_currency": "usd",
                   "budget_type": "daily",
                   "click_through_rate": 0.025,
                   "clicks": 5500,
@@ -484,7 +528,6 @@ import WhopSDK
                   "contact_value": 2640,
                   "contacts": 88,
                   "conversion_event": "purchase",
-                  "conversion_location": "website",
                   "cost_per_added_to_cart": 8,
                   "cost_per_click": 0.24,
                   "cost_per_completed_registration": 24,
@@ -507,7 +550,51 @@ import WhopSDK
                     "gift_card_purchased": 750,
                     "quote_requested": 0
                   },
-                  "delivery_status": "all_ads_rejected",
+                  "delivery_schedule": {
+                    "friday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "monday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "saturday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "sunday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "thursday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "tuesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "wednesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ]
+                  },
+                  "delivery_status": "in_appeal",
                   "demographics": {
                     "automatic": false,
                     "gender": "all",
@@ -515,27 +602,6 @@ import WhopSDK
                     "minimum_age": 21
                   },
                   "desired_cost_per_result": 40,
-                  "detailed_targeting": {
-                    "behaviors": [
-                      {
-                        "id": "6007101291578",
-                        "name": "Recent vehicle purchase (30 days)"
-                      }
-                    ],
-                    "demographics": [
-                      {
-                        "id": "6002714398172",
-                        "name": "Recently moved",
-                        "type": "life_events"
-                      }
-                    ],
-                    "interests": [
-                      {
-                        "id": "6003193685204",
-                        "name": "Car wash"
-                      }
-                    ]
-                  },
                   "devices": {
                     "operating_systems": [
                       {
@@ -547,21 +613,25 @@ import WhopSDK
                       "mobile"
                     ]
                   },
-                  "dynamic_creative": false,
                   "ends_at": "2026-01-01T12:00:00.000Z",
                   "frequency": 1.1,
-                  "frequency_cap": {
-                    "maximum_impressions": 3,
-                    "per_days": 7
-                  },
                   "id": "adgrp_xxxxxxxxxxxxxx",
                   "impressions": 220000,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "match_type": "broad",
+                      "negative": true,
+                      "text": "text"
                     }
                   ],
                   "languages": [
@@ -569,19 +639,12 @@ import WhopSDK
                   ],
                   "lead_value": 3960,
                   "leads": 132,
-                  "message_apps": [
-                    "messenger"
-                  ],
-                  "minimum_daily_spend": 25,
-                  "optimization_goal": "conversions",
-                  "placements": [
-                    {
-                      "platform": "facebook",
-                      "positions": [
-                        "feed"
-                      ]
-                    }
-                  ],
+                  "learning_progress": {
+                    "conversion_threshold": 1,
+                    "conversions": 1,
+                    "progress_percent": 1.1
+                  },
+                  "link_clicks": 4400,
                   "purchase_value": 7920,
                   "purchases": 44,
                   "reach": 0,
@@ -612,7 +675,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     },
                     "include": {
@@ -641,7 +704,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     }
                   },
@@ -688,6 +751,8 @@ import WhopSDK
             ),
             bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
             budgetAmount: Nullable<Double>.value(60),
+            budgetAmountLocal: Nullable<Double>.value(60),
+            budgetCurrency: "usd",
             budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
             clickThroughRate: 0.025,
             clicks: 5500,
@@ -695,10 +760,9 @@ import WhopSDK
             completedRegistrations: 55,
             contactValue: 2640,
             contacts: 88,
-            conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+            conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                 ConversionEventZero.purchase
-            ))),
-            conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+            )),
             costPerAddedToCart: Nullable<Double>.value(8),
             costPerClick: 0.24,
             costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -721,7 +785,51 @@ import WhopSDK
                 "gift_card_purchased": JSONValue.number(750), 
                 "quote_requested": JSONValue.number(0)
             ],
-            deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+            deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                friday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                monday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                saturday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                sunday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                thursday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                tuesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                wednesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ])
+            )),
+            deliveryStatus: AdGroupDeliveryStatus.inAppeal,
             demographics: AdGroupDemographics(
                 automatic: false,
                 gender: AdGroupDemographicsGender.all,
@@ -729,27 +837,6 @@ import WhopSDK
                 minimumAge: Nullable<Double>.value(21)
             ),
             desiredCostPerResult: Nullable<Double>.value(40),
-            detailedTargeting: AdGroupDetailedTargeting(
-                behaviors: [
-                    AdGroupBehaviorCategory(
-                        id: "6007101291578",
-                        name: Optional("Recent vehicle purchase (30 days)")
-                    )
-                ],
-                demographics: [
-                    AdGroupDemographicCategory(
-                        id: "6002714398172",
-                        name: Optional("Recently moved"),
-                        type: AdGroupDemographicCategoryType.lifeEvents
-                    )
-                ],
-                interests: [
-                    AdGroupTargetingCategory(
-                        id: "6003193685204",
-                        name: Optional("Car wash")
-                    )
-                ]
-            ),
             devices: AdGroupDevices(
                 operatingSystems: [
                     AdGroupOperatingSystem(
@@ -761,41 +848,38 @@ import WhopSDK
                     AdGroupDevicesPlatformsItem.mobile
                 ]
             ),
-            dynamicCreative: Optional(false),
             endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             frequency: Nullable<Double>.value(1.1),
-            frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                maximumImpressions: 3,
-                perDays: Nullable<Double>.value(7)
-            )),
             id: "adgrp_xxxxxxxxxxxxxx",
             impressions: 220000,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
+            keywords: Optional([
+                AdGroupKeyword(
+                    matchType: AdGroupKeywordMatchType.broad,
+                    negative: true,
+                    text: "text"
+                )
+            ]),
             languages: [
                 "en"
             ],
             leadValue: 3960,
             leads: 132,
-            messageApps: Optional([
-                AdGroupMessageAppsItem.messenger
-            ]),
-            minimumDailySpend: Optional(Nullable<Double>.value(25)),
-            optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-            placements: [
-                AdGroupPlacement(
-                    platform: AdGroupPlacementPlatform.facebook,
-                    positions: [
-                        "feed"
-                    ]
-                )
-            ],
+            learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                conversionThreshold: 1,
+                conversions: 1,
+                progressPercent: 1.1
+            )),
+            linkClicks: 4400,
             purchaseValue: 7920,
             purchases: 44,
             reach: 0,
@@ -826,7 +910,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 ),
                 include: AdGroupGeoLocations(
@@ -855,7 +939,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 )
             ),
@@ -885,84 +969,6 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
-    @Test func estimateReach1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "users_lower_bound": 1500000,
-                  "users_upper_bound": 1800000
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = ReachEstimate(
-            usersLowerBound: Nullable<Double>.value(1500000),
-            usersUpperBound: Nullable<Double>.value(1800000)
-        )
-        let response = try await client.adGroups.estimateReach(
-            request: .init(platform: .meta),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func searchTargetingOptions1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "data": [
-                    {
-                      "audience_size_lower_bound": 18400000,
-                      "audience_size_upper_bound": 21700000,
-                      "behavior_type": "video",
-                      "description": "People who have expressed an interest in or like pages related to car washing and detailing.",
-                      "id": "6003193685204",
-                      "name": "Car wash",
-                      "type": "behaviors"
-                    }
-                  ]
-                }
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = SearchTargetingOptionsAdGroupsResponse(
-            data: [
-                TargetingOption.behaviors(
-                    .init(
-                        audienceSizeLowerBound: Nullable<Double>.value(18400000),
-                        audienceSizeUpperBound: Nullable<Double>.value(21700000),
-                        behaviorType: Nullable<DetailedTargetingOptionBehaviorType>.value(DetailedTargetingOptionBehaviorType.video),
-                        description: Nullable<String>.value("People who have expressed an interest in or like pages related to car washing and detailing."),
-                        id: "6003193685204",
-                        name: "Car wash",
-                        additionalProperties: [
-                            "type": JSONValue.string("behaviors")
-                        ]
-                    )
-                )
-            ]
-        )
-        let response = try await client.adGroups.searchTargetingOptions(
-            platform: .meta,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -984,6 +990,8 @@ import WhopSDK
                   },
                   "bid_type": "minimum_cost",
                   "budget_amount": 60,
+                  "budget_amount_local": 60,
+                  "budget_currency": "usd",
                   "budget_type": "daily",
                   "click_through_rate": 0.025,
                   "clicks": 5500,
@@ -992,7 +1000,6 @@ import WhopSDK
                   "contact_value": 2640,
                   "contacts": 88,
                   "conversion_event": "purchase",
-                  "conversion_location": "website",
                   "cost_per_added_to_cart": 8,
                   "cost_per_click": 0.24,
                   "cost_per_completed_registration": 24,
@@ -1015,7 +1022,51 @@ import WhopSDK
                     "gift_card_purchased": 750,
                     "quote_requested": 0
                   },
-                  "delivery_status": "all_ads_rejected",
+                  "delivery_schedule": {
+                    "friday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "monday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "saturday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "sunday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "thursday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "tuesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "wednesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ]
+                  },
+                  "delivery_status": "in_appeal",
                   "demographics": {
                     "automatic": false,
                     "gender": "all",
@@ -1023,27 +1074,6 @@ import WhopSDK
                     "minimum_age": 21
                   },
                   "desired_cost_per_result": 40,
-                  "detailed_targeting": {
-                    "behaviors": [
-                      {
-                        "id": "6007101291578",
-                        "name": "Recent vehicle purchase (30 days)"
-                      }
-                    ],
-                    "demographics": [
-                      {
-                        "id": "6002714398172",
-                        "name": "Recently moved",
-                        "type": "life_events"
-                      }
-                    ],
-                    "interests": [
-                      {
-                        "id": "6003193685204",
-                        "name": "Car wash"
-                      }
-                    ]
-                  },
                   "devices": {
                     "operating_systems": [
                       {
@@ -1055,21 +1085,25 @@ import WhopSDK
                       "mobile"
                     ]
                   },
-                  "dynamic_creative": false,
                   "ends_at": "2026-01-01T12:00:00.000Z",
                   "frequency": 1.1,
-                  "frequency_cap": {
-                    "maximum_impressions": 3,
-                    "per_days": 7
-                  },
                   "id": "adgrp_xxxxxxxxxxxxxx",
                   "impressions": 220000,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "match_type": "broad",
+                      "negative": true,
+                      "text": "text"
                     }
                   ],
                   "languages": [
@@ -1077,19 +1111,12 @@ import WhopSDK
                   ],
                   "lead_value": 3960,
                   "leads": 132,
-                  "message_apps": [
-                    "messenger"
-                  ],
-                  "minimum_daily_spend": 25,
-                  "optimization_goal": "conversions",
-                  "placements": [
-                    {
-                      "platform": "facebook",
-                      "positions": [
-                        "feed"
-                      ]
-                    }
-                  ],
+                  "learning_progress": {
+                    "conversion_threshold": 1,
+                    "conversions": 1,
+                    "progress_percent": 1.1
+                  },
+                  "link_clicks": 4400,
                   "purchase_value": 7920,
                   "purchases": 44,
                   "reach": 0,
@@ -1120,7 +1147,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     },
                     "include": {
@@ -1149,7 +1176,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     }
                   },
@@ -1196,6 +1223,8 @@ import WhopSDK
             ),
             bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
             budgetAmount: Nullable<Double>.value(60),
+            budgetAmountLocal: Nullable<Double>.value(60),
+            budgetCurrency: "usd",
             budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
             clickThroughRate: 0.025,
             clicks: 5500,
@@ -1203,10 +1232,9 @@ import WhopSDK
             completedRegistrations: 55,
             contactValue: 2640,
             contacts: 88,
-            conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+            conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                 ConversionEventZero.purchase
-            ))),
-            conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+            )),
             costPerAddedToCart: Nullable<Double>.value(8),
             costPerClick: 0.24,
             costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -1229,7 +1257,51 @@ import WhopSDK
                 "gift_card_purchased": JSONValue.number(750), 
                 "quote_requested": JSONValue.number(0)
             ],
-            deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+            deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                friday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                monday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                saturday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                sunday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                thursday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                tuesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                wednesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ])
+            )),
+            deliveryStatus: AdGroupDeliveryStatus.inAppeal,
             demographics: AdGroupDemographics(
                 automatic: false,
                 gender: AdGroupDemographicsGender.all,
@@ -1237,27 +1309,6 @@ import WhopSDK
                 minimumAge: Nullable<Double>.value(21)
             ),
             desiredCostPerResult: Nullable<Double>.value(40),
-            detailedTargeting: AdGroupDetailedTargeting(
-                behaviors: [
-                    AdGroupBehaviorCategory(
-                        id: "6007101291578",
-                        name: Optional("Recent vehicle purchase (30 days)")
-                    )
-                ],
-                demographics: [
-                    AdGroupDemographicCategory(
-                        id: "6002714398172",
-                        name: Optional("Recently moved"),
-                        type: AdGroupDemographicCategoryType.lifeEvents
-                    )
-                ],
-                interests: [
-                    AdGroupTargetingCategory(
-                        id: "6003193685204",
-                        name: Optional("Car wash")
-                    )
-                ]
-            ),
             devices: AdGroupDevices(
                 operatingSystems: [
                     AdGroupOperatingSystem(
@@ -1269,41 +1320,38 @@ import WhopSDK
                     AdGroupDevicesPlatformsItem.mobile
                 ]
             ),
-            dynamicCreative: Optional(false),
             endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             frequency: Nullable<Double>.value(1.1),
-            frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                maximumImpressions: 3,
-                perDays: Nullable<Double>.value(7)
-            )),
             id: "adgrp_xxxxxxxxxxxxxx",
             impressions: 220000,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
+            keywords: Optional([
+                AdGroupKeyword(
+                    matchType: AdGroupKeywordMatchType.broad,
+                    negative: true,
+                    text: "text"
+                )
+            ]),
             languages: [
                 "en"
             ],
             leadValue: 3960,
             leads: 132,
-            messageApps: Optional([
-                AdGroupMessageAppsItem.messenger
-            ]),
-            minimumDailySpend: Optional(Nullable<Double>.value(25)),
-            optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-            placements: [
-                AdGroupPlacement(
-                    platform: AdGroupPlacementPlatform.facebook,
-                    positions: [
-                        "feed"
-                    ]
-                )
-            ],
+            learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                conversionThreshold: 1,
+                conversions: 1,
+                progressPercent: 1.1
+            )),
+            linkClicks: 4400,
             purchaseValue: 7920,
             purchases: 44,
             reach: 0,
@@ -1334,7 +1382,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 ),
                 include: AdGroupGeoLocations(
@@ -1363,7 +1411,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 )
             ),
@@ -1442,6 +1490,8 @@ import WhopSDK
                   },
                   "bid_type": "minimum_cost",
                   "budget_amount": 60,
+                  "budget_amount_local": 60,
+                  "budget_currency": "usd",
                   "budget_type": "daily",
                   "click_through_rate": 0.025,
                   "clicks": 5500,
@@ -1450,7 +1500,6 @@ import WhopSDK
                   "contact_value": 2640,
                   "contacts": 88,
                   "conversion_event": "purchase",
-                  "conversion_location": "website",
                   "cost_per_added_to_cart": 8,
                   "cost_per_click": 0.24,
                   "cost_per_completed_registration": 24,
@@ -1473,7 +1522,51 @@ import WhopSDK
                     "gift_card_purchased": 750,
                     "quote_requested": 0
                   },
-                  "delivery_status": "all_ads_rejected",
+                  "delivery_schedule": {
+                    "friday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "monday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "saturday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "sunday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "thursday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "tuesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "wednesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ]
+                  },
+                  "delivery_status": "in_appeal",
                   "demographics": {
                     "automatic": false,
                     "gender": "all",
@@ -1481,27 +1574,6 @@ import WhopSDK
                     "minimum_age": 21
                   },
                   "desired_cost_per_result": 40,
-                  "detailed_targeting": {
-                    "behaviors": [
-                      {
-                        "id": "6007101291578",
-                        "name": "Recent vehicle purchase (30 days)"
-                      }
-                    ],
-                    "demographics": [
-                      {
-                        "id": "6002714398172",
-                        "name": "Recently moved",
-                        "type": "life_events"
-                      }
-                    ],
-                    "interests": [
-                      {
-                        "id": "6003193685204",
-                        "name": "Car wash"
-                      }
-                    ]
-                  },
                   "devices": {
                     "operating_systems": [
                       {
@@ -1513,21 +1585,25 @@ import WhopSDK
                       "mobile"
                     ]
                   },
-                  "dynamic_creative": false,
                   "ends_at": "2026-01-01T12:00:00.000Z",
                   "frequency": 1.1,
-                  "frequency_cap": {
-                    "maximum_impressions": 3,
-                    "per_days": 7
-                  },
                   "id": "adgrp_xxxxxxxxxxxxxx",
                   "impressions": 220000,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "match_type": "broad",
+                      "negative": true,
+                      "text": "text"
                     }
                   ],
                   "languages": [
@@ -1535,19 +1611,12 @@ import WhopSDK
                   ],
                   "lead_value": 3960,
                   "leads": 132,
-                  "message_apps": [
-                    "messenger"
-                  ],
-                  "minimum_daily_spend": 25,
-                  "optimization_goal": "conversions",
-                  "placements": [
-                    {
-                      "platform": "facebook",
-                      "positions": [
-                        "feed"
-                      ]
-                    }
-                  ],
+                  "learning_progress": {
+                    "conversion_threshold": 1,
+                    "conversions": 1,
+                    "progress_percent": 1.1
+                  },
+                  "link_clicks": 4400,
                   "purchase_value": 7920,
                   "purchases": 44,
                   "reach": 0,
@@ -1578,7 +1647,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     },
                     "include": {
@@ -1607,7 +1676,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     }
                   },
@@ -1654,6 +1723,8 @@ import WhopSDK
             ),
             bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
             budgetAmount: Nullable<Double>.value(60),
+            budgetAmountLocal: Nullable<Double>.value(60),
+            budgetCurrency: "usd",
             budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
             clickThroughRate: 0.025,
             clicks: 5500,
@@ -1661,10 +1732,9 @@ import WhopSDK
             completedRegistrations: 55,
             contactValue: 2640,
             contacts: 88,
-            conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+            conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                 ConversionEventZero.purchase
-            ))),
-            conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+            )),
             costPerAddedToCart: Nullable<Double>.value(8),
             costPerClick: 0.24,
             costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -1687,7 +1757,51 @@ import WhopSDK
                 "gift_card_purchased": JSONValue.number(750), 
                 "quote_requested": JSONValue.number(0)
             ],
-            deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+            deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                friday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                monday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                saturday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                sunday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                thursday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                tuesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                wednesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ])
+            )),
+            deliveryStatus: AdGroupDeliveryStatus.inAppeal,
             demographics: AdGroupDemographics(
                 automatic: false,
                 gender: AdGroupDemographicsGender.all,
@@ -1695,27 +1809,6 @@ import WhopSDK
                 minimumAge: Nullable<Double>.value(21)
             ),
             desiredCostPerResult: Nullable<Double>.value(40),
-            detailedTargeting: AdGroupDetailedTargeting(
-                behaviors: [
-                    AdGroupBehaviorCategory(
-                        id: "6007101291578",
-                        name: Optional("Recent vehicle purchase (30 days)")
-                    )
-                ],
-                demographics: [
-                    AdGroupDemographicCategory(
-                        id: "6002714398172",
-                        name: Optional("Recently moved"),
-                        type: AdGroupDemographicCategoryType.lifeEvents
-                    )
-                ],
-                interests: [
-                    AdGroupTargetingCategory(
-                        id: "6003193685204",
-                        name: Optional("Car wash")
-                    )
-                ]
-            ),
             devices: AdGroupDevices(
                 operatingSystems: [
                     AdGroupOperatingSystem(
@@ -1727,41 +1820,38 @@ import WhopSDK
                     AdGroupDevicesPlatformsItem.mobile
                 ]
             ),
-            dynamicCreative: Optional(false),
             endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             frequency: Nullable<Double>.value(1.1),
-            frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                maximumImpressions: 3,
-                perDays: Nullable<Double>.value(7)
-            )),
             id: "adgrp_xxxxxxxxxxxxxx",
             impressions: 220000,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
+            keywords: Optional([
+                AdGroupKeyword(
+                    matchType: AdGroupKeywordMatchType.broad,
+                    negative: true,
+                    text: "text"
+                )
+            ]),
             languages: [
                 "en"
             ],
             leadValue: 3960,
             leads: 132,
-            messageApps: Optional([
-                AdGroupMessageAppsItem.messenger
-            ]),
-            minimumDailySpend: Optional(Nullable<Double>.value(25)),
-            optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-            placements: [
-                AdGroupPlacement(
-                    platform: AdGroupPlacementPlatform.facebook,
-                    positions: [
-                        "feed"
-                    ]
-                )
-            ],
+            learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                conversionThreshold: 1,
+                conversions: 1,
+                progressPercent: 1.1
+            )),
+            linkClicks: 4400,
             purchaseValue: 7920,
             purchases: 44,
             reach: 0,
@@ -1792,7 +1882,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 ),
                 include: AdGroupGeoLocations(
@@ -1821,7 +1911,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 )
             ),
@@ -1875,6 +1965,8 @@ import WhopSDK
                       },
                       "bid_type": "minimum_cost",
                       "budget_amount": 60,
+                      "budget_amount_local": 60,
+                      "budget_currency": "usd",
                       "budget_type": "daily",
                       "click_through_rate": 0.025,
                       "clicks": 5500,
@@ -1883,7 +1975,6 @@ import WhopSDK
                       "contact_value": 2640,
                       "contacts": 88,
                       "conversion_event": "purchase",
-                      "conversion_location": "website",
                       "cost_per_added_to_cart": 8,
                       "cost_per_click": 0.24,
                       "cost_per_completed_registration": 24,
@@ -1906,7 +1997,51 @@ import WhopSDK
                         "gift_card_purchased": 750,
                         "quote_requested": 0
                       },
-                      "delivery_status": "all_ads_rejected",
+                      "delivery_schedule": {
+                        "friday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "monday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "saturday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "sunday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "thursday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "tuesday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ],
+                        "wednesday": [
+                          {
+                            "end": "12:00",
+                            "start": "10:00"
+                          }
+                        ]
+                      },
+                      "delivery_status": "in_appeal",
                       "demographics": {
                         "automatic": false,
                         "gender": "all",
@@ -1914,27 +2049,6 @@ import WhopSDK
                         "minimum_age": 21
                       },
                       "desired_cost_per_result": 40,
-                      "detailed_targeting": {
-                        "behaviors": [
-                          {
-                            "id": "6007101291578",
-                            "name": "Recent vehicle purchase (30 days)"
-                          }
-                        ],
-                        "demographics": [
-                          {
-                            "id": "6002714398172",
-                            "name": "Recently moved",
-                            "type": "life_events"
-                          }
-                        ],
-                        "interests": [
-                          {
-                            "id": "6003193685204",
-                            "name": "Car wash"
-                          }
-                        ]
-                      },
                       "devices": {
                         "operating_systems": [
                           {
@@ -1946,21 +2060,25 @@ import WhopSDK
                           "mobile"
                         ]
                       },
-                      "dynamic_creative": false,
                       "ends_at": "2026-01-01T12:00:00.000Z",
                       "frequency": 1.1,
-                      "frequency_cap": {
-                        "maximum_impressions": 3,
-                        "per_days": 7
-                      },
                       "id": "adgrp_xxxxxxxxxxxxxx",
                       "impressions": 220000,
                       "issues": [
                         {
+                          "category": "information",
                           "id": "adiss_xxxxxxxxxxxxxx",
-                          "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                          "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                           "resource_id": "ad_xxxxxxxxxxxxxx",
-                          "resource_type": "ad_campaign"
+                          "resource_type": "ad_campaign",
+                          "title": "Ad issue"
+                        }
+                      ],
+                      "keywords": [
+                        {
+                          "match_type": "broad",
+                          "negative": true,
+                          "text": "text"
                         }
                       ],
                       "languages": [
@@ -1968,19 +2086,12 @@ import WhopSDK
                       ],
                       "lead_value": 3960,
                       "leads": 132,
-                      "message_apps": [
-                        "messenger"
-                      ],
-                      "minimum_daily_spend": 25,
-                      "optimization_goal": "conversions",
-                      "placements": [
-                        {
-                          "platform": "facebook",
-                          "positions": [
-                            "feed"
-                          ]
-                        }
-                      ],
+                      "learning_progress": {
+                        "conversion_threshold": 1,
+                        "conversions": 1,
+                        "progress_percent": 1.1
+                      },
+                      "link_clicks": 4400,
                       "purchase_value": 7920,
                       "purchases": 44,
                       "reach": 0,
@@ -2011,7 +2122,7 @@ import WhopSDK
                             "US-TX"
                           ],
                           "zips": [
-                            "78756"
+                            "US:78756"
                           ]
                         },
                         "include": {
@@ -2040,7 +2151,7 @@ import WhopSDK
                             "US-TX"
                           ],
                           "zips": [
-                            "78756"
+                            "US:78756"
                           ]
                         }
                       },
@@ -2091,6 +2202,8 @@ import WhopSDK
                     ),
                     bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
                     budgetAmount: Nullable<Double>.value(60),
+                    budgetAmountLocal: Nullable<Double>.value(60),
+                    budgetCurrency: "usd",
                     budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
                     clickThroughRate: 0.025,
                     clicks: 5500,
@@ -2098,10 +2211,9 @@ import WhopSDK
                     completedRegistrations: 55,
                     contactValue: 2640,
                     contacts: 88,
-                    conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+                    conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                         ConversionEventZero.purchase
-                    ))),
-                    conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+                    )),
                     costPerAddedToCart: Nullable<Double>.value(8),
                     costPerClick: 0.24,
                     costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -2124,7 +2236,51 @@ import WhopSDK
                         "gift_card_purchased": JSONValue.number(750), 
                         "quote_requested": JSONValue.number(0)
                     ],
-                    deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+                    deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                        friday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        monday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        saturday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        sunday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        thursday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        tuesday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ]),
+                        wednesday: Optional([
+                            AdGroupDeliveryWindow(
+                                end: "12:00",
+                                start: "10:00"
+                            )
+                        ])
+                    )),
+                    deliveryStatus: AdGroupDeliveryStatus.inAppeal,
                     demographics: AdGroupDemographics(
                         automatic: false,
                         gender: AdGroupDemographicsGender.all,
@@ -2132,27 +2288,6 @@ import WhopSDK
                         minimumAge: Nullable<Double>.value(21)
                     ),
                     desiredCostPerResult: Nullable<Double>.value(40),
-                    detailedTargeting: AdGroupDetailedTargeting(
-                        behaviors: [
-                            AdGroupBehaviorCategory(
-                                id: "6007101291578",
-                                name: Optional("Recent vehicle purchase (30 days)")
-                            )
-                        ],
-                        demographics: [
-                            AdGroupDemographicCategory(
-                                id: "6002714398172",
-                                name: Optional("Recently moved"),
-                                type: AdGroupDemographicCategoryType.lifeEvents
-                            )
-                        ],
-                        interests: [
-                            AdGroupTargetingCategory(
-                                id: "6003193685204",
-                                name: Optional("Car wash")
-                            )
-                        ]
-                    ),
                     devices: AdGroupDevices(
                         operatingSystems: [
                             AdGroupOperatingSystem(
@@ -2164,41 +2299,38 @@ import WhopSDK
                             AdGroupDevicesPlatformsItem.mobile
                         ]
                     ),
-                    dynamicCreative: Optional(false),
                     endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
                     frequency: Nullable<Double>.value(1.1),
-                    frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                        maximumImpressions: 3,
-                        perDays: Nullable<Double>.value(7)
-                    )),
                     id: "adgrp_xxxxxxxxxxxxxx",
                     impressions: 220000,
                     issues: [
                         AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
                             id: "adiss_xxxxxxxxxxxxxx",
-                            message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                            message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                             resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                            resourceType: AdPlatformIssueResourceType.adCampaign
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "Ad issue"
                         )
                     ],
+                    keywords: Optional([
+                        AdGroupKeyword(
+                            matchType: AdGroupKeywordMatchType.broad,
+                            negative: true,
+                            text: "text"
+                        )
+                    ]),
                     languages: [
                         "en"
                     ],
                     leadValue: 3960,
                     leads: 132,
-                    messageApps: Optional([
-                        AdGroupMessageAppsItem.messenger
-                    ]),
-                    minimumDailySpend: Optional(Nullable<Double>.value(25)),
-                    optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-                    placements: [
-                        AdGroupPlacement(
-                            platform: AdGroupPlacementPlatform.facebook,
-                            positions: [
-                                "feed"
-                            ]
-                        )
-                    ],
+                    learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                        conversionThreshold: 1,
+                        conversions: 1,
+                        progressPercent: 1.1
+                    )),
+                    linkClicks: 4400,
                     purchaseValue: 7920,
                     purchases: 44,
                     reach: 0,
@@ -2229,7 +2361,7 @@ import WhopSDK
                                 "US-TX"
                             ],
                             zips: [
-                                "78756"
+                                "US:78756"
                             ]
                         ),
                         include: AdGroupGeoLocations(
@@ -2258,7 +2390,7 @@ import WhopSDK
                                 "US-TX"
                             ],
                             zips: [
-                                "78756"
+                                "US:78756"
                             ]
                         )
                     ),
@@ -2312,6 +2444,8 @@ import WhopSDK
                   },
                   "bid_type": "minimum_cost",
                   "budget_amount": 60,
+                  "budget_amount_local": 60,
+                  "budget_currency": "usd",
                   "budget_type": "daily",
                   "click_through_rate": 0.025,
                   "clicks": 5500,
@@ -2320,7 +2454,6 @@ import WhopSDK
                   "contact_value": 2640,
                   "contacts": 88,
                   "conversion_event": "purchase",
-                  "conversion_location": "website",
                   "cost_per_added_to_cart": 8,
                   "cost_per_click": 0.24,
                   "cost_per_completed_registration": 24,
@@ -2343,7 +2476,51 @@ import WhopSDK
                     "gift_card_purchased": 750,
                     "quote_requested": 0
                   },
-                  "delivery_status": "all_ads_rejected",
+                  "delivery_schedule": {
+                    "friday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "monday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "saturday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "sunday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "thursday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "tuesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "wednesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ]
+                  },
+                  "delivery_status": "in_appeal",
                   "demographics": {
                     "automatic": false,
                     "gender": "all",
@@ -2351,27 +2528,6 @@ import WhopSDK
                     "minimum_age": 21
                   },
                   "desired_cost_per_result": 40,
-                  "detailed_targeting": {
-                    "behaviors": [
-                      {
-                        "id": "6007101291578",
-                        "name": "Recent vehicle purchase (30 days)"
-                      }
-                    ],
-                    "demographics": [
-                      {
-                        "id": "6002714398172",
-                        "name": "Recently moved",
-                        "type": "life_events"
-                      }
-                    ],
-                    "interests": [
-                      {
-                        "id": "6003193685204",
-                        "name": "Car wash"
-                      }
-                    ]
-                  },
                   "devices": {
                     "operating_systems": [
                       {
@@ -2383,21 +2539,25 @@ import WhopSDK
                       "mobile"
                     ]
                   },
-                  "dynamic_creative": false,
                   "ends_at": "2026-01-01T12:00:00.000Z",
                   "frequency": 1.1,
-                  "frequency_cap": {
-                    "maximum_impressions": 3,
-                    "per_days": 7
-                  },
                   "id": "adgrp_xxxxxxxxxxxxxx",
                   "impressions": 220000,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "match_type": "broad",
+                      "negative": true,
+                      "text": "text"
                     }
                   ],
                   "languages": [
@@ -2405,19 +2565,12 @@ import WhopSDK
                   ],
                   "lead_value": 3960,
                   "leads": 132,
-                  "message_apps": [
-                    "messenger"
-                  ],
-                  "minimum_daily_spend": 25,
-                  "optimization_goal": "conversions",
-                  "placements": [
-                    {
-                      "platform": "facebook",
-                      "positions": [
-                        "feed"
-                      ]
-                    }
-                  ],
+                  "learning_progress": {
+                    "conversion_threshold": 1,
+                    "conversions": 1,
+                    "progress_percent": 1.1
+                  },
+                  "link_clicks": 4400,
                   "purchase_value": 7920,
                   "purchases": 44,
                   "reach": 0,
@@ -2448,7 +2601,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     },
                     "include": {
@@ -2477,7 +2630,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     }
                   },
@@ -2524,6 +2677,8 @@ import WhopSDK
             ),
             bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
             budgetAmount: Nullable<Double>.value(60),
+            budgetAmountLocal: Nullable<Double>.value(60),
+            budgetCurrency: "usd",
             budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
             clickThroughRate: 0.025,
             clicks: 5500,
@@ -2531,10 +2686,9 @@ import WhopSDK
             completedRegistrations: 55,
             contactValue: 2640,
             contacts: 88,
-            conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+            conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                 ConversionEventZero.purchase
-            ))),
-            conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+            )),
             costPerAddedToCart: Nullable<Double>.value(8),
             costPerClick: 0.24,
             costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -2557,7 +2711,51 @@ import WhopSDK
                 "gift_card_purchased": JSONValue.number(750), 
                 "quote_requested": JSONValue.number(0)
             ],
-            deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+            deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                friday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                monday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                saturday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                sunday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                thursday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                tuesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                wednesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ])
+            )),
+            deliveryStatus: AdGroupDeliveryStatus.inAppeal,
             demographics: AdGroupDemographics(
                 automatic: false,
                 gender: AdGroupDemographicsGender.all,
@@ -2565,27 +2763,6 @@ import WhopSDK
                 minimumAge: Nullable<Double>.value(21)
             ),
             desiredCostPerResult: Nullable<Double>.value(40),
-            detailedTargeting: AdGroupDetailedTargeting(
-                behaviors: [
-                    AdGroupBehaviorCategory(
-                        id: "6007101291578",
-                        name: Optional("Recent vehicle purchase (30 days)")
-                    )
-                ],
-                demographics: [
-                    AdGroupDemographicCategory(
-                        id: "6002714398172",
-                        name: Optional("Recently moved"),
-                        type: AdGroupDemographicCategoryType.lifeEvents
-                    )
-                ],
-                interests: [
-                    AdGroupTargetingCategory(
-                        id: "6003193685204",
-                        name: Optional("Car wash")
-                    )
-                ]
-            ),
             devices: AdGroupDevices(
                 operatingSystems: [
                     AdGroupOperatingSystem(
@@ -2597,41 +2774,38 @@ import WhopSDK
                     AdGroupDevicesPlatformsItem.mobile
                 ]
             ),
-            dynamicCreative: Optional(false),
             endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             frequency: Nullable<Double>.value(1.1),
-            frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                maximumImpressions: 3,
-                perDays: Nullable<Double>.value(7)
-            )),
             id: "adgrp_xxxxxxxxxxxxxx",
             impressions: 220000,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
+            keywords: Optional([
+                AdGroupKeyword(
+                    matchType: AdGroupKeywordMatchType.broad,
+                    negative: true,
+                    text: "text"
+                )
+            ]),
             languages: [
                 "en"
             ],
             leadValue: 3960,
             leads: 132,
-            messageApps: Optional([
-                AdGroupMessageAppsItem.messenger
-            ]),
-            minimumDailySpend: Optional(Nullable<Double>.value(25)),
-            optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-            placements: [
-                AdGroupPlacement(
-                    platform: AdGroupPlacementPlatform.facebook,
-                    positions: [
-                        "feed"
-                    ]
-                )
-            ],
+            learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                conversionThreshold: 1,
+                conversions: 1,
+                progressPercent: 1.1
+            )),
+            linkClicks: 4400,
             purchaseValue: 7920,
             purchases: 44,
             reach: 0,
@@ -2662,7 +2836,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 ),
                 include: AdGroupGeoLocations(
@@ -2691,7 +2865,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 )
             ),
@@ -2742,6 +2916,8 @@ import WhopSDK
                   },
                   "bid_type": "minimum_cost",
                   "budget_amount": 60,
+                  "budget_amount_local": 60,
+                  "budget_currency": "usd",
                   "budget_type": "daily",
                   "click_through_rate": 0.025,
                   "clicks": 5500,
@@ -2750,7 +2926,6 @@ import WhopSDK
                   "contact_value": 2640,
                   "contacts": 88,
                   "conversion_event": "purchase",
-                  "conversion_location": "website",
                   "cost_per_added_to_cart": 8,
                   "cost_per_click": 0.24,
                   "cost_per_completed_registration": 24,
@@ -2773,7 +2948,51 @@ import WhopSDK
                     "gift_card_purchased": 750,
                     "quote_requested": 0
                   },
-                  "delivery_status": "all_ads_rejected",
+                  "delivery_schedule": {
+                    "friday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "monday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "saturday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "sunday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "thursday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "tuesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ],
+                    "wednesday": [
+                      {
+                        "end": "12:00",
+                        "start": "10:00"
+                      }
+                    ]
+                  },
+                  "delivery_status": "in_appeal",
                   "demographics": {
                     "automatic": false,
                     "gender": "all",
@@ -2781,27 +3000,6 @@ import WhopSDK
                     "minimum_age": 21
                   },
                   "desired_cost_per_result": 40,
-                  "detailed_targeting": {
-                    "behaviors": [
-                      {
-                        "id": "6007101291578",
-                        "name": "Recent vehicle purchase (30 days)"
-                      }
-                    ],
-                    "demographics": [
-                      {
-                        "id": "6002714398172",
-                        "name": "Recently moved",
-                        "type": "life_events"
-                      }
-                    ],
-                    "interests": [
-                      {
-                        "id": "6003193685204",
-                        "name": "Car wash"
-                      }
-                    ]
-                  },
                   "devices": {
                     "operating_systems": [
                       {
@@ -2813,21 +3011,25 @@ import WhopSDK
                       "mobile"
                     ]
                   },
-                  "dynamic_creative": false,
                   "ends_at": "2026-01-01T12:00:00.000Z",
                   "frequency": 1.1,
-                  "frequency_cap": {
-                    "maximum_impressions": 3,
-                    "per_days": 7
-                  },
                   "id": "adgrp_xxxxxxxxxxxxxx",
                   "impressions": 220000,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "match_type": "broad",
+                      "negative": true,
+                      "text": "text"
                     }
                   ],
                   "languages": [
@@ -2835,19 +3037,12 @@ import WhopSDK
                   ],
                   "lead_value": 3960,
                   "leads": 132,
-                  "message_apps": [
-                    "messenger"
-                  ],
-                  "minimum_daily_spend": 25,
-                  "optimization_goal": "conversions",
-                  "placements": [
-                    {
-                      "platform": "facebook",
-                      "positions": [
-                        "feed"
-                      ]
-                    }
-                  ],
+                  "learning_progress": {
+                    "conversion_threshold": 1,
+                    "conversions": 1,
+                    "progress_percent": 1.1
+                  },
+                  "link_clicks": 4400,
                   "purchase_value": 7920,
                   "purchases": 44,
                   "reach": 0,
@@ -2878,7 +3073,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     },
                     "include": {
@@ -2907,7 +3102,7 @@ import WhopSDK
                         "US-TX"
                       ],
                       "zips": [
-                        "78756"
+                        "US:78756"
                       ]
                     }
                   },
@@ -2954,6 +3149,8 @@ import WhopSDK
             ),
             bidType: Nullable<AdGroupBidType>.value(AdGroupBidType.minimumCost),
             budgetAmount: Nullable<Double>.value(60),
+            budgetAmountLocal: Nullable<Double>.value(60),
+            budgetCurrency: "usd",
             budgetType: Nullable<AdGroupBudgetType>.value(AdGroupBudgetType.daily),
             clickThroughRate: 0.025,
             clicks: 5500,
@@ -2961,10 +3158,9 @@ import WhopSDK
             completedRegistrations: 55,
             contactValue: 2640,
             contacts: 88,
-            conversionEvent: Optional(Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
+            conversionEvent: Nullable<ConversionEvent>.value(ConversionEvent.conversionEventZero(
                 ConversionEventZero.purchase
-            ))),
-            conversionLocation: Optional(Nullable<AdGroupConversionLocation>.value(AdGroupConversionLocation.website)),
+            )),
             costPerAddedToCart: Nullable<Double>.value(8),
             costPerClick: 0.24,
             costPerCompletedRegistration: Nullable<Double>.value(24),
@@ -2987,7 +3183,51 @@ import WhopSDK
                 "gift_card_purchased": JSONValue.number(750), 
                 "quote_requested": JSONValue.number(0)
             ],
-            deliveryStatus: AdGroupDeliveryStatus.allAdsRejected,
+            deliverySchedule: Nullable<AdGroupDeliverySchedule>.value(AdGroupDeliverySchedule(
+                friday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                monday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                saturday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                sunday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                thursday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                tuesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ]),
+                wednesday: Optional([
+                    AdGroupDeliveryWindow(
+                        end: "12:00",
+                        start: "10:00"
+                    )
+                ])
+            )),
+            deliveryStatus: AdGroupDeliveryStatus.inAppeal,
             demographics: AdGroupDemographics(
                 automatic: false,
                 gender: AdGroupDemographicsGender.all,
@@ -2995,27 +3235,6 @@ import WhopSDK
                 minimumAge: Nullable<Double>.value(21)
             ),
             desiredCostPerResult: Nullable<Double>.value(40),
-            detailedTargeting: AdGroupDetailedTargeting(
-                behaviors: [
-                    AdGroupBehaviorCategory(
-                        id: "6007101291578",
-                        name: Optional("Recent vehicle purchase (30 days)")
-                    )
-                ],
-                demographics: [
-                    AdGroupDemographicCategory(
-                        id: "6002714398172",
-                        name: Optional("Recently moved"),
-                        type: AdGroupDemographicCategoryType.lifeEvents
-                    )
-                ],
-                interests: [
-                    AdGroupTargetingCategory(
-                        id: "6003193685204",
-                        name: Optional("Car wash")
-                    )
-                ]
-            ),
             devices: AdGroupDevices(
                 operatingSystems: [
                     AdGroupOperatingSystem(
@@ -3027,41 +3246,38 @@ import WhopSDK
                     AdGroupDevicesPlatformsItem.mobile
                 ]
             ),
-            dynamicCreative: Optional(false),
             endsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             frequency: Nullable<Double>.value(1.1),
-            frequencyCap: Nullable<AdGroupFrequencyCap>.value(AdGroupFrequencyCap(
-                maximumImpressions: 3,
-                perDays: Nullable<Double>.value(7)
-            )),
             id: "adgrp_xxxxxxxxxxxxxx",
             impressions: 220000,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
+            keywords: Optional([
+                AdGroupKeyword(
+                    matchType: AdGroupKeywordMatchType.broad,
+                    negative: true,
+                    text: "text"
+                )
+            ]),
             languages: [
                 "en"
             ],
             leadValue: 3960,
             leads: 132,
-            messageApps: Optional([
-                AdGroupMessageAppsItem.messenger
-            ]),
-            minimumDailySpend: Optional(Nullable<Double>.value(25)),
-            optimizationGoal: Nullable<AdGroupOptimizationGoal>.value(AdGroupOptimizationGoal.conversions),
-            placements: [
-                AdGroupPlacement(
-                    platform: AdGroupPlacementPlatform.facebook,
-                    positions: [
-                        "feed"
-                    ]
-                )
-            ],
+            learningProgress: Nullable<AdGroupLearningProgress>.value(AdGroupLearningProgress(
+                conversionThreshold: 1,
+                conversions: 1,
+                progressPercent: 1.1
+            )),
+            linkClicks: 4400,
             purchaseValue: 7920,
             purchases: 44,
             reach: 0,
@@ -3092,7 +3308,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 ),
                 include: AdGroupGeoLocations(
@@ -3121,7 +3337,7 @@ import WhopSDK
                         "US-TX"
                     ],
                     zips: [
-                        "78756"
+                        "US:78756"
                     ]
                 )
             ),

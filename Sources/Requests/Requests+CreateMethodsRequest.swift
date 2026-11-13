@@ -12,6 +12,10 @@ extension Requests {
         public let isDefault: Bool?
         /// A label for the payout method, unique per destination.
         public let nickname: String?
+        /// The token your `return_url` received after a Log in with PayPal session started with `POST /payouts/paypal_link_sessions`. Use it for a PayPal supported payout method instead of `fields`. Sending `fields` or `plaid_public_token` alongside it is rejected, and `nickname` is ignored because Whop names the method after the PayPal email. The PayPal holder's name must match the name on the account's payout setup. An account PayPal reports as unverified, or with an unconfirmed email, is saved and flagged on the method's log rather than refused. Single use; expires 15 minutes after the login.
+        public let paypalLinkToken: String?
+        /// Creates a recipient payout account linked to the funding ledger as a non-default account, then saves the bank method on it. No Whop user, company, or recipient ledger is created. A valid recipient email is required. Recipient methods cannot be default or recurring methods and cannot use Plaid.
+        public let recipient: CreateMethodsRequestRecipient?
         /// The supported payout method to save (a podst_ identifier from a previous listing).
         public let supportedPayoutMethodId: String
         /// The user to add the payout method for, prefixed `user_`. Provide this or `account_id`.
@@ -25,6 +29,8 @@ extension Requests {
             fields: [String: String]? = nil,
             isDefault: Bool? = nil,
             nickname: String? = nil,
+            paypalLinkToken: String? = nil,
+            recipient: CreateMethodsRequestRecipient? = nil,
             supportedPayoutMethodId: String,
             userId: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -34,6 +40,8 @@ extension Requests {
             self.fields = fields
             self.isDefault = isDefault
             self.nickname = nickname
+            self.paypalLinkToken = paypalLinkToken
+            self.recipient = recipient
             self.supportedPayoutMethodId = supportedPayoutMethodId
             self.userId = userId
             self.additionalProperties = additionalProperties
@@ -46,6 +54,8 @@ extension Requests {
             self.fields = try container.decodeIfPresent([String: String].self, forKey: .fields)
             self.isDefault = try container.decodeIfPresent(Bool.self, forKey: .isDefault)
             self.nickname = try container.decodeIfPresent(String.self, forKey: .nickname)
+            self.paypalLinkToken = try container.decodeIfPresent(String.self, forKey: .paypalLinkToken)
+            self.recipient = try container.decodeIfPresent(CreateMethodsRequestRecipient.self, forKey: .recipient)
             self.supportedPayoutMethodId = try container.decode(String.self, forKey: .supportedPayoutMethodId)
             self.userId = try container.decodeIfPresent(String.self, forKey: .userId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -59,6 +69,8 @@ extension Requests {
             try container.encodeIfPresent(self.fields, forKey: .fields)
             try container.encodeIfPresent(self.isDefault, forKey: .isDefault)
             try container.encodeIfPresent(self.nickname, forKey: .nickname)
+            try container.encodeIfPresent(self.paypalLinkToken, forKey: .paypalLinkToken)
+            try container.encodeIfPresent(self.recipient, forKey: .recipient)
             try container.encode(self.supportedPayoutMethodId, forKey: .supportedPayoutMethodId)
             try container.encodeIfPresent(self.userId, forKey: .userId)
         }
@@ -70,6 +82,8 @@ extension Requests {
             case fields
             case isDefault = "is_default"
             case nickname
+            case paypalLinkToken = "paypal_link_token"
+            case recipient
             case supportedPayoutMethodId = "supported_payout_method_id"
             case userId = "user_id"
         }

@@ -42,5 +42,14 @@ public enum CardBrands: String, Codable, Hashable, CaseIterable, Sendable {
     case jcblankapay
     case cmi
     case aura
+    case accel
+    case culiance
+    case nyce
+    case pulse
+    case star
+    case eftpos
+    case alelo
+    case edenred
+    case sodexo
     case unknown
 }

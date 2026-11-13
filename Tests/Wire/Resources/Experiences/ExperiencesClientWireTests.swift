@@ -83,11 +83,11 @@ import WhopSDK
         let response = try await client.experiences.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
             productId: "prod_xxxxxxxxxxxxx",
             appId: "app_xxxxxxxxxxxxxx",
             createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -166,8 +166,8 @@ import WhopSDK
         )
         let response = try await client.experiences.create(
             request: .init(
-                appId: "app_xxxxxxxxxxxxxx",
-                companyId: "biz_xxxxxxxxxxxxxx"
+                accountId: "biz_xxxxxxxxxxxxxx",
+                appId: "app_xxxxxxxxxxxxxx"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

@@ -43,8 +43,6 @@ import WhopSDK
                           "type": "custom"
                         }
                       ],
-                      "recommended_action_chain_id": "recommended_action_chain_id",
-                      "recommended_action_shown_position": 1,
                       "referrer_url": "https://google.com",
                       "related": {
                         "account": {
@@ -60,7 +58,7 @@ import WhopSDK
                         },
                         "ad_campaign": {
                           "id": "adcamp_xxxxxxxxxxxxxx",
-                          "platform": "meta",
+                          "platform": "whop_ads",
                           "title": "Ceramic coating — spring push"
                         },
                         "ad_group": {
@@ -82,15 +80,25 @@ import WhopSDK
                           "card_brand": "visa",
                           "card_last4": "4242",
                           "id": "pay_xxxxxxxxxxxxxx",
+                          "line_items": [
+                            {
+                              "id": "li_xxxxxxxxxxxxxx",
+                              "label": "Ceramic Coating Package",
+                              "product_id": "prod_xxxxxxxxxxxxxx",
+                              "product_title": "Ceramic Coating Package",
+                              "quantity": 1,
+                              "sku": null,
+                              "subtotal": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "variant_id": "plan_xxxxxxxxxxxxxx",
+                              "variant_title": "Ceramic Coating — Full Vehicle"
+                            }
+                          ],
                           "provider": "stripe"
-                        },
-                        "plan": {
-                          "billing_period": 30,
-                          "currency": "usd",
-                          "id": "plan_xxxxxxxxxxxxxx",
-                          "initial_price": 0,
-                          "renewal_price": 59,
-                          "title": "Unlimited Wash Club"
                         },
                         "product": {
                           "id": "prod_xxxxxxxxxxxxxx",
@@ -102,6 +110,14 @@ import WhopSDK
                           "id": "user_xxxxxxxxxxxxxx",
                           "name": "Dana Whitfield",
                           "username": "danawhitfield"
+                        },
+                        "variant": {
+                          "billing_period": 30,
+                          "currency": "usd",
+                          "id": "plan_xxxxxxxxxxxxxx",
+                          "initial_price": 0,
+                          "renewal_price": 59,
+                          "title": "Unlimited Wash Club"
                         }
                       },
                       "total_usd_amount": 249,
@@ -168,8 +184,6 @@ import WhopSDK
                             type: Optional(Nullable<String>.value("custom"))
                         )
                     ])),
-                    recommendedActionChainId: Optional(Nullable<String>.value("recommended_action_chain_id")),
-                    recommendedActionShownPosition: Optional(Nullable<Int>.value(1)),
                     referrerUrl: Optional(Nullable<String>.value("https://google.com")),
                     related: Optional(Nullable<ListEventsResponseDataItemRelated>.value(ListEventsResponseDataItemRelated(
                         account: Optional(Nullable<ListEventsResponseDataItemRelatedAccount>.value(ListEventsResponseDataItemRelatedAccount(
@@ -185,7 +199,7 @@ import WhopSDK
                         ))),
                         adCampaign: Optional(Nullable<ListEventsResponseDataItemRelatedAdCampaign>.value(ListEventsResponseDataItemRelatedAdCampaign(
                             id: Optional("adcamp_xxxxxxxxxxxxxx"),
-                            platform: Optional(Nullable<String>.value("meta")),
+                            platform: Optional(Nullable<String>.value("whop_ads")),
                             title: Optional(Nullable<String>.value("Ceramic coating — spring push"))
                         ))),
                         adGroup: Optional(Nullable<ListEventsResponseDataItemRelatedAdGroup>.value(ListEventsResponseDataItemRelatedAdGroup(
@@ -207,15 +221,25 @@ import WhopSDK
                             cardBrand: Optional(Nullable<String>.value("visa")),
                             cardLast4: Optional(Nullable<String>.value("4242")),
                             id: Optional("pay_xxxxxxxxxxxxxx"),
+                            lineItems: Optional([
+                                ReceiptLineItem(
+                                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                                    label: Nullable<String>.value("Ceramic Coating Package"),
+                                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                                    quantity: 1,
+                                    sku: .null,
+                                    subtotal: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                                )
+                            ]),
                             provider: Optional(Nullable<String>.value("stripe"))
-                        ))),
-                        plan: Optional(Nullable<ListEventsResponseDataItemRelatedPlan>.value(ListEventsResponseDataItemRelatedPlan(
-                            billingPeriod: Optional(Nullable<Int>.value(30)),
-                            currency: Optional(Nullable<String>.value("usd")),
-                            id: Optional("plan_xxxxxxxxxxxxxx"),
-                            initialPrice: Optional(Nullable<Double>.value(0)),
-                            renewalPrice: Optional(Nullable<Double>.value(59)),
-                            title: Optional(Nullable<String>.value("Unlimited Wash Club"))
                         ))),
                         product: Optional(Nullable<ListEventsResponseDataItemRelatedProduct>.value(ListEventsResponseDataItemRelatedProduct(
                             id: Optional("prod_xxxxxxxxxxxxxx"),
@@ -227,6 +251,14 @@ import WhopSDK
                             id: Optional("user_xxxxxxxxxxxxxx"),
                             name: Optional(Nullable<String>.value("Dana Whitfield")),
                             username: Optional(Nullable<String>.value("danawhitfield"))
+                        ))),
+                        variant: Optional(Nullable<ListEventsResponseDataItemRelatedVariant>.value(ListEventsResponseDataItemRelatedVariant(
+                            billingPeriod: Optional(Nullable<Int>.value(30)),
+                            currency: Optional(Nullable<String>.value("usd")),
+                            id: Optional("plan_xxxxxxxxxxxxxx"),
+                            initialPrice: Optional(Nullable<Double>.value(0)),
+                            renewalPrice: Optional(Nullable<Double>.value(59)),
+                            title: Optional(Nullable<String>.value("Unlimited Wash Club"))
                         )))
                     ))),
                     totalUsdAmount: Optional(Nullable<Double>.value(249)),
@@ -346,11 +378,12 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "affiliate_tracking_detected": false,
                   "firing_data_ok": true,
                   "host_events": [
                     "lead"
                   ],
-                  "installed": true,
+                  "installed": false,
                   "last_fired_days": {
                     "lead": 2
                   },
@@ -360,7 +393,7 @@ import WhopSDK
                     "lead"
                   ],
                   "reachable": true,
-                  "url": "https://shinetime.example/checkout/complete"
+                  "url": "https://shinetime.example/"
                 }
                 """#.utf8
             )
@@ -371,11 +404,12 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = PixelValidation(
+            affiliateTrackingDetected: false,
             firingDataOk: true,
             hostEvents: [
                 "lead"
             ],
-            installed: true,
+            installed: false,
             lastFiredDays: [
                 "lead": JSONValue.number(2)
             ],
@@ -385,7 +419,7 @@ import WhopSDK
                 "lead"
             ],
             reachable: Nullable<Bool>.value(true),
-            url: Nullable<String>.value("https://shinetime.example/checkout/complete")
+            url: Nullable<String>.value("https://shinetime.example/")
         )
         let response = try await client.events.validatePixel(
             request: .init(),

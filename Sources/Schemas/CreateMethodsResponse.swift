@@ -29,11 +29,15 @@ public struct CreateMethodsResponse: Codable, Hashable, Sendable {
     public let payerName: Nullable<String>
     /// Always null on create.
     public let quote: Nullable<[String: JSONValue]>
+    /// The recipient of a third-party payout method. Present only for recipient payout methods.
+    public let recipient: CreateMethodsResponseRecipient?
     /// Always `created` on create — no payout has used the method yet.
     public let status: CreateMethodsResponseStatus
     /// Always `null` on create.
     public let statusReason: Nullable<String>
     public let supportedPayoutMethod: Nullable<CreateMethodsResponseSupportedPayoutMethod>
+    /// The kind of payout method. `external` sends funds out of Whop. `whop_card` moves funds onto the account's own Whop Card. A `whop_card` method takes standard-speed payouts only, and cannot be updated, reconnected, or deleted.
+    public let type: CreateMethodsResponseType?
     /// Why this method is unavailable: `destination_retired` means the payout provider stopped offering the destination. Whop may automatically remap an eligible method that was not linked through Plaid to a compatible replacement; otherwise, the account owner must re-add it. `null` means no unavailability reason is known.
     public let unavailableReason: Nullable<CreateMethodsResponseUnavailableReason>
     /// Additional properties that are not explicitly defined in the schema
@@ -57,9 +61,11 @@ public struct CreateMethodsResponse: Codable, Hashable, Sendable {
         object: CreateMethodsResponseObject,
         payerName: Nullable<String>,
         quote: Nullable<[String: JSONValue]>,
+        recipient: CreateMethodsResponseRecipient? = nil,
         status: CreateMethodsResponseStatus,
         statusReason: Nullable<String>,
         supportedPayoutMethod: Nullable<CreateMethodsResponseSupportedPayoutMethod>,
+        type: CreateMethodsResponseType? = nil,
         unavailableReason: Nullable<CreateMethodsResponseUnavailableReason>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -80,9 +86,11 @@ public struct CreateMethodsResponse: Codable, Hashable, Sendable {
         self.object = object
         self.payerName = payerName
         self.quote = quote
+        self.recipient = recipient
         self.status = status
         self.statusReason = statusReason
         self.supportedPayoutMethod = supportedPayoutMethod
+        self.type = type
         self.unavailableReason = unavailableReason
         self.additionalProperties = additionalProperties
     }
@@ -106,9 +114,11 @@ public struct CreateMethodsResponse: Codable, Hashable, Sendable {
         self.object = try container.decode(CreateMethodsResponseObject.self, forKey: .object)
         self.payerName = try container.decode(Nullable<String>.self, forKey: .payerName)
         self.quote = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .quote)
+        self.recipient = try container.decodeIfPresent(CreateMethodsResponseRecipient.self, forKey: .recipient)
         self.status = try container.decode(CreateMethodsResponseStatus.self, forKey: .status)
         self.statusReason = try container.decode(Nullable<String>.self, forKey: .statusReason)
         self.supportedPayoutMethod = try container.decode(Nullable<CreateMethodsResponseSupportedPayoutMethod>.self, forKey: .supportedPayoutMethod)
+        self.type = try container.decodeIfPresent(CreateMethodsResponseType.self, forKey: .type)
         self.unavailableReason = try container.decode(Nullable<CreateMethodsResponseUnavailableReason>.self, forKey: .unavailableReason)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -133,9 +143,11 @@ public struct CreateMethodsResponse: Codable, Hashable, Sendable {
         try container.encode(self.object, forKey: .object)
         try container.encode(self.payerName, forKey: .payerName)
         try container.encode(self.quote, forKey: .quote)
+        try container.encodeIfPresent(self.recipient, forKey: .recipient)
         try container.encode(self.status, forKey: .status)
         try container.encode(self.statusReason, forKey: .statusReason)
         try container.encode(self.supportedPayoutMethod, forKey: .supportedPayoutMethod)
+        try container.encodeIfPresent(self.type, forKey: .type)
         try container.encode(self.unavailableReason, forKey: .unavailableReason)
     }
 
@@ -158,9 +170,11 @@ public struct CreateMethodsResponse: Codable, Hashable, Sendable {
         case object
         case payerName = "payer_name"
         case quote
+        case recipient
         case status
         case statusReason = "status_reason"
         case supportedPayoutMethod = "supported_payout_method"
+        case type
         case unavailableReason = "unavailable_reason"
     }
 }

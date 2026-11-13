@@ -10,7 +10,7 @@ import WhopSDK
                 #"""
                 {
                   "bounty_worker_onboarding_dismissed": false,
-                  "investigation_enabled": true,
+                  "cards_auto_top_up": false,
                   "terms_accepted": true,
                   "terms_accepted_at": "2026-01-01T12:00:00.000Z"
                 }
@@ -24,7 +24,7 @@ import WhopSDK
         )
         let expectedResponse = UserPreferences(
             bountyWorkerOnboardingDismissed: false,
-            investigationEnabled: true,
+            cardsAutoTopUp: false,
             termsAccepted: true,
             termsAcceptedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z")
         )
@@ -39,7 +39,7 @@ import WhopSDK
                 #"""
                 {
                   "bounty_worker_onboarding_dismissed": false,
-                  "investigation_enabled": true,
+                  "cards_auto_top_up": false,
                   "terms_accepted": true,
                   "terms_accepted_at": "2026-01-01T12:00:00.000Z"
                 }
@@ -53,7 +53,7 @@ import WhopSDK
         )
         let expectedResponse = UserPreferences(
             bountyWorkerOnboardingDismissed: false,
-            investigationEnabled: true,
+            cardsAutoTopUp: false,
             termsAccepted: true,
             termsAcceptedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z")
         )

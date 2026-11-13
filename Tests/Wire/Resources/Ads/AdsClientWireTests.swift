@@ -3,6 +3,112 @@ import Testing
 import WhopSDK
 
 @Suite("AdsClient Wire Tests") struct AdsClientWireTests {
+    @Test func reportIssues1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "id": "adiss_xxxxxxxxxxxxxx",
+                      "message": "Your ad was rejected in ad review for misleading claims. Edit the ad's text or creative to follow advertising policies, then resubmit.",
+                      "policy": "misleading",
+                      "reason": "content_rejected",
+                      "resource_id": "ad_xxxxxxxxxxxxxx",
+                      "resource_type": "ad",
+                      "updated_at": "2026-01-01T12:00:00.000Z"
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ReportIssuesAdsResponse(
+            data: [
+                AdIssue(
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    id: "adiss_xxxxxxxxxxxxxx",
+                    message: "Your ad was rejected in ad review for misleading claims. Edit the ad's text or creative to follow advertising policies, then resubmit.",
+                    policy: Nullable<AdIssuePolicy>.value(AdIssuePolicy.misleading),
+                    reason: AdIssueReason.contentRejected,
+                    resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
+                    resourceType: AdIssueResourceType.ad,
+                    updatedAt: "2026-01-01T12:00:00.000Z"
+                )
+            ]
+        )
+        let response = try await client.ads.reportIssues(
+            request: .init(issues: [
+                ReportIssuesAdsRequestIssuesItem(
+                    reason: .contentRejected
+                )
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func reportStats1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign_id": "adcamp_xxxxxxxxxxxxxx",
+                  "ad_group_id": "adgrp_xxxxxxxxxxxxxx",
+                  "ad_id": "ad_xxxxxxxxxxxxxx",
+                  "clicks": 0,
+                  "hour_started_at": "2026-01-01T12:00:00.000Z",
+                  "impressions": 6000,
+                  "spend": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdStat(
+            adCampaignId: "adcamp_xxxxxxxxxxxxxx",
+            adGroupId: "adgrp_xxxxxxxxxxxxxx",
+            adId: "ad_xxxxxxxxxxxxxx",
+            clicks: 0,
+            hourStartedAt: "2026-01-01T12:00:00.000Z",
+            impressions: 6000,
+            spend: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            )
+        )
+        let response = try await client.ads.reportStats(
+            request: .init(
+                adId: "ad_xxxxxxxxxxxxxx",
+                hourStartedAt: try! Date("2026-01-01T12:00:00Z", strategy: .iso8601),
+                spend: ReportStatsAdsRequestSpend.double(
+                    1.1
+                )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func list1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -26,6 +132,21 @@ import WhopSDK
                       "completed_registrations": 19,
                       "contact_value": 175,
                       "contacts": 27,
+                      "content_review": {
+                        "networks": [
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          }
+                        ],
+                        "status": "reviewed",
+                        "tags": [
+                          {
+                            "message": "message",
+                            "title": "title"
+                          }
+                        ]
+                      },
                       "cost_per_added_to_cart": 6.515675675675676,
                       "cost_per_click": 0.36,
                       "cost_per_completed_registration": 25.37684210526316,
@@ -49,6 +170,7 @@ import WhopSDK
                           },
                           "format": null,
                           "id": "file_xxxxxxxxxxxxxx",
+                          "language": null,
                           "media_type": "image",
                           "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                         }
@@ -60,86 +182,40 @@ import WhopSDK
                       "custom_event_values": {
                         "booked_detail": 4820
                       },
-                      "delivery_status": "rejected",
+                      "delivery_status": "in_appeal",
                       "descriptions": [
-                        "Paint correction included"
+                        {
+                          "language": null,
+                          "text": "Austin's mobile detailers"
+                        }
                       ],
                       "frequency": 1.1,
                       "headlines": [
-                        "Austin's mobile detailers"
+                        {
+                          "language": null,
+                          "text": "Austin's mobile detailers"
+                        }
                       ],
                       "id": "ad_xxxxxxxxxxxxxx",
                       "impressions": 51204,
                       "issues": [
                         {
+                          "category": "information",
                           "id": "adiss_xxxxxxxxxxxxxx",
-                          "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                          "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                           "resource_id": "ad_xxxxxxxxxxxxxx",
-                          "resource_type": "ad_campaign"
+                          "resource_type": "ad_campaign",
+                          "title": "Ad issue"
                         }
                       ],
-                      "lead_form": {
-                        "completion": {
-                          "button_text": "See our work",
-                          "description": "We book coatings two days out, so pick a slot when we ring.",
-                          "headline": "Thanks — we will call you today",
-                          "url": "https://shinetime.example/gallery"
-                        },
-                        "disclaimer": {
-                          "body": "Ceramic coating requires the vehicle for two days.",
-                          "checkboxes": [
-                            {
-                              "checked_by_default": false,
-                              "key": "consent_1",
-                              "required": true,
-                              "text": "I agree"
-                            }
-                          ],
-                          "title": "Before you submit"
-                        },
-                        "form_type": "more_volume",
-                        "intro": {
-                          "description": "Tell us about your vehicle and we will send a fixed price.",
-                          "headline": "Get a ceramic coating quote"
-                        },
-                        "name": "Ceramic coating quote requests",
-                        "phone_verification": true,
-                        "privacy_policy": {
-                          "link_text": "Shine Time privacy policy",
-                          "url": "https://shinetime.example/privacy"
-                        },
-                        "questions": [
-                          {
-                            "format": "multiple_choice",
-                            "label": "What vehicle are we detailing?",
-                            "options": [
-                              {
-                                "key": "ceramic_coating",
-                                "logic": {
-                                  "action": "go_to_question",
-                                  "target_end_page_index": 0,
-                                  "target_question_index": 3
-                                },
-                                "value": "Ceramic coating"
-                              }
-                            ],
-                            "type": "custom"
-                          }
-                        ]
-                      },
-                      "lead_form_id": "1037724182084885",
                       "lead_value": 1180,
                       "leads": 121,
-                      "messaging_config": {
-                        "keyword": "Book an interior deep clean",
-                        "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                      },
-                      "multi_advertiser_ads": true,
-                      "post_id": "xxxxxxxxxxxxxxxx_98765",
-                      "post_source": "facebook",
-                      "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "link_clicks": 1071,
                       "primary_texts": [
-                        "Book a two-day ceramic coating and keep the shine for three years."
+                        {
+                          "language": null,
+                          "text": "Austin's mobile detailers"
+                        }
                       ],
                       "purchase_value": 9462,
                       "purchases": 38,
@@ -150,17 +226,12 @@ import WhopSDK
                       "return_on_ad_spend": 19.62419113987058,
                       "schedule_value": 640,
                       "schedules": 46,
-                      "social_accounts": [
-                        {
-                          "id": "adcamp_xxxxxxxxxxxxxx"
-                        }
-                      ],
                       "spend": 482.16,
                       "spend_currency": "usd",
                       "status": "active",
                       "submitted_application_value": 300,
                       "submitted_applications": 12,
-                      "title": "Ceramic coating — new ad group",
+                      "title": "Ceramic coating — spring hook v2",
                       "unique_click_through_rate": 1.1,
                       "unique_clicks": 1012,
                       "updated_at": "2026-01-01T12:00:00.000Z",
@@ -173,7 +244,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -205,6 +276,21 @@ import WhopSDK
                     completedRegistrations: 19,
                     contactValue: 175,
                     contacts: 27,
+                    contentReview: AdContentReview(
+                        networks: [
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            )
+                        ],
+                        status: AdContentReviewStatus.reviewed,
+                        tags: [
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            )
+                        ]
+                    ),
                     costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
                     costPerClick: 0.36,
                     costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -228,6 +314,7 @@ import WhopSDK
                             )),
                             format: .null,
                             id: "file_xxxxxxxxxxxxxx",
+                            language: .null,
                             mediaType: Nullable<String>.value("image"),
                             url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                         )
@@ -239,86 +326,40 @@ import WhopSDK
                     customEventValues: [
                         "booked_detail": JSONValue.number(4820)
                     ],
-                    deliveryStatus: AdDeliveryStatus.rejected,
+                    deliveryStatus: AdDeliveryStatus.inAppeal,
                     descriptions: [
-                        "Paint correction included"
+                        AdText(
+                            language: .null,
+                            text: "Austin's mobile detailers"
+                        )
                     ],
                     frequency: Nullable<Double>.value(1.1),
                     headlines: [
-                        "Austin's mobile detailers"
+                        AdText(
+                            language: .null,
+                            text: "Austin's mobile detailers"
+                        )
                     ],
                     id: "ad_xxxxxxxxxxxxxx",
                     impressions: 51204,
                     issues: [
                         AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
                             id: "adiss_xxxxxxxxxxxxxx",
-                            message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                            message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                             resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                            resourceType: AdPlatformIssueResourceType.adCampaign
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "Ad issue"
                         )
                     ],
-                    leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                        completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                            buttonText: Nullable<String>.value("See our work"),
-                            description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                            headline: Nullable<String>.value("Thanks — we will call you today"),
-                            url: Nullable<String>.value("https://shinetime.example/gallery")
-                        )),
-                        disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                            body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                            checkboxes: [
-                                AdLeadFormDisclaimerCheckbox(
-                                    checkedByDefault: Nullable<Bool>.value(false),
-                                    key: Nullable<String>.value("consent_1"),
-                                    required: Nullable<Bool>.value(true),
-                                    text: "I agree"
-                                )
-                            ],
-                            title: Nullable<String>.value("Before you submit")
-                        )),
-                        formType: AdLeadFormFormType.moreVolume,
-                        intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                            description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                            headline: Nullable<String>.value("Get a ceramic coating quote")
-                        )),
-                        name: Nullable<String>.value("Ceramic coating quote requests"),
-                        phoneVerification: true,
-                        privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                            linkText: Nullable<String>.value("Shine Time privacy policy"),
-                            url: "https://shinetime.example/privacy"
-                        )),
-                        questions: [
-                            AdLeadFormQuestion(
-                                format: Optional("multiple_choice"),
-                                label: Optional("What vehicle are we detailing?"),
-                                options: Optional([
-                                    AdLeadFormQuestionOption(
-                                        key: Optional(Nullable<String>.value("ceramic_coating")),
-                                        logic: Optional(AdLeadFormOptionLogic(
-                                            action: AdLeadFormOptionLogicAction.goToQuestion,
-                                            targetEndPageIndex: Optional(0),
-                                            targetQuestionIndex: Optional(3)
-                                        )),
-                                        value: "Ceramic coating"
-                                    )
-                                ]),
-                                type: "custom"
-                            )
-                        ]
-                    ))),
-                    leadFormId: Optional(Nullable<String>.value("1037724182084885")),
                     leadValue: 1180,
                     leads: 121,
-                    messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                        keyword: Nullable<String>.value("Book an interior deep clean"),
-                        message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-                    ))),
-                    multiAdvertiserAds: Optional(true),
-                    postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-                    postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-                    postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    linkClicks: 1071,
                     primaryTexts: [
-                        "Book a two-day ceramic coating and keep the shine for three years."
+                        AdText(
+                            language: .null,
+                            text: "Austin's mobile detailers"
+                        )
                     ],
                     purchaseValue: 9462,
                     purchases: 38,
@@ -329,17 +370,12 @@ import WhopSDK
                     returnOnAdSpend: 19.62419113987058,
                     scheduleValue: 640,
                     schedules: 46,
-                    socialAccounts: [
-                        AdEntityReference(
-                            id: "adcamp_xxxxxxxxxxxxxx"
-                        )
-                    ],
                     spend: 482.16,
                     spendCurrency: Nullable<String>.value("usd"),
                     status: AdStatus.active,
                     submittedApplicationValue: 300,
                     submittedApplications: 12,
-                    title: Nullable<String>.value("Ceramic coating — new ad group"),
+                    title: Nullable<String>.value("Ceramic coating — spring hook v2"),
                     uniqueClickThroughRate: Nullable<Double>.value(1.1),
                     uniqueClicks: 1012,
                     updatedAt: "2026-01-01T12:00:00.000Z",
@@ -352,7 +388,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListAdsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -391,6 +427,21 @@ import WhopSDK
                   "completed_registrations": 19,
                   "contact_value": 175,
                   "contacts": 27,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
                   "cost_per_added_to_cart": 6.515675675675676,
                   "cost_per_click": 0.36,
                   "cost_per_completed_registration": 25.37684210526316,
@@ -414,6 +465,7 @@ import WhopSDK
                       },
                       "format": "square",
                       "id": "file_xxxxxxxxxxxxxx",
+                      "language": "language",
                       "media_type": "image",
                       "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                     }
@@ -425,86 +477,40 @@ import WhopSDK
                   "custom_event_values": {
                     "booked_detail": 4820
                   },
-                  "delivery_status": "rejected",
+                  "delivery_status": "in_appeal",
                   "descriptions": [
-                    "Paint correction included"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "frequency": 1.1,
                   "headlines": [
-                    "Austin's mobile detailers"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "id": "ad_xxxxxxxxxxxxxx",
                   "impressions": 51204,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
                     }
                   ],
-                  "lead_form": {
-                    "completion": {
-                      "button_text": "See our work",
-                      "description": "We book coatings two days out, so pick a slot when we ring.",
-                      "headline": "Thanks — we will call you today",
-                      "url": "https://shinetime.example/gallery"
-                    },
-                    "disclaimer": {
-                      "body": "Ceramic coating requires the vehicle for two days.",
-                      "checkboxes": [
-                        {
-                          "checked_by_default": false,
-                          "key": "consent_1",
-                          "required": true,
-                          "text": "I agree"
-                        }
-                      ],
-                      "title": "Before you submit"
-                    },
-                    "form_type": "more_volume",
-                    "intro": {
-                      "description": "Tell us about your vehicle and we will send a fixed price.",
-                      "headline": "Get a ceramic coating quote"
-                    },
-                    "name": "Ceramic coating quote requests",
-                    "phone_verification": true,
-                    "privacy_policy": {
-                      "link_text": "Shine Time privacy policy",
-                      "url": "https://shinetime.example/privacy"
-                    },
-                    "questions": [
-                      {
-                        "format": "multiple_choice",
-                        "label": "What vehicle are we detailing?",
-                        "options": [
-                          {
-                            "key": "ceramic_coating",
-                            "logic": {
-                              "action": "go_to_question",
-                              "target_end_page_index": 0,
-                              "target_question_index": 3
-                            },
-                            "value": "Ceramic coating"
-                          }
-                        ],
-                        "type": "custom"
-                      }
-                    ]
-                  },
-                  "lead_form_id": "1037724182084885",
                   "lead_value": 1180,
                   "leads": 121,
-                  "messaging_config": {
-                    "keyword": "Book an interior deep clean",
-                    "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                  },
-                  "multi_advertiser_ads": true,
-                  "post_id": "xxxxxxxxxxxxxxxx_98765",
-                  "post_source": "facebook",
-                  "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "link_clicks": 1071,
                   "primary_texts": [
-                    "Book a two-day ceramic coating and keep the shine for three years."
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "purchase_value": 9462,
                   "purchases": 38,
@@ -515,17 +521,12 @@ import WhopSDK
                   "return_on_ad_spend": 19.62419113987058,
                   "schedule_value": 640,
                   "schedules": 46,
-                  "social_accounts": [
-                    {
-                      "id": "adcamp_xxxxxxxxxxxxxx"
-                    }
-                  ],
                   "spend": 482.16,
                   "spend_currency": "usd",
                   "status": "active",
                   "submitted_application_value": 300,
                   "submitted_applications": 12,
-                  "title": "Ceramic coating — new ad group",
+                  "title": "Ceramic coating — spring hook v2",
                   "unique_click_through_rate": 1.1,
                   "unique_clicks": 1012,
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -560,6 +561,21 @@ import WhopSDK
             completedRegistrations: 19,
             contactValue: 175,
             contacts: 27,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
             costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
             costPerClick: 0.36,
             costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -583,6 +599,7 @@ import WhopSDK
                     )),
                     format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
                     id: "file_xxxxxxxxxxxxxx",
+                    language: Nullable<String>.value("language"),
                     mediaType: Nullable<String>.value("image"),
                     url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                 )
@@ -594,86 +611,40 @@ import WhopSDK
             customEventValues: [
                 "booked_detail": JSONValue.number(4820)
             ],
-            deliveryStatus: AdDeliveryStatus.rejected,
+            deliveryStatus: AdDeliveryStatus.inAppeal,
             descriptions: [
-                "Paint correction included"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             frequency: Nullable<Double>.value(1.1),
             headlines: [
-                "Austin's mobile detailers"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             id: "ad_xxxxxxxxxxxxxx",
             impressions: 51204,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
-            leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                    buttonText: Nullable<String>.value("See our work"),
-                    description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                    headline: Nullable<String>.value("Thanks — we will call you today"),
-                    url: Nullable<String>.value("https://shinetime.example/gallery")
-                )),
-                disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                    body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                    checkboxes: [
-                        AdLeadFormDisclaimerCheckbox(
-                            checkedByDefault: Nullable<Bool>.value(false),
-                            key: Nullable<String>.value("consent_1"),
-                            required: Nullable<Bool>.value(true),
-                            text: "I agree"
-                        )
-                    ],
-                    title: Nullable<String>.value("Before you submit")
-                )),
-                formType: AdLeadFormFormType.moreVolume,
-                intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                    description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                    headline: Nullable<String>.value("Get a ceramic coating quote")
-                )),
-                name: Nullable<String>.value("Ceramic coating quote requests"),
-                phoneVerification: true,
-                privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                    linkText: Nullable<String>.value("Shine Time privacy policy"),
-                    url: "https://shinetime.example/privacy"
-                )),
-                questions: [
-                    AdLeadFormQuestion(
-                        format: Optional("multiple_choice"),
-                        label: Optional("What vehicle are we detailing?"),
-                        options: Optional([
-                            AdLeadFormQuestionOption(
-                                key: Optional(Nullable<String>.value("ceramic_coating")),
-                                logic: Optional(AdLeadFormOptionLogic(
-                                    action: AdLeadFormOptionLogicAction.goToQuestion,
-                                    targetEndPageIndex: Optional(0),
-                                    targetQuestionIndex: Optional(3)
-                                )),
-                                value: "Ceramic coating"
-                            )
-                        ]),
-                        type: "custom"
-                    )
-                ]
-            ))),
-            leadFormId: Optional(Nullable<String>.value("1037724182084885")),
             leadValue: 1180,
             leads: 121,
-            messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                keyword: Nullable<String>.value("Book an interior deep clean"),
-                message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-            ))),
-            multiAdvertiserAds: Optional(true),
-            postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-            postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-            postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            linkClicks: 1071,
             primaryTexts: [
-                "Book a two-day ceramic coating and keep the shine for three years."
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             purchaseValue: 9462,
             purchases: 38,
@@ -684,17 +655,12 @@ import WhopSDK
             returnOnAdSpend: 19.62419113987058,
             scheduleValue: 640,
             schedules: 46,
-            socialAccounts: [
-                AdEntityReference(
-                    id: "adcamp_xxxxxxxxxxxxxx"
-                )
-            ],
             spend: 482.16,
             spendCurrency: Nullable<String>.value("usd"),
             status: AdStatus.active,
             submittedApplicationValue: 300,
             submittedApplications: 12,
-            title: Nullable<String>.value("Ceramic coating — new ad group"),
+            title: Nullable<String>.value("Ceramic coating — spring hook v2"),
             uniqueClickThroughRate: Nullable<Double>.value(1.1),
             uniqueClicks: 1012,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -733,6 +699,21 @@ import WhopSDK
                   "completed_registrations": 19,
                   "contact_value": 175,
                   "contacts": 27,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
                   "cost_per_added_to_cart": 6.515675675675676,
                   "cost_per_click": 0.36,
                   "cost_per_completed_registration": 25.37684210526316,
@@ -756,6 +737,7 @@ import WhopSDK
                       },
                       "format": "square",
                       "id": "file_xxxxxxxxxxxxxx",
+                      "language": "language",
                       "media_type": "image",
                       "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                     }
@@ -767,86 +749,40 @@ import WhopSDK
                   "custom_event_values": {
                     "booked_detail": 4820
                   },
-                  "delivery_status": "rejected",
+                  "delivery_status": "in_appeal",
                   "descriptions": [
-                    "Paint correction included"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "frequency": 1.1,
                   "headlines": [
-                    "Austin's mobile detailers"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "id": "ad_xxxxxxxxxxxxxx",
                   "impressions": 51204,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
                     }
                   ],
-                  "lead_form": {
-                    "completion": {
-                      "button_text": "See our work",
-                      "description": "We book coatings two days out, so pick a slot when we ring.",
-                      "headline": "Thanks — we will call you today",
-                      "url": "https://shinetime.example/gallery"
-                    },
-                    "disclaimer": {
-                      "body": "Ceramic coating requires the vehicle for two days.",
-                      "checkboxes": [
-                        {
-                          "checked_by_default": false,
-                          "key": "consent_1",
-                          "required": true,
-                          "text": "I agree"
-                        }
-                      ],
-                      "title": "Before you submit"
-                    },
-                    "form_type": "more_volume",
-                    "intro": {
-                      "description": "Tell us about your vehicle and we will send a fixed price.",
-                      "headline": "Get a ceramic coating quote"
-                    },
-                    "name": "Ceramic coating quote requests",
-                    "phone_verification": true,
-                    "privacy_policy": {
-                      "link_text": "Shine Time privacy policy",
-                      "url": "https://shinetime.example/privacy"
-                    },
-                    "questions": [
-                      {
-                        "format": "multiple_choice",
-                        "label": "What vehicle are we detailing?",
-                        "options": [
-                          {
-                            "key": "ceramic_coating",
-                            "logic": {
-                              "action": "go_to_question",
-                              "target_end_page_index": 0,
-                              "target_question_index": 3
-                            },
-                            "value": "Ceramic coating"
-                          }
-                        ],
-                        "type": "custom"
-                      }
-                    ]
-                  },
-                  "lead_form_id": "1037724182084885",
                   "lead_value": 1180,
                   "leads": 121,
-                  "messaging_config": {
-                    "keyword": "Book an interior deep clean",
-                    "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                  },
-                  "multi_advertiser_ads": true,
-                  "post_id": "xxxxxxxxxxxxxxxx_98765",
-                  "post_source": "facebook",
-                  "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "link_clicks": 1071,
                   "primary_texts": [
-                    "Book a two-day ceramic coating and keep the shine for three years."
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "purchase_value": 9462,
                   "purchases": 38,
@@ -857,17 +793,12 @@ import WhopSDK
                   "return_on_ad_spend": 19.62419113987058,
                   "schedule_value": 640,
                   "schedules": 46,
-                  "social_accounts": [
-                    {
-                      "id": "adcamp_xxxxxxxxxxxxxx"
-                    }
-                  ],
                   "spend": 482.16,
                   "spend_currency": "usd",
                   "status": "active",
                   "submitted_application_value": 300,
                   "submitted_applications": 12,
-                  "title": "Ceramic coating — new ad group",
+                  "title": "Ceramic coating — spring hook v2",
                   "unique_click_through_rate": 1.1,
                   "unique_clicks": 1012,
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -902,6 +833,21 @@ import WhopSDK
             completedRegistrations: 19,
             contactValue: 175,
             contacts: 27,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
             costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
             costPerClick: 0.36,
             costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -925,6 +871,7 @@ import WhopSDK
                     )),
                     format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
                     id: "file_xxxxxxxxxxxxxx",
+                    language: Nullable<String>.value("language"),
                     mediaType: Nullable<String>.value("image"),
                     url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                 )
@@ -936,86 +883,40 @@ import WhopSDK
             customEventValues: [
                 "booked_detail": JSONValue.number(4820)
             ],
-            deliveryStatus: AdDeliveryStatus.rejected,
+            deliveryStatus: AdDeliveryStatus.inAppeal,
             descriptions: [
-                "Paint correction included"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             frequency: Nullable<Double>.value(1.1),
             headlines: [
-                "Austin's mobile detailers"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             id: "ad_xxxxxxxxxxxxxx",
             impressions: 51204,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
-            leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                    buttonText: Nullable<String>.value("See our work"),
-                    description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                    headline: Nullable<String>.value("Thanks — we will call you today"),
-                    url: Nullable<String>.value("https://shinetime.example/gallery")
-                )),
-                disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                    body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                    checkboxes: [
-                        AdLeadFormDisclaimerCheckbox(
-                            checkedByDefault: Nullable<Bool>.value(false),
-                            key: Nullable<String>.value("consent_1"),
-                            required: Nullable<Bool>.value(true),
-                            text: "I agree"
-                        )
-                    ],
-                    title: Nullable<String>.value("Before you submit")
-                )),
-                formType: AdLeadFormFormType.moreVolume,
-                intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                    description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                    headline: Nullable<String>.value("Get a ceramic coating quote")
-                )),
-                name: Nullable<String>.value("Ceramic coating quote requests"),
-                phoneVerification: true,
-                privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                    linkText: Nullable<String>.value("Shine Time privacy policy"),
-                    url: "https://shinetime.example/privacy"
-                )),
-                questions: [
-                    AdLeadFormQuestion(
-                        format: Optional("multiple_choice"),
-                        label: Optional("What vehicle are we detailing?"),
-                        options: Optional([
-                            AdLeadFormQuestionOption(
-                                key: Optional(Nullable<String>.value("ceramic_coating")),
-                                logic: Optional(AdLeadFormOptionLogic(
-                                    action: AdLeadFormOptionLogicAction.goToQuestion,
-                                    targetEndPageIndex: Optional(0),
-                                    targetQuestionIndex: Optional(3)
-                                )),
-                                value: "Ceramic coating"
-                            )
-                        ]),
-                        type: "custom"
-                    )
-                ]
-            ))),
-            leadFormId: Optional(Nullable<String>.value("1037724182084885")),
             leadValue: 1180,
             leads: 121,
-            messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                keyword: Nullable<String>.value("Book an interior deep clean"),
-                message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-            ))),
-            multiAdvertiserAds: Optional(true),
-            postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-            postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-            postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            linkClicks: 1071,
             primaryTexts: [
-                "Book a two-day ceramic coating and keep the shine for three years."
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             purchaseValue: 9462,
             purchases: 38,
@@ -1026,17 +927,12 @@ import WhopSDK
             returnOnAdSpend: 19.62419113987058,
             scheduleValue: 640,
             schedules: 46,
-            socialAccounts: [
-                AdEntityReference(
-                    id: "adcamp_xxxxxxxxxxxxxx"
-                )
-            ],
             spend: 482.16,
             spendCurrency: Nullable<String>.value("usd"),
             status: AdStatus.active,
             submittedApplicationValue: 300,
             submittedApplications: 12,
-            title: Nullable<String>.value("Ceramic coating — new ad group"),
+            title: Nullable<String>.value("Ceramic coating — spring hook v2"),
             uniqueClickThroughRate: Nullable<Double>.value(1.1),
             uniqueClicks: 1012,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -1103,6 +999,21 @@ import WhopSDK
                   "completed_registrations": 19,
                   "contact_value": 175,
                   "contacts": 27,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
                   "cost_per_added_to_cart": 6.515675675675676,
                   "cost_per_click": 0.36,
                   "cost_per_completed_registration": 25.37684210526316,
@@ -1126,6 +1037,7 @@ import WhopSDK
                       },
                       "format": "square",
                       "id": "file_xxxxxxxxxxxxxx",
+                      "language": "language",
                       "media_type": "image",
                       "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                     }
@@ -1137,86 +1049,40 @@ import WhopSDK
                   "custom_event_values": {
                     "booked_detail": 4820
                   },
-                  "delivery_status": "rejected",
+                  "delivery_status": "in_appeal",
                   "descriptions": [
-                    "Paint correction included"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "frequency": 1.1,
                   "headlines": [
-                    "Austin's mobile detailers"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "id": "ad_xxxxxxxxxxxxxx",
                   "impressions": 51204,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
                     }
                   ],
-                  "lead_form": {
-                    "completion": {
-                      "button_text": "See our work",
-                      "description": "We book coatings two days out, so pick a slot when we ring.",
-                      "headline": "Thanks — we will call you today",
-                      "url": "https://shinetime.example/gallery"
-                    },
-                    "disclaimer": {
-                      "body": "Ceramic coating requires the vehicle for two days.",
-                      "checkboxes": [
-                        {
-                          "checked_by_default": false,
-                          "key": "consent_1",
-                          "required": true,
-                          "text": "I agree"
-                        }
-                      ],
-                      "title": "Before you submit"
-                    },
-                    "form_type": "more_volume",
-                    "intro": {
-                      "description": "Tell us about your vehicle and we will send a fixed price.",
-                      "headline": "Get a ceramic coating quote"
-                    },
-                    "name": "Ceramic coating quote requests",
-                    "phone_verification": true,
-                    "privacy_policy": {
-                      "link_text": "Shine Time privacy policy",
-                      "url": "https://shinetime.example/privacy"
-                    },
-                    "questions": [
-                      {
-                        "format": "multiple_choice",
-                        "label": "What vehicle are we detailing?",
-                        "options": [
-                          {
-                            "key": "ceramic_coating",
-                            "logic": {
-                              "action": "go_to_question",
-                              "target_end_page_index": 0,
-                              "target_question_index": 3
-                            },
-                            "value": "Ceramic coating"
-                          }
-                        ],
-                        "type": "custom"
-                      }
-                    ]
-                  },
-                  "lead_form_id": "1037724182084885",
                   "lead_value": 1180,
                   "leads": 121,
-                  "messaging_config": {
-                    "keyword": "Book an interior deep clean",
-                    "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                  },
-                  "multi_advertiser_ads": true,
-                  "post_id": "xxxxxxxxxxxxxxxx_98765",
-                  "post_source": "facebook",
-                  "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "link_clicks": 1071,
                   "primary_texts": [
-                    "Book a two-day ceramic coating and keep the shine for three years."
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "purchase_value": 9462,
                   "purchases": 38,
@@ -1227,17 +1093,12 @@ import WhopSDK
                   "return_on_ad_spend": 19.62419113987058,
                   "schedule_value": 640,
                   "schedules": 46,
-                  "social_accounts": [
-                    {
-                      "id": "adcamp_xxxxxxxxxxxxxx"
-                    }
-                  ],
                   "spend": 482.16,
                   "spend_currency": "usd",
                   "status": "active",
                   "submitted_application_value": 300,
                   "submitted_applications": 12,
-                  "title": "Ceramic coating — new ad group",
+                  "title": "Ceramic coating — spring hook v2",
                   "unique_click_through_rate": 1.1,
                   "unique_clicks": 1012,
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -1272,6 +1133,21 @@ import WhopSDK
             completedRegistrations: 19,
             contactValue: 175,
             contacts: 27,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
             costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
             costPerClick: 0.36,
             costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -1295,6 +1171,7 @@ import WhopSDK
                     )),
                     format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
                     id: "file_xxxxxxxxxxxxxx",
+                    language: Nullable<String>.value("language"),
                     mediaType: Nullable<String>.value("image"),
                     url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                 )
@@ -1306,86 +1183,40 @@ import WhopSDK
             customEventValues: [
                 "booked_detail": JSONValue.number(4820)
             ],
-            deliveryStatus: AdDeliveryStatus.rejected,
+            deliveryStatus: AdDeliveryStatus.inAppeal,
             descriptions: [
-                "Paint correction included"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             frequency: Nullable<Double>.value(1.1),
             headlines: [
-                "Austin's mobile detailers"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             id: "ad_xxxxxxxxxxxxxx",
             impressions: 51204,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
-            leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                    buttonText: Nullable<String>.value("See our work"),
-                    description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                    headline: Nullable<String>.value("Thanks — we will call you today"),
-                    url: Nullable<String>.value("https://shinetime.example/gallery")
-                )),
-                disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                    body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                    checkboxes: [
-                        AdLeadFormDisclaimerCheckbox(
-                            checkedByDefault: Nullable<Bool>.value(false),
-                            key: Nullable<String>.value("consent_1"),
-                            required: Nullable<Bool>.value(true),
-                            text: "I agree"
-                        )
-                    ],
-                    title: Nullable<String>.value("Before you submit")
-                )),
-                formType: AdLeadFormFormType.moreVolume,
-                intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                    description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                    headline: Nullable<String>.value("Get a ceramic coating quote")
-                )),
-                name: Nullable<String>.value("Ceramic coating quote requests"),
-                phoneVerification: true,
-                privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                    linkText: Nullable<String>.value("Shine Time privacy policy"),
-                    url: "https://shinetime.example/privacy"
-                )),
-                questions: [
-                    AdLeadFormQuestion(
-                        format: Optional("multiple_choice"),
-                        label: Optional("What vehicle are we detailing?"),
-                        options: Optional([
-                            AdLeadFormQuestionOption(
-                                key: Optional(Nullable<String>.value("ceramic_coating")),
-                                logic: Optional(AdLeadFormOptionLogic(
-                                    action: AdLeadFormOptionLogicAction.goToQuestion,
-                                    targetEndPageIndex: Optional(0),
-                                    targetQuestionIndex: Optional(3)
-                                )),
-                                value: "Ceramic coating"
-                            )
-                        ]),
-                        type: "custom"
-                    )
-                ]
-            ))),
-            leadFormId: Optional(Nullable<String>.value("1037724182084885")),
             leadValue: 1180,
             leads: 121,
-            messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                keyword: Nullable<String>.value("Book an interior deep clean"),
-                message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-            ))),
-            multiAdvertiserAds: Optional(true),
-            postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-            postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-            postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            linkClicks: 1071,
             primaryTexts: [
-                "Book a two-day ceramic coating and keep the shine for three years."
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             purchaseValue: 9462,
             purchases: 38,
@@ -1396,17 +1227,12 @@ import WhopSDK
             returnOnAdSpend: 19.62419113987058,
             scheduleValue: 640,
             schedules: 46,
-            socialAccounts: [
-                AdEntityReference(
-                    id: "adcamp_xxxxxxxxxxxxxx"
-                )
-            ],
             spend: 482.16,
             spendCurrency: Nullable<String>.value("usd"),
             status: AdStatus.active,
             submittedApplicationValue: 300,
             submittedApplications: 12,
-            title: Nullable<String>.value("Ceramic coating — new ad group"),
+            title: Nullable<String>.value("Ceramic coating — spring hook v2"),
             uniqueClickThroughRate: Nullable<Double>.value(1.1),
             uniqueClicks: 1012,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -1448,6 +1274,21 @@ import WhopSDK
                       "completed_registrations": 19,
                       "contact_value": 175,
                       "contacts": 27,
+                      "content_review": {
+                        "networks": [
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          }
+                        ],
+                        "status": "reviewed",
+                        "tags": [
+                          {
+                            "message": "message",
+                            "title": "title"
+                          }
+                        ]
+                      },
                       "cost_per_added_to_cart": 6.515675675675676,
                       "cost_per_click": 0.36,
                       "cost_per_completed_registration": 25.37684210526316,
@@ -1471,6 +1312,7 @@ import WhopSDK
                           },
                           "format": null,
                           "id": "file_xxxxxxxxxxxxxx",
+                          "language": null,
                           "media_type": "image",
                           "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                         }
@@ -1482,86 +1324,40 @@ import WhopSDK
                       "custom_event_values": {
                         "booked_detail": 4820
                       },
-                      "delivery_status": "rejected",
+                      "delivery_status": "in_appeal",
                       "descriptions": [
-                        "Paint correction included"
+                        {
+                          "language": null,
+                          "text": "Austin's mobile detailers"
+                        }
                       ],
                       "frequency": 1.1,
                       "headlines": [
-                        "Austin's mobile detailers"
+                        {
+                          "language": null,
+                          "text": "Austin's mobile detailers"
+                        }
                       ],
                       "id": "ad_xxxxxxxxxxxxxx",
                       "impressions": 51204,
                       "issues": [
                         {
+                          "category": "information",
                           "id": "adiss_xxxxxxxxxxxxxx",
-                          "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                          "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                           "resource_id": "ad_xxxxxxxxxxxxxx",
-                          "resource_type": "ad_campaign"
+                          "resource_type": "ad_campaign",
+                          "title": "Ad issue"
                         }
                       ],
-                      "lead_form": {
-                        "completion": {
-                          "button_text": "See our work",
-                          "description": "We book coatings two days out, so pick a slot when we ring.",
-                          "headline": "Thanks — we will call you today",
-                          "url": "https://shinetime.example/gallery"
-                        },
-                        "disclaimer": {
-                          "body": "Ceramic coating requires the vehicle for two days.",
-                          "checkboxes": [
-                            {
-                              "checked_by_default": false,
-                              "key": "consent_1",
-                              "required": true,
-                              "text": "I agree"
-                            }
-                          ],
-                          "title": "Before you submit"
-                        },
-                        "form_type": "more_volume",
-                        "intro": {
-                          "description": "Tell us about your vehicle and we will send a fixed price.",
-                          "headline": "Get a ceramic coating quote"
-                        },
-                        "name": "Ceramic coating quote requests",
-                        "phone_verification": true,
-                        "privacy_policy": {
-                          "link_text": "Shine Time privacy policy",
-                          "url": "https://shinetime.example/privacy"
-                        },
-                        "questions": [
-                          {
-                            "format": "multiple_choice",
-                            "label": "What vehicle are we detailing?",
-                            "options": [
-                              {
-                                "key": "ceramic_coating",
-                                "logic": {
-                                  "action": "go_to_question",
-                                  "target_end_page_index": 0,
-                                  "target_question_index": 3
-                                },
-                                "value": "Ceramic coating"
-                              }
-                            ],
-                            "type": "custom"
-                          }
-                        ]
-                      },
-                      "lead_form_id": "1037724182084885",
                       "lead_value": 1180,
                       "leads": 121,
-                      "messaging_config": {
-                        "keyword": "Book an interior deep clean",
-                        "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                      },
-                      "multi_advertiser_ads": true,
-                      "post_id": "xxxxxxxxxxxxxxxx_98765",
-                      "post_source": "facebook",
-                      "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "link_clicks": 1071,
                       "primary_texts": [
-                        "Book a two-day ceramic coating and keep the shine for three years."
+                        {
+                          "language": null,
+                          "text": "Austin's mobile detailers"
+                        }
                       ],
                       "purchase_value": 9462,
                       "purchases": 38,
@@ -1572,17 +1368,12 @@ import WhopSDK
                       "return_on_ad_spend": 19.62419113987058,
                       "schedule_value": 640,
                       "schedules": 46,
-                      "social_accounts": [
-                        {
-                          "id": "adcamp_xxxxxxxxxxxxxx"
-                        }
-                      ],
                       "spend": 482.16,
                       "spend_currency": "usd",
                       "status": "active",
                       "submitted_application_value": 300,
                       "submitted_applications": 12,
-                      "title": "Ceramic coating — new ad group",
+                      "title": "Ceramic coating — spring hook v2",
                       "unique_click_through_rate": 1.1,
                       "unique_clicks": 1012,
                       "updated_at": "2026-01-01T12:00:00.000Z",
@@ -1621,6 +1412,21 @@ import WhopSDK
                     completedRegistrations: 19,
                     contactValue: 175,
                     contacts: 27,
+                    contentReview: AdContentReview(
+                        networks: [
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            )
+                        ],
+                        status: AdContentReviewStatus.reviewed,
+                        tags: [
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            )
+                        ]
+                    ),
                     costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
                     costPerClick: 0.36,
                     costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -1644,6 +1450,7 @@ import WhopSDK
                             )),
                             format: .null,
                             id: "file_xxxxxxxxxxxxxx",
+                            language: .null,
                             mediaType: Nullable<String>.value("image"),
                             url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                         )
@@ -1655,86 +1462,40 @@ import WhopSDK
                     customEventValues: [
                         "booked_detail": JSONValue.number(4820)
                     ],
-                    deliveryStatus: AdDeliveryStatus.rejected,
+                    deliveryStatus: AdDeliveryStatus.inAppeal,
                     descriptions: [
-                        "Paint correction included"
+                        AdText(
+                            language: .null,
+                            text: "Austin's mobile detailers"
+                        )
                     ],
                     frequency: Nullable<Double>.value(1.1),
                     headlines: [
-                        "Austin's mobile detailers"
+                        AdText(
+                            language: .null,
+                            text: "Austin's mobile detailers"
+                        )
                     ],
                     id: "ad_xxxxxxxxxxxxxx",
                     impressions: 51204,
                     issues: [
                         AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
                             id: "adiss_xxxxxxxxxxxxxx",
-                            message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                            message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                             resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                            resourceType: AdPlatformIssueResourceType.adCampaign
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "Ad issue"
                         )
                     ],
-                    leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                        completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                            buttonText: Nullable<String>.value("See our work"),
-                            description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                            headline: Nullable<String>.value("Thanks — we will call you today"),
-                            url: Nullable<String>.value("https://shinetime.example/gallery")
-                        )),
-                        disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                            body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                            checkboxes: [
-                                AdLeadFormDisclaimerCheckbox(
-                                    checkedByDefault: Nullable<Bool>.value(false),
-                                    key: Nullable<String>.value("consent_1"),
-                                    required: Nullable<Bool>.value(true),
-                                    text: "I agree"
-                                )
-                            ],
-                            title: Nullable<String>.value("Before you submit")
-                        )),
-                        formType: AdLeadFormFormType.moreVolume,
-                        intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                            description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                            headline: Nullable<String>.value("Get a ceramic coating quote")
-                        )),
-                        name: Nullable<String>.value("Ceramic coating quote requests"),
-                        phoneVerification: true,
-                        privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                            linkText: Nullable<String>.value("Shine Time privacy policy"),
-                            url: "https://shinetime.example/privacy"
-                        )),
-                        questions: [
-                            AdLeadFormQuestion(
-                                format: Optional("multiple_choice"),
-                                label: Optional("What vehicle are we detailing?"),
-                                options: Optional([
-                                    AdLeadFormQuestionOption(
-                                        key: Optional(Nullable<String>.value("ceramic_coating")),
-                                        logic: Optional(AdLeadFormOptionLogic(
-                                            action: AdLeadFormOptionLogicAction.goToQuestion,
-                                            targetEndPageIndex: Optional(0),
-                                            targetQuestionIndex: Optional(3)
-                                        )),
-                                        value: "Ceramic coating"
-                                    )
-                                ]),
-                                type: "custom"
-                            )
-                        ]
-                    ))),
-                    leadFormId: Optional(Nullable<String>.value("1037724182084885")),
                     leadValue: 1180,
                     leads: 121,
-                    messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                        keyword: Nullable<String>.value("Book an interior deep clean"),
-                        message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-                    ))),
-                    multiAdvertiserAds: Optional(true),
-                    postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-                    postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-                    postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    linkClicks: 1071,
                     primaryTexts: [
-                        "Book a two-day ceramic coating and keep the shine for three years."
+                        AdText(
+                            language: .null,
+                            text: "Austin's mobile detailers"
+                        )
                     ],
                     purchaseValue: 9462,
                     purchases: 38,
@@ -1745,17 +1506,12 @@ import WhopSDK
                     returnOnAdSpend: 19.62419113987058,
                     scheduleValue: 640,
                     schedules: 46,
-                    socialAccounts: [
-                        AdEntityReference(
-                            id: "adcamp_xxxxxxxxxxxxxx"
-                        )
-                    ],
                     spend: 482.16,
                     spendCurrency: Nullable<String>.value("usd"),
                     status: AdStatus.active,
                     submittedApplicationValue: 300,
                     submittedApplications: 12,
-                    title: Nullable<String>.value("Ceramic coating — new ad group"),
+                    title: Nullable<String>.value("Ceramic coating — spring hook v2"),
                     uniqueClickThroughRate: Nullable<Double>.value(1.1),
                     uniqueClicks: 1012,
                     updatedAt: "2026-01-01T12:00:00.000Z",
@@ -1797,6 +1553,21 @@ import WhopSDK
                   "completed_registrations": 19,
                   "contact_value": 175,
                   "contacts": 27,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
                   "cost_per_added_to_cart": 6.515675675675676,
                   "cost_per_click": 0.36,
                   "cost_per_completed_registration": 25.37684210526316,
@@ -1820,6 +1591,7 @@ import WhopSDK
                       },
                       "format": "square",
                       "id": "file_xxxxxxxxxxxxxx",
+                      "language": "language",
                       "media_type": "image",
                       "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                     }
@@ -1831,86 +1603,40 @@ import WhopSDK
                   "custom_event_values": {
                     "booked_detail": 4820
                   },
-                  "delivery_status": "rejected",
+                  "delivery_status": "in_appeal",
                   "descriptions": [
-                    "Paint correction included"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "frequency": 1.1,
                   "headlines": [
-                    "Austin's mobile detailers"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "id": "ad_xxxxxxxxxxxxxx",
                   "impressions": 51204,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
                     }
                   ],
-                  "lead_form": {
-                    "completion": {
-                      "button_text": "See our work",
-                      "description": "We book coatings two days out, so pick a slot when we ring.",
-                      "headline": "Thanks — we will call you today",
-                      "url": "https://shinetime.example/gallery"
-                    },
-                    "disclaimer": {
-                      "body": "Ceramic coating requires the vehicle for two days.",
-                      "checkboxes": [
-                        {
-                          "checked_by_default": false,
-                          "key": "consent_1",
-                          "required": true,
-                          "text": "I agree"
-                        }
-                      ],
-                      "title": "Before you submit"
-                    },
-                    "form_type": "more_volume",
-                    "intro": {
-                      "description": "Tell us about your vehicle and we will send a fixed price.",
-                      "headline": "Get a ceramic coating quote"
-                    },
-                    "name": "Ceramic coating quote requests",
-                    "phone_verification": true,
-                    "privacy_policy": {
-                      "link_text": "Shine Time privacy policy",
-                      "url": "https://shinetime.example/privacy"
-                    },
-                    "questions": [
-                      {
-                        "format": "multiple_choice",
-                        "label": "What vehicle are we detailing?",
-                        "options": [
-                          {
-                            "key": "ceramic_coating",
-                            "logic": {
-                              "action": "go_to_question",
-                              "target_end_page_index": 0,
-                              "target_question_index": 3
-                            },
-                            "value": "Ceramic coating"
-                          }
-                        ],
-                        "type": "custom"
-                      }
-                    ]
-                  },
-                  "lead_form_id": "1037724182084885",
                   "lead_value": 1180,
                   "leads": 121,
-                  "messaging_config": {
-                    "keyword": "Book an interior deep clean",
-                    "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                  },
-                  "multi_advertiser_ads": true,
-                  "post_id": "xxxxxxxxxxxxxxxx_98765",
-                  "post_source": "facebook",
-                  "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "link_clicks": 1071,
                   "primary_texts": [
-                    "Book a two-day ceramic coating and keep the shine for three years."
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "purchase_value": 9462,
                   "purchases": 38,
@@ -1921,17 +1647,12 @@ import WhopSDK
                   "return_on_ad_spend": 19.62419113987058,
                   "schedule_value": 640,
                   "schedules": 46,
-                  "social_accounts": [
-                    {
-                      "id": "adcamp_xxxxxxxxxxxxxx"
-                    }
-                  ],
                   "spend": 482.16,
                   "spend_currency": "usd",
                   "status": "active",
                   "submitted_application_value": 300,
                   "submitted_applications": 12,
-                  "title": "Ceramic coating — new ad group",
+                  "title": "Ceramic coating — spring hook v2",
                   "unique_click_through_rate": 1.1,
                   "unique_clicks": 1012,
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -1966,6 +1687,21 @@ import WhopSDK
             completedRegistrations: 19,
             contactValue: 175,
             contacts: 27,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
             costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
             costPerClick: 0.36,
             costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -1989,6 +1725,7 @@ import WhopSDK
                     )),
                     format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
                     id: "file_xxxxxxxxxxxxxx",
+                    language: Nullable<String>.value("language"),
                     mediaType: Nullable<String>.value("image"),
                     url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                 )
@@ -2000,86 +1737,40 @@ import WhopSDK
             customEventValues: [
                 "booked_detail": JSONValue.number(4820)
             ],
-            deliveryStatus: AdDeliveryStatus.rejected,
+            deliveryStatus: AdDeliveryStatus.inAppeal,
             descriptions: [
-                "Paint correction included"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             frequency: Nullable<Double>.value(1.1),
             headlines: [
-                "Austin's mobile detailers"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             id: "ad_xxxxxxxxxxxxxx",
             impressions: 51204,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
-            leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                    buttonText: Nullable<String>.value("See our work"),
-                    description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                    headline: Nullable<String>.value("Thanks — we will call you today"),
-                    url: Nullable<String>.value("https://shinetime.example/gallery")
-                )),
-                disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                    body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                    checkboxes: [
-                        AdLeadFormDisclaimerCheckbox(
-                            checkedByDefault: Nullable<Bool>.value(false),
-                            key: Nullable<String>.value("consent_1"),
-                            required: Nullable<Bool>.value(true),
-                            text: "I agree"
-                        )
-                    ],
-                    title: Nullable<String>.value("Before you submit")
-                )),
-                formType: AdLeadFormFormType.moreVolume,
-                intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                    description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                    headline: Nullable<String>.value("Get a ceramic coating quote")
-                )),
-                name: Nullable<String>.value("Ceramic coating quote requests"),
-                phoneVerification: true,
-                privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                    linkText: Nullable<String>.value("Shine Time privacy policy"),
-                    url: "https://shinetime.example/privacy"
-                )),
-                questions: [
-                    AdLeadFormQuestion(
-                        format: Optional("multiple_choice"),
-                        label: Optional("What vehicle are we detailing?"),
-                        options: Optional([
-                            AdLeadFormQuestionOption(
-                                key: Optional(Nullable<String>.value("ceramic_coating")),
-                                logic: Optional(AdLeadFormOptionLogic(
-                                    action: AdLeadFormOptionLogicAction.goToQuestion,
-                                    targetEndPageIndex: Optional(0),
-                                    targetQuestionIndex: Optional(3)
-                                )),
-                                value: "Ceramic coating"
-                            )
-                        ]),
-                        type: "custom"
-                    )
-                ]
-            ))),
-            leadFormId: Optional(Nullable<String>.value("1037724182084885")),
             leadValue: 1180,
             leads: 121,
-            messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                keyword: Nullable<String>.value("Book an interior deep clean"),
-                message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-            ))),
-            multiAdvertiserAds: Optional(true),
-            postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-            postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-            postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            linkClicks: 1071,
             primaryTexts: [
-                "Book a two-day ceramic coating and keep the shine for three years."
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             purchaseValue: 9462,
             purchases: 38,
@@ -2090,17 +1781,12 @@ import WhopSDK
             returnOnAdSpend: 19.62419113987058,
             scheduleValue: 640,
             schedules: 46,
-            socialAccounts: [
-                AdEntityReference(
-                    id: "adcamp_xxxxxxxxxxxxxx"
-                )
-            ],
             spend: 482.16,
             spendCurrency: Nullable<String>.value("usd"),
             status: AdStatus.active,
             submittedApplicationValue: 300,
             submittedApplications: 12,
-            title: Nullable<String>.value("Ceramic coating — new ad group"),
+            title: Nullable<String>.value("Ceramic coating — spring hook v2"),
             uniqueClickThroughRate: Nullable<Double>.value(1.1),
             uniqueClicks: 1012,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -2139,6 +1825,21 @@ import WhopSDK
                   "completed_registrations": 19,
                   "contact_value": 175,
                   "contacts": 27,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
                   "cost_per_added_to_cart": 6.515675675675676,
                   "cost_per_click": 0.36,
                   "cost_per_completed_registration": 25.37684210526316,
@@ -2162,6 +1863,7 @@ import WhopSDK
                       },
                       "format": "square",
                       "id": "file_xxxxxxxxxxxxxx",
+                      "language": "language",
                       "media_type": "image",
                       "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                     }
@@ -2173,86 +1875,40 @@ import WhopSDK
                   "custom_event_values": {
                     "booked_detail": 4820
                   },
-                  "delivery_status": "rejected",
+                  "delivery_status": "in_appeal",
                   "descriptions": [
-                    "Paint correction included"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "frequency": 1.1,
                   "headlines": [
-                    "Austin's mobile detailers"
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "id": "ad_xxxxxxxxxxxxxx",
                   "impressions": 51204,
                   "issues": [
                     {
+                      "category": "information",
                       "id": "adiss_xxxxxxxxxxxxxx",
-                      "message": "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                      "message": "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                       "resource_id": "ad_xxxxxxxxxxxxxx",
-                      "resource_type": "ad_campaign"
+                      "resource_type": "ad_campaign",
+                      "title": "Ad issue"
                     }
                   ],
-                  "lead_form": {
-                    "completion": {
-                      "button_text": "See our work",
-                      "description": "We book coatings two days out, so pick a slot when we ring.",
-                      "headline": "Thanks — we will call you today",
-                      "url": "https://shinetime.example/gallery"
-                    },
-                    "disclaimer": {
-                      "body": "Ceramic coating requires the vehicle for two days.",
-                      "checkboxes": [
-                        {
-                          "checked_by_default": false,
-                          "key": "consent_1",
-                          "required": true,
-                          "text": "I agree"
-                        }
-                      ],
-                      "title": "Before you submit"
-                    },
-                    "form_type": "more_volume",
-                    "intro": {
-                      "description": "Tell us about your vehicle and we will send a fixed price.",
-                      "headline": "Get a ceramic coating quote"
-                    },
-                    "name": "Ceramic coating quote requests",
-                    "phone_verification": true,
-                    "privacy_policy": {
-                      "link_text": "Shine Time privacy policy",
-                      "url": "https://shinetime.example/privacy"
-                    },
-                    "questions": [
-                      {
-                        "format": "multiple_choice",
-                        "label": "What vehicle are we detailing?",
-                        "options": [
-                          {
-                            "key": "ceramic_coating",
-                            "logic": {
-                              "action": "go_to_question",
-                              "target_end_page_index": 0,
-                              "target_question_index": 3
-                            },
-                            "value": "Ceramic coating"
-                          }
-                        ],
-                        "type": "custom"
-                      }
-                    ]
-                  },
-                  "lead_form_id": "1037724182084885",
                   "lead_value": 1180,
                   "leads": 121,
-                  "messaging_config": {
-                    "keyword": "Book an interior deep clean",
-                    "message": "Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote."
-                  },
-                  "multi_advertiser_ads": true,
-                  "post_id": "xxxxxxxxxxxxxxxx_98765",
-                  "post_source": "facebook",
-                  "post_thumbnail_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "link_clicks": 1071,
                   "primary_texts": [
-                    "Book a two-day ceramic coating and keep the shine for three years."
+                    {
+                      "language": "language",
+                      "text": "Austin's mobile detailers"
+                    }
                   ],
                   "purchase_value": 9462,
                   "purchases": 38,
@@ -2263,17 +1919,12 @@ import WhopSDK
                   "return_on_ad_spend": 19.62419113987058,
                   "schedule_value": 640,
                   "schedules": 46,
-                  "social_accounts": [
-                    {
-                      "id": "adcamp_xxxxxxxxxxxxxx"
-                    }
-                  ],
                   "spend": 482.16,
                   "spend_currency": "usd",
                   "status": "active",
                   "submitted_application_value": 300,
                   "submitted_applications": 12,
-                  "title": "Ceramic coating — new ad group",
+                  "title": "Ceramic coating — spring hook v2",
                   "unique_click_through_rate": 1.1,
                   "unique_clicks": 1012,
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -2308,6 +1959,21 @@ import WhopSDK
             completedRegistrations: 19,
             contactValue: 175,
             contacts: 27,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
             costPerAddedToCart: Nullable<Double>.value(6.515675675675676),
             costPerClick: 0.36,
             costPerCompletedRegistration: Nullable<Double>.value(25.37684210526316),
@@ -2331,6 +1997,7 @@ import WhopSDK
                     )),
                     format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
                     id: "file_xxxxxxxxxxxxxx",
+                    language: Nullable<String>.value("language"),
                     mediaType: Nullable<String>.value("image"),
                     url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                 )
@@ -2342,86 +2009,40 @@ import WhopSDK
             customEventValues: [
                 "booked_detail": JSONValue.number(4820)
             ],
-            deliveryStatus: AdDeliveryStatus.rejected,
+            deliveryStatus: AdDeliveryStatus.inAppeal,
             descriptions: [
-                "Paint correction included"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             frequency: Nullable<Double>.value(1.1),
             headlines: [
-                "Austin's mobile detailers"
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             id: "ad_xxxxxxxxxxxxxx",
             impressions: 51204,
             issues: [
                 AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
                     id: "adiss_xxxxxxxxxxxxxx",
-                    message: "Your ad was rejected for unacceptable business practices. Edit the ad's content and resubmit.",
+                    message: "Your ad didn't pass our content review. Update it to follow our ad guidelines and resubmit.",
                     resourceId: Nullable<String>.value("ad_xxxxxxxxxxxxxx"),
-                    resourceType: AdPlatformIssueResourceType.adCampaign
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "Ad issue"
                 )
             ],
-            leadForm: Optional(Nullable<AdLeadForm>.value(AdLeadForm(
-                completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                    buttonText: Nullable<String>.value("See our work"),
-                    description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                    headline: Nullable<String>.value("Thanks — we will call you today"),
-                    url: Nullable<String>.value("https://shinetime.example/gallery")
-                )),
-                disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                    body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                    checkboxes: [
-                        AdLeadFormDisclaimerCheckbox(
-                            checkedByDefault: Nullable<Bool>.value(false),
-                            key: Nullable<String>.value("consent_1"),
-                            required: Nullable<Bool>.value(true),
-                            text: "I agree"
-                        )
-                    ],
-                    title: Nullable<String>.value("Before you submit")
-                )),
-                formType: AdLeadFormFormType.moreVolume,
-                intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                    description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                    headline: Nullable<String>.value("Get a ceramic coating quote")
-                )),
-                name: Nullable<String>.value("Ceramic coating quote requests"),
-                phoneVerification: true,
-                privacyPolicy: Nullable<AdLeadFormPrivacyPolicy>.value(AdLeadFormPrivacyPolicy(
-                    linkText: Nullable<String>.value("Shine Time privacy policy"),
-                    url: "https://shinetime.example/privacy"
-                )),
-                questions: [
-                    AdLeadFormQuestion(
-                        format: Optional("multiple_choice"),
-                        label: Optional("What vehicle are we detailing?"),
-                        options: Optional([
-                            AdLeadFormQuestionOption(
-                                key: Optional(Nullable<String>.value("ceramic_coating")),
-                                logic: Optional(AdLeadFormOptionLogic(
-                                    action: AdLeadFormOptionLogicAction.goToQuestion,
-                                    targetEndPageIndex: Optional(0),
-                                    targetQuestionIndex: Optional(3)
-                                )),
-                                value: "Ceramic coating"
-                            )
-                        ]),
-                        type: "custom"
-                    )
-                ]
-            ))),
-            leadFormId: Optional(Nullable<String>.value("1037724182084885")),
             leadValue: 1180,
             leads: 121,
-            messagingConfig: Optional(Nullable<AdMessagingConfig>.value(AdMessagingConfig(
-                keyword: Nullable<String>.value("Book an interior deep clean"),
-                message: Nullable<String>.value("Hi! Tell us your vehicle and ZIP and we will send an interior deep clean quote.")
-            ))),
-            multiAdvertiserAds: Optional(true),
-            postId: Nullable<String>.value("xxxxxxxxxxxxxxxx_98765"),
-            postSource: Nullable<AdPostSource>.value(AdPostSource.facebook),
-            postThumbnailUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            linkClicks: 1071,
             primaryTexts: [
-                "Book a two-day ceramic coating and keep the shine for three years."
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "Austin's mobile detailers"
+                )
             ],
             purchaseValue: 9462,
             purchases: 38,
@@ -2432,17 +2053,12 @@ import WhopSDK
             returnOnAdSpend: 19.62419113987058,
             scheduleValue: 640,
             schedules: 46,
-            socialAccounts: [
-                AdEntityReference(
-                    id: "adcamp_xxxxxxxxxxxxxx"
-                )
-            ],
             spend: 482.16,
             spendCurrency: Nullable<String>.value("usd"),
             status: AdStatus.active,
             submittedApplicationValue: 300,
             submittedApplications: 12,
-            title: Nullable<String>.value("Ceramic coating — new ad group"),
+            title: Nullable<String>.value("Ceramic coating — spring hook v2"),
             uniqueClickThroughRate: Nullable<Double>.value(1.1),
             uniqueClicks: 1012,
             updatedAt: "2026-01-01T12:00:00.000Z",

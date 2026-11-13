@@ -7,7 +7,7 @@ public final class ForumsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of forums within a specific company, with optional filtering by product.
+    /// Returns a paginated list of forums for an account, with optional filtering by product.
     ///
     /// Required permissions:
     ///  - `forum:read`
@@ -17,13 +17,16 @@ public final class ForumsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forums.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
-    ///         productId: "prod_xxxxxxxxxxxxx"
+    ///         productId: "prod_xxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -34,10 +37,10 @@ public final class ForumsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list forums for.
     /// - Parameter productId: The unique identifier of a product to filter by. When set, only forums connected to this product are returned.
+    /// - Parameter accountId: The unique identifier of the company to list forums for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, productId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListForumsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, productId: String? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListForumsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/forums",
@@ -46,8 +49,8 @@ public final class ForumsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId), 
-                "product_id": productId.map { .string($0) }
+                "product_id": productId.map { .string($0) }, 
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListForumsResponse.self
@@ -64,7 +67,10 @@ public final class ForumsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forums.retrieve(id: "id")
     /// }
@@ -93,7 +99,10 @@ public final class ForumsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forums.update(
     ///         id: "id",

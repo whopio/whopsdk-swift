@@ -21,9 +21,13 @@ import WhopSDK
                       },
                       "canceled_at": "2026-01-01T12:00:00Z",
                       "created_at": "2026-01-01T12:00:00Z",
+                      "digital_wallets": [
+                        "apple_pay"
+                      ],
                       "expiration_month": "12",
                       "expiration_year": "2029",
                       "id": "icrd_xxxxxxxxxxxxxx",
+                      "issued": false,
                       "last4": "8319",
                       "limit": {
                         "amount": 50,
@@ -65,9 +69,13 @@ import WhopSDK
                     )),
                     canceledAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
                     createdAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
+                    digitalWallets: Nullable<[ListCardsResponseDataItemDigitalWalletsItem]>.value([
+                        ListCardsResponseDataItemDigitalWalletsItem.applePay
+                    ]),
                     expirationMonth: Nullable<String>.value("12"),
                     expirationYear: Nullable<String>.value("2029"),
                     id: "icrd_xxxxxxxxxxxxxx",
+                    issued: false,
                     last4: Nullable<String>.value("8319"),
                     limit: Nullable<ListCardsResponseDataItemLimit>.value(ListCardsResponseDataItemLimit(
                         amount: 50,
@@ -108,9 +116,13 @@ import WhopSDK
                   },
                   "canceled_at": "2024-01-15T09:30:00Z",
                   "created_at": "2026-01-01T12:00:00Z",
+                  "digital_wallets": [
+                    "apple_pay"
+                  ],
                   "expiration_month": "12",
                   "expiration_year": "2030",
                   "id": "icrd_xxxxxxxxxxxxxx",
+                  "issued": true,
                   "last4": "4242",
                   "limit": {
                     "amount": 2500,
@@ -148,9 +160,13 @@ import WhopSDK
             )),
             canceledAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             createdAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
+            digitalWallets: Nullable<[CreateCardsResponseDigitalWalletsItem]>.value([
+                CreateCardsResponseDigitalWalletsItem.applePay
+            ]),
             expirationMonth: Nullable<String>.value("12"),
             expirationYear: Nullable<String>.value("2030"),
             id: "icrd_xxxxxxxxxxxxxx",
+            issued: true,
             last4: Nullable<String>.value("4242"),
             limit: Nullable<CreateCardsResponseLimit>.value(CreateCardsResponseLimit(
                 amount: 2500,
@@ -192,9 +208,13 @@ import WhopSDK
                   },
                   "canceled_at": "2026-01-01T12:00:00Z",
                   "created_at": "2026-01-01T12:00:00Z",
+                  "digital_wallets": [
+                    "apple_pay"
+                  ],
                   "expiration_month": "12",
                   "expiration_year": "2027",
                   "id": "icrd_xxxxxxxxxxxxxx",
+                  "issued": true,
                   "last4": "4242",
                   "limit": {
                     "amount": 50,
@@ -232,9 +252,13 @@ import WhopSDK
             )),
             canceledAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
             createdAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
+            digitalWallets: Nullable<[RetrieveCardsResponseDigitalWalletsItem]>.value([
+                RetrieveCardsResponseDigitalWalletsItem.applePay
+            ]),
             expirationMonth: Nullable<String>.value("12"),
             expirationYear: Nullable<String>.value("2027"),
             id: "icrd_xxxxxxxxxxxxxx",
+            issued: true,
             last4: Nullable<String>.value("4242"),
             limit: Nullable<RetrieveCardsResponseLimit>.value(RetrieveCardsResponseLimit(
                 amount: 50,
@@ -276,9 +300,13 @@ import WhopSDK
                   },
                   "canceled_at": "2026-01-01T12:00:00Z",
                   "created_at": "2026-01-01T12:00:00Z",
+                  "digital_wallets": [
+                    "apple_pay"
+                  ],
                   "expiration_month": "12",
                   "expiration_year": "2027",
                   "id": "icrd_xxxxxxxxxxxxxx",
+                  "issued": true,
                   "last4": "4242",
                   "limit": {
                     "amount": 50,
@@ -316,9 +344,13 @@ import WhopSDK
             )),
             canceledAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
             createdAt: Nullable<Date>.value(try! Date("2026-01-01T12:00:00Z", strategy: .iso8601)),
+            digitalWallets: Nullable<[UpdateCardsResponseDigitalWalletsItem]>.value([
+                UpdateCardsResponseDigitalWalletsItem.applePay
+            ]),
             expirationMonth: Nullable<String>.value("12"),
             expirationYear: Nullable<String>.value("2027"),
             id: "icrd_xxxxxxxxxxxxxx",
+            issued: true,
             last4: Nullable<String>.value("4242"),
             limit: Nullable<UpdateCardsResponseLimit>.value(UpdateCardsResponseLimit(
                 amount: 50,

@@ -83,8 +83,8 @@ import WhopSDK
         let response = try await client.companyTokenTransactions.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
             userId: "user_xxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -150,8 +150,8 @@ import WhopSDK
         let response = try await client.companyTokenTransactions.create(
             request: CreateCompanyTokenTransactionsRequest.transfer(
                 CreateCompanyTokenTransactionsRequestTransfer(
+                    accountId: "biz_xxxxxxxxxxxxxx",
                     amount: 6.9,
-                    companyId: "biz_xxxxxxxxxxxxxx",
                     destinationUserId: "destination_user_id",
                     userId: "user_xxxxxxxxxxxxx"
                 )

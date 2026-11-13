@@ -1,6 +1,6 @@
 import Foundation
 
-/// Custom audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or `phone`.
+/// CSV audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or `phone`.
 public struct CreateAudiencesRequestColumnMapping: Codable, Hashable, Sendable {
     /// CSV header for ISO 3166-1 alpha-2 country codes, such as `US`.
     public let country: String?

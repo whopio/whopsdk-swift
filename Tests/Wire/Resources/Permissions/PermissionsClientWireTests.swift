@@ -11,7 +11,7 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "action": "ai_prompt:create",
+                      "action": "access_pass:basic:export",
                       "granted": false
                     }
                   ]
@@ -27,7 +27,7 @@ import WhopSDK
         let expectedResponse = ListPermissionsResponse(
             data: [
                 ListPermissionsResponseDataItem(
-                    action: PermissionAction.aiPromptCreate,
+                    action: PermissionAction.accessPassBasicExport,
                     granted: false
                 )
             ]

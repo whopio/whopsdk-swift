@@ -38,28 +38,28 @@ import WhopSDK
                         ],
                         "include_platform_defaults": true
                       },
-                      "plan": {
+                      "purchase_url": "https://whop.com/checkout/ch_xxxxxxxxxxxxxx/",
+                      "redirect_url": "https://shinetime.example/thanks",
+                      "three_ds_level": "mandate_challenge",
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "variant": {
                         "adaptive_pricing_enabled": true,
                         "billing_period": 30,
+                        "billing_type": "renewal",
                         "currency": "usd",
                         "expiration_days": 365,
                         "id": "plan_xxxxxxxxxxxxxx",
                         "initial_price": 0,
-                        "plan_type": "renewal",
                         "release_method": "buy_now",
                         "renewal_price": 59,
                         "three_ds_level": null,
                         "trial_period_days": 7,
                         "visibility": "visible"
-                      },
-                      "purchase_url": "https://whop.com/checkout/ch_xxxxxxxxxxxxxx/",
-                      "redirect_url": "https://shinetime.example/thanks",
-                      "three_ds_level": "mandate_challenge",
-                      "updated_at": "2026-01-01T12:00:00.000Z"
+                      }
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -103,28 +103,28 @@ import WhopSDK
                         ]),
                         includePlatformDefaults: Optional(true)
                     ))),
-                    plan: Optional(Nullable<ListCheckoutConfigurationsResponseDataItemPlan>.value(ListCheckoutConfigurationsResponseDataItemPlan(
+                    purchaseUrl: Optional(Nullable<String>.value("https://whop.com/checkout/ch_xxxxxxxxxxxxxx/")),
+                    redirectUrl: Optional(Nullable<String>.value("https://shinetime.example/thanks")),
+                    threeDsLevel: Optional(Nullable<ListCheckoutConfigurationsResponseDataItemThreeDsLevel>.value(ListCheckoutConfigurationsResponseDataItemThreeDsLevel.mandateChallenge)),
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    variant: Optional(Nullable<ListCheckoutConfigurationsResponseDataItemVariant>.value(ListCheckoutConfigurationsResponseDataItemVariant(
                         adaptivePricingEnabled: true,
                         billingPeriod: Nullable<Int>.value(30),
+                        billingType: ListCheckoutConfigurationsResponseDataItemVariantBillingType.renewal,
                         currency: "usd",
                         expirationDays: Nullable<Int>.value(365),
                         id: "plan_xxxxxxxxxxxxxx",
                         initialPrice: 0,
-                        planType: ListCheckoutConfigurationsResponseDataItemPlanPlanType.renewal,
-                        releaseMethod: ListCheckoutConfigurationsResponseDataItemPlanReleaseMethod.buyNow,
+                        releaseMethod: ListCheckoutConfigurationsResponseDataItemVariantReleaseMethod.buyNow,
                         renewalPrice: 59,
                         threeDsLevel: .null,
                         trialPeriodDays: Nullable<Int>.value(7),
-                        visibility: ListCheckoutConfigurationsResponseDataItemPlanVisibility.visible
-                    ))),
-                    purchaseUrl: Optional(Nullable<String>.value("https://whop.com/checkout/ch_xxxxxxxxxxxxxx/")),
-                    redirectUrl: Optional(Nullable<String>.value("https://shinetime.example/thanks")),
-                    threeDsLevel: Optional(Nullable<ListCheckoutConfigurationsResponseDataItemThreeDsLevel>.value(ListCheckoutConfigurationsResponseDataItemThreeDsLevel.mandateChallenge)),
-                    updatedAt: "2026-01-01T12:00:00.000Z"
+                        visibility: ListCheckoutConfigurationsResponseDataItemVariantVisibility.visible
+                    )))
                 )
             ],
             pageInfo: ListCheckoutConfigurationsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -158,7 +158,7 @@ import WhopSDK
                   },
                   "id": "ch_xxxxxxxxxxxxxx",
                   "metadata": {
-                    "booking_source": "front_desk"
+                    "key": "value"
                   },
                   "mode": "payment",
                   "payment_method_configuration": {
@@ -170,24 +170,24 @@ import WhopSDK
                     ],
                     "include_platform_defaults": true
                   },
-                  "plan": {
-                    "adaptive_pricing_enabled": true,
-                    "billing_period": 30,
-                    "currency": "usd",
-                    "expiration_days": 365,
-                    "id": "plan_xxxxxxxxxxxxxx",
-                    "initial_price": 0,
-                    "plan_type": "renewal",
-                    "release_method": "buy_now",
-                    "renewal_price": 59,
-                    "three_ds_level": "mandate_challenge",
-                    "trial_period_days": 7,
-                    "visibility": "visible"
-                  },
                   "purchase_url": "https://whop.com/checkout/ch_xxxxxxxxxxxxxx/",
                   "redirect_url": "https://shinetime.example/thanks",
                   "three_ds_level": "mandate_challenge",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant": {
+                    "adaptive_pricing_enabled": true,
+                    "billing_period": 30,
+                    "billing_type": "renewal",
+                    "currency": "usd",
+                    "expiration_days": 365,
+                    "id": "plan_xxxxxxxxxxxxxx",
+                    "initial_price": 249,
+                    "release_method": "buy_now",
+                    "renewal_price": 0,
+                    "three_ds_level": "mandate_challenge",
+                    "trial_period_days": 7,
+                    "visibility": "visible"
+                  }
                 }
                 """#.utf8
             )
@@ -213,7 +213,7 @@ import WhopSDK
             ))),
             id: "ch_xxxxxxxxxxxxxx",
             metadata: Optional(Nullable<[String: JSONValue]>.value([
-                "booking_source": JSONValue.string("front_desk")
+                "key": JSONValue.string("value")
             ])),
             mode: CreateCheckoutConfigurationsResponseMode.payment,
             paymentMethodConfiguration: Optional(Nullable<CreateCheckoutConfigurationsResponsePaymentMethodConfiguration>.value(CreateCheckoutConfigurationsResponsePaymentMethodConfiguration(
@@ -225,29 +225,29 @@ import WhopSDK
                 ]),
                 includePlatformDefaults: Optional(true)
             ))),
-            plan: Optional(Nullable<CreateCheckoutConfigurationsResponsePlan>.value(CreateCheckoutConfigurationsResponsePlan(
-                adaptivePricingEnabled: true,
-                billingPeriod: Nullable<Int>.value(30),
-                currency: "usd",
-                expirationDays: Nullable<Int>.value(365),
-                id: "plan_xxxxxxxxxxxxxx",
-                initialPrice: 0,
-                planType: CreateCheckoutConfigurationsResponsePlanPlanType.renewal,
-                releaseMethod: CreateCheckoutConfigurationsResponsePlanReleaseMethod.buyNow,
-                renewalPrice: 59,
-                threeDsLevel: Nullable<CreateCheckoutConfigurationsResponsePlanThreeDsLevel>.value(CreateCheckoutConfigurationsResponsePlanThreeDsLevel.mandateChallenge),
-                trialPeriodDays: Nullable<Int>.value(7),
-                visibility: CreateCheckoutConfigurationsResponsePlanVisibility.visible
-            ))),
             purchaseUrl: Optional(Nullable<String>.value("https://whop.com/checkout/ch_xxxxxxxxxxxxxx/")),
             redirectUrl: Optional(Nullable<String>.value("https://shinetime.example/thanks")),
             threeDsLevel: Optional(Nullable<CreateCheckoutConfigurationsResponseThreeDsLevel>.value(CreateCheckoutConfigurationsResponseThreeDsLevel.mandateChallenge)),
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variant: Optional(Nullable<CreateCheckoutConfigurationsResponseVariant>.value(CreateCheckoutConfigurationsResponseVariant(
+                adaptivePricingEnabled: true,
+                billingPeriod: Nullable<Int>.value(30),
+                billingType: CreateCheckoutConfigurationsResponseVariantBillingType.renewal,
+                currency: "usd",
+                expirationDays: Nullable<Int>.value(365),
+                id: "plan_xxxxxxxxxxxxxx",
+                initialPrice: 249,
+                releaseMethod: CreateCheckoutConfigurationsResponseVariantReleaseMethod.buyNow,
+                renewalPrice: 0,
+                threeDsLevel: Nullable<CreateCheckoutConfigurationsResponseVariantThreeDsLevel>.value(CreateCheckoutConfigurationsResponseVariantThreeDsLevel.mandateChallenge),
+                trialPeriodDays: Nullable<Int>.value(7),
+                visibility: CreateCheckoutConfigurationsResponseVariantVisibility.visible
+            )))
         )
         let response = try await client.checkoutConfigurations.create(
             request: .init(
                 accountId: "biz_xxxxxxxxxxxxxx",
-                planId: .value("plan_xxxxxxxxxxxxx")
+                variantId: .value("plan_xxxxxxxxxxxxx")
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -287,24 +287,24 @@ import WhopSDK
                     ],
                     "include_platform_defaults": true
                   },
-                  "plan": {
+                  "purchase_url": "https://whop.com/checkout/ch_xxxxxxxxxxxxxx/",
+                  "redirect_url": "https://shinetime.example/thanks",
+                  "three_ds_level": "mandate_challenge",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant": {
                     "adaptive_pricing_enabled": true,
                     "billing_period": 30,
+                    "billing_type": "renewal",
                     "currency": "usd",
                     "expiration_days": 365,
                     "id": "plan_xxxxxxxxxxxxxx",
                     "initial_price": 0,
-                    "plan_type": "renewal",
                     "release_method": "buy_now",
                     "renewal_price": 59,
                     "three_ds_level": "mandate_challenge",
                     "trial_period_days": 7,
                     "visibility": "visible"
-                  },
-                  "purchase_url": "https://whop.com/checkout/ch_xxxxxxxxxxxxxx/",
-                  "redirect_url": "https://shinetime.example/thanks",
-                  "three_ds_level": "mandate_challenge",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  }
                 }
                 """#.utf8
             )
@@ -342,24 +342,24 @@ import WhopSDK
                 ]),
                 includePlatformDefaults: Optional(true)
             ))),
-            plan: Optional(Nullable<RetrieveCheckoutConfigurationsResponsePlan>.value(RetrieveCheckoutConfigurationsResponsePlan(
+            purchaseUrl: Optional(Nullable<String>.value("https://whop.com/checkout/ch_xxxxxxxxxxxxxx/")),
+            redirectUrl: Optional(Nullable<String>.value("https://shinetime.example/thanks")),
+            threeDsLevel: Optional(Nullable<RetrieveCheckoutConfigurationsResponseThreeDsLevel>.value(RetrieveCheckoutConfigurationsResponseThreeDsLevel.mandateChallenge)),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variant: Optional(Nullable<RetrieveCheckoutConfigurationsResponseVariant>.value(RetrieveCheckoutConfigurationsResponseVariant(
                 adaptivePricingEnabled: true,
                 billingPeriod: Nullable<Int>.value(30),
+                billingType: RetrieveCheckoutConfigurationsResponseVariantBillingType.renewal,
                 currency: "usd",
                 expirationDays: Nullable<Int>.value(365),
                 id: "plan_xxxxxxxxxxxxxx",
                 initialPrice: 0,
-                planType: RetrieveCheckoutConfigurationsResponsePlanPlanType.renewal,
-                releaseMethod: RetrieveCheckoutConfigurationsResponsePlanReleaseMethod.buyNow,
+                releaseMethod: RetrieveCheckoutConfigurationsResponseVariantReleaseMethod.buyNow,
                 renewalPrice: 59,
-                threeDsLevel: Nullable<RetrieveCheckoutConfigurationsResponsePlanThreeDsLevel>.value(RetrieveCheckoutConfigurationsResponsePlanThreeDsLevel.mandateChallenge),
+                threeDsLevel: Nullable<RetrieveCheckoutConfigurationsResponseVariantThreeDsLevel>.value(RetrieveCheckoutConfigurationsResponseVariantThreeDsLevel.mandateChallenge),
                 trialPeriodDays: Nullable<Int>.value(7),
-                visibility: RetrieveCheckoutConfigurationsResponsePlanVisibility.visible
-            ))),
-            purchaseUrl: Optional(Nullable<String>.value("https://whop.com/checkout/ch_xxxxxxxxxxxxxx/")),
-            redirectUrl: Optional(Nullable<String>.value("https://shinetime.example/thanks")),
-            threeDsLevel: Optional(Nullable<RetrieveCheckoutConfigurationsResponseThreeDsLevel>.value(RetrieveCheckoutConfigurationsResponseThreeDsLevel.mandateChallenge)),
-            updatedAt: "2026-01-01T12:00:00.000Z"
+                visibility: RetrieveCheckoutConfigurationsResponseVariantVisibility.visible
+            )))
         )
         let response = try await client.checkoutConfigurations.retrieve(
             id: "id",

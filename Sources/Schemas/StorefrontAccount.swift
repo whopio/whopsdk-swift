@@ -3,6 +3,8 @@ import Foundation
 public struct StorefrontAccount: Codable, Hashable, Sendable {
     /// Account ID, prefixed `biz_`.
     public let id: String
+    /// Account logo image URL. `null` when the account has not set one.
+    public let logoUrl: Nullable<String>
     /// Account public route identifier — the `whop.com/{route}` storefront path.
     public let route: String
     /// Account display name.
@@ -12,11 +14,13 @@ public struct StorefrontAccount: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        logoUrl: Nullable<String>,
         route: String,
         title: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.logoUrl = logoUrl
         self.route = route
         self.title = title
         self.additionalProperties = additionalProperties
@@ -25,6 +29,7 @@ public struct StorefrontAccount: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.logoUrl = try container.decode(Nullable<String>.self, forKey: .logoUrl)
         self.route = try container.decode(String.self, forKey: .route)
         self.title = try container.decode(String.self, forKey: .title)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -34,6 +39,7 @@ public struct StorefrontAccount: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.logoUrl, forKey: .logoUrl)
         try container.encode(self.route, forKey: .route)
         try container.encode(self.title, forKey: .title)
     }
@@ -41,6 +47,7 @@ public struct StorefrontAccount: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id
+        case logoUrl = "logo_url"
         case route
         case title
     }

@@ -3,7 +3,7 @@ import Foundation
 /// Answer for `address` items.
 public struct UpdateVerificationsRequestBodyPersonalAddressRequestedInformationItemAddress: Codable, Hashable, Sendable {
     public let city: Nullable<String>?
-    /// Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
+    /// Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`. An address in a [sanctioned country or region](/trust-and-safety/trust-safety-overview/sanctioned-countries) is rejected with the error code `address_country_sanctioned`.
     public let country: Nullable<String>?
     /// First line of the street address.
     public let line1: Nullable<String>?

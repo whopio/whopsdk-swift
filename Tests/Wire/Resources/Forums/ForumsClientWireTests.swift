@@ -14,6 +14,7 @@ import WhopSDK
                       "email_notification_preference": "all_admin_posts",
                       "experience": {
                         "id": "exp_xxxxxxxxxxxxxx",
+                        "is_public": true,
                         "name": "Trading Signals Chat"
                       },
                       "id": "id",
@@ -42,6 +43,7 @@ import WhopSDK
                     emailNotificationPreference: ForumEmailNotificationPreferences.allAdminPosts,
                     experience: ForumListItemExperience(
                         id: "exp_xxxxxxxxxxxxxx",
+                        isPublic: true,
                         name: "Trading Signals Chat"
                     ),
                     id: "id",
@@ -59,8 +61,8 @@ import WhopSDK
         let response = try await client.forums.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
             productId: "prod_xxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -72,9 +74,19 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "banned_words": [
+                    "banned_words"
+                  ],
+                  "banner_image": {
+                    "content_type": "image/jpeg",
+                    "filename": "document.pdf",
+                    "id": "id",
+                    "url": "https://media.whop.com/abc123/optimized.jpg"
+                  },
                   "email_notification_preference": "all_admin_posts",
                   "experience": {
                     "id": "exp_xxxxxxxxxxxxxx",
+                    "is_public": true,
                     "name": "Trading Signals Chat"
                   },
                   "id": "id",
@@ -90,9 +102,19 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Forum(
+            bannedWords: [
+                "banned_words"
+            ],
+            bannerImage: Nullable<ForumBannerImage>.value(ForumBannerImage(
+                contentType: Nullable<String>.value("image/jpeg"),
+                filename: Nullable<String>.value("document.pdf"),
+                id: "id",
+                url: Nullable<String>.value("https://media.whop.com/abc123/optimized.jpg")
+            )),
             emailNotificationPreference: ForumEmailNotificationPreferences.allAdminPosts,
             experience: ForumExperience(
                 id: "exp_xxxxxxxxxxxxxx",
+                isPublic: true,
                 name: "Trading Signals Chat"
             ),
             id: "id",
@@ -112,9 +134,19 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "banned_words": [
+                    "banned_words"
+                  ],
+                  "banner_image": {
+                    "content_type": "image/jpeg",
+                    "filename": "document.pdf",
+                    "id": "id",
+                    "url": "https://media.whop.com/abc123/optimized.jpg"
+                  },
                   "email_notification_preference": "all_admin_posts",
                   "experience": {
                     "id": "exp_xxxxxxxxxxxxxx",
+                    "is_public": true,
                     "name": "Trading Signals Chat"
                   },
                   "id": "id",
@@ -130,9 +162,19 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Forum(
+            bannedWords: [
+                "banned_words"
+            ],
+            bannerImage: Nullable<ForumBannerImage>.value(ForumBannerImage(
+                contentType: Nullable<String>.value("image/jpeg"),
+                filename: Nullable<String>.value("document.pdf"),
+                id: "id",
+                url: Nullable<String>.value("https://media.whop.com/abc123/optimized.jpg")
+            )),
             emailNotificationPreference: ForumEmailNotificationPreferences.allAdminPosts,
             experience: ForumExperience(
                 id: "exp_xxxxxxxxxxxxxx",
+                isPublic: true,
                 name: "Trading Signals Chat"
             ),
             id: "id",

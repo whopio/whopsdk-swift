@@ -18,11 +18,11 @@ import WhopSDK
                       "id": "btys_xxxxxxxxxxxxxx",
                       "latest_proof_livestream_feed": {
                         "ended_at": "2026-01-01T12:00:00.000Z",
-                        "id": "lfeed_3",
+                        "id": "lfeed_1",
                         "recording_status": null,
                         "recording_url": "https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "started_at": "2026-01-01T12:00:00.000Z",
-                        "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
+                        "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
                         "title": "Untitled Livestream"
                       },
                       "resolved_at": "2026-01-01T12:00:00.000Z",
@@ -40,7 +40,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -64,11 +64,11 @@ import WhopSDK
                     id: "btys_xxxxxxxxxxxxxx",
                     latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
                         endedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                        id: "lfeed_3",
+                        id: "lfeed_1",
                         recordingStatus: .null,
                         recordingUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                         startedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                        thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
+                        thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
                         title: "Untitled Livestream"
                     )),
                     resolvedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
@@ -86,7 +86,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListSubmissionsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -112,11 +112,11 @@ import WhopSDK
                   "id": "btys_xxxxxxxxxxxxxx",
                   "latest_proof_livestream_feed": {
                     "ended_at": "2026-01-01T12:00:00.000Z",
-                    "id": "lfeed_3",
+                    "id": "lfeed_1",
                     "recording_status": "recording",
                     "recording_url": "https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "started_at": "2026-01-01T12:00:00.000Z",
-                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
+                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
                     "title": "Untitled Livestream"
                   },
                   "resolved_at": "2026-01-01T12:00:00.000Z",
@@ -148,11 +148,11 @@ import WhopSDK
             id: "btys_xxxxxxxxxxxxxx",
             latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
                 endedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                id: "lfeed_3",
+                id: "lfeed_1",
                 recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
                 recordingUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 startedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
+                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
                 title: "Untitled Livestream"
             )),
             resolvedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),

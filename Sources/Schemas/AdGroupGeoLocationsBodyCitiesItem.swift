@@ -1,7 +1,7 @@
 import Foundation
 
 public struct AdGroupGeoLocationsBodyCitiesItem: Codable, Hashable, Sendable {
-    /// The ad platform's key for the city in its location taxonomy.
+    /// The city's key in the location taxonomy.
     public let key: String
     /// City name, such as `Austin`.
     public let name: String?

@@ -2,10 +2,10 @@ import Foundation
 
 extension Requests {
     public struct CreateExperiencesRequest: Codable, Hashable, Sendable {
+        /// The unique identifier of the company to create this experience for.
+        public let accountId: String
         /// The unique identifier of the app that powers this experience.
         public let appId: String
-        /// The unique identifier of the company to create this experience for.
-        public let companyId: String
         /// Whether the experience is publicly accessible without a membership.
         public let isPublic: Nullable<Bool>?
         /// A logo image displayed alongside the experience name.
@@ -20,8 +20,8 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            accountId: String,
             appId: String,
-            companyId: String,
             isPublic: Nullable<Bool>? = nil,
             logo: Nullable<CreateExperiencesRequestLogo>? = nil,
             name: Nullable<String>? = nil,
@@ -29,8 +29,8 @@ extension Requests {
             sectionId: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.accountId = accountId
             self.appId = appId
-            self.companyId = companyId
             self.isPublic = isPublic
             self.logo = logo
             self.name = name
@@ -41,8 +41,8 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.accountId = try container.decode(String.self, forKey: .accountId)
             self.appId = try container.decode(String.self, forKey: .appId)
-            self.companyId = try container.decode(String.self, forKey: .companyId)
             self.isPublic = try container.decodeNullableIfPresent(Bool.self, forKey: .isPublic)
             self.logo = try container.decodeNullableIfPresent(CreateExperiencesRequestLogo.self, forKey: .logo)
             self.name = try container.decodeNullableIfPresent(String.self, forKey: .name)
@@ -54,8 +54,8 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encode(self.accountId, forKey: .accountId)
             try container.encode(self.appId, forKey: .appId)
-            try container.encode(self.companyId, forKey: .companyId)
             try container.encodeNullableIfPresent(self.isPublic, forKey: .isPublic)
             try container.encodeNullableIfPresent(self.logo, forKey: .logo)
             try container.encodeNullableIfPresent(self.name, forKey: .name)
@@ -65,8 +65,8 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case accountId = "account_id"
             case appId = "app_id"
-            case companyId = "company_id"
             case isPublic = "is_public"
             case logo
             case name

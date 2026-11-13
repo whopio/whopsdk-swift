@@ -53,6 +53,7 @@ import WhopSDK
                     "phone": "phone",
                     "status": "connected"
                   },
+                  "payout_quote_required": true,
                   "settlement_time_at": "2023-12-01T05:00:00Z",
                   "transfer_fee": 6.9,
                   "treasury_balance": {
@@ -121,6 +122,7 @@ import WhopSDK
                 phone: Nullable<String>.value("phone"),
                 status: Nullable<PayoutAccountCalculatedStatuses>.value(PayoutAccountCalculatedStatuses.connected)
             )),
+            payoutQuoteRequired: true,
             settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
             transferFee: Nullable<Double>.value(6.9),
             treasuryBalance: Nullable<LedgerAccountTreasuryBalance>.value(LedgerAccountTreasuryBalance(

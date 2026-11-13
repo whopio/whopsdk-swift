@@ -44,8 +44,53 @@ import WhopSDK
                     "shop_domain": "shinetime.myshopify.com",
                     "status": "connected"
                   },
+                  "cancellation_emails": true,
                   "cards_auto_top_up": false,
-                  "dispute_fighter_enabled": false
+                  "cards_notifications": true,
+                  "covers_subaccount_negative_balances": true,
+                  "customer_tracking": {
+                    "accent_color": "accent_color",
+                    "enabled": true,
+                    "show_business_name": true,
+                    "show_logo": true,
+                    "support_email": "support_email",
+                    "support_url": "support_url"
+                  },
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
+                  "economic_intelligence_auto_renew": false,
+                  "economic_intelligence_ends_at": "economic_intelligence_ends_at",
+                  "economic_intelligence_fee_percentage": 1.1,
+                  "economic_intelligence_first_renewal_at": "economic_intelligence_first_renewal_at",
+                  "economic_intelligence_offers": [
+                    {
+                      "auto_renew": true,
+                      "duration": 3,
+                      "duration_unit": "hours",
+                      "fee_percentage": 3,
+                      "key": "3_days",
+                      "recommended": true
+                    }
+                  ],
+                  "economic_intelligence_previous_period": {
+                    "ended_at": "2026-01-01T12:00:00.000Z",
+                    "fee_percentage": 3
+                  },
+                  "failed_payment_emails": true,
+                  "feedback_options": [
+                    {
+                      "category": "too_expensive",
+                      "id": "fo_xxxxxxxxxxxxxx",
+                      "label": "I don't get my car detailed often enough"
+                    }
+                  ],
+                  "preferred_settlement_currency": "usd",
+                  "preferred_settlement_currency_changeable_at": "preferred_settlement_currency_changeable_at",
+                  "renewal_reminder_emails": true,
+                  "review_request_emails": true,
+                  "subaccount_notifications": true,
+                  "subaccount_team_view_only": true,
+                  "subscription_failure_behavior": "cancel"
                 }
                 """#.utf8
             )
@@ -91,8 +136,53 @@ import WhopSDK
                 shopDomain: Nullable<String>.value("shinetime.myshopify.com"),
                 status: RetrievePreferencesResponseAdsTripleWhaleIntegrationStatus.connected
             ),
+            cancellationEmails: true,
             cardsAutoTopUp: false,
-            disputeFighterEnabled: false
+            cardsNotifications: true,
+            coversSubaccountNegativeBalances: Nullable<Bool>.value(true),
+            customerTracking: Nullable<CustomerTrackingPreferences>.value(CustomerTrackingPreferences(
+                accentColor: "accent_color",
+                enabled: true,
+                showBusinessName: true,
+                showLogo: true,
+                supportEmail: Nullable<String>.value("support_email"),
+                supportUrl: Nullable<String>.value("support_url")
+            )),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
+            economicIntelligenceAutoRenew: false,
+            economicIntelligenceEndsAt: Nullable<String>.value("economic_intelligence_ends_at"),
+            economicIntelligenceFeePercentage: Nullable<Double>.value(1.1),
+            economicIntelligenceFirstRenewalAt: Nullable<String>.value("economic_intelligence_first_renewal_at"),
+            economicIntelligenceOffers: [
+                RetrievePreferencesResponseEconomicIntelligenceOffersItem(
+                    autoRenew: true,
+                    duration: 3,
+                    durationUnit: RetrievePreferencesResponseEconomicIntelligenceOffersItemDurationUnit.hours,
+                    feePercentage: 3,
+                    key: RetrievePreferencesResponseEconomicIntelligenceOffersItemKey.threeDays,
+                    recommended: true
+                )
+            ],
+            economicIntelligencePreviousPeriod: Nullable<RetrievePreferencesResponseEconomicIntelligencePreviousPeriod>.value(RetrievePreferencesResponseEconomicIntelligencePreviousPeriod(
+                endedAt: "2026-01-01T12:00:00.000Z",
+                feePercentage: 3
+            )),
+            failedPaymentEmails: true,
+            feedbackOptions: [
+                RetrievePreferencesResponseFeedbackOptionsItem(
+                    category: RetrievePreferencesResponseFeedbackOptionsItemCategory.tooExpensive,
+                    id: "fo_xxxxxxxxxxxxxx",
+                    label: "I don't get my car detailed often enough"
+                )
+            ],
+            preferredSettlementCurrency: Nullable<RetrievePreferencesResponsePreferredSettlementCurrency>.value(RetrievePreferencesResponsePreferredSettlementCurrency.usd),
+            preferredSettlementCurrencyChangeableAt: Nullable<String>.value("preferred_settlement_currency_changeable_at"),
+            renewalReminderEmails: true,
+            reviewRequestEmails: true,
+            subaccountNotifications: Nullable<Bool>.value(true),
+            subaccountTeamViewOnly: Nullable<Bool>.value(true),
+            subscriptionFailureBehavior: RetrievePreferencesResponseSubscriptionFailureBehavior.cancel
         )
         let response = try await client.accounts.preferences.retrieve(
             accountId: "account_id",
@@ -142,8 +232,53 @@ import WhopSDK
                     "shop_domain": "shinetime.myshopify.com",
                     "status": "connected"
                   },
+                  "cancellation_emails": true,
                   "cards_auto_top_up": false,
-                  "dispute_fighter_enabled": false
+                  "cards_notifications": true,
+                  "covers_subaccount_negative_balances": false,
+                  "customer_tracking": {
+                    "accent_color": "accent_color",
+                    "enabled": true,
+                    "show_business_name": true,
+                    "show_logo": true,
+                    "support_email": "support_email",
+                    "support_url": "support_url"
+                  },
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
+                  "economic_intelligence_auto_renew": false,
+                  "economic_intelligence_ends_at": "2026-01-01T12:00:00.000Z",
+                  "economic_intelligence_fee_percentage": 1.5,
+                  "economic_intelligence_first_renewal_at": "economic_intelligence_first_renewal_at",
+                  "economic_intelligence_offers": [
+                    {
+                      "auto_renew": true,
+                      "duration": 3,
+                      "duration_unit": "hours",
+                      "fee_percentage": 3,
+                      "key": "3_days",
+                      "recommended": true
+                    }
+                  ],
+                  "economic_intelligence_previous_period": {
+                    "ended_at": "ended_at",
+                    "fee_percentage": 1.1
+                  },
+                  "failed_payment_emails": true,
+                  "feedback_options": [
+                    {
+                      "category": "too_expensive",
+                      "id": "fo_xxxxxxxxxxxxxx",
+                      "label": "The detail missed spots"
+                    }
+                  ],
+                  "preferred_settlement_currency": "usd",
+                  "preferred_settlement_currency_changeable_at": "2026-01-01T12:00:00.000Z",
+                  "renewal_reminder_emails": true,
+                  "review_request_emails": true,
+                  "subaccount_notifications": true,
+                  "subaccount_team_view_only": false,
+                  "subscription_failure_behavior": "cancel"
                 }
                 """#.utf8
             )
@@ -189,8 +324,53 @@ import WhopSDK
                 shopDomain: Nullable<String>.value("shinetime.myshopify.com"),
                 status: UpdatePreferencesResponseAdsTripleWhaleIntegrationStatus.connected
             ),
+            cancellationEmails: true,
             cardsAutoTopUp: false,
-            disputeFighterEnabled: false
+            cardsNotifications: true,
+            coversSubaccountNegativeBalances: Nullable<Bool>.value(false),
+            customerTracking: Nullable<CustomerTrackingPreferences>.value(CustomerTrackingPreferences(
+                accentColor: "accent_color",
+                enabled: true,
+                showBusinessName: true,
+                showLogo: true,
+                supportEmail: Nullable<String>.value("support_email"),
+                supportUrl: Nullable<String>.value("support_url")
+            )),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
+            economicIntelligenceAutoRenew: false,
+            economicIntelligenceEndsAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            economicIntelligenceFeePercentage: Nullable<Double>.value(1.5),
+            economicIntelligenceFirstRenewalAt: Nullable<String>.value("economic_intelligence_first_renewal_at"),
+            economicIntelligenceOffers: [
+                UpdatePreferencesResponseEconomicIntelligenceOffersItem(
+                    autoRenew: true,
+                    duration: 3,
+                    durationUnit: UpdatePreferencesResponseEconomicIntelligenceOffersItemDurationUnit.hours,
+                    feePercentage: 3,
+                    key: UpdatePreferencesResponseEconomicIntelligenceOffersItemKey.threeDays,
+                    recommended: true
+                )
+            ],
+            economicIntelligencePreviousPeriod: Nullable<UpdatePreferencesResponseEconomicIntelligencePreviousPeriod>.value(UpdatePreferencesResponseEconomicIntelligencePreviousPeriod(
+                endedAt: "ended_at",
+                feePercentage: 1.1
+            )),
+            failedPaymentEmails: true,
+            feedbackOptions: [
+                UpdatePreferencesResponseFeedbackOptionsItem(
+                    category: UpdatePreferencesResponseFeedbackOptionsItemCategory.tooExpensive,
+                    id: "fo_xxxxxxxxxxxxxx",
+                    label: "The detail missed spots"
+                )
+            ],
+            preferredSettlementCurrency: Nullable<UpdatePreferencesResponsePreferredSettlementCurrency>.value(UpdatePreferencesResponsePreferredSettlementCurrency.usd),
+            preferredSettlementCurrencyChangeableAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            renewalReminderEmails: true,
+            reviewRequestEmails: true,
+            subaccountNotifications: Nullable<Bool>.value(true),
+            subaccountTeamViewOnly: Nullable<Bool>.value(false),
+            subscriptionFailureBehavior: UpdatePreferencesResponseSubscriptionFailureBehavior.cancel
         )
         let response = try await client.accounts.preferences.update(
             accountId: "account_id",

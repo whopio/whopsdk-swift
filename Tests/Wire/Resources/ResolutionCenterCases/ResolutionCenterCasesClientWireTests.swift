@@ -13,7 +13,7 @@ import WhopSDK
                     {
                       "account": {
                         "id": "biz_xxxxxxxxxxxxxx",
-                        "title": "Shine Time Auto Detailing"
+                        "title": "Acme Bookkeeping"
                       },
                       "amount": 249,
                       "available_actions": [
@@ -31,6 +31,24 @@ import WhopSDK
                       "customer_appealed": false,
                       "escalated": false,
                       "id": "reso_xxxxxxxxxxxxxx",
+                      "line_items": [
+                        {
+                          "id": "li_xxxxxxxxxxxxxx",
+                          "label": "Ceramic Coating Package",
+                          "product_id": "prod_xxxxxxxxxxxxxx",
+                          "product_title": "Ceramic Coating Package",
+                          "quantity": 1,
+                          "sku": null,
+                          "subtotal": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "variant_id": "plan_xxxxxxxxxxxxxx",
+                          "variant_title": "Ceramic Coating — Full Vehicle"
+                        }
+                      ],
                       "outcome": "customer_won",
                       "payment": {
                         "card_brand": "visa",
@@ -39,17 +57,17 @@ import WhopSDK
                         "id": "pay_xxxxxxxxxxxxxx",
                         "payment_method_type": "card"
                       },
-                      "plan_id": "plan_xxxxxxxxxxxxxx",
                       "product_id": "prod_xxxxxxxxxxxxxx",
                       "reason": "fraudulent",
                       "refund": "none",
                       "response_due_at": "2026-01-01T12:00:00.000Z",
                       "status": "awaiting_merchant",
-                      "updated_at": "2026-01-01T12:00:00.000Z"
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "variant_id": "plan_xxxxxxxxxxxxxx"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -68,7 +86,7 @@ import WhopSDK
                 ResolutionCenterCase(
                     account: Nullable<AccountSummary>.value(AccountSummary(
                         id: "biz_xxxxxxxxxxxxxx",
-                        title: "Shine Time Auto Detailing"
+                        title: "Acme Bookkeeping"
                     )),
                     amount: 249,
                     availableActions: [
@@ -86,6 +104,24 @@ import WhopSDK
                     customerAppealed: false,
                     escalated: false,
                     id: "reso_xxxxxxxxxxxxxx",
+                    lineItems: [
+                        ReceiptLineItem(
+                            id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                            label: Nullable<String>.value("Ceramic Coating Package"),
+                            productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                            productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                            quantity: 1,
+                            sku: .null,
+                            subtotal: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                            variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                        )
+                    ],
                     outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
                     payment: ResolutionPayment(
                         cardBrand: Nullable<String>.value("visa"),
@@ -94,17 +130,17 @@ import WhopSDK
                         id: "pay_xxxxxxxxxxxxxx",
                         paymentMethodType: Nullable<String>.value("card")
                     ),
-                    planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
                     productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
                     reason: ResolutionCenterCaseReason.fraudulent,
                     refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
                     responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
                     status: ResolutionCenterCaseStatus.awaitingMerchant,
-                    updatedAt: "2026-01-01T12:00:00.000Z"
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
                 )
             ],
             pageInfo: ListResolutionCenterCasesResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -122,7 +158,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -140,6 +176,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -148,13 +202,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -167,7 +221,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -185,6 +239,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -193,13 +265,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.create(
             request: .init(
@@ -283,7 +355,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -301,6 +373,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -309,13 +399,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -328,7 +418,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -346,6 +436,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -354,13 +462,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.retrieve(
             id: "id",
@@ -377,7 +485,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -395,6 +503,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -403,13 +529,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -422,7 +548,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -440,6 +566,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -448,13 +592,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.accept(
             id: "id",
@@ -472,7 +616,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -490,6 +634,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -498,13 +660,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -517,7 +679,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -535,6 +697,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -543,13 +723,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.appeal(
             id: "id",
@@ -567,7 +747,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -585,6 +765,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -593,13 +791,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -612,7 +810,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -630,6 +828,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -638,13 +854,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.deny(
             id: "id",
@@ -680,7 +896,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -715,7 +931,7 @@ import WhopSDK
                 )
             ],
             pageInfo: EventsResolutionCenterCasesResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -736,7 +952,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -754,6 +970,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -762,13 +996,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -781,7 +1015,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -799,6 +1033,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -807,13 +1059,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.reply(
             id: "id",
@@ -831,7 +1083,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -849,6 +1101,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -857,13 +1127,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -876,7 +1146,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -894,6 +1164,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -902,13 +1190,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.requestInfo(
             id: "id",
@@ -926,7 +1214,7 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "amount": 249,
                   "available_actions": [
@@ -944,6 +1232,24 @@ import WhopSDK
                   "customer_appealed": false,
                   "escalated": false,
                   "id": "reso_xxxxxxxxxxxxxx",
+                  "line_items": [
+                    {
+                      "id": "li_xxxxxxxxxxxxxx",
+                      "label": "Ceramic Coating Package",
+                      "product_id": "prod_xxxxxxxxxxxxxx",
+                      "product_title": "Ceramic Coating Package",
+                      "quantity": 1,
+                      "sku": "sku",
+                      "subtotal": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "variant_id": "plan_xxxxxxxxxxxxxx",
+                      "variant_title": "Ceramic Coating — Full Vehicle"
+                    }
+                  ],
                   "outcome": "customer_won",
                   "payment": {
                     "card_brand": "visa",
@@ -952,13 +1258,13 @@ import WhopSDK
                     "id": "pay_xxxxxxxxxxxxxx",
                     "payment_method_type": "card"
                   },
-                  "plan_id": "plan_xxxxxxxxxxxxxx",
                   "product_id": "prod_xxxxxxxxxxxxxx",
                   "reason": "fraudulent",
                   "refund": "none",
                   "response_due_at": "2026-01-01T12:00:00.000Z",
                   "status": "awaiting_merchant",
-                  "updated_at": "2026-01-01T12:00:00.000Z"
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_id": "plan_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -971,7 +1277,7 @@ import WhopSDK
         let expectedResponse = ResolutionCenterCase(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             amount: 249,
             availableActions: [
@@ -989,6 +1295,24 @@ import WhopSDK
             customerAppealed: false,
             escalated: false,
             id: "reso_xxxxxxxxxxxxxx",
+            lineItems: [
+                ReceiptLineItem(
+                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                    label: Nullable<String>.value("Ceramic Coating Package"),
+                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                    quantity: 1,
+                    sku: Nullable<String>.value("sku"),
+                    subtotal: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                )
+            ],
             outcome: Nullable<ResolutionCenterCaseOutcome>.value(ResolutionCenterCaseOutcome.customerWon),
             payment: ResolutionPayment(
                 cardBrand: Nullable<String>.value("visa"),
@@ -997,13 +1321,13 @@ import WhopSDK
                 id: "pay_xxxxxxxxxxxxxx",
                 paymentMethodType: Nullable<String>.value("card")
             ),
-            planId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
             productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
             reason: ResolutionCenterCaseReason.fraudulent,
             refund: Nullable<ResolutionCenterCaseRefund>.value(ResolutionCenterCaseRefund.none),
             responseDueAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             status: ResolutionCenterCaseStatus.awaitingMerchant,
-            updatedAt: "2026-01-01T12:00:00.000Z"
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx")
         )
         let response = try await client.resolutionCenterCases.withdraw(
             id: "id",

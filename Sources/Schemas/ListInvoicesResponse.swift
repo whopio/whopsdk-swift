@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for PublicInvoice.
 public struct ListInvoicesResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [InvoiceListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let data: [Invoice]
+    public let pageInfo: ListInvoicesResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [InvoiceListItem],
-        pageInfo: PageInfo,
+        data: [Invoice],
+        pageInfo: ListInvoicesResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -21,8 +18,8 @@ public struct ListInvoicesResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([InvoiceListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.data = try container.decode([Invoice].self, forKey: .data)
+        self.pageInfo = try container.decode(ListInvoicesResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

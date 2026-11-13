@@ -11,6 +11,15 @@ import WhopSDK
                 {
                   "data": [
                     {
+                      "affiliate": {
+                        "id": "aff_xxxxxxxxxxxxxx",
+                        "user": {
+                          "id": "user_xxxxxxxxxxxxxx",
+                          "name": "Jack Sharkey the 3rd",
+                          "profile_pic": "https://ui-avatars.com/api/",
+                          "username": "newpromoaffiliate"
+                        }
+                      },
                       "amount_off": 0.1,
                       "churned_users_only": false,
                       "code": "welcome",
@@ -39,10 +48,12 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
-                    "start_cursor": "WyJjdXJzb3IiLDFd"
+                    "start_cursor": "WyJjdXJzb3IiLDFd",
+                    "total_count": 1,
+                    "total_count_capped": true
                   }
                 }
                 """#.utf8
@@ -56,6 +67,15 @@ import WhopSDK
         let expectedResponse = ListPromoCodesResponse(
             data: [
                 PromoCodeListItem(
+                    affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                        id: "aff_xxxxxxxxxxxxxx",
+                        user: PromoCodeAffiliateUser(
+                            id: "user_xxxxxxxxxxxxxx",
+                            name: Nullable<String>.value("Jack Sharkey the 3rd"),
+                            profilePic: "https://ui-avatars.com/api/",
+                            username: Nullable<String>.value("newpromoaffiliate")
+                        )
+                    )),
                     amountOff: 0.1,
                     churnedUsersOnly: false,
                     code: Nullable<String>.value("welcome"),
@@ -84,10 +104,12 @@ import WhopSDK
                 )
             ],
             pageInfo: ListPromoCodesResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
-                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
             )
         )
         let response = try await client.promoCodes.list(
@@ -95,7 +117,7 @@ import WhopSDK
             productIds: [
                 "prod_xxxxxxxxxxxxxx"
             ],
-            planIds: [
+            variantIds: [
                 "plan_xxxxxxxxxxxxxx"
             ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -111,7 +133,16 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
+                  },
+                  "affiliate": {
+                    "id": "aff_xxxxxxxxxxxxxx",
+                    "user": {
+                      "id": "user_xxxxxxxxxxxxxx",
+                      "name": "Jack Sharkey the 3rd",
+                      "profile_pic": "https://ui-avatars.com/api/",
+                      "username": "newpromoaffiliate"
+                    }
                   },
                   "amount_off": 0.25,
                   "churned_users_only": false,
@@ -150,8 +181,17 @@ import WhopSDK
         let expectedResponse = PromoCode(
             account: AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "aff_xxxxxxxxxxxxxx",
+                user: PromoCodeAffiliateUser(
+                    id: "user_xxxxxxxxxxxxxx",
+                    name: Nullable<String>.value("Jack Sharkey the 3rd"),
+                    profilePic: "https://ui-avatars.com/api/",
+                    username: Nullable<String>.value("newpromoaffiliate")
+                )
+            )),
             amountOff: 0.25,
             churnedUsersOnly: false,
             code: Nullable<String>.value("affiliate25"),
@@ -201,7 +241,16 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
+                  },
+                  "affiliate": {
+                    "id": "aff_xxxxxxxxxxxxxx",
+                    "user": {
+                      "id": "user_xxxxxxxxxxxxxx",
+                      "name": "Jack Sharkey the 3rd",
+                      "profile_pic": "https://ui-avatars.com/api/",
+                      "username": "newpromoaffiliate"
+                    }
                   },
                   "amount_off": 0.25,
                   "churned_users_only": false,
@@ -240,8 +289,17 @@ import WhopSDK
         let expectedResponse = PromoCode(
             account: AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "aff_xxxxxxxxxxxxxx",
+                user: PromoCodeAffiliateUser(
+                    id: "user_xxxxxxxxxxxxxx",
+                    name: Nullable<String>.value("Jack Sharkey the 3rd"),
+                    profilePic: "https://ui-avatars.com/api/",
+                    username: Nullable<String>.value("newpromoaffiliate")
+                )
+            )),
             amountOff: 0.25,
             churnedUsersOnly: false,
             code: Nullable<String>.value("affiliate25"),
@@ -311,7 +369,16 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
+                  },
+                  "affiliate": {
+                    "id": "aff_xxxxxxxxxxxxxx",
+                    "user": {
+                      "id": "user_xxxxxxxxxxxxxx",
+                      "name": "Jack Sharkey the 3rd",
+                      "profile_pic": "https://ui-avatars.com/api/",
+                      "username": "newpromoaffiliate"
+                    }
                   },
                   "amount_off": 0.25,
                   "churned_users_only": false,
@@ -350,8 +417,17 @@ import WhopSDK
         let expectedResponse = PromoCode(
             account: AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "aff_xxxxxxxxxxxxxx",
+                user: PromoCodeAffiliateUser(
+                    id: "user_xxxxxxxxxxxxxx",
+                    name: Nullable<String>.value("Jack Sharkey the 3rd"),
+                    profilePic: "https://ui-avatars.com/api/",
+                    username: Nullable<String>.value("newpromoaffiliate")
+                )
+            )),
             amountOff: 0.25,
             churnedUsersOnly: false,
             code: Nullable<String>.value("affiliate25"),
@@ -393,7 +469,16 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
+                  },
+                  "affiliate": {
+                    "id": "aff_xxxxxxxxxxxxxx",
+                    "user": {
+                      "id": "user_xxxxxxxxxxxxxx",
+                      "name": "Jack Sharkey the 3rd",
+                      "profile_pic": "https://ui-avatars.com/api/",
+                      "username": "newpromoaffiliate"
+                    }
                   },
                   "amount_off": 0.25,
                   "churned_users_only": false,
@@ -432,8 +517,17 @@ import WhopSDK
         let expectedResponse = PromoCode(
             account: AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "aff_xxxxxxxxxxxxxx",
+                user: PromoCodeAffiliateUser(
+                    id: "user_xxxxxxxxxxxxxx",
+                    name: Nullable<String>.value("Jack Sharkey the 3rd"),
+                    profilePic: "https://ui-avatars.com/api/",
+                    username: Nullable<String>.value("newpromoaffiliate")
+                )
+            )),
             amountOff: 0.25,
             churnedUsersOnly: false,
             code: Nullable<String>.value("affiliate25"),

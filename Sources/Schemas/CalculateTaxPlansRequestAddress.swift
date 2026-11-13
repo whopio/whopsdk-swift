@@ -1,18 +1,11 @@
 import Foundation
 
-/// Buyer billing address used for tax calculation. Provide either `address.country` or `ip_address`; include state and postal code when available for more accurate results.
 public struct CalculateTaxPlansRequestAddress: Codable, Hashable, Sendable {
-    /// City name.
     public let city: Nullable<String>?
-    /// ISO 3166-1 alpha-2 country code, such as `US`, `DE`, or `GB`.
     public let country: String
-    /// First line of the street address.
     public let line1: Nullable<String>?
-    /// Second line of the street address.
     public let line2: Nullable<String>?
-    /// Postal or ZIP code.
     public let postalCode: Nullable<String>?
-    /// State, province, or region code, such as `CA`.
     public let state: Nullable<String>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

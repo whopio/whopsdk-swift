@@ -12,10 +12,20 @@ import WhopSDK
                   "data": [
                     {
                       "delivery_type": "cash_pickup",
+                      "fee_structure": {
+                        "fixed": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "percentage": 4
+                      },
                       "icon_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/ach-bank-deposit",
                       "id": "podst_xxxxxxxxxxxxxx",
                       "name": "SEPA Bank Transfer",
                       "object": "supported_payout_method",
+                      "parent_id": "parent_id",
                       "quotes": [
                         {
                           "amount": 2500,
@@ -53,6 +63,7 @@ import WhopSDK
                         }
                       ],
                       "supports_instant_delivery": false,
+                      "supports_paypal_login": false,
                       "supports_standard_delivery": true
                     }
                   ],
@@ -75,10 +86,20 @@ import WhopSDK
             data: [
                 ListSupportedMethodsResponseDataItem(
                     deliveryType: ListSupportedMethodsResponseDataItemDeliveryType.cashPickup,
+                    feeStructure: ListSupportedMethodsResponseDataItemFeeStructure(
+                        fixed: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        percentage: 4
+                    ),
                     iconUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/ach-bank-deposit"),
                     id: "podst_xxxxxxxxxxxxxx",
                     name: Nullable<String>.value("SEPA Bank Transfer"),
                     object: ListSupportedMethodsResponseDataItemObject.supportedPayoutMethod,
+                    parentId: Nullable<String>.value("parent_id"),
                     quotes: Nullable<[ListSupportedMethodsResponseDataItemQuotesItem]>.value([
                         ListSupportedMethodsResponseDataItemQuotesItem(
                             amount: 2500,
@@ -116,6 +137,7 @@ import WhopSDK
                         )
                     ]),
                     supportsInstantDelivery: false,
+                    supportsPaypalLogin: Optional(false),
                     supportsStandardDelivery: true
                 )
             ],

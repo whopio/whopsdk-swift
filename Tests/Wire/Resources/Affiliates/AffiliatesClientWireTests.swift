@@ -85,7 +85,7 @@ import WhopSDK
         let response = try await client.affiliates.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -152,7 +152,7 @@ import WhopSDK
         )
         let response = try await client.affiliates.create(
             request: .init(
-                companyId: "biz_xxxxxxxxxxxxxx",
+                accountId: "biz_xxxxxxxxxxxxxx",
                 userIdentifier: "user_identifier"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

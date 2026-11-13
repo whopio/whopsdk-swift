@@ -11,46 +11,162 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "content": "Hey, are you available for a **quick call**?",
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "id": "id",
-                      "is_edited": true,
-                      "is_pinned": true,
-                      "mentions": [
-                        "mentions"
-                      ],
-                      "mentions_everyone": true,
-                      "message_type": "regular",
-                      "poll": {
-                        "options": null
-                      },
-                      "poll_votes": [
+                      "attachments": [
                         {
-                          "count": 42,
-                          "option_id": null
+                          "blurhash": null,
+                          "content_type": "application/pdf",
+                          "created_at": "2026-01-01T12:00:00.000Z",
+                          "duration_seconds": null,
+                          "filename": "evidence.pdf",
+                          "height": null,
+                          "id": "file_xxxxxxxxxxxxxx",
+                          "multipart_chunk_size": 5242880,
+                          "multipart_upload_id": "upload-id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            }
+                          ],
+                          "object": "file",
+                          "removed_by_moderation": false,
+                          "size": 9670,
+                          "upload_headers": {
+                            "key": "value"
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                          "visibility": "public",
+                          "waveform_url": null,
+                          "width": null
                         }
                       ],
+                      "author": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "author_is_team_member": false,
+                      "author_user_id": "user_xxxxxxxxxxxxxx",
+                      "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                      "content": "Content 1",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "custom_author": {
+                        "display_name": null,
+                        "profile_picture": {
+                          "blurhash": null,
+                          "content_type": "application/pdf",
+                          "created_at": "2026-01-01T12:00:00.000Z",
+                          "duration_seconds": null,
+                          "filename": "evidence.pdf",
+                          "height": null,
+                          "id": "file_xxxxxxxxxxxxxx",
+                          "multipart_chunk_size": 5242880,
+                          "multipart_upload_id": "upload-id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            }
+                          ],
+                          "object": "file",
+                          "removed_by_moderation": false,
+                          "size": 9670,
+                          "upload_headers": {
+                            "key": "value"
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                          "visibility": "public",
+                          "waveform_url": null,
+                          "width": null
+                        }
+                      },
+                      "deleted_at": "deleted_at",
+                      "edited": false,
+                      "embeds": [
+                        {
+                          "color": null,
+                          "description": null,
+                          "fields": [
+                            {
+                              "inline": true,
+                              "name": "name",
+                              "value": "value"
+                            }
+                          ],
+                          "footer": null,
+                          "image": null,
+                          "thumbnail": null,
+                          "timestamp_at": null,
+                          "title": null,
+                          "url": null
+                        }
+                      ],
+                      "gifs": [
+                        {
+                          "height": 1,
+                          "original_url": "original_url",
+                          "preview_url": "preview_url",
+                          "slug": "slug",
+                          "title": "title",
+                          "url": "url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                      "link_previews": [
+                        {
+                          "description": null,
+                          "favicon_url": null,
+                          "footer": null,
+                          "image_url": null,
+                          "processing": true,
+                          "title": null,
+                          "url": "url"
+                        }
+                      ],
+                      "mentioned_user_ids": [
+                        "mentioned_user_ids"
+                      ],
+                      "message_type": "regular",
+                      "pinned": false,
+                      "plain_content": "Content 1",
+                      "poll": {
+                        "options": [
+                          {
+                            "id": "1",
+                            "text": "A",
+                            "vote_count": 0,
+                            "voted": false
+                          }
+                        ]
+                      },
                       "reaction_counts": [
                         {
-                          "count": 42,
-                          "emoji": null
+                          "kind": "like",
+                          "reacted": true,
+                          "total_score": 1,
+                          "user_count": 1,
+                          "value": "❤️"
                         }
                       ],
                       "replying_to_message_id": "replying_to_message_id",
-                      "updated_at": "2023-12-01T05:00:00Z",
-                      "user": {
-                        "id": "user_xxxxxxxxxxxxx",
-                        "name": "John Doe",
-                        "username": "johndoe42"
-                      },
-                      "view_count": 42
+                      "replying_to_user_id": "replying_to_user_id",
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "view_count": 1
                     }
                   ],
                   "page_info": {
                     "end_cursor": "end_cursor",
-                    "has_next_page": true,
-                    "has_previous_page": true,
-                    "start_cursor": "start_cursor"
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "WyJjdXJzb3IiLDFd"
                   }
                 }
                 """#.utf8
@@ -63,52 +179,166 @@ import WhopSDK
         )
         let expectedResponse = ListMessagesResponse(
             data: [
-                MessageListItem(
-                    content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    id: "id",
-                    isEdited: true,
-                    isPinned: true,
-                    mentions: [
-                        "mentions"
-                    ],
-                    mentionsEveryone: true,
-                    messageType: DmsPostTypes.regular,
-                    poll: Nullable<MessageListItemPoll>.value(MessageListItemPoll(
-                        options: .null
-                    )),
-                    pollVotes: [
-                        MessageListItemPollVotesItem(
-                            count: 42,
-                            optionId: .null
+                ChatMessage(
+                    attachments: [
+                        File(
+                            blurhash: .null,
+                            contentType: Nullable<String>.value("application/pdf"),
+                            createdAt: "2026-01-01T12:00:00.000Z",
+                            durationSeconds: .null,
+                            filename: Nullable<String>.value("evidence.pdf"),
+                            height: .null,
+                            id: "file_xxxxxxxxxxxxxx",
+                            multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                            multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                                )
+                            ])),
+                            object: "file",
+                            removedByModeration: false,
+                            size: Nullable<Int>.value(9670),
+                            uploadHeaders: Optional([
+                                "key": JSONValue.string("value")
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                            url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: .null,
+                            width: .null
                         )
                     ],
+                    author: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )),
+                    authorIsTeamMember: false,
+                    authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+                    channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                    content: Nullable<String>.value("Content 1"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                        displayName: .null,
+                        profilePicture: Nullable<File>.value(File(
+                            blurhash: .null,
+                            contentType: Nullable<String>.value("application/pdf"),
+                            createdAt: "2026-01-01T12:00:00.000Z",
+                            durationSeconds: .null,
+                            filename: Nullable<String>.value("evidence.pdf"),
+                            height: .null,
+                            id: "file_xxxxxxxxxxxxxx",
+                            multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                            multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                                )
+                            ])),
+                            object: "file",
+                            removedByModeration: false,
+                            size: Nullable<Int>.value(9670),
+                            uploadHeaders: Optional([
+                                "key": JSONValue.string("value")
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                            url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: .null,
+                            width: .null
+                        ))
+                    )),
+                    deletedAt: Nullable<String>.value("deleted_at"),
+                    edited: false,
+                    embeds: [
+                        Embed(
+                            color: .null,
+                            description: .null,
+                            fields: [
+                                EmbedField(
+                                    inline: true,
+                                    name: "name",
+                                    value: "value"
+                                )
+                            ],
+                            footer: .null,
+                            image: .null,
+                            thumbnail: .null,
+                            timestampAt: .null,
+                            title: .null,
+                            url: .null
+                        )
+                    ],
+                    gifs: [
+                        Gif(
+                            height: 1,
+                            originalUrl: "original_url",
+                            previewUrl: "preview_url",
+                            slug: "slug",
+                            title: "title",
+                            url: "url",
+                            width: 1
+                        )
+                    ],
+                    id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+                    linkPreviews: [
+                        MessageLinkPreview(
+                            description: .null,
+                            faviconUrl: .null,
+                            footer: .null,
+                            imageUrl: .null,
+                            processing: true,
+                            title: .null,
+                            url: "url"
+                        )
+                    ],
+                    mentionedUserIds: [
+                        "mentioned_user_ids"
+                    ],
+                    messageType: ChatMessageMessageType.regular,
+                    pinned: false,
+                    plainContent: Nullable<String>.value("Content 1"),
+                    poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                        options: [
+                            ChatMessagePollOption(
+                                id: "1",
+                                text: "A",
+                                voteCount: 0,
+                                voted: false
+                            )
+                        ]
+                    )),
                     reactionCounts: [
-                        MessageListItemReactionCountsItem(
-                            count: 42,
-                            emoji: .null
+                        MessageReactionCount(
+                            kind: MessageReactionCountKind.like,
+                            reacted: true,
+                            totalScore: 1,
+                            userCount: 1,
+                            value: Nullable<String>.value("❤️")
                         )
                     ],
                     replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
-                    updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    user: MessageListItemUser(
-                        id: "user_xxxxxxxxxxxxx",
-                        name: Nullable<String>.value("John Doe"),
-                        username: "johndoe42"
-                    ),
-                    viewCount: Nullable<Int>.value(42)
+                    replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    viewCount: Nullable<Int>.value(1)
                 )
             ],
-            pageInfo: PageInfo(
+            pageInfo: ListMessagesResponsePageInfo(
                 endCursor: Nullable<String>.value("end_cursor"),
-                hasNextPage: true,
-                hasPreviousPage: true,
-                startCursor: Nullable<String>.value("start_cursor")
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
             )
         )
         let response = try await client.messages.list(
-            first: 42,
-            last: 42,
             channelId: "channel_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -121,44 +351,172 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "content": "Hey, are you available for a **quick call**?",
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "id": "id",
-                  "is_edited": true,
-                  "is_pinned": true,
-                  "mentions": [
-                    "mentions"
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
                   ],
-                  "mentions_everyone": true,
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
                   "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
                   "poll": {
                     "options": [
                       {
-                        "id": "id",
-                        "text": "text"
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
                       }
                     ]
                   },
-                  "poll_votes": [
-                    {
-                      "count": 42,
-                      "option_id": "option_id"
-                    }
-                  ],
                   "reaction_counts": [
                     {
-                      "count": 42,
-                      "emoji": "emoji"
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
                     }
                   ],
                   "replying_to_message_id": "replying_to_message_id",
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "user": {
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
-                  },
-                  "view_count": 42
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
                 }
                 """#.utf8
             )
@@ -168,50 +526,178 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Message(
-            content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            id: "id",
-            isEdited: true,
-            isPinned: true,
-            mentions: [
-                "mentions"
-            ],
-            mentionsEveryone: true,
-            messageType: DmsPostTypes.regular,
-            poll: Nullable<MessagePoll>.value(MessagePoll(
-                options: Nullable<[MessagePollOptionsItem]>.value([
-                    MessagePollOptionsItem(
-                        id: "id",
-                        text: "text"
-                    )
-                ])
-            )),
-            pollVotes: [
-                MessagePollVotesItem(
-                    count: 42,
-                    optionId: Nullable<String>.value("option_id")
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
                 )
             ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
             reactionCounts: [
-                MessageReactionCountsItem(
-                    count: 42,
-                    emoji: Nullable<String>.value("emoji")
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
                 )
             ],
             replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            user: MessageUser(
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
-            ),
-            viewCount: Nullable<Int>.value(42)
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
         )
         let response = try await client.messages.create(
             request: .init(
-                channelId: "channel_id",
-                content: "content"
+                channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                content: "New **message**"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -224,44 +710,172 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "content": "Hey, are you available for a **quick call**?",
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "id": "id",
-                  "is_edited": true,
-                  "is_pinned": true,
-                  "mentions": [
-                    "mentions"
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
                   ],
-                  "mentions_everyone": true,
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
                   "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
                   "poll": {
                     "options": [
                       {
-                        "id": "id",
-                        "text": "text"
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
                       }
                     ]
                   },
-                  "poll_votes": [
-                    {
-                      "count": 42,
-                      "option_id": "option_id"
-                    }
-                  ],
                   "reaction_counts": [
                     {
-                      "count": 42,
-                      "emoji": "emoji"
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
                     }
                   ],
                   "replying_to_message_id": "replying_to_message_id",
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "user": {
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
-                  },
-                  "view_count": 42
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
                 }
                 """#.utf8
             )
@@ -271,69 +885,175 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Message(
-            content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            id: "id",
-            isEdited: true,
-            isPinned: true,
-            mentions: [
-                "mentions"
-            ],
-            mentionsEveryone: true,
-            messageType: DmsPostTypes.regular,
-            poll: Nullable<MessagePoll>.value(MessagePoll(
-                options: Nullable<[MessagePollOptionsItem]>.value([
-                    MessagePollOptionsItem(
-                        id: "id",
-                        text: "text"
-                    )
-                ])
-            )),
-            pollVotes: [
-                MessagePollVotesItem(
-                    count: 42,
-                    optionId: Nullable<String>.value("option_id")
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
                 )
             ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
             reactionCounts: [
-                MessageReactionCountsItem(
-                    count: 42,
-                    emoji: Nullable<String>.value("emoji")
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
                 )
             ],
             replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            user: MessageUser(
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
-            ),
-            viewCount: Nullable<Int>.value(42)
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
         )
         let response = try await client.messages.retrieve(
-            id: "id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func delete1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                true
-                """#.utf8
-            )
-        )
-        let client = Whop(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.messages.delete(
             id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -346,44 +1066,172 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "content": "Hey, are you available for a **quick call**?",
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "id": "id",
-                  "is_edited": true,
-                  "is_pinned": true,
-                  "mentions": [
-                    "mentions"
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
                   ],
-                  "mentions_everyone": true,
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
                   "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
                   "poll": {
                     "options": [
                       {
-                        "id": "id",
-                        "text": "text"
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
                       }
                     ]
                   },
-                  "poll_votes": [
-                    {
-                      "count": 42,
-                      "option_id": "option_id"
-                    }
-                  ],
                   "reaction_counts": [
                     {
-                      "count": 42,
-                      "emoji": "emoji"
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
                     }
                   ],
                   "replying_to_message_id": "replying_to_message_id",
-                  "updated_at": "2023-12-01T05:00:00Z",
-                  "user": {
-                    "id": "user_xxxxxxxxxxxxx",
-                    "name": "John Doe",
-                    "username": "johndoe42"
-                  },
-                  "view_count": 42
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
                 }
                 """#.utf8
             )
@@ -393,49 +1241,2026 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Message(
-            content: Nullable<String>.value("Hey, are you available for a **quick call**?"),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            id: "id",
-            isEdited: true,
-            isPinned: true,
-            mentions: [
-                "mentions"
-            ],
-            mentionsEveryone: true,
-            messageType: DmsPostTypes.regular,
-            poll: Nullable<MessagePoll>.value(MessagePoll(
-                options: Nullable<[MessagePollOptionsItem]>.value([
-                    MessagePollOptionsItem(
-                        id: "id",
-                        text: "text"
-                    )
-                ])
-            )),
-            pollVotes: [
-                MessagePollVotesItem(
-                    count: 42,
-                    optionId: Nullable<String>.value("option_id")
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
                 )
             ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
             reactionCounts: [
-                MessageReactionCountsItem(
-                    count: 42,
-                    emoji: Nullable<String>.value("emoji")
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
                 )
             ],
             replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
-            updatedAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            user: MessageUser(
-                id: "user_xxxxxxxxxxxxx",
-                name: Nullable<String>.value("John Doe"),
-                username: "johndoe42"
-            ),
-            viewCount: Nullable<Int>.value(42)
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
         )
         let response = try await client.messages.update(
             id: "id",
             request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func pin1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  ],
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
+                  "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
+                  "poll": {
+                    "options": [
+                      {
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
+                      }
+                    ]
+                  },
+                  "reaction_counts": [
+                    {
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
+                    }
+                  ],
+                  "replying_to_message_id": "replying_to_message_id",
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                )
+            ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
+            reactionCounts: [
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
+                )
+            ],
+            replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
+        )
+        let response = try await client.messages.pin(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func react1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  ],
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
+                  "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
+                  "poll": {
+                    "options": [
+                      {
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
+                      }
+                    ]
+                  },
+                  "reaction_counts": [
+                    {
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
+                    }
+                  ],
+                  "replying_to_message_id": "replying_to_message_id",
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                )
+            ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
+            reactionCounts: [
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
+                )
+            ],
+            replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
+        )
+        let response = try await client.messages.react(
+            id: "id",
+            request: .init(emoji: "❤️"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listReactions1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "emoji": "👍",
+                      "user": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      },
+                      "user_id": "user_xxxxxxxxxxxxxx"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "WyJjdXJzb3IiLDFd"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListReactionsMessagesResponse(
+            data: [
+                ChatReaction(
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    emoji: "👍",
+                    user: UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    ),
+                    userId: "user_xxxxxxxxxxxxxx"
+                )
+            ],
+            pageInfo: ListReactionsMessagesResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.messages.listReactions(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unpin1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  ],
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
+                  "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
+                  "poll": {
+                    "options": [
+                      {
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
+                      }
+                    ]
+                  },
+                  "reaction_counts": [
+                    {
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
+                    }
+                  ],
+                  "replying_to_message_id": "replying_to_message_id",
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                )
+            ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
+            reactionCounts: [
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
+                )
+            ],
+            replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
+        )
+        let response = try await client.messages.unpin(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unreact1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  ],
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
+                  "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
+                  "poll": {
+                    "options": [
+                      {
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
+                      }
+                    ]
+                  },
+                  "reaction_counts": [
+                    {
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
+                    }
+                  ],
+                  "replying_to_message_id": "replying_to_message_id",
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                )
+            ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
+            reactionCounts: [
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
+                )
+            ],
+            replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
+        )
+        let response = try await client.messages.unreact(
+            id: "id",
+            request: .init(emoji: "❤️"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func vote1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "attachments": [
+                    {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  ],
+                  "author": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "author_is_team_member": false,
+                  "author_user_id": "user_xxxxxxxxxxxxxx",
+                  "channel_id": "feed_xxxxxxxxxxxxxxxxxxxxxx",
+                  "content": "Content 1",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "custom_author": {
+                    "display_name": "display_name",
+                    "profile_picture": {
+                      "blurhash": "blurhash",
+                      "content_type": "application/pdf",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "duration_seconds": 1.1,
+                      "filename": "evidence.pdf",
+                      "height": 1,
+                      "id": "file_xxxxxxxxxxxxxx",
+                      "multipart_chunk_size": 5242880,
+                      "multipart_upload_id": "upload-id",
+                      "multipart_upload_urls": [
+                        {
+                          "part_number": 1,
+                          "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        }
+                      ],
+                      "object": "file",
+                      "removed_by_moderation": false,
+                      "size": 9670,
+                      "upload_headers": {
+                        "key": "value"
+                      },
+                      "upload_status": "pending",
+                      "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                      "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "visibility": "public",
+                      "waveform_url": "waveform_url",
+                      "width": 1
+                    }
+                  },
+                  "deleted_at": "deleted_at",
+                  "edited": false,
+                  "embeds": [
+                    {
+                      "color": 1,
+                      "description": "description",
+                      "fields": [
+                        {
+                          "inline": true,
+                          "name": "name",
+                          "value": "value"
+                        }
+                      ],
+                      "footer": {
+                        "icon": null,
+                        "text": "text"
+                      },
+                      "image": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "thumbnail": {
+                        "blurhash": null,
+                        "height": null,
+                        "url": "url",
+                        "width": null
+                      },
+                      "timestamp_at": "timestamp_at",
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "gifs": [
+                    {
+                      "height": 1,
+                      "original_url": "original_url",
+                      "preview_url": "preview_url",
+                      "slug": "slug",
+                      "title": "title",
+                      "url": "url",
+                      "width": 1
+                    }
+                  ],
+                  "id": "post_xxxxxxxxxxxxxxxxxxxxxx",
+                  "link_previews": [
+                    {
+                      "description": "description",
+                      "favicon_url": "favicon_url",
+                      "footer": {
+                        "description": null,
+                        "icon_url": "icon_url",
+                        "title": "title"
+                      },
+                      "image_url": "image_url",
+                      "processing": true,
+                      "title": "title",
+                      "url": "url"
+                    }
+                  ],
+                  "mentioned_user_ids": [
+                    "mentioned_user_ids"
+                  ],
+                  "message_type": "regular",
+                  "pinned": false,
+                  "plain_content": "Content 1",
+                  "poll": {
+                    "options": [
+                      {
+                        "id": "1",
+                        "text": "A",
+                        "vote_count": 0,
+                        "voted": false
+                      }
+                    ]
+                  },
+                  "reaction_counts": [
+                    {
+                      "kind": "like",
+                      "reacted": true,
+                      "total_score": 1,
+                      "user_count": 1,
+                      "value": "❤️"
+                    }
+                  ],
+                  "replying_to_message_id": "replying_to_message_id",
+                  "replying_to_user_id": "replying_to_user_id",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "view_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ChatMessage(
+            attachments: [
+                File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                )
+            ],
+            author: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            )),
+            authorIsTeamMember: false,
+            authorUserId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
+            channelId: "feed_xxxxxxxxxxxxxxxxxxxxxx",
+            content: Nullable<String>.value("Content 1"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customAuthor: Nullable<MessageCustomAuthor>.value(MessageCustomAuthor(
+                displayName: Nullable<String>.value("display_name"),
+                profilePicture: Nullable<File>.value(File(
+                    blurhash: Nullable<String>.value("blurhash"),
+                    contentType: Nullable<String>.value("application/pdf"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    durationSeconds: Nullable<Double>.value(1.1),
+                    filename: Nullable<String>.value("evidence.pdf"),
+                    height: Nullable<Int>.value(1),
+                    id: "file_xxxxxxxxxxxxxx",
+                    multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                    multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                        FileMultipartUrl(
+                            partNumber: 1,
+                            url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                        )
+                    ])),
+                    object: "file",
+                    removedByModeration: false,
+                    size: Nullable<Int>.value(9670),
+                    uploadHeaders: Optional([
+                        "key": JSONValue.string("value")
+                    ]),
+                    uploadStatus: FileUploadStatus.pending,
+                    uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                    url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    visibility: FileVisibility.public,
+                    waveformUrl: Nullable<String>.value("waveform_url"),
+                    width: Nullable<Int>.value(1)
+                ))
+            )),
+            deletedAt: Nullable<String>.value("deleted_at"),
+            edited: false,
+            embeds: [
+                Embed(
+                    color: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    fields: [
+                        EmbedField(
+                            inline: true,
+                            name: "name",
+                            value: "value"
+                        )
+                    ],
+                    footer: Nullable<EmbedFooter>.value(EmbedFooter(
+                        icon: .null,
+                        text: "text"
+                    )),
+                    image: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    thumbnail: Nullable<EmbedImage>.value(EmbedImage(
+                        blurhash: .null,
+                        height: .null,
+                        url: "url",
+                        width: .null
+                    )),
+                    timestampAt: Nullable<String>.value("timestamp_at"),
+                    title: Nullable<String>.value("title"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            gifs: [
+                Gif(
+                    height: 1,
+                    originalUrl: "original_url",
+                    previewUrl: "preview_url",
+                    slug: "slug",
+                    title: "title",
+                    url: "url",
+                    width: 1
+                )
+            ],
+            id: "post_xxxxxxxxxxxxxxxxxxxxxx",
+            linkPreviews: [
+                MessageLinkPreview(
+                    description: Nullable<String>.value("description"),
+                    faviconUrl: Nullable<String>.value("favicon_url"),
+                    footer: Nullable<MessageLinkFooter>.value(MessageLinkFooter(
+                        description: .null,
+                        iconUrl: "icon_url",
+                        title: "title"
+                    )),
+                    imageUrl: Nullable<String>.value("image_url"),
+                    processing: true,
+                    title: Nullable<String>.value("title"),
+                    url: "url"
+                )
+            ],
+            mentionedUserIds: [
+                "mentioned_user_ids"
+            ],
+            messageType: ChatMessageMessageType.regular,
+            pinned: false,
+            plainContent: Nullable<String>.value("Content 1"),
+            poll: Nullable<ChatMessagePoll>.value(ChatMessagePoll(
+                options: [
+                    ChatMessagePollOption(
+                        id: "1",
+                        text: "A",
+                        voteCount: 0,
+                        voted: false
+                    )
+                ]
+            )),
+            reactionCounts: [
+                MessageReactionCount(
+                    kind: MessageReactionCountKind.like,
+                    reacted: true,
+                    totalScore: 1,
+                    userCount: 1,
+                    value: Nullable<String>.value("❤️")
+                )
+            ],
+            replyingToMessageId: Nullable<String>.value("replying_to_message_id"),
+            replyingToUserId: Nullable<String>.value("replying_to_user_id"),
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            viewCount: Nullable<Int>.value(1)
+        )
+        let response = try await client.messages.vote(
+            id: "id",
+            request: .init(pollOptionId: "2"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

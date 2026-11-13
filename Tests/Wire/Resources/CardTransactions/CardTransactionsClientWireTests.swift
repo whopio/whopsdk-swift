@@ -19,6 +19,7 @@ import WhopSDK
                       "declined_reason": "account_credit_limit_exceeded",
                       "id": "citx_xxxxxxxxxxxxxx",
                       "international": true,
+                      "levels_points": 1.1,
                       "local_amount": 22.5,
                       "merchant_category": "Car Care Supplies",
                       "merchant_category_code": "5533",
@@ -31,7 +32,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -56,6 +57,7 @@ import WhopSDK
                     declinedReason: Nullable<String>.value("account_credit_limit_exceeded"),
                     id: "citx_xxxxxxxxxxxxxx",
                     international: true,
+                    levelsPoints: Nullable<Double>.value(1.1),
                     localAmount: Nullable<Double>.value(22.5),
                     merchantCategory: Nullable<String>.value("Car Care Supplies"),
                     merchantCategoryCode: Nullable<String>.value("5533"),
@@ -68,7 +70,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListCardTransactionsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -103,6 +105,7 @@ import WhopSDK
                   "declined_reason": "account_credit_limit_exceeded",
                   "id": "citx_xxxxxxxxxxxxxx",
                   "international": true,
+                  "levels_points": 1.1,
                   "local_amount": 22.5,
                   "merchant_category": "Car Care Supplies",
                   "merchant_category_code": "5533",
@@ -130,6 +133,7 @@ import WhopSDK
             declinedReason: Nullable<String>.value("account_credit_limit_exceeded"),
             id: "citx_xxxxxxxxxxxxxx",
             international: true,
+            levelsPoints: Nullable<Double>.value(1.1),
             localAmount: Nullable<Double>.value(22.5),
             merchantCategory: Nullable<String>.value("Car Care Supplies"),
             merchantCategoryCode: Nullable<String>.value("5533"),

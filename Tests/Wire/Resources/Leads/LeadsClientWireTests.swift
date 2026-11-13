@@ -83,9 +83,9 @@ import WhopSDK
         let response = try await client.leads.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
             createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -149,7 +149,7 @@ import WhopSDK
             )
         )
         let response = try await client.leads.create(
-            request: .init(companyId: "biz_xxxxxxxxxxxxxx"),
+            request: .init(accountId: "biz_xxxxxxxxxxxxxx"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

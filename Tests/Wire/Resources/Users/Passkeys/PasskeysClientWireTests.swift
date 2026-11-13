@@ -86,7 +86,8 @@ import WhopSDK
                 attestationObject: "YXR0ZXN0YXRpb24",
                 clientDataJson: "Y2xpZW50LWRhdGE",
                 credentialId: "bmV3LWNyZWRlbnRpYWw",
-                nickname: "Work laptop"
+                nickname: "Work laptop",
+                userHandle: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -99,7 +100,59 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "challenge": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                  "challenge": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "creation_options": {
+                    "attestation": "none",
+                    "authenticator_selection": {
+                      "require_resident_key": true,
+                      "resident_key": "required",
+                      "user_verification": "required"
+                    },
+                    "challenge": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                    "exclude_credentials": [
+                      {
+                        "id": "bGFwdG9wLWNyZWRlbnRpYWw",
+                        "transports": [
+                          "ble"
+                        ],
+                        "type": "public-key"
+                      }
+                    ],
+                    "extensions": {
+                      "cred_props": true
+                    },
+                    "pub_key_cred_params": [
+                      {
+                        "alg": -257,
+                        "type": "public-key"
+                      }
+                    ],
+                    "rp": {
+                      "id": "localhost",
+                      "name": "Whop"
+                    },
+                    "timeout": 300000,
+                    "user": {
+                      "display_name": "Jack Sharkey the 1st",
+                      "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                      "name": "marcus@shinetime.example"
+                    }
+                  },
+                  "request_options": {
+                    "allow_credentials": [
+                      {
+                        "id": "bGFwdG9wLWNyZWRlbnRpYWw",
+                        "transports": [
+                          "ble"
+                        ],
+                        "type": "public-key"
+                      }
+                    ],
+                    "challenge": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                    "rp_id": "localhost",
+                    "timeout": 300000,
+                    "user_verification": "required"
+                  }
                 }
                 """#.utf8
             )
@@ -109,8 +162,60 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ChallengePasskeysResponse(
-            challenge: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        let expectedResponse = PasskeyChallenge(
+            challenge: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            creationOptions: Nullable<PasskeyCreationOptions>.value(PasskeyCreationOptions(
+                attestation: PasskeyCreationOptionsAttestation.none,
+                authenticatorSelection: PasskeyAuthenticatorSelection(
+                    requireResidentKey: true,
+                    residentKey: PasskeyAuthenticatorSelectionResidentKey.required,
+                    userVerification: PasskeyAuthenticatorSelectionUserVerification.required
+                ),
+                challenge: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                excludeCredentials: [
+                    PasskeyCredentialDescriptor(
+                        id: "bGFwdG9wLWNyZWRlbnRpYWw",
+                        transports: [
+                            PasskeyCredentialDescriptorTransportsItem.ble
+                        ],
+                        type: PasskeyCredentialDescriptorType.publicKey
+                    )
+                ],
+                extensions: PasskeyCreationExtensions(
+                    credProps: true
+                ),
+                pubKeyCredParams: [
+                    PasskeyCredentialParameter(
+                        alg: -257,
+                        type: PasskeyCredentialParameterType.publicKey
+                    )
+                ],
+                rp: PasskeyRelyingParty(
+                    id: "localhost",
+                    name: "Whop"
+                ),
+                timeout: 300000,
+                user: PasskeyUserEntity(
+                    displayName: "Jack Sharkey the 1st",
+                    id: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                    name: "marcus@shinetime.example"
+                )
+            )),
+            requestOptions: Nullable<PasskeyRequestOptions>.value(PasskeyRequestOptions(
+                allowCredentials: [
+                    PasskeyCredentialDescriptor(
+                        id: "bGFwdG9wLWNyZWRlbnRpYWw",
+                        transports: [
+                            PasskeyCredentialDescriptorTransportsItem.ble
+                        ],
+                        type: PasskeyCredentialDescriptorType.publicKey
+                    )
+                ],
+                challenge: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                rpId: "localhost",
+                timeout: 300000,
+                userVerification: PasskeyRequestOptionsUserVerification.required
+            ))
         )
         let response = try await client.users.passkeys.challenge(
             request: .init(challengeType: .registration),

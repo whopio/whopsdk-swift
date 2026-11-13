@@ -11,7 +11,50 @@ import WhopSDK
                 {
                   "data": [
                     {
+                      "account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "route": "biz_xxxxxxxxxxxxxx",
+                        "title": "Shine Time Auto Detailing"
+                      },
+                      "average_review_rating": 0,
                       "created_at": "2026-01-01T12:00:00.000Z",
+                      "default_variant": {
+                        "billing_period": 30,
+                        "billing_type": "renewal",
+                        "expiration_days": null,
+                        "id": "plan_xxxxxxxxxxxxxx",
+                        "initial_price": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "renewal_price": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "title": null,
+                        "trial_period_days": null,
+                        "unlimited_stock": true,
+                        "visibility": "visible"
+                      },
+                      "description": "empower rich infrastructures",
+                      "experiences": [
+                        {
+                          "app": {
+                            "icon": {
+                              "url": "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                            },
+                            "id": "app_xxxxxxxxxxxxxx",
+                            "name": "Chat"
+                          },
+                          "id": "exp_xxxxxxxxxxxxxx",
+                          "logo_url": null,
+                          "name": "Name1"
+                        }
+                      ],
                       "external_identifier": "SHINE-CERAMIC-01",
                       "gallery_images": [
                         {
@@ -20,28 +63,41 @@ import WhopSDK
                           "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                         }
                       ],
-                      "headline": "A showroom finish that lasts three years",
+                      "headline": "thought leadership",
                       "id": "prod_xxxxxxxxxxxxxx",
                       "labels": [
                         "courses"
                       ],
+                      "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                       "member_count": 0,
                       "metadata": {
                         "key": "value"
                       },
                       "published_reviews_count": 0,
-                      "route": "ceramic-coating-package",
-                      "title": "Ceramic Coating Package",
+                      "route": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "title": "Wash Club Tee",
                       "updated_at": "2026-01-01T12:00:00.000Z",
+                      "variant_attributes": {
+                        "color": [
+                          "Blue",
+                          "Red"
+                        ],
+                        "size": [
+                          "L",
+                          "S"
+                        ]
+                      },
                       "verified": false,
                       "visibility": "visible"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
-                    "start_cursor": "WyJjdXJzb3IiLDFd"
+                    "start_cursor": "WyJjdXJzb3IiLDFd",
+                    "total_count": 1,
+                    "total_count_capped": true
                   }
                 }
                 """#.utf8
@@ -55,7 +111,50 @@ import WhopSDK
         let expectedResponse = ListProductsResponse(
             data: [
                 ProductListItem(
+                    account: Nullable<[String: JSONValue]>.value([
+                        "id": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
+                        "route": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
+                        "title": JSONValue.string("Shine Time Auto Detailing")
+                    ]),
+                    averageReviewRating: 0,
                     createdAt: "2026-01-01T12:00:00.000Z",
+                    defaultVariant: Nullable<ProductPublicVariant>.value(ProductPublicVariant(
+                        billingPeriod: Nullable<Double>.value(30),
+                        billingType: ProductPublicVariantBillingType.renewal,
+                        expirationDays: .null,
+                        id: "plan_xxxxxxxxxxxxxx",
+                        initialPrice: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        renewalPrice: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        title: .null,
+                        trialPeriodDays: .null,
+                        unlimitedStock: true,
+                        visibility: ProductPublicVariantVisibility.visible
+                    )),
+                    description: Nullable<String>.value("empower rich infrastructures"),
+                    experiences: [
+                        ProductExperience(
+                            app: ProductExperienceApp(
+                                icon: AppIcon(
+                                    url: "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                                ),
+                                id: "app_xxxxxxxxxxxxxx",
+                                name: "Chat"
+                            ),
+                            id: "exp_xxxxxxxxxxxxxx",
+                            logoUrl: .null,
+                            name: "Name1"
+                        )
+                    ],
                     externalIdentifier: Nullable<String>.value("SHINE-CERAMIC-01"),
                     galleryImages: [
                         ProductGalleryImage(
@@ -64,32 +163,44 @@ import WhopSDK
                             url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
                         )
                     ],
-                    headline: Nullable<String>.value("A showroom finish that lasts three years"),
+                    headline: Nullable<String>.value("thought leadership"),
                     id: "prod_xxxxxxxxxxxxxx",
                     labels: [
                         "courses"
                     ],
+                    logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                     memberCount: 0,
                     metadata: Nullable<[String: JSONValue]>.value([
                         "key": JSONValue.string("value")
                     ]),
                     publishedReviewsCount: 0,
-                    route: "ceramic-coating-package",
-                    title: "Ceramic Coating Package",
+                    route: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    title: "Wash Club Tee",
                     updatedAt: "2026-01-01T12:00:00.000Z",
+                    variantAttributes: Nullable<[String: JSONValue]>.value([
+                        "color": JSONValue.array([
+                            JSONValue.string("Blue"),
+                            JSONValue.string("Red")
+                        ]), 
+                        "size": JSONValue.array([
+                            JSONValue.string("L"),
+                            JSONValue.string("S")
+                        ])
+                    ]),
                     verified: false,
                     visibility: Nullable<String>.value("visible")
                 )
             ],
             pageInfo: ListProductsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
-                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
             )
         )
         let response = try await client.products.list(
-            accountId: "account_id",
             visibilities: [
                 "visible"
             ],
@@ -112,11 +223,48 @@ import WhopSDK
                     "route": "biz_xxxxxxxxxxxxxx",
                     "title": "Shine Time Auto Detailing"
                   },
+                  "average_review_rating": 0,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "custom_cta": "get_access",
                   "custom_cta_url": "https://shinetime.example/book",
                   "custom_statement_descriptor": "WHOP*SHINETIME",
+                  "default_variant": {
+                    "billing_period": 30,
+                    "billing_type": "renewal",
+                    "expiration_days": 1.1,
+                    "id": "plan_xxxxxxxxxxxxxx",
+                    "initial_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "renewal_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "title": "title",
+                    "trial_period_days": 1.1,
+                    "unlimited_stock": true,
+                    "visibility": "visible"
+                  },
                   "description": "Full interior extraction, leather conditioning, and an ozone odor treatment.",
+                  "experiences": [
+                    {
+                      "app": {
+                        "icon": {
+                          "url": "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        },
+                        "id": "app_xxxxxxxxxxxxxx",
+                        "name": "Chat"
+                      },
+                      "id": "exp_xxxxxxxxxxxxxx",
+                      "logo_url": "logo_url",
+                      "name": "Name1"
+                    }
+                  ],
                   "external_identifier": "SHINE-CERAMIC-01",
                   "gallery_images": [
                     {
@@ -132,6 +280,7 @@ import WhopSDK
                   "labels": [
                     "interior"
                   ],
+                  "logo_url": "logo_url",
                   "marketplace_status": "not_available",
                   "member_affiliate_percentage": 5,
                   "member_affiliate_status": "enabled",
@@ -154,6 +303,104 @@ import WhopSDK
                   "route": "interior-deep-clean",
                   "title": "Interior Deep Clean",
                   "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_attributes": {
+                    "color": [
+                      "Red",
+                      "Blue"
+                    ],
+                    "size": [
+                      "M",
+                      "S"
+                    ]
+                  },
+                  "variants": [
+                    {
+                      "account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "title": "Acme Bookkeeping"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": false,
+                      "attributes": {
+                        "color": "Blue",
+                        "size": "S"
+                      },
+                      "billing_period": 30,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 3,
+                      "cancel_discount_percentage": 20,
+                      "checkout_styling": {
+                        "background_color": "#0f172a",
+                        "border_style": "rounded",
+                        "button_color": "#f59e0b",
+                        "font_family": "roboto"
+                      },
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "currency": "usd",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "field_xxxxxxxxxxxxxx",
+                          "name": "Link your website or main social profile",
+                          "order": 1,
+                          "placeholder": "https://",
+                          "required": false
+                        }
+                      ],
+                      "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                      "expiration_days": 365,
+                      "formatted_price": "$59.00 / month",
+                      "id": "plan_xxxxxxxxxxxxxx",
+                      "image": {
+                        "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      },
+                      "initial_price": 0,
+                      "initial_price_due": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
+                      "invoice": {
+                        "key": "value"
+                      },
+                      "member_count": 0,
+                      "metadata": {
+                        "custom_cta": "subscribe",
+                        "custom_cta_url": "https://shinetime.example/wash-club"
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "crypto"
+                        ],
+                        "enabled": [
+                          "card"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "product": {
+                        "id": "prod_xxxxxxxxxxxxxx",
+                        "title": "Ceramic Coating Package"
+                      },
+                      "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                      "release_method": "buy_now",
+                      "renewal_price": 59,
+                      "sku": "CERAMIC-COATING-S-BLUE",
+                      "split_pay_required_payments": 4,
+                      "stock": 0,
+                      "strike_through_initial_price": 99,
+                      "strike_through_renewal_price": 79,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "Unlimited Wash Club",
+                      "trial_period_days": 7,
+                      "unlimited_stock": false,
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "visibility": "visible"
+                    }
+                  ],
                   "verified": false,
                   "visibility": "visible"
                 }
@@ -171,11 +418,48 @@ import WhopSDK
                 "route": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Shine Time Auto Detailing")
             ]),
+            averageReviewRating: 0,
             createdAt: "2026-01-01T12:00:00.000Z",
             customCta: Nullable<ProductCustomCta>.value(ProductCustomCta.getAccess),
             customCtaUrl: Nullable<String>.value("https://shinetime.example/book"),
             customStatementDescriptor: Nullable<String>.value("WHOP*SHINETIME"),
+            defaultVariant: Nullable<ProductPublicVariant>.value(ProductPublicVariant(
+                billingPeriod: Nullable<Double>.value(30),
+                billingType: ProductPublicVariantBillingType.renewal,
+                expirationDays: Nullable<Double>.value(1.1),
+                id: "plan_xxxxxxxxxxxxxx",
+                initialPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                renewalPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                title: Nullable<String>.value("title"),
+                trialPeriodDays: Nullable<Double>.value(1.1),
+                unlimitedStock: true,
+                visibility: ProductPublicVariantVisibility.visible
+            )),
             description: Nullable<String>.value("Full interior extraction, leather conditioning, and an ozone odor treatment."),
+            experiences: [
+                ProductExperience(
+                    app: ProductExperienceApp(
+                        icon: AppIcon(
+                            url: "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        ),
+                        id: "app_xxxxxxxxxxxxxx",
+                        name: "Chat"
+                    ),
+                    id: "exp_xxxxxxxxxxxxxx",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: "Name1"
+                )
+            ],
             externalIdentifier: Nullable<String>.value("SHINE-CERAMIC-01"),
             galleryImages: [
                 ProductGalleryImage(
@@ -191,6 +475,7 @@ import WhopSDK
             labels: [
                 "interior"
             ],
+            logoUrl: Nullable<String>.value("logo_url"),
             marketplaceStatus: ProductMarketplaceStatus.notAvailable,
             memberAffiliatePercentage: Nullable<Double>.value(5),
             memberAffiliateStatus: Nullable<ProductMemberAffiliateStatus>.value(ProductMemberAffiliateStatus.enabled),
@@ -213,6 +498,104 @@ import WhopSDK
             route: "interior-deep-clean",
             title: "Interior Deep Clean",
             updatedAt: "2026-01-01T12:00:00.000Z",
+            variantAttributes: Nullable<[String: JSONValue]>.value([
+                "color": JSONValue.array([
+                    JSONValue.string("Red"),
+                    JSONValue.string("Blue")
+                ]), 
+                "size": JSONValue.array([
+                    JSONValue.string("M"),
+                    JSONValue.string("S")
+                ])
+            ]),
+            variants: Nullable<[VariantListItem]>.value([
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "biz_xxxxxxxxxxxxxx",
+                        title: "Acme Bookkeeping"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: false,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "color": Nullable<String>.value("Blue"), 
+                        "size": Nullable<String>.value("S")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(30),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(3),
+                    cancelDiscountPercentage: Nullable<Double>.value(20),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "background_color": JSONValue.string("#0f172a"), 
+                        "border_style": JSONValue.string("rounded"), 
+                        "button_color": JSONValue.string("#f59e0b"), 
+                        "font_family": JSONValue.string("roboto")
+                    ]),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    currency: "usd",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "field_xxxxxxxxxxxxxx",
+                            name: "Link your website or main social profile",
+                            order: 1,
+                            placeholder: Nullable<String>.value("https://"),
+                            required: false
+                        )
+                    ],
+                    description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+                    expirationDays: Nullable<Double>.value(365),
+                    formattedPrice: "$59.00 / month",
+                    id: "plan_xxxxxxxxxxxxxx",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
+                        "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                    ]),
+                    initialPrice: 0,
+                    initialPriceDue: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    memberCount: Nullable<Double>.value(0),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "custom_cta": JSONValue.string("subscribe"), 
+                        "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "disabled": JSONValue.array([
+                            JSONValue.string("crypto")
+                        ]), 
+                        "enabled": JSONValue.array([
+                            JSONValue.string("card")
+                        ]), 
+                        "include_platform_defaults": JSONValue.bool(true)
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
+                        "title": JSONValue.string("Ceramic Coating Package")
+                    ]),
+                    purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 59,
+                    sku: Nullable<String>.value("CERAMIC-COATING-S-BLUE"),
+                    splitPayRequiredPayments: Nullable<Double>.value(4),
+                    stock: Nullable<Double>.value(0),
+                    strikeThroughInitialPrice: Nullable<Double>.value(99),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(79),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("Unlimited Wash Club"),
+                    trialPeriodDays: Nullable<Double>.value(7),
+                    unlimitedStock: false,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    visibility: VariantListItemVisibility.visible
+                )
+            ]),
             verified: false,
             visibility: Nullable<String>.value("visible")
         )
@@ -234,11 +617,48 @@ import WhopSDK
                     "route": "biz_xxxxxxxxxxxxxx",
                     "title": "Shine Time Auto Detailing"
                   },
+                  "average_review_rating": 0,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "custom_cta": "get_access",
                   "custom_cta_url": "https://shinetime.example/book",
                   "custom_statement_descriptor": "WHOP*SHINETIME",
+                  "default_variant": {
+                    "billing_period": 30,
+                    "billing_type": "renewal",
+                    "expiration_days": 1.1,
+                    "id": "plan_xxxxxxxxxxxxxx",
+                    "initial_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "renewal_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "title": "title",
+                    "trial_period_days": 1.1,
+                    "unlimited_stock": true,
+                    "visibility": "visible"
+                  },
                   "description": "Full interior extraction, leather conditioning, and an ozone odor treatment.",
+                  "experiences": [
+                    {
+                      "app": {
+                        "icon": {
+                          "url": "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        },
+                        "id": "app_xxxxxxxxxxxxxx",
+                        "name": "Chat"
+                      },
+                      "id": "exp_xxxxxxxxxxxxxx",
+                      "logo_url": "logo_url",
+                      "name": "Name1"
+                    }
+                  ],
                   "external_identifier": "SHINE-CERAMIC-01",
                   "gallery_images": [
                     {
@@ -254,6 +674,7 @@ import WhopSDK
                   "labels": [
                     "interior"
                   ],
+                  "logo_url": "logo_url",
                   "marketplace_status": "not_available",
                   "member_affiliate_percentage": 5,
                   "member_affiliate_status": "enabled",
@@ -276,6 +697,104 @@ import WhopSDK
                   "route": "interior-deep-clean",
                   "title": "Interior Deep Clean",
                   "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_attributes": {
+                    "color": [
+                      "Red",
+                      "Blue"
+                    ],
+                    "size": [
+                      "M",
+                      "S"
+                    ]
+                  },
+                  "variants": [
+                    {
+                      "account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "title": "Acme Bookkeeping"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": false,
+                      "attributes": {
+                        "color": "Blue",
+                        "size": "S"
+                      },
+                      "billing_period": 30,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 3,
+                      "cancel_discount_percentage": 20,
+                      "checkout_styling": {
+                        "background_color": "#0f172a",
+                        "border_style": "rounded",
+                        "button_color": "#f59e0b",
+                        "font_family": "roboto"
+                      },
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "currency": "usd",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "field_xxxxxxxxxxxxxx",
+                          "name": "Link your website or main social profile",
+                          "order": 1,
+                          "placeholder": "https://",
+                          "required": false
+                        }
+                      ],
+                      "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                      "expiration_days": 365,
+                      "formatted_price": "$59.00 / month",
+                      "id": "plan_xxxxxxxxxxxxxx",
+                      "image": {
+                        "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      },
+                      "initial_price": 0,
+                      "initial_price_due": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
+                      "invoice": {
+                        "key": "value"
+                      },
+                      "member_count": 0,
+                      "metadata": {
+                        "custom_cta": "subscribe",
+                        "custom_cta_url": "https://shinetime.example/wash-club"
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "crypto"
+                        ],
+                        "enabled": [
+                          "card"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "product": {
+                        "id": "prod_xxxxxxxxxxxxxx",
+                        "title": "Ceramic Coating Package"
+                      },
+                      "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                      "release_method": "buy_now",
+                      "renewal_price": 59,
+                      "sku": "CERAMIC-COATING-S-BLUE",
+                      "split_pay_required_payments": 4,
+                      "stock": 0,
+                      "strike_through_initial_price": 99,
+                      "strike_through_renewal_price": 79,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "Unlimited Wash Club",
+                      "trial_period_days": 7,
+                      "unlimited_stock": false,
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "visibility": "visible"
+                    }
+                  ],
                   "verified": false,
                   "visibility": "visible"
                 }
@@ -293,11 +812,48 @@ import WhopSDK
                 "route": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Shine Time Auto Detailing")
             ]),
+            averageReviewRating: 0,
             createdAt: "2026-01-01T12:00:00.000Z",
             customCta: Nullable<ProductCustomCta>.value(ProductCustomCta.getAccess),
             customCtaUrl: Nullable<String>.value("https://shinetime.example/book"),
             customStatementDescriptor: Nullable<String>.value("WHOP*SHINETIME"),
+            defaultVariant: Nullable<ProductPublicVariant>.value(ProductPublicVariant(
+                billingPeriod: Nullable<Double>.value(30),
+                billingType: ProductPublicVariantBillingType.renewal,
+                expirationDays: Nullable<Double>.value(1.1),
+                id: "plan_xxxxxxxxxxxxxx",
+                initialPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                renewalPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                title: Nullable<String>.value("title"),
+                trialPeriodDays: Nullable<Double>.value(1.1),
+                unlimitedStock: true,
+                visibility: ProductPublicVariantVisibility.visible
+            )),
             description: Nullable<String>.value("Full interior extraction, leather conditioning, and an ozone odor treatment."),
+            experiences: [
+                ProductExperience(
+                    app: ProductExperienceApp(
+                        icon: AppIcon(
+                            url: "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        ),
+                        id: "app_xxxxxxxxxxxxxx",
+                        name: "Chat"
+                    ),
+                    id: "exp_xxxxxxxxxxxxxx",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: "Name1"
+                )
+            ],
             externalIdentifier: Nullable<String>.value("SHINE-CERAMIC-01"),
             galleryImages: [
                 ProductGalleryImage(
@@ -313,6 +869,7 @@ import WhopSDK
             labels: [
                 "interior"
             ],
+            logoUrl: Nullable<String>.value("logo_url"),
             marketplaceStatus: ProductMarketplaceStatus.notAvailable,
             memberAffiliatePercentage: Nullable<Double>.value(5),
             memberAffiliateStatus: Nullable<ProductMemberAffiliateStatus>.value(ProductMemberAffiliateStatus.enabled),
@@ -335,6 +892,104 @@ import WhopSDK
             route: "interior-deep-clean",
             title: "Interior Deep Clean",
             updatedAt: "2026-01-01T12:00:00.000Z",
+            variantAttributes: Nullable<[String: JSONValue]>.value([
+                "color": JSONValue.array([
+                    JSONValue.string("Red"),
+                    JSONValue.string("Blue")
+                ]), 
+                "size": JSONValue.array([
+                    JSONValue.string("M"),
+                    JSONValue.string("S")
+                ])
+            ]),
+            variants: Nullable<[VariantListItem]>.value([
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "biz_xxxxxxxxxxxxxx",
+                        title: "Acme Bookkeeping"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: false,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "color": Nullable<String>.value("Blue"), 
+                        "size": Nullable<String>.value("S")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(30),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(3),
+                    cancelDiscountPercentage: Nullable<Double>.value(20),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "background_color": JSONValue.string("#0f172a"), 
+                        "border_style": JSONValue.string("rounded"), 
+                        "button_color": JSONValue.string("#f59e0b"), 
+                        "font_family": JSONValue.string("roboto")
+                    ]),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    currency: "usd",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "field_xxxxxxxxxxxxxx",
+                            name: "Link your website or main social profile",
+                            order: 1,
+                            placeholder: Nullable<String>.value("https://"),
+                            required: false
+                        )
+                    ],
+                    description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+                    expirationDays: Nullable<Double>.value(365),
+                    formattedPrice: "$59.00 / month",
+                    id: "plan_xxxxxxxxxxxxxx",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
+                        "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                    ]),
+                    initialPrice: 0,
+                    initialPriceDue: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    memberCount: Nullable<Double>.value(0),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "custom_cta": JSONValue.string("subscribe"), 
+                        "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "disabled": JSONValue.array([
+                            JSONValue.string("crypto")
+                        ]), 
+                        "enabled": JSONValue.array([
+                            JSONValue.string("card")
+                        ]), 
+                        "include_platform_defaults": JSONValue.bool(true)
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
+                        "title": JSONValue.string("Ceramic Coating Package")
+                    ]),
+                    purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 59,
+                    sku: Nullable<String>.value("CERAMIC-COATING-S-BLUE"),
+                    splitPayRequiredPayments: Nullable<Double>.value(4),
+                    stock: Nullable<Double>.value(0),
+                    strikeThroughInitialPrice: Nullable<Double>.value(99),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(79),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("Unlimited Wash Club"),
+                    trialPeriodDays: Nullable<Double>.value(7),
+                    unlimitedStock: false,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    visibility: VariantListItemVisibility.visible
+                )
+            ]),
             verified: false,
             visibility: Nullable<String>.value("visible")
         )
@@ -384,11 +1039,48 @@ import WhopSDK
                     "route": "biz_xxxxxxxxxxxxxx",
                     "title": "Shine Time Auto Detailing"
                   },
+                  "average_review_rating": 0,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "custom_cta": "get_access",
                   "custom_cta_url": "https://shinetime.example/book",
                   "custom_statement_descriptor": "WHOP*SHINETIME",
+                  "default_variant": {
+                    "billing_period": 30,
+                    "billing_type": "renewal",
+                    "expiration_days": 1.1,
+                    "id": "plan_xxxxxxxxxxxxxx",
+                    "initial_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "renewal_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "title": "title",
+                    "trial_period_days": 1.1,
+                    "unlimited_stock": true,
+                    "visibility": "visible"
+                  },
                   "description": "Full interior extraction, leather conditioning, and an ozone odor treatment.",
+                  "experiences": [
+                    {
+                      "app": {
+                        "icon": {
+                          "url": "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        },
+                        "id": "app_xxxxxxxxxxxxxx",
+                        "name": "Chat"
+                      },
+                      "id": "exp_xxxxxxxxxxxxxx",
+                      "logo_url": "logo_url",
+                      "name": "Name1"
+                    }
+                  ],
                   "external_identifier": "SHINE-CERAMIC-01",
                   "gallery_images": [
                     {
@@ -404,6 +1096,7 @@ import WhopSDK
                   "labels": [
                     "interior"
                   ],
+                  "logo_url": "logo_url",
                   "marketplace_status": "not_available",
                   "member_affiliate_percentage": 5,
                   "member_affiliate_status": "enabled",
@@ -426,6 +1119,104 @@ import WhopSDK
                   "route": "interior-deep-clean",
                   "title": "Interior Deep Clean",
                   "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_attributes": {
+                    "color": [
+                      "Red",
+                      "Blue"
+                    ],
+                    "size": [
+                      "M",
+                      "S"
+                    ]
+                  },
+                  "variants": [
+                    {
+                      "account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "title": "Acme Bookkeeping"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": false,
+                      "attributes": {
+                        "color": "Blue",
+                        "size": "S"
+                      },
+                      "billing_period": 30,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 3,
+                      "cancel_discount_percentage": 20,
+                      "checkout_styling": {
+                        "background_color": "#0f172a",
+                        "border_style": "rounded",
+                        "button_color": "#f59e0b",
+                        "font_family": "roboto"
+                      },
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "currency": "usd",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "field_xxxxxxxxxxxxxx",
+                          "name": "Link your website or main social profile",
+                          "order": 1,
+                          "placeholder": "https://",
+                          "required": false
+                        }
+                      ],
+                      "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                      "expiration_days": 365,
+                      "formatted_price": "$59.00 / month",
+                      "id": "plan_xxxxxxxxxxxxxx",
+                      "image": {
+                        "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      },
+                      "initial_price": 0,
+                      "initial_price_due": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
+                      "invoice": {
+                        "key": "value"
+                      },
+                      "member_count": 0,
+                      "metadata": {
+                        "custom_cta": "subscribe",
+                        "custom_cta_url": "https://shinetime.example/wash-club"
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "crypto"
+                        ],
+                        "enabled": [
+                          "card"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "product": {
+                        "id": "prod_xxxxxxxxxxxxxx",
+                        "title": "Ceramic Coating Package"
+                      },
+                      "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                      "release_method": "buy_now",
+                      "renewal_price": 59,
+                      "sku": "CERAMIC-COATING-S-BLUE",
+                      "split_pay_required_payments": 4,
+                      "stock": 0,
+                      "strike_through_initial_price": 99,
+                      "strike_through_renewal_price": 79,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "Unlimited Wash Club",
+                      "trial_period_days": 7,
+                      "unlimited_stock": false,
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "visibility": "visible"
+                    }
+                  ],
                   "verified": false,
                   "visibility": "visible"
                 }
@@ -443,11 +1234,48 @@ import WhopSDK
                 "route": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Shine Time Auto Detailing")
             ]),
+            averageReviewRating: 0,
             createdAt: "2026-01-01T12:00:00.000Z",
             customCta: Nullable<ProductCustomCta>.value(ProductCustomCta.getAccess),
             customCtaUrl: Nullable<String>.value("https://shinetime.example/book"),
             customStatementDescriptor: Nullable<String>.value("WHOP*SHINETIME"),
+            defaultVariant: Nullable<ProductPublicVariant>.value(ProductPublicVariant(
+                billingPeriod: Nullable<Double>.value(30),
+                billingType: ProductPublicVariantBillingType.renewal,
+                expirationDays: Nullable<Double>.value(1.1),
+                id: "plan_xxxxxxxxxxxxxx",
+                initialPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                renewalPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                title: Nullable<String>.value("title"),
+                trialPeriodDays: Nullable<Double>.value(1.1),
+                unlimitedStock: true,
+                visibility: ProductPublicVariantVisibility.visible
+            )),
             description: Nullable<String>.value("Full interior extraction, leather conditioning, and an ozone odor treatment."),
+            experiences: [
+                ProductExperience(
+                    app: ProductExperienceApp(
+                        icon: AppIcon(
+                            url: "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        ),
+                        id: "app_xxxxxxxxxxxxxx",
+                        name: "Chat"
+                    ),
+                    id: "exp_xxxxxxxxxxxxxx",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: "Name1"
+                )
+            ],
             externalIdentifier: Nullable<String>.value("SHINE-CERAMIC-01"),
             galleryImages: [
                 ProductGalleryImage(
@@ -463,6 +1291,7 @@ import WhopSDK
             labels: [
                 "interior"
             ],
+            logoUrl: Nullable<String>.value("logo_url"),
             marketplaceStatus: ProductMarketplaceStatus.notAvailable,
             memberAffiliatePercentage: Nullable<Double>.value(5),
             memberAffiliateStatus: Nullable<ProductMemberAffiliateStatus>.value(ProductMemberAffiliateStatus.enabled),
@@ -485,6 +1314,104 @@ import WhopSDK
             route: "interior-deep-clean",
             title: "Interior Deep Clean",
             updatedAt: "2026-01-01T12:00:00.000Z",
+            variantAttributes: Nullable<[String: JSONValue]>.value([
+                "color": JSONValue.array([
+                    JSONValue.string("Red"),
+                    JSONValue.string("Blue")
+                ]), 
+                "size": JSONValue.array([
+                    JSONValue.string("M"),
+                    JSONValue.string("S")
+                ])
+            ]),
+            variants: Nullable<[VariantListItem]>.value([
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "biz_xxxxxxxxxxxxxx",
+                        title: "Acme Bookkeeping"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: false,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "color": Nullable<String>.value("Blue"), 
+                        "size": Nullable<String>.value("S")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(30),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(3),
+                    cancelDiscountPercentage: Nullable<Double>.value(20),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "background_color": JSONValue.string("#0f172a"), 
+                        "border_style": JSONValue.string("rounded"), 
+                        "button_color": JSONValue.string("#f59e0b"), 
+                        "font_family": JSONValue.string("roboto")
+                    ]),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    currency: "usd",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "field_xxxxxxxxxxxxxx",
+                            name: "Link your website or main social profile",
+                            order: 1,
+                            placeholder: Nullable<String>.value("https://"),
+                            required: false
+                        )
+                    ],
+                    description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+                    expirationDays: Nullable<Double>.value(365),
+                    formattedPrice: "$59.00 / month",
+                    id: "plan_xxxxxxxxxxxxxx",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
+                        "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                    ]),
+                    initialPrice: 0,
+                    initialPriceDue: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    memberCount: Nullable<Double>.value(0),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "custom_cta": JSONValue.string("subscribe"), 
+                        "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "disabled": JSONValue.array([
+                            JSONValue.string("crypto")
+                        ]), 
+                        "enabled": JSONValue.array([
+                            JSONValue.string("card")
+                        ]), 
+                        "include_platform_defaults": JSONValue.bool(true)
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
+                        "title": JSONValue.string("Ceramic Coating Package")
+                    ]),
+                    purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 59,
+                    sku: Nullable<String>.value("CERAMIC-COATING-S-BLUE"),
+                    splitPayRequiredPayments: Nullable<Double>.value(4),
+                    stock: Nullable<Double>.value(0),
+                    strikeThroughInitialPrice: Nullable<Double>.value(99),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(79),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("Unlimited Wash Club"),
+                    trialPeriodDays: Nullable<Double>.value(7),
+                    unlimitedStock: false,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    visibility: VariantListItemVisibility.visible
+                )
+            ]),
             verified: false,
             visibility: Nullable<String>.value("visible")
         )
@@ -507,11 +1434,48 @@ import WhopSDK
                     "route": "biz_xxxxxxxxxxxxxx",
                     "title": "Shine Time Auto Detailing"
                   },
+                  "average_review_rating": 0,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "custom_cta": "get_access",
                   "custom_cta_url": "https://shinetime.example/book",
                   "custom_statement_descriptor": "WHOP*SHINETIME",
+                  "default_variant": {
+                    "billing_period": 30,
+                    "billing_type": "renewal",
+                    "expiration_days": 1.1,
+                    "id": "plan_xxxxxxxxxxxxxx",
+                    "initial_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "renewal_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "title": "title",
+                    "trial_period_days": 1.1,
+                    "unlimited_stock": true,
+                    "visibility": "visible"
+                  },
                   "description": "Full interior extraction, leather conditioning, and an ozone odor treatment.",
+                  "experiences": [
+                    {
+                      "app": {
+                        "icon": {
+                          "url": "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        },
+                        "id": "app_xxxxxxxxxxxxxx",
+                        "name": "Chat"
+                      },
+                      "id": "exp_xxxxxxxxxxxxxx",
+                      "logo_url": "logo_url",
+                      "name": "Name1"
+                    }
+                  ],
                   "external_identifier": "SHINE-CERAMIC-01",
                   "gallery_images": [
                     {
@@ -527,6 +1491,7 @@ import WhopSDK
                   "labels": [
                     "interior"
                   ],
+                  "logo_url": "logo_url",
                   "marketplace_status": "not_available",
                   "member_affiliate_percentage": 5,
                   "member_affiliate_status": "enabled",
@@ -549,6 +1514,104 @@ import WhopSDK
                   "route": "interior-deep-clean",
                   "title": "Interior Deep Clean",
                   "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_attributes": {
+                    "color": [
+                      "Red",
+                      "Blue"
+                    ],
+                    "size": [
+                      "M",
+                      "S"
+                    ]
+                  },
+                  "variants": [
+                    {
+                      "account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "title": "Acme Bookkeeping"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": false,
+                      "attributes": {
+                        "color": "Blue",
+                        "size": "S"
+                      },
+                      "billing_period": 30,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 3,
+                      "cancel_discount_percentage": 20,
+                      "checkout_styling": {
+                        "background_color": "#0f172a",
+                        "border_style": "rounded",
+                        "button_color": "#f59e0b",
+                        "font_family": "roboto"
+                      },
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "currency": "usd",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "field_xxxxxxxxxxxxxx",
+                          "name": "Link your website or main social profile",
+                          "order": 1,
+                          "placeholder": "https://",
+                          "required": false
+                        }
+                      ],
+                      "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                      "expiration_days": 365,
+                      "formatted_price": "$59.00 / month",
+                      "id": "plan_xxxxxxxxxxxxxx",
+                      "image": {
+                        "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      },
+                      "initial_price": 0,
+                      "initial_price_due": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
+                      "invoice": {
+                        "key": "value"
+                      },
+                      "member_count": 0,
+                      "metadata": {
+                        "custom_cta": "subscribe",
+                        "custom_cta_url": "https://shinetime.example/wash-club"
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "crypto"
+                        ],
+                        "enabled": [
+                          "card"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "product": {
+                        "id": "prod_xxxxxxxxxxxxxx",
+                        "title": "Ceramic Coating Package"
+                      },
+                      "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                      "release_method": "buy_now",
+                      "renewal_price": 59,
+                      "sku": "CERAMIC-COATING-S-BLUE",
+                      "split_pay_required_payments": 4,
+                      "stock": 0,
+                      "strike_through_initial_price": 99,
+                      "strike_through_renewal_price": 79,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "Unlimited Wash Club",
+                      "trial_period_days": 7,
+                      "unlimited_stock": false,
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "visibility": "visible"
+                    }
+                  ],
                   "verified": false,
                   "visibility": "visible"
                 }
@@ -566,11 +1629,48 @@ import WhopSDK
                 "route": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Shine Time Auto Detailing")
             ]),
+            averageReviewRating: 0,
             createdAt: "2026-01-01T12:00:00.000Z",
             customCta: Nullable<ProductCustomCta>.value(ProductCustomCta.getAccess),
             customCtaUrl: Nullable<String>.value("https://shinetime.example/book"),
             customStatementDescriptor: Nullable<String>.value("WHOP*SHINETIME"),
+            defaultVariant: Nullable<ProductPublicVariant>.value(ProductPublicVariant(
+                billingPeriod: Nullable<Double>.value(30),
+                billingType: ProductPublicVariantBillingType.renewal,
+                expirationDays: Nullable<Double>.value(1.1),
+                id: "plan_xxxxxxxxxxxxxx",
+                initialPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                renewalPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                title: Nullable<String>.value("title"),
+                trialPeriodDays: Nullable<Double>.value(1.1),
+                unlimitedStock: true,
+                visibility: ProductPublicVariantVisibility.visible
+            )),
             description: Nullable<String>.value("Full interior extraction, leather conditioning, and an ozone odor treatment."),
+            experiences: [
+                ProductExperience(
+                    app: ProductExperienceApp(
+                        icon: AppIcon(
+                            url: "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        ),
+                        id: "app_xxxxxxxxxxxxxx",
+                        name: "Chat"
+                    ),
+                    id: "exp_xxxxxxxxxxxxxx",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: "Name1"
+                )
+            ],
             externalIdentifier: Nullable<String>.value("SHINE-CERAMIC-01"),
             galleryImages: [
                 ProductGalleryImage(
@@ -586,6 +1686,7 @@ import WhopSDK
             labels: [
                 "interior"
             ],
+            logoUrl: Nullable<String>.value("logo_url"),
             marketplaceStatus: ProductMarketplaceStatus.notAvailable,
             memberAffiliatePercentage: Nullable<Double>.value(5),
             memberAffiliateStatus: Nullable<ProductMemberAffiliateStatus>.value(ProductMemberAffiliateStatus.enabled),
@@ -608,6 +1709,104 @@ import WhopSDK
             route: "interior-deep-clean",
             title: "Interior Deep Clean",
             updatedAt: "2026-01-01T12:00:00.000Z",
+            variantAttributes: Nullable<[String: JSONValue]>.value([
+                "color": JSONValue.array([
+                    JSONValue.string("Red"),
+                    JSONValue.string("Blue")
+                ]), 
+                "size": JSONValue.array([
+                    JSONValue.string("M"),
+                    JSONValue.string("S")
+                ])
+            ]),
+            variants: Nullable<[VariantListItem]>.value([
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "biz_xxxxxxxxxxxxxx",
+                        title: "Acme Bookkeeping"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: false,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "color": Nullable<String>.value("Blue"), 
+                        "size": Nullable<String>.value("S")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(30),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(3),
+                    cancelDiscountPercentage: Nullable<Double>.value(20),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "background_color": JSONValue.string("#0f172a"), 
+                        "border_style": JSONValue.string("rounded"), 
+                        "button_color": JSONValue.string("#f59e0b"), 
+                        "font_family": JSONValue.string("roboto")
+                    ]),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    currency: "usd",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "field_xxxxxxxxxxxxxx",
+                            name: "Link your website or main social profile",
+                            order: 1,
+                            placeholder: Nullable<String>.value("https://"),
+                            required: false
+                        )
+                    ],
+                    description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+                    expirationDays: Nullable<Double>.value(365),
+                    formattedPrice: "$59.00 / month",
+                    id: "plan_xxxxxxxxxxxxxx",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
+                        "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                    ]),
+                    initialPrice: 0,
+                    initialPriceDue: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    memberCount: Nullable<Double>.value(0),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "custom_cta": JSONValue.string("subscribe"), 
+                        "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "disabled": JSONValue.array([
+                            JSONValue.string("crypto")
+                        ]), 
+                        "enabled": JSONValue.array([
+                            JSONValue.string("card")
+                        ]), 
+                        "include_platform_defaults": JSONValue.bool(true)
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
+                        "title": JSONValue.string("Ceramic Coating Package")
+                    ]),
+                    purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 59,
+                    sku: Nullable<String>.value("CERAMIC-COATING-S-BLUE"),
+                    splitPayRequiredPayments: Nullable<Double>.value(4),
+                    stock: Nullable<Double>.value(0),
+                    strikeThroughInitialPrice: Nullable<Double>.value(99),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(79),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("Unlimited Wash Club"),
+                    trialPeriodDays: Nullable<Double>.value(7),
+                    unlimitedStock: false,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    visibility: VariantListItemVisibility.visible
+                )
+            ]),
             verified: false,
             visibility: Nullable<String>.value("visible")
         )
@@ -629,11 +1828,48 @@ import WhopSDK
                     "route": "biz_xxxxxxxxxxxxxx",
                     "title": "Shine Time Auto Detailing"
                   },
+                  "average_review_rating": 0,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "custom_cta": "get_access",
                   "custom_cta_url": "https://shinetime.example/book",
                   "custom_statement_descriptor": "WHOP*SHINETIME",
+                  "default_variant": {
+                    "billing_period": 30,
+                    "billing_type": "renewal",
+                    "expiration_days": 1.1,
+                    "id": "plan_xxxxxxxxxxxxxx",
+                    "initial_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "renewal_price": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "title": "title",
+                    "trial_period_days": 1.1,
+                    "unlimited_stock": true,
+                    "visibility": "visible"
+                  },
                   "description": "Full interior extraction, leather conditioning, and an ozone odor treatment.",
+                  "experiences": [
+                    {
+                      "app": {
+                        "icon": {
+                          "url": "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        },
+                        "id": "app_xxxxxxxxxxxxxx",
+                        "name": "Chat"
+                      },
+                      "id": "exp_xxxxxxxxxxxxxx",
+                      "logo_url": "logo_url",
+                      "name": "Name1"
+                    }
+                  ],
                   "external_identifier": "SHINE-CERAMIC-01",
                   "gallery_images": [
                     {
@@ -649,6 +1885,7 @@ import WhopSDK
                   "labels": [
                     "interior"
                   ],
+                  "logo_url": "logo_url",
                   "marketplace_status": "not_available",
                   "member_affiliate_percentage": 5,
                   "member_affiliate_status": "enabled",
@@ -671,6 +1908,104 @@ import WhopSDK
                   "route": "interior-deep-clean",
                   "title": "Interior Deep Clean",
                   "updated_at": "2026-01-01T12:00:00.000Z",
+                  "variant_attributes": {
+                    "color": [
+                      "Red",
+                      "Blue"
+                    ],
+                    "size": [
+                      "M",
+                      "S"
+                    ]
+                  },
+                  "variants": [
+                    {
+                      "account": {
+                        "id": "biz_xxxxxxxxxxxxxx",
+                        "title": "Acme Bookkeeping"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": false,
+                      "attributes": {
+                        "color": "Blue",
+                        "size": "S"
+                      },
+                      "billing_period": 30,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 3,
+                      "cancel_discount_percentage": 20,
+                      "checkout_styling": {
+                        "background_color": "#0f172a",
+                        "border_style": "rounded",
+                        "button_color": "#f59e0b",
+                        "font_family": "roboto"
+                      },
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "currency": "usd",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "field_xxxxxxxxxxxxxx",
+                          "name": "Link your website or main social profile",
+                          "order": 1,
+                          "placeholder": "https://",
+                          "required": false
+                        }
+                      ],
+                      "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                      "expiration_days": 365,
+                      "formatted_price": "$59.00 / month",
+                      "id": "plan_xxxxxxxxxxxxxx",
+                      "image": {
+                        "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      },
+                      "initial_price": 0,
+                      "initial_price_due": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
+                      "invoice": {
+                        "key": "value"
+                      },
+                      "member_count": 0,
+                      "metadata": {
+                        "custom_cta": "subscribe",
+                        "custom_cta_url": "https://shinetime.example/wash-club"
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "crypto"
+                        ],
+                        "enabled": [
+                          "card"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "product": {
+                        "id": "prod_xxxxxxxxxxxxxx",
+                        "title": "Ceramic Coating Package"
+                      },
+                      "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                      "release_method": "buy_now",
+                      "renewal_price": 59,
+                      "sku": "CERAMIC-COATING-S-BLUE",
+                      "split_pay_required_payments": 4,
+                      "stock": 0,
+                      "strike_through_initial_price": 99,
+                      "strike_through_renewal_price": 79,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "Unlimited Wash Club",
+                      "trial_period_days": 7,
+                      "unlimited_stock": false,
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "visibility": "visible"
+                    }
+                  ],
                   "verified": false,
                   "visibility": "visible"
                 }
@@ -688,11 +2023,48 @@ import WhopSDK
                 "route": JSONValue.string("biz_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Shine Time Auto Detailing")
             ]),
+            averageReviewRating: 0,
             createdAt: "2026-01-01T12:00:00.000Z",
             customCta: Nullable<ProductCustomCta>.value(ProductCustomCta.getAccess),
             customCtaUrl: Nullable<String>.value("https://shinetime.example/book"),
             customStatementDescriptor: Nullable<String>.value("WHOP*SHINETIME"),
+            defaultVariant: Nullable<ProductPublicVariant>.value(ProductPublicVariant(
+                billingPeriod: Nullable<Double>.value(30),
+                billingType: ProductPublicVariantBillingType.renewal,
+                expirationDays: Nullable<Double>.value(1.1),
+                id: "plan_xxxxxxxxxxxxxx",
+                initialPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                renewalPrice: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                title: Nullable<String>.value("title"),
+                trialPeriodDays: Nullable<Double>.value(1.1),
+                unlimitedStock: true,
+                visibility: ProductPublicVariantVisibility.visible
+            )),
             description: Nullable<String>.value("Full interior extraction, leather conditioning, and an ozone odor treatment."),
+            experiences: [
+                ProductExperience(
+                    app: ProductExperienceApp(
+                        icon: AppIcon(
+                            url: "https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev/custom-perk-icon.svg"
+                        ),
+                        id: "app_xxxxxxxxxxxxxx",
+                        name: "Chat"
+                    ),
+                    id: "exp_xxxxxxxxxxxxxx",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: "Name1"
+                )
+            ],
             externalIdentifier: Nullable<String>.value("SHINE-CERAMIC-01"),
             galleryImages: [
                 ProductGalleryImage(
@@ -708,6 +2080,7 @@ import WhopSDK
             labels: [
                 "interior"
             ],
+            logoUrl: Nullable<String>.value("logo_url"),
             marketplaceStatus: ProductMarketplaceStatus.notAvailable,
             memberAffiliatePercentage: Nullable<Double>.value(5),
             memberAffiliateStatus: Nullable<ProductMemberAffiliateStatus>.value(ProductMemberAffiliateStatus.enabled),
@@ -730,6 +2103,104 @@ import WhopSDK
             route: "interior-deep-clean",
             title: "Interior Deep Clean",
             updatedAt: "2026-01-01T12:00:00.000Z",
+            variantAttributes: Nullable<[String: JSONValue]>.value([
+                "color": JSONValue.array([
+                    JSONValue.string("Red"),
+                    JSONValue.string("Blue")
+                ]), 
+                "size": JSONValue.array([
+                    JSONValue.string("M"),
+                    JSONValue.string("S")
+                ])
+            ]),
+            variants: Nullable<[VariantListItem]>.value([
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "biz_xxxxxxxxxxxxxx",
+                        title: "Acme Bookkeeping"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: false,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "color": Nullable<String>.value("Blue"), 
+                        "size": Nullable<String>.value("S")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(30),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(3),
+                    cancelDiscountPercentage: Nullable<Double>.value(20),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "background_color": JSONValue.string("#0f172a"), 
+                        "border_style": JSONValue.string("rounded"), 
+                        "button_color": JSONValue.string("#f59e0b"), 
+                        "font_family": JSONValue.string("roboto")
+                    ]),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    currency: "usd",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "field_xxxxxxxxxxxxxx",
+                            name: "Link your website or main social profile",
+                            order: 1,
+                            placeholder: Nullable<String>.value("https://"),
+                            required: false
+                        )
+                    ],
+                    description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+                    expirationDays: Nullable<Double>.value(365),
+                    formattedPrice: "$59.00 / month",
+                    id: "plan_xxxxxxxxxxxxxx",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
+                        "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                    ]),
+                    initialPrice: 0,
+                    initialPriceDue: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    memberCount: Nullable<Double>.value(0),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "custom_cta": JSONValue.string("subscribe"), 
+                        "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "disabled": JSONValue.array([
+                            JSONValue.string("crypto")
+                        ]), 
+                        "enabled": JSONValue.array([
+                            JSONValue.string("card")
+                        ]), 
+                        "include_platform_defaults": JSONValue.bool(true)
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
+                        "title": JSONValue.string("Ceramic Coating Package")
+                    ]),
+                    purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 59,
+                    sku: Nullable<String>.value("CERAMIC-COATING-S-BLUE"),
+                    splitPayRequiredPayments: Nullable<Double>.value(4),
+                    stock: Nullable<Double>.value(0),
+                    strikeThroughInitialPrice: Nullable<Double>.value(99),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(79),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("Unlimited Wash Club"),
+                    trialPeriodDays: Nullable<Double>.value(7),
+                    unlimitedStock: false,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    visibility: VariantListItemVisibility.visible
+                )
+            ]),
             verified: false,
             visibility: Nullable<String>.value("visible")
         )

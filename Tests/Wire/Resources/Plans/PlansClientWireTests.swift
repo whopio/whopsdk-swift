@@ -13,17 +13,17 @@ import WhopSDK
                     {
                       "account": {
                         "id": "biz_xxxxxxxxxxxxxx",
-                        "title": "Shine Time Auto Detailing"
+                        "title": "Acme Bookkeeping"
                       },
                       "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": false,
+                      "attributes": {},
                       "billing_period": 30,
-                      "cancel_discount_intervals": 3,
-                      "cancel_discount_percentage": 20,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 1.1,
+                      "cancel_discount_percentage": 1.1,
                       "checkout_styling": {
-                        "background_color": "#0f172a",
-                        "border_style": "rounded",
-                        "button_color": "#f59e0b",
-                        "font_family": "roboto"
+                        "key": "value"
                       },
                       "created_at": "2026-01-01T12:00:00.000Z",
                       "currency": "usd",
@@ -31,41 +31,39 @@ import WhopSDK
                         {
                           "field_type": "text",
                           "id": "field_xxxxxxxxxxxxxx",
-                          "name": "Vehicle make and model",
-                          "order": 0,
-                          "placeholder": "2021 Audi S5",
-                          "required": true
+                          "name": "Link your website or main social profile",
+                          "order": 1,
+                          "placeholder": "https://",
+                          "required": false
                         }
                       ],
-                      "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
-                      "expiration_days": 365,
+                      "description": "description",
+                      "expiration_days": 1.1,
                       "formatted_price": "$59.00 / month",
                       "id": "plan_xxxxxxxxxxxxxx",
                       "image": {
-                        "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
-                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                        "key": "value"
                       },
                       "initial_price": 0,
+                      "initial_price_due": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
                       "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
                       "invoice": {
-                        "id": "inv_xxxxxxxxxxxxxx"
+                        "key": "value"
                       },
                       "member_count": 0,
                       "metadata": {
                         "custom_cta": "subscribe",
                         "custom_cta_url": "https://shinetime.example/wash-club"
                       },
-                      "offer_cancel_discount": true,
+                      "offer_cancel_discount": false,
                       "payment_method_configuration": {
-                        "disabled": [
-                          "crypto"
-                        ],
-                        "enabled": [
-                          "card"
-                        ],
-                        "include_platform_defaults": true
+                        "key": "value"
                       },
-                      "plan_type": "renewal",
                       "product": {
                         "id": "prod_xxxxxxxxxxxxxx",
                         "title": "Ceramic Coating Package"
@@ -73,20 +71,21 @@ import WhopSDK
                       "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
                       "release_method": "buy_now",
                       "renewal_price": 59,
-                      "split_pay_required_payments": 4,
+                      "sku": "sku",
+                      "split_pay_required_payments": 1.1,
                       "stock": 0,
-                      "strike_through_initial_price": 99,
-                      "strike_through_renewal_price": 79,
+                      "strike_through_initial_price": 1.1,
+                      "strike_through_renewal_price": 1.1,
                       "three_ds_level": "mandate_challenge",
                       "title": "Unlimited Wash Club",
-                      "trial_period_days": 7,
+                      "trial_period_days": 1.1,
                       "unlimited_stock": false,
                       "updated_at": "2026-01-01T12:00:00.000Z",
                       "visibility": "visible"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -105,17 +104,17 @@ import WhopSDK
                 PlanListItem(
                     account: Nullable<AccountSummary>.value(AccountSummary(
                         id: "biz_xxxxxxxxxxxxxx",
-                        title: "Shine Time Auto Detailing"
+                        title: "Acme Bookkeeping"
                     )),
                     adaptivePricingEnabled: true,
+                    allowMultipleQuantity: false,
+                    attributes: Nullable<[String: Nullable<String>]>.value([:]),
                     billingPeriod: Nullable<Double>.value(30),
-                    cancelDiscountIntervals: Nullable<Double>.value(3),
-                    cancelDiscountPercentage: Nullable<Double>.value(20),
+                    billingType: PlanListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(1.1),
+                    cancelDiscountPercentage: Nullable<Double>.value(1.1),
                     checkoutStyling: Nullable<[String: JSONValue]>.value([
-                        "background_color": JSONValue.string("#0f172a"), 
-                        "border_style": JSONValue.string("rounded"), 
-                        "button_color": JSONValue.string("#f59e0b"), 
-                        "font_family": JSONValue.string("roboto")
+                        "key": JSONValue.string("value")
                     ]),
                     createdAt: "2026-01-01T12:00:00.000Z",
                     currency: "usd",
@@ -123,41 +122,39 @@ import WhopSDK
                         PlanCustomField(
                             fieldType: PlanCustomFieldFieldType.text,
                             id: "field_xxxxxxxxxxxxxx",
-                            name: "Vehicle make and model",
-                            order: 0,
-                            placeholder: Nullable<String>.value("2021 Audi S5"),
-                            required: true
+                            name: "Link your website or main social profile",
+                            order: 1,
+                            placeholder: Nullable<String>.value("https://"),
+                            required: false
                         )
                     ],
-                    description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
-                    expirationDays: Nullable<Double>.value(365),
+                    description: Nullable<String>.value("description"),
+                    expirationDays: Nullable<Double>.value(1.1),
                     formattedPrice: "$59.00 / month",
                     id: "plan_xxxxxxxxxxxxxx",
                     image: Nullable<[String: JSONValue]>.value([
-                        "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
-                        "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                        "key": JSONValue.string("value")
                     ]),
                     initialPrice: 0,
+                    initialPriceDue: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
                     internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
                     invoice: Nullable<[String: JSONValue]>.value([
-                        "id": JSONValue.string("inv_xxxxxxxxxxxxxx")
+                        "key": JSONValue.string("value")
                     ]),
                     memberCount: Nullable<Double>.value(0),
                     metadata: Nullable<[String: JSONValue]>.value([
                         "custom_cta": JSONValue.string("subscribe"), 
                         "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
                     ]),
-                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    offerCancelDiscount: Nullable<Bool>.value(false),
                     paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
-                        "disabled": JSONValue.array([
-                            JSONValue.string("crypto")
-                        ]), 
-                        "enabled": JSONValue.array([
-                            JSONValue.string("card")
-                        ]), 
-                        "include_platform_defaults": JSONValue.bool(true)
+                        "key": JSONValue.string("value")
                     ]),
-                    planType: PlanListItemPlanType.renewal,
                     product: Nullable<[String: JSONValue]>.value([
                         "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
                         "title": JSONValue.string("Ceramic Coating Package")
@@ -165,41 +162,27 @@ import WhopSDK
                     purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
                     releaseMethod: PlanListItemReleaseMethod.buyNow,
                     renewalPrice: 59,
-                    splitPayRequiredPayments: Nullable<Double>.value(4),
+                    sku: Nullable<String>.value("sku"),
+                    splitPayRequiredPayments: Nullable<Double>.value(1.1),
                     stock: Nullable<Double>.value(0),
-                    strikeThroughInitialPrice: Nullable<Double>.value(99),
-                    strikeThroughRenewalPrice: Nullable<Double>.value(79),
+                    strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
                     threeDsLevel: Nullable<PlanListItemThreeDsLevel>.value(PlanListItemThreeDsLevel.mandateChallenge),
                     title: Nullable<String>.value("Unlimited Wash Club"),
-                    trialPeriodDays: Nullable<Double>.value(7),
+                    trialPeriodDays: Nullable<Double>.value(1.1),
                     unlimitedStock: false,
                     updatedAt: "2026-01-01T12:00:00.000Z",
                     visibility: PlanListItemVisibility.visible
                 )
             ],
             pageInfo: ListPlansResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
             )
         )
-        let response = try await client.plans.list(
-            accountId: "account_id",
-            releaseMethods: [
-                "buy_now"
-            ],
-            visibilities: [
-                "visible"
-            ],
-            planTypes: [
-                "renewal"
-            ],
-            productIds: [
-                "prod_xxxxxxxxxxxxxx"
-            ],
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
+        let response = try await client.plans.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -211,33 +194,35 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "adaptive_pricing_enabled": true,
-                  "billing_period": 30,
-                  "cancel_discount_intervals": 3,
-                  "cancel_discount_percentage": 20,
-                  "checkout_styling": {
-                    "background_color": "#0f172a",
-                    "border_style": "rounded",
-                    "button_color": "#f59e0b",
-                    "font_family": "roboto"
+                  "allow_multiple_quantity": false,
+                  "attributes": {
+                    "key": "value"
                   },
-                  "collect_tax": false,
+                  "billing_period": 30,
+                  "billing_type": "renewal",
+                  "cancel_discount_intervals": 1.1,
+                  "cancel_discount_percentage": 1.1,
+                  "checkout_styling": {
+                    "key": "value"
+                  },
+                  "collect_tax": true,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
                   "custom_fields": [
                     {
                       "field_type": "text",
                       "id": "field_xxxxxxxxxxxxxx",
-                      "name": "Vehicle make and model",
-                      "order": 0,
-                      "placeholder": "2021 Audi S5",
-                      "required": true
+                      "name": "Link your website or main social profile",
+                      "order": 1,
+                      "placeholder": "https://",
+                      "required": false
                     }
                   ],
                   "deletable": true,
-                  "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                  "description": "description",
                   "effective_payment_method_configuration": {
                     "disabled": [
                       "card"
@@ -247,34 +232,32 @@ import WhopSDK
                     ],
                     "include_platform_defaults": true
                   },
-                  "expiration_days": 365,
+                  "expiration_days": 1.1,
                   "formatted_price": "$59.00 / month",
                   "id": "plan_xxxxxxxxxxxxxx",
                   "image": {
-                    "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
-                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                    "key": "value"
                   },
                   "initial_price": 0,
+                  "initial_price_due": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
                   "invoice": {
-                    "id": "inv_xxxxxxxxxxxxxx"
+                    "key": "value"
                   },
                   "member_count": 0,
                   "metadata": {
                     "custom_cta": "subscribe",
                     "custom_cta_url": "https://shinetime.example/wash-club"
                   },
-                  "offer_cancel_discount": true,
+                  "offer_cancel_discount": false,
                   "payment_method_configuration": {
-                    "disabled": [
-                      "crypto"
-                    ],
-                    "enabled": [
-                      "card"
-                    ],
-                    "include_platform_defaults": true
+                    "key": "value"
                   },
-                  "plan_type": "renewal",
                   "product": {
                     "id": "prod_xxxxxxxxxxxxxx",
                     "title": "Ceramic Coating Package"
@@ -282,14 +265,15 @@ import WhopSDK
                   "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
                   "release_method": "buy_now",
                   "renewal_price": 59,
-                  "split_pay_required_payments": 4,
+                  "sku": "sku",
+                  "split_pay_required_payments": 1.1,
                   "stock": 0,
-                  "strike_through_initial_price": 99,
-                  "strike_through_renewal_price": 79,
+                  "strike_through_initial_price": 1.1,
+                  "strike_through_renewal_price": 1.1,
                   "tax_type": "inclusive",
                   "three_ds_level": "mandate_challenge",
-                  "title": "Unlimited Wash Club",
-                  "trial_period_days": 7,
+                  "title": "Deprecated plan update",
+                  "trial_period_days": 1.1,
                   "unlimited_stock": false,
                   "updated_at": "2026-01-01T12:00:00.000Z",
                   "visibility": "visible"
@@ -305,33 +289,35 @@ import WhopSDK
         let expectedResponse = Plan(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             adaptivePricingEnabled: true,
-            billingPeriod: Nullable<Double>.value(30),
-            cancelDiscountIntervals: Nullable<Double>.value(3),
-            cancelDiscountPercentage: Nullable<Double>.value(20),
-            checkoutStyling: Nullable<[String: JSONValue]>.value([
-                "background_color": JSONValue.string("#0f172a"), 
-                "border_style": JSONValue.string("rounded"), 
-                "button_color": JSONValue.string("#f59e0b"), 
-                "font_family": JSONValue.string("roboto")
+            allowMultipleQuantity: false,
+            attributes: Nullable<[String: Nullable<String>]>.value([
+                "key": Nullable<String>.value("value")
             ]),
-            collectTax: false,
+            billingPeriod: Nullable<Double>.value(30),
+            billingType: PlanBillingType.renewal,
+            cancelDiscountIntervals: Nullable<Double>.value(1.1),
+            cancelDiscountPercentage: Nullable<Double>.value(1.1),
+            checkoutStyling: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            collectTax: true,
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: PlanCurrency.usd,
             customFields: [
                 PlanCustomField(
                     fieldType: PlanCustomFieldFieldType.text,
                     id: "field_xxxxxxxxxxxxxx",
-                    name: "Vehicle make and model",
-                    order: 0,
-                    placeholder: Nullable<String>.value("2021 Audi S5"),
-                    required: true
+                    name: "Link your website or main social profile",
+                    order: 1,
+                    placeholder: Nullable<String>.value("https://"),
+                    required: false
                 )
             ],
             deletable: Nullable<Bool>.value(true),
-            description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+            description: Nullable<String>.value("description"),
             effectivePaymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
                 disabled: [
                     "card"
@@ -341,34 +327,32 @@ import WhopSDK
                 ],
                 includePlatformDefaults: true
             )),
-            expirationDays: Nullable<Double>.value(365),
+            expirationDays: Nullable<Double>.value(1.1),
             formattedPrice: "$59.00 / month",
             id: "plan_xxxxxxxxxxxxxx",
             image: Nullable<[String: JSONValue]>.value([
-                "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
-                "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                "key": JSONValue.string("value")
             ]),
             initialPrice: 0,
+            initialPriceDue: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
             internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
             invoice: Nullable<[String: JSONValue]>.value([
-                "id": JSONValue.string("inv_xxxxxxxxxxxxxx")
+                "key": JSONValue.string("value")
             ]),
             memberCount: Nullable<Double>.value(0),
             metadata: Nullable<[String: JSONValue]>.value([
                 "custom_cta": JSONValue.string("subscribe"), 
                 "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
             ]),
-            offerCancelDiscount: Nullable<Bool>.value(true),
+            offerCancelDiscount: Nullable<Bool>.value(false),
             paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
-                "disabled": JSONValue.array([
-                    JSONValue.string("crypto")
-                ]), 
-                "enabled": JSONValue.array([
-                    JSONValue.string("card")
-                ]), 
-                "include_platform_defaults": JSONValue.bool(true)
+                "key": JSONValue.string("value")
             ]),
-            planType: PlanPlanType.renewal,
             product: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Ceramic Coating Package")
@@ -376,14 +360,15 @@ import WhopSDK
             purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
             releaseMethod: PlanReleaseMethod.buyNow,
             renewalPrice: 59,
-            splitPayRequiredPayments: Nullable<Double>.value(4),
+            sku: Nullable<String>.value("sku"),
+            splitPayRequiredPayments: Nullable<Double>.value(1.1),
             stock: Nullable<Double>.value(0),
-            strikeThroughInitialPrice: Nullable<Double>.value(99),
-            strikeThroughRenewalPrice: Nullable<Double>.value(79),
+            strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+            strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
             taxType: PlanTaxType.inclusive,
             threeDsLevel: Nullable<PlanThreeDsLevel>.value(PlanThreeDsLevel.mandateChallenge),
-            title: Nullable<String>.value("Unlimited Wash Club"),
-            trialPeriodDays: Nullable<Double>.value(7),
+            title: Nullable<String>.value("Deprecated plan update"),
+            trialPeriodDays: Nullable<Double>.value(1.1),
             unlimitedStock: false,
             updatedAt: "2026-01-01T12:00:00.000Z",
             visibility: PlanVisibility.visible
@@ -403,33 +388,35 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "adaptive_pricing_enabled": true,
-                  "billing_period": 30,
-                  "cancel_discount_intervals": 3,
-                  "cancel_discount_percentage": 20,
-                  "checkout_styling": {
-                    "background_color": "#0f172a",
-                    "border_style": "rounded",
-                    "button_color": "#f59e0b",
-                    "font_family": "roboto"
+                  "allow_multiple_quantity": false,
+                  "attributes": {
+                    "key": "value"
                   },
-                  "collect_tax": false,
+                  "billing_period": 30,
+                  "billing_type": "renewal",
+                  "cancel_discount_intervals": 1.1,
+                  "cancel_discount_percentage": 1.1,
+                  "checkout_styling": {
+                    "key": "value"
+                  },
+                  "collect_tax": true,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
                   "custom_fields": [
                     {
                       "field_type": "text",
                       "id": "field_xxxxxxxxxxxxxx",
-                      "name": "Vehicle make and model",
-                      "order": 0,
-                      "placeholder": "2021 Audi S5",
-                      "required": true
+                      "name": "Link your website or main social profile",
+                      "order": 1,
+                      "placeholder": "https://",
+                      "required": false
                     }
                   ],
                   "deletable": true,
-                  "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                  "description": "description",
                   "effective_payment_method_configuration": {
                     "disabled": [
                       "card"
@@ -439,34 +426,32 @@ import WhopSDK
                     ],
                     "include_platform_defaults": true
                   },
-                  "expiration_days": 365,
+                  "expiration_days": 1.1,
                   "formatted_price": "$59.00 / month",
                   "id": "plan_xxxxxxxxxxxxxx",
                   "image": {
-                    "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
-                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                    "key": "value"
                   },
                   "initial_price": 0,
+                  "initial_price_due": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
                   "invoice": {
-                    "id": "inv_xxxxxxxxxxxxxx"
+                    "key": "value"
                   },
                   "member_count": 0,
                   "metadata": {
                     "custom_cta": "subscribe",
                     "custom_cta_url": "https://shinetime.example/wash-club"
                   },
-                  "offer_cancel_discount": true,
+                  "offer_cancel_discount": false,
                   "payment_method_configuration": {
-                    "disabled": [
-                      "crypto"
-                    ],
-                    "enabled": [
-                      "card"
-                    ],
-                    "include_platform_defaults": true
+                    "key": "value"
                   },
-                  "plan_type": "renewal",
                   "product": {
                     "id": "prod_xxxxxxxxxxxxxx",
                     "title": "Ceramic Coating Package"
@@ -474,14 +459,15 @@ import WhopSDK
                   "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
                   "release_method": "buy_now",
                   "renewal_price": 59,
-                  "split_pay_required_payments": 4,
+                  "sku": "sku",
+                  "split_pay_required_payments": 1.1,
                   "stock": 0,
-                  "strike_through_initial_price": 99,
-                  "strike_through_renewal_price": 79,
+                  "strike_through_initial_price": 1.1,
+                  "strike_through_renewal_price": 1.1,
                   "tax_type": "inclusive",
                   "three_ds_level": "mandate_challenge",
-                  "title": "Unlimited Wash Club",
-                  "trial_period_days": 7,
+                  "title": "Deprecated plan update",
+                  "trial_period_days": 1.1,
                   "unlimited_stock": false,
                   "updated_at": "2026-01-01T12:00:00.000Z",
                   "visibility": "visible"
@@ -497,33 +483,35 @@ import WhopSDK
         let expectedResponse = Plan(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             adaptivePricingEnabled: true,
-            billingPeriod: Nullable<Double>.value(30),
-            cancelDiscountIntervals: Nullable<Double>.value(3),
-            cancelDiscountPercentage: Nullable<Double>.value(20),
-            checkoutStyling: Nullable<[String: JSONValue]>.value([
-                "background_color": JSONValue.string("#0f172a"), 
-                "border_style": JSONValue.string("rounded"), 
-                "button_color": JSONValue.string("#f59e0b"), 
-                "font_family": JSONValue.string("roboto")
+            allowMultipleQuantity: false,
+            attributes: Nullable<[String: Nullable<String>]>.value([
+                "key": Nullable<String>.value("value")
             ]),
-            collectTax: false,
+            billingPeriod: Nullable<Double>.value(30),
+            billingType: PlanBillingType.renewal,
+            cancelDiscountIntervals: Nullable<Double>.value(1.1),
+            cancelDiscountPercentage: Nullable<Double>.value(1.1),
+            checkoutStyling: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            collectTax: true,
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: PlanCurrency.usd,
             customFields: [
                 PlanCustomField(
                     fieldType: PlanCustomFieldFieldType.text,
                     id: "field_xxxxxxxxxxxxxx",
-                    name: "Vehicle make and model",
-                    order: 0,
-                    placeholder: Nullable<String>.value("2021 Audi S5"),
-                    required: true
+                    name: "Link your website or main social profile",
+                    order: 1,
+                    placeholder: Nullable<String>.value("https://"),
+                    required: false
                 )
             ],
             deletable: Nullable<Bool>.value(true),
-            description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+            description: Nullable<String>.value("description"),
             effectivePaymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
                 disabled: [
                     "card"
@@ -533,34 +521,32 @@ import WhopSDK
                 ],
                 includePlatformDefaults: true
             )),
-            expirationDays: Nullable<Double>.value(365),
+            expirationDays: Nullable<Double>.value(1.1),
             formattedPrice: "$59.00 / month",
             id: "plan_xxxxxxxxxxxxxx",
             image: Nullable<[String: JSONValue]>.value([
-                "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
-                "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                "key": JSONValue.string("value")
             ]),
             initialPrice: 0,
+            initialPriceDue: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
             internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
             invoice: Nullable<[String: JSONValue]>.value([
-                "id": JSONValue.string("inv_xxxxxxxxxxxxxx")
+                "key": JSONValue.string("value")
             ]),
             memberCount: Nullable<Double>.value(0),
             metadata: Nullable<[String: JSONValue]>.value([
                 "custom_cta": JSONValue.string("subscribe"), 
                 "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
             ]),
-            offerCancelDiscount: Nullable<Bool>.value(true),
+            offerCancelDiscount: Nullable<Bool>.value(false),
             paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
-                "disabled": JSONValue.array([
-                    JSONValue.string("crypto")
-                ]), 
-                "enabled": JSONValue.array([
-                    JSONValue.string("card")
-                ]), 
-                "include_platform_defaults": JSONValue.bool(true)
+                "key": JSONValue.string("value")
             ]),
-            planType: PlanPlanType.renewal,
             product: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Ceramic Coating Package")
@@ -568,14 +554,15 @@ import WhopSDK
             purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
             releaseMethod: PlanReleaseMethod.buyNow,
             renewalPrice: 59,
-            splitPayRequiredPayments: Nullable<Double>.value(4),
+            sku: Nullable<String>.value("sku"),
+            splitPayRequiredPayments: Nullable<Double>.value(1.1),
             stock: Nullable<Double>.value(0),
-            strikeThroughInitialPrice: Nullable<Double>.value(99),
-            strikeThroughRenewalPrice: Nullable<Double>.value(79),
+            strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+            strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
             taxType: PlanTaxType.inclusive,
             threeDsLevel: Nullable<PlanThreeDsLevel>.value(PlanThreeDsLevel.mandateChallenge),
-            title: Nullable<String>.value("Unlimited Wash Club"),
-            trialPeriodDays: Nullable<Double>.value(7),
+            title: Nullable<String>.value("Deprecated plan update"),
+            trialPeriodDays: Nullable<Double>.value(1.1),
             unlimitedStock: false,
             updatedAt: "2026-01-01T12:00:00.000Z",
             visibility: PlanVisibility.visible
@@ -623,33 +610,35 @@ import WhopSDK
                 {
                   "account": {
                     "id": "biz_xxxxxxxxxxxxxx",
-                    "title": "Shine Time Auto Detailing"
+                    "title": "Acme Bookkeeping"
                   },
                   "adaptive_pricing_enabled": true,
-                  "billing_period": 30,
-                  "cancel_discount_intervals": 3,
-                  "cancel_discount_percentage": 20,
-                  "checkout_styling": {
-                    "background_color": "#0f172a",
-                    "border_style": "rounded",
-                    "button_color": "#f59e0b",
-                    "font_family": "roboto"
+                  "allow_multiple_quantity": false,
+                  "attributes": {
+                    "key": "value"
                   },
-                  "collect_tax": false,
+                  "billing_period": 30,
+                  "billing_type": "renewal",
+                  "cancel_discount_intervals": 1.1,
+                  "cancel_discount_percentage": 1.1,
+                  "checkout_styling": {
+                    "key": "value"
+                  },
+                  "collect_tax": true,
                   "created_at": "2026-01-01T12:00:00.000Z",
                   "currency": "usd",
                   "custom_fields": [
                     {
                       "field_type": "text",
                       "id": "field_xxxxxxxxxxxxxx",
-                      "name": "Vehicle make and model",
-                      "order": 0,
-                      "placeholder": "2021 Audi S5",
-                      "required": true
+                      "name": "Link your website or main social profile",
+                      "order": 1,
+                      "placeholder": "https://",
+                      "required": false
                     }
                   ],
                   "deletable": true,
-                  "description": "Two hand washes a month, interior vacuum, and a quarterly sealant top-up.",
+                  "description": "description",
                   "effective_payment_method_configuration": {
                     "disabled": [
                       "card"
@@ -659,34 +648,32 @@ import WhopSDK
                     ],
                     "include_platform_defaults": true
                   },
-                  "expiration_days": 365,
+                  "expiration_days": 1.1,
                   "formatted_price": "$59.00 / month",
                   "id": "plan_xxxxxxxxxxxxxx",
                   "image": {
-                    "blurhash": "LA6bDXT$E3b:R6i+RibEIWbp%ej1",
-                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                    "key": "value"
                   },
                   "initial_price": 0,
+                  "initial_price_due": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
                   "internal_notes": "Maintenance tier. Upsell the interior shampoo add-on at renewal.",
                   "invoice": {
-                    "id": "inv_xxxxxxxxxxxxxx"
+                    "key": "value"
                   },
                   "member_count": 0,
                   "metadata": {
                     "custom_cta": "subscribe",
                     "custom_cta_url": "https://shinetime.example/wash-club"
                   },
-                  "offer_cancel_discount": true,
+                  "offer_cancel_discount": false,
                   "payment_method_configuration": {
-                    "disabled": [
-                      "crypto"
-                    ],
-                    "enabled": [
-                      "card"
-                    ],
-                    "include_platform_defaults": true
+                    "key": "value"
                   },
-                  "plan_type": "renewal",
                   "product": {
                     "id": "prod_xxxxxxxxxxxxxx",
                     "title": "Ceramic Coating Package"
@@ -694,14 +681,15 @@ import WhopSDK
                   "purchase_url": "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
                   "release_method": "buy_now",
                   "renewal_price": 59,
-                  "split_pay_required_payments": 4,
+                  "sku": "sku",
+                  "split_pay_required_payments": 1.1,
                   "stock": 0,
-                  "strike_through_initial_price": 99,
-                  "strike_through_renewal_price": 79,
+                  "strike_through_initial_price": 1.1,
+                  "strike_through_renewal_price": 1.1,
                   "tax_type": "inclusive",
                   "three_ds_level": "mandate_challenge",
-                  "title": "Unlimited Wash Club",
-                  "trial_period_days": 7,
+                  "title": "Deprecated plan update",
+                  "trial_period_days": 1.1,
                   "unlimited_stock": false,
                   "updated_at": "2026-01-01T12:00:00.000Z",
                   "visibility": "visible"
@@ -717,33 +705,35 @@ import WhopSDK
         let expectedResponse = Plan(
             account: Nullable<AccountSummary>.value(AccountSummary(
                 id: "biz_xxxxxxxxxxxxxx",
-                title: "Shine Time Auto Detailing"
+                title: "Acme Bookkeeping"
             )),
             adaptivePricingEnabled: true,
-            billingPeriod: Nullable<Double>.value(30),
-            cancelDiscountIntervals: Nullable<Double>.value(3),
-            cancelDiscountPercentage: Nullable<Double>.value(20),
-            checkoutStyling: Nullable<[String: JSONValue]>.value([
-                "background_color": JSONValue.string("#0f172a"), 
-                "border_style": JSONValue.string("rounded"), 
-                "button_color": JSONValue.string("#f59e0b"), 
-                "font_family": JSONValue.string("roboto")
+            allowMultipleQuantity: false,
+            attributes: Nullable<[String: Nullable<String>]>.value([
+                "key": Nullable<String>.value("value")
             ]),
-            collectTax: false,
+            billingPeriod: Nullable<Double>.value(30),
+            billingType: PlanBillingType.renewal,
+            cancelDiscountIntervals: Nullable<Double>.value(1.1),
+            cancelDiscountPercentage: Nullable<Double>.value(1.1),
+            checkoutStyling: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            collectTax: true,
             createdAt: "2026-01-01T12:00:00.000Z",
             currency: PlanCurrency.usd,
             customFields: [
                 PlanCustomField(
                     fieldType: PlanCustomFieldFieldType.text,
                     id: "field_xxxxxxxxxxxxxx",
-                    name: "Vehicle make and model",
-                    order: 0,
-                    placeholder: Nullable<String>.value("2021 Audi S5"),
-                    required: true
+                    name: "Link your website or main social profile",
+                    order: 1,
+                    placeholder: Nullable<String>.value("https://"),
+                    required: false
                 )
             ],
             deletable: Nullable<Bool>.value(true),
-            description: Nullable<String>.value("Two hand washes a month, interior vacuum, and a quarterly sealant top-up."),
+            description: Nullable<String>.value("description"),
             effectivePaymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
                 disabled: [
                     "card"
@@ -753,34 +743,32 @@ import WhopSDK
                 ],
                 includePlatformDefaults: true
             )),
-            expirationDays: Nullable<Double>.value(365),
+            expirationDays: Nullable<Double>.value(1.1),
             formattedPrice: "$59.00 / month",
             id: "plan_xxxxxxxxxxxxxx",
             image: Nullable<[String: JSONValue]>.value([
-                "blurhash": JSONValue.string("LA6bDXT$E3b:R6i+RibEIWbp%ej1"), 
-                "url": JSONValue.string("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                "key": JSONValue.string("value")
             ]),
             initialPrice: 0,
+            initialPriceDue: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
             internalNotes: Nullable<String>.value("Maintenance tier. Upsell the interior shampoo add-on at renewal."),
             invoice: Nullable<[String: JSONValue]>.value([
-                "id": JSONValue.string("inv_xxxxxxxxxxxxxx")
+                "key": JSONValue.string("value")
             ]),
             memberCount: Nullable<Double>.value(0),
             metadata: Nullable<[String: JSONValue]>.value([
                 "custom_cta": JSONValue.string("subscribe"), 
                 "custom_cta_url": JSONValue.string("https://shinetime.example/wash-club")
             ]),
-            offerCancelDiscount: Nullable<Bool>.value(true),
+            offerCancelDiscount: Nullable<Bool>.value(false),
             paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
-                "disabled": JSONValue.array([
-                    JSONValue.string("crypto")
-                ]), 
-                "enabled": JSONValue.array([
-                    JSONValue.string("card")
-                ]), 
-                "include_platform_defaults": JSONValue.bool(true)
+                "key": JSONValue.string("value")
             ]),
-            planType: PlanPlanType.renewal,
             product: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("prod_xxxxxxxxxxxxxx"), 
                 "title": JSONValue.string("Ceramic Coating Package")
@@ -788,14 +776,15 @@ import WhopSDK
             purchaseUrl: "https://whop.com/checkout/plan_xxxxxxxxxxxxxx",
             releaseMethod: PlanReleaseMethod.buyNow,
             renewalPrice: 59,
-            splitPayRequiredPayments: Nullable<Double>.value(4),
+            sku: Nullable<String>.value("sku"),
+            splitPayRequiredPayments: Nullable<Double>.value(1.1),
             stock: Nullable<Double>.value(0),
-            strikeThroughInitialPrice: Nullable<Double>.value(99),
-            strikeThroughRenewalPrice: Nullable<Double>.value(79),
+            strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+            strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
             taxType: PlanTaxType.inclusive,
             threeDsLevel: Nullable<PlanThreeDsLevel>.value(PlanThreeDsLevel.mandateChallenge),
-            title: Nullable<String>.value("Unlimited Wash Club"),
-            trialPeriodDays: Nullable<Double>.value(7),
+            title: Nullable<String>.value("Deprecated plan update"),
+            trialPeriodDays: Nullable<Double>.value(1.1),
             unlimitedStock: false,
             updatedAt: "2026-01-01T12:00:00.000Z",
             visibility: PlanVisibility.visible
@@ -839,10 +828,7 @@ import WhopSDK
         )
         let response = try await client.plans.calculateTax(
             id: "id",
-            request: .init(address: .value(CalculateTaxPlansRequestAddress(
-                country: "DE",
-                postalCode: .value("10115")
-            ))),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

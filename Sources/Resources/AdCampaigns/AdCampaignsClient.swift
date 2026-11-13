@@ -14,7 +14,10 @@ public final class AdCampaignsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.list()
     /// }
@@ -25,20 +28,21 @@ public final class AdCampaignsClient: Sendable {
     /// - Parameter accountId: The account the campaigns belong to. Defaults to the account-scoped key's own account.
     /// - Parameter status: Only return campaigns with this status.
     /// - Parameter query: Filter campaigns by a title or ID substring.
-    /// - Parameter order: The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports.
+    /// - Parameter order: The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports, and link_clicks by the same Whop pixel page views.
     /// - Parameter direction: The sort direction. Defaults to desc.
+    /// - Parameter campaignType: Only return campaigns of this type.
     /// - Parameter createdBefore: Only return campaigns created before this timestamp.
     /// - Parameter createdAfter: Only return campaigns created after this timestamp.
     /// - Parameter statsFrom: Start of the stats window. Defaults to all-time.
     /// - Parameter statsTo: End of the stats window. Defaults to now.
     /// - Parameter timeZone: IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare stats_from/stats_to dates resolve to day boundaries on this clock. Defaults to UTC.
     /// - Parameter attributionModel: Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise.
-    /// - Parameter first: The number of campaigns to return.
-    /// - Parameter after: Cursor to fetch the page after (from page_info.end_cursor).
-    /// - Parameter last: The number of campaigns to return from the end of the range.
-    /// - Parameter before: Cursor to fetch the page before (from page_info.start_cursor).
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String? = nil, status: ListAdCampaignsRequestStatus? = nil, query: String? = nil, order: ListAdCampaignsRequestOrder? = nil, direction: ListAdCampaignsRequestDirection? = nil, createdBefore: String? = nil, createdAfter: String? = nil, statsFrom: String? = nil, statsTo: String? = nil, timeZone: String? = nil, attributionModel: ListAdCampaignsRequestAttributionModel? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAdCampaignsResponse {
+    public func list(accountId: String? = nil, status: ListAdCampaignsRequestStatus? = nil, query: String? = nil, order: ListAdCampaignsRequestOrder? = nil, direction: ListAdCampaignsRequestDirection? = nil, campaignType: ListAdCampaignsRequestCampaignType? = nil, createdBefore: String? = nil, createdAfter: String? = nil, statsFrom: String? = nil, statsTo: String? = nil, timeZone: String? = nil, attributionModel: ListAdCampaignsRequestAttributionModel? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAdCampaignsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/ad_campaigns",
@@ -48,6 +52,7 @@ public final class AdCampaignsClient: Sendable {
                 "query": query.map { .string($0) }, 
                 "order": order.map { .string($0.rawValue) }, 
                 "direction": direction.map { .string($0.rawValue) }, 
+                "campaign_type": campaignType.map { .string($0.rawValue) }, 
                 "created_before": createdBefore.map { .string($0) }, 
                 "created_after": createdAfter.map { .string($0) }, 
                 "stats_from": statsFrom.map { .string($0) }, 
@@ -64,18 +69,20 @@ public final class AdCampaignsClient: Sendable {
         )
     }
 
-    /// Creates an ad campaign for an account.
+    /// Creates an ad campaign in `draft` status for an account. Nothing runs until you launch it by setting `status` to `active` with `PATCH /ad_campaigns/:id`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.create(request: .init(
-    ///         objective: .awareness,
-    ///         platform: .meta,
+    ///         objective: .traffic,
     ///         title: "Now hiring mobile detailers — Austin"
     ///     ))
     /// }
@@ -101,7 +108,10 @@ public final class AdCampaignsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.retrieve(id: "id")
     /// }
@@ -130,14 +140,17 @@ public final class AdCampaignsClient: Sendable {
         )
     }
 
-    /// Deletes an ad campaign and archives it on the ad platform (cascades to ad groups and ads).
+    /// Deletes an ad campaign with its ad groups and ads, and stops their delivery.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.delete(id: "id")
     /// }
@@ -156,14 +169,17 @@ public final class AdCampaignsClient: Sendable {
         )
     }
 
-    /// Updates an ad campaign's editable fields (title, budget, schedule, bid strategy, special ad categories, and, before launch, budget optimization), and launches a draft campaign by setting status to active. Objective, budget type and desired cost per result are fixed at creation and cannot be changed.
+    /// Updates an ad campaign's settings, or launches a draft campaign by setting `status` to `active`. The objective is fixed at creation and cannot be changed.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.update(
     ///         id: "id",
@@ -186,6 +202,35 @@ public final class AdCampaignsClient: Sendable {
         )
     }
 
+    /// Attributes the whole campaign and its daily budget to the calling user as its runner. One runner holds a campaign at a time. Takes the runner's Whop session, or a user API key with `ad_campaign:update`. The caller also needs active advertiser-supplier program access. Everyone else gets a 404. Returns 403 until the caller has verified their identity and added a phone number and a social account. Returns 403 when the claim would take the daily budget the caller holds past the limit for their score. Returns 409 when another user holds the campaign. Changes nothing when the caller already holds it.
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import WhopSDK
+    ///
+    /// private func main() async throws {
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
+    ///
+    ///     _ = try await client.adCampaigns.claim(id: "id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter id: The ad campaign ID.
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func claim(id: String, requestOptions: RequestOptions? = nil) async throws -> AdCampaign {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/ad_campaigns/\(id)/claim",
+            requestOptions: requestOptions,
+            responseType: AdCampaign.self
+        )
+    }
+
     /// Creates copies of the campaign in `duplicating` status and returns them; each copy transitions to `draft` once duplication completes. Poll each returned campaign until it leaves `duplicating` — a copy that could not be completed is deleted and returns 404.
     ///
     /// ```swift
@@ -193,7 +238,10 @@ public final class AdCampaignsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.duplicate(
     ///         id: "id",
@@ -223,7 +271,10 @@ public final class AdCampaignsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.pause(id: "id")
     /// }
@@ -242,40 +293,17 @@ public final class AdCampaignsClient: Sendable {
         )
     }
 
-    /// Retries billing for an ad campaign whose payment previously failed.
+    /// Resumes a paused ad campaign. Requires an ads payment method on the account.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.adCampaigns.retryPayment(id: "id")
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter id: The ad campaign ID.
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func retryPayment(id: String, requestOptions: RequestOptions? = nil) async throws -> AdCampaign {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/ad_campaigns/\(id)/retry_payment",
-            requestOptions: requestOptions,
-            responseType: AdCampaign.self
-        )
-    }
-
-    /// Resumes a paused ad campaign.
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adCampaigns.unpause(id: "id")
     /// }

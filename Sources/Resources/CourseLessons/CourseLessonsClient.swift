@@ -17,7 +17,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.list(
     ///         first: 42,
@@ -64,7 +67,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.create(request: .init(
     ///         chapterId: "chap_xxxxxxxxxxxxx",
@@ -96,7 +102,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.retrieve(id: "lesn_xxxxxxxxxxxxx")
     /// }
@@ -125,7 +134,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.delete(id: "lesn_xxxxxxxxxxxxx")
     /// }
@@ -154,7 +166,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.update(
     ///         id: "lesn_xxxxxxxxxxxxx",
@@ -184,7 +199,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.markAsCompleted(lessonId: "lesson_id")
     /// }
@@ -210,7 +228,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.start(lessonId: "lesson_id")
     /// }
@@ -236,7 +257,10 @@ public final class CourseLessonsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessons.submitAssessment(
     ///         lessonId: "lesson_id",

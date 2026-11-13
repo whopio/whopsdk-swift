@@ -1,0 +1,47 @@
+import Foundation
+
+public struct ReviewAccount: Codable, Hashable, Sendable {
+    /// The unique identifier for the account.
+    public let id: String
+    /// URL slug for the account's store page. For example, `pickaxe` in whop.com/pickaxe.
+    public let route: String
+    /// The display name of the account shown to customers.
+    public let title: String
+    /// Additional properties that are not explicitly defined in the schema
+    public let additionalProperties: [String: JSONValue]
+
+    public init(
+        id: String,
+        route: String,
+        title: String,
+        additionalProperties: [String: JSONValue] = .init()
+    ) {
+        self.id = id
+        self.route = route
+        self.title = title
+        self.additionalProperties = additionalProperties
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.route = try container.decode(String.self, forKey: .route)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
+    }
+
+    public func encode(to encoder: Encoder) throws -> Void {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.route, forKey: .route)
+        try container.encode(self.title, forKey: .title)
+    }
+
+    /// Keys for encoding/decoding struct properties.
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case id
+        case route
+        case title
+    }
+}

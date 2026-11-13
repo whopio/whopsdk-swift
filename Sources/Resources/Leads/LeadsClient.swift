@@ -7,7 +7,7 @@ public final class LeadsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of leads for a company, with optional filtering by product and creation date.
+    /// Lists an account's leads, newest first.
     ///
     /// Required permissions:
     ///  - `lead:basic:read`
@@ -20,14 +20,17 @@ public final class LeadsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.leads.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
     ///         createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)
+    ///         createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -38,12 +41,12 @@ public final class LeadsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list leads for.
     /// - Parameter createdAfter: Only return leads created after this timestamp.
     /// - Parameter createdBefore: Only return leads created before this timestamp.
     /// - Parameter productIds: Filter leads to only those associated with these specific product identifiers.
+    /// - Parameter accountId: The unique identifier of the company to list leads for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, createdAfter: Date? = nil, createdBefore: Date? = nil, productIds: [String]? = nil, requestOptions: RequestOptions? = nil) async throws -> ListLeadsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, createdAfter: Date? = nil, createdBefore: Date? = nil, productIds: [String]? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListLeadsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/leads",
@@ -52,17 +55,17 @@ public final class LeadsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId), 
                 "created_after": createdAfter.map { .date($0) }, 
                 "created_before": createdBefore.map { .date($0) }, 
-                "product_ids": productIds.map { .stringArray($0) }
+                "product_ids": productIds.map { .stringArray($0) }, 
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListLeadsResponse.self
         )
     }
 
-    /// Record a new lead for a company, capturing a potential customer's interest in a specific product.
+    /// Records a lead: a potential customer's interest in an account or one of its products.
     ///
     /// Required permissions:
     ///  - `lead:manage`
@@ -75,9 +78,12 @@ public final class LeadsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
-    ///     _ = try await client.leads.create(request: .init(companyId: "biz_xxxxxxxxxxxxxx"))
+    ///     _ = try await client.leads.create(request: .init(accountId: "biz_xxxxxxxxxxxxxx"))
     /// }
     ///
     /// try await main()
@@ -107,7 +113,10 @@ public final class LeadsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.leads.retrieve(id: "lead_xxxxxxxxxxxxx")
     /// }
@@ -126,7 +135,7 @@ public final class LeadsClient: Sendable {
         )
     }
 
-    /// Update the metadata or referrer information on an existing lead record.
+    /// Updates a lead's `metadata` or `referrer`.
     ///
     /// Required permissions:
     ///  - `lead:manage`
@@ -139,7 +148,10 @@ public final class LeadsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.leads.update(
     ///         id: "lead_xxxxxxxxxxxxx",

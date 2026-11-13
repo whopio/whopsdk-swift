@@ -7,7 +7,7 @@ public final class CompanyTokenTransactionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of token transactions for a user or company, depending on the authenticated actor, with optional filtering by user and transaction type.
+    /// Lists an account's token transactions, newest first.
     ///
     /// Required permissions:
     ///  - `company_token_transaction:read`
@@ -19,13 +19,16 @@ public final class CompanyTokenTransactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.companyTokenTransactions.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
-    ///         userId: "user_xxxxxxxxxxxxx"
+    ///         userId: "user_xxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -36,10 +39,10 @@ public final class CompanyTokenTransactionsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list token transactions for.
     /// - Parameter userId: Filter transactions to only those involving this specific user.
+    /// - Parameter accountId: The unique identifier of the company to list token transactions for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, userId: String? = nil, transactionType: CompanyTokenTransactionTypes? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCompanyTokenTransactionsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, userId: String? = nil, transactionType: CompanyTokenTransactionTypes? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListCompanyTokenTransactionsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/company_token_transactions",
@@ -48,16 +51,16 @@ public final class CompanyTokenTransactionsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId), 
                 "user_id": userId.map { .string($0) }, 
-                "transaction_type": transactionType.map { .string($0.rawValue) }
+                "transaction_type": transactionType.map { .string($0.rawValue) }, 
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListCompanyTokenTransactionsResponse.self
         )
     }
 
-    /// Create a token transaction to add, subtract, or transfer tokens for a member within a company.
+    /// Creates a token transaction that adds, subtracts, or transfers tokens for a member of an account.
     ///
     /// Required permissions:
     ///  - `company_token_transaction:create`
@@ -69,12 +72,15 @@ public final class CompanyTokenTransactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.companyTokenTransactions.create(request: CreateCompanyTokenTransactionsRequest.transfer(
     ///         CreateCompanyTokenTransactionsRequestTransfer(
+    ///             accountId: "biz_xxxxxxxxxxxxxx",
     ///             amount: 6.9,
-    ///             companyId: "biz_xxxxxxxxxxxxxx",
     ///             destinationUserId: "destination_user_id",
     ///             userId: "user_xxxxxxxxxxxxx"
     ///         )
@@ -96,7 +102,7 @@ public final class CompanyTokenTransactionsClient: Sendable {
         )
     }
 
-    /// Retrieves the details of an existing company token transaction.
+    /// Retrieves a token transaction.
     ///
     /// Required permissions:
     ///  - `company_token_transaction:read`
@@ -108,7 +114,10 @@ public final class CompanyTokenTransactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.companyTokenTransactions.retrieve(id: "id")
     /// }

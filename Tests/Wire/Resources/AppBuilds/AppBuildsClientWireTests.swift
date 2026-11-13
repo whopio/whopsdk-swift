@@ -18,7 +18,7 @@ import WhopSDK
                       "is_production": false,
                       "platform": "ios",
                       "review_message": "The hub view crashes on launch when the member has no active membership. Fix and resubmit.",
-                      "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                      "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                       "status": "draft",
                       "supported_app_view_types": [
                         "hub"
@@ -26,7 +26,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -50,7 +50,7 @@ import WhopSDK
                     isProduction: false,
                     platform: AppBuildPlatform.ios,
                     reviewMessage: Nullable<String>.value("The hub view crashes on launch when the member has no active membership. Fix and resubmit."),
-                    sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                    sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                     status: AppBuildStatus.draft,
                     supportedAppViewTypes: [
                         AppBuildSupportedAppViewTypesItem.hub
@@ -58,7 +58,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListAppBuildsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -84,7 +84,7 @@ import WhopSDK
                   "is_production": false,
                   "platform": "ios",
                   "review_message": "The hub view crashes on launch when the member has no active membership. Fix and resubmit.",
-                  "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "status": "draft",
                   "supported_app_view_types": [
                     "hub"
@@ -106,7 +106,7 @@ import WhopSDK
             isProduction: false,
             platform: AppBuildPlatform.ios,
             reviewMessage: Nullable<String>.value("The hub view crashes on launch when the member has no active membership. Fix and resubmit."),
-            sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             status: AppBuildStatus.draft,
             supportedAppViewTypes: [
                 AppBuildSupportedAppViewTypesItem.hub
@@ -138,7 +138,7 @@ import WhopSDK
                   "is_production": false,
                   "platform": "ios",
                   "review_message": "The hub view crashes on launch when the member has no active membership. Fix and resubmit.",
-                  "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "status": "draft",
                   "supported_app_view_types": [
                     "hub"
@@ -160,7 +160,7 @@ import WhopSDK
             isProduction: false,
             platform: AppBuildPlatform.ios,
             reviewMessage: Nullable<String>.value("The hub view crashes on launch when the member has no active membership. Fix and resubmit."),
-            sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             status: AppBuildStatus.draft,
             supportedAppViewTypes: [
                 AppBuildSupportedAppViewTypesItem.hub
@@ -186,7 +186,7 @@ import WhopSDK
                   "is_production": false,
                   "platform": "ios",
                   "review_message": "The hub view crashes on launch when the member has no active membership. Fix and resubmit.",
-                  "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "source_url": "https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "status": "draft",
                   "supported_app_view_types": [
                     "hub"
@@ -208,7 +208,7 @@ import WhopSDK
             isProduction: false,
             platform: AppBuildPlatform.ios,
             reviewMessage: Nullable<String>.value("The hub view crashes on launch when the member has no active membership. Fix and resubmit."),
-            sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            sourceUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/zip/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             status: AppBuildStatus.draft,
             supportedAppViewTypes: [
                 AppBuildSupportedAppViewTypesItem.hub

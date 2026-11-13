@@ -29,11 +29,15 @@ public struct UpdateMethodsResponse: Codable, Hashable, Sendable {
     public let payerName: Nullable<String>
     /// Always `null` after an update.
     public let quote: Nullable<[String: JSONValue]>
+    /// The recipient of a third-party payout method. Present only for recipient payout methods.
+    public let recipient: UpdateMethodsResponseRecipient?
     /// `created` — saved, no payout has completed through it yet. `active` — a payout through it completed. `broken` — a payout through it failed with an error attributable to the method, and it no longer accepts payouts; a later successful payout returns it to `active`.
     public let status: UpdateMethodsResponseStatus
     /// Machine-readable code for why the method is `broken` — the newest failure recorded through it, whether a payout error or a pre-payout rejection. `null` unless the method is broken, or when it was disabled without a recorded failure.
     public let statusReason: Nullable<String>
     public let supportedPayoutMethod: Nullable<UpdateMethodsResponseSupportedPayoutMethod>
+    /// The kind of payout method. `external` sends funds out of Whop. `whop_card` moves funds onto the account's own Whop Card. A `whop_card` method takes standard-speed payouts only, and cannot be updated, reconnected, or deleted.
+    public let type: UpdateMethodsResponseType
     /// Why this method is unavailable: `destination_retired` means the payout provider stopped offering the destination. Whop may automatically remap an eligible method that was not linked through Plaid to a compatible replacement; otherwise, the account owner must re-add it. `null` means no unavailability reason is known.
     public let unavailableReason: Nullable<UpdateMethodsResponseUnavailableReason>
     /// Additional properties that are not explicitly defined in the schema
@@ -57,9 +61,11 @@ public struct UpdateMethodsResponse: Codable, Hashable, Sendable {
         object: UpdateMethodsResponseObject,
         payerName: Nullable<String>,
         quote: Nullable<[String: JSONValue]>,
+        recipient: UpdateMethodsResponseRecipient? = nil,
         status: UpdateMethodsResponseStatus,
         statusReason: Nullable<String>,
         supportedPayoutMethod: Nullable<UpdateMethodsResponseSupportedPayoutMethod>,
+        type: UpdateMethodsResponseType,
         unavailableReason: Nullable<UpdateMethodsResponseUnavailableReason>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -80,9 +86,11 @@ public struct UpdateMethodsResponse: Codable, Hashable, Sendable {
         self.object = object
         self.payerName = payerName
         self.quote = quote
+        self.recipient = recipient
         self.status = status
         self.statusReason = statusReason
         self.supportedPayoutMethod = supportedPayoutMethod
+        self.type = type
         self.unavailableReason = unavailableReason
         self.additionalProperties = additionalProperties
     }
@@ -106,9 +114,11 @@ public struct UpdateMethodsResponse: Codable, Hashable, Sendable {
         self.object = try container.decode(UpdateMethodsResponseObject.self, forKey: .object)
         self.payerName = try container.decode(Nullable<String>.self, forKey: .payerName)
         self.quote = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .quote)
+        self.recipient = try container.decodeIfPresent(UpdateMethodsResponseRecipient.self, forKey: .recipient)
         self.status = try container.decode(UpdateMethodsResponseStatus.self, forKey: .status)
         self.statusReason = try container.decode(Nullable<String>.self, forKey: .statusReason)
         self.supportedPayoutMethod = try container.decode(Nullable<UpdateMethodsResponseSupportedPayoutMethod>.self, forKey: .supportedPayoutMethod)
+        self.type = try container.decode(UpdateMethodsResponseType.self, forKey: .type)
         self.unavailableReason = try container.decode(Nullable<UpdateMethodsResponseUnavailableReason>.self, forKey: .unavailableReason)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -133,9 +143,11 @@ public struct UpdateMethodsResponse: Codable, Hashable, Sendable {
         try container.encode(self.object, forKey: .object)
         try container.encode(self.payerName, forKey: .payerName)
         try container.encode(self.quote, forKey: .quote)
+        try container.encodeIfPresent(self.recipient, forKey: .recipient)
         try container.encode(self.status, forKey: .status)
         try container.encode(self.statusReason, forKey: .statusReason)
         try container.encode(self.supportedPayoutMethod, forKey: .supportedPayoutMethod)
+        try container.encode(self.type, forKey: .type)
         try container.encode(self.unavailableReason, forKey: .unavailableReason)
     }
 
@@ -158,9 +170,11 @@ public struct UpdateMethodsResponse: Codable, Hashable, Sendable {
         case object
         case payerName = "payer_name"
         case quote
+        case recipient
         case status
         case statusReason = "status_reason"
         case supportedPayoutMethod = "supported_payout_method"
+        case type
         case unavailableReason = "unavailable_reason"
     }
 }

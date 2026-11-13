@@ -1,9 +1,7 @@
 import Foundation
 
 public struct DeleteSocialAccountsResponse: Codable, Hashable, Sendable {
-    /// Always true.
     public let deleted: Bool
-    /// ID of the disconnected social account.
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

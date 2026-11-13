@@ -3,7 +3,7 @@ import Foundation
 extension Requests {
     public struct CreateSupportChannelsRequest: Codable, Hashable, Sendable {
         /// The unique identifier of the company to create the support channel in.
-        public let companyId: String
+        public let accountId: String
         /// Optional custom display name for the support channel.
         public let customName: Nullable<String>?
         /// Whether Whop app notifications are enabled for this support channel. Webhooks still fire.
@@ -14,13 +14,13 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            companyId: String,
+            accountId: String,
             customName: Nullable<String>? = nil,
             notificationsEnabled: Nullable<Bool>? = nil,
             userId: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.companyId = companyId
+            self.accountId = accountId
             self.customName = customName
             self.notificationsEnabled = notificationsEnabled
             self.userId = userId
@@ -29,7 +29,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.companyId = try container.decode(String.self, forKey: .companyId)
+            self.accountId = try container.decode(String.self, forKey: .accountId)
             self.customName = try container.decodeNullableIfPresent(String.self, forKey: .customName)
             self.notificationsEnabled = try container.decodeNullableIfPresent(Bool.self, forKey: .notificationsEnabled)
             self.userId = try container.decode(String.self, forKey: .userId)
@@ -39,7 +39,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encode(self.companyId, forKey: .companyId)
+            try container.encode(self.accountId, forKey: .accountId)
             try container.encodeNullableIfPresent(self.customName, forKey: .customName)
             try container.encodeNullableIfPresent(self.notificationsEnabled, forKey: .notificationsEnabled)
             try container.encode(self.userId, forKey: .userId)
@@ -47,7 +47,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case companyId = "company_id"
+            case accountId = "account_id"
             case customName = "custom_name"
             case notificationsEnabled = "notifications_enabled"
             case userId = "user_id"

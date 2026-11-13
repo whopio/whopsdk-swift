@@ -1,9 +1,7 @@
 import Foundation
 
 public struct CalculateTaxPlansRequestTaxIdsItem: Codable, Hashable, Sendable {
-    /// Tax ID type, such as `eu_vat` for an EU VAT number.
     public let type: CalculateTaxPlansRequestTaxIdsItemType?
-    /// Tax ID value, for example `DE123456789`.
     public let value: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

@@ -1,11 +1,11 @@
 import Foundation
 
 public struct Money: Codable, Hashable, Sendable {
-    /// The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit.
+    /// The amount in major units, as an exact decimal string. For example, `"10.00"` is ten dollars. It is a string so that no float rounds it in transit.
     public let amount: String
     /// Three-letter ISO 4217 currency code, lowercase.
     public let currency: String
-    /// How many decimal places the amount CARRIES — the precision the charge itself runs at.
+    /// How many decimal places the amount carries. This is the precision the charge itself runs at.
     public let decimals: Int
     /// How many decimal places to SHOW. Usually equal to `decimals`, and deliberately not always: COP is charged in centavos but written in whole pesos, so it is `2` and `0`. Format the number in your own locale using this.
     public let displayDecimals: Int

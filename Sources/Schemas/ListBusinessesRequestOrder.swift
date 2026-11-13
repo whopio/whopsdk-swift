@@ -6,5 +6,6 @@ public enum ListBusinessesRequestOrder: String, Codable, Hashable, CaseIterable,
     case referralExpiresAt = "referral_expires_at"
     case payoutPercentage = "payout_percentage"
     case volumeUsd = "volume_usd"
+    case volume30DUsd = "volume_30d_usd"
     case earningsUsd = "earnings_usd"
 }

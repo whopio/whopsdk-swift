@@ -9,7 +9,7 @@ public final class AffiliatesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of affiliates for the actor in context, with optional filtering by status, search, and sorting.
+    /// Lists the affiliates of an account.
     ///
     /// Required permissions:
     ///  - `affiliate:basic:read`
@@ -19,12 +19,15 @@ public final class AffiliatesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -35,10 +38,10 @@ public final class AffiliatesClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list affiliates for.
     /// - Parameter query: Search affiliates by username.
+    /// - Parameter accountId: The unique identifier of the company to list affiliates for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, direction: Direction? = nil, order: AffiliatesSortableColumns? = nil, query: String? = nil, status: Status? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAffiliatesResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, direction: Direction? = nil, order: AffiliatesSortableColumns? = nil, query: String? = nil, status: Status? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListAffiliatesResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/affiliates",
@@ -47,18 +50,18 @@ public final class AffiliatesClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId), 
                 "direction": direction.map { .string($0.rawValue) }, 
                 "order": order.map { .string($0.rawValue) }, 
                 "query": query.map { .string($0) }, 
-                "status": status.map { .string($0.rawValue) }
+                "status": status.map { .string($0.rawValue) }, 
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListAffiliatesResponse.self
         )
     }
 
-    /// Creates or finds an affiliate for a company and user.
+    /// Creates an affiliate for a user on an account. If the user is already an affiliate of the account, returns that affiliate, reactivating it if it was archived.
     ///
     /// Required permissions:
     ///  - `affiliate:create`
@@ -68,10 +71,13 @@ public final class AffiliatesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.create(request: .init(
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
     ///         userIdentifier: "user_identifier"
     ///     ))
     /// }
@@ -100,7 +106,10 @@ public final class AffiliatesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.retrieve(id: "aff_xxxxxxxxxxxxxx")
     /// }
@@ -119,7 +128,7 @@ public final class AffiliatesClient: Sendable {
         )
     }
 
-    /// Archives an existing Affiliate
+    /// Archives an affiliate. The affiliate that handles Whop marketplace referrals cannot be archived.
     ///
     /// Required permissions:
     ///  - `affiliate:update`
@@ -129,7 +138,10 @@ public final class AffiliatesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.archive(id: "aff_xxxxxxxxxxxxxx")
     /// }
@@ -148,7 +160,7 @@ public final class AffiliatesClient: Sendable {
         )
     }
 
-    /// Unarchives an existing Affiliate
+    /// Unarchives an archived affiliate.
     ///
     /// Required permissions:
     ///  - `affiliate:update`
@@ -158,7 +170,10 @@ public final class AffiliatesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.unarchive(id: "aff_xxxxxxxxxxxxxx")
     /// }

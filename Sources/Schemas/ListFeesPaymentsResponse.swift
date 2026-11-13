@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for Fee.
 public struct ListFeesPaymentsResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [ListFeesPaymentsResponseDataItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let data: [PaymentFee]
+    public let pageInfo: ListFeesPaymentsResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [ListFeesPaymentsResponseDataItem],
-        pageInfo: PageInfo,
+        data: [PaymentFee],
+        pageInfo: ListFeesPaymentsResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -21,8 +18,8 @@ public struct ListFeesPaymentsResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([ListFeesPaymentsResponseDataItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.data = try container.decode([PaymentFee].self, forKey: .data)
+        self.pageInfo = try container.decode(ListFeesPaymentsResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

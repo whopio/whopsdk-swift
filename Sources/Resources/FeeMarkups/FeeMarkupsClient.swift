@@ -7,7 +7,7 @@ public final class FeeMarkupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of fee markups configured for a company. If the company is a platform account, returns the platform default markups.
+    /// Lists the fee markups configured for an account. For a platform account, returns the platform's default markups.
     ///
     /// Required permissions:
     ///  - `company:update_child_fees`
@@ -17,12 +17,15 @@ public final class FeeMarkupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.feeMarkups.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -33,9 +36,9 @@ public final class FeeMarkupsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list fee markups for. Pass a platform account identifier to retrieve platform default markups.
+    /// - Parameter accountId: The unique identifier of the company to list fee markups for. Pass a platform account identifier to retrieve platform default markups.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, requestOptions: RequestOptions? = nil) async throws -> ListFeeMarkupsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListFeeMarkupsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/fee_markups",
@@ -44,14 +47,14 @@ public final class FeeMarkupsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId)
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListFeeMarkupsResponse.self
         )
     }
 
-    /// Create or update a fee markup for a company. If a markup for the specified fee type already exists, it will be updated with the new values.
+    /// Creates or updates an account's markup for one fee type. If the account already has a markup for that `fee_type`, it is updated with the new values.
     ///
     /// Required permissions:
     ///  - `company:update_child_fees`
@@ -61,10 +64,13 @@ public final class FeeMarkupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.feeMarkups.create(request: .init(
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
     ///         feeType: .cryptoWithdrawalMarkup
     ///     ))
     /// }
@@ -83,7 +89,7 @@ public final class FeeMarkupsClient: Sendable {
         )
     }
 
-    /// Delete a fee markup configuration for a company. This removes the custom fee override and reverts to the parent company's default fees.
+    /// Deletes a fee markup, removing the custom fee override so the account reverts to its parent account's default fees.
     ///
     /// Required permissions:
     ///  - `company:update_child_fees`
@@ -93,7 +99,10 @@ public final class FeeMarkupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.feeMarkups.delete(id: "id")
     /// }

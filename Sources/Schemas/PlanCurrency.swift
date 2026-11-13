@@ -1,6 +1,6 @@
 import Foundation
 
-/// Three-letter ISO currency code for this plan's prices.
+/// Three-letter ISO 4217 code of the currency every price on this variant is stated in, lowercase: the variant's own currency, or the `presentment_currency` the read asked for when the variant can be converted into it.
 public enum PlanCurrency: String, Codable, Hashable, CaseIterable, Sendable {
     case usd
     case sgd

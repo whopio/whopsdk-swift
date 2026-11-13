@@ -3,13 +3,15 @@ import Foundation
 public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     /// The payout amount in whole currency units, as a decimal string.
     public let amount: String
+    /// Whether `POST /payouts/{id}/cancel` would act on this payout right now: `true` while it is `in_review`, while it is `processing` with nothing yet submitted to the payout provider, or while a submitted payout can still be asked to cancel at the provider. `false` once the money has arrived or the payout has already ended.
+    public let cancelable: Bool
     /// When the payout was created.
     public let createdAt: Date
     /// Payout currency.
     public let currency: String
     /// The amount delivered in the destination currency, as a decimal string. Assigned when the payout is processed, so it is `null` before then and on payouts without a recorded conversion.
     public let destinationAmount: Nullable<String>
-    /// Currency the funds are delivered in, taken from the payout method when the payout is created. On a stablecoin payout it follows the settlement payout minted alongside it — the `GET /payouts` row carrying this payout's id as `payout_request_id` — and is `null` only when no settlement payout exists.
+    /// Currency the funds are delivered in, taken from the payout method when the payout is created. On a payout funded by a conversion request it follows the settlement payout minted alongside it — the `GET /payouts` row carrying this payout's id as `payout_request_id` — and is `null` only when no settlement payout exists.
     public let destinationCurrency: Nullable<String>
     /// Estimated time the funds become available in the destination account.
     public let estimatedArrival: Nullable<Date>
@@ -27,7 +29,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     public let markupFee: String
     /// Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters.
     public let metadata: [String: String]
-    /// The planned net for the destination, in the payout currency: amount minus fee_amount minus markup_fee when fee_paid_by is `self`; equal to amount when the platform covers the fees. A payout that ends denied, canceled, or failed delivered nothing — most keep the planned figure and `failure` says where the funds are, but a canceled stablecoin payout can report the settled outcome instead: `amount` carries what stayed in the balance, fees are zero because none were charged, and `net_amount` is 0 because nothing was delivered.
+    /// The planned net for the destination, in the payout currency: amount minus fee_amount minus markup_fee when fee_paid_by is `self`; equal to amount when the platform covers the fees. A payout that ends denied, canceled, or failed delivered nothing — most keep the planned figure and `failure` says where the funds are, but a canceled payout funded by a conversion request can report the settled outcome instead: `amount` carries what stayed in the balance, fees are zero because none were charged, and `net_amount` is 0 because nothing was delivered.
     public let netAmount: String
     /// Free-form notes attached by the payout creator, or `null` when none were provided. Maximum 255 characters.
     public let notes: Nullable<String>
@@ -38,21 +40,24 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     public let payoutMethod: Nullable<ListPayoutsResponseDataItemPayoutMethod>
     /// Payout request ID, prefixed `cofr_`, returned by `POST /payouts`. Match it to the settled payout in `GET /payouts`. Returns `null` for payouts not created by `POST /payouts`.
     public let payoutRequestId: Nullable<String>
-    /// How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling.
+    /// How the payout was created. `automatic` means a scheduled auto-payout. `null` when the payout has no recorded source.
     public let source: Nullable<ListPayoutsResponseDataItemSource>
     /// Payout delivery speed.
     public let speed: ListPayoutsResponseDataItemSpeed
+    /// The payment description sent with the payout, or `null` if no descriptor was set. When set, 5-80 printable ASCII characters.
+    public let statementDescriptor: Nullable<String>
     /// Current payout status.
     public let status: ListPayoutsResponseDataItemStatus
-    /// The finest machine phase under `status` — for example `awaiting_provider_acceptance` vs `in_transit` under `processing`, or the stablecoin conversion phase under `requested`. Informational vocabulary: values can be added without a version bump; `status` is the versioned contract.
+    /// The finest machine phase under `status` — for example `awaiting_provider_acceptance` vs `in_transit` under `processing`, or the conversion phase under `requested`. Informational vocabulary: values can be added without a version bump; `status` is the versioned contract.
     public let statusDetail: String
-    /// ACH trace number the recipient's bank can use to locate this payout. Assigned when the payout is submitted to the bank, so it is `null` before then and on payouts not sent over ACH.
+    /// Payment network reference for this payout, such as an ACH trace number, an RTP or FedNow end-to-end ID, a wire IMAD, or a SWIFT UETR. `null` until the reference is available, and on payouts that have none.
     public let traceCode: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         amount: String,
+        cancelable: Bool,
         createdAt: Date,
         currency: String,
         destinationAmount: Nullable<String>,
@@ -73,12 +78,14 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         payoutRequestId: Nullable<String>,
         source: Nullable<ListPayoutsResponseDataItemSource>,
         speed: ListPayoutsResponseDataItemSpeed,
+        statementDescriptor: Nullable<String>,
         status: ListPayoutsResponseDataItemStatus,
         statusDetail: String,
         traceCode: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.amount = amount
+        self.cancelable = cancelable
         self.createdAt = createdAt
         self.currency = currency
         self.destinationAmount = destinationAmount
@@ -99,6 +106,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         self.payoutRequestId = payoutRequestId
         self.source = source
         self.speed = speed
+        self.statementDescriptor = statementDescriptor
         self.status = status
         self.statusDetail = statusDetail
         self.traceCode = traceCode
@@ -108,6 +116,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.amount = try container.decode(String.self, forKey: .amount)
+        self.cancelable = try container.decode(Bool.self, forKey: .cancelable)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.currency = try container.decode(String.self, forKey: .currency)
         self.destinationAmount = try container.decode(Nullable<String>.self, forKey: .destinationAmount)
@@ -128,6 +137,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         self.payoutRequestId = try container.decode(Nullable<String>.self, forKey: .payoutRequestId)
         self.source = try container.decode(Nullable<ListPayoutsResponseDataItemSource>.self, forKey: .source)
         self.speed = try container.decode(ListPayoutsResponseDataItemSpeed.self, forKey: .speed)
+        self.statementDescriptor = try container.decode(Nullable<String>.self, forKey: .statementDescriptor)
         self.status = try container.decode(ListPayoutsResponseDataItemStatus.self, forKey: .status)
         self.statusDetail = try container.decode(String.self, forKey: .statusDetail)
         self.traceCode = try container.decode(Nullable<String>.self, forKey: .traceCode)
@@ -138,6 +148,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.amount, forKey: .amount)
+        try container.encode(self.cancelable, forKey: .cancelable)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.currency, forKey: .currency)
         try container.encode(self.destinationAmount, forKey: .destinationAmount)
@@ -158,6 +169,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         try container.encode(self.payoutRequestId, forKey: .payoutRequestId)
         try container.encode(self.source, forKey: .source)
         try container.encode(self.speed, forKey: .speed)
+        try container.encode(self.statementDescriptor, forKey: .statementDescriptor)
         try container.encode(self.status, forKey: .status)
         try container.encode(self.statusDetail, forKey: .statusDetail)
         try container.encode(self.traceCode, forKey: .traceCode)
@@ -166,6 +178,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case amount
+        case cancelable
         case createdAt = "created_at"
         case currency
         case destinationAmount = "destination_amount"
@@ -186,6 +199,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         case payoutRequestId = "payout_request_id"
         case source
         case speed
+        case statementDescriptor = "statement_descriptor"
         case status
         case statusDetail = "status_detail"
         case traceCode = "trace_code"

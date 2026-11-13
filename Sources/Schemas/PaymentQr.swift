@@ -3,6 +3,8 @@ import Foundation
 public struct PaymentQr: Codable, Hashable, Sendable {
     /// Exactly what the buyer must pay, in the charged currency.
     public let amount: Money?
+    /// The code the buyer pastes into their payment app instead of scanning, such as Pix's copy-and-paste code, so they can pay from the device showing the QR. Only present for methods that accept a pasted code.
+    public let copyCode: String?
     /// A hosted page with the complete, printable instructions. If you would rather not render the details yourself, send the buyer here.
     public let documentUrl: String?
     /// When the code stops being payable, as an ISO 8601 timestamp.
@@ -18,6 +20,7 @@ public struct PaymentQr: Codable, Hashable, Sendable {
 
     public init(
         amount: Money? = nil,
+        copyCode: String? = nil,
         documentUrl: String? = nil,
         expiresAt: String? = nil,
         key: String? = nil,
@@ -26,6 +29,7 @@ public struct PaymentQr: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.amount = amount
+        self.copyCode = copyCode
         self.documentUrl = documentUrl
         self.expiresAt = expiresAt
         self.key = key
@@ -37,6 +41,7 @@ public struct PaymentQr: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.amount = try container.decodeIfPresent(Money.self, forKey: .amount)
+        self.copyCode = try container.decodeIfPresent(String.self, forKey: .copyCode)
         self.documentUrl = try container.decodeIfPresent(String.self, forKey: .documentUrl)
         self.expiresAt = try container.decodeIfPresent(String.self, forKey: .expiresAt)
         self.key = try container.decodeIfPresent(String.self, forKey: .key)
@@ -49,6 +54,7 @@ public struct PaymentQr: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.copyCode, forKey: .copyCode)
         try container.encodeIfPresent(self.documentUrl, forKey: .documentUrl)
         try container.encodeIfPresent(self.expiresAt, forKey: .expiresAt)
         try container.encodeIfPresent(self.key, forKey: .key)
@@ -59,6 +65,7 @@ public struct PaymentQr: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case amount
+        case copyCode = "copy_code"
         case documentUrl = "document_url"
         case expiresAt = "expires_at"
         case key

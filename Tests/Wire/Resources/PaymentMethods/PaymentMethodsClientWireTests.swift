@@ -116,9 +116,9 @@ import WhopSDK
             first: 42,
             last: 42,
             memberId: "mber_xxxxxxxxxxxxx",
-            companyId: "biz_xxxxxxxxxxxxxx",
             createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
             createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -215,8 +215,8 @@ import WhopSDK
         )
         let response = try await client.paymentMethods.retrieve(
             id: "payt_xxxxxxxxxxxxx",
-            companyId: "biz_xxxxxxxxxxxxxx",
             memberId: "mber_xxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -239,8 +239,8 @@ import WhopSDK
         let expectedResponse = true
         let response = try await client.paymentMethods.deletePaymentMethod(
             id: "payt_xxxxxxxxxxxxx",
-            companyId: "biz_xxxxxxxxxxxxxx",
             memberId: "mber_xxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

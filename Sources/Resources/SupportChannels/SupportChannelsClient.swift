@@ -7,7 +7,7 @@ public final class SupportChannelsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of support channels for a specific company, with optional filtering by resolution status and custom sorting.
+    /// Lists support channels between an account's team and its customers, most recently active first by default. Pass `open=true` to find channels awaiting a support response.
     ///
     /// Required permissions:
     ///  - `support_chat:read`
@@ -17,12 +17,15 @@ public final class SupportChannelsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.supportChannels.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -33,10 +36,15 @@ public final class SupportChannelsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list support channels for. Includes channels of child companies. When omitted, returns support channels across all companies the user has access to.
     /// - Parameter open: Whether to filter by open or resolved support channels. Set to true to only return channels awaiting a response, or false for resolved channels.
+    /// - Parameter customerUserId: Only return support channels opened by this customer.
+    /// - Parameter customerUserIds: Only return support channels opened by any of these customers. Maximum 100 IDs per request.
+    /// - Parameter participated: Set to true to only return channels the authenticated user has joined as a participant. Requires a user.
+    /// - Parameter includeLastMessage: Set to true to return `last_message` and `unread` on each channel. Both are `null` otherwise, which keeps large lists fast.
+    /// - Parameter includeParticipated: Set to true to return `participated` on each channel. It is `null` otherwise, which keeps large lists fast.
+    /// - Parameter accountId: The unique identifier of the company to list support channels for. Includes channels of child companies. When omitted, returns support channels across all companies the user has access to.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String? = nil, view: SupportChannelView? = nil, open: Bool? = nil, direction: Direction? = nil, order: MessageChannelOrder? = nil, requestOptions: RequestOptions? = nil) async throws -> ListSupportChannelsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, view: SupportChannelView? = nil, open: Bool? = nil, customerUserId: String? = nil, customerUserIds: [String]? = nil, participated: Bool? = nil, includeLastMessage: Bool? = nil, includeParticipated: Bool? = nil, direction: Direction? = nil, order: MessageChannelOrder? = nil, accountId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListSupportChannelsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/support_channels",
@@ -45,18 +53,23 @@ public final class SupportChannelsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": companyId.map { .string($0) }, 
                 "view": view.map { .string($0.rawValue) }, 
                 "open": open.map { .bool($0) }, 
+                "customer_user_id": customerUserId.map { .string($0) }, 
+                "customer_user_ids": customerUserIds.map { .stringArray($0) }, 
+                "participated": participated.map { .bool($0) }, 
+                "include_last_message": includeLastMessage.map { .bool($0) }, 
+                "include_participated": includeParticipated.map { .bool($0) }, 
                 "direction": direction.map { .string($0.rawValue) }, 
-                "order": order.map { .string($0.rawValue) }
+                "order": order.map { .string($0.rawValue) }, 
+                "account_id": accountId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListSupportChannelsResponse.self
         )
     }
 
-    /// Open a new support channel between a company team member and a customer. Returns the existing channel if one already exists for that user.
+    /// Opens a support channel between an account's team and a customer. Returns the existing channel if that customer already has one.
     ///
     /// Required permissions:
     ///  - `support_chat:create`
@@ -66,10 +79,13 @@ public final class SupportChannelsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.supportChannels.create(request: .init(
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
     ///         userId: "user_xxxxxxxxxxxxx"
     ///     ))
     /// }
@@ -98,7 +114,10 @@ public final class SupportChannelsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.supportChannels.retrieve(id: "id")
     /// }

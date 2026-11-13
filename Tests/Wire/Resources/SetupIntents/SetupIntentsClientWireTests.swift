@@ -11,42 +11,84 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "checkout_configuration": {
-                        "id": "ch_xxxxxxxxxxxxxxx"
+                      "account_id": "biz_xxxxxxxxxxxxxx",
+                      "checkout_configuration_id": "checkout_configuration_id",
+                      "client_secret": "sint_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "id": "sint_xxxxxxxxxxxxxx",
+                      "last_setup_error": {
+                        "code": "enrollment_declined",
+                        "message": "The bank declined the enrollment."
                       },
-                      "company": {
-                        "id": "biz_xxxxxxxxxxxxxx"
-                      },
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "error_message": "Your card was declined.",
-                      "id": "sint_xxxxxxxxxxxxx",
-                      "member": {
-                        "id": "id",
-                        "user": null
-                      },
+                      "member_id": "mber_xxxxxxxxxxxxxx",
                       "metadata": {
-                        "key": "value"
+                        "customer_id": "cus_4417"
                       },
-                      "payment_method": {
+                      "payment_instrument": {
                         "card": {
-                          "brand": null,
-                          "exp_month": 42,
-                          "exp_year": 42,
-                          "last4": "4242"
+                          "brand": "visa",
+                          "exp_month": 10,
+                          "exp_year": 2031,
+                          "issuer_identification_number": "41111111",
+                          "last4": "4242",
+                          "network_transaction_id": "016153570198200"
                         },
-                        "created_at": "2023-12-01T05:00:00Z",
-                        "id": "payt_xxxxxxxxxxxxx",
-                        "mailing_address": null,
-                        "payment_method_type": "acss_debit"
+                        "display_name": "Visa •••• 4242",
+                        "icons": {
+                          "card": {
+                            "dark": {
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                            },
+                            "light": {
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                            }
+                          },
+                          "square": {
+                            "dark": {
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                            },
+                            "light": {
+                              "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                              "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                              "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                              "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                            }
+                          }
+                        },
+                        "installment_count": null,
+                        "payment_method_type": "card"
                       },
-                      "status": "processing"
+                      "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                      "payment_method_type": "acss_debit",
+                      "return_url": "https://shinetime.example/billing/saved",
+                      "status": "processing",
+                      "three_ds_level": "mandate_challenge",
+                      "three_ds_verified": false,
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "user": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      }
                     }
                   ],
                   "page_info": {
                     "end_cursor": "end_cursor",
-                    "has_next_page": true,
-                    "has_previous_page": true,
-                    "start_cursor": "start_cursor"
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "WyJjdXJzb3IiLDFd"
                   }
                 }
                 """#.utf8
@@ -59,53 +101,88 @@ import WhopSDK
         )
         let expectedResponse = ListSetupIntentsResponse(
             data: [
-                SetupIntentListItem(
-                    checkoutConfiguration: Nullable<SetupIntentListItemCheckoutConfiguration>.value(SetupIntentListItemCheckoutConfiguration(
-                        id: "ch_xxxxxxxxxxxxxxx"
+                SetupIntent(
+                    accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+                    checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+                    clientSecret: Nullable<String>.value("sint_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    id: "sint_xxxxxxxxxxxxxx",
+                    lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                        code: Nullable<String>.value("enrollment_declined"),
+                        message: Nullable<String>.value("The bank declined the enrollment.")
                     )),
-                    company: Nullable<SetupIntentListItemCompany>.value(SetupIntentListItemCompany(
-                        id: "biz_xxxxxxxxxxxxxx"
-                    )),
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    errorMessage: Nullable<String>.value("Your card was declined."),
-                    id: "sint_xxxxxxxxxxxxx",
-                    member: Nullable<SetupIntentListItemMember>.value(SetupIntentListItemMember(
-                        id: "id",
-                        user: .null
-                    )),
+                    memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
                     metadata: Nullable<[String: JSONValue]>.value([
-                        "key": JSONValue.string("value")
+                        "customer_id": JSONValue.string("cus_4417")
                     ]),
-                    paymentMethod: Nullable<SetupIntentListItemPaymentMethod>.value(SetupIntentListItemPaymentMethod(
-                        card: Nullable<SetupIntentListItemPaymentMethodCard>.value(SetupIntentListItemPaymentMethodCard(
-                            brand: .null,
-                            expMonth: Nullable<Int>.value(42),
-                            expYear: Nullable<Int>.value(42),
-                            last4: Nullable<String>.value("4242")
+                    paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                        card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                            brand: Nullable<String>.value("visa"),
+                            expMonth: Nullable<Double>.value(10),
+                            expYear: Nullable<Double>.value(2031),
+                            issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                            last4: Nullable<String>.value("4242"),
+                            networkTransactionId: Nullable<String>.value("016153570198200")
                         )),
-                        createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                        id: "payt_xxxxxxxxxxxxx",
-                        mailingAddress: .null,
-                        paymentMethodType: PaymentMethodTypes.acssDebit
+                        displayName: "Visa •••• 4242",
+                        icons: PaymentMethodIcons(
+                            card: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                                ),
+                                light: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                                )
+                            ),
+                            square: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                                ),
+                                light: PaymentMethodIconFiles(
+                                    png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                                    png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                                    png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                                    svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                                )
+                            )
+                        ),
+                        installmentCount: .null,
+                        paymentMethodType: "card"
                     )),
-                    status: SetupIntentStatuses.processing
+                    paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+                    paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+                    returnUrl: Nullable<String>.value("https://shinetime.example/billing/saved"),
+                    status: SetupIntentStatus.processing,
+                    threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+                    threeDsVerified: false,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    user: Nullable<UserSummary>.value(UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    ))
                 )
             ],
-            pageInfo: PageInfo(
+            pageInfo: ListSetupIntentsResponsePageInfo(
                 endCursor: Nullable<String>.value("end_cursor"),
-                hasNextPage: true,
-                hasPreviousPage: true,
-                startCursor: Nullable<String>.value("start_cursor")
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
             )
         )
-        let response = try await client.setupIntents.list(
-            first: 42,
-            last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
-            createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
+        let response = try await client.setupIntents.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -115,50 +192,77 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "checkout_configuration": {
-                    "id": "ch_xxxxxxxxxxxxxxx"
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "client_secret": "sint_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "id": "sint_xxxxxxxxxxxxxx",
+                  "last_setup_error": {
+                    "code": "enrollment_declined",
+                    "message": "The bank declined the enrollment."
                   },
-                  "client_secret": "sint_xxxxxxxxxxxxxx_secret_v1_xxxx",
-                  "company": {
-                    "id": "biz_xxxxxxxxxxxxxx"
-                  },
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "error_message": "Your card was declined.",
-                  "id": "sint_xxxxxxxxxxxxx",
-                  "member": {
-                    "id": "id",
-                    "user": {
-                      "email": "email",
-                      "id": "id",
-                      "name": "name",
-                      "username": "username"
-                    }
-                  },
+                  "member_id": "mber_xxxxxxxxxxxxxx",
                   "metadata": {
-                    "key": "value"
+                    "customer_id": "cus_4417"
                   },
-                  "payment_method": {
+                  "payment_instrument": {
                     "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "last4": "4242"
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
                     },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "mailing_address": {
-                      "city": "city",
-                      "country": "country",
-                      "line1": "line1",
-                      "line2": "line2",
-                      "name": "name",
-                      "postal_code": "postal_code",
-                      "state": "state"
+                    "display_name": "Visa •••• 4242",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      }
                     },
-                    "payment_method_type": "acss_debit"
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
                   },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                  "payment_method_type": "acss_debit",
+                  "return_url": "https://shinetime.example/billing/saved",
                   "status": "processing",
-                  "three_ds_verified": true
+                  "three_ds_level": "mandate_challenge",
+                  "three_ds_verified": false,
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "user": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  }
                 }
                 """#.utf8
             )
@@ -168,59 +272,81 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CreateSetupIntentsResponse(
-            checkoutConfiguration: Nullable<CreateSetupIntentsResponseCheckoutConfiguration>.value(CreateSetupIntentsResponseCheckoutConfiguration(
-                id: "ch_xxxxxxxxxxxxxxx"
+        let expectedResponse = SetupIntent(
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            clientSecret: Nullable<String>.value("sint_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            id: "sint_xxxxxxxxxxxxxx",
+            lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                code: Nullable<String>.value("enrollment_declined"),
+                message: Nullable<String>.value("The bank declined the enrollment.")
             )),
-            clientSecret: Nullable<String>.value("sint_xxxxxxxxxxxxxx_secret_v1_xxxx"),
-            company: Nullable<CreateSetupIntentsResponseCompany>.value(CreateSetupIntentsResponseCompany(
-                id: "biz_xxxxxxxxxxxxxx"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            errorMessage: Nullable<String>.value("Your card was declined."),
-            id: "sint_xxxxxxxxxxxxx",
-            member: Nullable<CreateSetupIntentsResponseMember>.value(CreateSetupIntentsResponseMember(
-                id: "id",
-                user: Nullable<CreateSetupIntentsResponseMemberUser>.value(CreateSetupIntentsResponseMemberUser(
-                    email: Nullable<String>.value("email"),
-                    id: "id",
-                    name: Nullable<String>.value("name"),
-                    username: "username"
-                ))
-            )),
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
             metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
+                "customer_id": JSONValue.string("cus_4417")
             ]),
-            paymentMethod: Nullable<CreateSetupIntentsResponsePaymentMethod>.value(CreateSetupIntentsResponsePaymentMethod(
-                card: Nullable<CreateSetupIntentsResponsePaymentMethodCard>.value(CreateSetupIntentsResponsePaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    last4: Nullable<String>.value("4242")
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
                 )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                mailingAddress: Nullable<CreateSetupIntentsResponsePaymentMethodMailingAddress>.value(CreateSetupIntentsResponsePaymentMethodMailingAddress(
-                    city: Nullable<String>.value("city"),
-                    country: Nullable<String>.value("country"),
-                    line1: Nullable<String>.value("line1"),
-                    line2: Nullable<String>.value("line2"),
-                    name: Nullable<String>.value("name"),
-                    postalCode: Nullable<String>.value("postal_code"),
-                    state: Nullable<String>.value("state")
-                )),
-                paymentMethodType: PaymentMethodTypes.acssDebit
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
             )),
-            status: SetupIntentStatuses.processing,
-            threeDsVerified: true
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            returnUrl: Nullable<String>.value("https://shinetime.example/billing/saved"),
+            status: SetupIntentStatus.processing,
+            threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+            threeDsVerified: false,
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            ))
         )
         let response = try await client.setupIntents.create(
-            request: CreateSetupIntentsRequest.createSetupIntentsRequestConfirmationToken(
-                CreateSetupIntentsRequestConfirmationToken(
-                    companyId: "biz_xxxxxxxxxxxxxx",
-                    confirmationToken: "ctok_xxxxxxxxxxxxxx"
-                )
-            ),
+            request: .init(accountId: "biz_xxxxxxxxxxxxxx"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -232,49 +358,77 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "checkout_configuration": {
-                    "id": "ch_xxxxxxxxxxxxxxx"
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "client_secret": "sint_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "id": "sint_xxxxxxxxxxxxxx",
+                  "last_setup_error": {
+                    "code": "enrollment_declined",
+                    "message": "The bank declined the enrollment."
                   },
-                  "company": {
-                    "id": "biz_xxxxxxxxxxxxxx"
-                  },
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "error_message": "Your card was declined.",
-                  "id": "sint_xxxxxxxxxxxxx",
-                  "member": {
-                    "id": "id",
-                    "user": {
-                      "email": "email",
-                      "id": "id",
-                      "name": "name",
-                      "username": "username"
-                    }
-                  },
+                  "member_id": "mber_xxxxxxxxxxxxxx",
                   "metadata": {
-                    "key": "value"
+                    "customer_id": "cus_4417"
                   },
-                  "payment_method": {
+                  "payment_instrument": {
                     "card": {
-                      "brand": "mastercard",
-                      "exp_month": 42,
-                      "exp_year": 42,
-                      "last4": "4242"
+                      "brand": "visa",
+                      "exp_month": 10,
+                      "exp_year": 2031,
+                      "issuer_identification_number": "41111111",
+                      "last4": "4242",
+                      "network_transaction_id": "016153570198200"
                     },
-                    "created_at": "2023-12-01T05:00:00Z",
-                    "id": "payt_xxxxxxxxxxxxx",
-                    "mailing_address": {
-                      "city": "city",
-                      "country": "country",
-                      "line1": "line1",
-                      "line2": "line2",
-                      "name": "name",
-                      "postal_code": "postal_code",
-                      "state": "state"
+                    "display_name": "Visa •••• 4242",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        },
+                        "light": {
+                          "png_1x": "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                          "png_2x": "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                          "png_4x": "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                          "svg": "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        }
+                      }
                     },
-                    "payment_method_type": "acss_debit"
+                    "installment_count": 1.1,
+                    "payment_method_type": "card"
                   },
+                  "payment_method_id": "payt_xxxxxxxxxxxxxx",
+                  "payment_method_type": "acss_debit",
+                  "return_url": "https://shinetime.example/billing/saved",
                   "status": "processing",
-                  "three_ds_verified": true
+                  "three_ds_level": "mandate_challenge",
+                  "three_ds_verified": false,
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "user": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  }
                 }
                 """#.utf8
             )
@@ -285,52 +439,80 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = SetupIntent(
-            checkoutConfiguration: Nullable<SetupIntentCheckoutConfiguration>.value(SetupIntentCheckoutConfiguration(
-                id: "ch_xxxxxxxxxxxxxxx"
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            clientSecret: Nullable<String>.value("sint_xxxxxxxxxxxxxx_secret_vdefault_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            id: "sint_xxxxxxxxxxxxxx",
+            lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                code: Nullable<String>.value("enrollment_declined"),
+                message: Nullable<String>.value("The bank declined the enrollment.")
             )),
-            company: Nullable<SetupIntentCompany>.value(SetupIntentCompany(
-                id: "biz_xxxxxxxxxxxxxx"
-            )),
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            errorMessage: Nullable<String>.value("Your card was declined."),
-            id: "sint_xxxxxxxxxxxxx",
-            member: Nullable<SetupIntentMember>.value(SetupIntentMember(
-                id: "id",
-                user: Nullable<SetupIntentMemberUser>.value(SetupIntentMemberUser(
-                    email: Nullable<String>.value("email"),
-                    id: "id",
-                    name: Nullable<String>.value("name"),
-                    username: "username"
-                ))
-            )),
+            memberId: Nullable<String>.value("mber_xxxxxxxxxxxxxx"),
             metadata: Nullable<[String: JSONValue]>.value([
-                "key": JSONValue.string("value")
+                "customer_id": JSONValue.string("cus_4417")
             ]),
-            paymentMethod: Nullable<SetupIntentPaymentMethod>.value(SetupIntentPaymentMethod(
-                card: Nullable<SetupIntentPaymentMethodCard>.value(SetupIntentPaymentMethodCard(
-                    brand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                    expMonth: Nullable<Int>.value(42),
-                    expYear: Nullable<Int>.value(42),
-                    last4: Nullable<String>.value("4242")
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("visa"),
+                    expMonth: Nullable<Double>.value(10),
+                    expYear: Nullable<Double>.value(2031),
+                    issuerIdentificationNumber: Nullable<String>.value("41111111"),
+                    last4: Nullable<String>.value("4242"),
+                    networkTransactionId: Nullable<String>.value("016153570198200")
                 )),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                id: "payt_xxxxxxxxxxxxx",
-                mailingAddress: Nullable<SetupIntentPaymentMethodMailingAddress>.value(SetupIntentPaymentMethodMailingAddress(
-                    city: Nullable<String>.value("city"),
-                    country: Nullable<String>.value("country"),
-                    line1: Nullable<String>.value("line1"),
-                    line2: Nullable<String>.value("line2"),
-                    name: Nullable<String>.value("name"),
-                    postalCode: Nullable<String>.value("postal_code"),
-                    state: Nullable<String>.value("state")
-                )),
-                paymentMethodType: PaymentMethodTypes.acssDebit
+                displayName: "Visa •••• 4242",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "https://content.whop.com/payment_methods/card/icons/card_dark_30.png",
+                            png2X: "https://content.whop.com/payment_methods/card/icons/card_dark_60.png",
+                            png4X: "https://content.whop.com/payment_methods/card/icons/card_dark_120.png",
+                            svg: "https://content.whop.com/payment_methods/card/icons/card_dark.svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "card"
             )),
-            status: SetupIntentStatuses.processing,
-            threeDsVerified: true
+            paymentMethodId: Nullable<String>.value("payt_xxxxxxxxxxxxxx"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            returnUrl: Nullable<String>.value("https://shinetime.example/billing/saved"),
+            status: SetupIntentStatus.processing,
+            threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+            threeDsVerified: false,
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            ))
         )
         let response = try await client.setupIntents.retrieve(
-            id: "sint_xxxxxxxxxxxxx",
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -345,7 +527,7 @@ import WhopSDK
                   "id": "sint_xxxxxxxxxxxxxx",
                   "last_setup_error": {
                     "code": "enrollment_declined",
-                    "message": "The enrollment was declined by the payment provider."
+                    "message": "The bank declined the enrollment."
                   },
                   "next_action": {
                     "data": {
@@ -372,7 +554,7 @@ import WhopSDK
             id: "sint_xxxxxxxxxxxxxx",
             lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
                 code: Nullable<String>.value("enrollment_declined"),
-                message: Nullable<String>.value("The enrollment was declined by the payment provider.")
+                message: Nullable<String>.value("The bank declined the enrollment.")
             )),
             nextAction: Nullable<PaymentNextAction>.value(PaymentNextAction.awaitConfirmation(
                 .init(
@@ -408,7 +590,7 @@ import WhopSDK
                   "id": "sint_xxxxxxxxxxxxxx",
                   "last_setup_error": {
                     "code": "enrollment_declined",
-                    "message": "The enrollment was declined by the payment provider."
+                    "message": "The bank declined the enrollment."
                   },
                   "next_action": {
                     "data": {
@@ -435,7 +617,7 @@ import WhopSDK
             id: "sint_xxxxxxxxxxxxxx",
             lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
                 code: Nullable<String>.value("enrollment_declined"),
-                message: Nullable<String>.value("The enrollment was declined by the payment provider.")
+                message: Nullable<String>.value("The bank declined the enrollment.")
             )),
             nextAction: Nullable<PaymentNextAction>.value(PaymentNextAction.awaitConfirmation(
                 .init(

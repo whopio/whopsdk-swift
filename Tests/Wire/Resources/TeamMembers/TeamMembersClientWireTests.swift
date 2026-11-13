@@ -13,13 +13,28 @@ import WhopSDK
                     {
                       "account_id": "biz_xxxxxxxxxxxxxx",
                       "authorized_role": {
-                        "id": "id",
-                        "name": "name"
+                        "id": "aurl_xxxxxxxxxxxxxx",
+                        "name": "community-moderators"
                       },
                       "created_at": "2026-01-01T12:00:00.000Z",
+                      "direct_reports_count": 0,
                       "email": "marcus@shinetime.example",
                       "id": "ausr_xxxxxxxxxxxxxx",
                       "is_agent": false,
+                      "reports_to_chain": [
+                        {
+                          "id": "ausr_xxxxxxxxxxxxxx",
+                          "user": {
+                            "id": "user_xxxxxxxxxxxxxx",
+                            "name": "Dana Whitfield",
+                            "profile_picture": {
+                              "url": "https://ui-avatars.com/api/"
+                            },
+                            "username": "danawhitfield"
+                          }
+                        }
+                      ],
+                      "reports_to_id": "ausr_xxxxxxxxxxxxxx",
                       "role": "owner",
                       "status": "joined",
                       "updated_at": "2026-01-01T12:00:00.000Z",
@@ -34,10 +49,10 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "Mw",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
-                    "start_cursor": "MQ"
+                    "start_cursor": "a:WyJjdXJzb3IiLDFd"
                   }
                 }
                 """#.utf8
@@ -53,13 +68,28 @@ import WhopSDK
                 TeamMember(
                     accountId: "biz_xxxxxxxxxxxxxx",
                     authorizedRole: Nullable<TeamMemberAuthorizedRole>.value(TeamMemberAuthorizedRole(
-                        id: "id",
-                        name: "name"
+                        id: "aurl_xxxxxxxxxxxxxx",
+                        name: "community-moderators"
                     )),
                     createdAt: "2026-01-01T12:00:00.000Z",
+                    directReportsCount: Nullable<Int>.value(0),
                     email: Nullable<String>.value("marcus@shinetime.example"),
                     id: "ausr_xxxxxxxxxxxxxx",
                     isAgent: false,
+                    reportsToChain: Nullable<[TeamMemberManager]>.value([
+                        TeamMemberManager(
+                            id: "ausr_xxxxxxxxxxxxxx",
+                            user: UserSummary(
+                                id: "user_xxxxxxxxxxxxxx",
+                                name: Nullable<String>.value("Dana Whitfield"),
+                                profilePicture: UserProfilePicture(
+                                    url: "https://ui-avatars.com/api/"
+                                ),
+                                username: "danawhitfield"
+                            )
+                        )
+                    ]),
+                    reportsToId: Nullable<String>.value("ausr_xxxxxxxxxxxxxx"),
                     role: TeamMemberRole.owner,
                     status: TeamMemberStatus.joined,
                     updatedAt: "2026-01-01T12:00:00.000Z",
@@ -74,10 +104,10 @@ import WhopSDK
                 )
             ],
             pageInfo: ListTeamMembersResponsePageInfo(
-                endCursor: Nullable<String>.value("Mw"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
-                startCursor: Nullable<String>.value("MQ")
+                startCursor: Nullable<String>.value("a:WyJjdXJzb3IiLDFd")
             )
         )
         let response = try await client.teamMembers.list(
@@ -95,13 +125,28 @@ import WhopSDK
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
                   "authorized_role": {
-                    "id": "id",
-                    "name": "name"
+                    "id": "aurl_xxxxxxxxxxxxxx",
+                    "name": "community-moderators"
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "direct_reports_count": 0,
                   "email": "marcus@shinetime.example",
                   "id": "ausr_xxxxxxxxxxxxxx",
                   "is_agent": false,
+                  "reports_to_chain": [
+                    {
+                      "id": "ausr_xxxxxxxxxxxxxx",
+                      "user": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      }
+                    }
+                  ],
+                  "reports_to_id": "ausr_xxxxxxxxxxxxxx",
                   "role": "owner",
                   "status": "joined",
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -125,13 +170,28 @@ import WhopSDK
         let expectedResponse = TeamMember(
             accountId: "biz_xxxxxxxxxxxxxx",
             authorizedRole: Nullable<TeamMemberAuthorizedRole>.value(TeamMemberAuthorizedRole(
-                id: "id",
-                name: "name"
+                id: "aurl_xxxxxxxxxxxxxx",
+                name: "community-moderators"
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
+            directReportsCount: Nullable<Int>.value(0),
             email: Nullable<String>.value("marcus@shinetime.example"),
             id: "ausr_xxxxxxxxxxxxxx",
             isAgent: false,
+            reportsToChain: Nullable<[TeamMemberManager]>.value([
+                TeamMemberManager(
+                    id: "ausr_xxxxxxxxxxxxxx",
+                    user: UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )
+                )
+            ]),
+            reportsToId: Nullable<String>.value("ausr_xxxxxxxxxxxxxx"),
             role: TeamMemberRole.owner,
             status: TeamMemberStatus.joined,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -147,7 +207,8 @@ import WhopSDK
         let response = try await client.teamMembers.create(
             request: .init(
                 accountId: "biz_xxxxxxxxxxxxxx",
-                role: .owner
+                role: .salesManager,
+                userId: "user_xxxxxxxxxxxxxx"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -162,13 +223,28 @@ import WhopSDK
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
                   "authorized_role": {
-                    "id": "id",
-                    "name": "name"
+                    "id": "aurl_xxxxxxxxxxxxxx",
+                    "name": "community-moderators"
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "direct_reports_count": 0,
                   "email": "marcus@shinetime.example",
                   "id": "ausr_xxxxxxxxxxxxxx",
                   "is_agent": false,
+                  "reports_to_chain": [
+                    {
+                      "id": "ausr_xxxxxxxxxxxxxx",
+                      "user": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      }
+                    }
+                  ],
+                  "reports_to_id": "ausr_xxxxxxxxxxxxxx",
                   "role": "owner",
                   "status": "joined",
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -192,13 +268,28 @@ import WhopSDK
         let expectedResponse = TeamMember(
             accountId: "biz_xxxxxxxxxxxxxx",
             authorizedRole: Nullable<TeamMemberAuthorizedRole>.value(TeamMemberAuthorizedRole(
-                id: "id",
-                name: "name"
+                id: "aurl_xxxxxxxxxxxxxx",
+                name: "community-moderators"
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
+            directReportsCount: Nullable<Int>.value(0),
             email: Nullable<String>.value("marcus@shinetime.example"),
             id: "ausr_xxxxxxxxxxxxxx",
             isAgent: false,
+            reportsToChain: Nullable<[TeamMemberManager]>.value([
+                TeamMemberManager(
+                    id: "ausr_xxxxxxxxxxxxxx",
+                    user: UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )
+                )
+            ]),
+            reportsToId: Nullable<String>.value("ausr_xxxxxxxxxxxxxx"),
             role: TeamMemberRole.owner,
             status: TeamMemberStatus.joined,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -252,13 +343,28 @@ import WhopSDK
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
                   "authorized_role": {
-                    "id": "id",
-                    "name": "name"
+                    "id": "aurl_xxxxxxxxxxxxxx",
+                    "name": "community-moderators"
                   },
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "direct_reports_count": 0,
                   "email": "marcus@shinetime.example",
                   "id": "ausr_xxxxxxxxxxxxxx",
                   "is_agent": false,
+                  "reports_to_chain": [
+                    {
+                      "id": "ausr_xxxxxxxxxxxxxx",
+                      "user": {
+                        "id": "user_xxxxxxxxxxxxxx",
+                        "name": "Dana Whitfield",
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "username": "danawhitfield"
+                      }
+                    }
+                  ],
+                  "reports_to_id": "ausr_xxxxxxxxxxxxxx",
                   "role": "owner",
                   "status": "joined",
                   "updated_at": "2026-01-01T12:00:00.000Z",
@@ -282,13 +388,28 @@ import WhopSDK
         let expectedResponse = TeamMember(
             accountId: "biz_xxxxxxxxxxxxxx",
             authorizedRole: Nullable<TeamMemberAuthorizedRole>.value(TeamMemberAuthorizedRole(
-                id: "id",
-                name: "name"
+                id: "aurl_xxxxxxxxxxxxxx",
+                name: "community-moderators"
             )),
             createdAt: "2026-01-01T12:00:00.000Z",
+            directReportsCount: Nullable<Int>.value(0),
             email: Nullable<String>.value("marcus@shinetime.example"),
             id: "ausr_xxxxxxxxxxxxxx",
             isAgent: false,
+            reportsToChain: Nullable<[TeamMemberManager]>.value([
+                TeamMemberManager(
+                    id: "ausr_xxxxxxxxxxxxxx",
+                    user: UserSummary(
+                        id: "user_xxxxxxxxxxxxxx",
+                        name: Nullable<String>.value("Dana Whitfield"),
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        username: "danawhitfield"
+                    )
+                )
+            ]),
+            reportsToId: Nullable<String>.value("ausr_xxxxxxxxxxxxxx"),
             role: TeamMemberRole.owner,
             status: TeamMemberStatus.joined,
             updatedAt: "2026-01-01T12:00:00.000Z",
@@ -303,7 +424,7 @@ import WhopSDK
         )
         let response = try await client.teamMembers.update(
             id: "id",
-            request: .init(role: .owner),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

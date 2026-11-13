@@ -26,7 +26,7 @@ import WhopSDK
         )
         let response = try await client.accountLinks.create(
             request: .init(
-                companyId: "biz_xxxxxxxxxxxxxx",
+                accountId: "biz_xxxxxxxxxxxxxx",
                 refreshUrl: "refresh_url",
                 returnUrl: "return_url",
                 useCase: .accountOnboarding

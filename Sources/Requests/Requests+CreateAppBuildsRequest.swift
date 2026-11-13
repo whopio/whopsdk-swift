@@ -2,11 +2,9 @@ import Foundation
 
 extension Requests {
     public struct CreateAppBuildsRequest: Codable, Hashable, Sendable {
-        /// The AI prompt that generated this build, if applicable.
-        public let aiPromptId: String?
         /// The app to create the build for, prefixed `app_`. Defaults to the app behind the presented credential.
         public let appId: String?
-        /// The uploaded build file: `{ id }` for an existing file or `{ direct_upload_id }` for a completed direct upload.
+        /// The uploaded build file: pass `id` for an existing file or `direct_upload_id` for a completed direct upload. iOS and Android builds take a .zip bundle; web builds take a JavaScript file or a .zip archive of the hosted site.
         public let attachment: CreateAppBuildsRequestAttachment
         /// A client-generated checksum of the build file, used to verify file integrity when unpacked.
         public let checksum: String
@@ -20,7 +18,6 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            aiPromptId: String? = nil,
             appId: String? = nil,
             attachment: CreateAppBuildsRequestAttachment,
             checksum: String,
@@ -29,7 +26,6 @@ extension Requests {
             supportedAppViewTypes: [CreateAppBuildsRequestSupportedAppViewTypesItem]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.aiPromptId = aiPromptId
             self.appId = appId
             self.attachment = attachment
             self.checksum = checksum
@@ -41,7 +37,6 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.aiPromptId = try container.decodeIfPresent(String.self, forKey: .aiPromptId)
             self.appId = try container.decodeIfPresent(String.self, forKey: .appId)
             self.attachment = try container.decode(CreateAppBuildsRequestAttachment.self, forKey: .attachment)
             self.checksum = try container.decode(String.self, forKey: .checksum)
@@ -54,7 +49,6 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.aiPromptId, forKey: .aiPromptId)
             try container.encodeIfPresent(self.appId, forKey: .appId)
             try container.encode(self.attachment, forKey: .attachment)
             try container.encode(self.checksum, forKey: .checksum)
@@ -65,7 +59,6 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case aiPromptId = "ai_prompt_id"
             case appId = "app_id"
             case attachment
             case checksum

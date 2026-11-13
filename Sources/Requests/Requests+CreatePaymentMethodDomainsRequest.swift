@@ -2,9 +2,9 @@ import Foundation
 
 extension Requests {
     public struct CreatePaymentMethodDomainsRequest: Codable, Hashable, Sendable {
-        /// Account to register the domain for (`biz_` tag). Defaults to the caller's account.
+        /// Account to register the domain for (`biz_` tag). Required when authenticating as a user; an account API key supplies its own account.
         public let accountId: String?
-        /// Hostname to register (e.g. `checkout.shinetime.example`).
+        /// Hostname to register (e.g. `checkout.shinetime.com`).
         public let hostname: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

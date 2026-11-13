@@ -24,6 +24,12 @@ import WhopSDK
                       "unlocks_by_date": [
                         {
                           "amount": "100.0",
+                          "by_type": [
+                            {
+                              "amount": "100.0",
+                              "type": "regular"
+                            }
+                          ],
                           "date": "2026-01-01"
                         }
                       ]
@@ -54,6 +60,12 @@ import WhopSDK
                     unlocksByDate: [
                         AccountReserveUnlock(
                             amount: "100.0",
+                            byType: [
+                                AccountReserveUnlockType(
+                                    amount: "100.0",
+                                    type: AccountReserveUnlockTypeType.regular
+                                )
+                            ],
                             date: "2026-01-01"
                         )
                     ]

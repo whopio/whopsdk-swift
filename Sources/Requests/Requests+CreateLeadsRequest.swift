@@ -3,7 +3,7 @@ import Foundation
 extension Requests {
     public struct CreateLeadsRequest: Codable, Hashable, Sendable {
         /// The unique identifier of the company to create the lead for, starting with 'biz_'.
-        public let companyId: String
+        public let accountId: String
         /// A JSON object of custom metadata to attach to the lead for tracking purposes.
         public let metadata: Nullable<[String: JSONValue]>?
         /// The unique identifier of the product the lead is interested in, starting with 'prod_'.
@@ -16,14 +16,14 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            companyId: String,
+            accountId: String,
             metadata: Nullable<[String: JSONValue]>? = nil,
             productId: Nullable<String>? = nil,
             referrer: Nullable<String>? = nil,
             userId: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.companyId = companyId
+            self.accountId = accountId
             self.metadata = metadata
             self.productId = productId
             self.referrer = referrer
@@ -33,7 +33,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.companyId = try container.decode(String.self, forKey: .companyId)
+            self.accountId = try container.decode(String.self, forKey: .accountId)
             self.metadata = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .metadata)
             self.productId = try container.decodeNullableIfPresent(String.self, forKey: .productId)
             self.referrer = try container.decodeNullableIfPresent(String.self, forKey: .referrer)
@@ -44,7 +44,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encode(self.companyId, forKey: .companyId)
+            try container.encode(self.accountId, forKey: .accountId)
             try container.encodeNullableIfPresent(self.metadata, forKey: .metadata)
             try container.encodeNullableIfPresent(self.productId, forKey: .productId)
             try container.encodeNullableIfPresent(self.referrer, forKey: .referrer)
@@ -53,7 +53,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case companyId = "company_id"
+            case accountId = "account_id"
             case metadata
             case productId = "product_id"
             case referrer

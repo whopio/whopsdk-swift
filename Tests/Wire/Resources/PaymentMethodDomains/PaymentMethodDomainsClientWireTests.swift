@@ -13,15 +13,15 @@ import WhopSDK
                     {
                       "account_id": "biz_xxxxxxxxxxxxxx",
                       "created_at": "2026-01-01T12:00:00.000Z",
-                      "hostname": "checkout.shinetime.example",
-                      "id": "pmd_xxxxxxxxxxxxxx",
+                      "hostname": "checkout.shinetime.com",
+                      "id": "dom_xxxxxxxxxxxxxx",
                       "provider": "apple",
                       "status": "pending",
                       "updated_at": "2026-01-01T12:00:00.000Z"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -40,15 +40,15 @@ import WhopSDK
                 PaymentMethodDomain(
                     accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
                     createdAt: "2026-01-01T12:00:00.000Z",
-                    hostname: "checkout.shinetime.example",
-                    id: "pmd_xxxxxxxxxxxxxx",
+                    hostname: "checkout.shinetime.com",
+                    id: "dom_xxxxxxxxxxxxxx",
                     provider: PaymentMethodDomainProvider.apple,
                     status: PaymentMethodDomainStatus.pending,
                     updatedAt: "2026-01-01T12:00:00.000Z"
                 )
             ],
             pageInfo: ListPaymentMethodDomainsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -66,8 +66,8 @@ import WhopSDK
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
                   "created_at": "2026-01-01T12:00:00.000Z",
-                  "hostname": "checkout.shinetime.example",
-                  "id": "pmd_xxxxxxxxxxxxxx",
+                  "hostname": "checkout.shinetime.com",
+                  "id": "dom_xxxxxxxxxxxxxx",
                   "provider": "apple",
                   "status": "pending",
                   "updated_at": "2026-01-01T12:00:00.000Z"
@@ -83,14 +83,14 @@ import WhopSDK
         let expectedResponse = PaymentMethodDomain(
             accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
             createdAt: "2026-01-01T12:00:00.000Z",
-            hostname: "checkout.shinetime.example",
-            id: "pmd_xxxxxxxxxxxxxx",
+            hostname: "checkout.shinetime.com",
+            id: "dom_xxxxxxxxxxxxxx",
             provider: PaymentMethodDomainProvider.apple,
             status: PaymentMethodDomainStatus.pending,
             updatedAt: "2026-01-01T12:00:00.000Z"
         )
         let response = try await client.paymentMethodDomains.create(
-            request: .init(hostname: "pending.shinetime.example"),
+            request: .init(hostname: "pending.shinetime.com"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -104,8 +104,8 @@ import WhopSDK
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
                   "created_at": "2026-01-01T12:00:00.000Z",
-                  "hostname": "checkout.shinetime.example",
-                  "id": "pmd_xxxxxxxxxxxxxx",
+                  "hostname": "checkout.shinetime.com",
+                  "id": "dom_xxxxxxxxxxxxxx",
                   "provider": "apple",
                   "status": "pending",
                   "updated_at": "2026-01-01T12:00:00.000Z"
@@ -121,8 +121,8 @@ import WhopSDK
         let expectedResponse = PaymentMethodDomain(
             accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
             createdAt: "2026-01-01T12:00:00.000Z",
-            hostname: "checkout.shinetime.example",
-            id: "pmd_xxxxxxxxxxxxxx",
+            hostname: "checkout.shinetime.com",
+            id: "dom_xxxxxxxxxxxxxx",
             provider: PaymentMethodDomainProvider.apple,
             status: PaymentMethodDomainStatus.pending,
             updatedAt: "2026-01-01T12:00:00.000Z"
@@ -141,7 +141,7 @@ import WhopSDK
                 #"""
                 {
                   "deleted": true,
-                  "id": "pmd_xxxxxxxxxxxxxx"
+                  "id": "dom_xxxxxxxxxxxxxx"
                 }
                 """#.utf8
             )
@@ -153,7 +153,7 @@ import WhopSDK
         )
         let expectedResponse = DeletePaymentMethodDomainsResponse(
             deleted: true,
-            id: "pmd_xxxxxxxxxxxxxx"
+            id: "dom_xxxxxxxxxxxxxx"
         )
         let response = try await client.paymentMethodDomains.delete(
             id: "id",
@@ -170,8 +170,8 @@ import WhopSDK
                 {
                   "account_id": "biz_xxxxxxxxxxxxxx",
                   "created_at": "2026-01-01T12:00:00.000Z",
-                  "hostname": "checkout.shinetime.example",
-                  "id": "pmd_xxxxxxxxxxxxxx",
+                  "hostname": "checkout.shinetime.com",
+                  "id": "dom_xxxxxxxxxxxxxx",
                   "provider": "apple",
                   "status": "pending",
                   "updated_at": "2026-01-01T12:00:00.000Z"
@@ -187,8 +187,8 @@ import WhopSDK
         let expectedResponse = PaymentMethodDomain(
             accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
             createdAt: "2026-01-01T12:00:00.000Z",
-            hostname: "checkout.shinetime.example",
-            id: "pmd_xxxxxxxxxxxxxx",
+            hostname: "checkout.shinetime.com",
+            id: "dom_xxxxxxxxxxxxxx",
             provider: PaymentMethodDomainProvider.apple,
             status: PaymentMethodDomainStatus.pending,
             updatedAt: "2026-01-01T12:00:00.000Z"

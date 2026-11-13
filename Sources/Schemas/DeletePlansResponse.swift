@@ -1,9 +1,7 @@
 import Foundation
 
 public struct DeletePlansResponse: Codable, Hashable, Sendable {
-    /// Always true.
     public let deleted: Bool
-    /// ID of the deleted plan.
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

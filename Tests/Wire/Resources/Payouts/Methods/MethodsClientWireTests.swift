@@ -42,12 +42,19 @@ import WhopSDK
                           "fee": 5.25,
                           "total_received": 494.75
                         },
+                        "instant_unavailable_reason": null,
                         "max_limit": 25000,
                         "min_limit": 1,
                         "standard": {
                           "fee": 0.25,
                           "total_received": 499.75
                         }
+                      },
+                      "recipient": {
+                        "country": "country",
+                        "email": "jane.doe@example.com",
+                        "first_name": "first_name",
+                        "last_name": "last_name"
                       },
                       "status": "created",
                       "status_reason": "status_reason",
@@ -60,6 +67,7 @@ import WhopSDK
                         "supports_plaid": true,
                         "supports_standard_delivery": true
                       },
+                      "type": "external",
                       "unavailable_reason": "destination_retired"
                     }
                   ],
@@ -74,11 +82,13 @@ import WhopSDK
                     },
                     "object": "payout_limit",
                     "standard": {
+                      "error_code": "account_suspended",
+                      "error_message": "You don't have an available balance to withdraw.",
                       "max_amount": 500
                     }
                   },
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -126,12 +136,19 @@ import WhopSDK
                             fee: 5.25,
                             totalReceived: 494.75
                         )),
+                        instantUnavailableReason: .null,
                         maxLimit: Nullable<Float>.value(25000),
                         minLimit: 1,
                         standard: Nullable<ListMethodsResponseDataItemQuoteStandard>.value(ListMethodsResponseDataItemQuoteStandard(
                             fee: 0.25,
                             totalReceived: 499.75
                         ))
+                    )),
+                    recipient: Optional(ListMethodsResponseDataItemRecipient(
+                        country: "country",
+                        email: "jane.doe@example.com",
+                        firstName: "first_name",
+                        lastName: "last_name"
                     )),
                     status: ListMethodsResponseDataItemStatus.created,
                     statusReason: Nullable<String>.value("status_reason"),
@@ -144,6 +161,7 @@ import WhopSDK
                         supportsPlaid: true,
                         supportsStandardDelivery: true
                     )),
+                    type: ListMethodsResponseDataItemType.external,
                     unavailableReason: Nullable<ListMethodsResponseDataItemUnavailableReason>.value(ListMethodsResponseDataItemUnavailableReason.destinationRetired)
                 )
             ],
@@ -158,11 +176,13 @@ import WhopSDK
                 ),
                 object: ListMethodsResponseLimitsObject.payoutLimit,
                 standard: ListMethodsResponseLimitsStandard(
+                    errorCode: Nullable<ListMethodsResponseLimitsStandardErrorCode>.value(ListMethodsResponseLimitsStandardErrorCode.accountSuspended),
+                    errorMessage: Nullable<String>.value("You don't have an available balance to withdraw."),
                     maxAmount: 500
                 )
             )),
             pageInfo: ListMethodsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -201,6 +221,12 @@ import WhopSDK
                   "quote": {
                     "key": "value"
                   },
+                  "recipient": {
+                    "country": "USA",
+                    "email": "jane.doe@example.com",
+                    "first_name": "Jane",
+                    "last_name": "Doe"
+                  },
                   "status": "created",
                   "status_reason": "status_reason",
                   "supported_payout_method": {
@@ -212,6 +238,7 @@ import WhopSDK
                     "supports_plaid": true,
                     "supports_standard_delivery": true
                   },
+                  "type": "external",
                   "unavailable_reason": "destination_retired"
                 }
                 """#.utf8
@@ -246,6 +273,12 @@ import WhopSDK
             quote: Nullable<[String: JSONValue]>.value([
                 "key": JSONValue.string("value")
             ]),
+            recipient: Optional(CreateMethodsResponseRecipient(
+                country: "USA",
+                email: "jane.doe@example.com",
+                firstName: "Jane",
+                lastName: "Doe"
+            )),
             status: CreateMethodsResponseStatus.created,
             statusReason: Nullable<String>.value("status_reason"),
             supportedPayoutMethod: Nullable<CreateMethodsResponseSupportedPayoutMethod>.value(CreateMethodsResponseSupportedPayoutMethod(
@@ -257,6 +290,7 @@ import WhopSDK
                 supportsPlaid: Optional(true),
                 supportsStandardDelivery: true
             )),
+            type: Optional(CreateMethodsResponseType.external),
             unavailableReason: Nullable<CreateMethodsResponseUnavailableReason>.value(CreateMethodsResponseUnavailableReason.destinationRetired)
         )
         let response = try await client.payouts.methods.create(
@@ -313,7 +347,7 @@ import WhopSDK
                   "id": "potk_xxxxxxxxxxxxxx",
                   "institution_name": "Frost Bank",
                   "is_clone": false,
-                  "is_default": false,
+                  "is_default": true,
                   "last_paid_out_at": "2024-01-15T09:30:00Z",
                   "linked_via_plaid": false,
                   "needs_plaid_reconnect": false,
@@ -322,6 +356,12 @@ import WhopSDK
                   "payer_name": "ACH Bank Deposit",
                   "quote": {
                     "key": "value"
+                  },
+                  "recipient": {
+                    "country": "country",
+                    "email": "jane.doe@example.com",
+                    "first_name": "first_name",
+                    "last_name": "last_name"
                   },
                   "status": "created",
                   "status_reason": "status_reason",
@@ -334,6 +374,7 @@ import WhopSDK
                     "supports_plaid": true,
                     "supports_standard_delivery": true
                   },
+                  "type": "external",
                   "unavailable_reason": "destination_retired"
                 }
                 """#.utf8
@@ -358,7 +399,7 @@ import WhopSDK
             id: "potk_xxxxxxxxxxxxxx",
             institutionName: Nullable<String>.value("Frost Bank"),
             isClone: false,
-            isDefault: false,
+            isDefault: true,
             lastPaidOutAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             linkedViaPlaid: false,
             needsPlaidReconnect: false,
@@ -368,6 +409,12 @@ import WhopSDK
             quote: Nullable<[String: JSONValue]>.value([
                 "key": JSONValue.string("value")
             ]),
+            recipient: Optional(UpdateMethodsResponseRecipient(
+                country: "country",
+                email: "jane.doe@example.com",
+                firstName: "first_name",
+                lastName: "last_name"
+            )),
             status: UpdateMethodsResponseStatus.created,
             statusReason: Nullable<String>.value("status_reason"),
             supportedPayoutMethod: Nullable<UpdateMethodsResponseSupportedPayoutMethod>.value(UpdateMethodsResponseSupportedPayoutMethod(
@@ -379,11 +426,12 @@ import WhopSDK
                 supportsPlaid: true,
                 supportsStandardDelivery: true
             )),
+            type: UpdateMethodsResponseType.external,
             unavailableReason: Nullable<UpdateMethodsResponseUnavailableReason>.value(UpdateMethodsResponseUnavailableReason.destinationRetired)
         )
         let response = try await client.payouts.methods.update(
             id: "id",
-            request: .init(nickname: "Primary checking"),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

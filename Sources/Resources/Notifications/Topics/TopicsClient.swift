@@ -7,14 +7,17 @@ public final class TopicsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists the platform's visible notification topics — the categories users can set notification preferences on. App-created topics are internal and not returned.
+    /// Lists the platform's visible notification topics — the categories users can set notification preferences on. App-created topics are not returned.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.notifications.topics.list()
     /// }
@@ -23,8 +26,8 @@ public final class TopicsClient: Sendable {
     /// ```
     ///
     /// - Parameter topicType: Only return topics of this scope: `user` (member notifications) or `account_team` (team notifications).
-    /// - Parameter first: The number of topics to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns topics after this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(topicType: ListTopicsRequestTopicType? = nil, first: Int? = nil, after: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListTopicsResponse {
         return try await httpClient.performRequest(
