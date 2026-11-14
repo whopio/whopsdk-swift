@@ -3,6 +3,8 @@ import Foundation
 public struct PromoCode: Codable, Hashable, Sendable {
     /// Account that owns the promo code.
     public let account: AccountSummary
+    /// Affiliate credited with referrals that use the promo code, or `null` when no affiliate is attached.
+    public let affiliate: Nullable<PromoCodeAffiliate>
     /// Discount amount. Percentage discounts are represented as a decimal fraction.
     public let amountOff: Double
     /// Whether the promo code is restricted to churned customers.
@@ -48,6 +50,7 @@ public struct PromoCode: Codable, Hashable, Sendable {
 
     public init(
         account: AccountSummary,
+        affiliate: Nullable<PromoCodeAffiliate>,
         amountOff: Double,
         churnedUsersOnly: Bool,
         code: Nullable<String>,
@@ -71,6 +74,7 @@ public struct PromoCode: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.account = account
+        self.affiliate = affiliate
         self.amountOff = amountOff
         self.churnedUsersOnly = churnedUsersOnly
         self.code = code
@@ -97,6 +101,7 @@ public struct PromoCode: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.account = try container.decode(AccountSummary.self, forKey: .account)
+        self.affiliate = try container.decode(Nullable<PromoCodeAffiliate>.self, forKey: .affiliate)
         self.amountOff = try container.decode(Double.self, forKey: .amountOff)
         self.churnedUsersOnly = try container.decode(Bool.self, forKey: .churnedUsersOnly)
         self.code = try container.decode(Nullable<String>.self, forKey: .code)
@@ -124,6 +129,7 @@ public struct PromoCode: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.account, forKey: .account)
+        try container.encode(self.affiliate, forKey: .affiliate)
         try container.encode(self.amountOff, forKey: .amountOff)
         try container.encode(self.churnedUsersOnly, forKey: .churnedUsersOnly)
         try container.encode(self.code, forKey: .code)
@@ -149,6 +155,7 @@ public struct PromoCode: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case account
+        case affiliate
         case amountOff = "amount_off"
         case churnedUsersOnly = "churned_users_only"
         case code

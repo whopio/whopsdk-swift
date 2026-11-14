@@ -4,6 +4,7 @@ import Foundation
 public enum CreateDepositsResponseMethodsCryptoItemSupportedCurrenciesItemName: String, Codable, Hashable, CaseIterable, Sendable {
     case arb = "ARB"
     case bnb = "BNB"
+    case btc = "BTC"
     case eth = "ETH"
     case eurc = "EURC"
     case hype = "HYPE"

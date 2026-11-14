@@ -14,7 +14,10 @@ public final class AdGroupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.list(adCampaignIds: [
     ///         "adcamp_xxxxxxxxxxxxxx"
@@ -29,7 +32,7 @@ public final class AdGroupsClient: Sendable {
     /// - Parameter adCampaignIds: Filter to ad groups in these campaigns (max 100). Repeat the parameter for each id (ad_campaign_ids=a&ad_campaign_ids=b).
     /// - Parameter status: Filter to ad groups with this status.
     /// - Parameter query: Filter ad groups by a title or ID substring.
-    /// - Parameter order: The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports.
+    /// - Parameter order: The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports, and link_clicks by the same Whop pixel page views.
     /// - Parameter direction: The sort direction. Defaults to desc.
     /// - Parameter createdBefore: Only return ad groups created before this timestamp.
     /// - Parameter createdAfter: Only return ad groups created after this timestamp.
@@ -37,10 +40,10 @@ public final class AdGroupsClient: Sendable {
     /// - Parameter statsTo: End of the stats window. Defaults to now.
     /// - Parameter timeZone: IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare stats_from/stats_to dates resolve to day boundaries on this clock. Defaults to UTC.
     /// - Parameter attributionModel: Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise.
-    /// - Parameter first: The number of ad groups to return.
-    /// - Parameter after: Cursor to fetch the page after (from page_info.end_cursor).
-    /// - Parameter last: The number of ad groups to return from the end of the range.
-    /// - Parameter before: Cursor to fetch the page before (from page_info.start_cursor).
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String? = nil, adCampaignId: String? = nil, adCampaignIds: [String]? = nil, status: ListAdGroupsRequestStatus? = nil, query: String? = nil, order: ListAdGroupsRequestOrder? = nil, direction: ListAdGroupsRequestDirection? = nil, createdBefore: String? = nil, createdAfter: String? = nil, statsFrom: String? = nil, statsTo: String? = nil, timeZone: String? = nil, attributionModel: ListAdGroupsRequestAttributionModel? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAdGroupsResponse {
         return try await httpClient.performRequest(
@@ -77,7 +80,10 @@ public final class AdGroupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.create(request: .init(adCampaignId: "adcamp_xxxxxxxxxxxxxx"))
     /// }
@@ -96,81 +102,17 @@ public final class AdGroupsClient: Sendable {
         )
     }
 
-    /// Estimates how many people a draft targeting spec can reach, before an ad group is created. The body takes the same targeting fields as creating an ad group — `regions`, `demographics`, `detailed_targeting`, `audiences`, `languages`, and `devices` — and nothing is persisted.
+    /// Retrieves an ad group, with performance stats for the window set by `stats_from` and `stats_to`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.adGroups.estimateReach(request: .init(platform: .meta))
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func estimateReach(request: Requests.EstimateReachAdGroupsRequest, requestOptions: RequestOptions? = nil) async throws -> ReachEstimate {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/ad_groups/estimate_reach",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: ReachEstimate.self
-        )
-    }
-
-    /// Searches the ad platform's targeting taxonomy for options to target an ad group with. Each result comes back in the exact shape the ad-group body accepts for its `type`, so it can be used in `detailed_targeting`, `regions`, or `languages` as-is. A blank `query` browses the small fixed lists (behaviors, browse demographic categories, languages); interests, work employers, job titles, schools, majors, and locations need a search term.
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.adGroups.searchTargetingOptions(platform: .meta)
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter accountId: Account to search on behalf of. Defaults to the authenticated account.
-    /// - Parameter platform: The ad network whose targeting taxonomy to search.
-    /// - Parameter query: The search term. Blank browses the fixed lists; interests, work employers, job titles, schools, majors, and locations return nothing without one.
-    /// - Parameter types: Kinds of targeting options to search. Defaults to all of them.
-    /// - Parameter locationTypes: Narrow location results to these kinds of places. Only applies when `types` includes `locations`.
-    /// - Parameter country: Narrow location results to one country, as an ISO 3166-1 code such as `US`. Only applies when `types` includes `locations`.
-    /// - Parameter limit: Maximum number of results per requested type.
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func searchTargetingOptions(accountId: String? = nil, platform: SearchTargetingOptionsAdGroupsRequestPlatform, query: String? = nil, types: [SearchTargetingOptionsAdGroupsRequestTypesItem]? = nil, locationTypes: [SearchTargetingOptionsAdGroupsRequestLocationTypesItem]? = nil, country: String? = nil, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> SearchTargetingOptionsAdGroupsResponse {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/ad_groups/targeting_options",
-            queryParams: [
-                "account_id": accountId.map { .string($0) }, 
-                "platform": .string(platform.rawValue), 
-                "query": query.map { .string($0) }, 
-                "types": types.map { .unknown($0) }, 
-                "location_types": locationTypes.map { .unknown($0) }, 
-                "country": country.map { .string($0) }, 
-                "limit": limit.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: SearchTargetingOptionsAdGroupsResponse.self
-        )
-    }
-
-    /// Retrieves a single ad group.
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.retrieve(id: "id")
     /// }
@@ -199,14 +141,17 @@ public final class AdGroupsClient: Sendable {
         )
     }
 
-    /// Deletes an ad group.
+    /// Deletes an ad group and stops its delivery.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.delete(id: "id")
     /// }
@@ -232,7 +177,10 @@ public final class AdGroupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.update(
     ///         id: "id",
@@ -255,14 +203,17 @@ public final class AdGroupsClient: Sendable {
         )
     }
 
-    /// Creates copies of the ad group in `duplicating` status and returns them — into its own campaign, or into target_ad_campaign_id (which must belong to the same account and be compatible with the ad group's targeting and goals); each copy transitions to its final status (matching the source's active/paused state) once duplication completes. Poll each returned ad group until it leaves `duplicating` — a copy that could not be completed is deleted and returns 404.
+    /// Starts copying an ad group and returns the copies in `duplicating` status. Poll each returned ad group until it leaves `duplicating`: it then takes the source's `active` or `paused` status, or, if the copy could not be completed, is deleted and returns 404.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.duplicate(
     ///         id: "id",
@@ -292,7 +243,10 @@ public final class AdGroupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.pause(id: "id")
     /// }
@@ -318,7 +272,10 @@ public final class AdGroupsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.adGroups.unpause(id: "id")
     /// }

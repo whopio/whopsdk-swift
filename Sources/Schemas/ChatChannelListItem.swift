@@ -6,7 +6,7 @@ public struct ChatChannelListItem: Codable, Hashable, Sendable {
     public let banMedia: Bool
     /// Whether URL links are blocked from being posted in this chat.
     public let banUrls: Bool
-    /// A list of words that are automatically filtered from messages in this chat.
+    /// A list of words that are automatically filtered from messages in this chat. Empty unless the caller has permission to moderate this chat.
     public let bannedWords: [String]
     /// The experience this chat feed is attached to.
     public let experience: ChatChannelListItemExperience

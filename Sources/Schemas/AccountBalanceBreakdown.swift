@@ -3,7 +3,9 @@ import Foundation
 public struct AccountBalanceBreakdown: Codable, Hashable, Sendable {
     /// Amount you can spend, send, or withdraw now, in native units, as a decimal string.
     public let available: String
-    /// Amount moving between the account's own destinations, such as a treasury sweep to its crypto wallet or a card top-up. In native units, as a decimal string.
+    /// The part of `pending` that has already settled and is waiting to move into the account's crypto wallet or Whop Card, where it becomes `available`. The move usually starts within the hour; while it runs, the amount is reported in `in_transit` instead. Money moved only to top up the account's retained minimum balance is not included. In native units, as a decimal string.
+    public let finishingSettlement: String
+    /// Amount moving between the account's own destinations, such as a card top-up. In native units, as a decimal string.
     public let inTransit: String
     /// Amount from recent payments still settling, in native units, as a decimal string.
     public let pending: String
@@ -15,6 +17,7 @@ public struct AccountBalanceBreakdown: Codable, Hashable, Sendable {
 
     public init(
         available: String,
+        finishingSettlement: String,
         inTransit: String,
         pending: String,
         pendingSettlements: [AccountBalanceSettlement],
@@ -22,6 +25,7 @@ public struct AccountBalanceBreakdown: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.available = available
+        self.finishingSettlement = finishingSettlement
         self.inTransit = inTransit
         self.pending = pending
         self.pendingSettlements = pendingSettlements
@@ -32,6 +36,7 @@ public struct AccountBalanceBreakdown: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.available = try container.decode(String.self, forKey: .available)
+        self.finishingSettlement = try container.decode(String.self, forKey: .finishingSettlement)
         self.inTransit = try container.decode(String.self, forKey: .inTransit)
         self.pending = try container.decode(String.self, forKey: .pending)
         self.pendingSettlements = try container.decode([AccountBalanceSettlement].self, forKey: .pendingSettlements)
@@ -43,6 +48,7 @@ public struct AccountBalanceBreakdown: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.available, forKey: .available)
+        try container.encode(self.finishingSettlement, forKey: .finishingSettlement)
         try container.encode(self.inTransit, forKey: .inTransit)
         try container.encode(self.pending, forKey: .pending)
         try container.encode(self.pendingSettlements, forKey: .pendingSettlements)
@@ -52,6 +58,7 @@ public struct AccountBalanceBreakdown: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case available
+        case finishingSettlement = "finishing_settlement"
         case inTransit = "in_transit"
         case pending
         case pendingSettlements = "pending_settlements"

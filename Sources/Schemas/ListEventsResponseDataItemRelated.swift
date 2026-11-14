@@ -13,9 +13,9 @@ public struct ListEventsResponseDataItemRelated: Codable, Hashable, Sendable {
     /// The saved audience this event came from. Present on the identify events an audience ingest writes for each of its members.
     public let audience: Nullable<ListEventsResponseDataItemRelatedAudience>?
     public let payment: Nullable<ListEventsResponseDataItemRelatedPayment>?
-    public let plan: Nullable<ListEventsResponseDataItemRelatedPlan>?
     public let product: Nullable<ListEventsResponseDataItemRelatedProduct>?
     public let user: Nullable<ListEventsResponseDataItemRelatedUser>?
+    public let variant: Nullable<ListEventsResponseDataItemRelatedVariant>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -27,9 +27,9 @@ public struct ListEventsResponseDataItemRelated: Codable, Hashable, Sendable {
         app: Nullable<ListEventsResponseDataItemRelatedApp>? = nil,
         audience: Nullable<ListEventsResponseDataItemRelatedAudience>? = nil,
         payment: Nullable<ListEventsResponseDataItemRelatedPayment>? = nil,
-        plan: Nullable<ListEventsResponseDataItemRelatedPlan>? = nil,
         product: Nullable<ListEventsResponseDataItemRelatedProduct>? = nil,
         user: Nullable<ListEventsResponseDataItemRelatedUser>? = nil,
+        variant: Nullable<ListEventsResponseDataItemRelatedVariant>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.account = account
@@ -39,9 +39,9 @@ public struct ListEventsResponseDataItemRelated: Codable, Hashable, Sendable {
         self.app = app
         self.audience = audience
         self.payment = payment
-        self.plan = plan
         self.product = product
         self.user = user
+        self.variant = variant
         self.additionalProperties = additionalProperties
     }
 
@@ -54,9 +54,9 @@ public struct ListEventsResponseDataItemRelated: Codable, Hashable, Sendable {
         self.app = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedApp.self, forKey: .app)
         self.audience = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedAudience.self, forKey: .audience)
         self.payment = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedPayment.self, forKey: .payment)
-        self.plan = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedPlan.self, forKey: .plan)
         self.product = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedProduct.self, forKey: .product)
         self.user = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedUser.self, forKey: .user)
+        self.variant = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelatedVariant.self, forKey: .variant)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -70,9 +70,9 @@ public struct ListEventsResponseDataItemRelated: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.app, forKey: .app)
         try container.encodeNullableIfPresent(self.audience, forKey: .audience)
         try container.encodeNullableIfPresent(self.payment, forKey: .payment)
-        try container.encodeNullableIfPresent(self.plan, forKey: .plan)
         try container.encodeNullableIfPresent(self.product, forKey: .product)
         try container.encodeNullableIfPresent(self.user, forKey: .user)
+        try container.encodeNullableIfPresent(self.variant, forKey: .variant)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -84,8 +84,8 @@ public struct ListEventsResponseDataItemRelated: Codable, Hashable, Sendable {
         case app
         case audience
         case payment
-        case plan
         case product
         case user
+        case variant
     }
 }

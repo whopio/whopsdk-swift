@@ -2,37 +2,42 @@ import Foundation
 
 extension Requests {
     public struct CreateDepositsRequest: Codable, Hashable, Sendable {
-        /// Amount to prefill on hosted deposit page.
+        /// Amount to prefill on hosted deposit page. Crypto deposits require a $10 minimum. With `payment_method_id`, the amount in USD to charge, and required.
         public let amount: Double?
-        /// Destination account ID or wallet address. Object form is supported for compatibility. Any business resolves by its account ID without authentication; a user account resolves only for that same authenticated user.
-        public let destination: CreateDepositsRequestDestination
-        /// Metadata to include with the deposit response.
-        public let metadata: [String: JSONValue]?
-        /// Destination network override. Defaults to the destination wallet's own network.
-        public let network: Nullable<CreateDepositsRequestNetwork>?
+        /// Account ID to fund, `biz_` or `user_`. Any business resolves without authentication; a user account resolves only for that same authenticated user.
+        public let destination: String
+        /// Custom metadata to attach to the payment the charge creates. Ignored unless `payment_method_id` is provided.
+        public let metadata: Nullable<[String: Nullable<CreateDepositsRequestMetadataValue>]>?
+        /// SWIFT/BIC of the bank the funds are sent from, 8 or 11 characters. Fills each bank currency's `swift_bic` with the intermediary bank to route the wire through.
+        public let originBic: String?
+        /// A saved payment method of the business to charge for `amount`, prefixed `payt_`. Save one with Create setup intent and `owner_id` set to the account. Only for a `biz_` destination, and requires authentication with the `payment:charge` scope. A declined charge fails the request with 400.
+        public let paymentMethodId: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             amount: Double? = nil,
-            destination: CreateDepositsRequestDestination,
-            metadata: [String: JSONValue]? = nil,
-            network: Nullable<CreateDepositsRequestNetwork>? = nil,
+            destination: String,
+            metadata: Nullable<[String: Nullable<CreateDepositsRequestMetadataValue>]>? = nil,
+            originBic: String? = nil,
+            paymentMethodId: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.amount = amount
             self.destination = destination
             self.metadata = metadata
-            self.network = network
+            self.originBic = originBic
+            self.paymentMethodId = paymentMethodId
             self.additionalProperties = additionalProperties
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.amount = try container.decodeIfPresent(Double.self, forKey: .amount)
-            self.destination = try container.decode(CreateDepositsRequestDestination.self, forKey: .destination)
-            self.metadata = try container.decodeIfPresent([String: JSONValue].self, forKey: .metadata)
-            self.network = try container.decodeNullableIfPresent(CreateDepositsRequestNetwork.self, forKey: .network)
+            self.destination = try container.decode(String.self, forKey: .destination)
+            self.metadata = try container.decodeNullableIfPresent([String: Nullable<CreateDepositsRequestMetadataValue>].self, forKey: .metadata)
+            self.originBic = try container.decodeIfPresent(String.self, forKey: .originBic)
+            self.paymentMethodId = try container.decodeIfPresent(String.self, forKey: .paymentMethodId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -41,8 +46,9 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.amount, forKey: .amount)
             try container.encode(self.destination, forKey: .destination)
-            try container.encodeIfPresent(self.metadata, forKey: .metadata)
-            try container.encodeNullableIfPresent(self.network, forKey: .network)
+            try container.encodeNullableIfPresent(self.metadata, forKey: .metadata)
+            try container.encodeIfPresent(self.originBic, forKey: .originBic)
+            try container.encodeIfPresent(self.paymentMethodId, forKey: .paymentMethodId)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -50,7 +56,8 @@ extension Requests {
             case amount
             case destination
             case metadata
-            case network
+            case originBic = "origin_bic"
+            case paymentMethodId = "payment_method_id"
         }
     }
 }

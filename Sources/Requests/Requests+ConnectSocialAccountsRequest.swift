@@ -2,28 +2,24 @@ import Foundation
 
 extension Requests {
     public struct ConnectSocialAccountsRequest: Codable, Hashable, Sendable {
-        /// The Account (biz_ identifier) to connect the social account for. An account-scoped API key may omit this to default to its own account.
+        /// The Account (biz_ identifier) to connect the external account for. An account-scoped API key may omit this to default to its own account. Omit for user profile connections.
         public let accountId: String?
-        /// The platform to connect the social account on. Supported options are `meta_business` and `tiktok`.
+        /// The platform to connect the external account on. Use `tiktok` to connect the authenticated user’s TikTok profile, `linkedin` for their LinkedIn profile, `youtube` for their YouTube channel, or `x` for their X profile. Use `quickbooks` to connect the account’s QuickBooks Online company: pass `account_id`, and the user picks the company in QuickBooks.
         public let platform: ConnectSocialAccountsRequestPlatform
-        /// The Whop URL to redirect the user to after they finish connecting.
-        public let redirectUrl: String?
-        /// Capabilities to grant for the connected social account. Use `advertise` when connecting a Meta Business or TikTok account for ads.
-        public let scopes: [ConnectSocialAccountsRequestScopesItem]?
+        /// Where to send the user once they finish connecting their accounts. Must be an `https` URL on whop.com; any other host is rejected. On success, the user is redirected with an `external_account_connected` query param naming the platform; if the connection fails, with an `external_account_error` query param instead. The same values also arrive as `social_account_connected` / `social_account_error`.
+        public let redirectUrl: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             accountId: String? = nil,
             platform: ConnectSocialAccountsRequestPlatform,
-            redirectUrl: String? = nil,
-            scopes: [ConnectSocialAccountsRequestScopesItem]? = nil,
+            redirectUrl: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.accountId = accountId
             self.platform = platform
             self.redirectUrl = redirectUrl
-            self.scopes = scopes
             self.additionalProperties = additionalProperties
         }
 
@@ -31,8 +27,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.accountId = try container.decodeIfPresent(String.self, forKey: .accountId)
             self.platform = try container.decode(ConnectSocialAccountsRequestPlatform.self, forKey: .platform)
-            self.redirectUrl = try container.decodeIfPresent(String.self, forKey: .redirectUrl)
-            self.scopes = try container.decodeIfPresent([ConnectSocialAccountsRequestScopesItem].self, forKey: .scopes)
+            self.redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -41,8 +36,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.accountId, forKey: .accountId)
             try container.encode(self.platform, forKey: .platform)
-            try container.encodeIfPresent(self.redirectUrl, forKey: .redirectUrl)
-            try container.encodeIfPresent(self.scopes, forKey: .scopes)
+            try container.encode(self.redirectUrl, forKey: .redirectUrl)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -50,7 +44,6 @@ extension Requests {
             case accountId = "account_id"
             case platform
             case redirectUrl = "redirect_url"
-            case scopes
         }
     }
 }

@@ -7,21 +7,24 @@ public final class PromoCodesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists promo codes for an account with cursor pagination, filters, and sorting.
+    /// Lists an account's promo codes.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.promoCodes.list(
     ///         accountId: "account_id",
     ///         productIds: [
     ///             "prod_xxxxxxxxxxxxxx"
     ///         ],
-    ///         planIds: [
+    ///         variantIds: [
     ///             "plan_xxxxxxxxxxxxxx"
     ///         ]
     ///     )
@@ -33,17 +36,18 @@ public final class PromoCodesClient: Sendable {
     /// - Parameter accountId: Account whose promo codes are listed (`biz_` tag).
     /// - Parameter status: Promo-code status. `expired` groups inactive and archived codes.
     /// - Parameter productIds: Only promo codes scoped to these product IDs.
-    /// - Parameter planIds: Only promo codes scoped to these plan IDs.
+    /// - Parameter variantIds: Only promo codes scoped to these variant IDs.
     /// - Parameter createdBefore: Only promo codes created before this ISO 8601 timestamp.
     /// - Parameter createdAfter: Only promo codes created after this ISO 8601 timestamp.
     /// - Parameter order: Sort field.
     /// - Parameter direction: Sort direction.
-    /// - Parameter first: Number of promo codes to return from the start of the window.
-    /// - Parameter after: Cursor to paginate forwards from.
-    /// - Parameter last: Number of promo codes to return from the end of the window.
-    /// - Parameter before: Cursor to paginate backwards from.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    /// - Parameter includeTotalCount: Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String, status: ListPromoCodesRequestStatus? = nil, productIds: [String]? = nil, planIds: [String]? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, order: ListPromoCodesRequestOrder? = nil, direction: ListPromoCodesRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListPromoCodesResponse {
+    public func list(accountId: String, status: ListPromoCodesRequestStatus? = nil, productIds: [String]? = nil, variantIds: [String]? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, order: ListPromoCodesRequestOrder? = nil, direction: ListPromoCodesRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, includeTotalCount: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ListPromoCodesResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/promo_codes",
@@ -51,7 +55,7 @@ public final class PromoCodesClient: Sendable {
                 "account_id": .string(accountId), 
                 "status": status.map { .string($0.rawValue) }, 
                 "product_ids": productIds.map { .stringArray($0) }, 
-                "plan_ids": planIds.map { .stringArray($0) }, 
+                "variant_ids": variantIds.map { .stringArray($0) }, 
                 "created_before": createdBefore.map { .date($0) }, 
                 "created_after": createdAfter.map { .date($0) }, 
                 "order": order.map { .string($0.rawValue) }, 
@@ -59,21 +63,25 @@ public final class PromoCodesClient: Sendable {
                 "first": first.map { .int($0) }, 
                 "after": after.map { .string($0) }, 
                 "last": last.map { .int($0) }, 
-                "before": before.map { .string($0) }
+                "before": before.map { .string($0) }, 
+                "include_total_count": includeTotalCount.map { .bool($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListPromoCodesResponse.self
         )
     }
 
-    /// Creates a promo code for an account. First-party sessions may attach an affiliate.
+    /// Creates a promo code for an account.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.promoCodes.create(request: .init(
     ///         accountId: "biz_xxxxxxxxxxxxxx",
@@ -107,7 +115,10 @@ public final class PromoCodesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.promoCodes.retrieve(id: "id")
     /// }
@@ -133,7 +144,10 @@ public final class PromoCodesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.promoCodes.delete(id: "id")
     /// }
@@ -159,7 +173,10 @@ public final class PromoCodesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.promoCodes.activate(id: "id")
     /// }
@@ -185,7 +202,10 @@ public final class PromoCodesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.promoCodes.deactivate(id: "id")
     /// }

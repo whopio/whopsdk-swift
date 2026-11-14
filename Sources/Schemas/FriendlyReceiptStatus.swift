@@ -3,8 +3,10 @@ import Foundation
 /// The friendly status of a payment. This is a derived status that provides a human-readable summary of the payment state, combining the underlying status and substatus fields.
 public enum FriendlyReceiptStatus: String, Codable, Hashable, CaseIterable, Sendable {
     case succeeded
+    case requiresCapture = "requires_capture"
     case pending
     case failed
+    case blocked
     case pastDue = "past_due"
     case canceled
     case priceTooLow = "price_too_low"

@@ -4,7 +4,7 @@ public struct ApiKeyGrant: Codable, Hashable, Sendable {
     public let actions: [ApiKeyGrantAction]
     /// ID of the resource the actions apply to.
     public let resourceId: String
-    /// The type of resource the actions apply to, such as `account`, `product`, or `app`.
+    /// The type of resource the actions apply to, such as `account`, `product`, `app`, or `user`.
     public let resourceType: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

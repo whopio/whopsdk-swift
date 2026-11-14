@@ -6,7 +6,7 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
     public let accessActivityLog: Nullable<String>?
     /// The billing address the customer provided at checkout.
     public let billingAddress: Nullable<String>?
-    /// The cancellation policy document.
+    /// The cancellation policy document. Defaults to the account's cancellation policy, then its terms of service, when not set.
     public let cancellationPolicyAttachment: Nullable<UpdateDisputesRequestEvidenceCancellationPolicyAttachment>?
     /// How the cancellation policy was shown to the customer before purchase.
     public let cancellationPolicyDisclosure: Nullable<String>?
@@ -16,11 +16,13 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
     public let customerEmailAddress: Nullable<String>?
     /// The customer's name as given at checkout.
     public let customerName: Nullable<String>?
+    /// The full set of evidence documents the dispute should carry, beyond the four fixed evidence slots. Replaces all previously uploaded documents; an empty list removes them all. Send up to 10, 10MB each and 25MB in total. Accepted content types: application/pdf, application/json, image/jpeg, image/png, image/webp — any other type is rejected. Upload files through `POST /files` and reference them by `id`, or send the files as multipart file parts to upload and attach in one call. Policy documents (`return_policy`, `shipping_policy`, `cancellation_policy`, `terms_of_service`) default from the account's own documents; uploading one here replaces the account copy for this dispute, and a `cancellation_policy` or `return_policy` upload also takes precedence over the matching fixed evidence slot.
+    public let documents: [UpdateDisputesRequestEvidenceDocumentsItem]?
     /// Any additional context for the processor reviewing the dispute.
     public let notes: Nullable<String>?
     /// What the customer purchased, in the seller's own words.
     public let productDescription: Nullable<String>?
-    /// The refund policy document.
+    /// The refund policy document. Defaults to the account's return policy when not set.
     public let refundPolicyAttachment: Nullable<UpdateDisputesRequestEvidenceRefundPolicyAttachment>?
     /// How the refund policy was shown to the customer before purchase.
     public let refundPolicyDisclosure: Nullable<String>?
@@ -41,6 +43,7 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
         customerCommunicationAttachment: Nullable<UpdateDisputesRequestEvidenceCustomerCommunicationAttachment>? = nil,
         customerEmailAddress: Nullable<String>? = nil,
         customerName: Nullable<String>? = nil,
+        documents: [UpdateDisputesRequestEvidenceDocumentsItem]? = nil,
         notes: Nullable<String>? = nil,
         productDescription: Nullable<String>? = nil,
         refundPolicyAttachment: Nullable<UpdateDisputesRequestEvidenceRefundPolicyAttachment>? = nil,
@@ -57,6 +60,7 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
         self.customerCommunicationAttachment = customerCommunicationAttachment
         self.customerEmailAddress = customerEmailAddress
         self.customerName = customerName
+        self.documents = documents
         self.notes = notes
         self.productDescription = productDescription
         self.refundPolicyAttachment = refundPolicyAttachment
@@ -76,6 +80,7 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
         self.customerCommunicationAttachment = try container.decodeNullableIfPresent(UpdateDisputesRequestEvidenceCustomerCommunicationAttachment.self, forKey: .customerCommunicationAttachment)
         self.customerEmailAddress = try container.decodeNullableIfPresent(String.self, forKey: .customerEmailAddress)
         self.customerName = try container.decodeNullableIfPresent(String.self, forKey: .customerName)
+        self.documents = try container.decodeIfPresent([UpdateDisputesRequestEvidenceDocumentsItem].self, forKey: .documents)
         self.notes = try container.decodeNullableIfPresent(String.self, forKey: .notes)
         self.productDescription = try container.decodeNullableIfPresent(String.self, forKey: .productDescription)
         self.refundPolicyAttachment = try container.decodeNullableIfPresent(UpdateDisputesRequestEvidenceRefundPolicyAttachment.self, forKey: .refundPolicyAttachment)
@@ -96,6 +101,7 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.customerCommunicationAttachment, forKey: .customerCommunicationAttachment)
         try container.encodeNullableIfPresent(self.customerEmailAddress, forKey: .customerEmailAddress)
         try container.encodeNullableIfPresent(self.customerName, forKey: .customerName)
+        try container.encodeIfPresent(self.documents, forKey: .documents)
         try container.encodeNullableIfPresent(self.notes, forKey: .notes)
         try container.encodeNullableIfPresent(self.productDescription, forKey: .productDescription)
         try container.encodeNullableIfPresent(self.refundPolicyAttachment, forKey: .refundPolicyAttachment)
@@ -114,6 +120,7 @@ public struct UpdateDisputesRequestEvidence: Codable, Hashable, Sendable {
         case customerCommunicationAttachment = "customer_communication_attachment"
         case customerEmailAddress = "customer_email_address"
         case customerName = "customer_name"
+        case documents
         case notes
         case productDescription = "product_description"
         case refundPolicyAttachment = "refund_policy_attachment"

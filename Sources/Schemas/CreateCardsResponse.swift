@@ -7,12 +7,16 @@ public struct CreateCardsResponse: Codable, Hashable, Sendable {
     public let canceledAt: Nullable<Date>
     /// When the card was created.
     public let createdAt: Nullable<Date>
+    /// The digital wallets the card has been added to. List Cards, Update Card, and webhook payloads return `null`, as does Retrieve Card when the wallets cannot be retrieved.
+    public let digitalWallets: Nullable<[CreateCardsResponseDigitalWalletsItem]>
     /// Card expiration month.
     public let expirationMonth: Nullable<String>
     /// Card expiration year.
     public let expirationYear: Nullable<String>
     /// Card ID, prefixed `icrd_`.
     public let id: String
+    /// `true` once the issuer has issued the card. `false` for an invited card still waiting on its cardholder's onboarding or review, or one the issuer declined; it has no card number until it is issued.
+    public let issued: Bool
     /// Last four digits of the card number. `null` for pending invitation cards.
     public let last4: Nullable<String>
     /// The spending limit configuration.
@@ -37,9 +41,11 @@ public struct CreateCardsResponse: Codable, Hashable, Sendable {
         billing: Nullable<CreateCardsResponseBilling>,
         canceledAt: Nullable<Date>,
         createdAt: Nullable<Date>,
+        digitalWallets: Nullable<[CreateCardsResponseDigitalWalletsItem]>,
         expirationMonth: Nullable<String>,
         expirationYear: Nullable<String>,
         id: String,
+        issued: Bool,
         last4: Nullable<String>,
         limit: Nullable<CreateCardsResponseLimit>,
         name: Nullable<String>,
@@ -54,9 +60,11 @@ public struct CreateCardsResponse: Codable, Hashable, Sendable {
         self.billing = billing
         self.canceledAt = canceledAt
         self.createdAt = createdAt
+        self.digitalWallets = digitalWallets
         self.expirationMonth = expirationMonth
         self.expirationYear = expirationYear
         self.id = id
+        self.issued = issued
         self.last4 = last4
         self.limit = limit
         self.name = name
@@ -74,9 +82,11 @@ public struct CreateCardsResponse: Codable, Hashable, Sendable {
         self.billing = try container.decode(Nullable<CreateCardsResponseBilling>.self, forKey: .billing)
         self.canceledAt = try container.decode(Nullable<Date>.self, forKey: .canceledAt)
         self.createdAt = try container.decode(Nullable<Date>.self, forKey: .createdAt)
+        self.digitalWallets = try container.decode(Nullable<[CreateCardsResponseDigitalWalletsItem]>.self, forKey: .digitalWallets)
         self.expirationMonth = try container.decode(Nullable<String>.self, forKey: .expirationMonth)
         self.expirationYear = try container.decode(Nullable<String>.self, forKey: .expirationYear)
         self.id = try container.decode(String.self, forKey: .id)
+        self.issued = try container.decode(Bool.self, forKey: .issued)
         self.last4 = try container.decode(Nullable<String>.self, forKey: .last4)
         self.limit = try container.decode(Nullable<CreateCardsResponseLimit>.self, forKey: .limit)
         self.name = try container.decode(Nullable<String>.self, forKey: .name)
@@ -95,9 +105,11 @@ public struct CreateCardsResponse: Codable, Hashable, Sendable {
         try container.encode(self.billing, forKey: .billing)
         try container.encode(self.canceledAt, forKey: .canceledAt)
         try container.encode(self.createdAt, forKey: .createdAt)
+        try container.encode(self.digitalWallets, forKey: .digitalWallets)
         try container.encode(self.expirationMonth, forKey: .expirationMonth)
         try container.encode(self.expirationYear, forKey: .expirationYear)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.issued, forKey: .issued)
         try container.encode(self.last4, forKey: .last4)
         try container.encode(self.limit, forKey: .limit)
         try container.encode(self.name, forKey: .name)
@@ -114,9 +126,11 @@ public struct CreateCardsResponse: Codable, Hashable, Sendable {
         case billing
         case canceledAt = "canceled_at"
         case createdAt = "created_at"
+        case digitalWallets = "digital_wallets"
         case expirationMonth = "expiration_month"
         case expirationYear = "expiration_year"
         case id
+        case issued
         case last4
         case limit
         case name

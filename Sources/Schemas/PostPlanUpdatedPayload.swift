@@ -7,7 +7,7 @@ public struct PostPlanUpdatedPayload: Codable, Hashable, Sendable {
     public let apiVersion: PostPlanUpdatedPayloadApiVersion
     /// The dated API version (Api-Version-Date) the payload is serialized to
     public let apiVersionDate: Nullable<String>
-    public let data: Plan
+    public let data: Variant
     /// A unique ID for every single webhook request
     public let id: String
     /// For some `.updated` events, the old values of the payload fields that changed, keyed by field name. Omitted when no capture is available for the event
@@ -23,7 +23,7 @@ public struct PostPlanUpdatedPayload: Codable, Hashable, Sendable {
         accountId: Nullable<String>? = nil,
         apiVersion: PostPlanUpdatedPayloadApiVersion,
         apiVersionDate: Nullable<String>,
-        data: Plan,
+        data: Variant,
         id: String,
         previousAttributes: [String: JSONValue]? = nil,
         timestamp: Date,
@@ -46,7 +46,7 @@ public struct PostPlanUpdatedPayload: Codable, Hashable, Sendable {
         self.accountId = try container.decodeNullableIfPresent(String.self, forKey: .accountId)
         self.apiVersion = try container.decode(PostPlanUpdatedPayloadApiVersion.self, forKey: .apiVersion)
         self.apiVersionDate = try container.decode(Nullable<String>.self, forKey: .apiVersionDate)
-        self.data = try container.decode(Plan.self, forKey: .data)
+        self.data = try container.decode(Variant.self, forKey: .data)
         self.id = try container.decode(String.self, forKey: .id)
         self.previousAttributes = try container.decodeIfPresent([String: JSONValue].self, forKey: .previousAttributes)
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)

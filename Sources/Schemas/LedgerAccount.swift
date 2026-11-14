@@ -14,6 +14,8 @@ public struct LedgerAccount: Codable, Hashable, Sendable {
     public let paymentsApprovalStatus: Nullable<PaymentsApprovalStatuses>
     /// The payout account associated with the LedgerAccount, if any.
     public let payoutAccountDetails: Nullable<LedgerAccountPayoutAccountDetails>
+    /// Whether legacy payout clients should confirm a provider-backed quote for this account. REST POST /payouts on API version 2026-11-03 or later always requires quote_token from POST /payouts/quotes, regardless of this flag.
+    public let payoutQuoteRequired: Bool
     /// The settlement batch most recently posted to this account's available balance, at midnight UTC. Every payment settling in that batch carries the same `settlement_time_at`.
     public let settlementTimeAt: Nullable<Date>
     /// The fee for transfers, if applicable.
@@ -30,6 +32,7 @@ public struct LedgerAccount: Codable, Hashable, Sendable {
         owner: LedgerAccountOwner,
         paymentsApprovalStatus: Nullable<PaymentsApprovalStatuses>,
         payoutAccountDetails: Nullable<LedgerAccountPayoutAccountDetails>,
+        payoutQuoteRequired: Bool,
         settlementTimeAt: Nullable<Date>,
         transferFee: Nullable<Double>,
         treasuryBalance: Nullable<LedgerAccountTreasuryBalance>,
@@ -41,6 +44,7 @@ public struct LedgerAccount: Codable, Hashable, Sendable {
         self.owner = owner
         self.paymentsApprovalStatus = paymentsApprovalStatus
         self.payoutAccountDetails = payoutAccountDetails
+        self.payoutQuoteRequired = payoutQuoteRequired
         self.settlementTimeAt = settlementTimeAt
         self.transferFee = transferFee
         self.treasuryBalance = treasuryBalance
@@ -55,6 +59,7 @@ public struct LedgerAccount: Codable, Hashable, Sendable {
         self.owner = try container.decode(LedgerAccountOwner.self, forKey: .owner)
         self.paymentsApprovalStatus = try container.decode(Nullable<PaymentsApprovalStatuses>.self, forKey: .paymentsApprovalStatus)
         self.payoutAccountDetails = try container.decode(Nullable<LedgerAccountPayoutAccountDetails>.self, forKey: .payoutAccountDetails)
+        self.payoutQuoteRequired = try container.decode(Bool.self, forKey: .payoutQuoteRequired)
         self.settlementTimeAt = try container.decode(Nullable<Date>.self, forKey: .settlementTimeAt)
         self.transferFee = try container.decode(Nullable<Double>.self, forKey: .transferFee)
         self.treasuryBalance = try container.decode(Nullable<LedgerAccountTreasuryBalance>.self, forKey: .treasuryBalance)
@@ -70,6 +75,7 @@ public struct LedgerAccount: Codable, Hashable, Sendable {
         try container.encode(self.owner, forKey: .owner)
         try container.encode(self.paymentsApprovalStatus, forKey: .paymentsApprovalStatus)
         try container.encode(self.payoutAccountDetails, forKey: .payoutAccountDetails)
+        try container.encode(self.payoutQuoteRequired, forKey: .payoutQuoteRequired)
         try container.encode(self.settlementTimeAt, forKey: .settlementTimeAt)
         try container.encode(self.transferFee, forKey: .transferFee)
         try container.encode(self.treasuryBalance, forKey: .treasuryBalance)
@@ -83,6 +89,7 @@ public struct LedgerAccount: Codable, Hashable, Sendable {
         case owner
         case paymentsApprovalStatus = "payments_approval_status"
         case payoutAccountDetails = "payout_account_details"
+        case payoutQuoteRequired = "payout_quote_required"
         case settlementTimeAt = "settlement_time_at"
         case transferFee = "transfer_fee"
         case treasuryBalance = "treasury_balance"

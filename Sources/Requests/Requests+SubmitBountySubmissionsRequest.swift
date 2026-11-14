@@ -2,7 +2,7 @@ import Foundation
 
 extension Requests {
     public struct SubmitBountySubmissionsRequest: Codable, Hashable, Sendable {
-        /// Work to attach to the submission. Combine `urls`, `file_ids`, and `caption` freely; all are optional.
+        /// Work to attach to a livestream attempt. Combine `urls`, `file_ids`, and `caption` freely; all are optional. If the attempt already went to review when its stream ended, the deliverable attaches to it once, until reviewers start voting. Data capture attempts take no deliverable.
         public let deliverable: Nullable<SubmitBountySubmissionsRequestDeliverable>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

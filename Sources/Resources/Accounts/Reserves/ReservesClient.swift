@@ -14,7 +14,10 @@ public final class ReservesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.accounts.reserves.list(accountId: "account_id")
     /// }

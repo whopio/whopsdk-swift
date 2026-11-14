@@ -5,7 +5,7 @@ public struct DisputeEvidence: Codable, Hashable, Sendable {
     public let accessActivityLog: Nullable<String>
     /// The billing address the customer provided at checkout.
     public let billingAddress: Nullable<String>
-    /// The cancellation policy document. Falls back to Whop's platform policy when the seller has not uploaded their own.
+    /// The cancellation policy document. Defaults to the account's cancellation policy, then its terms of service, then its return policy, then Whop's platform policy.
     public let cancellationPolicyAttachment: Nullable<DisputeAttachment>
     /// How the cancellation policy was shown to the customer before purchase.
     public let cancellationPolicyDisclosure: Nullable<String>
@@ -20,7 +20,7 @@ public struct DisputeEvidence: Codable, Hashable, Sendable {
     public let notes: Nullable<String>
     /// What the customer purchased, in the seller's own words.
     public let productDescription: Nullable<String>
-    /// The refund policy document. Falls back to Whop's platform policy when the seller has not uploaded their own.
+    /// The refund policy document. Defaults to the account's return policy, then its terms of service, then Whop's platform policy.
     public let refundPolicyAttachment: Nullable<DisputeAttachment>
     /// How the refund policy was shown to the customer before purchase.
     public let refundPolicyDisclosure: Nullable<String>

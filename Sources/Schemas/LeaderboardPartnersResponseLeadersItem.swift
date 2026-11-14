@@ -5,7 +5,7 @@ public struct LeaderboardPartnersResponseLeadersItem: Codable, Hashable, Sendabl
     public let firstReferralStartedAt: Date
     /// 1-based leaderboard position.
     public let rank: Int
-    /// The referrer's pending + completed earnings across all referred businesses, in USD.
+    /// The referrer's pending + completed earnings across all referred businesses, in USD, without commission advances. Whop Sales commission counts only the share that reaches its people.
     public let totalEarningsUsd: String
     /// Credited GMV across all the referrer's referred businesses, in USD.
     public let totalVolumeUsd: String

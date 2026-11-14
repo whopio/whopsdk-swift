@@ -1,6 +1,6 @@
 import Foundation
 
-/// Who calculates and remits tax for the account: `whop` (Whop calculates and remits), `self` (Whop calculates; the account collects and remits), or `none` (neither; the account is responsible). `null` until the account enrolls in the Whop tax service.
+/// Who calculates and remits tax for the account. `whop` means Whop calculates and remits. `self` means Whop calculates, and the account collects and remits. `none` means neither, and the account is responsible. New businesses start on `whop`, and new connected accounts start on `none`. `null` means the account has no setting yet.
 public enum AccountTaxRemittedBy: String, Codable, Hashable, CaseIterable, Sendable {
     case whop
     case `self`

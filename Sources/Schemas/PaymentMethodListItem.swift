@@ -9,8 +9,6 @@ public enum PaymentMethodListItem: Codable, Hashable, Sendable {
     case cashappPaymentMethod(PaymentMethodListItemCashappPaymentMethod)
     /// A saved iDEAL payment method, including the customer's bank name and BIC code.
     case idealPaymentMethod(PaymentMethodListItemIdealPaymentMethod)
-    /// A Whop balance the buyer can pay with — their own, or an account's they hold permission to spend. Charged by naming its ledger id on a `saved` confirmation token — it is a live wallet, not a stored credential, so it cannot be vaulted or charged off-session.
-    case platformBalancePaymentMethod(PaymentMethodListItemPlatformBalancePaymentMethod)
     /// A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits.
     case sepaDebitPaymentMethod(PaymentMethodListItemSepaDebitPaymentMethod)
     /// A saved US bank account payment method, including bank name, last four digits, and account type.
@@ -28,8 +26,6 @@ public enum PaymentMethodListItem: Codable, Hashable, Sendable {
             self = .cashappPaymentMethod(try PaymentMethodListItemCashappPaymentMethod(from: decoder))
         case "IdealPaymentMethod":
             self = .idealPaymentMethod(try PaymentMethodListItemIdealPaymentMethod(from: decoder))
-        case "PlatformBalancePaymentMethod":
-            self = .platformBalancePaymentMethod(try PaymentMethodListItemPlatformBalancePaymentMethod(from: decoder))
         case "SepaDebitPaymentMethod":
             self = .sepaDebitPaymentMethod(try PaymentMethodListItemSepaDebitPaymentMethod(from: decoder))
         case "UsBankAccountPaymentMethod":
@@ -58,9 +54,6 @@ public enum PaymentMethodListItem: Codable, Hashable, Sendable {
             try data.encode(to: encoder)
         case .idealPaymentMethod(let data):
             try container.encode("IdealPaymentMethod", forKey: .typename)
-            try data.encode(to: encoder)
-        case .platformBalancePaymentMethod(let data):
-            try container.encode("PlatformBalancePaymentMethod", forKey: .typename)
             try data.encode(to: encoder)
         case .sepaDebitPaymentMethod(let data):
             try container.encode("SepaDebitPaymentMethod", forKey: .typename)

@@ -2,11 +2,13 @@ import Foundation
 
 public final class PayoutsClient: Sendable {
     public let methods: MethodsClient
+    public let paypalLinkSessions: PaypalLinkSessionsClient
     public let supportedMethods: SupportedMethodsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.methods = MethodsClient(config: config)
+        self.paypalLinkSessions = PaypalLinkSessionsClient(config: config)
         self.supportedMethods = SupportedMethodsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
@@ -18,7 +20,10 @@ public final class PayoutsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.payouts.list()
     /// }
@@ -30,14 +35,14 @@ public final class PayoutsClient: Sendable {
     /// - Parameter userId: The owning user ID (a user_ identifier). Provide this or account_id.
     /// - Parameter currency: Optional currency code filter, for example `usd`.
     /// - Parameter status: Filter to payouts whose `status` reads this word, matching exactly what this version displays — `reversed` finds settled payouts the bank later returned. Requires Api-Version-Date 2026-08-21 or later.
-    /// - Parameter source: Filter by how the payout was created. Payouts created before source tracking or through internal tooling carry no source and never match.
+    /// - Parameter source: Filter by how the payout was created. A payout with no recorded source never matches.
     /// - Parameter payoutMethodId: Filter to payouts sent to one saved payout method (a pytk_ identifier). An unknown id matches nothing.
     /// - Parameter createdBefore: Only payouts created before this ISO 8601 time (exclusive).
     /// - Parameter createdAfter: Only payouts created at or after this ISO 8601 time (inclusive).
-    /// - Parameter first: Number of payouts to return from the start of the window.
-    /// - Parameter after: Cursor to fetch the page after (from page_info.end_cursor).
-    /// - Parameter last: Number of payouts to return from the end of the window.
-    /// - Parameter before: Cursor to fetch the page before (from page_info.start_cursor).
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String? = nil, userId: String? = nil, currency: String? = nil, status: ListPayoutsRequestStatus? = nil, source: ListPayoutsRequestSource? = nil, payoutMethodId: String? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListPayoutsResponse {
         return try await httpClient.performRequest(
@@ -62,19 +67,22 @@ public final class PayoutsClient: Sendable {
         )
     }
 
-    /// Sends money from an account or user balance to a saved payout method for that owner.
+    /// Sends money from an account or user balance to a saved payout method for that owner. First create a quote with POST /payouts/quotes, then submit its quote_token with the same payout details before it expires.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
-    ///     _ = try await client.payouts.create(request: CreatePayoutsRequestBody.jsonValue(
-    ///         .object([
-    ///             "key": .string("value")
-    ///         ])
+    ///     _ = try await client.payouts.create(request: .init(
+    ///         amount: 50,
+    ///         payoutMethodId: "potk_xxxxxxxxxxxxxx",
+    ///         quoteToken: "signed-payout-quote"
     ///     ))
     /// }
     ///
@@ -82,7 +90,7 @@ public final class PayoutsClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: CreatePayoutsRequestBody, requestOptions: RequestOptions? = nil) async throws -> CreatePayoutsResponse {
+    public func create(request: Requests.CreatePayoutsRequest, requestOptions: RequestOptions? = nil) async throws -> CreatePayoutsResponse {
         return try await httpClient.performRequest(
             method: .post,
             path: "/payouts",
@@ -92,14 +100,46 @@ public final class PayoutsClient: Sendable {
         )
     }
 
-    /// Fetches one payout by its `wdrl_` ID, or by the `cofr_` conversion request ID a stablecoin payout carries as `payout_request_id` — both ids answer with the same payout object.
+    /// Creates a short-lived, provider-backed quote of a payout's fee, exchange rate, and destination amount. No funds move until you submit the returned `quote_token` to `POST /payouts`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
+    ///
+    ///     _ = try await client.payouts.createQuote(request: .init(payoutMethodId: "potk_xxxxxxxxxxxxxx"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createQuote(request: Requests.CreateQuotePayoutsRequest, requestOptions: RequestOptions? = nil) async throws -> CreateQuotePayoutsResponse {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/payouts/quotes",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: CreateQuotePayoutsResponse.self
+        )
+    }
+
+    /// Retrieves a payout by its `wdrl_` ID, or by the `cofr_` conversion request ID a payout carries as `payout_request_id`. Authentication is optional: anyone with the ID can view tracking details, including notes, trace code, exchange rate, and payout request ID, while accounting fields require `payout:withdrawal:read` on the account or user that owns the payout. A supplied invalid credential returns 401.
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import WhopSDK
+    ///
+    /// private func main() async throws {
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.payouts.retrieve(id: "id")
     /// }
@@ -108,8 +148,8 @@ public final class PayoutsClient: Sendable {
     /// ```
     ///
     /// - Parameter id: Payout ID, prefixed `wdrl_` for a payout returned by `GET /payouts` or `cofr_` for the payout request returned by `POST /payouts`.
-    /// - Parameter accountId: Owning account ID, prefixed `biz_`. Provide exactly one of `account_id` or `user_id`.
-    /// - Parameter userId: Owning user ID, prefixed `user_`. Provide exactly one of `account_id` or `user_id`.
+    /// - Parameter accountId: Optional owning account ID, prefixed `biz_`. The payout ID identifies its ledger. If supplied, this must match the owner and cannot be combined with `user_id`.
+    /// - Parameter userId: Optional owning user ID, prefixed `user_`. The payout ID identifies its ledger. If supplied, this must match the owner and cannot be combined with `account_id`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieve(id: String, accountId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> RetrievePayoutsResponse {
         return try await httpClient.performRequest(
@@ -121,6 +161,41 @@ public final class PayoutsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: RetrievePayoutsResponse.self
+        )
+    }
+
+    /// Cancels a payout before it is sent to the payout provider, or asks the provider to stop one already sent. While the payout is `in_review`, or `processing` with nothing sent yet (see `cancelable`), it is canceled and the funds, fees included, return to the balance. Once sent, the response is 202 with a `cancellation` object, and the payout reads `canceled` only if the provider confirms it stopped. A `requested` payout returns 409 until it reaches review, a payout the provider can no longer stop returns 409 with error type `not_cancelable`, and canceling an already-canceled payout returns it unchanged.
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import WhopSDK
+    ///
+    /// private func main() async throws {
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
+    ///
+    ///     _ = try await client.payouts.cancel(id: "id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter id: Payout ID, prefixed `wdrl_`, or the `cofr_` payout request ID returned by `POST /payouts` — both cancel the same payout.
+    /// - Parameter accountId: Owning account ID, prefixed `biz_`. Provide exactly one of `account_id` or `user_id`.
+    /// - Parameter userId: Owning user ID, prefixed `user_`. Provide exactly one of `account_id` or `user_id`.
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func cancel(id: String, accountId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> CancelPayoutsResponse {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/payouts/\(id)/cancel",
+            queryParams: [
+                "account_id": accountId.map { .string($0) }, 
+                "user_id": userId.map { .string($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: CancelPayoutsResponse.self
         )
     }
 }

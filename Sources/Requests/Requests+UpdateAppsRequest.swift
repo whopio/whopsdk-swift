@@ -8,6 +8,8 @@ extension Requests {
         public let appType: UpdateAppsRequestAppType?
         /// The base production URL where the app is hosted. Set to `null` to take the app proxy offline.
         public let baseUrl: Nullable<String>?
+        /// The App Store category of a business app. Pass an `mcat_` ID from `GET /apps/categories?app_type=b2b_app`, or `null` to clear it. Omit it to keep the current category. Setting a category needs the app to have an App Store product.
+        public let categoryId: Nullable<String>?
         /// The URL path for the account dashboard view.
         public let dashboardPath: Nullable<String>?
         /// A short description of the app shown in listings and search results.
@@ -18,12 +20,16 @@ extension Requests {
         public let experiencePath: Nullable<String>?
         /// The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new direct upload.
         public let icon: UpdateAppsRequestIcon?
+        /// The address of the existing website this app is imported from, such as `https://shop.example.com`. Must be an `http` or `https` URL. Set to `null` to clear it.
+        public let importedFromUrl: Nullable<String>?
         /// The display name for the app, shown to users on the app store and product pages.
         public let name: String?
         /// How the app authenticates at the OAuth token endpoint.
         public let oauthClientType: UpdateAppsRequestOauthClientType?
         /// The URL path to the app's OpenAPI spec file (requires the ai_chat capability).
         public let openapiPath: Nullable<String>?
+        /// Five-field cron expression, read in UTC, on which Whop runs the production web build's `scheduled()` export once for every installation, with the installation in `ctx.props.app_installation`. It must fire at least once and no more often than every 15 minutes. Slots are skipped while the app has no production web build with a server entry. Set to `null` or an empty string to stop the per-install schedule.
+        public let perInstallSchedule: Nullable<String>?
         /// The app build (`abld_` tag) to serve as the Android production build, or `null` to unassign it. Same rules as `production_web_build_id`.
         public let productionAndroidBuildId: Nullable<String>?
         /// The app build (`abld_` tag) to serve as the iOS production build, or `null` to unassign it. Same rules as `production_web_build_id`.
@@ -36,6 +42,8 @@ extension Requests {
         public let requiredScopes: [String]?
         /// The subdomain route where the app's hosted web builds are served.
         public let route: String?
+        /// Five-field cron expression, read in UTC, on which Whop runs the production web build's `scheduled()` export once per slot, such as `* /15 * * * *`. It must fire at least once. Slots are skipped while the app has no production web build with a server entry. Set to `null` or an empty string to stop the global schedule.
+        public let schedule: Nullable<String>?
         /// Secrets to add or overwrite on the app, as an object of string values. Keys not included are left untouched; pass null or an empty string as the value to delete a secret. Encrypted at rest and injected into the app's hosted server runtime.
         public let secrets: [String: JSONValue]?
         /// The URL path to the app's skills directory (requires the ai_chat capability).
@@ -49,20 +57,24 @@ extension Requests {
             appStoreDescription: String? = nil,
             appType: UpdateAppsRequestAppType? = nil,
             baseUrl: Nullable<String>? = nil,
+            categoryId: Nullable<String>? = nil,
             dashboardPath: Nullable<String>? = nil,
             description: String? = nil,
             discoverPath: Nullable<String>? = nil,
             experiencePath: Nullable<String>? = nil,
             icon: UpdateAppsRequestIcon? = nil,
+            importedFromUrl: Nullable<String>? = nil,
             name: String? = nil,
             oauthClientType: UpdateAppsRequestOauthClientType? = nil,
             openapiPath: Nullable<String>? = nil,
+            perInstallSchedule: Nullable<String>? = nil,
             productionAndroidBuildId: Nullable<String>? = nil,
             productionIosBuildId: Nullable<String>? = nil,
             productionWebBuildId: Nullable<String>? = nil,
             redirectUris: [String]? = nil,
             requiredScopes: [String]? = nil,
             route: String? = nil,
+            schedule: Nullable<String>? = nil,
             secrets: [String: JSONValue]? = nil,
             skillsPath: Nullable<String>? = nil,
             status: UpdateAppsRequestStatus? = nil,
@@ -71,20 +83,24 @@ extension Requests {
             self.appStoreDescription = appStoreDescription
             self.appType = appType
             self.baseUrl = baseUrl
+            self.categoryId = categoryId
             self.dashboardPath = dashboardPath
             self.description = description
             self.discoverPath = discoverPath
             self.experiencePath = experiencePath
             self.icon = icon
+            self.importedFromUrl = importedFromUrl
             self.name = name
             self.oauthClientType = oauthClientType
             self.openapiPath = openapiPath
+            self.perInstallSchedule = perInstallSchedule
             self.productionAndroidBuildId = productionAndroidBuildId
             self.productionIosBuildId = productionIosBuildId
             self.productionWebBuildId = productionWebBuildId
             self.redirectUris = redirectUris
             self.requiredScopes = requiredScopes
             self.route = route
+            self.schedule = schedule
             self.secrets = secrets
             self.skillsPath = skillsPath
             self.status = status
@@ -96,20 +112,24 @@ extension Requests {
             self.appStoreDescription = try container.decodeIfPresent(String.self, forKey: .appStoreDescription)
             self.appType = try container.decodeIfPresent(UpdateAppsRequestAppType.self, forKey: .appType)
             self.baseUrl = try container.decodeNullableIfPresent(String.self, forKey: .baseUrl)
+            self.categoryId = try container.decodeNullableIfPresent(String.self, forKey: .categoryId)
             self.dashboardPath = try container.decodeNullableIfPresent(String.self, forKey: .dashboardPath)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.discoverPath = try container.decodeNullableIfPresent(String.self, forKey: .discoverPath)
             self.experiencePath = try container.decodeNullableIfPresent(String.self, forKey: .experiencePath)
             self.icon = try container.decodeIfPresent(UpdateAppsRequestIcon.self, forKey: .icon)
+            self.importedFromUrl = try container.decodeNullableIfPresent(String.self, forKey: .importedFromUrl)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.oauthClientType = try container.decodeIfPresent(UpdateAppsRequestOauthClientType.self, forKey: .oauthClientType)
             self.openapiPath = try container.decodeNullableIfPresent(String.self, forKey: .openapiPath)
+            self.perInstallSchedule = try container.decodeNullableIfPresent(String.self, forKey: .perInstallSchedule)
             self.productionAndroidBuildId = try container.decodeNullableIfPresent(String.self, forKey: .productionAndroidBuildId)
             self.productionIosBuildId = try container.decodeNullableIfPresent(String.self, forKey: .productionIosBuildId)
             self.productionWebBuildId = try container.decodeNullableIfPresent(String.self, forKey: .productionWebBuildId)
             self.redirectUris = try container.decodeIfPresent([String].self, forKey: .redirectUris)
             self.requiredScopes = try container.decodeIfPresent([String].self, forKey: .requiredScopes)
             self.route = try container.decodeIfPresent(String.self, forKey: .route)
+            self.schedule = try container.decodeNullableIfPresent(String.self, forKey: .schedule)
             self.secrets = try container.decodeIfPresent([String: JSONValue].self, forKey: .secrets)
             self.skillsPath = try container.decodeNullableIfPresent(String.self, forKey: .skillsPath)
             self.status = try container.decodeIfPresent(UpdateAppsRequestStatus.self, forKey: .status)
@@ -122,20 +142,24 @@ extension Requests {
             try container.encodeIfPresent(self.appStoreDescription, forKey: .appStoreDescription)
             try container.encodeIfPresent(self.appType, forKey: .appType)
             try container.encodeNullableIfPresent(self.baseUrl, forKey: .baseUrl)
+            try container.encodeNullableIfPresent(self.categoryId, forKey: .categoryId)
             try container.encodeNullableIfPresent(self.dashboardPath, forKey: .dashboardPath)
             try container.encodeIfPresent(self.description, forKey: .description)
             try container.encodeNullableIfPresent(self.discoverPath, forKey: .discoverPath)
             try container.encodeNullableIfPresent(self.experiencePath, forKey: .experiencePath)
             try container.encodeIfPresent(self.icon, forKey: .icon)
+            try container.encodeNullableIfPresent(self.importedFromUrl, forKey: .importedFromUrl)
             try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.oauthClientType, forKey: .oauthClientType)
             try container.encodeNullableIfPresent(self.openapiPath, forKey: .openapiPath)
+            try container.encodeNullableIfPresent(self.perInstallSchedule, forKey: .perInstallSchedule)
             try container.encodeNullableIfPresent(self.productionAndroidBuildId, forKey: .productionAndroidBuildId)
             try container.encodeNullableIfPresent(self.productionIosBuildId, forKey: .productionIosBuildId)
             try container.encodeNullableIfPresent(self.productionWebBuildId, forKey: .productionWebBuildId)
             try container.encodeIfPresent(self.redirectUris, forKey: .redirectUris)
             try container.encodeIfPresent(self.requiredScopes, forKey: .requiredScopes)
             try container.encodeIfPresent(self.route, forKey: .route)
+            try container.encodeNullableIfPresent(self.schedule, forKey: .schedule)
             try container.encodeIfPresent(self.secrets, forKey: .secrets)
             try container.encodeNullableIfPresent(self.skillsPath, forKey: .skillsPath)
             try container.encodeIfPresent(self.status, forKey: .status)
@@ -146,20 +170,24 @@ extension Requests {
             case appStoreDescription = "app_store_description"
             case appType = "app_type"
             case baseUrl = "base_url"
+            case categoryId = "category_id"
             case dashboardPath = "dashboard_path"
             case description
             case discoverPath = "discover_path"
             case experiencePath = "experience_path"
             case icon
+            case importedFromUrl = "imported_from_url"
             case name
             case oauthClientType = "oauth_client_type"
             case openapiPath = "openapi_path"
+            case perInstallSchedule = "per_install_schedule"
             case productionAndroidBuildId = "production_android_build_id"
             case productionIosBuildId = "production_ios_build_id"
             case productionWebBuildId = "production_web_build_id"
             case redirectUris = "redirect_uris"
             case requiredScopes = "required_scopes"
             case route
+            case schedule
             case secrets
             case skillsPath = "skills_path"
             case status

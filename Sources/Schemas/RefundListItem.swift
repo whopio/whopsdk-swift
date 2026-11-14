@@ -10,6 +10,8 @@ public struct RefundListItem: Codable, Hashable, Sendable {
     public let currency: Currencies
     /// The unique identifier for the refund.
     public let id: String
+    /// The custom metadata attached when this refund was requested.
+    public let metadata: Nullable<[String: JSONValue]>
     /// The original payment that this refund was issued against. Null if the payment is no longer available.
     public let payment: Nullable<RefundListItemPayment>
     /// The payment provider that processed the refund.
@@ -32,6 +34,7 @@ public struct RefundListItem: Codable, Hashable, Sendable {
         createdAt: Date,
         currency: Currencies,
         id: String,
+        metadata: Nullable<[String: JSONValue]>,
         payment: Nullable<RefundListItemPayment>,
         provider: PaymentProviders,
         providerCreatedAt: Nullable<Date>,
@@ -45,6 +48,7 @@ public struct RefundListItem: Codable, Hashable, Sendable {
         self.createdAt = createdAt
         self.currency = currency
         self.id = id
+        self.metadata = metadata
         self.payment = payment
         self.provider = provider
         self.providerCreatedAt = providerCreatedAt
@@ -61,6 +65,7 @@ public struct RefundListItem: Codable, Hashable, Sendable {
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.currency = try container.decode(Currencies.self, forKey: .currency)
         self.id = try container.decode(String.self, forKey: .id)
+        self.metadata = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .metadata)
         self.payment = try container.decode(Nullable<RefundListItemPayment>.self, forKey: .payment)
         self.provider = try container.decode(PaymentProviders.self, forKey: .provider)
         self.providerCreatedAt = try container.decode(Nullable<Date>.self, forKey: .providerCreatedAt)
@@ -78,6 +83,7 @@ public struct RefundListItem: Codable, Hashable, Sendable {
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.currency, forKey: .currency)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.metadata, forKey: .metadata)
         try container.encode(self.payment, forKey: .payment)
         try container.encode(self.provider, forKey: .provider)
         try container.encode(self.providerCreatedAt, forKey: .providerCreatedAt)
@@ -93,6 +99,7 @@ public struct RefundListItem: Codable, Hashable, Sendable {
         case createdAt = "created_at"
         case currency
         case id
+        case metadata
         case payment
         case provider
         case providerCreatedAt = "provider_created_at"

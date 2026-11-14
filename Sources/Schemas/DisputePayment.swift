@@ -13,11 +13,12 @@ public struct DisputePayment: Codable, Hashable, Sendable {
     public let currency: Nullable<String>
     /// Payment ID, prefixed `pay_`.
     public let id: String
-    /// The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts when it was a card. Null when the payment names no method.
+    /// The instrument this payment was made with, shaped for display: the method type, a buyer-facing name, the standard icon set, and the card facts, including the network transaction id the account uses for the card, when it was a card. Null when the payment names no method.
     public let paymentInstrument: Nullable<PaymentInstrument>
     /// How the customer paid, such as `card` or `paypal`.
     public let paymentMethodType: Nullable<String>
-    /// The processor that handled the payment, such as `stripe`.
+    /// Deprecated: no longer populated. Always `null`.
+    /// DEPRECATED: No longer populated. Always null.
     public let paymentProcessor: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

@@ -7,7 +7,7 @@ public struct PostTransferFailedPayload: Codable, Hashable, Sendable {
     public let apiVersion: PostTransferFailedPayloadApiVersion
     /// The dated API version (Api-Version-Date) the payload is serialized to
     public let apiVersionDate: Nullable<String>
-    /// A transfer of credit between two ledger accounts.
+    /// A transfer between Whop accounts or users.
     public let data: PostTransferFailedPayloadData
     /// A unique ID for every single webhook request
     public let id: String

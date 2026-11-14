@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for DmsPost.
 public struct ListMessagesResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [MessageListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let data: [ChatMessage]
+    public let pageInfo: ListMessagesResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [MessageListItem],
-        pageInfo: PageInfo,
+        data: [ChatMessage],
+        pageInfo: ListMessagesResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -21,8 +18,8 @@ public struct ListMessagesResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([MessageListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.data = try container.decode([ChatMessage].self, forKey: .data)
+        self.pageInfo = try container.decode(ListMessagesResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

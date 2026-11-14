@@ -33,4 +33,7 @@ public enum AdCallToAction: String, Codable, Hashable, CaseIterable, Sendable {
     case eventRsvp = "event_rsvp"
     case seeDetails = "see_details"
     case viewInstagramProfile = "view_instagram_profile"
+    case donateNow = "donate_now"
+    case seeMore = "see_more"
+    case visitSite = "visit_site"
 }

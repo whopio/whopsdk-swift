@@ -18,7 +18,7 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
     public let country: String?
     /// Formatted as `YYYY-MM-DD`.
     public let dateOfBirth: String?
-    /// Identity document being sent, when verifying with `documents`. Decides exactly which file slots to send: `ID_CARD` → `id_card_front` + `id_card_back` + `selfie`; `DRIVERS` → `drivers_front` + `drivers_back` + `selfie`; `RESIDENCE_PERMIT` → `residence_permit_front` + `residence_permit_back` + `selfie`; `PASSPORT` → `passport_front` + `selfie`. See [Identity documents](/developer/verification/identity-documents).
+    /// Identity document being sent, when verifying with `documents`. Decides exactly which file slots to send: `id_card` → `id_card_front` + `id_card_back` + `selfie`; `drivers` → `drivers_front` + `drivers_back` + `selfie`; `residence_permit` → `residence_permit_front` + `residence_permit_back` + `selfie`; `passport` → `passport_front` + `selfie`. See [Identity documents](/developer/verification/identity-documents).
     public let documentType: CreateVerificationsRequestBodyIndividualDocumentType?
     /// Identity document files, each value the file's raw bytes base64-encoded (JPEG, PNG, or PDF, up to 5MB per file before encoding). Sending this object verifies the person from the files in this request instead of a hosted session — individual verifications only, and the request must also carry `document_type`, `first_name`, `last_name`, `date_of_birth`, `country`, `phone`, `tax_identification_number`, and an `address` with `line1`, `city`, `state`, and `postal_code`. Send every slot for your `document_type` — a missing or rejected file fails the whole request and nothing is submitted; review starts automatically once every document is accepted. See [Identity documents](/developer/verification/identity-documents) for a full walkthrough.
     public let documents: CreateVerificationsRequestBodyIndividualDocuments?
@@ -29,6 +29,8 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
     public let shareToken: String?
     /// The government-issued ID number of the person being verified — the individual for a KYC verification, or the business representative for a KYB verification — as appropriate for their country. Examples are a Social Security Number (SSN) in the US, or a Social Insurance Number in Canada.
     public let taxIdentificationNumber: String?
+    /// ID of an `approved` verification to reuse on this account instead of verifying the person again, for example `idpf_XXXXXXXX`. The verification becomes this account's current one for its kind — replacing whichever verification of that kind the account already has, and carrying its payout account across — and the response is that same verification, unchanged. Only the signed-in Whop user who started the original verification can reuse it: API keys, OAuth tokens, and onboarding links are refused. `kind` is the only other field it accepts, and must match the reused verification. An account whose verification was denied or is still under review cannot reuse one.
+    public let verificationId: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -47,6 +49,7 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
         phone: String? = nil,
         shareToken: String? = nil,
         taxIdentificationNumber: String? = nil,
+        verificationId: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.address = address
@@ -63,6 +66,7 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
         self.phone = phone
         self.shareToken = shareToken
         self.taxIdentificationNumber = taxIdentificationNumber
+        self.verificationId = verificationId
         self.additionalProperties = additionalProperties
     }
 
@@ -82,6 +86,7 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
         self.shareToken = try container.decodeIfPresent(String.self, forKey: .shareToken)
         self.taxIdentificationNumber = try container.decodeIfPresent(String.self, forKey: .taxIdentificationNumber)
+        self.verificationId = try container.decodeIfPresent(String.self, forKey: .verificationId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -102,6 +107,7 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
         try container.encodeIfPresent(self.phone, forKey: .phone)
         try container.encodeIfPresent(self.shareToken, forKey: .shareToken)
         try container.encodeIfPresent(self.taxIdentificationNumber, forKey: .taxIdentificationNumber)
+        try container.encodeIfPresent(self.verificationId, forKey: .verificationId)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -120,5 +126,6 @@ public struct CreateVerificationsRequestBodyIndividual: Codable, Hashable, Senda
         case phone
         case shareToken = "share_token"
         case taxIdentificationNumber = "tax_identification_number"
+        case verificationId = "verification_id"
     }
 }

@@ -1,9 +1,9 @@
 import Foundation
 
 public struct UpdateAccountsRequestTaxIdentifiersItem: Codable, Hashable, Sendable {
-    /// Tax ID type, for example `eu_vat`, `gb_vat`, or `us_ein`.
+    /// Tax ID type, for example `eu_vat`, `gb_vat`, or `us_ein`. See the [tax IDs guide](/developer/guides/tax-ids) for an example of each type.
     public let taxIdType: UpdateAccountsRequestTaxIdentifiersItemTaxIdType
-    /// Tax ID value, for example `DE123456789`.
+    /// Tax ID value, for example `DE123456789`. An `eu_vat` number must start with its two-letter country code (Greece uses `EL`); spaces, dots, and dashes are removed and letters are uppercased. See the [tax IDs guide](/developer/guides/tax-ids).
     public let taxIdValue: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

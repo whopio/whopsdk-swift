@@ -16,11 +16,11 @@ public struct ListOverridesResponseDataItem: Codable, Hashable, Sendable {
     public let id: String
     /// The type of override (standard or rev_share).
     public let overrideType: AffiliateOverrideRoles
-    /// The plan ID (for standard overrides).
+    /// The plan ID (for standard overrides). Null for a product-wide override, which sets the terms for plans added to the product later.
     public let planId: Nullable<String>
     /// The product page direct link for referrals (standard overrides only).
     public let productDirectLink: Nullable<String>
-    /// The product ID (for rev-share overrides).
+    /// The product ID (for rev-share overrides, and for product-wide overrides that set the terms for plans added to the product later).
     public let productId: Nullable<String>
     /// The revenue calculation basis (pre_fees or post_fees).
     public let revenueBasis: Nullable<AffiliateRevenueBases>

@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for Refund.
 public struct ListRefundsResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [RefundListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let data: [Refund]
+    public let pageInfo: ListRefundsResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [RefundListItem],
-        pageInfo: PageInfo,
+        data: [Refund],
+        pageInfo: ListRefundsResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -21,8 +18,8 @@ public struct ListRefundsResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([RefundListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.data = try container.decode([Refund].self, forKey: .data)
+        self.pageInfo = try container.decode(ListRefundsResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

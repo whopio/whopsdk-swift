@@ -1,0 +1,382 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: ["Sources/Version.swift"]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and verify without tagging"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-whopsdk-swift-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  VERSION_FILE: Sources/Version.swift
+  MODULE_NAME: WhopSDK
+
+jobs:
+  decide:
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.gate.outputs.release }}
+      dry: ${{ steps.gate.outputs.dry }}
+      version: ${{ steps.gate.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Decide whether to release
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          BEFORE: ${{ github.event.before }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}.git
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          emit() { echo "$1=$2" >> "$GITHUB_OUTPUT"; }
+
+          if [ "$EVENT" = "pull_request" ] || [ "$DRY_RUN" = "true" ]; then
+            dry=true
+          else
+            dry=false
+          fi
+          emit dry "$dry"
+          echo "event=$EVENT dry=$dry"
+
+          refuse() {
+            if [ "$dry" = "true" ]; then
+              echo "::warning::[dry] a real release would stop here: $*"
+              return 0
+            fi
+            echo "::error::$*"
+            exit 1
+          }
+
+          if [ ! -f "$VERSION_FILE" ]; then
+            echo "::notice::${VERSION_FILE} does not exist — this is not a tree this workflow can release."
+            emit release false
+            emit version ""
+            exit 0
+          fi
+
+          version=$(sed -n 's/^public let sdkVersion = "\([^"]*\)".*/\1/p' "$VERSION_FILE" | head -1)
+
+          if [ -z "$version" ]; then
+            echo "::error::${VERSION_FILE} has no sdkVersion literal."
+            exit 1
+          fi
+
+          echo "${VERSION_FILE} version: $version"
+          emit version "$version"
+
+          if ! printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::'$version' is not stable semver. SwiftPM's 'from:' requirement never resolves a prerelease, so a prerelease tag would be invisible to consumers."
+            exit 1
+          fi
+
+          sources=$(find Sources -name '*.swift' | wc -l)
+          echo "Sources holds $sources Swift files."
+          if [ "$sources" -lt 500 ]; then
+            echo "::error::Sources holds only $sources Swift files. Fern emits an empty SDK and still exits 0 when it fails to parse the spec; refusing to tag this tree."
+            exit 1
+          fi
+
+          base=""
+          if [ "$EVENT" = "push" ] && [ -n "$BEFORE" ] \
+            && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
+            && git rev-parse --verify --quiet "${BEFORE}^{commit}" >/dev/null; then
+            base=$BEFORE
+          elif git rev-parse --verify --quiet "HEAD^" >/dev/null; then
+            base=HEAD^
+            if [ "$EVENT" = "push" ]; then
+              echo "::warning::the pushed range starts at '${BEFORE}', which is not in this checkout; falling back to HEAD^, which sees only the last commit of the push."
+            fi
+          fi
+
+          if [ -z "$base" ]; then
+            echo "::notice::there is no earlier commit to diff against; the only-version-changed check has nothing to compare."
+          else
+            echo "diffing ${base}..HEAD"
+            changed=$(git diff --name-only "$base" HEAD)
+            body=$(git diff -U0 "$base" HEAD -- "$VERSION_FILE" | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' || true)
+            other=$(printf '%s\n' "$body" | grep -cvE '^[+-]public let sdkVersion = ' || true)
+            unexpected=$(printf '%s\n' "$changed" | grep -vxE 'Sources/Version\.swift|\.fern/metadata\.json|README\.md' || true)
+
+            if ! printf '%s\n' "$changed" | grep -qx 'Sources/Version\.swift'; then
+              summary="a release push must change ${VERSION_FILE}. Changed $(printf '%s\n' "$changed" | grep -c . || true) file(s), first few: $(printf '%s\n' "$changed" | awk 'NR <= 5' | tr '\n' ' ')"
+            elif [ -n "$unexpected" ]; then
+              summary="a release push must touch only the version stamps. A regeneration reaching this point would tag an unreviewed tree. $(printf '%s\n' "$unexpected" | grep -c . || true) unexpected file(s), first few: $(printf '%s\n' "$unexpected" | awk 'NR <= 5' | tr '\n' ' ')"
+            elif [ "$other" -ne 0 ]; then
+              summary="a release push must change only the sdkVersion line. Diff: $(printf '%s\n' "$body" | awk 'NR <= 10' | tr '\n' ' ')"
+            else
+              summary=""
+            fi
+
+            if [ -z "$summary" ]; then
+              echo "${base}..HEAD changes the version stamps and nothing else."
+            elif [ "$EVENT" = "push" ]; then
+              refuse "$summary"
+            else
+              echo "::notice::[${EVENT}] this is not a release push, so the diff is informational: ${summary}"
+            fi
+          fi
+
+          if [ ! -f .fern/metadata.json ]; then
+            refuse ".fern/metadata.json does not exist, so nothing corroborates ${VERSION_FILE}'s ${version}. Fern writes it on every generation."
+          elif ! meta=$(jq -er '.sdkVersion' .fern/metadata.json 2>/dev/null); then
+            refuse ".fern/metadata.json carries no readable sdkVersion, so nothing corroborates ${VERSION_FILE}'s ${version}. The tag points at this commit, so CI cannot correct the stamps after the fact — fix them in the bump commit."
+          elif [ "$meta" != "$version" ]; then
+            refuse ".fern/metadata.json reports sdkVersion ${meta} but ${VERSION_FILE} says ${version}. The tag points at this commit, so CI cannot correct the stamps after the fact — fix them in the bump commit."
+          else
+            echo ".fern/metadata.json agrees: ${meta}"
+          fi
+
+          readme=$(grep -oE 'whopsdk-swift", from: "[0-9]+\.[0-9]+\.[0-9]+"' README.md | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1 || true)
+          if [ -n "$readme" ] && [ "$readme" != "$version" ]; then
+            echo "::warning::README.md still tells consumers to install ${readme}, not ${version}."
+          fi
+
+          set +e
+          git ls-remote --exit-code --tags "$REPO_URL" "refs/tags/${version}" >/dev/null 2>&1
+          rc=$?
+          set -e
+
+          tagged=unknown
+          case "$rc" in
+            0)
+              tagged=yes
+              echo "${version} is already tagged on the remote."
+              ;;
+            2)
+              tagged=no
+              echo "the remote has no ${version} tag."
+              ;;
+            *)
+              refuse "git ls-remote against ${REPO_URL} exited ${rc}, so this job cannot tell whether ${version} is already released. If the repository is still private, this is expected: SwiftPM resolves a package over anonymous git, so the repository must be public before it can be consumed at all."
+              ;;
+          esac
+
+          set +e
+          tags=$(git ls-remote --tags --refs "$REPO_URL" 2>/dev/null)
+          trc=$?
+          set -e
+
+          if [ "$trc" -ne 0 ]; then
+            refuse "git ls-remote --tags against ${REPO_URL} exited ${trc}, so this job cannot tell whether ${version} regresses past a release that already happened. An empty tag list and an unreachable remote are not the same answer."
+          else
+            latest=$(printf '%s\n' "$tags" \
+              | awk -F'refs/tags/' 'NF > 1 { print $2 }' \
+              | sed 's/^v//' \
+              | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+              | sort -V | tail -1 || true)
+
+            if [ -z "$latest" ]; then
+              echo "the remote carries no release tag yet."
+            else
+              echo "Highest release tag on the remote, ignoring any v prefix: $latest"
+              highest=$(printf '%s\n%s\n' "$latest" "$version" | sort -V | tail -1)
+              if [ "$highest" = "$latest" ] && [ "$latest" != "$version" ]; then
+                refuse "${VERSION_FILE} is at ${version} but the remote is already tagged ${latest}. This branch was generated before that release; regenerate it before merging."
+              fi
+            fi
+          fi
+
+          if [ "$dry" = "true" ]; then
+            echo "Dry run: resolving, building and testing, tagging nothing."
+            emit release true
+            exit 0
+          fi
+
+          if [ "$tagged" = "yes" ]; then
+            if gh release view "$version" >/dev/null 2>&1; then
+              echo "::notice::${version} is already tagged and released; nothing to do."
+              emit release false
+              exit 0
+            fi
+            echo "::warning::${version} is tagged on the remote but has no GitHub release. Continuing so the release job can create the missing one; the tag itself will not be moved."
+          fi
+
+          emit release true
+
+  verify:
+    needs: decide
+    if: needs.decide.outputs.release == 'true'
+    runs-on: blacksmith-8vcpu-ubuntu-2204
+    permissions:
+      contents: read
+    container: swift:6.1-noble@sha256:98ee3a8469ce2a9c2f543ef2577939ab44e2dfc9b5ed710732a59e5dd64f9c4a
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Trust the workspace checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Report the toolchain
+        run: swift --version
+
+      - name: Build the library that consumers compile
+        run: swift build --jobs 2
+
+      - name: Repair proven generator test examples
+        run: |
+          set -euo pipefail
+          apt-get update -qq
+          apt-get install -y --no-install-recommends python3
+          python3 Scripts/repair-generated-tests.py
+          python3 Scripts/factor-generated-tests.py
+
+      - name: Escape enum cases named after the self keyword in the generated tests
+        run: |
+          set -euo pipefail
+          bt=$(printf '\140')
+
+          enums=""
+          for f in $(grep -rlE "^ *case ${bt}self${bt}" Sources || true); do
+            enum=$(sed -n 's/^public enum \([A-Za-z0-9_]*\).*/\1/p' "$f" | head -1)
+            [ -n "$enum" ] || continue
+            enums="${enums} ${enum}"
+          done
+
+          escaped=0
+          for enum in $enums; do
+            pattern=": ${enum}\.self\b"
+            for t in $(grep -rlE "$pattern" Tests || true); do
+              hits=$(grep -cE "$pattern" "$t" || true)
+              sed -i -E "s/${pattern}/: ${enum}.${bt}self${bt}/g" "$t"
+              echo "escaped ${hits} reference(s) to ${enum}.self in ${t}"
+              escaped=$((escaped + hits))
+            done
+          done
+
+          if [ "$escaped" -gt 0 ]; then
+            echo "::warning::rewrote ${escaped} generated test reference(s) that fern-swift-sdk emitted as a metatype instead of an enum case. Sources/ is unaffected and the tag still points at the committed tree."
+            exit 0
+          fi
+
+          if [ -z "$enums" ]; then
+            echo "::notice::no generated enum declares a ${bt}self${bt} case, so there is nothing this step could repair."
+            exit 0
+          fi
+
+          residual=$(for enum in $enums; do grep -rnE "${enum}\.self\b" Tests || true; done)
+
+          if [ -n "$residual" ]; then
+            echo "::warning::the escape pattern matched nothing, yet Tests still reference these enums' .self. fern-swift-sdk changed what it emits and this step no longer repairs it — swift test below is the verdict:"
+            printf '%s\n' "$residual"
+            exit 0
+          fi
+
+          echo "::notice::nothing to escape — fern-swift-sdk now emits backticked self cases, so this step can be deleted."
+
+      - name: Run the generated test suite
+        run: swift test --jobs 1
+
+      - name: Report compiler memory diagnostics
+        if: always()
+        run: |
+          set -euo pipefail
+          for file in /sys/fs/cgroup/memory.peak /sys/fs/cgroup/memory.events /sys/fs/cgroup/memory.max /proc/meminfo; do
+            if [ -r "$file" ]; then
+              printf '%s\n' "$file"
+              cat "$file"
+            fi
+          done
+
+      - name: Resolve the package the way SwiftPM will, from a tag
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/whopsdk-swift /tmp/consumer
+          git clone --quiet --no-hardlinks "$GITHUB_WORKSPACE" /tmp/whopsdk-swift
+          git config --global --add safe.directory /tmp/whopsdk-swift
+          git -C /tmp/whopsdk-swift remote remove origin
+          git -C /tmp/whopsdk-swift checkout --quiet -- .
+          git -C /tmp/whopsdk-swift tag "$VERSION"
+
+          mkdir -p /tmp/consumer/Sources/Consumer
+          cat > /tmp/consumer/Sources/Consumer/main.swift <<'SWIFT'
+          import WhopSDK
+          print(sdkVersion)
+          SWIFT
+
+          cat > /tmp/consumer/Package.swift <<SWIFT
+          // swift-tools-version: 5.7
+          import PackageDescription
+          let package = Package(
+              name: "Consumer",
+              dependencies: [
+                  .package(url: "/tmp/whopsdk-swift", from: "${VERSION}")
+              ],
+              targets: [
+                  .executableTarget(
+                      name: "Consumer",
+                      dependencies: [.product(name: "${MODULE_NAME}", package: "whopsdk-swift")],
+                      path: "Sources/Consumer"
+                  )
+              ]
+          )
+          SWIFT
+
+          cd /tmp/consumer
+          swift package resolve
+          resolved=$(swift run Consumer | tail -1)
+          echo "the consumer resolved the tag and the SDK reports: ${resolved}"
+          if [ "$resolved" != "$VERSION" ]; then
+            echo "::error::a package depending on tag ${VERSION} links an SDK that reports ${resolved}."
+            exit 1
+          fi
+
+  release:
+    needs: [decide, verify]
+    if: needs.decide.outputs.release == 'true' && needs.decide.outputs.dry == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Tag the release
+        env:
+          VERSION: ${{ needs.decide.outputs.version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${VERSION}" >/dev/null 2>&1; then
+            echo "::notice::${VERSION} is already tagged."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "${VERSION}" -m "WhopSDK ${VERSION}"
+
+            git push origin "refs/tags/${VERSION}" || \
+              git ls-remote --exit-code --tags origin "refs/tags/${VERSION}" >/dev/null
+          fi
+
+          if gh release view "${VERSION}" >/dev/null 2>&1; then
+            echo "::notice::release ${VERSION} already exists."
+          else
+            gh release create "${VERSION}" --title "${VERSION}" --generate-notes || \
+              gh release view "${VERSION}" >/dev/null
+          fi

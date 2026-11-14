@@ -2,11 +2,8 @@ import Foundation
 
 extension Requests {
     public struct CalculateTaxPlansRequest: Codable, Hashable, Sendable {
-        /// Buyer billing address used for tax calculation. Provide either `address.country` or `ip_address`; include state and postal code when available for more accurate results.
         public let address: Nullable<CalculateTaxPlansRequestAddress>?
-        /// Buyer IP address used to infer location when no billing address is provided.
         public let ipAddress: String?
-        /// Optional buyer tax ID for B2B exemptions. At most one entry is supported.
         public let taxIds: Nullable<[CalculateTaxPlansRequestTaxIdsItem]>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

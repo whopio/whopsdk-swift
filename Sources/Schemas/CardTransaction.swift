@@ -17,6 +17,8 @@ public struct CardTransaction: Codable, Hashable, Sendable {
     public let id: String
     /// True when the merchant is outside the card's home country.
     public let international: Bool
+    /// Whop Levels points this transaction earned for the business. Negative for a refund that takes them back. Null when it earns none: a transaction that hasn't settled or was declined.
+    public let levelsPoints: Nullable<Double>
     /// Amount the merchant charged in their own currency. Pair with `currency`.
     public let localAmount: Nullable<Double>
     /// Merchant category label, enriched where available and otherwise as the card network reported it.
@@ -47,6 +49,7 @@ public struct CardTransaction: Codable, Hashable, Sendable {
         declinedReason: Nullable<String>,
         id: String,
         international: Bool,
+        levelsPoints: Nullable<Double>,
         localAmount: Nullable<Double>,
         merchantCategory: Nullable<String>,
         merchantCategoryCode: Nullable<String>,
@@ -66,6 +69,7 @@ public struct CardTransaction: Codable, Hashable, Sendable {
         self.declinedReason = declinedReason
         self.id = id
         self.international = international
+        self.levelsPoints = levelsPoints
         self.localAmount = localAmount
         self.merchantCategory = merchantCategory
         self.merchantCategoryCode = merchantCategoryCode
@@ -88,6 +92,7 @@ public struct CardTransaction: Codable, Hashable, Sendable {
         self.declinedReason = try container.decode(Nullable<String>.self, forKey: .declinedReason)
         self.id = try container.decode(String.self, forKey: .id)
         self.international = try container.decode(Bool.self, forKey: .international)
+        self.levelsPoints = try container.decode(Nullable<Double>.self, forKey: .levelsPoints)
         self.localAmount = try container.decode(Nullable<Double>.self, forKey: .localAmount)
         self.merchantCategory = try container.decode(Nullable<String>.self, forKey: .merchantCategory)
         self.merchantCategoryCode = try container.decode(Nullable<String>.self, forKey: .merchantCategoryCode)
@@ -111,6 +116,7 @@ public struct CardTransaction: Codable, Hashable, Sendable {
         try container.encode(self.declinedReason, forKey: .declinedReason)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.international, forKey: .international)
+        try container.encode(self.levelsPoints, forKey: .levelsPoints)
         try container.encode(self.localAmount, forKey: .localAmount)
         try container.encode(self.merchantCategory, forKey: .merchantCategory)
         try container.encode(self.merchantCategoryCode, forKey: .merchantCategoryCode)
@@ -132,6 +138,7 @@ public struct CardTransaction: Codable, Hashable, Sendable {
         case declinedReason = "declined_reason"
         case id
         case international
+        case levelsPoints = "levels_points"
         case localAmount = "local_amount"
         case merchantCategory = "merchant_category"
         case merchantCategoryCode = "merchant_category_code"

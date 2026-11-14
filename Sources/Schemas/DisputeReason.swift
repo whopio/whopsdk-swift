@@ -1,6 +1,6 @@
 import Foundation
 
-/// Why the customer says they are disputing, normalized across card networks. `other` covers a code Whop has not categorized yet — read `reason_code` for the raw value.
+/// Why the customer says they are disputing, normalized across processors and card networks. `other` covers a processor reason Whop has not categorized yet.
 public enum DisputeReason: String, Codable, Hashable, CaseIterable, Sendable {
     case fraudulent
     case unrecognized

@@ -39,7 +39,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -84,10 +84,235 @@ import WhopSDK
                 )
             ],
             pageInfo: ListApiKeysResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.apiKeys.list(
+            resourceId: "resource_id",
+            resourceType: .account,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "api_version_date": "2025-01-01",
+                      "created_at": "created_at",
+                      "expires_at": "expires_at",
+                      "grants": [
+                        {
+                          "actions": [
+                            {
+                              "action": "action",
+                              "granted": true
+                            },
+                            {
+                              "action": "action",
+                              "granted": true
+                            }
+                          ],
+                          "resource_id": "resource_id",
+                          "resource_type": "resource_type"
+                        },
+                        {
+                          "actions": [
+                            {
+                              "action": "action",
+                              "granted": true
+                            },
+                            {
+                              "action": "action",
+                              "granted": true
+                            }
+                          ],
+                          "resource_id": "resource_id",
+                          "resource_type": "resource_type"
+                        }
+                      ],
+                      "id": "id",
+                      "ip_allowlist": [
+                        "ip_allowlist",
+                        "ip_allowlist"
+                      ],
+                      "is_default_for_resource": true,
+                      "name": "name",
+                      "obfuscated_secret_key": "obfuscated_secret_key",
+                      "secret_key": "secret_key",
+                      "system_role": "owner",
+                      "updated_at": "updated_at"
+                    },
+                    {
+                      "api_version_date": "2025-01-01",
+                      "created_at": "created_at",
+                      "expires_at": "expires_at",
+                      "grants": [
+                        {
+                          "actions": [
+                            {
+                              "action": "action",
+                              "granted": true
+                            },
+                            {
+                              "action": "action",
+                              "granted": true
+                            }
+                          ],
+                          "resource_id": "resource_id",
+                          "resource_type": "resource_type"
+                        },
+                        {
+                          "actions": [
+                            {
+                              "action": "action",
+                              "granted": true
+                            },
+                            {
+                              "action": "action",
+                              "granted": true
+                            }
+                          ],
+                          "resource_id": "resource_id",
+                          "resource_type": "resource_type"
+                        }
+                      ],
+                      "id": "id",
+                      "ip_allowlist": [
+                        "ip_allowlist",
+                        "ip_allowlist"
+                      ],
+                      "is_default_for_resource": true,
+                      "name": "name",
+                      "obfuscated_secret_key": "obfuscated_secret_key",
+                      "secret_key": "secret_key",
+                      "system_role": "owner",
+                      "updated_at": "updated_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListApiKeysResponse(
+            data: [
+                ApiKey(
+                    apiVersionDate: ApiKeyApiVersionDate.twoThousandTwentyFive0101,
+                    createdAt: "created_at",
+                    expiresAt: Nullable<String>.value("expires_at"),
+                    grants: Optional([
+                        ApiKeyGrant(
+                            actions: [
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                ),
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                )
+                            ],
+                            resourceId: "resource_id",
+                            resourceType: "resource_type"
+                        ),
+                        ApiKeyGrant(
+                            actions: [
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                ),
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                )
+                            ],
+                            resourceId: "resource_id",
+                            resourceType: "resource_type"
+                        )
+                    ]),
+                    id: "id",
+                    ipAllowlist: Nullable<[String]>.value([
+                        "ip_allowlist",
+                        "ip_allowlist"
+                    ]),
+                    isDefaultForResource: true,
+                    name: Nullable<String>.value("name"),
+                    obfuscatedSecretKey: "obfuscated_secret_key",
+                    secretKey: Optional("secret_key"),
+                    systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
+                    updatedAt: "updated_at"
+                ),
+                ApiKey(
+                    apiVersionDate: ApiKeyApiVersionDate.twoThousandTwentyFive0101,
+                    createdAt: "created_at",
+                    expiresAt: Nullable<String>.value("expires_at"),
+                    grants: Optional([
+                        ApiKeyGrant(
+                            actions: [
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                ),
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                )
+                            ],
+                            resourceId: "resource_id",
+                            resourceType: "resource_type"
+                        ),
+                        ApiKeyGrant(
+                            actions: [
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                ),
+                                ApiKeyGrantAction(
+                                    action: "action",
+                                    granted: true
+                                )
+                            ],
+                            resourceId: "resource_id",
+                            resourceType: "resource_type"
+                        )
+                    ]),
+                    id: "id",
+                    ipAllowlist: Nullable<[String]>.value([
+                        "ip_allowlist",
+                        "ip_allowlist"
+                    ]),
+                    isDefaultForResource: true,
+                    name: Nullable<String>.value("name"),
+                    obfuscatedSecretKey: "obfuscated_secret_key",
+                    secretKey: Optional("secret_key"),
+                    systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
+                    updatedAt: "updated_at"
+                )
+            ],
+            pageInfo: ListApiKeysResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
             )
         )
         let response = try await client.apiKeys.list(
@@ -179,6 +404,125 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version_date": "2025-01-01",
+                  "created_at": "created_at",
+                  "expires_at": "expires_at",
+                  "grants": [
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    }
+                  ],
+                  "id": "id",
+                  "ip_allowlist": [
+                    "ip_allowlist",
+                    "ip_allowlist"
+                  ],
+                  "is_default_for_resource": true,
+                  "name": "name",
+                  "obfuscated_secret_key": "obfuscated_secret_key",
+                  "secret_key": "secret_key",
+                  "system_role": "owner",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ApiKey(
+            apiVersionDate: ApiKeyApiVersionDate.twoThousandTwentyFive0101,
+            createdAt: "created_at",
+            expiresAt: Nullable<String>.value("expires_at"),
+            grants: Optional([
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                ),
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                )
+            ]),
+            id: "id",
+            ipAllowlist: Nullable<[String]>.value([
+                "ip_allowlist",
+                "ip_allowlist"
+            ]),
+            isDefaultForResource: true,
+            name: Nullable<String>.value("name"),
+            obfuscatedSecretKey: "obfuscated_secret_key",
+            secretKey: Optional("secret_key"),
+            systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
+            updatedAt: "updated_at"
+        )
+        let response = try await client.apiKeys.create(
+            request: .init(
+                name: "name",
+                permissions: CreateApiKeysRequestPermissions(
+
+                ),
+                resourceId: "resource_id",
+                resourceType: .account
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listPermissions1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -233,6 +577,95 @@ import WhopSDK
                 endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.apiKeys.listPermissions(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listPermissions2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "action": "action",
+                      "allowed_on_api_key": true,
+                      "allowed_on_app": true,
+                      "allowed_on_user": true,
+                      "category": "category",
+                      "description": "description",
+                      "granted_to_system_roles": [
+                        "owner",
+                        "owner"
+                      ],
+                      "name": "name"
+                    },
+                    {
+                      "action": "action",
+                      "allowed_on_api_key": true,
+                      "allowed_on_app": true,
+                      "allowed_on_user": true,
+                      "category": "category",
+                      "description": "description",
+                      "granted_to_system_roles": [
+                        "owner",
+                        "owner"
+                      ],
+                      "name": "name"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListPermissionsApiKeysResponse(
+            data: [
+                Permission(
+                    action: "action",
+                    allowedOnApiKey: true,
+                    allowedOnApp: true,
+                    allowedOnUser: true,
+                    category: Nullable<String>.value("category"),
+                    description: "description",
+                    grantedToSystemRoles: [
+                        PermissionGrantedToSystemRolesItem.owner,
+                        PermissionGrantedToSystemRolesItem.owner
+                    ],
+                    name: "name"
+                ),
+                Permission(
+                    action: "action",
+                    allowedOnApiKey: true,
+                    allowedOnApp: true,
+                    allowedOnUser: true,
+                    category: Nullable<String>.value("category"),
+                    description: "description",
+                    grantedToSystemRoles: [
+                        PermissionGrantedToSystemRolesItem.owner,
+                        PermissionGrantedToSystemRolesItem.owner
+                    ],
+                    name: "name"
+                )
+            ],
+            pageInfo: ListPermissionsApiKeysResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
                 startCursor: Nullable<String>.value("start_cursor")
             )
         )
@@ -314,6 +747,118 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version_date": "2025-01-01",
+                  "created_at": "created_at",
+                  "expires_at": "expires_at",
+                  "grants": [
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    }
+                  ],
+                  "id": "id",
+                  "ip_allowlist": [
+                    "ip_allowlist",
+                    "ip_allowlist"
+                  ],
+                  "is_default_for_resource": true,
+                  "name": "name",
+                  "obfuscated_secret_key": "obfuscated_secret_key",
+                  "secret_key": "secret_key",
+                  "system_role": "owner",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ApiKey(
+            apiVersionDate: ApiKeyApiVersionDate.twoThousandTwentyFive0101,
+            createdAt: "created_at",
+            expiresAt: Nullable<String>.value("expires_at"),
+            grants: Optional([
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                ),
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                )
+            ]),
+            id: "id",
+            ipAllowlist: Nullable<[String]>.value([
+                "ip_allowlist",
+                "ip_allowlist"
+            ]),
+            isDefaultForResource: true,
+            name: Nullable<String>.value("name"),
+            obfuscatedSecretKey: "obfuscated_secret_key",
+            secretKey: Optional("secret_key"),
+            systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
+            updatedAt: "updated_at"
+        )
+        let response = try await client.apiKeys.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -334,6 +879,34 @@ import WhopSDK
         let expectedResponse = DeleteApiKeysResponse(
             deleted: true,
             id: "apik_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.apiKeys.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteApiKeysResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.apiKeys.delete(
             id: "id",
@@ -417,6 +990,119 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version_date": "2025-01-01",
+                  "created_at": "created_at",
+                  "expires_at": "expires_at",
+                  "grants": [
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    }
+                  ],
+                  "id": "id",
+                  "ip_allowlist": [
+                    "ip_allowlist",
+                    "ip_allowlist"
+                  ],
+                  "is_default_for_resource": true,
+                  "name": "name",
+                  "obfuscated_secret_key": "obfuscated_secret_key",
+                  "secret_key": "secret_key",
+                  "system_role": "owner",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ApiKey(
+            apiVersionDate: ApiKeyApiVersionDate.twoThousandTwentyFive0101,
+            createdAt: "created_at",
+            expiresAt: Nullable<String>.value("expires_at"),
+            grants: Optional([
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                ),
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                )
+            ]),
+            id: "id",
+            ipAllowlist: Nullable<[String]>.value([
+                "ip_allowlist",
+                "ip_allowlist"
+            ]),
+            isDefaultForResource: true,
+            name: Nullable<String>.value("name"),
+            obfuscatedSecretKey: "obfuscated_secret_key",
+            secretKey: Optional("secret_key"),
+            systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
+            updatedAt: "updated_at"
+        )
+        let response = try await client.apiKeys.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func rotate1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -483,6 +1169,118 @@ import WhopSDK
             secretKey: Optional("apik_xxxxxxxxxxxxxx_C0000_C_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
             systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
             updatedAt: "2026-01-01T12:00:00.000Z"
+        )
+        let response = try await client.apiKeys.rotate(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func rotate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version_date": "2025-01-01",
+                  "created_at": "created_at",
+                  "expires_at": "expires_at",
+                  "grants": [
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action": "action",
+                          "granted": true
+                        },
+                        {
+                          "action": "action",
+                          "granted": true
+                        }
+                      ],
+                      "resource_id": "resource_id",
+                      "resource_type": "resource_type"
+                    }
+                  ],
+                  "id": "id",
+                  "ip_allowlist": [
+                    "ip_allowlist",
+                    "ip_allowlist"
+                  ],
+                  "is_default_for_resource": true,
+                  "name": "name",
+                  "obfuscated_secret_key": "obfuscated_secret_key",
+                  "secret_key": "secret_key",
+                  "system_role": "owner",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ApiKey(
+            apiVersionDate: ApiKeyApiVersionDate.twoThousandTwentyFive0101,
+            createdAt: "created_at",
+            expiresAt: Nullable<String>.value("expires_at"),
+            grants: Optional([
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                ),
+                ApiKeyGrant(
+                    actions: [
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        ),
+                        ApiKeyGrantAction(
+                            action: "action",
+                            granted: true
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    resourceType: "resource_type"
+                )
+            ]),
+            id: "id",
+            ipAllowlist: Nullable<[String]>.value([
+                "ip_allowlist",
+                "ip_allowlist"
+            ]),
+            isDefaultForResource: true,
+            name: Nullable<String>.value("name"),
+            obfuscatedSecretKey: "obfuscated_secret_key",
+            secretKey: Optional("secret_key"),
+            systemRole: Nullable<ApiKeySystemRole>.value(ApiKeySystemRole.owner),
+            updatedAt: "updated_at"
         )
         let response = try await client.apiKeys.rotate(
             id: "id",

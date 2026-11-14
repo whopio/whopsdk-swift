@@ -4,23 +4,28 @@ public final class UsersClient: Sendable {
     public let oauthGrants: OauthGrantsClient
     public let passkeys: PasskeysClient
     public let preferences: UsersPreferencesClient
+    public let fees: UsersFeesClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.oauthGrants = OauthGrantsClient(config: config)
         self.passkeys = PasskeysClient(config: config)
         self.preferences = UsersPreferencesClient(config: config)
+        self.fees = UsersFeesClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Search for users by name or username, ranked by social proximity to the authenticated user. Returns the user's most recently followed users when no query is given.
+    /// Searches for users by name or username, ranked by social proximity to the authenticated user. Without a `query`, returns the user's most recently followed users.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.list()
     /// }
@@ -28,17 +33,19 @@ public final class UsersClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter contextChannelId: Prioritize people relevant to this channel for mentions. Results remain global; channel access is required.
     /// - Parameter query: A search term to filter users by name or username.
-    /// - Parameter first: The number of users to return (max 50).
-    /// - Parameter after: A cursor; returns users after this position.
-    /// - Parameter last: The number of users to return from the end of the range.
-    /// - Parameter before: A cursor; returns users before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(query: String? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListUsersResponse {
+    public func list(contextChannelId: String? = nil, query: String? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListUsersResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/users",
             queryParams: [
+                "context_channel_id": contextChannelId.map { .string($0) }, 
                 "query": query.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "after": after.map { .string($0) }, 
@@ -50,14 +57,17 @@ public final class UsersClient: Sendable {
         )
     }
 
-    /// Retrieves the authenticated user — the self view of the user object. Same shape as `GET /users/{id}`, with the self-only fields populated: `email` (email-read scope), `staff` (Whop staff only, staff-read scope), `balance` and `earnings_usd` (balance-read scope), the opt-in `balance_history`, and every linked social account.
+    /// Retrieves the authenticated user. Same as `GET /users/:id` with the reserved id `me`: the self view, where self-only fields such as `email`, `balance`, and `cards` can be populated.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.me()
     /// }
@@ -65,19 +75,23 @@ public final class UsersClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter includeTrading: Also return the trading account under `trading`: its address, a snapshot of its margin and open positions, and its Hyperliquid WebSocket subscriptions. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet.
     /// - Parameter accountId: When set, returns your account-specific profile overrides for this account.
+    /// - Parameter includeBalance: Compute live wallet and owned-account balances (default true). Set false for identity-only reads. Ignored for callers without balance-read scope.
     /// - Parameter includeBalanceHistory: Also compute your balance history (opt-in; runs a heavier query). Ignored for callers without balance-read scope.
     /// - Parameter from: Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days ago. Only used with `include_balance_history`.
     /// - Parameter to: Balance-history window end, ISO 8601 date or datetime. Defaults to now. Only used with `include_balance_history`.
     /// - Parameter interval: Balance-history point granularity. Defaults to `day`. Only used with `include_balance_history`.
     /// - Parameter timeZone: IANA time zone the balance-history points are bucketed in. Defaults to `UTC`. Only used with `include_balance_history`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func me(accountId: String? = nil, includeBalanceHistory: Bool? = nil, from: String? = nil, to: String? = nil, interval: MeUsersRequestInterval? = nil, timeZone: String? = nil, requestOptions: RequestOptions? = nil) async throws -> User {
+    public func me(includeTrading: Bool? = nil, accountId: String? = nil, includeBalance: Bool? = nil, includeBalanceHistory: Bool? = nil, from: String? = nil, to: String? = nil, interval: MeUsersRequestInterval? = nil, timeZone: String? = nil, requestOptions: RequestOptions? = nil) async throws -> User {
         return try await httpClient.performRequest(
             method: .get,
             path: "/users/me",
             queryParams: [
+                "include_trading": includeTrading.map { .bool($0) }, 
                 "account_id": accountId.map { .string($0) }, 
+                "include_balance": includeBalance.map { .bool($0) }, 
                 "include_balance_history": includeBalanceHistory.map { .bool($0) }, 
                 "from": from.map { .string($0) }, 
                 "to": to.map { .string($0) }, 
@@ -89,14 +103,17 @@ public final class UsersClient: Sendable {
         )
     }
 
-    /// Updates the authenticated user's global profile, or their profile override for an account when account_id is given. Not available to API keys.
+    /// Updates the authenticated user's global profile, or their profile override for an account when `account_id` is given. Not available to API keys.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.updateMe(request: .init())
     /// }
@@ -119,14 +136,17 @@ public final class UsersClient: Sendable {
         )
     }
 
-    /// Retrieves a user by `user_` tag or username, or the authenticated user with the reserved id `me`. Profiles include linked social accounts — reading your own profile returns every linked account, other profiles only what is public on Whop (the primary Discord and the X account). The self-only fields are populated only when the id is `me`: `email` (email-read scope), `staff` (Whop staff only, staff-read scope), `balance` and `earnings_usd` (balance-read scope), and the opt-in `balance_history`. They are always `null` when addressing a user by tag or username.
+    /// Retrieves a user by `user_` tag or username, or the authenticated user with the reserved id `me`. Self-only fields such as `email`, `balance`, and `earnings_usd` are populated only when the id is `me`, and are always `null` when addressing a user by tag or username.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.retrieve(id: "id")
     /// }
@@ -135,19 +155,23 @@ public final class UsersClient: Sendable {
     /// ```
     ///
     /// - Parameter id: User ID (prefixed `user_`), username, or `me` for the authenticated user.
+    /// - Parameter includeTrading: Also return the trading account under `trading`: its address, a snapshot of its margin and open positions, and its Hyperliquid WebSocket subscriptions. Only honored on the self view (me) with crypto_wallet:trade:read, crypto_wallet:trade, or crypto_wallet:manage permission and an Ethereum wallet.
     /// - Parameter accountId: When set, returns the user's account-specific profile overrides for this account.
+    /// - Parameter includeBalance: Compute live wallet and owned-account balances on the self view (default true). Set false for identity-only reads. Ignored when the id is not `me` or the caller lacks balance-read scope.
     /// - Parameter includeBalanceHistory: Also compute your balance history (opt-in; runs a heavier query). Only applies when the id is `me`; ignored for callers without balance-read scope.
     /// - Parameter from: Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days ago. Only used with `include_balance_history`.
     /// - Parameter to: Balance-history window end, ISO 8601 date or datetime. Defaults to now. Only used with `include_balance_history`.
     /// - Parameter interval: Balance-history point granularity. Defaults to `day`. Only used with `include_balance_history`.
     /// - Parameter timeZone: IANA time zone the balance-history points are bucketed in. Defaults to `UTC`. Only used with `include_balance_history`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func retrieve(id: String, accountId: String? = nil, includeBalanceHistory: Bool? = nil, from: String? = nil, to: String? = nil, interval: RetrieveUsersRequestInterval? = nil, timeZone: String? = nil, requestOptions: RequestOptions? = nil) async throws -> User {
+    public func retrieve(id: String, includeTrading: Bool? = nil, accountId: String? = nil, includeBalance: Bool? = nil, includeBalanceHistory: Bool? = nil, from: String? = nil, to: String? = nil, interval: RetrieveUsersRequestInterval? = nil, timeZone: String? = nil, requestOptions: RequestOptions? = nil) async throws -> User {
         return try await httpClient.performRequest(
             method: .get,
             path: "/users/\(id)",
             queryParams: [
+                "include_trading": includeTrading.map { .bool($0) }, 
                 "account_id": accountId.map { .string($0) }, 
+                "include_balance": includeBalance.map { .bool($0) }, 
                 "include_balance_history": includeBalanceHistory.map { .bool($0) }, 
                 "from": from.map { .string($0) }, 
                 "to": to.map { .string($0) }, 
@@ -159,14 +183,17 @@ public final class UsersClient: Sendable {
         )
     }
 
-    /// Updates a user, addressed by `user_` tag, username, or the reserved id `me` for the authenticated user. A user token updates their own global profile; an API key updates the user's account-specific profile override (account_id required).
+    /// Updates a user, addressed by `user_` tag, username, or the reserved id `me` for the authenticated user. A user token updates their own global profile; an API key updates the user's profile override for the account in `account_id`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.update(
     ///         id: "id",
@@ -200,7 +227,10 @@ public final class UsersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.checkAccess(
     ///         id: "id",
@@ -223,14 +253,17 @@ public final class UsersClient: Sendable {
         )
     }
 
-    /// Lists the recommended actions computed for the user: personal suggestions (e.g. start a business or become an affiliate) pooled with the highest-impact actions across the accounts the user owns. Business actions are tagged with their `account_id`/`account_name`; personal actions leave those `null`. Self-only: `id` must be `me` or the authenticated user's own tag/username.
+    /// Lists the recommended actions computed for the authenticated user, such as starting a business. You can only list your own recommended actions.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.recommendActions(id: "id")
     /// }

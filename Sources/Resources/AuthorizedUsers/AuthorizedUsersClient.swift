@@ -7,7 +7,7 @@ public final class AuthorizedUsersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of authorized team members for a company, with optional filtering by user, role, and creation date.
+    /// Lists the authorized users on an account's team.
     ///
     /// Required permissions:
     ///  - `company:authorized_user:read`
@@ -18,15 +18,18 @@ public final class AuthorizedUsersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.authorizedUsers.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
     ///         userId: "user_xxxxxxxxxxxxx",
     ///         createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)
+    ///         createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -37,12 +40,12 @@ public final class AuthorizedUsersClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list authorized users for.
     /// - Parameter userId: Filter results to a specific user to check if they are an authorized team member.
     /// - Parameter createdBefore: Only return authorized users created before this timestamp.
     /// - Parameter createdAfter: Only return authorized users created after this timestamp.
+    /// - Parameter accountId: The unique identifier of the company to list authorized users for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String? = nil, userId: String? = nil, role: AuthorizedUserRoles? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAuthorizedUsersResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, userId: String? = nil, role: AuthorizedUserRoles? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, accountId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAuthorizedUsersResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/authorized_users",
@@ -51,18 +54,18 @@ public final class AuthorizedUsersClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": companyId.map { .string($0) }, 
                 "user_id": userId.map { .string($0) }, 
                 "role": role.map { .string($0.rawValue) }, 
                 "created_before": createdBefore.map { .date($0) }, 
-                "created_after": createdAfter.map { .date($0) }
+                "created_after": createdAfter.map { .date($0) }, 
+                "account_id": accountId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListAuthorizedUsersResponse.self
         )
     }
 
-    /// Add a new authorized user to a company.
+    /// Adds a user to an account's team as an authorized user with the given role.
     ///
     /// Required permissions:
     ///  - `authorized_user:create`
@@ -73,10 +76,13 @@ public final class AuthorizedUsersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.authorizedUsers.create(request: .init(
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
     ///         role: .owner,
     ///         userId: "user_xxxxxxxxxxxxx"
     ///     ))
@@ -107,7 +113,10 @@ public final class AuthorizedUsersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.authorizedUsers.retrieve(id: "ausr_xxxxxxxxxxxxx")
     /// }
@@ -115,7 +124,7 @@ public final class AuthorizedUsersClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: The unique identifier of the authorized user to retrieve.
+    /// - Parameter id: The unique identifier of the authorized user to retrieve. Team member IDs may start with `ausr_` or `mber_`; treat them as opaque.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieve(id: String, requestOptions: RequestOptions? = nil) async throws -> AuthorizedUser {
         return try await httpClient.performRequest(
@@ -126,7 +135,7 @@ public final class AuthorizedUsersClient: Sendable {
         )
     }
 
-    /// Remove an authorized user from a company.
+    /// Removes an authorized user from an account's team.
     ///
     /// Required permissions:
     ///  - `authorized_user:delete`
@@ -136,26 +145,29 @@ public final class AuthorizedUsersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.authorizedUsers.delete(
     ///         id: "ausr_xxxxxxxxxxxxx",
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: The ID of the authorized user or user to remove.
-    /// - Parameter companyId: The ID of the company the authorized user belongs to. Optional if the authorized user ID is provided.
+    /// - Parameter id: The ID of the authorized user or user to remove. Team member IDs may start with `ausr_` or `mber_`; treat them as opaque.
+    /// - Parameter accountId: The ID of the company the authorized user belongs to. Optional if the authorized user ID is provided.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func delete(id: String, companyId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func delete(id: String, accountId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
             path: "/authorized_users/\(id)",
             queryParams: [
-                "company_id": companyId.map { .string($0) }
+                "account_id": accountId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: Bool.self

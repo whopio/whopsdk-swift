@@ -9,12 +9,18 @@ public final class AiChatsClient: Sendable {
 
     /// Returns a paginated list of AI chat threads for the current authenticated user.
     ///
+    /// Required permissions:
+    ///  - `ai_chat:read`
+    ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.aiChats.list(
     ///         first: 42,
@@ -29,9 +35,10 @@ public final class AiChatsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
+    /// - Parameter accountId: Only return chats associated with this business account.
     /// - Parameter onlyActiveCrons: When true, returns only chats with an active cron schedule
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, onlyActiveCrons: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAiChatsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, agentIdentifier: AiChatAgentIdentifiers? = nil, accountId: String? = nil, onlyActiveCrons: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAiChatsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/ai_chats",
@@ -40,6 +47,8 @@ public final class AiChatsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
+                "agent_identifier": agentIdentifier.map { .string($0.rawValue) }, 
+                "account_id": accountId.map { .string($0) }, 
                 "only_active_crons": onlyActiveCrons.map { .bool($0) }
             ],
             requestOptions: requestOptions,
@@ -57,7 +66,10 @@ public final class AiChatsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.aiChats.create(request: .init(messageText: "message_text"))
     /// }
@@ -78,12 +90,18 @@ public final class AiChatsClient: Sendable {
 
     /// Retrieves the details of an existing AI chat.
     ///
+    /// Required permissions:
+    ///  - `ai_chat:read`
+    ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.aiChats.retrieve(id: "aich_xxxxxxxxxxxxx")
     /// }
@@ -112,7 +130,10 @@ public final class AiChatsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.aiChats.delete(id: "aich_xxxxxxxxxxxxx")
     /// }
@@ -131,7 +152,7 @@ public final class AiChatsClient: Sendable {
         )
     }
 
-    /// Update an AI chat's title, notification preferences, or associated company context.
+    /// Update an AI chat's title, notification preferences, or associated account context.
     ///
     /// Required permissions:
     ///  - `ai_chat:update`
@@ -141,7 +162,10 @@ public final class AiChatsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.aiChats.update(
     ///         id: "aich_xxxxxxxxxxxxx",

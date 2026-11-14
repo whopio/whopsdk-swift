@@ -5,7 +5,7 @@ public struct UserSummary: Codable, Hashable, Sendable {
     public let id: String
     /// Display name.
     public let name: Nullable<String>
-    /// Avatar wrapper; its `url` is always present, using a generated placeholder when the user set no picture.
+    /// Avatar wrapper. Its `url` is always present, and is a generated placeholder when the user set no picture.
     public let profilePicture: UserProfilePicture
     /// Public username.
     public let username: String

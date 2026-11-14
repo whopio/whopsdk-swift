@@ -1,7 +1,7 @@
 import Foundation
 
 public struct AccountReserve: Codable, Hashable, Sendable {
-    /// Total held in this currency, in native units, as a decimal string. `usd` and `usdt` are reported as one `usd` entry, matching how the balance row groups them.
+    /// Total held in this currency, in native units, as a decimal string. All dollar holdings are reported as one `usd` entry, matching how the balance row groups them.
     public let amount: String
     public let byType: [AccountReserveType]
     /// Lowercase ISO currency code, such as `usd` or `eur`.

@@ -2,12 +2,14 @@ import Foundation
 
 /// Whether ads in this ad group are delivering right now, and if not, why. When several states apply at once, the highest-precedence one is returned.
 public enum AdGroupDeliveryStatus: String, Codable, Hashable, CaseIterable, Sendable {
+    case inAppeal = "in_appeal"
     case allAdsRejected = "all_ads_rejected"
     case rejected
     case draft
     case noAds = "no_ads"
     case campaignPaused = "campaign_paused"
     case paused
+    case inReview = "in_review"
     case processing
     case issues
     case scheduled

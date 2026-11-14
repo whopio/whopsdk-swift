@@ -1,6 +1,6 @@
 import Foundation
 
-/// Two-letter code of the US state (or `DC`) to form the company in.
+/// Two-letter code of the US state (or `DC`) to form the company in. We recommend `WY` because Wyoming formations are completed the same day.
 public enum FormCompanyAccountsRequestFormationState: String, Codable, Hashable, CaseIterable, Sendable {
     case al = "AL"
     case ak = "AK"

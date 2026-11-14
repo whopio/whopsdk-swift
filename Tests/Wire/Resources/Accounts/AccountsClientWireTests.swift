@@ -11,26 +11,28 @@ import WhopSDK
                 {
                   "data": [
                     {
+                      "ads_spend_usd": 0,
                       "balances": [
                         {
-                          "balance": "50.0",
+                          "balance": "1500.0",
                           "breakdown": {
                             "available": "1500.0",
+                            "finishing_settlement": "0",
                             "in_transit": "0",
                             "pending": "0",
                             "pending_settlements": [
                               {
-                                "amount": "12.5",
+                                "amount": "0.0",
                                 "date": "2026-01-01"
                               }
                             ],
                             "reserve": "0"
                           },
-                          "icon_url": "https://assets.whop.com/tokens/usd.png",
-                          "name": "US Dollar",
+                          "icon_url": "https://assets.whop.com/tokens/usdt.png",
+                          "name": "Tether USD",
                           "price_usd": 1,
-                          "symbol": "USD",
-                          "value_usd": "50.00"
+                          "symbol": "USDT",
+                          "value_usd": "1500.00"
                         }
                       ],
                       "banner_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -43,8 +45,37 @@ import WhopSDK
                         "state": "TX"
                       },
                       "business_name": "Shine Time Auto Detailing, LLC",
-                      "business_type": "education_program",
+                      "business_type": "software",
                       "can_transfer_pending_balance_to_children": false,
+                      "cancellation_policy": {
+                        "blurhash": null,
+                        "content_type": "application/pdf",
+                        "created_at": "2026-01-01T12:00:00.000Z",
+                        "duration_seconds": null,
+                        "filename": "evidence.pdf",
+                        "height": null,
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "multipart_chunk_size": 5242880,
+                        "multipart_upload_id": "upload-id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                          }
+                        ],
+                        "object": "file",
+                        "removed_by_moderation": false,
+                        "size": 9670,
+                        "upload_headers": {
+                          "key": "value"
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "visibility": "public",
+                        "waveform_url": null,
+                        "width": null
+                      },
                       "capabilities": {
                         "accept_bank_payments": "active",
                         "accept_bnpl_payments": "active",
@@ -63,7 +94,7 @@ import WhopSDK
                         "kind": null,
                         "status": "approved"
                       },
-                      "collect_vat_id": true,
+                      "collect_vat_id": false,
                       "company_formation": {
                         "documents": [
                           {
@@ -91,25 +122,119 @@ import WhopSDK
                       },
                       "country": "us",
                       "created_at": "2026-01-01T12:00:00.000Z",
+                      "customers_l30d": 1,
                       "description": "Mobile ceramic coating, paint correction, and interior detailing across the Austin metro.",
+                      "direct_reports_count": 0,
+                      "dispute_fighter_enabled": false,
+                      "economic_intelligence": false,
                       "email": "marcus@shinetime.example",
+                      "eula": {
+                        "blurhash": null,
+                        "content_type": "application/pdf",
+                        "created_at": "2026-01-01T12:00:00.000Z",
+                        "duration_seconds": null,
+                        "filename": "evidence.pdf",
+                        "height": null,
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "multipart_chunk_size": 5242880,
+                        "multipart_upload_id": "upload-id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                          }
+                        ],
+                        "object": "file",
+                        "removed_by_moderation": false,
+                        "size": 9670,
+                        "upload_headers": {
+                          "key": "value"
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "visibility": "public",
+                        "waveform_url": null,
+                        "width": null
+                      },
+                      "external_id": "connected_account_123",
+                      "financing": {
+                        "application_id": "inrq_xxxxxxxxxxxxxx",
+                        "status": "requires_collection"
+                      },
+                      "funds_release_at": "funds_release_at",
                       "home_preferences": [
                         "hide_member_count"
                       ],
                       "id": "biz_xxxxxxxxxxxxxx",
-                      "industry_group": "academic_and_test_prep",
-                      "industry_type": "other",
-                      "invoice_prefix": "SHINE",
+                      "industry_type": "trading",
+                      "invoice_prefix": "INV",
+                      "level": {
+                        "account_level": 0,
+                        "applied_level": 1,
+                        "boosted": true,
+                        "levels": [
+                          {
+                            "level": 0,
+                            "minimum_spend": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "processing_rate_percentage": 2.7,
+                            "regional_rates": [
+                              {
+                                "processing_rate_percentage": 1.7,
+                                "region": "us_and_canada"
+                              }
+                            ]
+                          }
+                        ],
+                        "monthly_ads_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "monthly_card_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "monthly_qualifying_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "monthly_trading_volume": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "points": 41000,
+                        "points_by_source": {
+                          "ads": 0,
+                          "cards": 40000,
+                          "partners": 0,
+                          "trading": 1000
+                        },
+                        "points_to_next": 59000,
+                        "resets_at": "2026-01-01T12:00:00.000Z"
+                      },
                       "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                       "metadata": {
-                        "external_id": "shop_4417",
-                        "region": "austin"
+                        "external_id": "connected_account_123"
                       },
                       "onboarding_type": "platform",
                       "opengraph_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                       "opengraph_image_variant": "white",
-                      "other_business_description": "Mobile auto detailing",
-                      "other_industry_description": "Automotive services",
+                      "orchestration_enabled": true,
+                      "other_business_description": "other_business_description",
+                      "other_industry_description": "other_industry_description",
                       "owner": {
                         "id": "user_xxxxxxxxxxxxxx",
                         "name": "Dana Whitfield",
@@ -119,10 +244,34 @@ import WhopSDK
                         "username": "danawhitfield"
                       },
                       "parent_account": {
+                        "fees": {
+                          "crypto_swap_markup": {
+                            "fixed_fee_usd": 0,
+                            "percentage_fee": 3
+                          },
+                          "transfer_markup": {
+                            "fixed_fee_usd": 0,
+                            "percentage_fee": 0
+                          }
+                        },
                         "id": "biz_xxxxxxxxxxxxxx",
                         "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "route": "shine-time-holdings",
                         "title": "Shine Time Holdings"
+                      },
+                      "partner": {
+                        "email": null,
+                        "id": "id",
+                        "name": null,
+                        "profile_picture": {
+                          "url": "https://ui-avatars.com/api/"
+                        },
+                        "referring_account": {
+                          "id": "biz_xxxxxxxxxxxxxx",
+                          "title": "Acme Bookkeeping"
+                        },
+                        "username": "username",
+                        "whop_partner_verified_at": null
                       },
                       "payment_controls": {
                         "dispute_alert_auto_refund": {
@@ -133,6 +282,11 @@ import WhopSDK
                         "enforce_3ds": false,
                         "financing_disabled": false,
                         "high_risk_processing_fee_percentage": 0,
+                        "payment_method_warnings": [
+                          {
+                            "key": "value"
+                          }
+                        ],
                         "pending_auto_topup_fee_percentage": 2,
                         "pending_balance_delay_days": 0,
                         "reserve": {
@@ -147,7 +301,59 @@ import WhopSDK
                         },
                         "restricted_payment_methods": [
                           "card_visa"
-                        ]
+                        ],
+                        "undated_pending_reason": null,
+                        "withdrawal_schedule": {
+                          "day": null,
+                          "frequency": "manual",
+                          "next_payout_date": null
+                        }
+                      },
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "card"
+                        ],
+                        "enabled": [
+                          "card"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "platform_credits": [
+                        {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        }
+                      ],
+                      "privacy_policy": {
+                        "blurhash": null,
+                        "content_type": "application/pdf",
+                        "created_at": "2026-01-01T12:00:00.000Z",
+                        "duration_seconds": null,
+                        "filename": "evidence.pdf",
+                        "height": null,
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "multipart_chunk_size": 5242880,
+                        "multipart_upload_id": "upload-id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                          }
+                        ],
+                        "object": "file",
+                        "removed_by_moderation": false,
+                        "size": 9670,
+                        "upload_headers": {
+                          "key": "value"
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "visibility": "public",
+                        "waveform_url": null,
+                        "width": null
                       },
                       "product_tax_code": {
                         "id": "ptc_xxxxxxxxxxxxxx",
@@ -158,19 +364,19 @@ import WhopSDK
                         {
                           "action": "theme_business",
                           "blocked_capabilities": [
-                            "accept_bnpl_payments"
+                            "blocked_capabilities"
                           ],
-                          "cta": "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                          "cta_label": "Apply",
-                          "description": "Let customers pay over time with buy now, pay later.",
-                          "icon_url": "https://whop.com/illustrations/orange/piggy-bank.svg",
-                          "impact_score": 86,
-                          "reasoning": "Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu.",
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": null,
+                          "impact_score": null,
+                          "reasoning": null,
                           "status": "optional",
-                          "title": "Offer financing at checkout"
+                          "title": "title"
                         }
                       ],
-                      "require_2fa": true,
+                      "require_2fa": false,
                       "required_actions": [
                         {
                           "action": "deposit_funds",
@@ -185,11 +391,94 @@ import WhopSDK
                           "title": "Complete your identity verification"
                         }
                       ],
+                      "return_policy": {
+                        "blurhash": null,
+                        "content_type": "application/pdf",
+                        "created_at": "2026-01-01T12:00:00.000Z",
+                        "duration_seconds": null,
+                        "filename": "evidence.pdf",
+                        "height": null,
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "multipart_chunk_size": 5242880,
+                        "multipart_upload_id": "upload-id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                          }
+                        ],
+                        "object": "file",
+                        "removed_by_moderation": false,
+                        "size": 9670,
+                        "upload_headers": {
+                          "key": "value"
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "visibility": "public",
+                        "waveform_url": null,
+                        "width": null
+                      },
+                      "rewards": [
+                        {
+                          "id": "id",
+                          "qualification_amount": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "qualification_progress": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "qualification_type": "sales",
+                          "reward_amount": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "status": "in_progress"
+                        }
+                      ],
                       "route": "biz_xxxxxxxxxxxxxx",
                       "send_customer_emails": false,
-                      "show_joined_whops": false,
-                      "show_reviews_dtc": false,
-                      "show_user_directory": false,
+                      "shipping_policy": {
+                        "blurhash": null,
+                        "content_type": "application/pdf",
+                        "created_at": "2026-01-01T12:00:00.000Z",
+                        "duration_seconds": null,
+                        "filename": "evidence.pdf",
+                        "height": null,
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "multipart_chunk_size": 5242880,
+                        "multipart_upload_id": "upload-id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                          }
+                        ],
+                        "object": "file",
+                        "removed_by_moderation": false,
+                        "size": 9670,
+                        "upload_headers": {
+                          "key": "value"
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "visibility": "public",
+                        "waveform_url": null,
+                        "width": null
+                      },
+                      "show_joined_whops": true,
+                      "show_reviews_dtc": true,
+                      "show_user_directory": true,
                       "social_links": [
                         {
                           "id": "social_1",
@@ -198,9 +487,8 @@ import WhopSDK
                           "website": "x"
                         }
                       ],
-                      "stablecoin_rails": false,
                       "status": "active",
-                      "status_reason": "Payments are paused while we review recent chargebacks on this account.",
+                      "status_reason": "Suspended - Fraudulent activity",
                       "store_page_config": {
                         "accent_color": null,
                         "layout": null,
@@ -220,22 +508,199 @@ import WhopSDK
                       ],
                       "tax_remitted_by": "whop",
                       "tax_type": "inclusive",
+                      "terms_of_service": {
+                        "blurhash": null,
+                        "content_type": "application/pdf",
+                        "created_at": "2026-01-01T12:00:00.000Z",
+                        "duration_seconds": null,
+                        "filename": "evidence.pdf",
+                        "height": null,
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "multipart_chunk_size": 5242880,
+                        "multipart_upload_id": "upload-id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                          }
+                        ],
+                        "object": "file",
+                        "removed_by_moderation": false,
+                        "size": 9670,
+                        "upload_headers": {
+                          "key": "value"
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "visibility": "public",
+                        "waveform_url": null,
+                        "width": null
+                      },
                       "three_ds_level": "mandate_challenge",
                       "title": "Shine Time Auto Detailing",
                       "total_earned_usd": 0,
                       "total_usd": "50.00",
-                      "use_logo_as_opengraph_image_fallback": true,
-                      "verification": {},
+                      "trading": {
+                        "account_id": null,
+                        "hyperliquid": {
+                          "address": "address",
+                          "depositable": null,
+                          "margin_summary": {
+                            "account_value": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "total_margin_used": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "total_position_notional": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "withdrawable": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            }
+                          },
+                          "positions": [
+                            {
+                              "entry_price": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "hyperliquid": {
+                                "cumulative_funding": {
+                                  "all_time": {
+                                    "amount": "-1234.56",
+                                    "currency": "usd",
+                                    "decimals": 2,
+                                    "display_decimals": 2
+                                  },
+                                  "since_change": {
+                                    "amount": "-1234.56",
+                                    "currency": "usd",
+                                    "decimals": 2,
+                                    "display_decimals": 2
+                                  },
+                                  "since_open": {
+                                    "amount": "-1234.56",
+                                    "currency": "usd",
+                                    "decimals": 2,
+                                    "display_decimals": 2
+                                  }
+                                },
+                                "leverage": {
+                                  "type": "cross",
+                                  "value": 1
+                                },
+                                "liquidation_price": {
+                                  "amount": "-1234.56",
+                                  "currency": "usd",
+                                  "decimals": 2,
+                                  "display_decimals": 2
+                                },
+                                "margin_used": {
+                                  "amount": "-1234.56",
+                                  "currency": "usd",
+                                  "decimals": 2,
+                                  "display_decimals": 2
+                                },
+                                "return_on_equity": "return_on_equity"
+                              },
+                              "id": "id",
+                              "market": "market",
+                              "object": "trading_position",
+                              "position_value": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "side": "long",
+                              "size": "size",
+                              "unrealized_pnl": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              }
+                            }
+                          ],
+                          "websocket_subscriptions": [
+                            {
+                              "channel": "clearinghouse_state",
+                              "message": "message"
+                            }
+                          ],
+                          "websocket_url": "websocket_url"
+                        },
+                        "id": "id",
+                        "object": "trading_account",
+                        "provider": "hyperliquid",
+                        "spot": {
+                          "holdings": [
+                            {
+                              "average_entry_price": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "cost_basis": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "market": "market",
+                              "realized_pnl": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "unrealized_pnl": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "unrealized_pnl_percentage": null
+                            }
+                          ]
+                        },
+                        "user_id": null
+                      },
+                      "use_logo_as_opengraph_image_fallback": false,
+                      "verification": {
+                        "business": null,
+                        "individual": null
+                      },
+                      "volume_l30d_usd": 0,
                       "volume_usd": 1.1,
                       "wallet": {
                         "address": "0xabc123",
                         "id": "cwal_xxxxxxxxxxxxxx",
                         "network": "solana"
-                      }
+                      },
+                      "website": "https://shinetimedetail.com",
+                      "whop_partner_enabled_at": "whop_partner_enabled_at"
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -252,26 +717,28 @@ import WhopSDK
         let expectedResponse = ListAccountsResponse(
             data: [
                 Account(
+                    adsSpendUsd: Nullable<Double>.value(0),
                     balances: [
                         AccountBalanceToken(
-                            balance: "50.0",
+                            balance: "1500.0",
                             breakdown: AccountBalanceBreakdown(
                                 available: "1500.0",
+                                finishingSettlement: "0",
                                 inTransit: "0",
                                 pending: "0",
                                 pendingSettlements: [
                                     AccountBalanceSettlement(
-                                        amount: "12.5",
+                                        amount: "0.0",
                                         date: "2026-01-01"
                                     )
                                 ],
                                 reserve: "0"
                             ),
-                            iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usd.png"),
-                            name: "US Dollar",
+                            iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usdt.png"),
+                            name: "Tether USD",
                             priceUsd: Nullable<Double>.value(1),
-                            symbol: "USD",
-                            valueUsd: Nullable<String>.value("50.00")
+                            symbol: "USDT",
+                            valueUsd: Nullable<String>.value("1500.00")
                         )
                     ],
                     bannerImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
@@ -284,8 +751,37 @@ import WhopSDK
                         "state": JSONValue.string("TX")
                     ]),
                     businessName: Nullable<String>.value("Shine Time Auto Detailing, LLC"),
-                    businessType: Nullable<AccountBusinessType>.value(AccountBusinessType.educationProgram),
+                    businessType: Nullable<String>.value("software"),
                     canTransferPendingBalanceToChildren: false,
+                    cancellationPolicy: Nullable<File>.value(File(
+                        blurhash: .null,
+                        contentType: Nullable<String>.value("application/pdf"),
+                        createdAt: "2026-01-01T12:00:00.000Z",
+                        durationSeconds: .null,
+                        filename: Nullable<String>.value("evidence.pdf"),
+                        height: .null,
+                        id: "file_xxxxxxxxxxxxxx",
+                        multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                        multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            )
+                        ])),
+                        object: "file",
+                        removedByModeration: false,
+                        size: Nullable<Int>.value(9670),
+                        uploadHeaders: Optional([
+                            "key": JSONValue.string("value")
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                        url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: .null,
+                        width: .null
+                    )),
                     capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
                         acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
                         acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
@@ -304,7 +800,7 @@ import WhopSDK
                         kind: .null,
                         status: AccountCardsStatus.approved
                     )),
-                    collectVatId: true,
+                    collectVatId: false,
                     companyFormation: AccountCompanyFormation(
                         documents: Optional([
                             AccountCompanyFormationDocument(
@@ -332,25 +828,119 @@ import WhopSDK
                     ),
                     country: Nullable<String>.value("us"),
                     createdAt: "2026-01-01T12:00:00.000Z",
+                    customersL30D: Nullable<Int>.value(1),
                     description: Nullable<String>.value("Mobile ceramic coating, paint correction, and interior detailing across the Austin metro."),
+                    directReportsCount: Optional(0),
+                    disputeFighterEnabled: false,
+                    economicIntelligence: false,
                     email: Nullable<String>.value("marcus@shinetime.example"),
+                    eula: Nullable<File>.value(File(
+                        blurhash: .null,
+                        contentType: Nullable<String>.value("application/pdf"),
+                        createdAt: "2026-01-01T12:00:00.000Z",
+                        durationSeconds: .null,
+                        filename: Nullable<String>.value("evidence.pdf"),
+                        height: .null,
+                        id: "file_xxxxxxxxxxxxxx",
+                        multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                        multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            )
+                        ])),
+                        object: "file",
+                        removedByModeration: false,
+                        size: Nullable<Int>.value(9670),
+                        uploadHeaders: Optional([
+                            "key": JSONValue.string("value")
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                        url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: .null,
+                        width: .null
+                    )),
+                    externalId: Nullable<String>.value("connected_account_123"),
+                    financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                        applicationId: "inrq_xxxxxxxxxxxxxx",
+                        status: AccountFinancingStatus.requiresCollection
+                    )),
+                    fundsReleaseAt: Nullable<String>.value("funds_release_at"),
                     homePreferences: [
                         AccountHomePreferencesItem.hideMemberCount
                     ],
                     id: "biz_xxxxxxxxxxxxxx",
-                    industryGroup: Nullable<AccountIndustryGroup>.value(AccountIndustryGroup.academicAndTestPrep),
-                    industryType: Nullable<String>.value("other"),
-                    invoicePrefix: Nullable<String>.value("SHINE"),
+                    industryType: Nullable<String>.value("trading"),
+                    invoicePrefix: Nullable<String>.value("INV"),
+                    level: Nullable<AccountLevel>.value(AccountLevel(
+                        accountLevel: 0,
+                        appliedLevel: 1,
+                        boosted: true,
+                        levels: [
+                            AccountProcessingOfferLevel(
+                                level: 0,
+                                minimumSpend: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                processingRatePercentage: 2.7,
+                                regionalRates: [
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.7,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    )
+                                ]
+                            )
+                        ],
+                        monthlyAdsSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        monthlyCardSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        monthlyQualifyingSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        monthlyTradingVolume: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        points: 41000,
+                        pointsBySource: OwnerLevelPoints(
+                            ads: 0,
+                            cards: 40000,
+                            partners: 0,
+                            trading: 1000
+                        ),
+                        pointsToNext: Nullable<Int>.value(59000),
+                        resetsAt: "2026-01-01T12:00:00.000Z"
+                    )),
                     logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                     metadata: [
-                        "external_id": JSONValue.string("shop_4417"), 
-                        "region": JSONValue.string("austin")
+                        "external_id": JSONValue.string("connected_account_123")
                     ],
                     onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
                     opengraphImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                     opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
-                    otherBusinessDescription: Nullable<String>.value("Mobile auto detailing"),
-                    otherIndustryDescription: Nullable<String>.value("Automotive services"),
+                    orchestrationEnabled: true,
+                    otherBusinessDescription: Nullable<String>.value("other_business_description"),
+                    otherIndustryDescription: Nullable<String>.value("other_industry_description"),
                     owner: UserSummary(
                         id: "user_xxxxxxxxxxxxxx",
                         name: Nullable<String>.value("Dana Whitfield"),
@@ -360,11 +950,35 @@ import WhopSDK
                         username: "danawhitfield"
                     ),
                     parentAccount: Nullable<AccountParent>.value(AccountParent(
+                        fees: Optional([
+                            "crypto_swap_markup": AccountParentFeesValue(
+                                fixedFeeUsd: 0,
+                                percentageFee: 3
+                            ), 
+                            "transfer_markup": AccountParentFeesValue(
+                                fixedFeeUsd: 0,
+                                percentageFee: 0
+                            )
+                        ]),
                         id: "biz_xxxxxxxxxxxxxx",
                         logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                         route: "shine-time-holdings",
                         title: "Shine Time Holdings"
                     )),
+                    partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                        email: .null,
+                        id: "id",
+                        name: .null,
+                        profilePicture: UserProfilePicture(
+                            url: "https://ui-avatars.com/api/"
+                        ),
+                        referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                            id: "biz_xxxxxxxxxxxxxx",
+                            title: "Acme Bookkeeping"
+                        )),
+                        username: "username",
+                        whopPartnerVerifiedAt: .null
+                    ))),
                     paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
                         disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
                             locked: false,
@@ -374,6 +988,11 @@ import WhopSDK
                         enforce3Ds: false,
                         financingDisabled: false,
                         highRiskProcessingFeePercentage: 0,
+                        paymentMethodWarnings: [
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        ],
                         pendingAutoTopupFeePercentage: 2,
                         pendingBalanceDelayDays: 0,
                         reserve: AccountReserveControl(
@@ -388,7 +1007,59 @@ import WhopSDK
                         ),
                         restrictedPaymentMethods: [
                             AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
-                        ]
+                        ],
+                        undatedPendingReason: .null,
+                        withdrawalSchedule: AccountWithdrawalScheduleControl(
+                            day: .null,
+                            frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                            nextPayoutDate: .null
+                        )
+                    )),
+                    paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                        disabled: [
+                            "card"
+                        ],
+                        enabled: [
+                            "card"
+                        ],
+                        includePlatformDefaults: true
+                    )),
+                    platformCredits: [
+                        Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        )
+                    ],
+                    privacyPolicy: Nullable<File>.value(File(
+                        blurhash: .null,
+                        contentType: Nullable<String>.value("application/pdf"),
+                        createdAt: "2026-01-01T12:00:00.000Z",
+                        durationSeconds: .null,
+                        filename: Nullable<String>.value("evidence.pdf"),
+                        height: .null,
+                        id: "file_xxxxxxxxxxxxxx",
+                        multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                        multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            )
+                        ])),
+                        object: "file",
+                        removedByModeration: false,
+                        size: Nullable<Int>.value(9670),
+                        uploadHeaders: Optional([
+                            "key": JSONValue.string("value")
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                        url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: .null,
+                        width: .null
                     )),
                     productTaxCode: Nullable<[String: JSONValue]>.value([
                         "id": JSONValue.string("ptc_xxxxxxxxxxxxxx"), 
@@ -399,19 +1070,19 @@ import WhopSDK
                         AccountRecommendedAction(
                             action: AccountRecommendedActionAction.themeBusiness,
                             blockedCapabilities: [
-                                "accept_bnpl_payments"
+                                "blocked_capabilities"
                             ],
-                            cta: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                            ctaLabel: "Apply",
-                            description: "Let customers pay over time with buy now, pay later.",
-                            iconUrl: Nullable<String>.value("https://whop.com/illustrations/orange/piggy-bank.svg"),
-                            impactScore: Nullable<Int>.value(86),
-                            reasoning: Nullable<String>.value("Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu."),
+                            cta: "cta",
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: .null,
+                            impactScore: .null,
+                            reasoning: .null,
                             status: AccountRecommendedActionStatus.optional,
-                            title: "Offer financing at checkout"
+                            title: "title"
                         )
                     ]),
-                    require2Fa: true,
+                    require2Fa: false,
                     requiredActions: Nullable<[AccountRequiredAction]>.value([
                         AccountRequiredAction(
                             action: AccountRequiredActionAction.depositFunds,
@@ -426,11 +1097,94 @@ import WhopSDK
                             title: "Complete your identity verification"
                         )
                     ]),
+                    returnPolicy: Nullable<File>.value(File(
+                        blurhash: .null,
+                        contentType: Nullable<String>.value("application/pdf"),
+                        createdAt: "2026-01-01T12:00:00.000Z",
+                        durationSeconds: .null,
+                        filename: Nullable<String>.value("evidence.pdf"),
+                        height: .null,
+                        id: "file_xxxxxxxxxxxxxx",
+                        multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                        multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            )
+                        ])),
+                        object: "file",
+                        removedByModeration: false,
+                        size: Nullable<Int>.value(9670),
+                        uploadHeaders: Optional([
+                            "key": JSONValue.string("value")
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                        url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: .null,
+                        width: .null
+                    )),
+                    rewards: Optional([
+                        AccountPartnerReward(
+                            id: "id",
+                            qualificationAmount: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            qualificationProgress: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            qualificationType: AccountPartnerRewardQualificationType.sales,
+                            rewardAmount: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            status: AccountPartnerRewardStatus.inProgress
+                        )
+                    ]),
                     route: "biz_xxxxxxxxxxxxxx",
                     sendCustomerEmails: false,
-                    showJoinedWhops: false,
-                    showReviewsDtc: false,
-                    showUserDirectory: false,
+                    shippingPolicy: Nullable<File>.value(File(
+                        blurhash: .null,
+                        contentType: Nullable<String>.value("application/pdf"),
+                        createdAt: "2026-01-01T12:00:00.000Z",
+                        durationSeconds: .null,
+                        filename: Nullable<String>.value("evidence.pdf"),
+                        height: .null,
+                        id: "file_xxxxxxxxxxxxxx",
+                        multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                        multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            )
+                        ])),
+                        object: "file",
+                        removedByModeration: false,
+                        size: Nullable<Int>.value(9670),
+                        uploadHeaders: Optional([
+                            "key": JSONValue.string("value")
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                        url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: .null,
+                        width: .null
+                    )),
+                    showJoinedWhops: true,
+                    showReviewsDtc: true,
+                    showUserDirectory: true,
                     socialLinks: [
                         AccountSocialLink(
                             id: "social_1",
@@ -439,9 +1193,8 @@ import WhopSDK
                             website: AccountSocialLinkWebsite.x
                         )
                     ],
-                    stablecoinRails: false,
                     status: Nullable<String>.value("active"),
-                    statusReason: Nullable<String>.value("Payments are paused while we review recent chargebacks on this account."),
+                    statusReason: Nullable<String>.value("Suspended - Fraudulent activity"),
                     storePageConfig: AccountStorePageConfig(
                         accentColor: .null,
                         layout: .null,
@@ -461,25 +1214,3563 @@ import WhopSDK
                     ],
                     taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
                     taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+                    termsOfService: Nullable<File>.value(File(
+                        blurhash: .null,
+                        contentType: Nullable<String>.value("application/pdf"),
+                        createdAt: "2026-01-01T12:00:00.000Z",
+                        durationSeconds: .null,
+                        filename: Nullable<String>.value("evidence.pdf"),
+                        height: .null,
+                        id: "file_xxxxxxxxxxxxxx",
+                        multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                        multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                            )
+                        ])),
+                        object: "file",
+                        removedByModeration: false,
+                        size: Nullable<Int>.value(9670),
+                        uploadHeaders: Optional([
+                            "key": JSONValue.string("value")
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                        url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: .null,
+                        width: .null
+                    )),
                     threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
                     title: "Shine Time Auto Detailing",
                     totalEarnedUsd: Nullable<Double>.value(0),
                     totalUsd: Nullable<String>.value("50.00"),
-                    useLogoAsOpengraphImageFallback: true,
-                    verification: [:],
+                    trading: Nullable<TradingAccount>.value(TradingAccount(
+                        accountId: .null,
+                        hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                            address: "address",
+                            depositable: .null,
+                            marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                                accountValue: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                totalMarginUsed: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                totalPositionNotional: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                withdrawable: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                )
+                            )),
+                            positions: Nullable<[TradingPosition]>.value([
+                                TradingPosition(
+                                    entryPrice: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    hyperliquid: Nullable<TradingHyperliquidPosition>.value(TradingHyperliquidPosition(
+                                        cumulativeFunding: TradingCumulativeFunding(
+                                            allTime: Nullable<Money>.value(Money(
+                                                amount: "-1234.56",
+                                                currency: "usd",
+                                                decimals: 2,
+                                                displayDecimals: 2
+                                            )),
+                                            sinceChange: Nullable<Money>.value(Money(
+                                                amount: "-1234.56",
+                                                currency: "usd",
+                                                decimals: 2,
+                                                displayDecimals: 2
+                                            )),
+                                            sinceOpen: Nullable<Money>.value(Money(
+                                                amount: "-1234.56",
+                                                currency: "usd",
+                                                decimals: 2,
+                                                displayDecimals: 2
+                                            ))
+                                        ),
+                                        leverage: TradingPositionLeverage(
+                                            type: TradingPositionLeverageType.cross,
+                                            value: 1
+                                        ),
+                                        liquidationPrice: Nullable<Money>.value(Money(
+                                            amount: "-1234.56",
+                                            currency: "usd",
+                                            decimals: 2,
+                                            displayDecimals: 2
+                                        )),
+                                        marginUsed: Money(
+                                            amount: "-1234.56",
+                                            currency: "usd",
+                                            decimals: 2,
+                                            displayDecimals: 2
+                                        ),
+                                        returnOnEquity: "return_on_equity"
+                                    )),
+                                    id: "id",
+                                    market: "market",
+                                    object: TradingPositionObject.tradingPosition,
+                                    positionValue: Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ),
+                                    side: TradingPositionSide.long,
+                                    size: "size",
+                                    unrealizedPnl: Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )
+                                )
+                            ]),
+                            websocketSubscriptions: [
+                                TradingWebsocketSubscription(
+                                    channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                                    message: "message"
+                                )
+                            ],
+                            websocketUrl: "websocket_url"
+                        )),
+                        id: "id",
+                        object: TradingAccountObject.tradingAccount,
+                        provider: TradingAccountProvider.hyperliquid,
+                        spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                            holdings: [
+                                TradingSpotHolding(
+                                    averageEntryPrice: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    costBasis: Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ),
+                                    market: "market",
+                                    realizedPnl: Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ),
+                                    unrealizedPnl: Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ),
+                                    unrealizedPnlPercentage: .null
+                                )
+                            ]
+                        )),
+                        userId: .null
+                    )),
+                    useLogoAsOpengraphImageFallback: false,
+                    verification: [
+                        "business": JSONValue.null, 
+                        "individual": JSONValue.null
+                    ],
+                    volumeL30DUsd: Nullable<Double>.value(0),
                     volumeUsd: Nullable<Double>.value(1.1),
                     wallet: Nullable<AccountWallet>.value(AccountWallet(
                         address: "0xabc123",
                         id: "cwal_xxxxxxxxxxxxxx",
                         network: AccountWalletNetwork.solana
-                    ))
+                    )),
+                    website: Nullable<String>.value("https://shinetimedetail.com"),
+                    whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
                 )
             ],
             pageInfo: ListAccountsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.accounts.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "ads_spend_usd": 1.1,
+                      "balances": [
+                        {
+                          "balance": "balance",
+                          "breakdown": {
+                            "available": "available",
+                            "finishing_settlement": "finishing_settlement",
+                            "in_transit": "in_transit",
+                            "pending": "pending",
+                            "pending_settlements": [
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              },
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              }
+                            ],
+                            "reserve": "reserve"
+                          },
+                          "icon_url": "icon_url",
+                          "name": "name",
+                          "price_usd": 1.1,
+                          "symbol": "symbol",
+                          "value_usd": "value_usd"
+                        },
+                        {
+                          "balance": "balance",
+                          "breakdown": {
+                            "available": "available",
+                            "finishing_settlement": "finishing_settlement",
+                            "in_transit": "in_transit",
+                            "pending": "pending",
+                            "pending_settlements": [
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              },
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              }
+                            ],
+                            "reserve": "reserve"
+                          },
+                          "icon_url": "icon_url",
+                          "name": "name",
+                          "price_usd": 1.1,
+                          "symbol": "symbol",
+                          "value_usd": "value_usd"
+                        }
+                      ],
+                      "banner_image_url": "banner_image_url",
+                      "business_address": {
+                        "business_address": {
+                          "key": "value"
+                        }
+                      },
+                      "business_name": "business_name",
+                      "business_type": "business_type",
+                      "can_transfer_pending_balance_to_children": true,
+                      "cancellation_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "capabilities": {
+                        "accept_bank_payments": "active",
+                        "accept_bnpl_payments": "active",
+                        "accept_card_payments": "active",
+                        "bank_deposit": "active",
+                        "card_deposit": "active",
+                        "card_issuing": "active",
+                        "crypto_deposit": "active",
+                        "crypto_payout": "active",
+                        "instant_payout": "active",
+                        "run_ads": "active",
+                        "standard_payout": "active",
+                        "transfer": "active"
+                      },
+                      "cards": {
+                        "kind": "individual",
+                        "status": "approved"
+                      },
+                      "collect_vat_id": true,
+                      "company_formation": {
+                        "documents": [
+                          {
+                            "id": "id",
+                            "name": "name",
+                            "type": "type",
+                            "url": "url"
+                          },
+                          {
+                            "id": "id",
+                            "name": "name",
+                            "type": "type",
+                            "url": "url"
+                          }
+                        ],
+                        "ein_registered": true,
+                        "legal_name": "legal_name",
+                        "signatures": {
+                          "form8821": {
+                            "expires_at": "expires_at",
+                            "status": "pending",
+                            "url": "url"
+                          },
+                          "ss4": {
+                            "expires_at": "expires_at",
+                            "status": "pending",
+                            "url": "url"
+                          }
+                        },
+                        "state_registered": true,
+                        "status": "draft"
+                      },
+                      "country": "country",
+                      "created_at": "created_at",
+                      "customers_l30d": 1,
+                      "description": "description",
+                      "direct_reports_count": 1,
+                      "dispute_fighter_enabled": true,
+                      "economic_intelligence": true,
+                      "email": "email",
+                      "eula": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "external_id": "external_id",
+                      "financing": {
+                        "application_id": "application_id",
+                        "status": "requires_collection"
+                      },
+                      "funds_release_at": "funds_release_at",
+                      "home_preferences": [
+                        "hide_member_count",
+                        "hide_member_count"
+                      ],
+                      "id": "id",
+                      "industry_type": "industry_type",
+                      "invoice_prefix": "invoice_prefix",
+                      "level": {
+                        "account_level": 1,
+                        "applied_level": 1,
+                        "boosted": true,
+                        "levels": [
+                          {
+                            "level": 1,
+                            "minimum_spend": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "processing_rate_percentage": 1.1,
+                            "regional_rates": [
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              },
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              }
+                            ]
+                          },
+                          {
+                            "level": 1,
+                            "minimum_spend": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "processing_rate_percentage": 1.1,
+                            "regional_rates": [
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              },
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              }
+                            ]
+                          }
+                        ],
+                        "monthly_ads_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "monthly_card_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "monthly_qualifying_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "monthly_trading_volume": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "points": 1,
+                        "points_by_source": {
+                          "ads": 1,
+                          "cards": 1,
+                          "partners": 1,
+                          "trading": 1
+                        },
+                        "points_to_next": 1,
+                        "resets_at": "resets_at"
+                      },
+                      "logo_url": "logo_url",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "onboarding_type": "platform",
+                      "opengraph_image_url": "opengraph_image_url",
+                      "opengraph_image_variant": "white",
+                      "orchestration_enabled": true,
+                      "other_business_description": "other_business_description",
+                      "other_industry_description": "other_industry_description",
+                      "owner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "parent_account": {
+                        "fees": {
+                          "fees": {
+                            "fixed_fee_usd": 1.1,
+                            "percentage_fee": 1.1
+                          }
+                        },
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "partner": {
+                        "email": "email",
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "referring_account": {
+                          "id": "id",
+                          "title": "title"
+                        },
+                        "username": "username",
+                        "whop_partner_verified_at": "whop_partner_verified_at"
+                      },
+                      "payment_controls": {
+                        "dispute_alert_auto_refund": {
+                          "locked": true,
+                          "threshold_usd": 1.1
+                        },
+                        "dispute_alert_fee_usd": 1.1,
+                        "enforce_3ds": true,
+                        "financing_disabled": true,
+                        "high_risk_processing_fee_percentage": 1.1,
+                        "payment_method_warnings": [
+                          {
+                            "payment_method_warnings": {
+                              "key": "value"
+                            }
+                          },
+                          {
+                            "payment_method_warnings": {
+                              "key": "value"
+                            }
+                          }
+                        ],
+                        "pending_auto_topup_fee_percentage": 1.1,
+                        "pending_balance_delay_days": 1,
+                        "reserve": {
+                          "hold_period_days": 1,
+                          "percentage": 1.1
+                        },
+                        "resolution_center_auto_refund": {
+                          "card_threshold_usd": 1.1,
+                          "financing_threshold_usd": 1.1,
+                          "locked": true,
+                          "paypal_threshold_usd": 1.1
+                        },
+                        "restricted_payment_methods": [
+                          "card_visa",
+                          "card_visa"
+                        ],
+                        "undated_pending_reason": "kyc_incomplete",
+                        "withdrawal_schedule": {
+                          "day": 1,
+                          "frequency": "manual",
+                          "next_payout_date": "next_payout_date"
+                        }
+                      },
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "disabled",
+                          "disabled"
+                        ],
+                        "enabled": [
+                          "enabled",
+                          "enabled"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "platform_credits": [
+                        {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      ],
+                      "privacy_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "product_tax_code": {
+                        "product_tax_code": {
+                          "key": "value"
+                        }
+                      },
+                      "recommended_actions": [
+                        {
+                          "action": "theme_business",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "impact_score": 1,
+                          "reasoning": "reasoning",
+                          "status": "optional",
+                          "title": "title"
+                        },
+                        {
+                          "action": "theme_business",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "impact_score": 1,
+                          "reasoning": "reasoning",
+                          "status": "optional",
+                          "title": "title"
+                        }
+                      ],
+                      "require_2fa": true,
+                      "required_actions": [
+                        {
+                          "action": "deposit_funds",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "status": "required",
+                          "title": "title"
+                        },
+                        {
+                          "action": "deposit_funds",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "status": "required",
+                          "title": "title"
+                        }
+                      ],
+                      "return_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "rewards": [
+                        {
+                          "id": "id",
+                          "qualification_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_progress": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_type": "sales",
+                          "reward_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "status": "in_progress"
+                        },
+                        {
+                          "id": "id",
+                          "qualification_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_progress": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_type": "sales",
+                          "reward_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "status": "in_progress"
+                        }
+                      ],
+                      "route": "route",
+                      "send_customer_emails": true,
+                      "shipping_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "show_joined_whops": true,
+                      "show_reviews_dtc": true,
+                      "show_user_directory": true,
+                      "social_links": [
+                        {
+                          "id": "id",
+                          "title": "title",
+                          "url": "url",
+                          "website": "x"
+                        },
+                        {
+                          "id": "id",
+                          "title": "title",
+                          "url": "url",
+                          "website": "x"
+                        }
+                      ],
+                      "status": "status",
+                      "status_reason": "status_reason",
+                      "store_page_config": {
+                        "accent_color": "ruby",
+                        "layout": "featured",
+                        "profile_variant": "personal",
+                        "whop_affiliate_link": true
+                      },
+                      "target_audience": "target_audience",
+                      "tax_collection_enabled_states": [
+                        "tax_collection_enabled_states",
+                        "tax_collection_enabled_states"
+                      ],
+                      "tax_identifiers": [
+                        {
+                          "id": "id",
+                          "tax_id_type": "ad_nrt",
+                          "tax_id_value": "tax_id_value"
+                        },
+                        {
+                          "id": "id",
+                          "tax_id_type": "ad_nrt",
+                          "tax_id_value": "tax_id_value"
+                        }
+                      ],
+                      "tax_remitted_by": "whop",
+                      "tax_type": "inclusive",
+                      "terms_of_service": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "three_ds_level": "mandate_challenge",
+                      "title": "title",
+                      "total_earned_usd": 1.1,
+                      "total_usd": "total_usd",
+                      "trading": {
+                        "account_id": "account_id",
+                        "hyperliquid": {
+                          "address": "address",
+                          "depositable": "depositable",
+                          "margin_summary": {
+                            "account_value": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "total_margin_used": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "total_position_notional": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "withdrawable": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            }
+                          },
+                          "positions": [],
+                          "websocket_subscriptions": [
+                            {
+                              "channel": "clearinghouse_state",
+                              "message": "message"
+                            },
+                            {
+                              "channel": "clearinghouse_state",
+                              "message": "message"
+                            }
+                          ],
+                          "websocket_url": "websocket_url"
+                        },
+                        "id": "id",
+                        "object": "trading_account",
+                        "provider": "hyperliquid",
+                        "spot": {
+                          "holdings": [
+                            {
+                              "average_entry_price": null,
+                              "cost_basis": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "market": "market",
+                              "realized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl_percentage": 1.1
+                            },
+                            {
+                              "average_entry_price": null,
+                              "cost_basis": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "market": "market",
+                              "realized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl_percentage": 1.1
+                            }
+                          ]
+                        },
+                        "user_id": "user_id"
+                      },
+                      "use_logo_as_opengraph_image_fallback": true,
+                      "verification": {
+                        "verification": {
+                          "key": "value"
+                        }
+                      },
+                      "volume_l30d_usd": 1.1,
+                      "volume_usd": 1.1,
+                      "wallet": {
+                        "address": "address",
+                        "id": "id",
+                        "network": "solana"
+                      },
+                      "website": "website",
+                      "whop_partner_enabled_at": "whop_partner_enabled_at"
+                    },
+                    {
+                      "ads_spend_usd": 1.1,
+                      "balances": [
+                        {
+                          "balance": "balance",
+                          "breakdown": {
+                            "available": "available",
+                            "finishing_settlement": "finishing_settlement",
+                            "in_transit": "in_transit",
+                            "pending": "pending",
+                            "pending_settlements": [
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              },
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              }
+                            ],
+                            "reserve": "reserve"
+                          },
+                          "icon_url": "icon_url",
+                          "name": "name",
+                          "price_usd": 1.1,
+                          "symbol": "symbol",
+                          "value_usd": "value_usd"
+                        },
+                        {
+                          "balance": "balance",
+                          "breakdown": {
+                            "available": "available",
+                            "finishing_settlement": "finishing_settlement",
+                            "in_transit": "in_transit",
+                            "pending": "pending",
+                            "pending_settlements": [
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              },
+                              {
+                                "amount": "amount",
+                                "date": "date"
+                              }
+                            ],
+                            "reserve": "reserve"
+                          },
+                          "icon_url": "icon_url",
+                          "name": "name",
+                          "price_usd": 1.1,
+                          "symbol": "symbol",
+                          "value_usd": "value_usd"
+                        }
+                      ],
+                      "banner_image_url": "banner_image_url",
+                      "business_address": {
+                        "business_address": {
+                          "key": "value"
+                        }
+                      },
+                      "business_name": "business_name",
+                      "business_type": "business_type",
+                      "can_transfer_pending_balance_to_children": true,
+                      "cancellation_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "capabilities": {
+                        "accept_bank_payments": "active",
+                        "accept_bnpl_payments": "active",
+                        "accept_card_payments": "active",
+                        "bank_deposit": "active",
+                        "card_deposit": "active",
+                        "card_issuing": "active",
+                        "crypto_deposit": "active",
+                        "crypto_payout": "active",
+                        "instant_payout": "active",
+                        "run_ads": "active",
+                        "standard_payout": "active",
+                        "transfer": "active"
+                      },
+                      "cards": {
+                        "kind": "individual",
+                        "status": "approved"
+                      },
+                      "collect_vat_id": true,
+                      "company_formation": {
+                        "documents": [
+                          {
+                            "id": "id",
+                            "name": "name",
+                            "type": "type",
+                            "url": "url"
+                          },
+                          {
+                            "id": "id",
+                            "name": "name",
+                            "type": "type",
+                            "url": "url"
+                          }
+                        ],
+                        "ein_registered": true,
+                        "legal_name": "legal_name",
+                        "signatures": {
+                          "form8821": {
+                            "expires_at": "expires_at",
+                            "status": "pending",
+                            "url": "url"
+                          },
+                          "ss4": {
+                            "expires_at": "expires_at",
+                            "status": "pending",
+                            "url": "url"
+                          }
+                        },
+                        "state_registered": true,
+                        "status": "draft"
+                      },
+                      "country": "country",
+                      "created_at": "created_at",
+                      "customers_l30d": 1,
+                      "description": "description",
+                      "direct_reports_count": 1,
+                      "dispute_fighter_enabled": true,
+                      "economic_intelligence": true,
+                      "email": "email",
+                      "eula": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "external_id": "external_id",
+                      "financing": {
+                        "application_id": "application_id",
+                        "status": "requires_collection"
+                      },
+                      "funds_release_at": "funds_release_at",
+                      "home_preferences": [
+                        "hide_member_count",
+                        "hide_member_count"
+                      ],
+                      "id": "id",
+                      "industry_type": "industry_type",
+                      "invoice_prefix": "invoice_prefix",
+                      "level": {
+                        "account_level": 1,
+                        "applied_level": 1,
+                        "boosted": true,
+                        "levels": [
+                          {
+                            "level": 1,
+                            "minimum_spend": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "processing_rate_percentage": 1.1,
+                            "regional_rates": [
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              },
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              }
+                            ]
+                          },
+                          {
+                            "level": 1,
+                            "minimum_spend": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "processing_rate_percentage": 1.1,
+                            "regional_rates": [
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              },
+                              {
+                                "processing_rate_percentage": 1.1,
+                                "region": "us_and_canada"
+                              }
+                            ]
+                          }
+                        ],
+                        "monthly_ads_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "monthly_card_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "monthly_qualifying_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "monthly_trading_volume": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "points": 1,
+                        "points_by_source": {
+                          "ads": 1,
+                          "cards": 1,
+                          "partners": 1,
+                          "trading": 1
+                        },
+                        "points_to_next": 1,
+                        "resets_at": "resets_at"
+                      },
+                      "logo_url": "logo_url",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "onboarding_type": "platform",
+                      "opengraph_image_url": "opengraph_image_url",
+                      "opengraph_image_variant": "white",
+                      "orchestration_enabled": true,
+                      "other_business_description": "other_business_description",
+                      "other_industry_description": "other_industry_description",
+                      "owner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "parent_account": {
+                        "fees": {
+                          "fees": {
+                            "fixed_fee_usd": 1.1,
+                            "percentage_fee": 1.1
+                          }
+                        },
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "partner": {
+                        "email": "email",
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "referring_account": {
+                          "id": "id",
+                          "title": "title"
+                        },
+                        "username": "username",
+                        "whop_partner_verified_at": "whop_partner_verified_at"
+                      },
+                      "payment_controls": {
+                        "dispute_alert_auto_refund": {
+                          "locked": true,
+                          "threshold_usd": 1.1
+                        },
+                        "dispute_alert_fee_usd": 1.1,
+                        "enforce_3ds": true,
+                        "financing_disabled": true,
+                        "high_risk_processing_fee_percentage": 1.1,
+                        "payment_method_warnings": [
+                          {
+                            "payment_method_warnings": {
+                              "key": "value"
+                            }
+                          },
+                          {
+                            "payment_method_warnings": {
+                              "key": "value"
+                            }
+                          }
+                        ],
+                        "pending_auto_topup_fee_percentage": 1.1,
+                        "pending_balance_delay_days": 1,
+                        "reserve": {
+                          "hold_period_days": 1,
+                          "percentage": 1.1
+                        },
+                        "resolution_center_auto_refund": {
+                          "card_threshold_usd": 1.1,
+                          "financing_threshold_usd": 1.1,
+                          "locked": true,
+                          "paypal_threshold_usd": 1.1
+                        },
+                        "restricted_payment_methods": [
+                          "card_visa",
+                          "card_visa"
+                        ],
+                        "undated_pending_reason": "kyc_incomplete",
+                        "withdrawal_schedule": {
+                          "day": 1,
+                          "frequency": "manual",
+                          "next_payout_date": "next_payout_date"
+                        }
+                      },
+                      "payment_method_configuration": {
+                        "disabled": [
+                          "disabled",
+                          "disabled"
+                        ],
+                        "enabled": [
+                          "enabled",
+                          "enabled"
+                        ],
+                        "include_platform_defaults": true
+                      },
+                      "platform_credits": [
+                        {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      ],
+                      "privacy_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "product_tax_code": {
+                        "product_tax_code": {
+                          "key": "value"
+                        }
+                      },
+                      "recommended_actions": [
+                        {
+                          "action": "theme_business",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "impact_score": 1,
+                          "reasoning": "reasoning",
+                          "status": "optional",
+                          "title": "title"
+                        },
+                        {
+                          "action": "theme_business",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "impact_score": 1,
+                          "reasoning": "reasoning",
+                          "status": "optional",
+                          "title": "title"
+                        }
+                      ],
+                      "require_2fa": true,
+                      "required_actions": [
+                        {
+                          "action": "deposit_funds",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "status": "required",
+                          "title": "title"
+                        },
+                        {
+                          "action": "deposit_funds",
+                          "blocked_capabilities": [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                          ],
+                          "cta": "cta",
+                          "cta_label": "cta_label",
+                          "description": "description",
+                          "icon_url": "icon_url",
+                          "status": "required",
+                          "title": "title"
+                        }
+                      ],
+                      "return_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "rewards": [
+                        {
+                          "id": "id",
+                          "qualification_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_progress": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_type": "sales",
+                          "reward_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "status": "in_progress"
+                        },
+                        {
+                          "id": "id",
+                          "qualification_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_progress": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "qualification_type": "sales",
+                          "reward_amount": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "status": "in_progress"
+                        }
+                      ],
+                      "route": "route",
+                      "send_customer_emails": true,
+                      "shipping_policy": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "show_joined_whops": true,
+                      "show_reviews_dtc": true,
+                      "show_user_directory": true,
+                      "social_links": [
+                        {
+                          "id": "id",
+                          "title": "title",
+                          "url": "url",
+                          "website": "x"
+                        },
+                        {
+                          "id": "id",
+                          "title": "title",
+                          "url": "url",
+                          "website": "x"
+                        }
+                      ],
+                      "status": "status",
+                      "status_reason": "status_reason",
+                      "store_page_config": {
+                        "accent_color": "ruby",
+                        "layout": "featured",
+                        "profile_variant": "personal",
+                        "whop_affiliate_link": true
+                      },
+                      "target_audience": "target_audience",
+                      "tax_collection_enabled_states": [
+                        "tax_collection_enabled_states",
+                        "tax_collection_enabled_states"
+                      ],
+                      "tax_identifiers": [
+                        {
+                          "id": "id",
+                          "tax_id_type": "ad_nrt",
+                          "tax_id_value": "tax_id_value"
+                        },
+                        {
+                          "id": "id",
+                          "tax_id_type": "ad_nrt",
+                          "tax_id_value": "tax_id_value"
+                        }
+                      ],
+                      "tax_remitted_by": "whop",
+                      "tax_type": "inclusive",
+                      "terms_of_service": {
+                        "blurhash": "blurhash",
+                        "content_type": "content_type",
+                        "created_at": "created_at",
+                        "duration_seconds": 1.1,
+                        "filename": "filename",
+                        "height": 1,
+                        "id": "id",
+                        "multipart_chunk_size": 1,
+                        "multipart_upload_id": "multipart_upload_id",
+                        "multipart_upload_urls": [
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          },
+                          {
+                            "part_number": 1,
+                            "url": "url"
+                          }
+                        ],
+                        "object": "object",
+                        "removed_by_moderation": true,
+                        "size": 1,
+                        "upload_headers": {
+                          "upload_headers": {
+                            "key": "value"
+                          }
+                        },
+                        "upload_status": "pending",
+                        "upload_url": "upload_url",
+                        "url": "url",
+                        "visibility": "public",
+                        "waveform_url": "waveform_url",
+                        "width": 1
+                      },
+                      "three_ds_level": "mandate_challenge",
+                      "title": "title",
+                      "total_earned_usd": 1.1,
+                      "total_usd": "total_usd",
+                      "trading": {
+                        "account_id": "account_id",
+                        "hyperliquid": {
+                          "address": "address",
+                          "depositable": "depositable",
+                          "margin_summary": {
+                            "account_value": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "total_margin_used": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "total_position_notional": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "withdrawable": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            }
+                          },
+                          "positions": [],
+                          "websocket_subscriptions": [
+                            {
+                              "channel": "clearinghouse_state",
+                              "message": "message"
+                            },
+                            {
+                              "channel": "clearinghouse_state",
+                              "message": "message"
+                            }
+                          ],
+                          "websocket_url": "websocket_url"
+                        },
+                        "id": "id",
+                        "object": "trading_account",
+                        "provider": "hyperliquid",
+                        "spot": {
+                          "holdings": [
+                            {
+                              "average_entry_price": null,
+                              "cost_basis": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "market": "market",
+                              "realized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl_percentage": 1.1
+                            },
+                            {
+                              "average_entry_price": null,
+                              "cost_basis": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "market": "market",
+                              "realized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl": {
+                                "amount": "amount",
+                                "currency": "currency",
+                                "decimals": 1,
+                                "display_decimals": 1
+                              },
+                              "unrealized_pnl_percentage": 1.1
+                            }
+                          ]
+                        },
+                        "user_id": "user_id"
+                      },
+                      "use_logo_as_opengraph_image_fallback": true,
+                      "verification": {
+                        "verification": {
+                          "key": "value"
+                        }
+                      },
+                      "volume_l30d_usd": 1.1,
+                      "volume_usd": 1.1,
+                      "wallet": {
+                        "address": "address",
+                        "id": "id",
+                        "network": "solana"
+                      },
+                      "website": "website",
+                      "whop_partner_enabled_at": "whop_partner_enabled_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAccountsResponse(
+            data: [
+                Account(
+                    adsSpendUsd: Nullable<Double>.value(1.1),
+                    balances: [
+                        AccountBalanceToken(
+                            balance: "balance",
+                            breakdown: AccountBalanceBreakdown(
+                                available: "available",
+                                finishingSettlement: "finishing_settlement",
+                                inTransit: "in_transit",
+                                pending: "pending",
+                                pendingSettlements: [
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    ),
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    )
+                                ],
+                                reserve: "reserve"
+                            ),
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            name: "name",
+                            priceUsd: Nullable<Double>.value(1.1),
+                            symbol: "symbol",
+                            valueUsd: Nullable<String>.value("value_usd")
+                        ),
+                        AccountBalanceToken(
+                            balance: "balance",
+                            breakdown: AccountBalanceBreakdown(
+                                available: "available",
+                                finishingSettlement: "finishing_settlement",
+                                inTransit: "in_transit",
+                                pending: "pending",
+                                pendingSettlements: [
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    ),
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    )
+                                ],
+                                reserve: "reserve"
+                            ),
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            name: "name",
+                            priceUsd: Nullable<Double>.value(1.1),
+                            symbol: "symbol",
+                            valueUsd: Nullable<String>.value("value_usd")
+                        )
+                    ],
+                    bannerImageUrl: Nullable<String>.value("banner_image_url"),
+                    businessAddress: Nullable<[String: JSONValue]>.value([
+                        "business_address": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    businessName: Nullable<String>.value("business_name"),
+                    businessType: Nullable<String>.value("business_type"),
+                    canTransferPendingBalanceToChildren: true,
+                    cancellationPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                        acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                        acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                        acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                        bankDeposit: AccountCapabilitiesBankDeposit.active,
+                        cardDeposit: AccountCapabilitiesCardDeposit.active,
+                        cardIssuing: AccountCapabilitiesCardIssuing.active,
+                        cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                        cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                        instantPayout: AccountCapabilitiesInstantPayout.active,
+                        runAds: AccountCapabilitiesRunAds.active,
+                        standardPayout: AccountCapabilitiesStandardPayout.active,
+                        transfer: AccountCapabilitiesTransfer.active
+                    )),
+                    cards: Nullable<AccountCards>.value(AccountCards(
+                        kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                        status: AccountCardsStatus.approved
+                    )),
+                    collectVatId: true,
+                    companyFormation: AccountCompanyFormation(
+                        documents: Optional([
+                            AccountCompanyFormationDocument(
+                                id: "id",
+                                name: "name",
+                                type: "type",
+                                url: "url"
+                            ),
+                            AccountCompanyFormationDocument(
+                                id: "id",
+                                name: "name",
+                                type: "type",
+                                url: "url"
+                            )
+                        ]),
+                        einRegistered: Optional(true),
+                        legalName: Optional(Nullable<String>.value("legal_name")),
+                        signatures: Optional(AccountCompanyFormationSignatures(
+                            form8821: Optional(AccountCompanyFormationSignatureRequest(
+                                expiresAt: Optional("expires_at"),
+                                status: AccountCompanyFormationSignatureRequestStatus.pending,
+                                url: Optional("url")
+                            )),
+                            ss4: Optional(AccountCompanyFormationSignatureRequest(
+                                expiresAt: Optional("expires_at"),
+                                status: AccountCompanyFormationSignatureRequestStatus.pending,
+                                url: Optional("url")
+                            ))
+                        )),
+                        stateRegistered: Optional(true),
+                        status: Optional(AccountCompanyFormationStatus.draft)
+                    ),
+                    country: Nullable<String>.value("country"),
+                    createdAt: "created_at",
+                    customersL30D: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    directReportsCount: Optional(1),
+                    disputeFighterEnabled: true,
+                    economicIntelligence: true,
+                    email: Nullable<String>.value("email"),
+                    eula: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    externalId: Nullable<String>.value("external_id"),
+                    financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                        applicationId: "application_id",
+                        status: AccountFinancingStatus.requiresCollection
+                    )),
+                    fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+                    homePreferences: [
+                        AccountHomePreferencesItem.hideMemberCount,
+                        AccountHomePreferencesItem.hideMemberCount
+                    ],
+                    id: "id",
+                    industryType: Nullable<String>.value("industry_type"),
+                    invoicePrefix: Nullable<String>.value("invoice_prefix"),
+                    level: Nullable<AccountLevel>.value(AccountLevel(
+                        accountLevel: 1,
+                        appliedLevel: 1,
+                        boosted: true,
+                        levels: [
+                            AccountProcessingOfferLevel(
+                                level: 1,
+                                minimumSpend: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                processingRatePercentage: 1.1,
+                                regionalRates: [
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    ),
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    )
+                                ]
+                            ),
+                            AccountProcessingOfferLevel(
+                                level: 1,
+                                minimumSpend: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                processingRatePercentage: 1.1,
+                                regionalRates: [
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    ),
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    )
+                                ]
+                            )
+                        ],
+                        monthlyAdsSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        monthlyCardSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        monthlyQualifyingSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        monthlyTradingVolume: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        points: 1,
+                        pointsBySource: OwnerLevelPoints(
+                            ads: 1,
+                            cards: 1,
+                            partners: 1,
+                            trading: 1
+                        ),
+                        pointsToNext: Nullable<Int>.value(1),
+                        resetsAt: "resets_at"
+                    )),
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+                    opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+                    opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+                    orchestrationEnabled: true,
+                    otherBusinessDescription: Nullable<String>.value("other_business_description"),
+                    otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+                    owner: UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    ),
+                    parentAccount: Nullable<AccountParent>.value(AccountParent(
+                        fees: Optional([
+                            "fees": AccountParentFeesValue(
+                                fixedFeeUsd: 1.1,
+                                percentageFee: 1.1
+                            )
+                        ]),
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                        email: Nullable<String>.value("email"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                            id: "id",
+                            title: "title"
+                        )),
+                        username: "username",
+                        whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+                    ))),
+                    paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                        disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                            locked: true,
+                            thresholdUsd: Nullable<Double>.value(1.1)
+                        ),
+                        disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                        enforce3Ds: true,
+                        financingDisabled: true,
+                        highRiskProcessingFeePercentage: 1.1,
+                        paymentMethodWarnings: [
+                            [
+                                "payment_method_warnings": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ],
+                            [
+                                "payment_method_warnings": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]
+                        ],
+                        pendingAutoTopupFeePercentage: 1.1,
+                        pendingBalanceDelayDays: 1,
+                        reserve: AccountReserveControl(
+                            holdPeriodDays: 1,
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                            cardThresholdUsd: Nullable<Double>.value(1.1),
+                            financingThresholdUsd: Nullable<Double>.value(1.1),
+                            locked: true,
+                            paypalThresholdUsd: Nullable<Double>.value(1.1)
+                        ),
+                        restrictedPaymentMethods: [
+                            AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                            AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                        ],
+                        undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                        withdrawalSchedule: AccountWithdrawalScheduleControl(
+                            day: Nullable<Int>.value(1),
+                            frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                            nextPayoutDate: Nullable<String>.value("next_payout_date")
+                        )
+                    )),
+                    paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                        disabled: [
+                            "disabled",
+                            "disabled"
+                        ],
+                        enabled: [
+                            "enabled",
+                            "enabled"
+                        ],
+                        includePlatformDefaults: true
+                    )),
+                    platformCredits: [
+                        Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    ],
+                    privacyPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    productTaxCode: Nullable<[String: JSONValue]>.value([
+                        "product_tax_code": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                        AccountRecommendedAction(
+                            action: AccountRecommendedActionAction.themeBusiness,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: "cta",
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            impactScore: Nullable<Int>.value(1),
+                            reasoning: Nullable<String>.value("reasoning"),
+                            status: AccountRecommendedActionStatus.optional,
+                            title: "title"
+                        ),
+                        AccountRecommendedAction(
+                            action: AccountRecommendedActionAction.themeBusiness,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: "cta",
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            impactScore: Nullable<Int>.value(1),
+                            reasoning: Nullable<String>.value("reasoning"),
+                            status: AccountRecommendedActionStatus.optional,
+                            title: "title"
+                        )
+                    ]),
+                    require2Fa: true,
+                    requiredActions: Nullable<[AccountRequiredAction]>.value([
+                        AccountRequiredAction(
+                            action: AccountRequiredActionAction.depositFunds,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: Nullable<String>.value("cta"),
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            status: AccountRequiredActionStatus.required,
+                            title: "title"
+                        ),
+                        AccountRequiredAction(
+                            action: AccountRequiredActionAction.depositFunds,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: Nullable<String>.value("cta"),
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            status: AccountRequiredActionStatus.required,
+                            title: "title"
+                        )
+                    ]),
+                    returnPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    rewards: Optional([
+                        AccountPartnerReward(
+                            id: "id",
+                            qualificationAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationProgress: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationType: AccountPartnerRewardQualificationType.sales,
+                            rewardAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            status: AccountPartnerRewardStatus.inProgress
+                        ),
+                        AccountPartnerReward(
+                            id: "id",
+                            qualificationAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationProgress: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationType: AccountPartnerRewardQualificationType.sales,
+                            rewardAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            status: AccountPartnerRewardStatus.inProgress
+                        )
+                    ]),
+                    route: "route",
+                    sendCustomerEmails: true,
+                    shippingPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    showJoinedWhops: true,
+                    showReviewsDtc: true,
+                    showUserDirectory: true,
+                    socialLinks: [
+                        AccountSocialLink(
+                            id: "id",
+                            title: Nullable<String>.value("title"),
+                            url: "url",
+                            website: AccountSocialLinkWebsite.x
+                        ),
+                        AccountSocialLink(
+                            id: "id",
+                            title: Nullable<String>.value("title"),
+                            url: "url",
+                            website: AccountSocialLinkWebsite.x
+                        )
+                    ],
+                    status: Nullable<String>.value("status"),
+                    statusReason: Nullable<String>.value("status_reason"),
+                    storePageConfig: AccountStorePageConfig(
+                        accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                        layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                        profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                        whopAffiliateLink: true
+                    ),
+                    targetAudience: Nullable<String>.value("target_audience"),
+                    taxCollectionEnabledStates: [
+                        "tax_collection_enabled_states",
+                        "tax_collection_enabled_states"
+                    ],
+                    taxIdentifiers: [
+                        AccountTaxIdentifier(
+                            id: "id",
+                            taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                            taxIdValue: "tax_id_value"
+                        ),
+                        AccountTaxIdentifier(
+                            id: "id",
+                            taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                            taxIdValue: "tax_id_value"
+                        )
+                    ],
+                    taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+                    taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+                    termsOfService: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+                    title: "title",
+                    totalEarnedUsd: Nullable<Double>.value(1.1),
+                    totalUsd: Nullable<String>.value("total_usd"),
+                    trading: Nullable<TradingAccount>.value(TradingAccount(
+                        accountId: Nullable<String>.value("account_id"),
+                        hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                            address: "address",
+                            depositable: Nullable<String>.value("depositable"),
+                            marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                                accountValue: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                totalMarginUsed: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                totalPositionNotional: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                withdrawable: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                )
+                            )),
+                            positions: Nullable<[TradingPosition]>.value([]),
+                            websocketSubscriptions: [
+                                TradingWebsocketSubscription(
+                                    channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                                    message: "message"
+                                ),
+                                TradingWebsocketSubscription(
+                                    channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                                    message: "message"
+                                )
+                            ],
+                            websocketUrl: "websocket_url"
+                        )),
+                        id: "id",
+                        object: TradingAccountObject.tradingAccount,
+                        provider: TradingAccountProvider.hyperliquid,
+                        spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                            holdings: [
+                                TradingSpotHolding(
+                                    averageEntryPrice: .null,
+                                    costBasis: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    market: "market",
+                                    realizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                                ),
+                                TradingSpotHolding(
+                                    averageEntryPrice: .null,
+                                    costBasis: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    market: "market",
+                                    realizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                                )
+                            ]
+                        )),
+                        userId: Nullable<String>.value("user_id")
+                    )),
+                    useLogoAsOpengraphImageFallback: true,
+                    verification: [
+                        "verification": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    volumeL30DUsd: Nullable<Double>.value(1.1),
+                    volumeUsd: Nullable<Double>.value(1.1),
+                    wallet: Nullable<AccountWallet>.value(AccountWallet(
+                        address: "address",
+                        id: "id",
+                        network: AccountWalletNetwork.solana
+                    )),
+                    website: Nullable<String>.value("website"),
+                    whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+                ),
+                Account(
+                    adsSpendUsd: Nullable<Double>.value(1.1),
+                    balances: [
+                        AccountBalanceToken(
+                            balance: "balance",
+                            breakdown: AccountBalanceBreakdown(
+                                available: "available",
+                                finishingSettlement: "finishing_settlement",
+                                inTransit: "in_transit",
+                                pending: "pending",
+                                pendingSettlements: [
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    ),
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    )
+                                ],
+                                reserve: "reserve"
+                            ),
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            name: "name",
+                            priceUsd: Nullable<Double>.value(1.1),
+                            symbol: "symbol",
+                            valueUsd: Nullable<String>.value("value_usd")
+                        ),
+                        AccountBalanceToken(
+                            balance: "balance",
+                            breakdown: AccountBalanceBreakdown(
+                                available: "available",
+                                finishingSettlement: "finishing_settlement",
+                                inTransit: "in_transit",
+                                pending: "pending",
+                                pendingSettlements: [
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    ),
+                                    AccountBalanceSettlement(
+                                        amount: "amount",
+                                        date: "date"
+                                    )
+                                ],
+                                reserve: "reserve"
+                            ),
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            name: "name",
+                            priceUsd: Nullable<Double>.value(1.1),
+                            symbol: "symbol",
+                            valueUsd: Nullable<String>.value("value_usd")
+                        )
+                    ],
+                    bannerImageUrl: Nullable<String>.value("banner_image_url"),
+                    businessAddress: Nullable<[String: JSONValue]>.value([
+                        "business_address": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    businessName: Nullable<String>.value("business_name"),
+                    businessType: Nullable<String>.value("business_type"),
+                    canTransferPendingBalanceToChildren: true,
+                    cancellationPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                        acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                        acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                        acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                        bankDeposit: AccountCapabilitiesBankDeposit.active,
+                        cardDeposit: AccountCapabilitiesCardDeposit.active,
+                        cardIssuing: AccountCapabilitiesCardIssuing.active,
+                        cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                        cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                        instantPayout: AccountCapabilitiesInstantPayout.active,
+                        runAds: AccountCapabilitiesRunAds.active,
+                        standardPayout: AccountCapabilitiesStandardPayout.active,
+                        transfer: AccountCapabilitiesTransfer.active
+                    )),
+                    cards: Nullable<AccountCards>.value(AccountCards(
+                        kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                        status: AccountCardsStatus.approved
+                    )),
+                    collectVatId: true,
+                    companyFormation: AccountCompanyFormation(
+                        documents: Optional([
+                            AccountCompanyFormationDocument(
+                                id: "id",
+                                name: "name",
+                                type: "type",
+                                url: "url"
+                            ),
+                            AccountCompanyFormationDocument(
+                                id: "id",
+                                name: "name",
+                                type: "type",
+                                url: "url"
+                            )
+                        ]),
+                        einRegistered: Optional(true),
+                        legalName: Optional(Nullable<String>.value("legal_name")),
+                        signatures: Optional(AccountCompanyFormationSignatures(
+                            form8821: Optional(AccountCompanyFormationSignatureRequest(
+                                expiresAt: Optional("expires_at"),
+                                status: AccountCompanyFormationSignatureRequestStatus.pending,
+                                url: Optional("url")
+                            )),
+                            ss4: Optional(AccountCompanyFormationSignatureRequest(
+                                expiresAt: Optional("expires_at"),
+                                status: AccountCompanyFormationSignatureRequestStatus.pending,
+                                url: Optional("url")
+                            ))
+                        )),
+                        stateRegistered: Optional(true),
+                        status: Optional(AccountCompanyFormationStatus.draft)
+                    ),
+                    country: Nullable<String>.value("country"),
+                    createdAt: "created_at",
+                    customersL30D: Nullable<Int>.value(1),
+                    description: Nullable<String>.value("description"),
+                    directReportsCount: Optional(1),
+                    disputeFighterEnabled: true,
+                    economicIntelligence: true,
+                    email: Nullable<String>.value("email"),
+                    eula: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    externalId: Nullable<String>.value("external_id"),
+                    financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                        applicationId: "application_id",
+                        status: AccountFinancingStatus.requiresCollection
+                    )),
+                    fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+                    homePreferences: [
+                        AccountHomePreferencesItem.hideMemberCount,
+                        AccountHomePreferencesItem.hideMemberCount
+                    ],
+                    id: "id",
+                    industryType: Nullable<String>.value("industry_type"),
+                    invoicePrefix: Nullable<String>.value("invoice_prefix"),
+                    level: Nullable<AccountLevel>.value(AccountLevel(
+                        accountLevel: 1,
+                        appliedLevel: 1,
+                        boosted: true,
+                        levels: [
+                            AccountProcessingOfferLevel(
+                                level: 1,
+                                minimumSpend: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                processingRatePercentage: 1.1,
+                                regionalRates: [
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    ),
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    )
+                                ]
+                            ),
+                            AccountProcessingOfferLevel(
+                                level: 1,
+                                minimumSpend: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                processingRatePercentage: 1.1,
+                                regionalRates: [
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    ),
+                                    AccountProcessingOfferRegionalRate(
+                                        processingRatePercentage: 1.1,
+                                        region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                                    )
+                                ]
+                            )
+                        ],
+                        monthlyAdsSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        monthlyCardSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        monthlyQualifyingSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        monthlyTradingVolume: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        points: 1,
+                        pointsBySource: OwnerLevelPoints(
+                            ads: 1,
+                            cards: 1,
+                            partners: 1,
+                            trading: 1
+                        ),
+                        pointsToNext: Nullable<Int>.value(1),
+                        resetsAt: "resets_at"
+                    )),
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+                    opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+                    opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+                    orchestrationEnabled: true,
+                    otherBusinessDescription: Nullable<String>.value("other_business_description"),
+                    otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+                    owner: UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    ),
+                    parentAccount: Nullable<AccountParent>.value(AccountParent(
+                        fees: Optional([
+                            "fees": AccountParentFeesValue(
+                                fixedFeeUsd: 1.1,
+                                percentageFee: 1.1
+                            )
+                        ]),
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                        email: Nullable<String>.value("email"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                            id: "id",
+                            title: "title"
+                        )),
+                        username: "username",
+                        whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+                    ))),
+                    paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                        disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                            locked: true,
+                            thresholdUsd: Nullable<Double>.value(1.1)
+                        ),
+                        disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                        enforce3Ds: true,
+                        financingDisabled: true,
+                        highRiskProcessingFeePercentage: 1.1,
+                        paymentMethodWarnings: [
+                            [
+                                "payment_method_warnings": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ],
+                            [
+                                "payment_method_warnings": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]
+                        ],
+                        pendingAutoTopupFeePercentage: 1.1,
+                        pendingBalanceDelayDays: 1,
+                        reserve: AccountReserveControl(
+                            holdPeriodDays: 1,
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                            cardThresholdUsd: Nullable<Double>.value(1.1),
+                            financingThresholdUsd: Nullable<Double>.value(1.1),
+                            locked: true,
+                            paypalThresholdUsd: Nullable<Double>.value(1.1)
+                        ),
+                        restrictedPaymentMethods: [
+                            AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                            AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                        ],
+                        undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                        withdrawalSchedule: AccountWithdrawalScheduleControl(
+                            day: Nullable<Int>.value(1),
+                            frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                            nextPayoutDate: Nullable<String>.value("next_payout_date")
+                        )
+                    )),
+                    paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                        disabled: [
+                            "disabled",
+                            "disabled"
+                        ],
+                        enabled: [
+                            "enabled",
+                            "enabled"
+                        ],
+                        includePlatformDefaults: true
+                    )),
+                    platformCredits: [
+                        Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    ],
+                    privacyPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    productTaxCode: Nullable<[String: JSONValue]>.value([
+                        "product_tax_code": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                        AccountRecommendedAction(
+                            action: AccountRecommendedActionAction.themeBusiness,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: "cta",
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            impactScore: Nullable<Int>.value(1),
+                            reasoning: Nullable<String>.value("reasoning"),
+                            status: AccountRecommendedActionStatus.optional,
+                            title: "title"
+                        ),
+                        AccountRecommendedAction(
+                            action: AccountRecommendedActionAction.themeBusiness,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: "cta",
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            impactScore: Nullable<Int>.value(1),
+                            reasoning: Nullable<String>.value("reasoning"),
+                            status: AccountRecommendedActionStatus.optional,
+                            title: "title"
+                        )
+                    ]),
+                    require2Fa: true,
+                    requiredActions: Nullable<[AccountRequiredAction]>.value([
+                        AccountRequiredAction(
+                            action: AccountRequiredActionAction.depositFunds,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: Nullable<String>.value("cta"),
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            status: AccountRequiredActionStatus.required,
+                            title: "title"
+                        ),
+                        AccountRequiredAction(
+                            action: AccountRequiredActionAction.depositFunds,
+                            blockedCapabilities: [
+                                "blocked_capabilities",
+                                "blocked_capabilities"
+                            ],
+                            cta: Nullable<String>.value("cta"),
+                            ctaLabel: "cta_label",
+                            description: "description",
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            status: AccountRequiredActionStatus.required,
+                            title: "title"
+                        )
+                    ]),
+                    returnPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    rewards: Optional([
+                        AccountPartnerReward(
+                            id: "id",
+                            qualificationAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationProgress: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationType: AccountPartnerRewardQualificationType.sales,
+                            rewardAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            status: AccountPartnerRewardStatus.inProgress
+                        ),
+                        AccountPartnerReward(
+                            id: "id",
+                            qualificationAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationProgress: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            qualificationType: AccountPartnerRewardQualificationType.sales,
+                            rewardAmount: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            status: AccountPartnerRewardStatus.inProgress
+                        )
+                    ]),
+                    route: "route",
+                    sendCustomerEmails: true,
+                    shippingPolicy: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    showJoinedWhops: true,
+                    showReviewsDtc: true,
+                    showUserDirectory: true,
+                    socialLinks: [
+                        AccountSocialLink(
+                            id: "id",
+                            title: Nullable<String>.value("title"),
+                            url: "url",
+                            website: AccountSocialLinkWebsite.x
+                        ),
+                        AccountSocialLink(
+                            id: "id",
+                            title: Nullable<String>.value("title"),
+                            url: "url",
+                            website: AccountSocialLinkWebsite.x
+                        )
+                    ],
+                    status: Nullable<String>.value("status"),
+                    statusReason: Nullable<String>.value("status_reason"),
+                    storePageConfig: AccountStorePageConfig(
+                        accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                        layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                        profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                        whopAffiliateLink: true
+                    ),
+                    targetAudience: Nullable<String>.value("target_audience"),
+                    taxCollectionEnabledStates: [
+                        "tax_collection_enabled_states",
+                        "tax_collection_enabled_states"
+                    ],
+                    taxIdentifiers: [
+                        AccountTaxIdentifier(
+                            id: "id",
+                            taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                            taxIdValue: "tax_id_value"
+                        ),
+                        AccountTaxIdentifier(
+                            id: "id",
+                            taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                            taxIdValue: "tax_id_value"
+                        )
+                    ],
+                    taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+                    taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+                    termsOfService: Nullable<File>.value(File(
+                        blurhash: Nullable<String>.value("blurhash"),
+                        contentType: Nullable<String>.value("content_type"),
+                        createdAt: "created_at",
+                        durationSeconds: Nullable<Double>.value(1.1),
+                        filename: Nullable<String>.value("filename"),
+                        height: Nullable<Int>.value(1),
+                        id: "id",
+                        multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                        multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                        multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            ),
+                            FileMultipartUrl(
+                                partNumber: 1,
+                                url: "url"
+                            )
+                        ])),
+                        object: "object",
+                        removedByModeration: true,
+                        size: Nullable<Int>.value(1),
+                        uploadHeaders: Optional([
+                            "upload_headers": JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ]),
+                        uploadStatus: FileUploadStatus.pending,
+                        uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                        url: Nullable<String>.value("url"),
+                        visibility: FileVisibility.public,
+                        waveformUrl: Nullable<String>.value("waveform_url"),
+                        width: Nullable<Int>.value(1)
+                    )),
+                    threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+                    title: "title",
+                    totalEarnedUsd: Nullable<Double>.value(1.1),
+                    totalUsd: Nullable<String>.value("total_usd"),
+                    trading: Nullable<TradingAccount>.value(TradingAccount(
+                        accountId: Nullable<String>.value("account_id"),
+                        hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                            address: "address",
+                            depositable: Nullable<String>.value("depositable"),
+                            marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                                accountValue: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                totalMarginUsed: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                totalPositionNotional: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                ),
+                                withdrawable: Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                )
+                            )),
+                            positions: Nullable<[TradingPosition]>.value([]),
+                            websocketSubscriptions: [
+                                TradingWebsocketSubscription(
+                                    channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                                    message: "message"
+                                ),
+                                TradingWebsocketSubscription(
+                                    channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                                    message: "message"
+                                )
+                            ],
+                            websocketUrl: "websocket_url"
+                        )),
+                        id: "id",
+                        object: TradingAccountObject.tradingAccount,
+                        provider: TradingAccountProvider.hyperliquid,
+                        spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                            holdings: [
+                                TradingSpotHolding(
+                                    averageEntryPrice: .null,
+                                    costBasis: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    market: "market",
+                                    realizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                                ),
+                                TradingSpotHolding(
+                                    averageEntryPrice: .null,
+                                    costBasis: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    market: "market",
+                                    realizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnl: Money(
+                                        amount: "amount",
+                                        currency: "currency",
+                                        decimals: 1,
+                                        displayDecimals: 1
+                                    ),
+                                    unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                                )
+                            ]
+                        )),
+                        userId: Nullable<String>.value("user_id")
+                    )),
+                    useLogoAsOpengraphImageFallback: true,
+                    verification: [
+                        "verification": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    volumeL30DUsd: Nullable<Double>.value(1.1),
+                    volumeUsd: Nullable<Double>.value(1.1),
+                    wallet: Nullable<AccountWallet>.value(AccountWallet(
+                        address: "address",
+                        id: "id",
+                        network: AccountWalletNetwork.solana
+                    )),
+                    website: Nullable<String>.value("website"),
+                    whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+                )
+            ],
+            pageInfo: ListAccountsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
             )
         )
         let response = try await client.accounts.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -492,26 +4783,28 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "ads_spend_usd": 0,
                   "balances": [
                     {
-                      "balance": "50.0",
+                      "balance": "1500.0",
                       "breakdown": {
                         "available": "1500.0",
+                        "finishing_settlement": "0",
                         "in_transit": "0",
                         "pending": "0",
                         "pending_settlements": [
                           {
-                            "amount": "12.5",
+                            "amount": "0.0",
                             "date": "2026-01-01"
                           }
                         ],
                         "reserve": "0"
                       },
-                      "icon_url": "https://assets.whop.com/tokens/usd.png",
-                      "name": "US Dollar",
+                      "icon_url": "https://assets.whop.com/tokens/usdt.png",
+                      "name": "Tether USD",
                       "price_usd": 1,
-                      "symbol": "USD",
-                      "value_usd": "50.00"
+                      "symbol": "USDT",
+                      "value_usd": "1500.00"
                     }
                   ],
                   "banner_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -524,8 +4817,37 @@ import WhopSDK
                     "state": "TX"
                   },
                   "business_name": "Shine Time Auto Detailing, LLC",
-                  "business_type": "education_program",
+                  "business_type": "software",
                   "can_transfer_pending_balance_to_children": false,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "capabilities": {
                     "accept_bank_payments": "active",
                     "accept_bnpl_payments": "active",
@@ -544,7 +4866,7 @@ import WhopSDK
                     "kind": "individual",
                     "status": "approved"
                   },
-                  "collect_vat_id": true,
+                  "collect_vat_id": false,
                   "company_formation": {
                     "documents": [
                       {
@@ -573,25 +4895,119 @@ import WhopSDK
                   },
                   "country": "us",
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "customers_l30d": 1,
                   "description": "Mobile ceramic coating, paint correction, and interior detailing across the Austin metro.",
+                  "direct_reports_count": 0,
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
                   "email": "marcus@shinetime.example",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "connected_account_123",
+                  "financing": {
+                    "application_id": "inrq_xxxxxxxxxxxxxx",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
                   "home_preferences": [
                     "hide_member_count"
                   ],
                   "id": "biz_xxxxxxxxxxxxxx",
-                  "industry_group": "academic_and_test_prep",
-                  "industry_type": "other",
-                  "invoice_prefix": "SHINE",
+                  "industry_type": "trading",
+                  "invoice_prefix": "INV",
+                  "level": {
+                    "account_level": 0,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 0,
+                        "minimum_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "processing_rate_percentage": 2.7,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.7,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_card_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "points": 41000,
+                    "points_by_source": {
+                      "ads": 0,
+                      "cards": 40000,
+                      "partners": 0,
+                      "trading": 1000
+                    },
+                    "points_to_next": 59000,
+                    "resets_at": "2026-01-01T12:00:00.000Z"
+                  },
                   "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "metadata": {
-                    "external_id": "shop_4417",
-                    "region": "austin"
+                    "external_id": "connected_account_123"
                   },
                   "onboarding_type": "platform",
                   "opengraph_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "opengraph_image_variant": "white",
-                  "other_business_description": "Mobile auto detailing",
-                  "other_industry_description": "Automotive services",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
                   "owner": {
                     "id": "user_xxxxxxxxxxxxxx",
                     "name": "Dana Whitfield",
@@ -601,10 +5017,34 @@ import WhopSDK
                     "username": "danawhitfield"
                   },
                   "parent_account": {
+                    "fees": {
+                      "crypto_swap_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 3
+                      },
+                      "transfer_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 0
+                      }
+                    },
                     "id": "biz_xxxxxxxxxxxxxx",
                     "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-holdings",
                     "title": "Shine Time Holdings"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "referring_account": {
+                      "id": "biz_xxxxxxxxxxxxxx",
+                      "title": "Acme Bookkeeping"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
                   },
                   "payment_controls": {
                     "dispute_alert_auto_refund": {
@@ -615,6 +5055,11 @@ import WhopSDK
                     "enforce_3ds": false,
                     "financing_disabled": false,
                     "high_risk_processing_fee_percentage": 0,
+                    "payment_method_warnings": [
+                      {
+                        "key": "value"
+                      }
+                    ],
                     "pending_auto_topup_fee_percentage": 2,
                     "pending_balance_delay_days": 0,
                     "reserve": {
@@ -629,7 +5074,59 @@ import WhopSDK
                     },
                     "restricted_payment_methods": [
                       "card_visa"
-                    ]
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "card"
+                    ],
+                    "enabled": [
+                      "card"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
                   },
                   "product_tax_code": {
                     "id": "ptc_xxxxxxxxxxxxxx",
@@ -640,19 +5137,19 @@ import WhopSDK
                     {
                       "action": "theme_business",
                       "blocked_capabilities": [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                       ],
-                      "cta": "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                      "cta_label": "Apply",
-                      "description": "Let customers pay over time with buy now, pay later.",
-                      "icon_url": "https://whop.com/illustrations/orange/piggy-bank.svg",
-                      "impact_score": 86,
-                      "reasoning": "Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu.",
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
                       "status": "optional",
-                      "title": "Offer financing at checkout"
+                      "title": "title"
                     }
                   ],
-                  "require_2fa": true,
+                  "require_2fa": false,
                   "required_actions": [
                     {
                       "action": "deposit_funds",
@@ -667,11 +5164,94 @@ import WhopSDK
                       "title": "Complete your identity verification"
                     }
                   ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_progress": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
                   "route": "biz_xxxxxxxxxxxxxx",
                   "send_customer_emails": false,
-                  "show_joined_whops": false,
-                  "show_reviews_dtc": false,
-                  "show_user_directory": false,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
                   "social_links": [
                     {
                       "id": "social_1",
@@ -680,9 +5260,8 @@ import WhopSDK
                       "website": "x"
                     }
                   ],
-                  "stablecoin_rails": false,
                   "status": "active",
-                  "status_reason": "Payments are paused while we review recent chargebacks on this account.",
+                  "status_reason": "Suspended - Fraudulent activity",
                   "store_page_config": {
                     "accent_color": "ruby",
                     "layout": "featured",
@@ -702,25 +5281,195 @@ import WhopSDK
                   ],
                   "tax_remitted_by": "whop",
                   "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "three_ds_level": "mandate_challenge",
                   "title": "Shine Time Auto Detailing",
                   "total_earned_usd": 0,
                   "total_usd": "50.00",
-                  "use_logo_as_opengraph_image_fallback": true,
-                  "verification": {
-                    "business": {
-                      "key": "value"
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_margin_used": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_position_notional": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "withdrawable": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "hyperliquid": {
+                            "cumulative_funding": {
+                              "all_time": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_change": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_open": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              }
+                            },
+                            "leverage": {
+                              "type": "cross",
+                              "value": 1
+                            },
+                            "liquidation_price": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "margin_used": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "return_on_equity": "return_on_equity"
+                          },
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
                     },
-                    "individual": {
-                      "key": "value"
-                    }
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "cost_basis": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl_percentage": null
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
                   },
+                  "use_logo_as_opengraph_image_fallback": false,
+                  "verification": {
+                    "business": null,
+                    "individual": null
+                  },
+                  "volume_l30d_usd": 0,
                   "volume_usd": 1.1,
                   "wallet": {
                     "address": "0xabc123",
                     "id": "cwal_xxxxxxxxxxxxxx",
                     "network": "solana"
-                  }
+                  },
+                  "website": "https://shinetimedetail.com",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
                 }
                 """#.utf8
             )
@@ -731,26 +5480,28 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(0),
             balances: [
                 AccountBalanceToken(
-                    balance: "50.0",
+                    balance: "1500.0",
                     breakdown: AccountBalanceBreakdown(
                         available: "1500.0",
+                        finishingSettlement: "0",
                         inTransit: "0",
                         pending: "0",
                         pendingSettlements: [
                             AccountBalanceSettlement(
-                                amount: "12.5",
+                                amount: "0.0",
                                 date: "2026-01-01"
                             )
                         ],
                         reserve: "0"
                     ),
-                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usd.png"),
-                    name: "US Dollar",
+                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usdt.png"),
+                    name: "Tether USD",
                     priceUsd: Nullable<Double>.value(1),
-                    symbol: "USD",
-                    valueUsd: Nullable<String>.value("50.00")
+                    symbol: "USDT",
+                    valueUsd: Nullable<String>.value("1500.00")
                 )
             ],
             bannerImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
@@ -763,8 +5514,37 @@ import WhopSDK
                 "state": JSONValue.string("TX")
             ]),
             businessName: Nullable<String>.value("Shine Time Auto Detailing, LLC"),
-            businessType: Nullable<AccountBusinessType>.value(AccountBusinessType.educationProgram),
+            businessType: Nullable<String>.value("software"),
             canTransferPendingBalanceToChildren: false,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
                 acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
                 acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
@@ -783,7 +5563,7 @@ import WhopSDK
                 kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
                 status: AccountCardsStatus.approved
             )),
-            collectVatId: true,
+            collectVatId: false,
             companyFormation: AccountCompanyFormation(
                 documents: Optional([
                     AccountCompanyFormationDocument(
@@ -812,25 +5592,119 @@ import WhopSDK
             ),
             country: Nullable<String>.value("us"),
             createdAt: "2026-01-01T12:00:00.000Z",
+            customersL30D: Nullable<Int>.value(1),
             description: Nullable<String>.value("Mobile ceramic coating, paint correction, and interior detailing across the Austin metro."),
+            directReportsCount: Optional(0),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
             email: Nullable<String>.value("marcus@shinetime.example"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("connected_account_123"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "inrq_xxxxxxxxxxxxxx",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
             homePreferences: [
                 AccountHomePreferencesItem.hideMemberCount
             ],
             id: "biz_xxxxxxxxxxxxxx",
-            industryGroup: Nullable<AccountIndustryGroup>.value(AccountIndustryGroup.academicAndTestPrep),
-            industryType: Nullable<String>.value("other"),
-            invoicePrefix: Nullable<String>.value("SHINE"),
+            industryType: Nullable<String>.value("trading"),
+            invoicePrefix: Nullable<String>.value("INV"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 0,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 0,
+                        minimumSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        processingRatePercentage: 2.7,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.7,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyCardSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                points: 41000,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 0,
+                    cards: 40000,
+                    partners: 0,
+                    trading: 1000
+                ),
+                pointsToNext: Nullable<Int>.value(59000),
+                resetsAt: "2026-01-01T12:00:00.000Z"
+            )),
             logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             metadata: [
-                "external_id": JSONValue.string("shop_4417"), 
-                "region": JSONValue.string("austin")
+                "external_id": JSONValue.string("connected_account_123")
             ],
             onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
             opengraphImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
-            otherBusinessDescription: Nullable<String>.value("Mobile auto detailing"),
-            otherIndustryDescription: Nullable<String>.value("Automotive services"),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
             owner: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
                 name: Nullable<String>.value("Dana Whitfield"),
@@ -840,11 +5714,35 @@ import WhopSDK
                 username: "danawhitfield"
             ),
             parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "crypto_swap_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 3
+                    ), 
+                    "transfer_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 0
+                    )
+                ]),
                 id: "biz_xxxxxxxxxxxxxx",
                 logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-holdings",
                 title: "Shine Time Holdings"
             )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "biz_xxxxxxxxxxxxxx",
+                    title: "Acme Bookkeeping"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
             paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
                 disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
                     locked: false,
@@ -854,6 +5752,11 @@ import WhopSDK
                 enforce3Ds: false,
                 financingDisabled: false,
                 highRiskProcessingFeePercentage: 0,
+                paymentMethodWarnings: [
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                ],
                 pendingAutoTopupFeePercentage: 2,
                 pendingBalanceDelayDays: 0,
                 reserve: AccountReserveControl(
@@ -868,7 +5771,59 @@ import WhopSDK
                 ),
                 restrictedPaymentMethods: [
                     AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
-                ]
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "card"
+                ],
+                enabled: [
+                    "card"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
             )),
             productTaxCode: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("ptc_xxxxxxxxxxxxxx"), 
@@ -879,19 +5834,19 @@ import WhopSDK
                 AccountRecommendedAction(
                     action: AccountRecommendedActionAction.themeBusiness,
                     blockedCapabilities: [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                     ],
-                    cta: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                    ctaLabel: "Apply",
-                    description: "Let customers pay over time with buy now, pay later.",
-                    iconUrl: Nullable<String>.value("https://whop.com/illustrations/orange/piggy-bank.svg"),
-                    impactScore: Nullable<Int>.value(86),
-                    reasoning: Nullable<String>.value("Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu."),
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
                     status: AccountRecommendedActionStatus.optional,
-                    title: "Offer financing at checkout"
+                    title: "title"
                 )
             ]),
-            require2Fa: true,
+            require2Fa: false,
             requiredActions: Nullable<[AccountRequiredAction]>.value([
                 AccountRequiredAction(
                     action: AccountRequiredActionAction.depositFunds,
@@ -906,11 +5861,94 @@ import WhopSDK
                     title: "Complete your identity verification"
                 )
             ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationProgress: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
             route: "biz_xxxxxxxxxxxxxx",
             sendCustomerEmails: false,
-            showJoinedWhops: false,
-            showReviewsDtc: false,
-            showUserDirectory: false,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
             socialLinks: [
                 AccountSocialLink(
                     id: "social_1",
@@ -919,9 +5957,8 @@ import WhopSDK
                     website: AccountSocialLinkWebsite.x
                 )
             ],
-            stablecoinRails: false,
             status: Nullable<String>.value("active"),
-            statusReason: Nullable<String>.value("Payments are paused while we review recent chargebacks on this account."),
+            statusReason: Nullable<String>.value("Suspended - Fraudulent activity"),
             storePageConfig: AccountStorePageConfig(
                 accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
                 layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
@@ -941,29 +5978,2003 @@ import WhopSDK
             ],
             taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
             taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
             title: "Shine Time Auto Detailing",
             totalEarnedUsd: Nullable<Double>.value(0),
             totalUsd: Nullable<String>.value("50.00"),
-            useLogoAsOpengraphImageFallback: true,
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        withdrawable: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            hyperliquid: Nullable<TradingHyperliquidPosition>.value(TradingHyperliquidPosition(
+                                cumulativeFunding: TradingCumulativeFunding(
+                                    allTime: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceChange: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceOpen: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ))
+                                ),
+                                leverage: TradingPositionLeverage(
+                                    type: TradingPositionLeverageType.cross,
+                                    value: 1
+                                ),
+                                liquidationPrice: Nullable<Money>.value(Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                )),
+                                marginUsed: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                returnOnEquity: "return_on_equity"
+                            )),
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            costBasis: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnlPercentage: .null
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                ), 
-                "individual": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                )
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
+            volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
             wallet: Nullable<AccountWallet>.value(AccountWallet(
                 address: "0xabc123",
                 id: "cwal_xxxxxxxxxxxxxx",
                 network: AccountWalletNetwork.solana
-            ))
+            )),
+            website: Nullable<String>.value("https://shinetimedetail.com"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+        )
+        let response = try await client.accounts.create(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ads_spend_usd": 1.1,
+                  "balances": [
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    },
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    }
+                  ],
+                  "banner_image_url": "banner_image_url",
+                  "business_address": {
+                    "business_address": {
+                      "key": "value"
+                    }
+                  },
+                  "business_name": "business_name",
+                  "business_type": "business_type",
+                  "can_transfer_pending_balance_to_children": true,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "capabilities": {
+                    "accept_bank_payments": "active",
+                    "accept_bnpl_payments": "active",
+                    "accept_card_payments": "active",
+                    "bank_deposit": "active",
+                    "card_deposit": "active",
+                    "card_issuing": "active",
+                    "crypto_deposit": "active",
+                    "crypto_payout": "active",
+                    "instant_payout": "active",
+                    "run_ads": "active",
+                    "standard_payout": "active",
+                    "transfer": "active"
+                  },
+                  "cards": {
+                    "kind": "individual",
+                    "status": "approved"
+                  },
+                  "collect_vat_id": true,
+                  "company_formation": {
+                    "documents": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      }
+                    ],
+                    "ein_registered": true,
+                    "legal_name": "legal_name",
+                    "signatures": {
+                      "form8821": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      },
+                      "ss4": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      }
+                    },
+                    "state_registered": true,
+                    "status": "draft"
+                  },
+                  "country": "country",
+                  "created_at": "created_at",
+                  "customers_l30d": 1,
+                  "description": "description",
+                  "direct_reports_count": 1,
+                  "dispute_fighter_enabled": true,
+                  "economic_intelligence": true,
+                  "email": "email",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "external_id",
+                  "financing": {
+                    "application_id": "application_id",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
+                  "home_preferences": [
+                    "hide_member_count",
+                    "hide_member_count"
+                  ],
+                  "id": "id",
+                  "industry_type": "industry_type",
+                  "invoice_prefix": "invoice_prefix",
+                  "level": {
+                    "account_level": 1,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      },
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_card_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "points": 1,
+                    "points_by_source": {
+                      "ads": 1,
+                      "cards": 1,
+                      "partners": 1,
+                      "trading": 1
+                    },
+                    "points_to_next": 1,
+                    "resets_at": "resets_at"
+                  },
+                  "logo_url": "logo_url",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "onboarding_type": "platform",
+                  "opengraph_image_url": "opengraph_image_url",
+                  "opengraph_image_variant": "white",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
+                  "owner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "parent_account": {
+                    "fees": {
+                      "fees": {
+                        "fixed_fee_usd": 1.1,
+                        "percentage_fee": 1.1
+                      }
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "referring_account": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
+                  },
+                  "payment_controls": {
+                    "dispute_alert_auto_refund": {
+                      "locked": true,
+                      "threshold_usd": 1.1
+                    },
+                    "dispute_alert_fee_usd": 1.1,
+                    "enforce_3ds": true,
+                    "financing_disabled": true,
+                    "high_risk_processing_fee_percentage": 1.1,
+                    "payment_method_warnings": [
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      },
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      }
+                    ],
+                    "pending_auto_topup_fee_percentage": 1.1,
+                    "pending_balance_delay_days": 1,
+                    "reserve": {
+                      "hold_period_days": 1,
+                      "percentage": 1.1
+                    },
+                    "resolution_center_auto_refund": {
+                      "card_threshold_usd": 1.1,
+                      "financing_threshold_usd": 1.1,
+                      "locked": true,
+                      "paypal_threshold_usd": 1.1
+                    },
+                    "restricted_payment_methods": [
+                      "card_visa",
+                      "card_visa"
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "product_tax_code": {
+                    "product_tax_code": {
+                      "key": "value"
+                    }
+                  },
+                  "recommended_actions": [
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    },
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    }
+                  ],
+                  "require_2fa": true,
+                  "required_actions": [
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    },
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    }
+                  ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    },
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
+                  "route": "route",
+                  "send_customer_emails": true,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
+                  "social_links": [
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    },
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    }
+                  ],
+                  "status": "status",
+                  "status_reason": "status_reason",
+                  "store_page_config": {
+                    "accent_color": "ruby",
+                    "layout": "featured",
+                    "profile_variant": "personal",
+                    "whop_affiliate_link": true
+                  },
+                  "target_audience": "target_audience",
+                  "tax_collection_enabled_states": [
+                    "tax_collection_enabled_states",
+                    "tax_collection_enabled_states"
+                  ],
+                  "tax_identifiers": [
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    },
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    }
+                  ],
+                  "tax_remitted_by": "whop",
+                  "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "total_earned_usd": 1.1,
+                  "total_usd": "total_usd",
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_margin_used": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_position_notional": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "withdrawable": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        },
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        },
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
+                    },
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        },
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
+                  "use_logo_as_opengraph_image_fallback": true,
+                  "verification": {
+                    "verification": {
+                      "key": "value"
+                    }
+                  },
+                  "volume_l30d_usd": 1.1,
+                  "volume_usd": 1.1,
+                  "wallet": {
+                    "address": "address",
+                    "id": "id",
+                    "network": "solana"
+                  },
+                  "website": "website",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(1.1),
+            balances: [
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                ),
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                )
+            ],
+            bannerImageUrl: Nullable<String>.value("banner_image_url"),
+            businessAddress: Nullable<[String: JSONValue]>.value([
+                "business_address": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            businessName: Nullable<String>.value("business_name"),
+            businessType: Nullable<String>.value("business_type"),
+            canTransferPendingBalanceToChildren: true,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                bankDeposit: AccountCapabilitiesBankDeposit.active,
+                cardDeposit: AccountCapabilitiesCardDeposit.active,
+                cardIssuing: AccountCapabilitiesCardIssuing.active,
+                cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                instantPayout: AccountCapabilitiesInstantPayout.active,
+                runAds: AccountCapabilitiesRunAds.active,
+                standardPayout: AccountCapabilitiesStandardPayout.active,
+                transfer: AccountCapabilitiesTransfer.active
+            )),
+            cards: Nullable<AccountCards>.value(AccountCards(
+                kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                status: AccountCardsStatus.approved
+            )),
+            collectVatId: true,
+            companyFormation: AccountCompanyFormation(
+                documents: Optional([
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    ),
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    )
+                ]),
+                einRegistered: Optional(true),
+                legalName: Optional(Nullable<String>.value("legal_name")),
+                signatures: Optional(AccountCompanyFormationSignatures(
+                    form8821: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    )),
+                    ss4: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    ))
+                )),
+                stateRegistered: Optional(true),
+                status: Optional(AccountCompanyFormationStatus.draft)
+            ),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            customersL30D: Nullable<Int>.value(1),
+            description: Nullable<String>.value("description"),
+            directReportsCount: Optional(1),
+            disputeFighterEnabled: true,
+            economicIntelligence: true,
+            email: Nullable<String>.value("email"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("external_id"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "application_id",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+            homePreferences: [
+                AccountHomePreferencesItem.hideMemberCount,
+                AccountHomePreferencesItem.hideMemberCount
+            ],
+            id: "id",
+            industryType: Nullable<String>.value("industry_type"),
+            invoicePrefix: Nullable<String>.value("invoice_prefix"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 1,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    ),
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyCardSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                points: 1,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 1,
+                    cards: 1,
+                    partners: 1,
+                    trading: 1
+                ),
+                pointsToNext: Nullable<Int>.value(1),
+                resetsAt: "resets_at"
+            )),
+            logoUrl: Nullable<String>.value("logo_url"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+            opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+            opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+            owner: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ),
+            parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "fees": AccountParentFeesValue(
+                        fixedFeeUsd: 1.1,
+                        percentageFee: 1.1
+                    )
+                ]),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "id",
+                    title: "title"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
+            paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                    locked: true,
+                    thresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                enforce3Ds: true,
+                financingDisabled: true,
+                highRiskProcessingFeePercentage: 1.1,
+                paymentMethodWarnings: [
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]
+                ],
+                pendingAutoTopupFeePercentage: 1.1,
+                pendingBalanceDelayDays: 1,
+                reserve: AccountReserveControl(
+                    holdPeriodDays: 1,
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                    cardThresholdUsd: Nullable<Double>.value(1.1),
+                    financingThresholdUsd: Nullable<Double>.value(1.1),
+                    locked: true,
+                    paypalThresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                restrictedPaymentMethods: [
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            productTaxCode: Nullable<[String: JSONValue]>.value([
+                "product_tax_code": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                ),
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                )
+            ]),
+            require2Fa: true,
+            requiredActions: Nullable<[AccountRequiredAction]>.value([
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                ),
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                )
+            ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                ),
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
+            route: "route",
+            sendCustomerEmails: true,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
+            socialLinks: [
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                ),
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                )
+            ],
+            status: Nullable<String>.value("status"),
+            statusReason: Nullable<String>.value("status_reason"),
+            storePageConfig: AccountStorePageConfig(
+                accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                whopAffiliateLink: true
+            ),
+            targetAudience: Nullable<String>.value("target_audience"),
+            taxCollectionEnabledStates: [
+                "tax_collection_enabled_states",
+                "tax_collection_enabled_states"
+            ],
+            taxIdentifiers: [
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                ),
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                )
+            ],
+            taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+            taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+            title: "title",
+            totalEarnedUsd: Nullable<Double>.value(1.1),
+            totalUsd: Nullable<String>.value("total_usd"),
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        withdrawable: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        ),
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        ),
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        ),
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: true,
+            verification: [
+                "verification": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            volumeL30DUsd: Nullable<Double>.value(1.1),
+            volumeUsd: Nullable<Double>.value(1.1),
+            wallet: Nullable<AccountWallet>.value(AccountWallet(
+                address: "address",
+                id: "id",
+                network: AccountWalletNetwork.solana
+            )),
+            website: Nullable<String>.value("website"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
         )
         let response = try await client.accounts.create(
             request: .init(),
@@ -978,26 +7989,28 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "ads_spend_usd": 0,
                   "balances": [
                     {
-                      "balance": "50.0",
+                      "balance": "1500.0",
                       "breakdown": {
                         "available": "1500.0",
+                        "finishing_settlement": "0",
                         "in_transit": "0",
                         "pending": "0",
                         "pending_settlements": [
                           {
-                            "amount": "12.5",
+                            "amount": "0.0",
                             "date": "2026-01-01"
                           }
                         ],
                         "reserve": "0"
                       },
-                      "icon_url": "https://assets.whop.com/tokens/usd.png",
-                      "name": "US Dollar",
+                      "icon_url": "https://assets.whop.com/tokens/usdt.png",
+                      "name": "Tether USD",
                       "price_usd": 1,
-                      "symbol": "USD",
-                      "value_usd": "50.00"
+                      "symbol": "USDT",
+                      "value_usd": "1500.00"
                     }
                   ],
                   "banner_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -1010,8 +8023,37 @@ import WhopSDK
                     "state": "TX"
                   },
                   "business_name": "Shine Time Auto Detailing, LLC",
-                  "business_type": "education_program",
+                  "business_type": "software",
                   "can_transfer_pending_balance_to_children": false,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "capabilities": {
                     "accept_bank_payments": "active",
                     "accept_bnpl_payments": "active",
@@ -1030,7 +8072,7 @@ import WhopSDK
                     "kind": "individual",
                     "status": "approved"
                   },
-                  "collect_vat_id": true,
+                  "collect_vat_id": false,
                   "company_formation": {
                     "documents": [
                       {
@@ -1059,25 +8101,119 @@ import WhopSDK
                   },
                   "country": "us",
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "customers_l30d": 1,
                   "description": "Mobile ceramic coating, paint correction, and interior detailing across the Austin metro.",
+                  "direct_reports_count": 0,
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
                   "email": "marcus@shinetime.example",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "connected_account_123",
+                  "financing": {
+                    "application_id": "inrq_xxxxxxxxxxxxxx",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
                   "home_preferences": [
                     "hide_member_count"
                   ],
                   "id": "biz_xxxxxxxxxxxxxx",
-                  "industry_group": "academic_and_test_prep",
-                  "industry_type": "other",
-                  "invoice_prefix": "SHINE",
+                  "industry_type": "trading",
+                  "invoice_prefix": "INV",
+                  "level": {
+                    "account_level": 0,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 0,
+                        "minimum_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "processing_rate_percentage": 2.7,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.7,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_card_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "points": 41000,
+                    "points_by_source": {
+                      "ads": 0,
+                      "cards": 40000,
+                      "partners": 0,
+                      "trading": 1000
+                    },
+                    "points_to_next": 59000,
+                    "resets_at": "2026-01-01T12:00:00.000Z"
+                  },
                   "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "metadata": {
-                    "external_id": "shop_4417",
-                    "region": "austin"
+                    "external_id": "connected_account_123"
                   },
                   "onboarding_type": "platform",
                   "opengraph_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "opengraph_image_variant": "white",
-                  "other_business_description": "Mobile auto detailing",
-                  "other_industry_description": "Automotive services",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
                   "owner": {
                     "id": "user_xxxxxxxxxxxxxx",
                     "name": "Dana Whitfield",
@@ -1087,10 +8223,34 @@ import WhopSDK
                     "username": "danawhitfield"
                   },
                   "parent_account": {
+                    "fees": {
+                      "crypto_swap_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 3
+                      },
+                      "transfer_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 0
+                      }
+                    },
                     "id": "biz_xxxxxxxxxxxxxx",
                     "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-holdings",
                     "title": "Shine Time Holdings"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "referring_account": {
+                      "id": "biz_xxxxxxxxxxxxxx",
+                      "title": "Acme Bookkeeping"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
                   },
                   "payment_controls": {
                     "dispute_alert_auto_refund": {
@@ -1101,6 +8261,11 @@ import WhopSDK
                     "enforce_3ds": false,
                     "financing_disabled": false,
                     "high_risk_processing_fee_percentage": 0,
+                    "payment_method_warnings": [
+                      {
+                        "key": "value"
+                      }
+                    ],
                     "pending_auto_topup_fee_percentage": 2,
                     "pending_balance_delay_days": 0,
                     "reserve": {
@@ -1115,7 +8280,59 @@ import WhopSDK
                     },
                     "restricted_payment_methods": [
                       "card_visa"
-                    ]
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "card"
+                    ],
+                    "enabled": [
+                      "card"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
                   },
                   "product_tax_code": {
                     "id": "ptc_xxxxxxxxxxxxxx",
@@ -1126,19 +8343,19 @@ import WhopSDK
                     {
                       "action": "theme_business",
                       "blocked_capabilities": [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                       ],
-                      "cta": "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                      "cta_label": "Apply",
-                      "description": "Let customers pay over time with buy now, pay later.",
-                      "icon_url": "https://whop.com/illustrations/orange/piggy-bank.svg",
-                      "impact_score": 86,
-                      "reasoning": "Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu.",
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
                       "status": "optional",
-                      "title": "Offer financing at checkout"
+                      "title": "title"
                     }
                   ],
-                  "require_2fa": true,
+                  "require_2fa": false,
                   "required_actions": [
                     {
                       "action": "deposit_funds",
@@ -1153,11 +8370,94 @@ import WhopSDK
                       "title": "Complete your identity verification"
                     }
                   ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_progress": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
                   "route": "biz_xxxxxxxxxxxxxx",
                   "send_customer_emails": false,
-                  "show_joined_whops": false,
-                  "show_reviews_dtc": false,
-                  "show_user_directory": false,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
                   "social_links": [
                     {
                       "id": "social_1",
@@ -1166,9 +8466,8 @@ import WhopSDK
                       "website": "x"
                     }
                   ],
-                  "stablecoin_rails": false,
                   "status": "active",
-                  "status_reason": "Payments are paused while we review recent chargebacks on this account.",
+                  "status_reason": "Suspended - Fraudulent activity",
                   "store_page_config": {
                     "accent_color": "ruby",
                     "layout": "featured",
@@ -1188,25 +8487,195 @@ import WhopSDK
                   ],
                   "tax_remitted_by": "whop",
                   "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "three_ds_level": "mandate_challenge",
                   "title": "Shine Time Auto Detailing",
                   "total_earned_usd": 0,
                   "total_usd": "50.00",
-                  "use_logo_as_opengraph_image_fallback": true,
-                  "verification": {
-                    "business": {
-                      "key": "value"
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_margin_used": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_position_notional": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "withdrawable": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "hyperliquid": {
+                            "cumulative_funding": {
+                              "all_time": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_change": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_open": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              }
+                            },
+                            "leverage": {
+                              "type": "cross",
+                              "value": 1
+                            },
+                            "liquidation_price": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "margin_used": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "return_on_equity": "return_on_equity"
+                          },
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
                     },
-                    "individual": {
-                      "key": "value"
-                    }
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "cost_basis": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl_percentage": null
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
                   },
+                  "use_logo_as_opengraph_image_fallback": false,
+                  "verification": {
+                    "business": null,
+                    "individual": null
+                  },
+                  "volume_l30d_usd": 0,
                   "volume_usd": 1.1,
                   "wallet": {
                     "address": "0xabc123",
                     "id": "cwal_xxxxxxxxxxxxxx",
                     "network": "solana"
-                  }
+                  },
+                  "website": "https://shinetimedetail.com",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
                 }
                 """#.utf8
             )
@@ -1217,26 +8686,28 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(0),
             balances: [
                 AccountBalanceToken(
-                    balance: "50.0",
+                    balance: "1500.0",
                     breakdown: AccountBalanceBreakdown(
                         available: "1500.0",
+                        finishingSettlement: "0",
                         inTransit: "0",
                         pending: "0",
                         pendingSettlements: [
                             AccountBalanceSettlement(
-                                amount: "12.5",
+                                amount: "0.0",
                                 date: "2026-01-01"
                             )
                         ],
                         reserve: "0"
                     ),
-                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usd.png"),
-                    name: "US Dollar",
+                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usdt.png"),
+                    name: "Tether USD",
                     priceUsd: Nullable<Double>.value(1),
-                    symbol: "USD",
-                    valueUsd: Nullable<String>.value("50.00")
+                    symbol: "USDT",
+                    valueUsd: Nullable<String>.value("1500.00")
                 )
             ],
             bannerImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
@@ -1249,8 +8720,37 @@ import WhopSDK
                 "state": JSONValue.string("TX")
             ]),
             businessName: Nullable<String>.value("Shine Time Auto Detailing, LLC"),
-            businessType: Nullable<AccountBusinessType>.value(AccountBusinessType.educationProgram),
+            businessType: Nullable<String>.value("software"),
             canTransferPendingBalanceToChildren: false,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
                 acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
                 acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
@@ -1269,7 +8769,7 @@ import WhopSDK
                 kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
                 status: AccountCardsStatus.approved
             )),
-            collectVatId: true,
+            collectVatId: false,
             companyFormation: AccountCompanyFormation(
                 documents: Optional([
                     AccountCompanyFormationDocument(
@@ -1298,25 +8798,119 @@ import WhopSDK
             ),
             country: Nullable<String>.value("us"),
             createdAt: "2026-01-01T12:00:00.000Z",
+            customersL30D: Nullable<Int>.value(1),
             description: Nullable<String>.value("Mobile ceramic coating, paint correction, and interior detailing across the Austin metro."),
+            directReportsCount: Optional(0),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
             email: Nullable<String>.value("marcus@shinetime.example"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("connected_account_123"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "inrq_xxxxxxxxxxxxxx",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
             homePreferences: [
                 AccountHomePreferencesItem.hideMemberCount
             ],
             id: "biz_xxxxxxxxxxxxxx",
-            industryGroup: Nullable<AccountIndustryGroup>.value(AccountIndustryGroup.academicAndTestPrep),
-            industryType: Nullable<String>.value("other"),
-            invoicePrefix: Nullable<String>.value("SHINE"),
+            industryType: Nullable<String>.value("trading"),
+            invoicePrefix: Nullable<String>.value("INV"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 0,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 0,
+                        minimumSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        processingRatePercentage: 2.7,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.7,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyCardSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                points: 41000,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 0,
+                    cards: 40000,
+                    partners: 0,
+                    trading: 1000
+                ),
+                pointsToNext: Nullable<Int>.value(59000),
+                resetsAt: "2026-01-01T12:00:00.000Z"
+            )),
             logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             metadata: [
-                "external_id": JSONValue.string("shop_4417"), 
-                "region": JSONValue.string("austin")
+                "external_id": JSONValue.string("connected_account_123")
             ],
             onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
             opengraphImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
-            otherBusinessDescription: Nullable<String>.value("Mobile auto detailing"),
-            otherIndustryDescription: Nullable<String>.value("Automotive services"),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
             owner: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
                 name: Nullable<String>.value("Dana Whitfield"),
@@ -1326,11 +8920,35 @@ import WhopSDK
                 username: "danawhitfield"
             ),
             parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "crypto_swap_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 3
+                    ), 
+                    "transfer_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 0
+                    )
+                ]),
                 id: "biz_xxxxxxxxxxxxxx",
                 logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-holdings",
                 title: "Shine Time Holdings"
             )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "biz_xxxxxxxxxxxxxx",
+                    title: "Acme Bookkeeping"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
             paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
                 disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
                     locked: false,
@@ -1340,6 +8958,11 @@ import WhopSDK
                 enforce3Ds: false,
                 financingDisabled: false,
                 highRiskProcessingFeePercentage: 0,
+                paymentMethodWarnings: [
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                ],
                 pendingAutoTopupFeePercentage: 2,
                 pendingBalanceDelayDays: 0,
                 reserve: AccountReserveControl(
@@ -1354,7 +8977,59 @@ import WhopSDK
                 ),
                 restrictedPaymentMethods: [
                     AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
-                ]
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "card"
+                ],
+                enabled: [
+                    "card"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
             )),
             productTaxCode: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("ptc_xxxxxxxxxxxxxx"), 
@@ -1365,19 +9040,19 @@ import WhopSDK
                 AccountRecommendedAction(
                     action: AccountRecommendedActionAction.themeBusiness,
                     blockedCapabilities: [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                     ],
-                    cta: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                    ctaLabel: "Apply",
-                    description: "Let customers pay over time with buy now, pay later.",
-                    iconUrl: Nullable<String>.value("https://whop.com/illustrations/orange/piggy-bank.svg"),
-                    impactScore: Nullable<Int>.value(86),
-                    reasoning: Nullable<String>.value("Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu."),
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
                     status: AccountRecommendedActionStatus.optional,
-                    title: "Offer financing at checkout"
+                    title: "title"
                 )
             ]),
-            require2Fa: true,
+            require2Fa: false,
             requiredActions: Nullable<[AccountRequiredAction]>.value([
                 AccountRequiredAction(
                     action: AccountRequiredActionAction.depositFunds,
@@ -1392,11 +9067,94 @@ import WhopSDK
                     title: "Complete your identity verification"
                 )
             ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationProgress: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
             route: "biz_xxxxxxxxxxxxxx",
             sendCustomerEmails: false,
-            showJoinedWhops: false,
-            showReviewsDtc: false,
-            showUserDirectory: false,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
             socialLinks: [
                 AccountSocialLink(
                     id: "social_1",
@@ -1405,9 +9163,8 @@ import WhopSDK
                     website: AccountSocialLinkWebsite.x
                 )
             ],
-            stablecoinRails: false,
             status: Nullable<String>.value("active"),
-            statusReason: Nullable<String>.value("Payments are paused while we review recent chargebacks on this account."),
+            statusReason: Nullable<String>.value("Suspended - Fraudulent activity"),
             storePageConfig: AccountStorePageConfig(
                 accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
                 layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
@@ -1427,31 +9184,2118 @@ import WhopSDK
             ],
             taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
             taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
             title: "Shine Time Auto Detailing",
             totalEarnedUsd: Nullable<Double>.value(0),
             totalUsd: Nullable<String>.value("50.00"),
-            useLogoAsOpengraphImageFallback: true,
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        withdrawable: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            hyperliquid: Nullable<TradingHyperliquidPosition>.value(TradingHyperliquidPosition(
+                                cumulativeFunding: TradingCumulativeFunding(
+                                    allTime: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceChange: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceOpen: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ))
+                                ),
+                                leverage: TradingPositionLeverage(
+                                    type: TradingPositionLeverageType.cross,
+                                    value: 1
+                                ),
+                                liquidationPrice: Nullable<Money>.value(Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                )),
+                                marginUsed: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                returnOnEquity: "return_on_equity"
+                            )),
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            costBasis: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnlPercentage: .null
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                ), 
-                "individual": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                )
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
+            volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
             wallet: Nullable<AccountWallet>.value(AccountWallet(
                 address: "0xabc123",
                 id: "cwal_xxxxxxxxxxxxxx",
                 network: AccountWalletNetwork.solana
-            ))
+            )),
+            website: Nullable<String>.value("https://shinetimedetail.com"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
         )
         let response = try await client.accounts.me(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func me2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ads_spend_usd": 1.1,
+                  "balances": [
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    },
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    }
+                  ],
+                  "banner_image_url": "banner_image_url",
+                  "business_address": {
+                    "business_address": {
+                      "key": "value"
+                    }
+                  },
+                  "business_name": "business_name",
+                  "business_type": "business_type",
+                  "can_transfer_pending_balance_to_children": true,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "capabilities": {
+                    "accept_bank_payments": "active",
+                    "accept_bnpl_payments": "active",
+                    "accept_card_payments": "active",
+                    "bank_deposit": "active",
+                    "card_deposit": "active",
+                    "card_issuing": "active",
+                    "crypto_deposit": "active",
+                    "crypto_payout": "active",
+                    "instant_payout": "active",
+                    "run_ads": "active",
+                    "standard_payout": "active",
+                    "transfer": "active"
+                  },
+                  "cards": {
+                    "kind": "individual",
+                    "status": "approved"
+                  },
+                  "collect_vat_id": true,
+                  "company_formation": {
+                    "documents": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      }
+                    ],
+                    "ein_registered": true,
+                    "legal_name": "legal_name",
+                    "signatures": {
+                      "form8821": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      },
+                      "ss4": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      }
+                    },
+                    "state_registered": true,
+                    "status": "draft"
+                  },
+                  "country": "country",
+                  "created_at": "created_at",
+                  "customers_l30d": 1,
+                  "description": "description",
+                  "direct_reports_count": 1,
+                  "dispute_fighter_enabled": true,
+                  "economic_intelligence": true,
+                  "email": "email",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "external_id",
+                  "financing": {
+                    "application_id": "application_id",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
+                  "home_preferences": [
+                    "hide_member_count",
+                    "hide_member_count"
+                  ],
+                  "id": "id",
+                  "industry_type": "industry_type",
+                  "invoice_prefix": "invoice_prefix",
+                  "level": {
+                    "account_level": 1,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      },
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_card_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "points": 1,
+                    "points_by_source": {
+                      "ads": 1,
+                      "cards": 1,
+                      "partners": 1,
+                      "trading": 1
+                    },
+                    "points_to_next": 1,
+                    "resets_at": "resets_at"
+                  },
+                  "logo_url": "logo_url",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "onboarding_type": "platform",
+                  "opengraph_image_url": "opengraph_image_url",
+                  "opengraph_image_variant": "white",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
+                  "owner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "parent_account": {
+                    "fees": {
+                      "fees": {
+                        "fixed_fee_usd": 1.1,
+                        "percentage_fee": 1.1
+                      }
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "referring_account": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
+                  },
+                  "payment_controls": {
+                    "dispute_alert_auto_refund": {
+                      "locked": true,
+                      "threshold_usd": 1.1
+                    },
+                    "dispute_alert_fee_usd": 1.1,
+                    "enforce_3ds": true,
+                    "financing_disabled": true,
+                    "high_risk_processing_fee_percentage": 1.1,
+                    "payment_method_warnings": [
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      },
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      }
+                    ],
+                    "pending_auto_topup_fee_percentage": 1.1,
+                    "pending_balance_delay_days": 1,
+                    "reserve": {
+                      "hold_period_days": 1,
+                      "percentage": 1.1
+                    },
+                    "resolution_center_auto_refund": {
+                      "card_threshold_usd": 1.1,
+                      "financing_threshold_usd": 1.1,
+                      "locked": true,
+                      "paypal_threshold_usd": 1.1
+                    },
+                    "restricted_payment_methods": [
+                      "card_visa",
+                      "card_visa"
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "product_tax_code": {
+                    "product_tax_code": {
+                      "key": "value"
+                    }
+                  },
+                  "recommended_actions": [
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    },
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    }
+                  ],
+                  "require_2fa": true,
+                  "required_actions": [
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    },
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    }
+                  ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    },
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
+                  "route": "route",
+                  "send_customer_emails": true,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
+                  "social_links": [
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    },
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    }
+                  ],
+                  "status": "status",
+                  "status_reason": "status_reason",
+                  "store_page_config": {
+                    "accent_color": "ruby",
+                    "layout": "featured",
+                    "profile_variant": "personal",
+                    "whop_affiliate_link": true
+                  },
+                  "target_audience": "target_audience",
+                  "tax_collection_enabled_states": [
+                    "tax_collection_enabled_states",
+                    "tax_collection_enabled_states"
+                  ],
+                  "tax_identifiers": [
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    },
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    }
+                  ],
+                  "tax_remitted_by": "whop",
+                  "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "total_earned_usd": 1.1,
+                  "total_usd": "total_usd",
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_margin_used": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_position_notional": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "withdrawable": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        },
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        },
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
+                    },
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        },
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
+                  "use_logo_as_opengraph_image_fallback": true,
+                  "verification": {
+                    "verification": {
+                      "key": "value"
+                    }
+                  },
+                  "volume_l30d_usd": 1.1,
+                  "volume_usd": 1.1,
+                  "wallet": {
+                    "address": "address",
+                    "id": "id",
+                    "network": "solana"
+                  },
+                  "website": "website",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(1.1),
+            balances: [
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                ),
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                )
+            ],
+            bannerImageUrl: Nullable<String>.value("banner_image_url"),
+            businessAddress: Nullable<[String: JSONValue]>.value([
+                "business_address": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            businessName: Nullable<String>.value("business_name"),
+            businessType: Nullable<String>.value("business_type"),
+            canTransferPendingBalanceToChildren: true,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                bankDeposit: AccountCapabilitiesBankDeposit.active,
+                cardDeposit: AccountCapabilitiesCardDeposit.active,
+                cardIssuing: AccountCapabilitiesCardIssuing.active,
+                cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                instantPayout: AccountCapabilitiesInstantPayout.active,
+                runAds: AccountCapabilitiesRunAds.active,
+                standardPayout: AccountCapabilitiesStandardPayout.active,
+                transfer: AccountCapabilitiesTransfer.active
+            )),
+            cards: Nullable<AccountCards>.value(AccountCards(
+                kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                status: AccountCardsStatus.approved
+            )),
+            collectVatId: true,
+            companyFormation: AccountCompanyFormation(
+                documents: Optional([
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    ),
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    )
+                ]),
+                einRegistered: Optional(true),
+                legalName: Optional(Nullable<String>.value("legal_name")),
+                signatures: Optional(AccountCompanyFormationSignatures(
+                    form8821: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    )),
+                    ss4: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    ))
+                )),
+                stateRegistered: Optional(true),
+                status: Optional(AccountCompanyFormationStatus.draft)
+            ),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            customersL30D: Nullable<Int>.value(1),
+            description: Nullable<String>.value("description"),
+            directReportsCount: Optional(1),
+            disputeFighterEnabled: true,
+            economicIntelligence: true,
+            email: Nullable<String>.value("email"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("external_id"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "application_id",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+            homePreferences: [
+                AccountHomePreferencesItem.hideMemberCount,
+                AccountHomePreferencesItem.hideMemberCount
+            ],
+            id: "id",
+            industryType: Nullable<String>.value("industry_type"),
+            invoicePrefix: Nullable<String>.value("invoice_prefix"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 1,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    ),
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyCardSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                points: 1,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 1,
+                    cards: 1,
+                    partners: 1,
+                    trading: 1
+                ),
+                pointsToNext: Nullable<Int>.value(1),
+                resetsAt: "resets_at"
+            )),
+            logoUrl: Nullable<String>.value("logo_url"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+            opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+            opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+            owner: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ),
+            parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "fees": AccountParentFeesValue(
+                        fixedFeeUsd: 1.1,
+                        percentageFee: 1.1
+                    )
+                ]),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "id",
+                    title: "title"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
+            paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                    locked: true,
+                    thresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                enforce3Ds: true,
+                financingDisabled: true,
+                highRiskProcessingFeePercentage: 1.1,
+                paymentMethodWarnings: [
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]
+                ],
+                pendingAutoTopupFeePercentage: 1.1,
+                pendingBalanceDelayDays: 1,
+                reserve: AccountReserveControl(
+                    holdPeriodDays: 1,
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                    cardThresholdUsd: Nullable<Double>.value(1.1),
+                    financingThresholdUsd: Nullable<Double>.value(1.1),
+                    locked: true,
+                    paypalThresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                restrictedPaymentMethods: [
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            productTaxCode: Nullable<[String: JSONValue]>.value([
+                "product_tax_code": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                ),
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                )
+            ]),
+            require2Fa: true,
+            requiredActions: Nullable<[AccountRequiredAction]>.value([
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                ),
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                )
+            ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                ),
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
+            route: "route",
+            sendCustomerEmails: true,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
+            socialLinks: [
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                ),
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                )
+            ],
+            status: Nullable<String>.value("status"),
+            statusReason: Nullable<String>.value("status_reason"),
+            storePageConfig: AccountStorePageConfig(
+                accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                whopAffiliateLink: true
+            ),
+            targetAudience: Nullable<String>.value("target_audience"),
+            taxCollectionEnabledStates: [
+                "tax_collection_enabled_states",
+                "tax_collection_enabled_states"
+            ],
+            taxIdentifiers: [
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                ),
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                )
+            ],
+            taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+            taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+            title: "title",
+            totalEarnedUsd: Nullable<Double>.value(1.1),
+            totalUsd: Nullable<String>.value("total_usd"),
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        withdrawable: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        ),
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        ),
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        ),
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: true,
+            verification: [
+                "verification": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            volumeL30DUsd: Nullable<Double>.value(1.1),
+            volumeUsd: Nullable<Double>.value(1.1),
+            wallet: Nullable<AccountWallet>.value(AccountWallet(
+                address: "address",
+                id: "id",
+                network: AccountWalletNetwork.solana
+            )),
+            website: Nullable<String>.value("website"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+        )
+        let response = try await client.accounts.me(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func search1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "id": "biz_xxxxxxxxxxxxxx",
+                      "route": "biz_xxxxxxxxxxxxxx",
+                      "title": "Shine Time Detailing"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "WyJjdXJzb3IiLDFd"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SearchAccountsResponse(
+            data: [
+                AccountSearchResult(
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    id: "biz_xxxxxxxxxxxxxx",
+                    route: "biz_xxxxxxxxxxxxxx",
+                    title: "Shine Time Detailing"
+                )
+            ],
+            pageInfo: SearchAccountsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.accounts.search(
+            query: "query",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func search2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "created_at": "created_at",
+                      "id": "id",
+                      "route": "route",
+                      "title": "title"
+                    },
+                    {
+                      "created_at": "created_at",
+                      "id": "id",
+                      "route": "route",
+                      "title": "title"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SearchAccountsResponse(
+            data: [
+                AccountSearchResult(
+                    createdAt: "created_at",
+                    id: "id",
+                    route: "route",
+                    title: "title"
+                ),
+                AccountSearchResult(
+                    createdAt: "created_at",
+                    id: "id",
+                    route: "route",
+                    title: "title"
+                )
+            ],
+            pageInfo: SearchAccountsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.accounts.search(
+            query: "query",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -1461,26 +11305,28 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "ads_spend_usd": 0,
                   "balances": [
                     {
-                      "balance": "50.0",
+                      "balance": "1500.0",
                       "breakdown": {
                         "available": "1500.0",
+                        "finishing_settlement": "0",
                         "in_transit": "0",
                         "pending": "0",
                         "pending_settlements": [
                           {
-                            "amount": "12.5",
+                            "amount": "0.0",
                             "date": "2026-01-01"
                           }
                         ],
                         "reserve": "0"
                       },
-                      "icon_url": "https://assets.whop.com/tokens/usd.png",
-                      "name": "US Dollar",
+                      "icon_url": "https://assets.whop.com/tokens/usdt.png",
+                      "name": "Tether USD",
                       "price_usd": 1,
-                      "symbol": "USD",
-                      "value_usd": "50.00"
+                      "symbol": "USDT",
+                      "value_usd": "1500.00"
                     }
                   ],
                   "banner_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -1493,8 +11339,37 @@ import WhopSDK
                     "state": "TX"
                   },
                   "business_name": "Shine Time Auto Detailing, LLC",
-                  "business_type": "education_program",
+                  "business_type": "software",
                   "can_transfer_pending_balance_to_children": false,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "capabilities": {
                     "accept_bank_payments": "active",
                     "accept_bnpl_payments": "active",
@@ -1513,7 +11388,7 @@ import WhopSDK
                     "kind": "individual",
                     "status": "approved"
                   },
-                  "collect_vat_id": true,
+                  "collect_vat_id": false,
                   "company_formation": {
                     "documents": [
                       {
@@ -1542,25 +11417,119 @@ import WhopSDK
                   },
                   "country": "us",
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "customers_l30d": 1,
                   "description": "Mobile ceramic coating, paint correction, and interior detailing across the Austin metro.",
+                  "direct_reports_count": 0,
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
                   "email": "marcus@shinetime.example",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "connected_account_123",
+                  "financing": {
+                    "application_id": "inrq_xxxxxxxxxxxxxx",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
                   "home_preferences": [
                     "hide_member_count"
                   ],
                   "id": "biz_xxxxxxxxxxxxxx",
-                  "industry_group": "academic_and_test_prep",
-                  "industry_type": "other",
-                  "invoice_prefix": "SHINE",
+                  "industry_type": "trading",
+                  "invoice_prefix": "INV",
+                  "level": {
+                    "account_level": 0,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 0,
+                        "minimum_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "processing_rate_percentage": 2.7,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.7,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_card_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "points": 41000,
+                    "points_by_source": {
+                      "ads": 0,
+                      "cards": 40000,
+                      "partners": 0,
+                      "trading": 1000
+                    },
+                    "points_to_next": 59000,
+                    "resets_at": "2026-01-01T12:00:00.000Z"
+                  },
                   "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "metadata": {
-                    "external_id": "shop_4417",
-                    "region": "austin"
+                    "external_id": "connected_account_123"
                   },
                   "onboarding_type": "platform",
                   "opengraph_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "opengraph_image_variant": "white",
-                  "other_business_description": "Mobile auto detailing",
-                  "other_industry_description": "Automotive services",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
                   "owner": {
                     "id": "user_xxxxxxxxxxxxxx",
                     "name": "Dana Whitfield",
@@ -1570,10 +11539,34 @@ import WhopSDK
                     "username": "danawhitfield"
                   },
                   "parent_account": {
+                    "fees": {
+                      "crypto_swap_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 3
+                      },
+                      "transfer_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 0
+                      }
+                    },
                     "id": "biz_xxxxxxxxxxxxxx",
                     "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-holdings",
                     "title": "Shine Time Holdings"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "referring_account": {
+                      "id": "biz_xxxxxxxxxxxxxx",
+                      "title": "Acme Bookkeeping"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
                   },
                   "payment_controls": {
                     "dispute_alert_auto_refund": {
@@ -1584,6 +11577,11 @@ import WhopSDK
                     "enforce_3ds": false,
                     "financing_disabled": false,
                     "high_risk_processing_fee_percentage": 0,
+                    "payment_method_warnings": [
+                      {
+                        "key": "value"
+                      }
+                    ],
                     "pending_auto_topup_fee_percentage": 2,
                     "pending_balance_delay_days": 0,
                     "reserve": {
@@ -1598,7 +11596,59 @@ import WhopSDK
                     },
                     "restricted_payment_methods": [
                       "card_visa"
-                    ]
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "card"
+                    ],
+                    "enabled": [
+                      "card"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
                   },
                   "product_tax_code": {
                     "id": "ptc_xxxxxxxxxxxxxx",
@@ -1609,19 +11659,19 @@ import WhopSDK
                     {
                       "action": "theme_business",
                       "blocked_capabilities": [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                       ],
-                      "cta": "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                      "cta_label": "Apply",
-                      "description": "Let customers pay over time with buy now, pay later.",
-                      "icon_url": "https://whop.com/illustrations/orange/piggy-bank.svg",
-                      "impact_score": 86,
-                      "reasoning": "Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu.",
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
                       "status": "optional",
-                      "title": "Offer financing at checkout"
+                      "title": "title"
                     }
                   ],
-                  "require_2fa": true,
+                  "require_2fa": false,
                   "required_actions": [
                     {
                       "action": "deposit_funds",
@@ -1636,11 +11686,94 @@ import WhopSDK
                       "title": "Complete your identity verification"
                     }
                   ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_progress": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
                   "route": "biz_xxxxxxxxxxxxxx",
                   "send_customer_emails": false,
-                  "show_joined_whops": false,
-                  "show_reviews_dtc": false,
-                  "show_user_directory": false,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
                   "social_links": [
                     {
                       "id": "social_1",
@@ -1649,9 +11782,8 @@ import WhopSDK
                       "website": "x"
                     }
                   ],
-                  "stablecoin_rails": false,
                   "status": "active",
-                  "status_reason": "Payments are paused while we review recent chargebacks on this account.",
+                  "status_reason": "Suspended - Fraudulent activity",
                   "store_page_config": {
                     "accent_color": "ruby",
                     "layout": "featured",
@@ -1671,25 +11803,195 @@ import WhopSDK
                   ],
                   "tax_remitted_by": "whop",
                   "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "three_ds_level": "mandate_challenge",
                   "title": "Shine Time Auto Detailing",
                   "total_earned_usd": 0,
                   "total_usd": "50.00",
-                  "use_logo_as_opengraph_image_fallback": true,
-                  "verification": {
-                    "business": {
-                      "key": "value"
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_margin_used": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_position_notional": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "withdrawable": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "hyperliquid": {
+                            "cumulative_funding": {
+                              "all_time": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_change": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_open": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              }
+                            },
+                            "leverage": {
+                              "type": "cross",
+                              "value": 1
+                            },
+                            "liquidation_price": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "margin_used": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "return_on_equity": "return_on_equity"
+                          },
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
                     },
-                    "individual": {
-                      "key": "value"
-                    }
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "cost_basis": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl_percentage": null
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
                   },
+                  "use_logo_as_opengraph_image_fallback": false,
+                  "verification": {
+                    "business": null,
+                    "individual": null
+                  },
+                  "volume_l30d_usd": 0,
                   "volume_usd": 1.1,
                   "wallet": {
                     "address": "0xabc123",
                     "id": "cwal_xxxxxxxxxxxxxx",
                     "network": "solana"
-                  }
+                  },
+                  "website": "https://shinetimedetail.com",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
                 }
                 """#.utf8
             )
@@ -1700,26 +12002,28 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(0),
             balances: [
                 AccountBalanceToken(
-                    balance: "50.0",
+                    balance: "1500.0",
                     breakdown: AccountBalanceBreakdown(
                         available: "1500.0",
+                        finishingSettlement: "0",
                         inTransit: "0",
                         pending: "0",
                         pendingSettlements: [
                             AccountBalanceSettlement(
-                                amount: "12.5",
+                                amount: "0.0",
                                 date: "2026-01-01"
                             )
                         ],
                         reserve: "0"
                     ),
-                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usd.png"),
-                    name: "US Dollar",
+                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usdt.png"),
+                    name: "Tether USD",
                     priceUsd: Nullable<Double>.value(1),
-                    symbol: "USD",
-                    valueUsd: Nullable<String>.value("50.00")
+                    symbol: "USDT",
+                    valueUsd: Nullable<String>.value("1500.00")
                 )
             ],
             bannerImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
@@ -1732,8 +12036,37 @@ import WhopSDK
                 "state": JSONValue.string("TX")
             ]),
             businessName: Nullable<String>.value("Shine Time Auto Detailing, LLC"),
-            businessType: Nullable<AccountBusinessType>.value(AccountBusinessType.educationProgram),
+            businessType: Nullable<String>.value("software"),
             canTransferPendingBalanceToChildren: false,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
                 acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
                 acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
@@ -1752,7 +12085,7 @@ import WhopSDK
                 kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
                 status: AccountCardsStatus.approved
             )),
-            collectVatId: true,
+            collectVatId: false,
             companyFormation: AccountCompanyFormation(
                 documents: Optional([
                     AccountCompanyFormationDocument(
@@ -1781,25 +12114,119 @@ import WhopSDK
             ),
             country: Nullable<String>.value("us"),
             createdAt: "2026-01-01T12:00:00.000Z",
+            customersL30D: Nullable<Int>.value(1),
             description: Nullable<String>.value("Mobile ceramic coating, paint correction, and interior detailing across the Austin metro."),
+            directReportsCount: Optional(0),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
             email: Nullable<String>.value("marcus@shinetime.example"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("connected_account_123"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "inrq_xxxxxxxxxxxxxx",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
             homePreferences: [
                 AccountHomePreferencesItem.hideMemberCount
             ],
             id: "biz_xxxxxxxxxxxxxx",
-            industryGroup: Nullable<AccountIndustryGroup>.value(AccountIndustryGroup.academicAndTestPrep),
-            industryType: Nullable<String>.value("other"),
-            invoicePrefix: Nullable<String>.value("SHINE"),
+            industryType: Nullable<String>.value("trading"),
+            invoicePrefix: Nullable<String>.value("INV"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 0,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 0,
+                        minimumSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        processingRatePercentage: 2.7,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.7,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyCardSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                points: 41000,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 0,
+                    cards: 40000,
+                    partners: 0,
+                    trading: 1000
+                ),
+                pointsToNext: Nullable<Int>.value(59000),
+                resetsAt: "2026-01-01T12:00:00.000Z"
+            )),
             logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             metadata: [
-                "external_id": JSONValue.string("shop_4417"), 
-                "region": JSONValue.string("austin")
+                "external_id": JSONValue.string("connected_account_123")
             ],
             onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
             opengraphImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
-            otherBusinessDescription: Nullable<String>.value("Mobile auto detailing"),
-            otherIndustryDescription: Nullable<String>.value("Automotive services"),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
             owner: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
                 name: Nullable<String>.value("Dana Whitfield"),
@@ -1809,11 +12236,35 @@ import WhopSDK
                 username: "danawhitfield"
             ),
             parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "crypto_swap_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 3
+                    ), 
+                    "transfer_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 0
+                    )
+                ]),
                 id: "biz_xxxxxxxxxxxxxx",
                 logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-holdings",
                 title: "Shine Time Holdings"
             )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "biz_xxxxxxxxxxxxxx",
+                    title: "Acme Bookkeeping"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
             paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
                 disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
                     locked: false,
@@ -1823,6 +12274,11 @@ import WhopSDK
                 enforce3Ds: false,
                 financingDisabled: false,
                 highRiskProcessingFeePercentage: 0,
+                paymentMethodWarnings: [
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                ],
                 pendingAutoTopupFeePercentage: 2,
                 pendingBalanceDelayDays: 0,
                 reserve: AccountReserveControl(
@@ -1837,7 +12293,59 @@ import WhopSDK
                 ),
                 restrictedPaymentMethods: [
                     AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
-                ]
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "card"
+                ],
+                enabled: [
+                    "card"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
             )),
             productTaxCode: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("ptc_xxxxxxxxxxxxxx"), 
@@ -1848,19 +12356,19 @@ import WhopSDK
                 AccountRecommendedAction(
                     action: AccountRecommendedActionAction.themeBusiness,
                     blockedCapabilities: [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                     ],
-                    cta: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                    ctaLabel: "Apply",
-                    description: "Let customers pay over time with buy now, pay later.",
-                    iconUrl: Nullable<String>.value("https://whop.com/illustrations/orange/piggy-bank.svg"),
-                    impactScore: Nullable<Int>.value(86),
-                    reasoning: Nullable<String>.value("Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu."),
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
                     status: AccountRecommendedActionStatus.optional,
-                    title: "Offer financing at checkout"
+                    title: "title"
                 )
             ]),
-            require2Fa: true,
+            require2Fa: false,
             requiredActions: Nullable<[AccountRequiredAction]>.value([
                 AccountRequiredAction(
                     action: AccountRequiredActionAction.depositFunds,
@@ -1875,11 +12383,94 @@ import WhopSDK
                     title: "Complete your identity verification"
                 )
             ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationProgress: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
             route: "biz_xxxxxxxxxxxxxx",
             sendCustomerEmails: false,
-            showJoinedWhops: false,
-            showReviewsDtc: false,
-            showUserDirectory: false,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
             socialLinks: [
                 AccountSocialLink(
                     id: "social_1",
@@ -1888,9 +12479,8 @@ import WhopSDK
                     website: AccountSocialLinkWebsite.x
                 )
             ],
-            stablecoinRails: false,
             status: Nullable<String>.value("active"),
-            statusReason: Nullable<String>.value("Payments are paused while we review recent chargebacks on this account."),
+            statusReason: Nullable<String>.value("Suspended - Fraudulent activity"),
             storePageConfig: AccountStorePageConfig(
                 accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
                 layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
@@ -1910,31 +12500,2061 @@ import WhopSDK
             ],
             taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
             taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
             title: "Shine Time Auto Detailing",
             totalEarnedUsd: Nullable<Double>.value(0),
             totalUsd: Nullable<String>.value("50.00"),
-            useLogoAsOpengraphImageFallback: true,
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        withdrawable: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            hyperliquid: Nullable<TradingHyperliquidPosition>.value(TradingHyperliquidPosition(
+                                cumulativeFunding: TradingCumulativeFunding(
+                                    allTime: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceChange: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceOpen: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ))
+                                ),
+                                leverage: TradingPositionLeverage(
+                                    type: TradingPositionLeverageType.cross,
+                                    value: 1
+                                ),
+                                liquidationPrice: Nullable<Money>.value(Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                )),
+                                marginUsed: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                returnOnEquity: "return_on_equity"
+                            )),
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            costBasis: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnlPercentage: .null
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                ), 
-                "individual": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                )
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
+            volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
             wallet: Nullable<AccountWallet>.value(AccountWallet(
                 address: "0xabc123",
                 id: "cwal_xxxxxxxxxxxxxx",
                 network: AccountWalletNetwork.solana
-            ))
+            )),
+            website: Nullable<String>.value("https://shinetimedetail.com"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
         )
         let response = try await client.accounts.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ads_spend_usd": 1.1,
+                  "balances": [
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    },
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    }
+                  ],
+                  "banner_image_url": "banner_image_url",
+                  "business_address": {
+                    "business_address": {
+                      "key": "value"
+                    }
+                  },
+                  "business_name": "business_name",
+                  "business_type": "business_type",
+                  "can_transfer_pending_balance_to_children": true,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "capabilities": {
+                    "accept_bank_payments": "active",
+                    "accept_bnpl_payments": "active",
+                    "accept_card_payments": "active",
+                    "bank_deposit": "active",
+                    "card_deposit": "active",
+                    "card_issuing": "active",
+                    "crypto_deposit": "active",
+                    "crypto_payout": "active",
+                    "instant_payout": "active",
+                    "run_ads": "active",
+                    "standard_payout": "active",
+                    "transfer": "active"
+                  },
+                  "cards": {
+                    "kind": "individual",
+                    "status": "approved"
+                  },
+                  "collect_vat_id": true,
+                  "company_formation": {
+                    "documents": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      }
+                    ],
+                    "ein_registered": true,
+                    "legal_name": "legal_name",
+                    "signatures": {
+                      "form8821": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      },
+                      "ss4": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      }
+                    },
+                    "state_registered": true,
+                    "status": "draft"
+                  },
+                  "country": "country",
+                  "created_at": "created_at",
+                  "customers_l30d": 1,
+                  "description": "description",
+                  "direct_reports_count": 1,
+                  "dispute_fighter_enabled": true,
+                  "economic_intelligence": true,
+                  "email": "email",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "external_id",
+                  "financing": {
+                    "application_id": "application_id",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
+                  "home_preferences": [
+                    "hide_member_count",
+                    "hide_member_count"
+                  ],
+                  "id": "id",
+                  "industry_type": "industry_type",
+                  "invoice_prefix": "invoice_prefix",
+                  "level": {
+                    "account_level": 1,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      },
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_card_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "points": 1,
+                    "points_by_source": {
+                      "ads": 1,
+                      "cards": 1,
+                      "partners": 1,
+                      "trading": 1
+                    },
+                    "points_to_next": 1,
+                    "resets_at": "resets_at"
+                  },
+                  "logo_url": "logo_url",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "onboarding_type": "platform",
+                  "opengraph_image_url": "opengraph_image_url",
+                  "opengraph_image_variant": "white",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
+                  "owner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "parent_account": {
+                    "fees": {
+                      "fees": {
+                        "fixed_fee_usd": 1.1,
+                        "percentage_fee": 1.1
+                      }
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "referring_account": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
+                  },
+                  "payment_controls": {
+                    "dispute_alert_auto_refund": {
+                      "locked": true,
+                      "threshold_usd": 1.1
+                    },
+                    "dispute_alert_fee_usd": 1.1,
+                    "enforce_3ds": true,
+                    "financing_disabled": true,
+                    "high_risk_processing_fee_percentage": 1.1,
+                    "payment_method_warnings": [
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      },
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      }
+                    ],
+                    "pending_auto_topup_fee_percentage": 1.1,
+                    "pending_balance_delay_days": 1,
+                    "reserve": {
+                      "hold_period_days": 1,
+                      "percentage": 1.1
+                    },
+                    "resolution_center_auto_refund": {
+                      "card_threshold_usd": 1.1,
+                      "financing_threshold_usd": 1.1,
+                      "locked": true,
+                      "paypal_threshold_usd": 1.1
+                    },
+                    "restricted_payment_methods": [
+                      "card_visa",
+                      "card_visa"
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "product_tax_code": {
+                    "product_tax_code": {
+                      "key": "value"
+                    }
+                  },
+                  "recommended_actions": [
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    },
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    }
+                  ],
+                  "require_2fa": true,
+                  "required_actions": [
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    },
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    }
+                  ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    },
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
+                  "route": "route",
+                  "send_customer_emails": true,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
+                  "social_links": [
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    },
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    }
+                  ],
+                  "status": "status",
+                  "status_reason": "status_reason",
+                  "store_page_config": {
+                    "accent_color": "ruby",
+                    "layout": "featured",
+                    "profile_variant": "personal",
+                    "whop_affiliate_link": true
+                  },
+                  "target_audience": "target_audience",
+                  "tax_collection_enabled_states": [
+                    "tax_collection_enabled_states",
+                    "tax_collection_enabled_states"
+                  ],
+                  "tax_identifiers": [
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    },
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    }
+                  ],
+                  "tax_remitted_by": "whop",
+                  "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "total_earned_usd": 1.1,
+                  "total_usd": "total_usd",
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_margin_used": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_position_notional": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "withdrawable": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        },
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        },
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
+                    },
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        },
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
+                  "use_logo_as_opengraph_image_fallback": true,
+                  "verification": {
+                    "verification": {
+                      "key": "value"
+                    }
+                  },
+                  "volume_l30d_usd": 1.1,
+                  "volume_usd": 1.1,
+                  "wallet": {
+                    "address": "address",
+                    "id": "id",
+                    "network": "solana"
+                  },
+                  "website": "website",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(1.1),
+            balances: [
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                ),
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                )
+            ],
+            bannerImageUrl: Nullable<String>.value("banner_image_url"),
+            businessAddress: Nullable<[String: JSONValue]>.value([
+                "business_address": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            businessName: Nullable<String>.value("business_name"),
+            businessType: Nullable<String>.value("business_type"),
+            canTransferPendingBalanceToChildren: true,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                bankDeposit: AccountCapabilitiesBankDeposit.active,
+                cardDeposit: AccountCapabilitiesCardDeposit.active,
+                cardIssuing: AccountCapabilitiesCardIssuing.active,
+                cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                instantPayout: AccountCapabilitiesInstantPayout.active,
+                runAds: AccountCapabilitiesRunAds.active,
+                standardPayout: AccountCapabilitiesStandardPayout.active,
+                transfer: AccountCapabilitiesTransfer.active
+            )),
+            cards: Nullable<AccountCards>.value(AccountCards(
+                kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                status: AccountCardsStatus.approved
+            )),
+            collectVatId: true,
+            companyFormation: AccountCompanyFormation(
+                documents: Optional([
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    ),
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    )
+                ]),
+                einRegistered: Optional(true),
+                legalName: Optional(Nullable<String>.value("legal_name")),
+                signatures: Optional(AccountCompanyFormationSignatures(
+                    form8821: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    )),
+                    ss4: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    ))
+                )),
+                stateRegistered: Optional(true),
+                status: Optional(AccountCompanyFormationStatus.draft)
+            ),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            customersL30D: Nullable<Int>.value(1),
+            description: Nullable<String>.value("description"),
+            directReportsCount: Optional(1),
+            disputeFighterEnabled: true,
+            economicIntelligence: true,
+            email: Nullable<String>.value("email"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("external_id"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "application_id",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+            homePreferences: [
+                AccountHomePreferencesItem.hideMemberCount,
+                AccountHomePreferencesItem.hideMemberCount
+            ],
+            id: "id",
+            industryType: Nullable<String>.value("industry_type"),
+            invoicePrefix: Nullable<String>.value("invoice_prefix"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 1,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    ),
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyCardSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                points: 1,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 1,
+                    cards: 1,
+                    partners: 1,
+                    trading: 1
+                ),
+                pointsToNext: Nullable<Int>.value(1),
+                resetsAt: "resets_at"
+            )),
+            logoUrl: Nullable<String>.value("logo_url"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+            opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+            opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+            owner: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ),
+            parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "fees": AccountParentFeesValue(
+                        fixedFeeUsd: 1.1,
+                        percentageFee: 1.1
+                    )
+                ]),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "id",
+                    title: "title"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
+            paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                    locked: true,
+                    thresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                enforce3Ds: true,
+                financingDisabled: true,
+                highRiskProcessingFeePercentage: 1.1,
+                paymentMethodWarnings: [
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]
+                ],
+                pendingAutoTopupFeePercentage: 1.1,
+                pendingBalanceDelayDays: 1,
+                reserve: AccountReserveControl(
+                    holdPeriodDays: 1,
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                    cardThresholdUsd: Nullable<Double>.value(1.1),
+                    financingThresholdUsd: Nullable<Double>.value(1.1),
+                    locked: true,
+                    paypalThresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                restrictedPaymentMethods: [
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            productTaxCode: Nullable<[String: JSONValue]>.value([
+                "product_tax_code": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                ),
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                )
+            ]),
+            require2Fa: true,
+            requiredActions: Nullable<[AccountRequiredAction]>.value([
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                ),
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                )
+            ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                ),
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
+            route: "route",
+            sendCustomerEmails: true,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
+            socialLinks: [
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                ),
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                )
+            ],
+            status: Nullable<String>.value("status"),
+            statusReason: Nullable<String>.value("status_reason"),
+            storePageConfig: AccountStorePageConfig(
+                accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                whopAffiliateLink: true
+            ),
+            targetAudience: Nullable<String>.value("target_audience"),
+            taxCollectionEnabledStates: [
+                "tax_collection_enabled_states",
+                "tax_collection_enabled_states"
+            ],
+            taxIdentifiers: [
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                ),
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                )
+            ],
+            taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+            taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+            title: "title",
+            totalEarnedUsd: Nullable<Double>.value(1.1),
+            totalUsd: Nullable<String>.value("total_usd"),
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        withdrawable: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        ),
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        ),
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        ),
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: true,
+            verification: [
+                "verification": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            volumeL30DUsd: Nullable<Double>.value(1.1),
+            volumeUsd: Nullable<Double>.value(1.1),
+            wallet: Nullable<AccountWallet>.value(AccountWallet(
+                address: "address",
+                id: "id",
+                network: AccountWalletNetwork.solana
+            )),
+            website: Nullable<String>.value("website"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+        )
+        let response = try await client.accounts.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "biz_xxxxxxxxxxxxxx"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteAccountsResponse(
+            deleted: true,
+            id: "biz_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.accounts.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteAccountsResponse(
+            deleted: true,
+            id: "id"
+        )
+        let response = try await client.accounts.delete(
             id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -1947,26 +14567,28 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
+                  "ads_spend_usd": 0,
                   "balances": [
                     {
-                      "balance": "50.0",
+                      "balance": "1500.0",
                       "breakdown": {
                         "available": "1500.0",
+                        "finishing_settlement": "0",
                         "in_transit": "0",
                         "pending": "0",
                         "pending_settlements": [
                           {
-                            "amount": "12.5",
+                            "amount": "0.0",
                             "date": "2026-01-01"
                           }
                         ],
                         "reserve": "0"
                       },
-                      "icon_url": "https://assets.whop.com/tokens/usd.png",
-                      "name": "US Dollar",
+                      "icon_url": "https://assets.whop.com/tokens/usdt.png",
+                      "name": "Tether USD",
                       "price_usd": 1,
-                      "symbol": "USD",
-                      "value_usd": "50.00"
+                      "symbol": "USDT",
+                      "value_usd": "1500.00"
                     }
                   ],
                   "banner_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -1979,8 +14601,37 @@ import WhopSDK
                     "state": "TX"
                   },
                   "business_name": "Shine Time Auto Detailing, LLC",
-                  "business_type": "education_program",
+                  "business_type": "software",
                   "can_transfer_pending_balance_to_children": false,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "capabilities": {
                     "accept_bank_payments": "active",
                     "accept_bnpl_payments": "active",
@@ -1999,7 +14650,7 @@ import WhopSDK
                     "kind": "individual",
                     "status": "approved"
                   },
-                  "collect_vat_id": true,
+                  "collect_vat_id": false,
                   "company_formation": {
                     "documents": [
                       {
@@ -2028,25 +14679,119 @@ import WhopSDK
                   },
                   "country": "us",
                   "created_at": "2026-01-01T12:00:00.000Z",
+                  "customers_l30d": 1,
                   "description": "Mobile ceramic coating, paint correction, and interior detailing across the Austin metro.",
+                  "direct_reports_count": 0,
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
                   "email": "marcus@shinetime.example",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "connected_account_123",
+                  "financing": {
+                    "application_id": "inrq_xxxxxxxxxxxxxx",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
                   "home_preferences": [
                     "hide_member_count"
                   ],
                   "id": "biz_xxxxxxxxxxxxxx",
-                  "industry_group": "academic_and_test_prep",
-                  "industry_type": "other",
-                  "invoice_prefix": "SHINE",
+                  "industry_type": "trading",
+                  "invoice_prefix": "INV",
+                  "level": {
+                    "account_level": 0,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 0,
+                        "minimum_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "processing_rate_percentage": 2.7,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.7,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_card_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "points": 41000,
+                    "points_by_source": {
+                      "ads": 0,
+                      "cards": 40000,
+                      "partners": 0,
+                      "trading": 1000
+                    },
+                    "points_to_next": 59000,
+                    "resets_at": "2026-01-01T12:00:00.000Z"
+                  },
                   "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "metadata": {
-                    "external_id": "shop_4417",
-                    "region": "austin"
+                    "external_id": "connected_account_123"
                   },
                   "onboarding_type": "platform",
                   "opengraph_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                   "opengraph_image_variant": "white",
-                  "other_business_description": "Mobile auto detailing",
-                  "other_industry_description": "Automotive services",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
                   "owner": {
                     "id": "user_xxxxxxxxxxxxxx",
                     "name": "Dana Whitfield",
@@ -2056,10 +14801,34 @@ import WhopSDK
                     "username": "danawhitfield"
                   },
                   "parent_account": {
+                    "fees": {
+                      "crypto_swap_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 3
+                      },
+                      "transfer_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 0
+                      }
+                    },
                     "id": "biz_xxxxxxxxxxxxxx",
                     "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "route": "shine-time-holdings",
                     "title": "Shine Time Holdings"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "referring_account": {
+                      "id": "biz_xxxxxxxxxxxxxx",
+                      "title": "Acme Bookkeeping"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
                   },
                   "payment_controls": {
                     "dispute_alert_auto_refund": {
@@ -2070,6 +14839,11 @@ import WhopSDK
                     "enforce_3ds": false,
                     "financing_disabled": false,
                     "high_risk_processing_fee_percentage": 0,
+                    "payment_method_warnings": [
+                      {
+                        "key": "value"
+                      }
+                    ],
                     "pending_auto_topup_fee_percentage": 2,
                     "pending_balance_delay_days": 0,
                     "reserve": {
@@ -2084,7 +14858,59 @@ import WhopSDK
                     },
                     "restricted_payment_methods": [
                       "card_visa"
-                    ]
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "card"
+                    ],
+                    "enabled": [
+                      "card"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
                   },
                   "product_tax_code": {
                     "id": "ptc_xxxxxxxxxxxxxx",
@@ -2095,19 +14921,19 @@ import WhopSDK
                     {
                       "action": "theme_business",
                       "blocked_capabilities": [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                       ],
-                      "cta": "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                      "cta_label": "Apply",
-                      "description": "Let customers pay over time with buy now, pay later.",
-                      "icon_url": "https://whop.com/illustrations/orange/piggy-bank.svg",
-                      "impact_score": 86,
-                      "reasoning": "Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu.",
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
                       "status": "optional",
-                      "title": "Offer financing at checkout"
+                      "title": "title"
                     }
                   ],
-                  "require_2fa": true,
+                  "require_2fa": false,
                   "required_actions": [
                     {
                       "action": "deposit_funds",
@@ -2122,11 +14948,94 @@ import WhopSDK
                       "title": "Complete your identity verification"
                     }
                   ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_progress": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
                   "route": "biz_xxxxxxxxxxxxxx",
                   "send_customer_emails": false,
-                  "show_joined_whops": false,
-                  "show_reviews_dtc": false,
-                  "show_user_directory": false,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
                   "social_links": [
                     {
                       "id": "social_1",
@@ -2135,9 +15044,8 @@ import WhopSDK
                       "website": "x"
                     }
                   ],
-                  "stablecoin_rails": false,
                   "status": "active",
-                  "status_reason": "Payments are paused while we review recent chargebacks on this account.",
+                  "status_reason": "Suspended - Fraudulent activity",
                   "store_page_config": {
                     "accent_color": "ruby",
                     "layout": "featured",
@@ -2157,25 +15065,195 @@ import WhopSDK
                   ],
                   "tax_remitted_by": "whop",
                   "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
                   "three_ds_level": "mandate_challenge",
                   "title": "Shine Time Auto Detailing",
                   "total_earned_usd": 0,
                   "total_usd": "50.00",
-                  "use_logo_as_opengraph_image_fallback": true,
-                  "verification": {
-                    "business": {
-                      "key": "value"
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_margin_used": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_position_notional": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "withdrawable": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "hyperliquid": {
+                            "cumulative_funding": {
+                              "all_time": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_change": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_open": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              }
+                            },
+                            "leverage": {
+                              "type": "cross",
+                              "value": 1
+                            },
+                            "liquidation_price": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "margin_used": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "return_on_equity": "return_on_equity"
+                          },
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
                     },
-                    "individual": {
-                      "key": "value"
-                    }
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "cost_basis": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl_percentage": null
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
                   },
+                  "use_logo_as_opengraph_image_fallback": false,
+                  "verification": {
+                    "business": null,
+                    "individual": null
+                  },
+                  "volume_l30d_usd": 0,
                   "volume_usd": 1.1,
                   "wallet": {
                     "address": "0xabc123",
                     "id": "cwal_xxxxxxxxxxxxxx",
                     "network": "solana"
-                  }
+                  },
+                  "website": "https://shinetimedetail.com",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
                 }
                 """#.utf8
             )
@@ -2186,26 +15264,28 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(0),
             balances: [
                 AccountBalanceToken(
-                    balance: "50.0",
+                    balance: "1500.0",
                     breakdown: AccountBalanceBreakdown(
                         available: "1500.0",
+                        finishingSettlement: "0",
                         inTransit: "0",
                         pending: "0",
                         pendingSettlements: [
                             AccountBalanceSettlement(
-                                amount: "12.5",
+                                amount: "0.0",
                                 date: "2026-01-01"
                             )
                         ],
                         reserve: "0"
                     ),
-                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usd.png"),
-                    name: "US Dollar",
+                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usdt.png"),
+                    name: "Tether USD",
                     priceUsd: Nullable<Double>.value(1),
-                    symbol: "USD",
-                    valueUsd: Nullable<String>.value("50.00")
+                    symbol: "USDT",
+                    valueUsd: Nullable<String>.value("1500.00")
                 )
             ],
             bannerImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
@@ -2218,8 +15298,37 @@ import WhopSDK
                 "state": JSONValue.string("TX")
             ]),
             businessName: Nullable<String>.value("Shine Time Auto Detailing, LLC"),
-            businessType: Nullable<AccountBusinessType>.value(AccountBusinessType.educationProgram),
+            businessType: Nullable<String>.value("software"),
             canTransferPendingBalanceToChildren: false,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
                 acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
                 acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
@@ -2238,7 +15347,7 @@ import WhopSDK
                 kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
                 status: AccountCardsStatus.approved
             )),
-            collectVatId: true,
+            collectVatId: false,
             companyFormation: AccountCompanyFormation(
                 documents: Optional([
                     AccountCompanyFormationDocument(
@@ -2267,25 +15376,119 @@ import WhopSDK
             ),
             country: Nullable<String>.value("us"),
             createdAt: "2026-01-01T12:00:00.000Z",
+            customersL30D: Nullable<Int>.value(1),
             description: Nullable<String>.value("Mobile ceramic coating, paint correction, and interior detailing across the Austin metro."),
+            directReportsCount: Optional(0),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
             email: Nullable<String>.value("marcus@shinetime.example"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("connected_account_123"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "inrq_xxxxxxxxxxxxxx",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
             homePreferences: [
                 AccountHomePreferencesItem.hideMemberCount
             ],
             id: "biz_xxxxxxxxxxxxxx",
-            industryGroup: Nullable<AccountIndustryGroup>.value(AccountIndustryGroup.academicAndTestPrep),
-            industryType: Nullable<String>.value("other"),
-            invoicePrefix: Nullable<String>.value("SHINE"),
+            industryType: Nullable<String>.value("trading"),
+            invoicePrefix: Nullable<String>.value("INV"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 0,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 0,
+                        minimumSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        processingRatePercentage: 2.7,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.7,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyCardSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                points: 41000,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 0,
+                    cards: 40000,
+                    partners: 0,
+                    trading: 1000
+                ),
+                pointsToNext: Nullable<Int>.value(59000),
+                resetsAt: "2026-01-01T12:00:00.000Z"
+            )),
             logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             metadata: [
-                "external_id": JSONValue.string("shop_4417"), 
-                "region": JSONValue.string("austin")
+                "external_id": JSONValue.string("connected_account_123")
             ],
             onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
             opengraphImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
             opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
-            otherBusinessDescription: Nullable<String>.value("Mobile auto detailing"),
-            otherIndustryDescription: Nullable<String>.value("Automotive services"),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
             owner: UserSummary(
                 id: "user_xxxxxxxxxxxxxx",
                 name: Nullable<String>.value("Dana Whitfield"),
@@ -2295,11 +15498,35 @@ import WhopSDK
                 username: "danawhitfield"
             ),
             parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "crypto_swap_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 3
+                    ), 
+                    "transfer_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 0
+                    )
+                ]),
                 id: "biz_xxxxxxxxxxxxxx",
                 logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 route: "shine-time-holdings",
                 title: "Shine Time Holdings"
             )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "biz_xxxxxxxxxxxxxx",
+                    title: "Acme Bookkeeping"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
             paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
                 disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
                     locked: false,
@@ -2309,6 +15536,11 @@ import WhopSDK
                 enforce3Ds: false,
                 financingDisabled: false,
                 highRiskProcessingFeePercentage: 0,
+                paymentMethodWarnings: [
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                ],
                 pendingAutoTopupFeePercentage: 2,
                 pendingBalanceDelayDays: 0,
                 reserve: AccountReserveControl(
@@ -2323,7 +15555,59 @@ import WhopSDK
                 ),
                 restrictedPaymentMethods: [
                     AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
-                ]
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "card"
+                ],
+                enabled: [
+                    "card"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
             )),
             productTaxCode: Nullable<[String: JSONValue]>.value([
                 "id": JSONValue.string("ptc_xxxxxxxxxxxxxx"), 
@@ -2334,19 +15618,19 @@ import WhopSDK
                 AccountRecommendedAction(
                     action: AccountRecommendedActionAction.themeBusiness,
                     blockedCapabilities: [
-                        "accept_bnpl_payments"
+                        "blocked_capabilities"
                     ],
-                    cta: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings/payments/",
-                    ctaLabel: "Apply",
-                    description: "Let customers pay over time with buy now, pay later.",
-                    iconUrl: Nullable<String>.value("https://whop.com/illustrations/orange/piggy-bank.svg"),
-                    impactScore: Nullable<Int>.value(86),
-                    reasoning: Nullable<String>.value("Financing lifts conversion on the $249 ceramic coating, the priciest job on the menu."),
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
                     status: AccountRecommendedActionStatus.optional,
-                    title: "Offer financing at checkout"
+                    title: "title"
                 )
             ]),
-            require2Fa: true,
+            require2Fa: false,
             requiredActions: Nullable<[AccountRequiredAction]>.value([
                 AccountRequiredAction(
                     action: AccountRequiredActionAction.depositFunds,
@@ -2361,11 +15645,94 @@ import WhopSDK
                     title: "Complete your identity verification"
                 )
             ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationProgress: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
             route: "biz_xxxxxxxxxxxxxx",
             sendCustomerEmails: false,
-            showJoinedWhops: false,
-            showReviewsDtc: false,
-            showUserDirectory: false,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
             socialLinks: [
                 AccountSocialLink(
                     id: "social_1",
@@ -2374,9 +15741,8 @@ import WhopSDK
                     website: AccountSocialLinkWebsite.x
                 )
             ],
-            stablecoinRails: false,
             status: Nullable<String>.value("active"),
-            statusReason: Nullable<String>.value("Payments are paused while we review recent chargebacks on this account."),
+            statusReason: Nullable<String>.value("Suspended - Fraudulent activity"),
             storePageConfig: AccountStorePageConfig(
                 accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
                 layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
@@ -2396,29 +15762,2004 @@ import WhopSDK
             ],
             taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
             taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
             threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
             title: "Shine Time Auto Detailing",
             totalEarnedUsd: Nullable<Double>.value(0),
             totalUsd: Nullable<String>.value("50.00"),
-            useLogoAsOpengraphImageFallback: true,
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        withdrawable: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            hyperliquid: Nullable<TradingHyperliquidPosition>.value(TradingHyperliquidPosition(
+                                cumulativeFunding: TradingCumulativeFunding(
+                                    allTime: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceChange: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceOpen: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ))
+                                ),
+                                leverage: TradingPositionLeverage(
+                                    type: TradingPositionLeverageType.cross,
+                                    value: 1
+                                ),
+                                liquidationPrice: Nullable<Money>.value(Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                )),
+                                marginUsed: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                returnOnEquity: "return_on_equity"
+                            )),
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            costBasis: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnlPercentage: .null
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                ), 
-                "individual": JSONValue.object(
-                    [
-                        "key": JSONValue.string("value")
-                    ]
-                )
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
+            volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
             wallet: Nullable<AccountWallet>.value(AccountWallet(
                 address: "0xabc123",
                 id: "cwal_xxxxxxxxxxxxxx",
                 network: AccountWalletNetwork.solana
-            ))
+            )),
+            website: Nullable<String>.value("https://shinetimedetail.com"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+        )
+        let response = try await client.accounts.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ads_spend_usd": 1.1,
+                  "balances": [
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    },
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    }
+                  ],
+                  "banner_image_url": "banner_image_url",
+                  "business_address": {
+                    "business_address": {
+                      "key": "value"
+                    }
+                  },
+                  "business_name": "business_name",
+                  "business_type": "business_type",
+                  "can_transfer_pending_balance_to_children": true,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "capabilities": {
+                    "accept_bank_payments": "active",
+                    "accept_bnpl_payments": "active",
+                    "accept_card_payments": "active",
+                    "bank_deposit": "active",
+                    "card_deposit": "active",
+                    "card_issuing": "active",
+                    "crypto_deposit": "active",
+                    "crypto_payout": "active",
+                    "instant_payout": "active",
+                    "run_ads": "active",
+                    "standard_payout": "active",
+                    "transfer": "active"
+                  },
+                  "cards": {
+                    "kind": "individual",
+                    "status": "approved"
+                  },
+                  "collect_vat_id": true,
+                  "company_formation": {
+                    "documents": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      }
+                    ],
+                    "ein_registered": true,
+                    "legal_name": "legal_name",
+                    "signatures": {
+                      "form8821": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      },
+                      "ss4": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      }
+                    },
+                    "state_registered": true,
+                    "status": "draft"
+                  },
+                  "country": "country",
+                  "created_at": "created_at",
+                  "customers_l30d": 1,
+                  "description": "description",
+                  "direct_reports_count": 1,
+                  "dispute_fighter_enabled": true,
+                  "economic_intelligence": true,
+                  "email": "email",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "external_id",
+                  "financing": {
+                    "application_id": "application_id",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
+                  "home_preferences": [
+                    "hide_member_count",
+                    "hide_member_count"
+                  ],
+                  "id": "id",
+                  "industry_type": "industry_type",
+                  "invoice_prefix": "invoice_prefix",
+                  "level": {
+                    "account_level": 1,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      },
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_card_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "points": 1,
+                    "points_by_source": {
+                      "ads": 1,
+                      "cards": 1,
+                      "partners": 1,
+                      "trading": 1
+                    },
+                    "points_to_next": 1,
+                    "resets_at": "resets_at"
+                  },
+                  "logo_url": "logo_url",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "onboarding_type": "platform",
+                  "opengraph_image_url": "opengraph_image_url",
+                  "opengraph_image_variant": "white",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
+                  "owner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "parent_account": {
+                    "fees": {
+                      "fees": {
+                        "fixed_fee_usd": 1.1,
+                        "percentage_fee": 1.1
+                      }
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "referring_account": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
+                  },
+                  "payment_controls": {
+                    "dispute_alert_auto_refund": {
+                      "locked": true,
+                      "threshold_usd": 1.1
+                    },
+                    "dispute_alert_fee_usd": 1.1,
+                    "enforce_3ds": true,
+                    "financing_disabled": true,
+                    "high_risk_processing_fee_percentage": 1.1,
+                    "payment_method_warnings": [
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      },
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      }
+                    ],
+                    "pending_auto_topup_fee_percentage": 1.1,
+                    "pending_balance_delay_days": 1,
+                    "reserve": {
+                      "hold_period_days": 1,
+                      "percentage": 1.1
+                    },
+                    "resolution_center_auto_refund": {
+                      "card_threshold_usd": 1.1,
+                      "financing_threshold_usd": 1.1,
+                      "locked": true,
+                      "paypal_threshold_usd": 1.1
+                    },
+                    "restricted_payment_methods": [
+                      "card_visa",
+                      "card_visa"
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "product_tax_code": {
+                    "product_tax_code": {
+                      "key": "value"
+                    }
+                  },
+                  "recommended_actions": [
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    },
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    }
+                  ],
+                  "require_2fa": true,
+                  "required_actions": [
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    },
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    }
+                  ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    },
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
+                  "route": "route",
+                  "send_customer_emails": true,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
+                  "social_links": [
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    },
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    }
+                  ],
+                  "status": "status",
+                  "status_reason": "status_reason",
+                  "store_page_config": {
+                    "accent_color": "ruby",
+                    "layout": "featured",
+                    "profile_variant": "personal",
+                    "whop_affiliate_link": true
+                  },
+                  "target_audience": "target_audience",
+                  "tax_collection_enabled_states": [
+                    "tax_collection_enabled_states",
+                    "tax_collection_enabled_states"
+                  ],
+                  "tax_identifiers": [
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    },
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    }
+                  ],
+                  "tax_remitted_by": "whop",
+                  "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "total_earned_usd": 1.1,
+                  "total_usd": "total_usd",
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_margin_used": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_position_notional": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "withdrawable": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        },
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        },
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
+                    },
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        },
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
+                  "use_logo_as_opengraph_image_fallback": true,
+                  "verification": {
+                    "verification": {
+                      "key": "value"
+                    }
+                  },
+                  "volume_l30d_usd": 1.1,
+                  "volume_usd": 1.1,
+                  "wallet": {
+                    "address": "address",
+                    "id": "id",
+                    "network": "solana"
+                  },
+                  "website": "website",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(1.1),
+            balances: [
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                ),
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                )
+            ],
+            bannerImageUrl: Nullable<String>.value("banner_image_url"),
+            businessAddress: Nullable<[String: JSONValue]>.value([
+                "business_address": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            businessName: Nullable<String>.value("business_name"),
+            businessType: Nullable<String>.value("business_type"),
+            canTransferPendingBalanceToChildren: true,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                bankDeposit: AccountCapabilitiesBankDeposit.active,
+                cardDeposit: AccountCapabilitiesCardDeposit.active,
+                cardIssuing: AccountCapabilitiesCardIssuing.active,
+                cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                instantPayout: AccountCapabilitiesInstantPayout.active,
+                runAds: AccountCapabilitiesRunAds.active,
+                standardPayout: AccountCapabilitiesStandardPayout.active,
+                transfer: AccountCapabilitiesTransfer.active
+            )),
+            cards: Nullable<AccountCards>.value(AccountCards(
+                kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                status: AccountCardsStatus.approved
+            )),
+            collectVatId: true,
+            companyFormation: AccountCompanyFormation(
+                documents: Optional([
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    ),
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    )
+                ]),
+                einRegistered: Optional(true),
+                legalName: Optional(Nullable<String>.value("legal_name")),
+                signatures: Optional(AccountCompanyFormationSignatures(
+                    form8821: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    )),
+                    ss4: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    ))
+                )),
+                stateRegistered: Optional(true),
+                status: Optional(AccountCompanyFormationStatus.draft)
+            ),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            customersL30D: Nullable<Int>.value(1),
+            description: Nullable<String>.value("description"),
+            directReportsCount: Optional(1),
+            disputeFighterEnabled: true,
+            economicIntelligence: true,
+            email: Nullable<String>.value("email"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("external_id"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "application_id",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+            homePreferences: [
+                AccountHomePreferencesItem.hideMemberCount,
+                AccountHomePreferencesItem.hideMemberCount
+            ],
+            id: "id",
+            industryType: Nullable<String>.value("industry_type"),
+            invoicePrefix: Nullable<String>.value("invoice_prefix"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 1,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    ),
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyCardSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                points: 1,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 1,
+                    cards: 1,
+                    partners: 1,
+                    trading: 1
+                ),
+                pointsToNext: Nullable<Int>.value(1),
+                resetsAt: "resets_at"
+            )),
+            logoUrl: Nullable<String>.value("logo_url"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+            opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+            opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+            owner: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ),
+            parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "fees": AccountParentFeesValue(
+                        fixedFeeUsd: 1.1,
+                        percentageFee: 1.1
+                    )
+                ]),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "id",
+                    title: "title"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
+            paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                    locked: true,
+                    thresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                enforce3Ds: true,
+                financingDisabled: true,
+                highRiskProcessingFeePercentage: 1.1,
+                paymentMethodWarnings: [
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]
+                ],
+                pendingAutoTopupFeePercentage: 1.1,
+                pendingBalanceDelayDays: 1,
+                reserve: AccountReserveControl(
+                    holdPeriodDays: 1,
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                    cardThresholdUsd: Nullable<Double>.value(1.1),
+                    financingThresholdUsd: Nullable<Double>.value(1.1),
+                    locked: true,
+                    paypalThresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                restrictedPaymentMethods: [
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            productTaxCode: Nullable<[String: JSONValue]>.value([
+                "product_tax_code": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                ),
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                )
+            ]),
+            require2Fa: true,
+            requiredActions: Nullable<[AccountRequiredAction]>.value([
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                ),
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                )
+            ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                ),
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
+            route: "route",
+            sendCustomerEmails: true,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
+            socialLinks: [
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                ),
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                )
+            ],
+            status: Nullable<String>.value("status"),
+            statusReason: Nullable<String>.value("status_reason"),
+            storePageConfig: AccountStorePageConfig(
+                accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                whopAffiliateLink: true
+            ),
+            targetAudience: Nullable<String>.value("target_audience"),
+            taxCollectionEnabledStates: [
+                "tax_collection_enabled_states",
+                "tax_collection_enabled_states"
+            ],
+            taxIdentifiers: [
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                ),
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                )
+            ],
+            taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+            taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+            title: "title",
+            totalEarnedUsd: Nullable<Double>.value(1.1),
+            totalUsd: Nullable<String>.value("total_usd"),
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        withdrawable: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        ),
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        ),
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        ),
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: true,
+            verification: [
+                "verification": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            volumeL30DUsd: Nullable<Double>.value(1.1),
+            volumeUsd: Nullable<Double>.value(1.1),
+            wallet: Nullable<AccountWallet>.value(AccountWallet(
+                address: "address",
+                id: "id",
+                network: AccountWalletNetwork.solana
+            )),
+            website: Nullable<String>.value("website"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
         )
         let response = try await client.accounts.update(
             id: "id",
@@ -2466,12 +17807,11 @@ import WhopSDK
                 ),
                 businessName: "Shine Time Auto Detailing",
                 businessPhone: "+15125550142",
-                businessType: "brick_and_mortar",
                 businessWebsite: "https://shinetime.example",
                 entitySuffix: .llc,
                 entityType: .llc,
                 expediteEin: true,
-                formationState: .tx,
+                formationState: .wy,
                 founders: [
                     FormCompanyAccountsRequestFoundersItem(
                         address: FormCompanyAccountsRequestFoundersItemAddress(
@@ -2495,14 +17835,3340 @@ import WhopSDK
                         ssn: "123-45-6789"
                     )
                 ],
-                industryGroup: "automotive",
-                industryType: "car_wash",
                 shareStructure: FormCompanyAccountsRequestShareStructure(
                     numberOfShares: 123,
                     value: 123
                 ),
                 useRegisteredAgent: true
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func formCompany2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "checkout_session_id": "checkout_session_id",
+                  "checkout_url": "checkout_url",
+                  "currency": "currency",
+                  "total": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = FormCompanyAccountsResponse(
+            checkoutSessionId: "checkout_session_id",
+            checkoutUrl: "checkout_url",
+            currency: "currency",
+            total: 1
+        )
+        let response = try await client.accounts.formCompany(
+            id: "id",
+            request: .init(
+                businessName: "business_name",
+                formationState: .al,
+                founders: [
+                    FormCompanyAccountsRequestFoundersItem(
+                        address: FormCompanyAccountsRequestFoundersItemAddress(
+                            city: "city",
+                            country: "country",
+                            line1: "line1",
+                            postalCode: "postal_code",
+                            state: "state"
+                        ),
+                        email: "email",
+                        firstName: "first_name",
+                        isPrimary: true,
+                        lastName: "last_name",
+                        phone: "phone"
+                    ),
+                    FormCompanyAccountsRequestFoundersItem(
+                        address: FormCompanyAccountsRequestFoundersItemAddress(
+                            city: "city",
+                            country: "country",
+                            line1: "line1",
+                            postalCode: "postal_code",
+                            state: "state"
+                        ),
+                        email: "email",
+                        firstName: "first_name",
+                        isPrimary: true,
+                        lastName: "last_name",
+                        phone: "phone"
+                    )
+                ]
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retryAdsPayment1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "queued": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetryAdsPaymentAccountsResponse(
+            accountId: "biz_xxxxxxxxxxxxxx",
+            queued: true
+        )
+        let response = try await client.accounts.retryAdsPayment(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retryAdsPayment2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "queued": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetryAdsPaymentAccountsResponse(
+            accountId: "account_id",
+            queued: true
+        )
+        let response = try await client.accounts.retryAdsPayment(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func suspend1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ads_spend_usd": 0,
+                  "balances": [
+                    {
+                      "balance": "1500.0",
+                      "breakdown": {
+                        "available": "1500.0",
+                        "finishing_settlement": "0",
+                        "in_transit": "0",
+                        "pending": "0",
+                        "pending_settlements": [
+                          {
+                            "amount": "0.0",
+                            "date": "2026-01-01"
+                          }
+                        ],
+                        "reserve": "0"
+                      },
+                      "icon_url": "https://assets.whop.com/tokens/usdt.png",
+                      "name": "Tether USD",
+                      "price_usd": 1,
+                      "symbol": "USDT",
+                      "value_usd": "1500.00"
+                    }
+                  ],
+                  "banner_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "business_address": {
+                    "city": "Austin",
+                    "country": "US",
+                    "line1": "4180 Burnet Rd",
+                    "line2": "Suite 2",
+                    "postal_code": "78756",
+                    "state": "TX"
+                  },
+                  "business_name": "Shine Time Auto Detailing, LLC",
+                  "business_type": "software",
+                  "can_transfer_pending_balance_to_children": false,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "capabilities": {
+                    "accept_bank_payments": "active",
+                    "accept_bnpl_payments": "active",
+                    "accept_card_payments": "active",
+                    "bank_deposit": "active",
+                    "card_deposit": "active",
+                    "card_issuing": "active",
+                    "crypto_deposit": "active",
+                    "crypto_payout": "active",
+                    "instant_payout": "active",
+                    "run_ads": "active",
+                    "standard_payout": "active",
+                    "transfer": "active"
+                  },
+                  "cards": {
+                    "kind": "individual",
+                    "status": "approved"
+                  },
+                  "collect_vat_id": false,
+                  "company_formation": {
+                    "documents": [
+                      {
+                        "id": "file_xxxxxxxxxxxxxx",
+                        "name": "Articles of Organization",
+                        "type": "articles_of_organization",
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      }
+                    ],
+                    "ein_registered": false,
+                    "legal_name": "Shine Time Auto Detailing, LLC",
+                    "signatures": {
+                      "form8821": {
+                        "expires_at": "2026-01-01T12:00:00.000Z",
+                        "status": "pending",
+                        "url": "https://sign.doola.com/shine-time-auto-detailing/form8821"
+                      },
+                      "ss4": {
+                        "expires_at": "2026-01-01T12:00:00.000Z",
+                        "status": "pending",
+                        "url": "https://sign.doola.com/shine-time-auto-detailing/form8821"
+                      }
+                    },
+                    "state_registered": true,
+                    "status": "draft"
+                  },
+                  "country": "us",
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "customers_l30d": 1,
+                  "description": "Mobile ceramic coating, paint correction, and interior detailing across the Austin metro.",
+                  "direct_reports_count": 0,
+                  "dispute_fighter_enabled": false,
+                  "economic_intelligence": false,
+                  "email": "marcus@shinetime.example",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "connected_account_123",
+                  "financing": {
+                    "application_id": "inrq_xxxxxxxxxxxxxx",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
+                  "home_preferences": [
+                    "hide_member_count"
+                  ],
+                  "id": "biz_xxxxxxxxxxxxxx",
+                  "industry_type": "trading",
+                  "invoice_prefix": "INV",
+                  "level": {
+                    "account_level": 0,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 0,
+                        "minimum_spend": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "processing_rate_percentage": 2.7,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.7,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_card_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    },
+                    "points": 41000,
+                    "points_by_source": {
+                      "ads": 0,
+                      "cards": 40000,
+                      "partners": 0,
+                      "trading": 1000
+                    },
+                    "points_to_next": 59000,
+                    "resets_at": "2026-01-01T12:00:00.000Z"
+                  },
+                  "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "metadata": {
+                    "external_id": "connected_account_123"
+                  },
+                  "onboarding_type": "platform",
+                  "opengraph_image_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "opengraph_image_variant": "white",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
+                  "owner": {
+                    "id": "user_xxxxxxxxxxxxxx",
+                    "name": "Dana Whitfield",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "username": "danawhitfield"
+                  },
+                  "parent_account": {
+                    "fees": {
+                      "crypto_swap_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 3
+                      },
+                      "transfer_markup": {
+                        "fixed_fee_usd": 0,
+                        "percentage_fee": 0
+                      }
+                    },
+                    "id": "biz_xxxxxxxxxxxxxx",
+                    "logo_url": "https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "route": "shine-time-holdings",
+                    "title": "Shine Time Holdings"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "https://ui-avatars.com/api/"
+                    },
+                    "referring_account": {
+                      "id": "biz_xxxxxxxxxxxxxx",
+                      "title": "Acme Bookkeeping"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
+                  },
+                  "payment_controls": {
+                    "dispute_alert_auto_refund": {
+                      "locked": false,
+                      "threshold_usd": 500
+                    },
+                    "dispute_alert_fee_usd": 29,
+                    "enforce_3ds": false,
+                    "financing_disabled": false,
+                    "high_risk_processing_fee_percentage": 0,
+                    "payment_method_warnings": [
+                      {
+                        "key": "value"
+                      }
+                    ],
+                    "pending_auto_topup_fee_percentage": 2,
+                    "pending_balance_delay_days": 0,
+                    "reserve": {
+                      "hold_period_days": 14,
+                      "percentage": 15
+                    },
+                    "resolution_center_auto_refund": {
+                      "card_threshold_usd": 50,
+                      "financing_threshold_usd": 25,
+                      "locked": false,
+                      "paypal_threshold_usd": 40
+                    },
+                    "restricted_payment_methods": [
+                      "card_visa"
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "card"
+                    ],
+                    "enabled": [
+                      "card"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "-1234.56",
+                      "currency": "usd",
+                      "decimals": 2,
+                      "display_decimals": 2
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "product_tax_code": {
+                    "id": "ptc_xxxxxxxxxxxxxx",
+                    "name": "General - Digital Goods",
+                    "product_type": "digital"
+                  },
+                  "recommended_actions": [
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    }
+                  ],
+                  "require_2fa": false,
+                  "required_actions": [
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "standard_payout"
+                      ],
+                      "cta": "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/balance/",
+                      "cta_label": "Verify now",
+                      "description": "Complete verification to withdraw your earnings.",
+                      "icon_url": "https://whop.com/illustrations/orange/shield.svg",
+                      "status": "required",
+                      "title": "Complete your identity verification"
+                    }
+                  ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_progress": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
+                  "route": "biz_xxxxxxxxxxxxxx",
+                  "send_customer_emails": false,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
+                  "social_links": [
+                    {
+                      "id": "social_1",
+                      "title": "@shinetimedetail",
+                      "url": "https://instagram.com/shinetimedetail",
+                      "website": "x"
+                    }
+                  ],
+                  "status": "active",
+                  "status_reason": "Suspended - Fraudulent activity",
+                  "store_page_config": {
+                    "accent_color": "ruby",
+                    "layout": "featured",
+                    "profile_variant": "personal",
+                    "whop_affiliate_link": true
+                  },
+                  "target_audience": "Owners of new and enthusiast vehicles in Austin, TX",
+                  "tax_collection_enabled_states": [
+                    "TX"
+                  ],
+                  "tax_identifiers": [
+                    {
+                      "id": "txid_xxxxxxxxxxxxxx",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "DE123456789"
+                    }
+                  ],
+                  "tax_remitted_by": "whop",
+                  "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "application/pdf",
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "duration_seconds": 1.1,
+                    "filename": "evidence.pdf",
+                    "height": 1,
+                    "id": "file_xxxxxxxxxxxxxx",
+                    "multipart_chunk_size": 5242880,
+                    "multipart_upload_id": "upload-id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                      }
+                    ],
+                    "object": "file",
+                    "removed_by_moderation": false,
+                    "size": 9670,
+                    "upload_headers": {
+                      "key": "value"
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf",
+                    "url": "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "three_ds_level": "mandate_challenge",
+                  "title": "Shine Time Auto Detailing",
+                  "total_earned_usd": 0,
+                  "total_usd": "50.00",
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_margin_used": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "total_position_notional": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        },
+                        "withdrawable": {
+                          "amount": "-1234.56",
+                          "currency": "usd",
+                          "decimals": 2,
+                          "display_decimals": 2
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "hyperliquid": {
+                            "cumulative_funding": {
+                              "all_time": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_change": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "since_open": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              }
+                            },
+                            "leverage": {
+                              "type": "cross",
+                              "value": 1
+                            },
+                            "liquidation_price": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "margin_used": {
+                              "amount": "-1234.56",
+                              "currency": "usd",
+                              "decimals": 2,
+                              "display_decimals": 2
+                            },
+                            "return_on_equity": "return_on_equity"
+                          },
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
+                    },
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "cost_basis": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl": {
+                            "amount": "-1234.56",
+                            "currency": "usd",
+                            "decimals": 2,
+                            "display_decimals": 2
+                          },
+                          "unrealized_pnl_percentage": null
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
+                  "use_logo_as_opengraph_image_fallback": false,
+                  "verification": {
+                    "business": null,
+                    "individual": null
+                  },
+                  "volume_l30d_usd": 0,
+                  "volume_usd": 1.1,
+                  "wallet": {
+                    "address": "0xabc123",
+                    "id": "cwal_xxxxxxxxxxxxxx",
+                    "network": "solana"
+                  },
+                  "website": "https://shinetimedetail.com",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(0),
+            balances: [
+                AccountBalanceToken(
+                    balance: "1500.0",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "1500.0",
+                        finishingSettlement: "0",
+                        inTransit: "0",
+                        pending: "0",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "0.0",
+                                date: "2026-01-01"
+                            )
+                        ],
+                        reserve: "0"
+                    ),
+                    iconUrl: Nullable<String>.value("https://assets.whop.com/tokens/usdt.png"),
+                    name: "Tether USD",
+                    priceUsd: Nullable<Double>.value(1),
+                    symbol: "USDT",
+                    valueUsd: Nullable<String>.value("1500.00")
+                )
+            ],
+            bannerImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            businessAddress: Nullable<[String: JSONValue]>.value([
+                "city": JSONValue.string("Austin"), 
+                "country": JSONValue.string("US"), 
+                "line1": JSONValue.string("4180 Burnet Rd"), 
+                "line2": JSONValue.string("Suite 2"), 
+                "postal_code": JSONValue.string("78756"), 
+                "state": JSONValue.string("TX")
+            ]),
+            businessName: Nullable<String>.value("Shine Time Auto Detailing, LLC"),
+            businessType: Nullable<String>.value("software"),
+            canTransferPendingBalanceToChildren: false,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                bankDeposit: AccountCapabilitiesBankDeposit.active,
+                cardDeposit: AccountCapabilitiesCardDeposit.active,
+                cardIssuing: AccountCapabilitiesCardIssuing.active,
+                cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                instantPayout: AccountCapabilitiesInstantPayout.active,
+                runAds: AccountCapabilitiesRunAds.active,
+                standardPayout: AccountCapabilitiesStandardPayout.active,
+                transfer: AccountCapabilitiesTransfer.active
+            )),
+            cards: Nullable<AccountCards>.value(AccountCards(
+                kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                status: AccountCardsStatus.approved
+            )),
+            collectVatId: false,
+            companyFormation: AccountCompanyFormation(
+                documents: Optional([
+                    AccountCompanyFormationDocument(
+                        id: "file_xxxxxxxxxxxxxx",
+                        name: "Articles of Organization",
+                        type: "articles_of_organization",
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                    )
+                ]),
+                einRegistered: Optional(false),
+                legalName: Optional(Nullable<String>.value("Shine Time Auto Detailing, LLC")),
+                signatures: Optional(AccountCompanyFormationSignatures(
+                    form8821: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("2026-01-01T12:00:00.000Z"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("https://sign.doola.com/shine-time-auto-detailing/form8821")
+                    )),
+                    ss4: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("2026-01-01T12:00:00.000Z"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("https://sign.doola.com/shine-time-auto-detailing/form8821")
+                    ))
+                )),
+                stateRegistered: Optional(true),
+                status: Optional(AccountCompanyFormationStatus.draft)
+            ),
+            country: Nullable<String>.value("us"),
+            createdAt: "2026-01-01T12:00:00.000Z",
+            customersL30D: Nullable<Int>.value(1),
+            description: Nullable<String>.value("Mobile ceramic coating, paint correction, and interior detailing across the Austin metro."),
+            directReportsCount: Optional(0),
+            disputeFighterEnabled: false,
+            economicIntelligence: false,
+            email: Nullable<String>.value("marcus@shinetime.example"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("connected_account_123"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "inrq_xxxxxxxxxxxxxx",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+            homePreferences: [
+                AccountHomePreferencesItem.hideMemberCount
+            ],
+            id: "biz_xxxxxxxxxxxxxx",
+            industryType: Nullable<String>.value("trading"),
+            invoicePrefix: Nullable<String>.value("INV"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 0,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 0,
+                        minimumSpend: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        processingRatePercentage: 2.7,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.7,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyCardSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                ),
+                points: 41000,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 0,
+                    cards: 40000,
+                    partners: 0,
+                    trading: 1000
+                ),
+                pointsToNext: Nullable<Int>.value(59000),
+                resetsAt: "2026-01-01T12:00:00.000Z"
+            )),
+            logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            metadata: [
+                "external_id": JSONValue.string("connected_account_123")
+            ],
+            onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+            opengraphImageUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+            opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+            owner: UserSummary(
+                id: "user_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Dana Whitfield"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                username: "danawhitfield"
+            ),
+            parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "crypto_swap_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 3
+                    ), 
+                    "transfer_markup": AccountParentFeesValue(
+                        fixedFeeUsd: 0,
+                        percentageFee: 0
+                    )
+                ]),
+                id: "biz_xxxxxxxxxxxxxx",
+                logoUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/image/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                route: "shine-time-holdings",
+                title: "Shine Time Holdings"
+            )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "https://ui-avatars.com/api/"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "biz_xxxxxxxxxxxxxx",
+                    title: "Acme Bookkeeping"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
+            paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                    locked: false,
+                    thresholdUsd: Nullable<Double>.value(500)
+                ),
+                disputeAlertFeeUsd: Nullable<Double>.value(29),
+                enforce3Ds: false,
+                financingDisabled: false,
+                highRiskProcessingFeePercentage: 0,
+                paymentMethodWarnings: [
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                ],
+                pendingAutoTopupFeePercentage: 2,
+                pendingBalanceDelayDays: 0,
+                reserve: AccountReserveControl(
+                    holdPeriodDays: 14,
+                    percentage: Nullable<Double>.value(15)
+                ),
+                resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                    cardThresholdUsd: Nullable<Double>.value(50),
+                    financingThresholdUsd: Nullable<Double>.value(25),
+                    locked: false,
+                    paypalThresholdUsd: Nullable<Double>.value(40)
+                ),
+                restrictedPaymentMethods: [
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "card"
+                ],
+                enabled: [
+                    "card"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "-1234.56",
+                    currency: "usd",
+                    decimals: 2,
+                    displayDecimals: 2
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            productTaxCode: Nullable<[String: JSONValue]>.value([
+                "id": JSONValue.string("ptc_xxxxxxxxxxxxxx"), 
+                "name": JSONValue.string("General - Digital Goods"), 
+                "product_type": JSONValue.string("digital")
+            ]),
+            recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                )
+            ]),
+            require2Fa: false,
+            requiredActions: Nullable<[AccountRequiredAction]>.value([
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "standard_payout"
+                    ],
+                    cta: Nullable<String>.value("https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/balance/"),
+                    ctaLabel: "Verify now",
+                    description: "Complete verification to withdraw your earnings.",
+                    iconUrl: Nullable<String>.value("https://whop.com/illustrations/orange/shield.svg"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "Complete your identity verification"
+                )
+            ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationProgress: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
+            route: "biz_xxxxxxxxxxxxxx",
+            sendCustomerEmails: false,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
+            socialLinks: [
+                AccountSocialLink(
+                    id: "social_1",
+                    title: Nullable<String>.value("@shinetimedetail"),
+                    url: "https://instagram.com/shinetimedetail",
+                    website: AccountSocialLinkWebsite.x
+                )
+            ],
+            status: Nullable<String>.value("active"),
+            statusReason: Nullable<String>.value("Suspended - Fraudulent activity"),
+            storePageConfig: AccountStorePageConfig(
+                accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                whopAffiliateLink: true
+            ),
+            targetAudience: Nullable<String>.value("Owners of new and enthusiast vehicles in Austin, TX"),
+            taxCollectionEnabledStates: [
+                "TX"
+            ],
+            taxIdentifiers: [
+                AccountTaxIdentifier(
+                    id: "txid_xxxxxxxxxxxxxx",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "DE123456789"
+                )
+            ],
+            taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+            taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("application/pdf"),
+                createdAt: "2026-01-01T12:00:00.000Z",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("evidence.pdf"),
+                height: Nullable<Int>.value(1),
+                id: "file_xxxxxxxxxxxxxx",
+                multipartChunkSize: Optional(Nullable<Int>.value(5242880)),
+                multipartUploadId: Optional(Nullable<String>.value("upload-id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf"
+                    )
+                ])),
+                object: "file",
+                removedByModeration: false,
+                size: Nullable<Int>.value(9670),
+                uploadHeaders: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/application.pdf")),
+                url: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/audio/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+            title: "Shine Time Auto Detailing",
+            totalEarnedUsd: Nullable<Double>.value(0),
+            totalUsd: Nullable<String>.value("50.00"),
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        ),
+                        withdrawable: Money(
+                            amount: "-1234.56",
+                            currency: "usd",
+                            decimals: 2,
+                            displayDecimals: 2
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            hyperliquid: Nullable<TradingHyperliquidPosition>.value(TradingHyperliquidPosition(
+                                cumulativeFunding: TradingCumulativeFunding(
+                                    allTime: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceChange: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    sinceOpen: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    ))
+                                ),
+                                leverage: TradingPositionLeverage(
+                                    type: TradingPositionLeverageType.cross,
+                                    value: 1
+                                ),
+                                liquidationPrice: Nullable<Money>.value(Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                )),
+                                marginUsed: Money(
+                                    amount: "-1234.56",
+                                    currency: "usd",
+                                    decimals: 2,
+                                    displayDecimals: 2
+                                ),
+                                returnOnEquity: "return_on_equity"
+                            )),
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            )),
+                            costBasis: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "-1234.56",
+                                currency: "usd",
+                                decimals: 2,
+                                displayDecimals: 2
+                            ),
+                            unrealizedPnlPercentage: .null
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: false,
+            verification: [
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
+            ],
+            volumeL30DUsd: Nullable<Double>.value(0),
+            volumeUsd: Nullable<Double>.value(1.1),
+            wallet: Nullable<AccountWallet>.value(AccountWallet(
+                address: "0xabc123",
+                id: "cwal_xxxxxxxxxxxxxx",
+                network: AccountWalletNetwork.solana
+            )),
+            website: Nullable<String>.value("https://shinetimedetail.com"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+        )
+        let response = try await client.accounts.suspend(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func suspend2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ads_spend_usd": 1.1,
+                  "balances": [
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    },
+                    {
+                      "balance": "balance",
+                      "breakdown": {
+                        "available": "available",
+                        "finishing_settlement": "finishing_settlement",
+                        "in_transit": "in_transit",
+                        "pending": "pending",
+                        "pending_settlements": [
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          },
+                          {
+                            "amount": "amount",
+                            "date": "date"
+                          }
+                        ],
+                        "reserve": "reserve"
+                      },
+                      "icon_url": "icon_url",
+                      "name": "name",
+                      "price_usd": 1.1,
+                      "symbol": "symbol",
+                      "value_usd": "value_usd"
+                    }
+                  ],
+                  "banner_image_url": "banner_image_url",
+                  "business_address": {
+                    "business_address": {
+                      "key": "value"
+                    }
+                  },
+                  "business_name": "business_name",
+                  "business_type": "business_type",
+                  "can_transfer_pending_balance_to_children": true,
+                  "cancellation_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "capabilities": {
+                    "accept_bank_payments": "active",
+                    "accept_bnpl_payments": "active",
+                    "accept_card_payments": "active",
+                    "bank_deposit": "active",
+                    "card_deposit": "active",
+                    "card_issuing": "active",
+                    "crypto_deposit": "active",
+                    "crypto_payout": "active",
+                    "instant_payout": "active",
+                    "run_ads": "active",
+                    "standard_payout": "active",
+                    "transfer": "active"
+                  },
+                  "cards": {
+                    "kind": "individual",
+                    "status": "approved"
+                  },
+                  "collect_vat_id": true,
+                  "company_formation": {
+                    "documents": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "type": "type",
+                        "url": "url"
+                      }
+                    ],
+                    "ein_registered": true,
+                    "legal_name": "legal_name",
+                    "signatures": {
+                      "form8821": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      },
+                      "ss4": {
+                        "expires_at": "expires_at",
+                        "status": "pending",
+                        "url": "url"
+                      }
+                    },
+                    "state_registered": true,
+                    "status": "draft"
+                  },
+                  "country": "country",
+                  "created_at": "created_at",
+                  "customers_l30d": 1,
+                  "description": "description",
+                  "direct_reports_count": 1,
+                  "dispute_fighter_enabled": true,
+                  "economic_intelligence": true,
+                  "email": "email",
+                  "eula": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "external_id": "external_id",
+                  "financing": {
+                    "application_id": "application_id",
+                    "status": "requires_collection"
+                  },
+                  "funds_release_at": "funds_release_at",
+                  "home_preferences": [
+                    "hide_member_count",
+                    "hide_member_count"
+                  ],
+                  "id": "id",
+                  "industry_type": "industry_type",
+                  "invoice_prefix": "invoice_prefix",
+                  "level": {
+                    "account_level": 1,
+                    "applied_level": 1,
+                    "boosted": true,
+                    "levels": [
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      },
+                      {
+                        "level": 1,
+                        "minimum_spend": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "processing_rate_percentage": 1.1,
+                        "regional_rates": [
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          },
+                          {
+                            "processing_rate_percentage": 1.1,
+                            "region": "us_and_canada"
+                          }
+                        ]
+                      }
+                    ],
+                    "monthly_ads_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_card_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_qualifying_spend": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "monthly_trading_volume": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "points": 1,
+                    "points_by_source": {
+                      "ads": 1,
+                      "cards": 1,
+                      "partners": 1,
+                      "trading": 1
+                    },
+                    "points_to_next": 1,
+                    "resets_at": "resets_at"
+                  },
+                  "logo_url": "logo_url",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "onboarding_type": "platform",
+                  "opengraph_image_url": "opengraph_image_url",
+                  "opengraph_image_variant": "white",
+                  "orchestration_enabled": true,
+                  "other_business_description": "other_business_description",
+                  "other_industry_description": "other_industry_description",
+                  "owner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "parent_account": {
+                    "fees": {
+                      "fees": {
+                        "fixed_fee_usd": 1.1,
+                        "percentage_fee": 1.1
+                      }
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "partner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "referring_account": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "username": "username",
+                    "whop_partner_verified_at": "whop_partner_verified_at"
+                  },
+                  "payment_controls": {
+                    "dispute_alert_auto_refund": {
+                      "locked": true,
+                      "threshold_usd": 1.1
+                    },
+                    "dispute_alert_fee_usd": 1.1,
+                    "enforce_3ds": true,
+                    "financing_disabled": true,
+                    "high_risk_processing_fee_percentage": 1.1,
+                    "payment_method_warnings": [
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      },
+                      {
+                        "payment_method_warnings": {
+                          "key": "value"
+                        }
+                      }
+                    ],
+                    "pending_auto_topup_fee_percentage": 1.1,
+                    "pending_balance_delay_days": 1,
+                    "reserve": {
+                      "hold_period_days": 1,
+                      "percentage": 1.1
+                    },
+                    "resolution_center_auto_refund": {
+                      "card_threshold_usd": 1.1,
+                      "financing_threshold_usd": 1.1,
+                      "locked": true,
+                      "paypal_threshold_usd": 1.1
+                    },
+                    "restricted_payment_methods": [
+                      "card_visa",
+                      "card_visa"
+                    ],
+                    "undated_pending_reason": "kyc_incomplete",
+                    "withdrawal_schedule": {
+                      "day": 1,
+                      "frequency": "manual",
+                      "next_payout_date": "next_payout_date"
+                    }
+                  },
+                  "payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "platform_credits": [
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    }
+                  ],
+                  "privacy_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "product_tax_code": {
+                    "product_tax_code": {
+                      "key": "value"
+                    }
+                  },
+                  "recommended_actions": [
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    },
+                    {
+                      "action": "theme_business",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "impact_score": 1,
+                      "reasoning": "reasoning",
+                      "status": "optional",
+                      "title": "title"
+                    }
+                  ],
+                  "require_2fa": true,
+                  "required_actions": [
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    },
+                    {
+                      "action": "deposit_funds",
+                      "blocked_capabilities": [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                      ],
+                      "cta": "cta",
+                      "cta_label": "cta_label",
+                      "description": "description",
+                      "icon_url": "icon_url",
+                      "status": "required",
+                      "title": "title"
+                    }
+                  ],
+                  "return_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "rewards": [
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    },
+                    {
+                      "id": "id",
+                      "qualification_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_progress": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "qualification_type": "sales",
+                      "reward_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "status": "in_progress"
+                    }
+                  ],
+                  "route": "route",
+                  "send_customer_emails": true,
+                  "shipping_policy": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "show_joined_whops": true,
+                  "show_reviews_dtc": true,
+                  "show_user_directory": true,
+                  "social_links": [
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    },
+                    {
+                      "id": "id",
+                      "title": "title",
+                      "url": "url",
+                      "website": "x"
+                    }
+                  ],
+                  "status": "status",
+                  "status_reason": "status_reason",
+                  "store_page_config": {
+                    "accent_color": "ruby",
+                    "layout": "featured",
+                    "profile_variant": "personal",
+                    "whop_affiliate_link": true
+                  },
+                  "target_audience": "target_audience",
+                  "tax_collection_enabled_states": [
+                    "tax_collection_enabled_states",
+                    "tax_collection_enabled_states"
+                  ],
+                  "tax_identifiers": [
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    },
+                    {
+                      "id": "id",
+                      "tax_id_type": "ad_nrt",
+                      "tax_id_value": "tax_id_value"
+                    }
+                  ],
+                  "tax_remitted_by": "whop",
+                  "tax_type": "inclusive",
+                  "terms_of_service": {
+                    "blurhash": "blurhash",
+                    "content_type": "content_type",
+                    "created_at": "created_at",
+                    "duration_seconds": 1.1,
+                    "filename": "filename",
+                    "height": 1,
+                    "id": "id",
+                    "multipart_chunk_size": 1,
+                    "multipart_upload_id": "multipart_upload_id",
+                    "multipart_upload_urls": [
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      },
+                      {
+                        "part_number": 1,
+                        "url": "url"
+                      }
+                    ],
+                    "object": "object",
+                    "removed_by_moderation": true,
+                    "size": 1,
+                    "upload_headers": {
+                      "upload_headers": {
+                        "key": "value"
+                      }
+                    },
+                    "upload_status": "pending",
+                    "upload_url": "upload_url",
+                    "url": "url",
+                    "visibility": "public",
+                    "waveform_url": "waveform_url",
+                    "width": 1
+                  },
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "total_earned_usd": 1.1,
+                  "total_usd": "total_usd",
+                  "trading": {
+                    "account_id": "account_id",
+                    "hyperliquid": {
+                      "address": "address",
+                      "depositable": "depositable",
+                      "margin_summary": {
+                        "account_value": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_margin_used": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "total_position_notional": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "withdrawable": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        }
+                      },
+                      "positions": [
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        },
+                        {
+                          "entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "hyperliquid": null,
+                          "id": "id",
+                          "market": "market",
+                          "object": "trading_position",
+                          "position_value": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "side": "long",
+                          "size": "size",
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          }
+                        }
+                      ],
+                      "websocket_subscriptions": [
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        },
+                        {
+                          "channel": "clearinghouse_state",
+                          "message": "message"
+                        }
+                      ],
+                      "websocket_url": "websocket_url"
+                    },
+                    "id": "id",
+                    "object": "trading_account",
+                    "provider": "hyperliquid",
+                    "spot": {
+                      "holdings": [
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        },
+                        {
+                          "average_entry_price": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "cost_basis": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "market": "market",
+                          "realized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "unrealized_pnl_percentage": 1.1
+                        }
+                      ]
+                    },
+                    "user_id": "user_id"
+                  },
+                  "use_logo_as_opengraph_image_fallback": true,
+                  "verification": {
+                    "verification": {
+                      "key": "value"
+                    }
+                  },
+                  "volume_l30d_usd": 1.1,
+                  "volume_usd": 1.1,
+                  "wallet": {
+                    "address": "address",
+                    "id": "id",
+                    "network": "solana"
+                  },
+                  "website": "website",
+                  "whop_partner_enabled_at": "whop_partner_enabled_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Account(
+            adsSpendUsd: Nullable<Double>.value(1.1),
+            balances: [
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                ),
+                AccountBalanceToken(
+                    balance: "balance",
+                    breakdown: AccountBalanceBreakdown(
+                        available: "available",
+                        finishingSettlement: "finishing_settlement",
+                        inTransit: "in_transit",
+                        pending: "pending",
+                        pendingSettlements: [
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            ),
+                            AccountBalanceSettlement(
+                                amount: "amount",
+                                date: "date"
+                            )
+                        ],
+                        reserve: "reserve"
+                    ),
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    name: "name",
+                    priceUsd: Nullable<Double>.value(1.1),
+                    symbol: "symbol",
+                    valueUsd: Nullable<String>.value("value_usd")
+                )
+            ],
+            bannerImageUrl: Nullable<String>.value("banner_image_url"),
+            businessAddress: Nullable<[String: JSONValue]>.value([
+                "business_address": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            businessName: Nullable<String>.value("business_name"),
+            businessType: Nullable<String>.value("business_type"),
+            canTransferPendingBalanceToChildren: true,
+            cancellationPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            capabilities: Nullable<AccountCapabilities>.value(AccountCapabilities(
+                acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                bankDeposit: AccountCapabilitiesBankDeposit.active,
+                cardDeposit: AccountCapabilitiesCardDeposit.active,
+                cardIssuing: AccountCapabilitiesCardIssuing.active,
+                cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                instantPayout: AccountCapabilitiesInstantPayout.active,
+                runAds: AccountCapabilitiesRunAds.active,
+                standardPayout: AccountCapabilitiesStandardPayout.active,
+                transfer: AccountCapabilitiesTransfer.active
+            )),
+            cards: Nullable<AccountCards>.value(AccountCards(
+                kind: Nullable<AccountCardsKind>.value(AccountCardsKind.individual),
+                status: AccountCardsStatus.approved
+            )),
+            collectVatId: true,
+            companyFormation: AccountCompanyFormation(
+                documents: Optional([
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    ),
+                    AccountCompanyFormationDocument(
+                        id: "id",
+                        name: "name",
+                        type: "type",
+                        url: "url"
+                    )
+                ]),
+                einRegistered: Optional(true),
+                legalName: Optional(Nullable<String>.value("legal_name")),
+                signatures: Optional(AccountCompanyFormationSignatures(
+                    form8821: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    )),
+                    ss4: Optional(AccountCompanyFormationSignatureRequest(
+                        expiresAt: Optional("expires_at"),
+                        status: AccountCompanyFormationSignatureRequestStatus.pending,
+                        url: Optional("url")
+                    ))
+                )),
+                stateRegistered: Optional(true),
+                status: Optional(AccountCompanyFormationStatus.draft)
+            ),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            customersL30D: Nullable<Int>.value(1),
+            description: Nullable<String>.value("description"),
+            directReportsCount: Optional(1),
+            disputeFighterEnabled: true,
+            economicIntelligence: true,
+            email: Nullable<String>.value("email"),
+            eula: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            externalId: Nullable<String>.value("external_id"),
+            financing: Nullable<AccountFinancing>.value(AccountFinancing(
+                applicationId: "application_id",
+                status: AccountFinancingStatus.requiresCollection
+            )),
+            fundsReleaseAt: Nullable<String>.value("funds_release_at"),
+            homePreferences: [
+                AccountHomePreferencesItem.hideMemberCount,
+                AccountHomePreferencesItem.hideMemberCount
+            ],
+            id: "id",
+            industryType: Nullable<String>.value("industry_type"),
+            invoicePrefix: Nullable<String>.value("invoice_prefix"),
+            level: Nullable<AccountLevel>.value(AccountLevel(
+                accountLevel: 1,
+                appliedLevel: 1,
+                boosted: true,
+                levels: [
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    ),
+                    AccountProcessingOfferLevel(
+                        level: 1,
+                        minimumSpend: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        processingRatePercentage: 1.1,
+                        regionalRates: [
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            ),
+                            AccountProcessingOfferRegionalRate(
+                                processingRatePercentage: 1.1,
+                                region: AccountProcessingOfferRegionalRateRegion.usAndCanada
+                            )
+                        ]
+                    )
+                ],
+                monthlyAdsSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyCardSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyQualifyingSpend: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                monthlyTradingVolume: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                points: 1,
+                pointsBySource: OwnerLevelPoints(
+                    ads: 1,
+                    cards: 1,
+                    partners: 1,
+                    trading: 1
+                ),
+                pointsToNext: Nullable<Int>.value(1),
+                resetsAt: "resets_at"
+            )),
+            logoUrl: Nullable<String>.value("logo_url"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            onboardingType: Nullable<AccountOnboardingType>.value(AccountOnboardingType.platform),
+            opengraphImageUrl: Nullable<String>.value("opengraph_image_url"),
+            opengraphImageVariant: Nullable<AccountOpengraphImageVariant>.value(AccountOpengraphImageVariant.white),
+            orchestrationEnabled: true,
+            otherBusinessDescription: Nullable<String>.value("other_business_description"),
+            otherIndustryDescription: Nullable<String>.value("other_industry_description"),
+            owner: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ),
+            parentAccount: Nullable<AccountParent>.value(AccountParent(
+                fees: Optional([
+                    "fees": AccountParentFeesValue(
+                        fixedFeeUsd: 1.1,
+                        percentageFee: 1.1
+                    )
+                ]),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            partner: Optional(Nullable<AccountPartner>.value(AccountPartner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                referringAccount: Nullable<AccountSummary>.value(AccountSummary(
+                    id: "id",
+                    title: "title"
+                )),
+                username: "username",
+                whopPartnerVerifiedAt: Nullable<String>.value("whop_partner_verified_at")
+            ))),
+            paymentControls: Nullable<AccountPaymentControls>.value(AccountPaymentControls(
+                disputeAlertAutoRefund: AccountDisputeAlertAutoRefundControl(
+                    locked: true,
+                    thresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                disputeAlertFeeUsd: Nullable<Double>.value(1.1),
+                enforce3Ds: true,
+                financingDisabled: true,
+                highRiskProcessingFeePercentage: 1.1,
+                paymentMethodWarnings: [
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    [
+                        "payment_method_warnings": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]
+                ],
+                pendingAutoTopupFeePercentage: 1.1,
+                pendingBalanceDelayDays: 1,
+                reserve: AccountReserveControl(
+                    holdPeriodDays: 1,
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                resolutionCenterAutoRefund: AccountResolutionCenterAutoRefundControl(
+                    cardThresholdUsd: Nullable<Double>.value(1.1),
+                    financingThresholdUsd: Nullable<Double>.value(1.1),
+                    locked: true,
+                    paypalThresholdUsd: Nullable<Double>.value(1.1)
+                ),
+                restrictedPaymentMethods: [
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa,
+                    AccountPaymentControlsRestrictedPaymentMethodsItem.cardVisa
+                ],
+                undatedPendingReason: Nullable<AccountPaymentControlsUndatedPendingReason>.value(AccountPaymentControlsUndatedPendingReason.kycIncomplete),
+                withdrawalSchedule: AccountWithdrawalScheduleControl(
+                    day: Nullable<Int>.value(1),
+                    frequency: AccountWithdrawalScheduleControlFrequency.manual,
+                    nextPayoutDate: Nullable<String>.value("next_payout_date")
+                )
+            )),
+            paymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            platformCredits: [
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )
+            ],
+            privacyPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            productTaxCode: Nullable<[String: JSONValue]>.value([
+                "product_tax_code": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                ),
+                AccountRecommendedAction(
+                    action: AccountRecommendedActionAction.themeBusiness,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: "cta",
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    impactScore: Nullable<Int>.value(1),
+                    reasoning: Nullable<String>.value("reasoning"),
+                    status: AccountRecommendedActionStatus.optional,
+                    title: "title"
+                )
+            ]),
+            require2Fa: true,
+            requiredActions: Nullable<[AccountRequiredAction]>.value([
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                ),
+                AccountRequiredAction(
+                    action: AccountRequiredActionAction.depositFunds,
+                    blockedCapabilities: [
+                        "blocked_capabilities",
+                        "blocked_capabilities"
+                    ],
+                    cta: Nullable<String>.value("cta"),
+                    ctaLabel: "cta_label",
+                    description: "description",
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    status: AccountRequiredActionStatus.required,
+                    title: "title"
+                )
+            ]),
+            returnPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            rewards: Optional([
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                ),
+                AccountPartnerReward(
+                    id: "id",
+                    qualificationAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationProgress: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    qualificationType: AccountPartnerRewardQualificationType.sales,
+                    rewardAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    status: AccountPartnerRewardStatus.inProgress
+                )
+            ]),
+            route: "route",
+            sendCustomerEmails: true,
+            shippingPolicy: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            showJoinedWhops: true,
+            showReviewsDtc: true,
+            showUserDirectory: true,
+            socialLinks: [
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                ),
+                AccountSocialLink(
+                    id: "id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    website: AccountSocialLinkWebsite.x
+                )
+            ],
+            status: Nullable<String>.value("status"),
+            statusReason: Nullable<String>.value("status_reason"),
+            storePageConfig: AccountStorePageConfig(
+                accentColor: Nullable<AccountStorePageConfigAccentColor>.value(AccountStorePageConfigAccentColor.ruby),
+                layout: Nullable<AccountStorePageConfigLayout>.value(AccountStorePageConfigLayout.featured),
+                profileVariant: Nullable<AccountStorePageConfigProfileVariant>.value(AccountStorePageConfigProfileVariant.personal),
+                whopAffiliateLink: true
+            ),
+            targetAudience: Nullable<String>.value("target_audience"),
+            taxCollectionEnabledStates: [
+                "tax_collection_enabled_states",
+                "tax_collection_enabled_states"
+            ],
+            taxIdentifiers: [
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                ),
+                AccountTaxIdentifier(
+                    id: "id",
+                    taxIdType: AccountTaxIdentifierTaxIdType.adNrt,
+                    taxIdValue: "tax_id_value"
+                )
+            ],
+            taxRemittedBy: Nullable<AccountTaxRemittedBy>.value(AccountTaxRemittedBy.whop),
+            taxType: Nullable<AccountTaxType>.value(AccountTaxType.inclusive),
+            termsOfService: Nullable<File>.value(File(
+                blurhash: Nullable<String>.value("blurhash"),
+                contentType: Nullable<String>.value("content_type"),
+                createdAt: "created_at",
+                durationSeconds: Nullable<Double>.value(1.1),
+                filename: Nullable<String>.value("filename"),
+                height: Nullable<Int>.value(1),
+                id: "id",
+                multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    ),
+                    FileMultipartUrl(
+                        partNumber: 1,
+                        url: "url"
+                    )
+                ])),
+                object: "object",
+                removedByModeration: true,
+                size: Nullable<Int>.value(1),
+                uploadHeaders: Optional([
+                    "upload_headers": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                uploadStatus: FileUploadStatus.pending,
+                uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                url: Nullable<String>.value("url"),
+                visibility: FileVisibility.public,
+                waveformUrl: Nullable<String>.value("waveform_url"),
+                width: Nullable<Int>.value(1)
+            )),
+            threeDsLevel: Nullable<AccountThreeDsLevel>.value(AccountThreeDsLevel.mandateChallenge),
+            title: "title",
+            totalEarnedUsd: Nullable<Double>.value(1.1),
+            totalUsd: Nullable<String>.value("total_usd"),
+            trading: Nullable<TradingAccount>.value(TradingAccount(
+                accountId: Nullable<String>.value("account_id"),
+                hyperliquid: Nullable<TradingHyperliquidAccount>.value(TradingHyperliquidAccount(
+                    address: "address",
+                    depositable: Nullable<String>.value("depositable"),
+                    marginSummary: Nullable<TradingMarginSummary>.value(TradingMarginSummary(
+                        accountValue: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalMarginUsed: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        totalPositionNotional: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        withdrawable: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )
+                    )),
+                    positions: Nullable<[TradingPosition]>.value([
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        ),
+                        TradingPosition(
+                            entryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            hyperliquid: .null,
+                            id: "id",
+                            market: "market",
+                            object: TradingPositionObject.tradingPosition,
+                            positionValue: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            side: TradingPositionSide.long,
+                            size: "size",
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )
+                        )
+                    ]),
+                    websocketSubscriptions: [
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        ),
+                        TradingWebsocketSubscription(
+                            channel: TradingWebsocketSubscriptionChannel.clearinghouseState,
+                            message: "message"
+                        )
+                    ],
+                    websocketUrl: "websocket_url"
+                )),
+                id: "id",
+                object: TradingAccountObject.tradingAccount,
+                provider: TradingAccountProvider.hyperliquid,
+                spot: Nullable<TradingSpotAccount>.value(TradingSpotAccount(
+                    holdings: [
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        ),
+                        TradingSpotHolding(
+                            averageEntryPrice: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            costBasis: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            market: "market",
+                            realizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnl: Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            ),
+                            unrealizedPnlPercentage: Nullable<Double>.value(1.1)
+                        )
+                    ]
+                )),
+                userId: Nullable<String>.value("user_id")
+            )),
+            useLogoAsOpengraphImageFallback: true,
+            verification: [
+                "verification": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            volumeL30DUsd: Nullable<Double>.value(1.1),
+            volumeUsd: Nullable<Double>.value(1.1),
+            wallet: Nullable<AccountWallet>.value(AccountWallet(
+                address: "address",
+                id: "id",
+                network: AccountWalletNetwork.solana
+            )),
+            website: Nullable<String>.value("website"),
+            whopPartnerEnabledAt: Optional(Nullable<String>.value("whop_partner_enabled_at"))
+        )
+        let response = try await client.accounts.suspend(
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -2530,6 +21196,33 @@ import WhopSDK
         let response = try await client.accounts.transferOwnership(
             id: "id",
             request: .init(identifier: "marcus@shinetime.example"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func transferOwnership2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "success": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = TransferOwnershipAccountsResponse(
+            success: true
+        )
+        let response = try await client.accounts.transferOwnership(
+            id: "id",
+            request: .init(identifier: "identifier"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

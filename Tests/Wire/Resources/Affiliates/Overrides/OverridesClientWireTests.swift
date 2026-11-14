@@ -73,6 +73,102 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "applies_to_payments": "first_payment",
+                      "applies_to_products": "single_product",
+                      "checkout_direct_link": "checkout_direct_link",
+                      "commission_type": "percentage",
+                      "commission_value": 1.1,
+                      "id": "id",
+                      "override_type": "standard",
+                      "plan_id": "plan_id",
+                      "product_direct_link": "product_direct_link",
+                      "product_id": "product_id",
+                      "revenue_basis": "pre_fees",
+                      "total_referral_earnings_usd": 1.1
+                    },
+                    {
+                      "applies_to_payments": "first_payment",
+                      "applies_to_products": "single_product",
+                      "checkout_direct_link": "checkout_direct_link",
+                      "commission_type": "percentage",
+                      "commission_value": 1.1,
+                      "id": "id",
+                      "override_type": "standard",
+                      "plan_id": "plan_id",
+                      "product_direct_link": "product_direct_link",
+                      "product_id": "product_id",
+                      "revenue_basis": "pre_fees",
+                      "total_referral_earnings_usd": 1.1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListOverridesResponse(
+            data: [
+                ListOverridesResponseDataItem(
+                    appliesToPayments: Nullable<AffiliateAppliesToPayments>.value(AffiliateAppliesToPayments.firstPayment),
+                    appliesToProducts: Nullable<AffiliateAppliesToProducts>.value(AffiliateAppliesToProducts.singleProduct),
+                    checkoutDirectLink: Nullable<String>.value("checkout_direct_link"),
+                    commissionType: AffiliatePayoutTypes.percentage,
+                    commissionValue: 1.1,
+                    id: "id",
+                    overrideType: AffiliateOverrideRoles.standard,
+                    planId: Nullable<String>.value("plan_id"),
+                    productDirectLink: Nullable<String>.value("product_direct_link"),
+                    productId: Nullable<String>.value("product_id"),
+                    revenueBasis: Nullable<AffiliateRevenueBases>.value(AffiliateRevenueBases.preFees),
+                    totalReferralEarningsUsd: 1.1
+                ),
+                ListOverridesResponseDataItem(
+                    appliesToPayments: Nullable<AffiliateAppliesToPayments>.value(AffiliateAppliesToPayments.firstPayment),
+                    appliesToProducts: Nullable<AffiliateAppliesToProducts>.value(AffiliateAppliesToProducts.singleProduct),
+                    checkoutDirectLink: Nullable<String>.value("checkout_direct_link"),
+                    commissionType: AffiliatePayoutTypes.percentage,
+                    commissionValue: 1.1,
+                    id: "id",
+                    overrideType: AffiliateOverrideRoles.standard,
+                    planId: Nullable<String>.value("plan_id"),
+                    productDirectLink: Nullable<String>.value("product_direct_link"),
+                    productId: Nullable<String>.value("product_id"),
+                    revenueBasis: Nullable<AffiliateRevenueBases>.value(AffiliateRevenueBases.preFees),
+                    totalReferralEarningsUsd: 1.1
+                )
+            ],
+            pageInfo: PageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.affiliates.overrides.list(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -121,6 +217,61 @@ import WhopSDK
                     commissionValue: 6.9,
                     id: "id",
                     planId: "plan_xxxxxxxxxxxxx"
+                )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "applies_to_payments": "first_payment",
+                  "applies_to_products": "single_product",
+                  "checkout_direct_link": "checkout_direct_link",
+                  "commission_type": "percentage",
+                  "commission_value": 1.1,
+                  "id": "id",
+                  "override_type": "standard",
+                  "plan_id": "plan_id",
+                  "product_direct_link": "product_direct_link",
+                  "product_id": "product_id",
+                  "revenue_basis": "pre_fees",
+                  "total_referral_earnings_usd": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateOverridesResponse(
+            appliesToPayments: Nullable<AffiliateAppliesToPayments>.value(AffiliateAppliesToPayments.firstPayment),
+            appliesToProducts: Nullable<AffiliateAppliesToProducts>.value(AffiliateAppliesToProducts.singleProduct),
+            checkoutDirectLink: Nullable<String>.value("checkout_direct_link"),
+            commissionType: AffiliatePayoutTypes.percentage,
+            commissionValue: 1.1,
+            id: "id",
+            overrideType: AffiliateOverrideRoles.standard,
+            planId: Nullable<String>.value("plan_id"),
+            productDirectLink: Nullable<String>.value("product_direct_link"),
+            productId: Nullable<String>.value("product_id"),
+            revenueBasis: Nullable<AffiliateRevenueBases>.value(AffiliateRevenueBases.preFees),
+            totalReferralEarningsUsd: 1.1
+        )
+        let response = try await client.affiliates.overrides.create(
+            id: "id",
+            request: CreateOverridesRequestBody.standard(
+                CreateOverridesRequestBodyStandard(
+                    commissionValue: 1.1,
+                    id: "id",
+                    planId: "plan_id"
                 )
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -177,6 +328,55 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "applies_to_payments": "first_payment",
+                  "applies_to_products": "single_product",
+                  "checkout_direct_link": "checkout_direct_link",
+                  "commission_type": "percentage",
+                  "commission_value": 1.1,
+                  "id": "id",
+                  "override_type": "standard",
+                  "plan_id": "plan_id",
+                  "product_direct_link": "product_direct_link",
+                  "product_id": "product_id",
+                  "revenue_basis": "pre_fees",
+                  "total_referral_earnings_usd": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrieveOverridesResponse(
+            appliesToPayments: Nullable<AffiliateAppliesToPayments>.value(AffiliateAppliesToPayments.firstPayment),
+            appliesToProducts: Nullable<AffiliateAppliesToProducts>.value(AffiliateAppliesToProducts.singleProduct),
+            checkoutDirectLink: Nullable<String>.value("checkout_direct_link"),
+            commissionType: AffiliatePayoutTypes.percentage,
+            commissionValue: 1.1,
+            id: "id",
+            overrideType: AffiliateOverrideRoles.standard,
+            planId: Nullable<String>.value("plan_id"),
+            productDirectLink: Nullable<String>.value("product_direct_link"),
+            productId: Nullable<String>.value("product_id"),
+            revenueBasis: Nullable<AffiliateRevenueBases>.value(AffiliateRevenueBases.preFees),
+            totalReferralEarningsUsd: 1.1
+        )
+        let response = try await client.affiliates.overrides.retrieve(
+            id: "id",
+            overrideId: "override_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -194,6 +394,29 @@ import WhopSDK
         let expectedResponse = true
         let response = try await client.affiliates.overrides.delete(
             id: "aff_xxxxxxxxxxxxxx",
+            overrideId: "override_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.affiliates.overrides.delete(
+            id: "id",
             overrideId: "override_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -243,6 +466,56 @@ import WhopSDK
         )
         let response = try await client.affiliates.overrides.update(
             id: "aff_xxxxxxxxxxxxxx",
+            overrideId: "override_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "applies_to_payments": "first_payment",
+                  "applies_to_products": "single_product",
+                  "checkout_direct_link": "checkout_direct_link",
+                  "commission_type": "percentage",
+                  "commission_value": 1.1,
+                  "id": "id",
+                  "override_type": "standard",
+                  "plan_id": "plan_id",
+                  "product_direct_link": "product_direct_link",
+                  "product_id": "product_id",
+                  "revenue_basis": "pre_fees",
+                  "total_referral_earnings_usd": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = UpdateOverridesResponse(
+            appliesToPayments: Nullable<AffiliateAppliesToPayments>.value(AffiliateAppliesToPayments.firstPayment),
+            appliesToProducts: Nullable<AffiliateAppliesToProducts>.value(AffiliateAppliesToProducts.singleProduct),
+            checkoutDirectLink: Nullable<String>.value("checkout_direct_link"),
+            commissionType: AffiliatePayoutTypes.percentage,
+            commissionValue: 1.1,
+            id: "id",
+            overrideType: AffiliateOverrideRoles.standard,
+            planId: Nullable<String>.value("plan_id"),
+            productDirectLink: Nullable<String>.value("product_direct_link"),
+            productId: Nullable<String>.value("product_id"),
+            revenueBasis: Nullable<AffiliateRevenueBases>.value(AffiliateRevenueBases.preFees),
+            totalReferralEarningsUsd: 1.1
+        )
+        let response = try await client.affiliates.overrides.update(
+            id: "id",
             overrideId: "override_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

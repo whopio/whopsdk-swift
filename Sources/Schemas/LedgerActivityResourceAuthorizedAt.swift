@@ -11,6 +11,8 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
     public let declinedReason: Nullable<String>
     /// Card transaction ID.
     public let id: String
+    /// Whop Levels points this transaction earned for the business, as a decimal string. Negative for a refund that takes them back. Null when it earns none: a transaction that hasn't settled, was declined, or was made on a personal card.
+    public let levelsPoints: Nullable<String>
     /// Amount the merchant charged in their local currency, as a decimal string. Pair with local_currency.
     public let localAmount: Nullable<String>
     /// ISO 4217 currency code of the merchant-charged amount in local_amount.
@@ -26,7 +28,7 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
     public let postedAt: Nullable<Date>
     /// Current card transaction status.
     public let status: Nullable<String>
-    /// The processor-settled USD amount as a decimal string. The ledger's USDT leg is posted 1:1 from this value.
+    /// The processor-settled USD amount as a decimal string.
     public let usdAmount: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -37,6 +39,7 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
         cashbackUsd: Nullable<String>,
         declinedReason: Nullable<String>,
         id: String,
+        levelsPoints: Nullable<String>,
         localAmount: Nullable<String>,
         localCurrency: Nullable<String>,
         merchantCategory: Nullable<String>,
@@ -53,6 +56,7 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
         self.cashbackUsd = cashbackUsd
         self.declinedReason = declinedReason
         self.id = id
+        self.levelsPoints = levelsPoints
         self.localAmount = localAmount
         self.localCurrency = localCurrency
         self.merchantCategory = merchantCategory
@@ -72,6 +76,7 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
         self.cashbackUsd = try container.decode(Nullable<String>.self, forKey: .cashbackUsd)
         self.declinedReason = try container.decode(Nullable<String>.self, forKey: .declinedReason)
         self.id = try container.decode(String.self, forKey: .id)
+        self.levelsPoints = try container.decode(Nullable<String>.self, forKey: .levelsPoints)
         self.localAmount = try container.decode(Nullable<String>.self, forKey: .localAmount)
         self.localCurrency = try container.decode(Nullable<String>.self, forKey: .localCurrency)
         self.merchantCategory = try container.decode(Nullable<String>.self, forKey: .merchantCategory)
@@ -92,6 +97,7 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
         try container.encode(self.cashbackUsd, forKey: .cashbackUsd)
         try container.encode(self.declinedReason, forKey: .declinedReason)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.levelsPoints, forKey: .levelsPoints)
         try container.encode(self.localAmount, forKey: .localAmount)
         try container.encode(self.localCurrency, forKey: .localCurrency)
         try container.encode(self.merchantCategory, forKey: .merchantCategory)
@@ -110,6 +116,7 @@ public struct LedgerActivityResourceAuthorizedAt: Codable, Hashable, Sendable {
         case cashbackUsd = "cashback_usd"
         case declinedReason = "declined_reason"
         case id
+        case levelsPoints = "levels_points"
         case localAmount = "local_amount"
         case localCurrency = "local_currency"
         case merchantCategory = "merchant_category"

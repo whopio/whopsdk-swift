@@ -1,16 +1,16 @@
 import Foundation
 
-/// What the preference applies to. `null` on a dimension means the preference is not narrowed there.
+/// What the preference applies to. `null` on a dimension means the preference is not narrowed there. A scope read back from either list endpoint can be sent as-is. A scope naming an experience with no topic sets that experience's level; any other scope sets a topic override.
 public struct SetNotificationsRequestPreferencesItemScope: Codable, Hashable, Sendable {
     /// Account to scope the preference to (member notifications), `biz_` tag.
     public let accountId: Nullable<String>?
-    /// Delivery channel the preference applies to. Required when setting a topic override.
+    /// Delivery channel the preference applies to. Omit it (or pass `null`) to apply the preference to every channel.
     public let channel: Nullable<SetNotificationsRequestPreferencesItemScopeChannel>?
     /// Experience to scope the preference to (`exp_` tag). Requires `account_id` when a `topic_id` is also given.
     public let experienceId: Nullable<String>?
     /// Account whose team notifications the preference is scoped to, `biz_` tag.
     public let teamAccountId: Nullable<String>?
-    /// Notification topic to scope the preference to, `topic_` tag.
+    /// Notification topic to scope the preference to, `topic_` tag. Topic IDs come from `GET /notifications/topics`.
     public let topicId: Nullable<String>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

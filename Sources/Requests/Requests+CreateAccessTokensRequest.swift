@@ -3,7 +3,7 @@ import Foundation
 extension Requests {
     public struct CreateAccessTokensRequest: Codable, Hashable, Sendable {
         /// The unique identifier of the company to generate the token for, starting with 'biz_'. The API key must have permission to access this company.
-        public let companyId: Nullable<String>?
+        public let accountId: Nullable<String>?
         /// The expiration timestamp for the access token. Defaults to 1 hour from now, with a maximum of 3 hours.
         public let expiresAt: Nullable<Date>?
         /// An array of permission scopes to grant to the access token. If empty or omitted, all permissions from the authenticating credential are inherited. Must be a subset of the credential's permissions.
@@ -14,13 +14,13 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            companyId: Nullable<String>? = nil,
+            accountId: Nullable<String>? = nil,
             expiresAt: Nullable<Date>? = nil,
             scopedActions: Nullable<[String]>? = nil,
             userId: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.companyId = companyId
+            self.accountId = accountId
             self.expiresAt = expiresAt
             self.scopedActions = scopedActions
             self.userId = userId
@@ -29,7 +29,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.companyId = try container.decodeNullableIfPresent(String.self, forKey: .companyId)
+            self.accountId = try container.decodeNullableIfPresent(String.self, forKey: .accountId)
             self.expiresAt = try container.decodeNullableIfPresent(Date.self, forKey: .expiresAt)
             self.scopedActions = try container.decodeNullableIfPresent([String].self, forKey: .scopedActions)
             self.userId = try container.decodeNullableIfPresent(String.self, forKey: .userId)
@@ -39,7 +39,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeNullableIfPresent(self.companyId, forKey: .companyId)
+            try container.encodeNullableIfPresent(self.accountId, forKey: .accountId)
             try container.encodeNullableIfPresent(self.expiresAt, forKey: .expiresAt)
             try container.encodeNullableIfPresent(self.scopedActions, forKey: .scopedActions)
             try container.encodeNullableIfPresent(self.userId, forKey: .userId)
@@ -47,7 +47,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case companyId = "company_id"
+            case accountId = "account_id"
             case expiresAt = "expires_at"
             case scopedActions = "scoped_actions"
             case userId = "user_id"

@@ -14,7 +14,10 @@ public final class NotificationsExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.preferences.notifications.experiences.list()
     /// }
@@ -22,8 +25,8 @@ public final class NotificationsExperiencesClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter first: The number of preferences to return.
-    /// - Parameter after: A cursor; returns preferences after this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(first: Int? = nil, after: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListExperiencesResponseType {
         return try await httpClient.performRequest(

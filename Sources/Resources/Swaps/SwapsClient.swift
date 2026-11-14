@@ -7,46 +7,53 @@ public final class SwapsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieve the account's completed or pending swaps — currently just the latest one.
+    /// Lists the completed or pending swaps for an account or user — currently only the most recent one.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
-    ///     _ = try await client.swaps.list(accountId: "account_id")
+    ///     _ = try await client.swaps.list()
     /// }
     ///
     /// try await main()
     /// ```
     ///
-    /// - Parameter accountId: Business or user account ID (biz_* / user_*).
+    /// - Parameter accountId: Business account whose swaps to list, prefixed `biz_`. Provide this or `user_id`.
+    /// - Parameter userId: The caller's own user ID, prefixed `user_`, to list swaps in their personal account. Provide this or `account_id`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListSwapsResponse {
+    public func list(accountId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListSwapsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/swaps",
             queryParams: [
-                "account_id": .string(accountId)
+                "account_id": accountId.map { .string($0) }, 
+                "user_id": userId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListSwapsResponse.self
         )
     }
 
-    /// Swaps one token for another from the account's wallet, or converts between fiat currencies in the account's ledger at the mid-market rate. Crypto swaps finish in the background — check the swap for its status.
+    /// Swaps one token for another in an account or user's wallet, or converts between their fiat balances. Crypto swaps finish in the background — retrieve the swap to follow its status.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.swaps.create(request: .init(
-    ///         accountId: "biz_xxxxxxxxxxxxxx",
     ///         fromToken: "usd",
     ///         toToken: "cad"
     ///     ))
@@ -66,14 +73,17 @@ public final class SwapsClient: Sendable {
         )
     }
 
-    /// Previews the price of a swap. Fiat pairs quote the in-ledger mid-market conversion — the same rate creating the swap fills at. No funds move and nothing is saved.
+    /// Previews the price of a swap before you create it. A fiat pair quotes the same rate creating the swap fills at; name the account with `account_id` or `user_id` to quote the rate for that account. No funds move, nothing is saved, and no authentication is required unless you name an account.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.swaps.createQuote(request: .init(
     ///         amount: "100",
@@ -96,14 +106,17 @@ public final class SwapsClient: Sendable {
         )
     }
 
-    /// Retrieves a single swap and its status.
+    /// Retrieves a swap and its status. Poll it after creating a crypto swap, which finishes in the background.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.swaps.retrieve(id: "id")
     /// }

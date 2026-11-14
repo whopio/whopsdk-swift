@@ -1,9 +1,28 @@
-# Specify files that shouldn't be modified by Fern
-#
-# auto-merge.yml is hand-written and arms Fern's own regeneration PRs. On pull_request_target
-# it enables auto-merge (squash) for a pull request opened by fern-api[bot] from an in-repo
-# fern-bot/* branch against the default branch, so the pull request merges itself once main's
-# required status checks pass. The trigger is pull_request_target rather than pull_request so
-# the workflow that arms a pull request is always the copy already on the base branch, never
-# the copy that pull request carries.
+# Core patches bridge fern-swift-sdk 0.37.3 wire defects. Remove each core entry
+# after generation produces the same behavior and its wire-contract tests pass
+# without the patch; do not replace the newer body/retry pipeline with an old template.
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes
+.github/workflows/ci.yml
+.github/workflows/publish-main.yml
+Sources/Core/Networking/HTTPClient.swift
+Sources/Core/Networking/QueryParameter.swift
+Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift
+Sources/Core/Serde/Serde.swift
+Sources/Core/Serde/Encoder+AdditionalProperties.swift
+Tests/Core/AuditWireContractTests.swift
+Tests/Core/QueryInputCoverageTests.swift
+Tests/Core/QueryStructuredInputTests.swift
+Tests/Core/CancellationContractTests.swift
+Tests/Core/EmptyObjectEncodingTests.swift
+Scripts/check-query-inputs.py
+Scripts/query-inputs.json
+# Remove this test-only repair when Fern emits valid null values and escaped optional self cases.
+Scripts/repair-generated-tests.py
+Scripts/test_repair_generated_tests.py
+
+# Remove after Fern emits bounded expected expressions that compile without factoring.
+Scripts/factor-generated-tests.py
+Scripts/test_factor_generated_tests.py
 .github/workflows/auto-merge.yml

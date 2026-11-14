@@ -10,6 +10,10 @@ extension Requests {
         public let credentialId: String
         /// A name for this passkey, usually the device it lives on. 255 characters or fewer.
         public let nickname: String
+        /// The `getTransports()` result from the registration response. Values Whop does not recognize are dropped.
+        public let transports: [String]?
+        /// The `creation_options.user.id` the passkey was created with. Must match the challenge's options.
+        public let userHandle: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -18,12 +22,16 @@ extension Requests {
             clientDataJson: String,
             credentialId: String,
             nickname: String,
+            transports: [String]? = nil,
+            userHandle: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.attestationObject = attestationObject
             self.clientDataJson = clientDataJson
             self.credentialId = credentialId
             self.nickname = nickname
+            self.transports = transports
+            self.userHandle = userHandle
             self.additionalProperties = additionalProperties
         }
 
@@ -33,6 +41,8 @@ extension Requests {
             self.clientDataJson = try container.decode(String.self, forKey: .clientDataJson)
             self.credentialId = try container.decode(String.self, forKey: .credentialId)
             self.nickname = try container.decode(String.self, forKey: .nickname)
+            self.transports = try container.decodeIfPresent([String].self, forKey: .transports)
+            self.userHandle = try container.decode(String.self, forKey: .userHandle)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -43,6 +53,8 @@ extension Requests {
             try container.encode(self.clientDataJson, forKey: .clientDataJson)
             try container.encode(self.credentialId, forKey: .credentialId)
             try container.encode(self.nickname, forKey: .nickname)
+            try container.encodeIfPresent(self.transports, forKey: .transports)
+            try container.encode(self.userHandle, forKey: .userHandle)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -51,6 +63,8 @@ extension Requests {
             case clientDataJson = "client_data_json"
             case credentialId = "credential_id"
             case nickname
+            case transports
+            case userHandle = "user_handle"
         }
     }
 }

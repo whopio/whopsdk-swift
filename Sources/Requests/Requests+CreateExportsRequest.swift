@@ -6,7 +6,7 @@ extension Requests {
         public let accountId: String?
         /// Column keys to include. Empty means all columns for the resource.
         public let columns: [String]?
-        /// Resource-specific filters. For native REST resources (`payouts`, `transfers`, `memberships`) these are the resource's own list query params; for dashboard tables they mirror the dashboard table filters.
+        /// Resource-specific filters. For a native REST resource, such as `payouts`, `transfers` or `products`, these are the query params of its list endpoint. For a dashboard table, they are the table's filters.
         public let filters: [String: JSONValue]?
         /// The resource to export, e.g. `payouts`, `receipts`, or `members`.
         public let resource: CreateExportsRequestResource

@@ -3,7 +3,7 @@ import Foundation
 extension Requests {
     public struct CreateFeeMarkupsRequest: Codable, Hashable, Sendable {
         /// The unique identifier of the company to create or update the fee markup for.
-        public let companyId: String
+        public let accountId: String
         /// The type of fee this markup applies to, such as processing or platform fees.
         public let feeType: FeeMarkupTypes
         /// The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
@@ -18,7 +18,7 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            companyId: String,
+            accountId: String,
             feeType: FeeMarkupTypes,
             fixedFeeUsd: Nullable<Double>? = nil,
             metadata: Nullable<[String: JSONValue]>? = nil,
@@ -26,7 +26,7 @@ extension Requests {
             percentageFee: Nullable<Double>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.companyId = companyId
+            self.accountId = accountId
             self.feeType = feeType
             self.fixedFeeUsd = fixedFeeUsd
             self.metadata = metadata
@@ -37,7 +37,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.companyId = try container.decode(String.self, forKey: .companyId)
+            self.accountId = try container.decode(String.self, forKey: .accountId)
             self.feeType = try container.decode(FeeMarkupTypes.self, forKey: .feeType)
             self.fixedFeeUsd = try container.decodeNullableIfPresent(Double.self, forKey: .fixedFeeUsd)
             self.metadata = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .metadata)
@@ -49,7 +49,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encode(self.companyId, forKey: .companyId)
+            try container.encode(self.accountId, forKey: .accountId)
             try container.encode(self.feeType, forKey: .feeType)
             try container.encodeNullableIfPresent(self.fixedFeeUsd, forKey: .fixedFeeUsd)
             try container.encodeNullableIfPresent(self.metadata, forKey: .metadata)
@@ -59,7 +59,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case companyId = "company_id"
+            case accountId = "account_id"
             case feeType = "fee_type"
             case fixedFeeUsd = "fixed_fee_usd"
             case metadata

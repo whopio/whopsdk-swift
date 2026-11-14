@@ -11,12 +11,12 @@ extension Requests {
         public let expiresAt: Nullable<String>?
         public let newUsersOnly: Bool
         public let onePerCustomer: Bool?
-        public let planIds: [String]?
         public let productId: Nullable<String>?
         public let promoDurationMonths: Int
         public let promoType: CreatePromoCodesRequestPromoType
         public let stock: Nullable<Int>?
         public let unlimitedStock: Bool?
+        public let variantIds: [String]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -30,12 +30,12 @@ extension Requests {
             expiresAt: Nullable<String>? = nil,
             newUsersOnly: Bool,
             onePerCustomer: Bool? = nil,
-            planIds: [String]? = nil,
             productId: Nullable<String>? = nil,
             promoDurationMonths: Int,
             promoType: CreatePromoCodesRequestPromoType,
             stock: Nullable<Int>? = nil,
             unlimitedStock: Bool? = nil,
+            variantIds: [String]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.accountId = accountId
@@ -47,12 +47,12 @@ extension Requests {
             self.expiresAt = expiresAt
             self.newUsersOnly = newUsersOnly
             self.onePerCustomer = onePerCustomer
-            self.planIds = planIds
             self.productId = productId
             self.promoDurationMonths = promoDurationMonths
             self.promoType = promoType
             self.stock = stock
             self.unlimitedStock = unlimitedStock
+            self.variantIds = variantIds
             self.additionalProperties = additionalProperties
         }
 
@@ -67,12 +67,12 @@ extension Requests {
             self.expiresAt = try container.decodeNullableIfPresent(String.self, forKey: .expiresAt)
             self.newUsersOnly = try container.decode(Bool.self, forKey: .newUsersOnly)
             self.onePerCustomer = try container.decodeIfPresent(Bool.self, forKey: .onePerCustomer)
-            self.planIds = try container.decodeIfPresent([String].self, forKey: .planIds)
             self.productId = try container.decodeNullableIfPresent(String.self, forKey: .productId)
             self.promoDurationMonths = try container.decode(Int.self, forKey: .promoDurationMonths)
             self.promoType = try container.decode(CreatePromoCodesRequestPromoType.self, forKey: .promoType)
             self.stock = try container.decodeNullableIfPresent(Int.self, forKey: .stock)
             self.unlimitedStock = try container.decodeIfPresent(Bool.self, forKey: .unlimitedStock)
+            self.variantIds = try container.decodeIfPresent([String].self, forKey: .variantIds)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -88,12 +88,12 @@ extension Requests {
             try container.encodeNullableIfPresent(self.expiresAt, forKey: .expiresAt)
             try container.encode(self.newUsersOnly, forKey: .newUsersOnly)
             try container.encodeIfPresent(self.onePerCustomer, forKey: .onePerCustomer)
-            try container.encodeIfPresent(self.planIds, forKey: .planIds)
             try container.encodeNullableIfPresent(self.productId, forKey: .productId)
             try container.encode(self.promoDurationMonths, forKey: .promoDurationMonths)
             try container.encode(self.promoType, forKey: .promoType)
             try container.encodeNullableIfPresent(self.stock, forKey: .stock)
             try container.encodeIfPresent(self.unlimitedStock, forKey: .unlimitedStock)
+            try container.encodeIfPresent(self.variantIds, forKey: .variantIds)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -107,12 +107,12 @@ extension Requests {
             case expiresAt = "expires_at"
             case newUsersOnly = "new_users_only"
             case onePerCustomer = "one_per_customer"
-            case planIds = "plan_ids"
             case productId = "product_id"
             case promoDurationMonths = "promo_duration_months"
             case promoType = "promo_type"
             case stock
             case unlimitedStock = "unlimited_stock"
+            case variantIds = "variant_ids"
         }
     }
 }

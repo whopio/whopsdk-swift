@@ -4,10 +4,12 @@ extension Requests {
     public struct UpdateCardsRequest: Codable, Hashable, Sendable {
         /// The owning account ID (a biz_ identifier). Provide this or user_id.
         public let accountId: String?
-        /// New billing address. Requires line1, city, region, postal_code, and country_code. On an invited card, passing billing alone (as the invited user) completes onboarding and starts card provisioning.
+        /// The billing address. On an issued card this replaces the card's billing address and region is also required. On an invited card, sending it as the invited user completes onboarding and starts card provisioning.
         public let billing: UpdateCardsRequestBilling?
         /// Pass `true` to permanently cancel the card. A canceled card cannot be uncanceled. Cannot be combined with other fields.
         public let canceled: Bool?
+        /// Details for the invited cardholder, accepted only while completing onboarding on an invited card. The legal name comes from an approved identity verification when the invited user has one, and from these fields when they do not.
+        public let cardholder: UpdateCardsRequestCardholder?
         /// Pass `true` to freeze the card, `false` to unfreeze it. The assigned cardholder may freeze their own card without the payout:account:update scope.
         public let frozen: Bool?
         /// A display name for the card.
@@ -31,6 +33,7 @@ extension Requests {
             accountId: String? = nil,
             billing: UpdateCardsRequestBilling? = nil,
             canceled: Bool? = nil,
+            cardholder: UpdateCardsRequestCardholder? = nil,
             frozen: Bool? = nil,
             name: String? = nil,
             pin: String? = nil,
@@ -44,6 +47,7 @@ extension Requests {
             self.accountId = accountId
             self.billing = billing
             self.canceled = canceled
+            self.cardholder = cardholder
             self.frozen = frozen
             self.name = name
             self.pin = pin
@@ -60,6 +64,7 @@ extension Requests {
             self.accountId = try container.decodeIfPresent(String.self, forKey: .accountId)
             self.billing = try container.decodeIfPresent(UpdateCardsRequestBilling.self, forKey: .billing)
             self.canceled = try container.decodeIfPresent(Bool.self, forKey: .canceled)
+            self.cardholder = try container.decodeIfPresent(UpdateCardsRequestCardholder.self, forKey: .cardholder)
             self.frozen = try container.decodeIfPresent(Bool.self, forKey: .frozen)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.pin = try container.decodeIfPresent(String.self, forKey: .pin)
@@ -77,6 +82,7 @@ extension Requests {
             try container.encodeIfPresent(self.accountId, forKey: .accountId)
             try container.encodeIfPresent(self.billing, forKey: .billing)
             try container.encodeIfPresent(self.canceled, forKey: .canceled)
+            try container.encodeIfPresent(self.cardholder, forKey: .cardholder)
             try container.encodeIfPresent(self.frozen, forKey: .frozen)
             try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.pin, forKey: .pin)
@@ -92,6 +98,7 @@ extension Requests {
             case accountId = "account_id"
             case billing
             case canceled
+            case cardholder
             case frozen
             case name
             case pin

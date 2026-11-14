@@ -7,7 +7,7 @@ public final class ChatChannelsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of chat channels within a specific company, with optional filtering by product.
+    /// Lists the chat channels in an account.
     ///
     /// Required permissions:
     ///  - `chat:read`
@@ -17,13 +17,16 @@ public final class ChatChannelsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.chatChannels.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
-    ///         productId: "prod_xxxxxxxxxxxxx"
+    ///         productId: "prod_xxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -34,10 +37,10 @@ public final class ChatChannelsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list chat channels for.
     /// - Parameter productId: The unique identifier of a product to filter by. When set, only chat channels connected to this product are returned.
+    /// - Parameter accountId: The unique identifier of the company to list chat channels for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, productId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListChatChannelsResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, productId: String? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListChatChannelsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/chat_channels",
@@ -46,8 +49,8 @@ public final class ChatChannelsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId), 
-                "product_id": productId.map { .string($0) }
+                "product_id": productId.map { .string($0) }, 
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListChatChannelsResponse.self
@@ -64,7 +67,10 @@ public final class ChatChannelsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.chatChannels.retrieve(id: "id")
     /// }
@@ -83,7 +89,7 @@ public final class ChatChannelsClient: Sendable {
         )
     }
 
-    /// Update moderation settings for a chat channel, such as who can post, banned words, and media restrictions.
+    /// Updates a chat channel's moderation settings, such as who can post, banned words, and media restrictions.
     ///
     /// Required permissions:
     ///  - `chat:moderate`
@@ -93,7 +99,10 @@ public final class ChatChannelsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.chatChannels.update(
     ///         id: "id",

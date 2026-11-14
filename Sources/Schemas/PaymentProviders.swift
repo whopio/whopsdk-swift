@@ -12,6 +12,7 @@ public enum PaymentProviders: String, Codable, Hashable, CaseIterable, Sendable 
     case multiPsp = "multi_psp"
     case adyen
     case claritypay
+    case flexPay = "flex_pay"
     case checkoutDotCom = "checkout_dot_com"
     case airwallex
     case coinflow

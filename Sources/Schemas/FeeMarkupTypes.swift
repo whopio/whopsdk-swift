@@ -7,4 +7,9 @@ public enum FeeMarkupTypes: String, Codable, Hashable, CaseIterable, Sendable {
     case nextDayBankWithdrawalMarkup = "next_day_bank_withdrawal_markup"
     case bankWireWithdrawalMarkup = "bank_wire_withdrawal_markup"
     case digitalWalletWithdrawalMarkup = "digital_wallet_withdrawal_markup"
+    case transferMarkup = "transfer_markup"
+    case cryptoDepositMarkup = "crypto_deposit_markup"
+    case bankDepositMarkup = "bank_deposit_markup"
+    case cryptoSwapMarkup = "crypto_swap_markup"
+    case paymentMarkup = "payment_markup"
 }

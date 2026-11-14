@@ -9,4 +9,8 @@ public enum ListMembershipsRequestStatus: String, Codable, Hashable, CaseIterabl
     case expired
     case canceling
     case paused
+    case expiring
+    case oneTime = "one_time"
+    case unclaimed
+    case banned
 }

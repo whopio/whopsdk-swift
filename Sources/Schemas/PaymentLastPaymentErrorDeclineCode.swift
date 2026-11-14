@@ -22,6 +22,7 @@ public enum PaymentLastPaymentErrorDeclineCode: String, Codable, Hashable, CaseI
     case restrictedCard = "restricted_card"
     case cardVelocityExceeded = "card_velocity_exceeded"
     case contactIssuer = "contact_issuer"
+    case cardDeclinedByIssuer = "card_declined_by_issuer"
     case bankDeclined = "bank_declined"
     case regulatoryBlocked = "regulatory_blocked"
     case transactionNotPermitted = "transaction_not_permitted"

@@ -23,6 +23,8 @@ public struct Ad: Codable, Hashable, Sendable {
     public let contactValue: Double
     /// Whop pixel-attributed contact events, last-click.
     public let contacts: Double
+    /// Whop's content review of this ad: whether it has finished, which ad networks it is recommended for, and the content rules it breaks.
+    public let contentReview: AdContentReview
     /// Spend divided by attributed add-to-cart events; null when they are not the goal and none are attributed.
     public let costPerAddedToCart: Nullable<Double>
     /// Spend divided by clicks; 0 when there are no clicks.
@@ -58,34 +60,22 @@ public struct Ad: Codable, Hashable, Sendable {
     public let customEventValues: [String: JSONValue]
     /// Whether the ad is delivering right now, and if not, why. When several states apply at once, the highest-precedence one is returned.
     public let deliveryStatus: AdDeliveryStatus
-    public let descriptions: [String]
-    /// Platform-reported impressions divided by reach.
+    public let descriptions: [AdText]
+    /// Impressions divided by reach.
     public let frequency: Nullable<Double>
-    public let headlines: [String]
+    public let headlines: [AdText]
     /// Unique identifier for the ad, prefixed `ad_`.
     public let id: String
     /// The number of impressions.
     public let impressions: Double
     public let issues: [AdPlatformIssue]
-    /// The instant lead form shown when someone taps this ad. `null` when the ad group's conversion_location is not an instant-form destination.
-    public let leadForm: Nullable<AdLeadForm>?
-    /// The ad platform's ID for the instant form the ad uses. Set when the ad references an existing form via `lead_form_id`, or once a form built from `lead_form` has been created on the platform.
-    public let leadFormId: Nullable<String>?
     /// USD value attributed to lead events. Sums the value sent with each event, normalized to USD; events without a value contribute 0.
     public let leadValue: Double
     /// Whop pixel-attributed leads, last-click.
     public let leads: Double
-    /// Welcome message for click-to-message ads, shown when the conversation opens. `null` when the ad has none.
-    public let messagingConfig: Nullable<AdMessagingConfig>?
-    /// Whether the ad can appear alongside other advertisers' ads in the same unit. Defaults to true.
-    public let multiAdvertiserAds: Bool?
-    /// The existing post this ad promotes — a Facebook post or Instagram media ID. `null` when the ad uses uploaded creatives.
-    public let postId: Nullable<String>
-    /// Identifies the network that owns `post_id`; `null` when the ad uses uploaded creatives.
-    public let postSource: Nullable<AdPostSource>
-    /// Preview image of the existing post this ad promotes. `null` for ads that use uploaded creatives, or until the post's media has been fetched from the network.
-    public let postThumbnailUrl: Nullable<String>
-    public let primaryTexts: [String]
+    /// Page views on your destination from people who clicked the ad, recorded by the Whop pixel. Counted the same way on every ad platform.
+    public let linkClicks: Double
+    public let primaryTexts: [AdText]
     /// USD value of pixel-attributed purchases.
     public let purchaseValue: Double
     /// Whop pixel-attributed purchases, last-click.
@@ -104,7 +94,6 @@ public struct Ad: Codable, Hashable, Sendable {
     public let scheduleValue: Double
     /// Whop pixel-attributed schedule events, last-click.
     public let schedules: Double
-    public let socialAccounts: [AdEntityReference]
     /// The amount charged, in spend_currency.
     public let spend: Double
     /// The ISO 4217 currency code of all monetary metrics.
@@ -125,7 +114,7 @@ public struct Ad: Codable, Hashable, Sendable {
     public let updatedAt: String
     /// The URL the ad links to, without its query string. Parameters belong in `url_parameters`; any you send on `url` are moved there.
     public let url: Nullable<String>
-    /// Every query parameter appended to the URL, keyed by parameter name — including any you sent on `url` itself. Whop adds its own click-attribution parameters on top; those are reserved and rejected if you set them (utm_meta_ad_id, utm_meta_adset_id, utm_meta_campaign_id, utm_source, utm_placement, utm_medium, utm_content, utm_adset, utm_whop, wacid, wasid, waid, tw_source, tw_adid).
+    /// Query parameters appended to `url`, keyed by name. Whop's click-attribution parameters are reserved.
     public let urlParameters: [String: JSONValue]
     /// USD value attributed to view-content events. Sums the value sent with each event, normalized to USD; events without a value contribute 0.
     public let viewedContentValue: Double
@@ -146,6 +135,7 @@ public struct Ad: Codable, Hashable, Sendable {
         completedRegistrations: Double,
         contactValue: Double,
         contacts: Double,
+        contentReview: AdContentReview,
         costPerAddedToCart: Nullable<Double>,
         costPerClick: Double,
         costPerCompletedRegistration: Nullable<Double>,
@@ -164,22 +154,16 @@ public struct Ad: Codable, Hashable, Sendable {
         customEventCounts: [String: JSONValue],
         customEventValues: [String: JSONValue],
         deliveryStatus: AdDeliveryStatus,
-        descriptions: [String],
+        descriptions: [AdText],
         frequency: Nullable<Double>,
-        headlines: [String],
+        headlines: [AdText],
         id: String,
         impressions: Double,
         issues: [AdPlatformIssue],
-        leadForm: Nullable<AdLeadForm>? = nil,
-        leadFormId: Nullable<String>? = nil,
         leadValue: Double,
         leads: Double,
-        messagingConfig: Nullable<AdMessagingConfig>? = nil,
-        multiAdvertiserAds: Bool? = nil,
-        postId: Nullable<String>,
-        postSource: Nullable<AdPostSource>,
-        postThumbnailUrl: Nullable<String>,
-        primaryTexts: [String],
+        linkClicks: Double,
+        primaryTexts: [AdText],
         purchaseValue: Double,
         purchases: Double,
         reach: Double,
@@ -189,7 +173,6 @@ public struct Ad: Codable, Hashable, Sendable {
         returnOnAdSpend: Double,
         scheduleValue: Double,
         schedules: Double,
-        socialAccounts: [AdEntityReference],
         spend: Double,
         spendCurrency: Nullable<String>,
         status: AdStatus,
@@ -216,6 +199,7 @@ public struct Ad: Codable, Hashable, Sendable {
         self.completedRegistrations = completedRegistrations
         self.contactValue = contactValue
         self.contacts = contacts
+        self.contentReview = contentReview
         self.costPerAddedToCart = costPerAddedToCart
         self.costPerClick = costPerClick
         self.costPerCompletedRegistration = costPerCompletedRegistration
@@ -240,15 +224,9 @@ public struct Ad: Codable, Hashable, Sendable {
         self.id = id
         self.impressions = impressions
         self.issues = issues
-        self.leadForm = leadForm
-        self.leadFormId = leadFormId
         self.leadValue = leadValue
         self.leads = leads
-        self.messagingConfig = messagingConfig
-        self.multiAdvertiserAds = multiAdvertiserAds
-        self.postId = postId
-        self.postSource = postSource
-        self.postThumbnailUrl = postThumbnailUrl
+        self.linkClicks = linkClicks
         self.primaryTexts = primaryTexts
         self.purchaseValue = purchaseValue
         self.purchases = purchases
@@ -259,7 +237,6 @@ public struct Ad: Codable, Hashable, Sendable {
         self.returnOnAdSpend = returnOnAdSpend
         self.scheduleValue = scheduleValue
         self.schedules = schedules
-        self.socialAccounts = socialAccounts
         self.spend = spend
         self.spendCurrency = spendCurrency
         self.status = status
@@ -289,6 +266,7 @@ public struct Ad: Codable, Hashable, Sendable {
         self.completedRegistrations = try container.decode(Double.self, forKey: .completedRegistrations)
         self.contactValue = try container.decode(Double.self, forKey: .contactValue)
         self.contacts = try container.decode(Double.self, forKey: .contacts)
+        self.contentReview = try container.decode(AdContentReview.self, forKey: .contentReview)
         self.costPerAddedToCart = try container.decode(Nullable<Double>.self, forKey: .costPerAddedToCart)
         self.costPerClick = try container.decode(Double.self, forKey: .costPerClick)
         self.costPerCompletedRegistration = try container.decode(Nullable<Double>.self, forKey: .costPerCompletedRegistration)
@@ -307,22 +285,16 @@ public struct Ad: Codable, Hashable, Sendable {
         self.customEventCounts = try container.decode([String: JSONValue].self, forKey: .customEventCounts)
         self.customEventValues = try container.decode([String: JSONValue].self, forKey: .customEventValues)
         self.deliveryStatus = try container.decode(AdDeliveryStatus.self, forKey: .deliveryStatus)
-        self.descriptions = try container.decode([String].self, forKey: .descriptions)
+        self.descriptions = try container.decode([AdText].self, forKey: .descriptions)
         self.frequency = try container.decode(Nullable<Double>.self, forKey: .frequency)
-        self.headlines = try container.decode([String].self, forKey: .headlines)
+        self.headlines = try container.decode([AdText].self, forKey: .headlines)
         self.id = try container.decode(String.self, forKey: .id)
         self.impressions = try container.decode(Double.self, forKey: .impressions)
         self.issues = try container.decode([AdPlatformIssue].self, forKey: .issues)
-        self.leadForm = try container.decodeNullableIfPresent(AdLeadForm.self, forKey: .leadForm)
-        self.leadFormId = try container.decodeNullableIfPresent(String.self, forKey: .leadFormId)
         self.leadValue = try container.decode(Double.self, forKey: .leadValue)
         self.leads = try container.decode(Double.self, forKey: .leads)
-        self.messagingConfig = try container.decodeNullableIfPresent(AdMessagingConfig.self, forKey: .messagingConfig)
-        self.multiAdvertiserAds = try container.decodeIfPresent(Bool.self, forKey: .multiAdvertiserAds)
-        self.postId = try container.decode(Nullable<String>.self, forKey: .postId)
-        self.postSource = try container.decode(Nullable<AdPostSource>.self, forKey: .postSource)
-        self.postThumbnailUrl = try container.decode(Nullable<String>.self, forKey: .postThumbnailUrl)
-        self.primaryTexts = try container.decode([String].self, forKey: .primaryTexts)
+        self.linkClicks = try container.decode(Double.self, forKey: .linkClicks)
+        self.primaryTexts = try container.decode([AdText].self, forKey: .primaryTexts)
         self.purchaseValue = try container.decode(Double.self, forKey: .purchaseValue)
         self.purchases = try container.decode(Double.self, forKey: .purchases)
         self.reach = try container.decode(Double.self, forKey: .reach)
@@ -332,7 +304,6 @@ public struct Ad: Codable, Hashable, Sendable {
         self.returnOnAdSpend = try container.decode(Double.self, forKey: .returnOnAdSpend)
         self.scheduleValue = try container.decode(Double.self, forKey: .scheduleValue)
         self.schedules = try container.decode(Double.self, forKey: .schedules)
-        self.socialAccounts = try container.decode([AdEntityReference].self, forKey: .socialAccounts)
         self.spend = try container.decode(Double.self, forKey: .spend)
         self.spendCurrency = try container.decode(Nullable<String>.self, forKey: .spendCurrency)
         self.status = try container.decode(AdStatus.self, forKey: .status)
@@ -363,6 +334,7 @@ public struct Ad: Codable, Hashable, Sendable {
         try container.encode(self.completedRegistrations, forKey: .completedRegistrations)
         try container.encode(self.contactValue, forKey: .contactValue)
         try container.encode(self.contacts, forKey: .contacts)
+        try container.encode(self.contentReview, forKey: .contentReview)
         try container.encode(self.costPerAddedToCart, forKey: .costPerAddedToCart)
         try container.encode(self.costPerClick, forKey: .costPerClick)
         try container.encode(self.costPerCompletedRegistration, forKey: .costPerCompletedRegistration)
@@ -387,15 +359,9 @@ public struct Ad: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.impressions, forKey: .impressions)
         try container.encode(self.issues, forKey: .issues)
-        try container.encodeNullableIfPresent(self.leadForm, forKey: .leadForm)
-        try container.encodeNullableIfPresent(self.leadFormId, forKey: .leadFormId)
         try container.encode(self.leadValue, forKey: .leadValue)
         try container.encode(self.leads, forKey: .leads)
-        try container.encodeNullableIfPresent(self.messagingConfig, forKey: .messagingConfig)
-        try container.encodeIfPresent(self.multiAdvertiserAds, forKey: .multiAdvertiserAds)
-        try container.encode(self.postId, forKey: .postId)
-        try container.encode(self.postSource, forKey: .postSource)
-        try container.encode(self.postThumbnailUrl, forKey: .postThumbnailUrl)
+        try container.encode(self.linkClicks, forKey: .linkClicks)
         try container.encode(self.primaryTexts, forKey: .primaryTexts)
         try container.encode(self.purchaseValue, forKey: .purchaseValue)
         try container.encode(self.purchases, forKey: .purchases)
@@ -406,7 +372,6 @@ public struct Ad: Codable, Hashable, Sendable {
         try container.encode(self.returnOnAdSpend, forKey: .returnOnAdSpend)
         try container.encode(self.scheduleValue, forKey: .scheduleValue)
         try container.encode(self.schedules, forKey: .schedules)
-        try container.encode(self.socialAccounts, forKey: .socialAccounts)
         try container.encode(self.spend, forKey: .spend)
         try container.encode(self.spendCurrency, forKey: .spendCurrency)
         try container.encode(self.status, forKey: .status)
@@ -435,6 +400,7 @@ public struct Ad: Codable, Hashable, Sendable {
         case completedRegistrations = "completed_registrations"
         case contactValue = "contact_value"
         case contacts
+        case contentReview = "content_review"
         case costPerAddedToCart = "cost_per_added_to_cart"
         case costPerClick = "cost_per_click"
         case costPerCompletedRegistration = "cost_per_completed_registration"
@@ -459,15 +425,9 @@ public struct Ad: Codable, Hashable, Sendable {
         case id
         case impressions
         case issues
-        case leadForm = "lead_form"
-        case leadFormId = "lead_form_id"
         case leadValue = "lead_value"
         case leads
-        case messagingConfig = "messaging_config"
-        case multiAdvertiserAds = "multi_advertiser_ads"
-        case postId = "post_id"
-        case postSource = "post_source"
-        case postThumbnailUrl = "post_thumbnail_url"
+        case linkClicks = "link_clicks"
         case primaryTexts = "primary_texts"
         case purchaseValue = "purchase_value"
         case purchases
@@ -478,7 +438,6 @@ public struct Ad: Codable, Hashable, Sendable {
         case returnOnAdSpend = "return_on_ad_spend"
         case scheduleValue = "schedule_value"
         case schedules
-        case socialAccounts = "social_accounts"
         case spend
         case spendCurrency = "spend_currency"
         case status
