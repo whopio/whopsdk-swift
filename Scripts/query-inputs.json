@@ -1,0 +1,222 @@
+[
+  {
+    "path": "Sources/Resources/ApiKeys/ApiKeysClient.swift",
+    "field": "created_before",
+    "type": "ListApiKeysRequestCreatedBefore"
+  },
+  {
+    "path": "Sources/Resources/ApiKeys/ApiKeysClient.swift",
+    "field": "created_after",
+    "type": "ListApiKeysRequestCreatedAfter"
+  },
+  {
+    "path": "Sources/Resources/AppBuilds/AppBuildsClient.swift",
+    "field": "created_before",
+    "type": "ListAppBuildsRequestCreatedBefore"
+  },
+  {
+    "path": "Sources/Resources/AppBuilds/AppBuildsClient.swift",
+    "field": "created_after",
+    "type": "ListAppBuildsRequestCreatedAfter"
+  },
+  {
+    "path": "Sources/Resources/Channels/ChannelsClient.swift",
+    "field": "kind",
+    "type": "[ListChannelsRequestKindItem]"
+  },
+  {
+    "path": "Sources/Resources/Disputes/DisputesClient.swift",
+    "field": "status",
+    "type": "[ListDisputesRequestStatusItem]"
+  },
+  {
+    "path": "Sources/Resources/Disputes/DisputesClient.swift",
+    "field": "groups",
+    "type": "[SummaryDisputesRequestGroupsItem]"
+  },
+  {
+    "path": "Sources/Resources/Disputes/DisputesClient.swift",
+    "field": "status",
+    "type": "[SummaryDisputesRequestStatusItem]"
+  },
+  {
+    "path": "Sources/Resources/Experiments/ExperimentsClient.swift",
+    "field": "related_resource",
+    "type": "ExperimentResourceReference"
+  },
+  {
+    "path": "Sources/Resources/Experiments/ExperimentsClient.swift",
+    "field": "subject",
+    "type": "ExposuresExperimentsRequestSubject"
+  },
+  {
+    "path": "Sources/Resources/Experiments/ExperimentsClient.swift",
+    "field": "related_resource",
+    "type": "ExperimentResourceReference"
+  },
+  {
+    "path": "Sources/Resources/ExternalAccounts/ExternalAccountsClient.swift",
+    "field": "scopes",
+    "type": "[ListExternalAccountsRequestScopesItem]"
+  },
+  {
+    "path": "Sources/Resources/FinancialActivity/FinancialActivityClient.swift",
+    "field": "line_types",
+    "type": "[ListFinancialActivityRequestLineTypesItem]"
+  },
+  {
+    "path": "Sources/Resources/FinancialReports/FinancialReportsClient.swift",
+    "field": "line_types",
+    "type": "[RetrieveFinancialReportsRequestLineTypesItem]"
+  },
+  {
+    "path": "Sources/Resources/Members/MembersClient.swift",
+    "field": "most_recent_actions",
+    "type": "[ListMembersRequestMostRecentActionsItem]"
+  },
+  {
+    "path": "Sources/Resources/Memberships/MembershipsClient.swift",
+    "field": "statuses",
+    "type": "[ListMembershipsRequestStatusesItem]"
+  },
+  {
+    "path": "Sources/Resources/Partners/Businesses/Earnings/EarningsClient.swift",
+    "field": "income_source",
+    "type": "[ListEarningsRequestIncomeSourceItem]"
+  },
+  {
+    "path": "Sources/Resources/PaymentMethods/PaymentMethodsClient.swift",
+    "field": "payment_method_types",
+    "type": "[PaymentMethodTypes]"
+  },
+  {
+    "path": "Sources/Resources/PaymentMethods/PaymentMethodsClient.swift",
+    "field": "card_brands",
+    "type": "[CardBrands]"
+  },
+  {
+    "path": "Sources/Resources/PaymentMethods/PaymentMethodsClient.swift",
+    "field": "card_funding_types",
+    "type": "[CardFundingTypes]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "statuses",
+    "type": "[ListPaymentsRequestStatusesItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "substatuses",
+    "type": "[ListPaymentsRequestSubstatusesItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "billing_reasons",
+    "type": "[ListPaymentsRequestBillingReasonsItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "payment_methods",
+    "type": "[ListPaymentsRequestPaymentMethodsItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "tracking_states",
+    "type": "[ListPaymentsRequestTrackingStatesItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "groups",
+    "type": "[SummaryPaymentsRequestGroupsItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "statuses",
+    "type": "[SummaryPaymentsRequestStatusesItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "substatuses",
+    "type": "[SummaryPaymentsRequestSubstatusesItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "billing_reasons",
+    "type": "[SummaryPaymentsRequestBillingReasonsItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "payment_methods",
+    "type": "[SummaryPaymentsRequestPaymentMethodsItem]"
+  },
+  {
+    "path": "Sources/Resources/Payments/PaymentsClient.swift",
+    "field": "tracking_states",
+    "type": "[SummaryPaymentsRequestTrackingStatesItem]"
+  },
+  {
+    "path": "Sources/Resources/Products/ProductsClient.swift",
+    "field": "billing_types",
+    "type": "[ListProductsRequestBillingTypesItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "status",
+    "type": "[ListResolutionCenterCasesRequestStatusItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "reason",
+    "type": "[ListResolutionCenterCasesRequestReasonItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "outcome",
+    "type": "[ListResolutionCenterCasesRequestOutcomeItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "groups",
+    "type": "[SummaryResolutionCenterCasesRequestGroupsItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "status",
+    "type": "[SummaryResolutionCenterCasesRequestStatusItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "reason",
+    "type": "[SummaryResolutionCenterCasesRequestReasonItem]"
+  },
+  {
+    "path": "Sources/Resources/ResolutionCenterCases/ResolutionCenterCasesClient.swift",
+    "field": "outcome",
+    "type": "[SummaryResolutionCenterCasesRequestOutcomeItem]"
+  },
+  {
+    "path": "Sources/Resources/Search/SearchClient.swift",
+    "field": "types",
+    "type": "[ListSearchRequestTypesItem]"
+  },
+  {
+    "path": "Sources/Resources/SocialAccounts/SocialAccountsClient.swift",
+    "field": "scopes",
+    "type": "[ListSocialAccountsRequestScopesItem]"
+  },
+  {
+    "path": "Sources/Resources/Stats/StatsClient.swift",
+    "field": "steps",
+    "type": "RetrieveStatsRequestSteps"
+  },
+  {
+    "path": "Sources/Resources/Stats/TimeSeries/TimeSeriesClient.swift",
+    "field": "steps",
+    "type": "RetrieveTimeSeriesRequestSteps"
+  },
+  {
+    "path": "Sources/Resources/Webhooks/WebhooksClient.swift",
+    "field": "events",
+    "type": "[ListDeliveriesWebhooksRequestEventsItem]"
+  }
+]

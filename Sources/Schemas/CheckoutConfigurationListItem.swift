@@ -2,9 +2,11 @@ import Foundation
 
 /// A checkout configuration is a reusable configuration for a checkout, including the plan, affiliate, and custom metadata. Payments and memberships created from a checkout session inherit its metadata.
 public struct CheckoutConfigurationListItem: Codable, Hashable, Sendable {
+    /// The ID of the account to use for the checkout configuration
+    public let accountId: String
     /// The affiliate code to use for the checkout configuration
     public let affiliateCode: Nullable<String>
-    /// The ID of the company to use for the checkout configuration
+    /// The ID of the account to use for the checkout configuration
     public let companyId: String
     /// The currency to use for the configuration when in 'setup' mode. This is used to target which currency specific payment methods are available. If not provided, it will default to 'usd' when in setup mode.
     public let currency: Nullable<Currencies>
@@ -26,6 +28,7 @@ public struct CheckoutConfigurationListItem: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        accountId: String,
         affiliateCode: Nullable<String>,
         companyId: String,
         currency: Nullable<Currencies>,
@@ -38,6 +41,7 @@ public struct CheckoutConfigurationListItem: Codable, Hashable, Sendable {
         redirectUrl: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.accountId = accountId
         self.affiliateCode = affiliateCode
         self.companyId = companyId
         self.currency = currency
@@ -53,6 +57,7 @@ public struct CheckoutConfigurationListItem: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.accountId = try container.decode(String.self, forKey: .accountId)
         self.affiliateCode = try container.decode(Nullable<String>.self, forKey: .affiliateCode)
         self.companyId = try container.decode(String.self, forKey: .companyId)
         self.currency = try container.decode(Nullable<Currencies>.self, forKey: .currency)
@@ -69,6 +74,7 @@ public struct CheckoutConfigurationListItem: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.accountId, forKey: .accountId)
         try container.encode(self.affiliateCode, forKey: .affiliateCode)
         try container.encode(self.companyId, forKey: .companyId)
         try container.encode(self.currency, forKey: .currency)
@@ -83,6 +89,7 @@ public struct CheckoutConfigurationListItem: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case accountId = "account_id"
         case affiliateCode = "affiliate_code"
         case companyId = "company_id"
         case currency

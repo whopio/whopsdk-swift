@@ -7,7 +7,7 @@ public struct PostAdCampaignPaymentFailedPayload: Codable, Hashable, Sendable {
     public let apiVersion: PostAdCampaignPaymentFailedPayloadApiVersion
     /// The dated API version (Api-Version-Date) the payload is serialized to
     public let apiVersionDate: Nullable<String>
-    public let data: AdCampaign
+    public let data: PostAdCampaignPaymentFailedPayloadData
     /// A unique ID for every single webhook request
     public let id: String
     /// For some `.updated` events, the old values of the payload fields that changed, keyed by field name. Omitted when no capture is available for the event
@@ -23,7 +23,7 @@ public struct PostAdCampaignPaymentFailedPayload: Codable, Hashable, Sendable {
         accountId: Nullable<String>? = nil,
         apiVersion: PostAdCampaignPaymentFailedPayloadApiVersion,
         apiVersionDate: Nullable<String>,
-        data: AdCampaign,
+        data: PostAdCampaignPaymentFailedPayloadData,
         id: String,
         previousAttributes: [String: JSONValue]? = nil,
         timestamp: Date,
@@ -46,7 +46,7 @@ public struct PostAdCampaignPaymentFailedPayload: Codable, Hashable, Sendable {
         self.accountId = try container.decodeNullableIfPresent(String.self, forKey: .accountId)
         self.apiVersion = try container.decode(PostAdCampaignPaymentFailedPayloadApiVersion.self, forKey: .apiVersion)
         self.apiVersionDate = try container.decode(Nullable<String>.self, forKey: .apiVersionDate)
-        self.data = try container.decode(AdCampaign.self, forKey: .data)
+        self.data = try container.decode(PostAdCampaignPaymentFailedPayloadData.self, forKey: .data)
         self.id = try container.decode(String.self, forKey: .id)
         self.previousAttributes = try container.decodeIfPresent([String: JSONValue].self, forKey: .previousAttributes)
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)

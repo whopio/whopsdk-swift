@@ -1,0 +1,161 @@
+import Foundation
+
+extension Requests {
+    public struct CreateTradesRequest: Codable, Hashable, Sendable {
+        /// The account or user whose wallet trades, prefixed `biz_` or `user_`.
+        public let accountId: String
+        /// Only for a deposit or withdraw, and required for both. For a deposit, the USDT0 to send from the wallet, with at most 6 decimals. For a withdraw, the USDC to send back, at least 1 with at most 6 decimals, or `all`.
+        public let amount: String?
+        /// Only for an order. Your own ID for the trade, 1 to 128 characters, unique for the account. Sending it again with the same order returns the same trade; with a different order it answers `409`.
+        public let clientOrderId: String?
+        /// `perpetual` or `spot`. Required for an order. A spot order is a market order that swaps in the wallet and does not use the trading balance.
+        public let instrumentType: CreateTradesRequestInstrumentType?
+        /// Only for a perpetual order. The cross leverage, from 1 to the market's maximum. Required unless `reduce_only`; not accepted on a reduce-only order.
+        public let leverage: Int?
+        /// The market: a perpetual such as `BTC` or `xyz:TSLA`, or for spot an asset the wallet can swap into, such as `BTC` or `XAUT`. Required for an order or close, and a close takes only a perpetual; not accepted for a deposit or withdraw.
+        public let market: String?
+        /// Only for an order. Free-form string-to-string annotations: up to 50 keys of at most 40 characters, values up to 500 characters.
+        public let metadata: [String: String]?
+        /// Only for an order. The order value in USD, as a decimal string; the size is rounded down to the market's decimals. Send exactly one of `size` or `notional`; a spot buy takes `notional`, the USDT0 to spend.
+        public let notional: String?
+        /// `market` fills now within `slippage_bps` of the mid price, and anything unfilled is canceled; `limit` fills at `price` or better, and how long it stays on the book follows `time_in_force`. `take_profit` and `stop_loss` reduce the open perpetual position with a market order once the price crosses `trigger_price`; the trade stays `processing` until then. Required for an order.
+        public let orderType: CreateTradesRequestOrderType?
+        /// Only for an order. The limit price in USD, as a decimal string Hyperliquid accepts without rounding. Required for a limit order; not accepted for a market order.
+        public let price: String?
+        /// Only for a perpetual order. Only reduce an open position; defaults to `false`. A reduce-only order takes no `leverage`.
+        public let reduceOnly: Bool?
+        /// `buy` or `sell`. Required for an order, except a `take_profit` or `stop_loss`, where it defaults to the side that reduces the position.
+        public let side: CreateTradesRequestSide?
+        /// Only for an order. The size in units of the market, as a decimal string, with at most the market's size decimals. Send exactly one of `size` or `notional`; a spot sell takes `size`. A perpetual order must be worth at least 10 USD, unless reduce-only. A `take_profit` or `stop_loss` takes `size` or nothing for the whole position, and a set `size` must be worth at least 10 USD at `trigger_price`.
+        public let size: String?
+        /// Only for a market order or a close. The worst price as basis points from the mid price, from 1 to 1000; defaults to 100 for a perpetual, and to the swap route's own default for spot.
+        public let slippageBps: Int?
+        /// Only for a perpetual order that opens or adds to a position. A stop-loss for the order's full size, armed once the order fills and sent with it as its own trade, whose `parent_id` is this trade.
+        public let stopLoss: CreateTradesRequestStopLoss?
+        /// Only for a perpetual order that opens or adds to a position. A take-profit for the order's full size, armed once the order fills and sent with it as its own trade, whose `parent_id` is this trade.
+        public let takeProfit: CreateTradesRequestTakeProfit?
+        /// Only for a perpetual limit order. `good_til_canceled` rests on the book until it fills; `add_liquidity_only` is canceled instead of filling at once; `immediate_or_cancel` fills what it can now and cancels the rest. Defaults to `good_til_canceled`. The trade stays `processing` while the order rests.
+        public let timeInForce: CreateTradesRequestTimeInForce?
+        /// Required for a `take_profit` or `stop_loss`, and only for them. The USD price, as a decimal string Hyperliquid accepts without rounding, at which it sends a market order. Closing a long, a take-profit triggers above the current price and a stop-loss below; closing a short, the reverse. It is always reduce-only, needs an open position, and takes no `price`, `notional`, `leverage`, `time_in_force` or `slippage_bps`.
+        public let triggerPrice: String?
+        /// `order` places one order. A perpetual order trades from the trading balance, setting cross `leverage` first; when the balance is short, it bridges the USDT0 it needs from the wallet first. A spot order swaps between USDT0 and the asset in the wallet. `deposit` bridges `amount` USDT0 from the wallet to the trading balance. `withdraw` sends `amount` USDC (or `all`) from the trading balance back to the wallet. `close` closes the whole position in `market` with a market reduce-only order; when the account is then flat, a `withdraw` trade sends the trading balance back to the wallet.
+        public let type: CreateTradesRequestType
+        /// Additional properties that are not explicitly defined in the schema
+        public let additionalProperties: [String: JSONValue]
+
+        public init(
+            accountId: String,
+            amount: String? = nil,
+            clientOrderId: String? = nil,
+            instrumentType: CreateTradesRequestInstrumentType? = nil,
+            leverage: Int? = nil,
+            market: String? = nil,
+            metadata: [String: String]? = nil,
+            notional: String? = nil,
+            orderType: CreateTradesRequestOrderType? = nil,
+            price: String? = nil,
+            reduceOnly: Bool? = nil,
+            side: CreateTradesRequestSide? = nil,
+            size: String? = nil,
+            slippageBps: Int? = nil,
+            stopLoss: CreateTradesRequestStopLoss? = nil,
+            takeProfit: CreateTradesRequestTakeProfit? = nil,
+            timeInForce: CreateTradesRequestTimeInForce? = nil,
+            triggerPrice: String? = nil,
+            type: CreateTradesRequestType,
+            additionalProperties: [String: JSONValue] = .init()
+        ) {
+            self.accountId = accountId
+            self.amount = amount
+            self.clientOrderId = clientOrderId
+            self.instrumentType = instrumentType
+            self.leverage = leverage
+            self.market = market
+            self.metadata = metadata
+            self.notional = notional
+            self.orderType = orderType
+            self.price = price
+            self.reduceOnly = reduceOnly
+            self.side = side
+            self.size = size
+            self.slippageBps = slippageBps
+            self.stopLoss = stopLoss
+            self.takeProfit = takeProfit
+            self.timeInForce = timeInForce
+            self.triggerPrice = triggerPrice
+            self.type = type
+            self.additionalProperties = additionalProperties
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.accountId = try container.decode(String.self, forKey: .accountId)
+            self.amount = try container.decodeIfPresent(String.self, forKey: .amount)
+            self.clientOrderId = try container.decodeIfPresent(String.self, forKey: .clientOrderId)
+            self.instrumentType = try container.decodeIfPresent(CreateTradesRequestInstrumentType.self, forKey: .instrumentType)
+            self.leverage = try container.decodeIfPresent(Int.self, forKey: .leverage)
+            self.market = try container.decodeIfPresent(String.self, forKey: .market)
+            self.metadata = try container.decodeIfPresent([String: String].self, forKey: .metadata)
+            self.notional = try container.decodeIfPresent(String.self, forKey: .notional)
+            self.orderType = try container.decodeIfPresent(CreateTradesRequestOrderType.self, forKey: .orderType)
+            self.price = try container.decodeIfPresent(String.self, forKey: .price)
+            self.reduceOnly = try container.decodeIfPresent(Bool.self, forKey: .reduceOnly)
+            self.side = try container.decodeIfPresent(CreateTradesRequestSide.self, forKey: .side)
+            self.size = try container.decodeIfPresent(String.self, forKey: .size)
+            self.slippageBps = try container.decodeIfPresent(Int.self, forKey: .slippageBps)
+            self.stopLoss = try container.decodeIfPresent(CreateTradesRequestStopLoss.self, forKey: .stopLoss)
+            self.takeProfit = try container.decodeIfPresent(CreateTradesRequestTakeProfit.self, forKey: .takeProfit)
+            self.timeInForce = try container.decodeIfPresent(CreateTradesRequestTimeInForce.self, forKey: .timeInForce)
+            self.triggerPrice = try container.decodeIfPresent(String.self, forKey: .triggerPrice)
+            self.type = try container.decode(CreateTradesRequestType.self, forKey: .type)
+            self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
+        }
+
+        public func encode(to encoder: Encoder) throws -> Void {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encode(self.accountId, forKey: .accountId)
+            try container.encodeIfPresent(self.amount, forKey: .amount)
+            try container.encodeIfPresent(self.clientOrderId, forKey: .clientOrderId)
+            try container.encodeIfPresent(self.instrumentType, forKey: .instrumentType)
+            try container.encodeIfPresent(self.leverage, forKey: .leverage)
+            try container.encodeIfPresent(self.market, forKey: .market)
+            try container.encodeIfPresent(self.metadata, forKey: .metadata)
+            try container.encodeIfPresent(self.notional, forKey: .notional)
+            try container.encodeIfPresent(self.orderType, forKey: .orderType)
+            try container.encodeIfPresent(self.price, forKey: .price)
+            try container.encodeIfPresent(self.reduceOnly, forKey: .reduceOnly)
+            try container.encodeIfPresent(self.side, forKey: .side)
+            try container.encodeIfPresent(self.size, forKey: .size)
+            try container.encodeIfPresent(self.slippageBps, forKey: .slippageBps)
+            try container.encodeIfPresent(self.stopLoss, forKey: .stopLoss)
+            try container.encodeIfPresent(self.takeProfit, forKey: .takeProfit)
+            try container.encodeIfPresent(self.timeInForce, forKey: .timeInForce)
+            try container.encodeIfPresent(self.triggerPrice, forKey: .triggerPrice)
+            try container.encode(self.type, forKey: .type)
+        }
+
+        /// Keys for encoding/decoding struct properties.
+        enum CodingKeys: String, CodingKey, CaseIterable {
+            case accountId = "account_id"
+            case amount
+            case clientOrderId = "client_order_id"
+            case instrumentType = "instrument_type"
+            case leverage
+            case market
+            case metadata
+            case notional
+            case orderType = "order_type"
+            case price
+            case reduceOnly = "reduce_only"
+            case side
+            case size
+            case slippageBps = "slippage_bps"
+            case stopLoss = "stop_loss"
+            case takeProfit = "take_profit"
+            case timeInForce = "time_in_force"
+            case triggerPrice = "trigger_price"
+            case type
+        }
+    }
+}

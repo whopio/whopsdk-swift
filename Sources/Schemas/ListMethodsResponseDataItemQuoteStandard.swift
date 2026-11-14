@@ -2,9 +2,9 @@ import Foundation
 
 /// Standard-delivery estimate. Null if the method does not support standard delivery, or the amount does not cover the fee.
 public struct ListMethodsResponseDataItemQuoteStandard: Codable, Hashable, Sendable {
-    /// Total fee charged, in the withdrawal currency.
+    /// Total fee charged, in the payout currency.
     public let fee: Float
-    /// Amount delivered after fees, in the withdrawal currency.
+    /// Amount remaining after fees, in the payout currency.
     public let totalReceived: Float
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

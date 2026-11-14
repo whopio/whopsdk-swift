@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for Receipt.
 public struct ListPaymentsResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [PaymentListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let data: [Payment]
+    public let pageInfo: ListPaymentsResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [PaymentListItem],
-        pageInfo: PageInfo,
+        data: [Payment],
+        pageInfo: ListPaymentsResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -21,8 +18,8 @@ public struct ListPaymentsResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([PaymentListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.data = try container.decode([Payment].self, forKey: .data)
+        self.pageInfo = try container.decode(ListPaymentsResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

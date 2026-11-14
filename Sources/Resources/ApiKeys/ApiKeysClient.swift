@@ -7,14 +7,17 @@ public final class ApiKeysClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists the API keys of an account or app, newest first. Responses never include the full secret — only its obfuscated form.
+    /// Lists the API keys of an account, app, or your own user, newest first. Responses never include the full secret — only its obfuscated form.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.list(
     ///         resourceId: "resource_id",
@@ -25,14 +28,14 @@ public final class ApiKeysClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter resourceId: The account (`biz_`) or app (`app_`) tag to list API keys for.
+    /// - Parameter resourceId: The account (`biz_`), app (`app_`), or your own user (`user_`) tag to list API keys for.
     /// - Parameter resourceType: The type of resource that owns the API keys.
     /// - Parameter createdBefore: Only return API keys created before this ISO 8601 timestamp.
     /// - Parameter createdAfter: Only return API keys created after this ISO 8601 timestamp.
-    /// - Parameter first: The number of API keys to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns API keys after this position.
-    /// - Parameter last: The number of API keys to return from the end of the range.
-    /// - Parameter before: A cursor; returns API keys before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter order: The field to sort API keys by.
     /// - Parameter direction: Sort direction.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -57,14 +60,17 @@ public final class ApiKeysClient: Sendable {
         )
     }
 
-    /// Creates an API key for an account or app. The response is the only place the full `secret_key` is returned — store it immediately. Requires a user session; API keys cannot manage API keys.
+    /// Creates an API key for an account, an app, or your own user. A user API key acts as you and can only grant `ad_campaign:basic:read`, `ad_campaign:update`, `ad_pixel:manage`, `member:journey:read`. The response is the only place the full `secret_key` is returned — store it immediately. Requires a user session; API keys cannot manage API keys.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.create(request: .init(
     ///         name: "Shine Time Booking (production)",
@@ -90,14 +96,17 @@ public final class ApiKeysClient: Sendable {
         )
     }
 
-    /// Lists the catalog of permission actions that can be granted to users, apps, and API keys — the source for the dashboard's permission pickers. Small and returned in full on one page.
+    /// Lists the catalog of permission actions that can be granted to users, apps, and API keys. Use it to choose the `permissions` for an API key or to build a permission picker. Small and returned in full on one page.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.listPermissions()
     /// }
@@ -122,7 +131,10 @@ public final class ApiKeysClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.retrieve(id: "id")
     /// }
@@ -148,7 +160,10 @@ public final class ApiKeysClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.delete(id: "id")
     /// }
@@ -174,7 +189,10 @@ public final class ApiKeysClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.update(
     ///         id: "id",
@@ -204,7 +222,10 @@ public final class ApiKeysClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apiKeys.rotate(id: "id")
     /// }

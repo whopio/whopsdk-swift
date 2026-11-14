@@ -1,6 +1,6 @@
 import Foundation
 
-/// What to create. Defaults to `custom` (CSV upload).
+/// Audience type. Defaults to `custom`.
 public enum CreateAudiencesRequestAudienceType: String, Codable, Hashable, CaseIterable, Sendable {
     case custom
     case lookalike

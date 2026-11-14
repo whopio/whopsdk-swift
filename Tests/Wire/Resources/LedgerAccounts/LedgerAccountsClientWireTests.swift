@@ -53,6 +53,7 @@ import WhopSDK
                     "phone": "phone",
                     "status": "connected"
                   },
+                  "payout_quote_required": true,
                   "settlement_time_at": "2023-12-01T05:00:00Z",
                   "transfer_fee": 6.9,
                   "treasury_balance": {
@@ -121,6 +122,7 @@ import WhopSDK
                 phone: Nullable<String>.value("phone"),
                 status: Nullable<PayoutAccountCalculatedStatuses>.value(PayoutAccountCalculatedStatuses.connected)
             )),
+            payoutQuoteRequired: true,
             settlementTimeAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
             transferFee: Nullable<Double>.value(6.9),
             treasuryBalance: Nullable<LedgerAccountTreasuryBalance>.value(LedgerAccountTreasuryBalance(
@@ -134,6 +136,156 @@ import WhopSDK
         )
         let response = try await client.ledgerAccounts.retrieve(
             id: "ldgr_xxxxxxxxxxxxx",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "balances": [
+                    {
+                      "balance": 1.1,
+                      "currency": "usd",
+                      "pending_balance": 1.1,
+                      "reserve_balance": 1.1
+                    },
+                    {
+                      "balance": 1.1,
+                      "currency": "usd",
+                      "pending_balance": 1.1,
+                      "reserve_balance": 1.1
+                    }
+                  ],
+                  "id": "id",
+                  "ledger_type": "primary",
+                  "owner": {
+                    "typename": "User",
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  },
+                  "payments_approval_status": "pending",
+                  "payout_account_details": {
+                    "address": {
+                      "city": "city",
+                      "country": "country",
+                      "line1": "line1",
+                      "line2": "line2",
+                      "postal_code": "postal_code",
+                      "state": "state"
+                    },
+                    "business_name": "business_name",
+                    "business_representative": {
+                      "date_of_birth": "date_of_birth",
+                      "first_name": "first_name",
+                      "last_name": "last_name",
+                      "middle_name": "middle_name"
+                    },
+                    "email": "email",
+                    "id": "id",
+                    "latest_verification": {
+                      "id": "id",
+                      "last_error_code": "abandoned",
+                      "last_error_reason": "last_error_reason",
+                      "status": "requires_input"
+                    },
+                    "phone": "phone",
+                    "status": "connected"
+                  },
+                  "payout_quote_required": true,
+                  "settlement_time_at": "2024-01-15T09:30:00Z",
+                  "transfer_fee": 1.1,
+                  "treasury_balance": {
+                    "balance": 1.1,
+                    "balance_usd": 1.1,
+                    "currency": "usd",
+                    "pending_balance": 1.1,
+                    "reserve_balance": 1.1,
+                    "total_withdrawable_balance": 1.1
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = LedgerAccount(
+            balances: [
+                LedgerAccountBalancesItem(
+                    balance: 1.1,
+                    currency: Currencies.usd,
+                    pendingBalance: 1.1,
+                    reserveBalance: 1.1
+                ),
+                LedgerAccountBalancesItem(
+                    balance: 1.1,
+                    currency: Currencies.usd,
+                    pendingBalance: 1.1,
+                    reserveBalance: 1.1
+                )
+            ],
+            id: "id",
+            ledgerType: LedgerTypes.primary,
+            owner: LedgerAccountOwner.user(
+                .init(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    username: "username",
+                    additionalProperties: [
+                        "typename": JSONValue.string("User")
+                    ]
+                )
+            ),
+            paymentsApprovalStatus: Nullable<PaymentsApprovalStatuses>.value(PaymentsApprovalStatuses.pending),
+            payoutAccountDetails: Nullable<LedgerAccountPayoutAccountDetails>.value(LedgerAccountPayoutAccountDetails(
+                address: Nullable<LedgerAccountPayoutAccountDetailsAddress>.value(LedgerAccountPayoutAccountDetailsAddress(
+                    city: Nullable<String>.value("city"),
+                    country: Nullable<String>.value("country"),
+                    line1: Nullable<String>.value("line1"),
+                    line2: Nullable<String>.value("line2"),
+                    postalCode: Nullable<String>.value("postal_code"),
+                    state: Nullable<String>.value("state")
+                )),
+                businessName: Nullable<String>.value("business_name"),
+                businessRepresentative: Nullable<LedgerAccountPayoutAccountDetailsBusinessRepresentative>.value(LedgerAccountPayoutAccountDetailsBusinessRepresentative(
+                    dateOfBirth: Nullable<String>.value("date_of_birth"),
+                    firstName: Nullable<String>.value("first_name"),
+                    lastName: Nullable<String>.value("last_name"),
+                    middleName: Nullable<String>.value("middle_name")
+                )),
+                email: Nullable<String>.value("email"),
+                id: "id",
+                latestVerification: Nullable<LedgerAccountPayoutAccountDetailsLatestVerification>.value(LedgerAccountPayoutAccountDetailsLatestVerification(
+                    id: "id",
+                    lastErrorCode: Nullable<VerificationErrorCodes>.value(VerificationErrorCodes.abandoned),
+                    lastErrorReason: Nullable<String>.value("last_error_reason"),
+                    status: VerificationStatuses.requiresInput
+                )),
+                phone: Nullable<String>.value("phone"),
+                status: Nullable<PayoutAccountCalculatedStatuses>.value(PayoutAccountCalculatedStatuses.connected)
+            )),
+            payoutQuoteRequired: true,
+            settlementTimeAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            transferFee: Nullable<Double>.value(1.1),
+            treasuryBalance: Nullable<LedgerAccountTreasuryBalance>.value(LedgerAccountTreasuryBalance(
+                balance: 1.1,
+                balanceUsd: 1.1,
+                currency: Currencies.usd,
+                pendingBalance: 1.1,
+                reserveBalance: 1.1,
+                totalWithdrawableBalance: 1.1
+            ))
+        )
+        let response = try await client.ledgerAccounts.retrieve(
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

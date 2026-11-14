@@ -12,13 +12,15 @@ extension Requests {
         public let customCtaUrl: Nullable<String>?
         /// Custom bank statement descriptor. Must start with WHOP*.
         public let customStatementDescriptor: Nullable<String>?
-        /// A written description displayed on the product page.
+        /// A written description displayed on the product page. Maximum 1,500 characters.
         public let description: Nullable<String>?
+        /// Images or videos displayed in the product gallery, in display order. Replaces the existing gallery. Send an empty array to clear it; omit or pass null to leave it unchanged. A banner image does not populate the gallery.
+        public let galleryImages: Nullable<[CreateProductsRequestGalleryImagesItem]>?
         /// The commission rate affiliates earn.
         public let globalAffiliatePercentage: Nullable<Double>?
         /// The enrollment status in the global affiliate program.
         public let globalAffiliateStatus: CreateProductsRequestGlobalAffiliateStatus?
-        /// A short marketing headline for the product page.
+        /// A short marketing headline for the product page. Maximum 80 characters.
         public let headline: Nullable<String>?
         /// Labels used to group products into collections. Stored lowercased and de-duplicated. Maximum 20 labels, 50 characters each.
         public let labels: Nullable<[String]>?
@@ -50,6 +52,7 @@ extension Requests {
             customCtaUrl: Nullable<String>? = nil,
             customStatementDescriptor: Nullable<String>? = nil,
             description: Nullable<String>? = nil,
+            galleryImages: Nullable<[CreateProductsRequestGalleryImagesItem]>? = nil,
             globalAffiliatePercentage: Nullable<Double>? = nil,
             globalAffiliateStatus: CreateProductsRequestGlobalAffiliateStatus? = nil,
             headline: Nullable<String>? = nil,
@@ -71,6 +74,7 @@ extension Requests {
             self.customCtaUrl = customCtaUrl
             self.customStatementDescriptor = customStatementDescriptor
             self.description = description
+            self.galleryImages = galleryImages
             self.globalAffiliatePercentage = globalAffiliatePercentage
             self.globalAffiliateStatus = globalAffiliateStatus
             self.headline = headline
@@ -95,6 +99,7 @@ extension Requests {
             self.customCtaUrl = try container.decodeNullableIfPresent(String.self, forKey: .customCtaUrl)
             self.customStatementDescriptor = try container.decodeNullableIfPresent(String.self, forKey: .customStatementDescriptor)
             self.description = try container.decodeNullableIfPresent(String.self, forKey: .description)
+            self.galleryImages = try container.decodeNullableIfPresent([CreateProductsRequestGalleryImagesItem].self, forKey: .galleryImages)
             self.globalAffiliatePercentage = try container.decodeNullableIfPresent(Double.self, forKey: .globalAffiliatePercentage)
             self.globalAffiliateStatus = try container.decodeIfPresent(CreateProductsRequestGlobalAffiliateStatus.self, forKey: .globalAffiliateStatus)
             self.headline = try container.decodeNullableIfPresent(String.self, forKey: .headline)
@@ -120,6 +125,7 @@ extension Requests {
             try container.encodeNullableIfPresent(self.customCtaUrl, forKey: .customCtaUrl)
             try container.encodeNullableIfPresent(self.customStatementDescriptor, forKey: .customStatementDescriptor)
             try container.encodeNullableIfPresent(self.description, forKey: .description)
+            try container.encodeNullableIfPresent(self.galleryImages, forKey: .galleryImages)
             try container.encodeNullableIfPresent(self.globalAffiliatePercentage, forKey: .globalAffiliatePercentage)
             try container.encodeIfPresent(self.globalAffiliateStatus, forKey: .globalAffiliateStatus)
             try container.encodeNullableIfPresent(self.headline, forKey: .headline)
@@ -143,6 +149,7 @@ extension Requests {
             case customCtaUrl = "custom_cta_url"
             case customStatementDescriptor = "custom_statement_descriptor"
             case description
+            case galleryImages = "gallery_images"
             case globalAffiliatePercentage = "global_affiliate_percentage"
             case globalAffiliateStatus = "global_affiliate_status"
             case headline

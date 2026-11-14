@@ -6,7 +6,7 @@ public struct ListMethodsResponseDataItemFeeStructure: Codable, Hashable, Sendab
     public let currency: String
     /// Fixed fee charged, denominated in `currency`.
     public let fixedAmount: Float
-    /// Percentage of the withdrawal amount charged as a fee.
+    /// Percentage of the payout amount charged as a fee.
     public let percentage: Float
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

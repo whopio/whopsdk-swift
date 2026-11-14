@@ -5,7 +5,7 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
     public let apiVersion: WebhookListItemApiVersion
     /// The dated API version (Api-Version-Date) that v1 payloads for this endpoint are pinned to: events serialize exactly like a REST read at this version (the native serializer where the resource has one). Null when unpinned — legacy (v2/v5) webhooks, and v1 webhooks on the legacy payload shape.
     public let apiVersionDate: Nullable<String>
-    /// Whether events are sent for child resources. For example, if the webhook is on an account, enabling this sends events only from its connected accounts.
+    /// Whether events are sent for child resources. For example, if the webhook is on an account, enabling this sends events only from its subaccounts.
     public let childResourceEvents: Bool
     /// Number of consecutive deliveries whose first attempt to this endpoint failed since it last accepted one. Later retries of the same delivery do not increment it. Resets to `0` when a delivery succeeds or the webhook is re-enabled.
     public let consecutiveFailures: Int
@@ -26,9 +26,11 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
     public let lastFailureAt: Nullable<String>
     /// ID of the resource (account or app) this webhook is attached to.
     public let resourceId: String
+    /// A label for this webhook endpoint, such as `Production`, shown in the dashboard. `null` if no title was set.
+    public let title: Nullable<String>
     /// Destination URL where webhook payloads are delivered via HTTP POST.
     public let url: String
-    /// Secret key used to sign webhook payloads for verification. Include this in your HMAC validation logic. Returned on the create response and to interactive dashboard sessions; `null` for API-key and OAuth callers on later reads.
+    /// Secret key used to sign webhook payloads. Use it to verify the HMAC signature of each delivery. Returned in the create response. `null` on later reads by API keys and OAuth apps.
     public let webhookSecret: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -47,6 +49,7 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
         id: String,
         lastFailureAt: Nullable<String>,
         resourceId: String,
+        title: Nullable<String>,
         url: String,
         webhookSecret: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
@@ -64,6 +67,7 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
         self.id = id
         self.lastFailureAt = lastFailureAt
         self.resourceId = resourceId
+        self.title = title
         self.url = url
         self.webhookSecret = webhookSecret
         self.additionalProperties = additionalProperties
@@ -84,6 +88,7 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.lastFailureAt = try container.decode(Nullable<String>.self, forKey: .lastFailureAt)
         self.resourceId = try container.decode(String.self, forKey: .resourceId)
+        self.title = try container.decode(Nullable<String>.self, forKey: .title)
         self.url = try container.decode(String.self, forKey: .url)
         self.webhookSecret = try container.decode(Nullable<String>.self, forKey: .webhookSecret)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -105,6 +110,7 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.lastFailureAt, forKey: .lastFailureAt)
         try container.encode(self.resourceId, forKey: .resourceId)
+        try container.encode(self.title, forKey: .title)
         try container.encode(self.url, forKey: .url)
         try container.encode(self.webhookSecret, forKey: .webhookSecret)
     }
@@ -124,6 +130,7 @@ public struct WebhookListItem: Codable, Hashable, Sendable {
         case id
         case lastFailureAt = "last_failure_at"
         case resourceId = "resource_id"
+        case title
         case url
         case webhookSecret = "webhook_secret"
     }

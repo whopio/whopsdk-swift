@@ -2,19 +2,19 @@ import Foundation
 
 /// Re-authentication proof required to perform this sensitive action.
 public struct CreateAuthorizedUsersRequestElevation: Codable, Hashable, Sendable {
-    /// The WebAuthn authenticator data (base64).
+    /// Ignored. Kept so existing API clients that send a passkey assertion keep working.
     public let authenticatorData: Nullable<String>?
-    /// The WebAuthn client data JSON (base64).
+    /// Ignored. Kept so existing API clients that send a passkey assertion keep working.
     public let clientDataJson: Nullable<String>?
-    /// The WebAuthn credential ID (base64).
+    /// Ignored. Kept so existing API clients that send a passkey assertion keep working.
     public let credentialId: Nullable<String>?
     /// The 6-digit code emailed to the user.
     public let emailCode: Nullable<String>?
-    /// The WebAuthn signature (base64).
+    /// Ignored. Kept so existing API clients that send a passkey assertion keep working.
     public let signature: Nullable<String>?
     /// The 6-digit code from the authenticator app or SMS.
     public let totpCode: Nullable<String>?
-    /// Reuse an existing elevated session (for SMS/email 2FA users).
+    /// Ignored. Kept so existing API clients that send it keep working.
     public let useFinanceSession: Nullable<Bool>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

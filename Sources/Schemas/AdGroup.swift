@@ -11,9 +11,13 @@ public struct AdGroup: Codable, Hashable, Sendable {
     public let audiences: AdGroupAudiences
     /// How delivery bids are set in the ad auction. Target-based strategies use `desired_cost_per_result`.
     public let bidType: Nullable<AdGroupBidType>
-    /// This ad group's budget, in the ad account's currency. `null` when the budget is set on the campaign instead.
+    /// This ad group's budget in USD, which is what it is stored and billed in. `null` when the budget is set on the campaign instead.
     public let budgetAmount: Nullable<Double>
-    /// Whether `budget_amount` is spent per day (`daily`) or over the ad group's full run (`lifetime`).
+    /// The same budget stated in `budget_currency` at today's exchange rate, for display in the account's ads reporting currency. `null` when `budget_amount` is.
+    public let budgetAmountLocal: Nullable<Double>
+    /// The ISO 4217 code `budget_amount_local` is in: the account's `ads_reporting_currency` preference. `usd` unless the account changed it.
+    public let budgetCurrency: String
+    /// Whether `budget_amount` is spent per day (`daily`) or over the ad group's full run (`lifetime`). A `lifetime` ad group also needs `ends_at`, at least 24 hours after it starts.
     public let budgetType: Nullable<AdGroupBudgetType>
     /// Clicks divided by impressions, between 0 and 1.
     public let clickThroughRate: Double
@@ -27,9 +31,7 @@ public struct AdGroup: Codable, Hashable, Sendable {
     public let contactValue: Double
     /// Whop pixel-attributed contact events, last-click.
     public let contacts: Double
-    public let conversionEvent: Nullable<ConversionEvent>?
-    /// Where the outcome being optimized for occurs, such as a website visit, social-profile visit, messaging conversation, ad interaction, or lead-form submission.
-    public let conversionLocation: Nullable<AdGroupConversionLocation>?
+    public let conversionEvent: Nullable<ConversionEvent>
     /// Spend divided by attributed add-to-cart events; null when they are not the goal and none are attributed.
     public let costPerAddedToCart: Nullable<Double>
     /// Spend divided by clicks; 0 when there are no clicks.
@@ -62,40 +64,35 @@ public struct AdGroup: Codable, Hashable, Sendable {
     public let customEventCounts: [String: JSONValue]
     /// Conversion value attributed to each custom event, keyed by event name like custom_event_counts. Sums the value passed to whop.track, normalized to USD; events fired without a value contribute 0.
     public let customEventValues: [String: JSONValue]
+    /// Hours the ad group delivers in each week, keyed by day. Days it doesn't deliver are omitted. `null` when it delivers at every hour. Some platforms need a lifetime `budget_type` for a schedule, on the ad group or on its campaign when the campaign holds the budget.
+    public let deliverySchedule: Nullable<AdGroupDeliverySchedule>
     /// Whether ads in this ad group are delivering right now, and if not, why. When several states apply at once, the highest-precedence one is returned.
     public let deliveryStatus: AdGroupDeliveryStatus
     /// Age, gender, and automatic-audience targeting.
     public let demographics: AdGroupDemographics
     /// Cost per result to aim for (`average_target`) or never exceed (`maximum_target`). `null` for `minimum_cost` bidding.
     public let desiredCostPerResult: Nullable<Double>
-    /// Interest, behavior, and demographic targeting, using categories from the ad platform's targeting taxonomy. Entries across interests, behaviors, and demographics are OR'd together (anyone matching any entry is reached), matching Ads Manager's detailed-targeting box. Can't be combined with automatic audience targeting, and unavailable to campaigns with special_ad_categories.
-    public let detailedTargeting: AdGroupDetailedTargeting
     /// Device platforms and operating systems targeted.
     public let devices: AdGroupDevices
-    /// Whether the ad platform automatically mixes and matches this ad group's creatives and copy to find the best-performing combinations.
-    public let dynamicCreative: Bool?
     /// When the ad group stops delivering, as an ISO 8601 timestamp. `null` when it runs until paused.
     public let endsAt: Nullable<String>
-    /// Platform-reported impressions divided by reach.
+    /// Impressions divided by reach.
     public let frequency: Nullable<Double>
-    /// Cap on how often one person sees ads from this ad group. Only available on campaigns with the `awareness` objective; `null` when uncapped.
-    public let frequencyCap: Nullable<AdGroupFrequencyCap>
     /// Unique identifier for the ad group, prefixed `adgrp_`.
     public let id: String
     /// The number of impressions.
     public let impressions: Double
     public let issues: [AdPlatformIssue]
+    public let keywords: [AdGroupKeyword]?
     public let languages: [String]
     /// USD value attributed to lead events. Sums the value sent with each event, normalized to USD; events without a value contribute 0.
     public let leadValue: Double
     /// Whop pixel-attributed leads, last-click.
     public let leads: Double
-    public let messageApps: [AdGroupMessageAppsItem]?
-    /// Minimum the ad group tries to spend each day. `null` when no floor is set.
-    public let minimumDailySpend: Nullable<Double>?
-    /// The result the ad group's delivery is optimized to get the most of.
-    public let optimizationGoal: Nullable<AdGroupOptimizationGoal>
-    public let placements: [AdGroupPlacement]
+    /// Progress toward the conversions this ad group's learning phase needs. Null unless it is learning or learning limited and valid counts are available. Reaching the threshold does not determine delivery status.
+    public let learningProgress: Nullable<AdGroupLearningProgress>
+    /// Page views on your destination from people who clicked the ad, recorded by the Whop pixel. Counted the same way on every ad platform.
+    public let linkClicks: Double
     /// USD value of pixel-attributed purchases.
     public let purchaseValue: Double
     /// Whop pixel-attributed purchases, last-click.
@@ -150,6 +147,8 @@ public struct AdGroup: Codable, Hashable, Sendable {
         audiences: AdGroupAudiences,
         bidType: Nullable<AdGroupBidType>,
         budgetAmount: Nullable<Double>,
+        budgetAmountLocal: Nullable<Double>,
+        budgetCurrency: String,
         budgetType: Nullable<AdGroupBudgetType>,
         clickThroughRate: Double,
         clicks: Double,
@@ -157,8 +156,7 @@ public struct AdGroup: Codable, Hashable, Sendable {
         completedRegistrations: Double,
         contactValue: Double,
         contacts: Double,
-        conversionEvent: Nullable<ConversionEvent>? = nil,
-        conversionLocation: Nullable<AdGroupConversionLocation>? = nil,
+        conversionEvent: Nullable<ConversionEvent>,
         costPerAddedToCart: Nullable<Double>,
         costPerClick: Double,
         costPerCompletedRegistration: Nullable<Double>,
@@ -175,25 +173,22 @@ public struct AdGroup: Codable, Hashable, Sendable {
         customConversions: Double,
         customEventCounts: [String: JSONValue],
         customEventValues: [String: JSONValue],
+        deliverySchedule: Nullable<AdGroupDeliverySchedule>,
         deliveryStatus: AdGroupDeliveryStatus,
         demographics: AdGroupDemographics,
         desiredCostPerResult: Nullable<Double>,
-        detailedTargeting: AdGroupDetailedTargeting,
         devices: AdGroupDevices,
-        dynamicCreative: Bool? = nil,
         endsAt: Nullable<String>,
         frequency: Nullable<Double>,
-        frequencyCap: Nullable<AdGroupFrequencyCap>,
         id: String,
         impressions: Double,
         issues: [AdPlatformIssue],
+        keywords: [AdGroupKeyword]? = nil,
         languages: [String],
         leadValue: Double,
         leads: Double,
-        messageApps: [AdGroupMessageAppsItem]? = nil,
-        minimumDailySpend: Nullable<Double>? = nil,
-        optimizationGoal: Nullable<AdGroupOptimizationGoal>,
-        placements: [AdGroupPlacement],
+        learningProgress: Nullable<AdGroupLearningProgress>,
+        linkClicks: Double,
         purchaseValue: Double,
         purchases: Double,
         reach: Double,
@@ -224,6 +219,8 @@ public struct AdGroup: Codable, Hashable, Sendable {
         self.audiences = audiences
         self.bidType = bidType
         self.budgetAmount = budgetAmount
+        self.budgetAmountLocal = budgetAmountLocal
+        self.budgetCurrency = budgetCurrency
         self.budgetType = budgetType
         self.clickThroughRate = clickThroughRate
         self.clicks = clicks
@@ -232,7 +229,6 @@ public struct AdGroup: Codable, Hashable, Sendable {
         self.contactValue = contactValue
         self.contacts = contacts
         self.conversionEvent = conversionEvent
-        self.conversionLocation = conversionLocation
         self.costPerAddedToCart = costPerAddedToCart
         self.costPerClick = costPerClick
         self.costPerCompletedRegistration = costPerCompletedRegistration
@@ -249,25 +245,22 @@ public struct AdGroup: Codable, Hashable, Sendable {
         self.customConversions = customConversions
         self.customEventCounts = customEventCounts
         self.customEventValues = customEventValues
+        self.deliverySchedule = deliverySchedule
         self.deliveryStatus = deliveryStatus
         self.demographics = demographics
         self.desiredCostPerResult = desiredCostPerResult
-        self.detailedTargeting = detailedTargeting
         self.devices = devices
-        self.dynamicCreative = dynamicCreative
         self.endsAt = endsAt
         self.frequency = frequency
-        self.frequencyCap = frequencyCap
         self.id = id
         self.impressions = impressions
         self.issues = issues
+        self.keywords = keywords
         self.languages = languages
         self.leadValue = leadValue
         self.leads = leads
-        self.messageApps = messageApps
-        self.minimumDailySpend = minimumDailySpend
-        self.optimizationGoal = optimizationGoal
-        self.placements = placements
+        self.learningProgress = learningProgress
+        self.linkClicks = linkClicks
         self.purchaseValue = purchaseValue
         self.purchases = purchases
         self.reach = reach
@@ -301,6 +294,8 @@ public struct AdGroup: Codable, Hashable, Sendable {
         self.audiences = try container.decode(AdGroupAudiences.self, forKey: .audiences)
         self.bidType = try container.decode(Nullable<AdGroupBidType>.self, forKey: .bidType)
         self.budgetAmount = try container.decode(Nullable<Double>.self, forKey: .budgetAmount)
+        self.budgetAmountLocal = try container.decode(Nullable<Double>.self, forKey: .budgetAmountLocal)
+        self.budgetCurrency = try container.decode(String.self, forKey: .budgetCurrency)
         self.budgetType = try container.decode(Nullable<AdGroupBudgetType>.self, forKey: .budgetType)
         self.clickThroughRate = try container.decode(Double.self, forKey: .clickThroughRate)
         self.clicks = try container.decode(Double.self, forKey: .clicks)
@@ -308,8 +303,7 @@ public struct AdGroup: Codable, Hashable, Sendable {
         self.completedRegistrations = try container.decode(Double.self, forKey: .completedRegistrations)
         self.contactValue = try container.decode(Double.self, forKey: .contactValue)
         self.contacts = try container.decode(Double.self, forKey: .contacts)
-        self.conversionEvent = try container.decodeNullableIfPresent(ConversionEvent.self, forKey: .conversionEvent)
-        self.conversionLocation = try container.decodeNullableIfPresent(AdGroupConversionLocation.self, forKey: .conversionLocation)
+        self.conversionEvent = try container.decode(Nullable<ConversionEvent>.self, forKey: .conversionEvent)
         self.costPerAddedToCart = try container.decode(Nullable<Double>.self, forKey: .costPerAddedToCart)
         self.costPerClick = try container.decode(Double.self, forKey: .costPerClick)
         self.costPerCompletedRegistration = try container.decode(Nullable<Double>.self, forKey: .costPerCompletedRegistration)
@@ -326,25 +320,22 @@ public struct AdGroup: Codable, Hashable, Sendable {
         self.customConversions = try container.decode(Double.self, forKey: .customConversions)
         self.customEventCounts = try container.decode([String: JSONValue].self, forKey: .customEventCounts)
         self.customEventValues = try container.decode([String: JSONValue].self, forKey: .customEventValues)
+        self.deliverySchedule = try container.decode(Nullable<AdGroupDeliverySchedule>.self, forKey: .deliverySchedule)
         self.deliveryStatus = try container.decode(AdGroupDeliveryStatus.self, forKey: .deliveryStatus)
         self.demographics = try container.decode(AdGroupDemographics.self, forKey: .demographics)
         self.desiredCostPerResult = try container.decode(Nullable<Double>.self, forKey: .desiredCostPerResult)
-        self.detailedTargeting = try container.decode(AdGroupDetailedTargeting.self, forKey: .detailedTargeting)
         self.devices = try container.decode(AdGroupDevices.self, forKey: .devices)
-        self.dynamicCreative = try container.decodeIfPresent(Bool.self, forKey: .dynamicCreative)
         self.endsAt = try container.decode(Nullable<String>.self, forKey: .endsAt)
         self.frequency = try container.decode(Nullable<Double>.self, forKey: .frequency)
-        self.frequencyCap = try container.decode(Nullable<AdGroupFrequencyCap>.self, forKey: .frequencyCap)
         self.id = try container.decode(String.self, forKey: .id)
         self.impressions = try container.decode(Double.self, forKey: .impressions)
         self.issues = try container.decode([AdPlatformIssue].self, forKey: .issues)
+        self.keywords = try container.decodeIfPresent([AdGroupKeyword].self, forKey: .keywords)
         self.languages = try container.decode([String].self, forKey: .languages)
         self.leadValue = try container.decode(Double.self, forKey: .leadValue)
         self.leads = try container.decode(Double.self, forKey: .leads)
-        self.messageApps = try container.decodeIfPresent([AdGroupMessageAppsItem].self, forKey: .messageApps)
-        self.minimumDailySpend = try container.decodeNullableIfPresent(Double.self, forKey: .minimumDailySpend)
-        self.optimizationGoal = try container.decode(Nullable<AdGroupOptimizationGoal>.self, forKey: .optimizationGoal)
-        self.placements = try container.decode([AdGroupPlacement].self, forKey: .placements)
+        self.learningProgress = try container.decode(Nullable<AdGroupLearningProgress>.self, forKey: .learningProgress)
+        self.linkClicks = try container.decode(Double.self, forKey: .linkClicks)
         self.purchaseValue = try container.decode(Double.self, forKey: .purchaseValue)
         self.purchases = try container.decode(Double.self, forKey: .purchases)
         self.reach = try container.decode(Double.self, forKey: .reach)
@@ -379,6 +370,8 @@ public struct AdGroup: Codable, Hashable, Sendable {
         try container.encode(self.audiences, forKey: .audiences)
         try container.encode(self.bidType, forKey: .bidType)
         try container.encode(self.budgetAmount, forKey: .budgetAmount)
+        try container.encode(self.budgetAmountLocal, forKey: .budgetAmountLocal)
+        try container.encode(self.budgetCurrency, forKey: .budgetCurrency)
         try container.encode(self.budgetType, forKey: .budgetType)
         try container.encode(self.clickThroughRate, forKey: .clickThroughRate)
         try container.encode(self.clicks, forKey: .clicks)
@@ -386,8 +379,7 @@ public struct AdGroup: Codable, Hashable, Sendable {
         try container.encode(self.completedRegistrations, forKey: .completedRegistrations)
         try container.encode(self.contactValue, forKey: .contactValue)
         try container.encode(self.contacts, forKey: .contacts)
-        try container.encodeNullableIfPresent(self.conversionEvent, forKey: .conversionEvent)
-        try container.encodeNullableIfPresent(self.conversionLocation, forKey: .conversionLocation)
+        try container.encode(self.conversionEvent, forKey: .conversionEvent)
         try container.encode(self.costPerAddedToCart, forKey: .costPerAddedToCart)
         try container.encode(self.costPerClick, forKey: .costPerClick)
         try container.encode(self.costPerCompletedRegistration, forKey: .costPerCompletedRegistration)
@@ -404,25 +396,22 @@ public struct AdGroup: Codable, Hashable, Sendable {
         try container.encode(self.customConversions, forKey: .customConversions)
         try container.encode(self.customEventCounts, forKey: .customEventCounts)
         try container.encode(self.customEventValues, forKey: .customEventValues)
+        try container.encode(self.deliverySchedule, forKey: .deliverySchedule)
         try container.encode(self.deliveryStatus, forKey: .deliveryStatus)
         try container.encode(self.demographics, forKey: .demographics)
         try container.encode(self.desiredCostPerResult, forKey: .desiredCostPerResult)
-        try container.encode(self.detailedTargeting, forKey: .detailedTargeting)
         try container.encode(self.devices, forKey: .devices)
-        try container.encodeIfPresent(self.dynamicCreative, forKey: .dynamicCreative)
         try container.encode(self.endsAt, forKey: .endsAt)
         try container.encode(self.frequency, forKey: .frequency)
-        try container.encode(self.frequencyCap, forKey: .frequencyCap)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.impressions, forKey: .impressions)
         try container.encode(self.issues, forKey: .issues)
+        try container.encodeIfPresent(self.keywords, forKey: .keywords)
         try container.encode(self.languages, forKey: .languages)
         try container.encode(self.leadValue, forKey: .leadValue)
         try container.encode(self.leads, forKey: .leads)
-        try container.encodeIfPresent(self.messageApps, forKey: .messageApps)
-        try container.encodeNullableIfPresent(self.minimumDailySpend, forKey: .minimumDailySpend)
-        try container.encode(self.optimizationGoal, forKey: .optimizationGoal)
-        try container.encode(self.placements, forKey: .placements)
+        try container.encode(self.learningProgress, forKey: .learningProgress)
+        try container.encode(self.linkClicks, forKey: .linkClicks)
         try container.encode(self.purchaseValue, forKey: .purchaseValue)
         try container.encode(self.purchases, forKey: .purchases)
         try container.encode(self.reach, forKey: .reach)
@@ -455,6 +444,8 @@ public struct AdGroup: Codable, Hashable, Sendable {
         case audiences
         case bidType = "bid_type"
         case budgetAmount = "budget_amount"
+        case budgetAmountLocal = "budget_amount_local"
+        case budgetCurrency = "budget_currency"
         case budgetType = "budget_type"
         case clickThroughRate = "click_through_rate"
         case clicks
@@ -463,7 +454,6 @@ public struct AdGroup: Codable, Hashable, Sendable {
         case contactValue = "contact_value"
         case contacts
         case conversionEvent = "conversion_event"
-        case conversionLocation = "conversion_location"
         case costPerAddedToCart = "cost_per_added_to_cart"
         case costPerClick = "cost_per_click"
         case costPerCompletedRegistration = "cost_per_completed_registration"
@@ -480,25 +470,22 @@ public struct AdGroup: Codable, Hashable, Sendable {
         case customConversions = "custom_conversions"
         case customEventCounts = "custom_event_counts"
         case customEventValues = "custom_event_values"
+        case deliverySchedule = "delivery_schedule"
         case deliveryStatus = "delivery_status"
         case demographics
         case desiredCostPerResult = "desired_cost_per_result"
-        case detailedTargeting = "detailed_targeting"
         case devices
-        case dynamicCreative = "dynamic_creative"
         case endsAt = "ends_at"
         case frequency
-        case frequencyCap = "frequency_cap"
         case id
         case impressions
         case issues
+        case keywords
         case languages
         case leadValue = "lead_value"
         case leads
-        case messageApps = "message_apps"
-        case minimumDailySpend = "minimum_daily_spend"
-        case optimizationGoal = "optimization_goal"
-        case placements
+        case learningProgress = "learning_progress"
+        case linkClicks = "link_clicks"
         case purchaseValue = "purchase_value"
         case purchases
         case reach

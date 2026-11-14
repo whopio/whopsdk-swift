@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for SetupIntent.
 public struct ListSetupIntentsResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [SetupIntentListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let data: [SetupIntent]
+    public let pageInfo: ListSetupIntentsResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [SetupIntentListItem],
-        pageInfo: PageInfo,
+        data: [SetupIntent],
+        pageInfo: ListSetupIntentsResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -21,8 +18,8 @@ public struct ListSetupIntentsResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([SetupIntentListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.data = try container.decode([SetupIntent].self, forKey: .data)
+        self.pageInfo = try container.decode(ListSetupIntentsResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

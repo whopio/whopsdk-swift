@@ -16,7 +16,7 @@ public struct LedgerAccountPayoutAccountDetails: Codable, Hashable, Sendable {
     public let latestVerification: Nullable<LedgerAccountPayoutAccountDetailsLatestVerification>
     /// The business representative's phone
     public let phone: Nullable<String>
-    /// The granular calculated status of the payout account reflecting its current KYC and withdrawal readiness state.
+    /// The granular calculated status of the payout account reflecting its current KYC and payout readiness state.
     public let status: Nullable<PayoutAccountCalculatedStatuses>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

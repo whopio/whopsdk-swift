@@ -1,41 +1,55 @@
 import Foundation
 
-/// Account or user receiving funds.
-public enum PostTransferFailedPayloadDataDestination: Codable, Hashable, Sendable {
-    case company(PostTransferFailedPayloadDataDestinationCompany)
-    case user(PostTransferFailedPayloadDataDestinationUser)
+/// Business account or user receiving the transfer.
+public struct PostTransferFailedPayloadDataDestination: Codable, Hashable, Sendable {
+    /// Account or user ID.
+    public let id: String
+    /// Business logo or user avatar URL. Null when no image is available.
+    public let logoUrl: Nullable<String>
+    /// Business or user display name.
+    public let name: Nullable<String>
+    /// Whether the profile is a business account or a user.
+    public let object: PostTransferFailedPayloadDataDestinationObject
+    /// Additional properties that are not explicitly defined in the schema
+    public let additionalProperties: [String: JSONValue]
+
+    public init(
+        id: String,
+        logoUrl: Nullable<String>,
+        name: Nullable<String>,
+        object: PostTransferFailedPayloadDataDestinationObject,
+        additionalProperties: [String: JSONValue] = .init()
+    ) {
+        self.id = id
+        self.logoUrl = logoUrl
+        self.name = name
+        self.object = object
+        self.additionalProperties = additionalProperties
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let discriminant = try container.decode(String.self, forKey: .typename)
-        switch discriminant {
-        case "Company":
-            self = .company(try PostTransferFailedPayloadDataDestinationCompany(from: decoder))
-        case "User":
-            self = .user(try PostTransferFailedPayloadDataDestinationUser(from: decoder))
-        default:
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(
-                    codingPath: decoder.codingPath,
-                    debugDescription: "Unknown shape discriminant value: \(discriminant)"
-                )
-            )
-        }
+        self.id = try container.decode(String.self, forKey: .id)
+        self.logoUrl = try container.decode(Nullable<String>.self, forKey: .logoUrl)
+        self.name = try container.decode(Nullable<String>.self, forKey: .name)
+        self.object = try container.decode(PostTransferFailedPayloadDataDestinationObject.self, forKey: .object)
+        self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .company(let data):
-            try container.encode("Company", forKey: .typename)
-            try data.encode(to: encoder)
-        case .user(let data):
-            try container.encode("User", forKey: .typename)
-            try data.encode(to: encoder)
-        }
+        try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.logoUrl, forKey: .logoUrl)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.object, forKey: .object)
     }
 
+    /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case typename
+        case id
+        case logoUrl = "logo_url"
+        case name
+        case object
     }
 }

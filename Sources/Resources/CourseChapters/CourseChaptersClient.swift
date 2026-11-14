@@ -17,7 +17,10 @@ public final class CourseChaptersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseChapters.list(
     ///         first: 42,
@@ -61,7 +64,10 @@ public final class CourseChaptersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseChapters.create(request: .init(courseId: "cors_xxxxxxxxxxxxx"))
     /// }
@@ -90,7 +96,10 @@ public final class CourseChaptersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseChapters.retrieve(id: "chap_xxxxxxxxxxxxx")
     /// }
@@ -119,7 +128,10 @@ public final class CourseChaptersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseChapters.delete(id: "chap_xxxxxxxxxxxxx")
     /// }
@@ -148,7 +160,10 @@ public final class CourseChaptersClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseChapters.update(
     ///         id: "chap_xxxxxxxxxxxxx",

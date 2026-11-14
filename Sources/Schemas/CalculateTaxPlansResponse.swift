@@ -1,17 +1,11 @@
 import Foundation
 
 public struct CalculateTaxPlansResponse: Codable, Hashable, Sendable {
-    /// Three-letter ISO 4217 currency code for the returned amounts.
     public let currency: String
-    /// Whether Whop calculated tax for this preview. `not_calculated` means no tax could be determined, so `tax_amount` is 0 and `total` equals `subtotal`.
     public let status: CalculateTaxPlansResponseStatus
-    /// Plan price in the currency's smallest unit, for example cents. For exclusive tax, this is the pre-tax amount; for inclusive tax, it already includes tax and equals the total.
     public let subtotal: Int
-    /// Calculated tax amount in the currency's smallest unit. For exclusive tax, this is added on top of the subtotal; for inclusive tax, it is the portion of the subtotal that is tax.
     public let taxAmount: Int
-    /// Whether tax is added on top of the plan price or already included in it for this buyer's location.
     public let taxBehavior: CalculateTaxPlansResponseTaxBehavior
-    /// Amount the buyer would pay in the currency's smallest unit.
     public let total: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

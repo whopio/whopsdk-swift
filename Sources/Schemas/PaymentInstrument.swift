@@ -1,7 +1,7 @@
 import Foundation
 
 public struct PaymentInstrument: Codable, Hashable, Sendable {
-    /// Card payments only: the card's network and last four.
+    /// Card payments only: the card's network, last four, issuer identification number, expiry, and network transaction id.
     public let card: Nullable<PaymentInstrumentCard>
     /// Buyer-facing instrument name — "Visa •••• 4242" when the card surfaced, else the method's own name ("Klarna").
     public let displayName: String

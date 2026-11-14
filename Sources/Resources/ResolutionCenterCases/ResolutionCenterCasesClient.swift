@@ -14,7 +14,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.list()
     /// }
@@ -24,10 +27,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     ///
     /// - Parameter accountId: Only cases filed against this account (`biz_` tag). With read access to the account this lists its whole queue; without, only the cases you opened against it.
     /// - Parameter userId: Only cases opened by this customer — a `user_` tag, or `me` for the calling user. It narrows what you can already read, so `me` lists the cases you opened without the ones on accounts you are a team member of.
-    /// - Parameter first: The number of cases to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns cases after this position.
-    /// - Parameter last: The number of cases to return from the end of the range.
-    /// - Parameter before: A cursor; returns cases before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter order: The field to sort cases by.
     /// - Parameter direction: Sort direction.
     /// - Parameter status: Only cases in these statuses. Repeat the parameter to pass several — one paginated list covers all of them.
@@ -67,7 +70,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.create(request: .init(
     ///         message: "The mobile detailer never showed up for the Ceramic Coating appointment.",
@@ -97,7 +103,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.summary()
     /// }
@@ -140,7 +149,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.retrieve(id: "id")
     /// }
@@ -166,7 +178,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.accept(
     ///         id: "id",
@@ -189,14 +204,17 @@ public final class ResolutionCenterCasesClient: Sendable {
         )
     }
 
-    /// Appeals a decision, as the customer, on a case that closed in the merchant's favor. Escalates the case to Whop for platform review. A case can be appealed once.
+    /// Appeals a decision, as the customer, on a case that closed in the merchant's favor. Escalates the case to Whop for platform review. A case can be appealed once, within 7 days of the decision.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.appeal(
     ///         id: "id",
@@ -226,7 +244,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.deny(
     ///         id: "id",
@@ -256,7 +277,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.events(id: "id")
     /// }
@@ -265,10 +289,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// ```
     ///
     /// - Parameter id: The resolution center case ID (`reso_` tag).
-    /// - Parameter first: The number of events to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns events after this position.
-    /// - Parameter last: The number of events to return from the end of the range.
-    /// - Parameter before: A cursor; returns events before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func events(id: String, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> EventsResolutionCenterCasesResponse {
         return try await httpClient.performRequest(
@@ -292,7 +316,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.reply(
     ///         id: "id",
@@ -322,7 +349,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.requestInfo(
     ///         id: "id",
@@ -352,7 +382,10 @@ public final class ResolutionCenterCasesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.resolutionCenterCases.withdraw(id: "id")
     /// }

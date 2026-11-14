@@ -7,23 +7,26 @@ public final class ExperiencesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of experiences belonging to a company, with optional filtering by product and app.
+    /// Lists the experiences in an account, optionally filtered to those attached to one product or powered by one app.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.list(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
     ///         productId: "prod_xxxxxxxxxxxxx",
     ///         appId: "app_xxxxxxxxxxxxxx",
     ///         createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)
+    ///         createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -34,13 +37,13 @@ public final class ExperiencesClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list experiences for.
     /// - Parameter productId: Filter to only experiences attached to this product identifier.
     /// - Parameter appId: Filter to only experiences powered by this app identifier.
     /// - Parameter createdBefore: Only return experiences created before this timestamp.
     /// - Parameter createdAfter: Only return experiences created after this timestamp.
+    /// - Parameter accountId: The unique identifier of the company to list experiences for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, productId: String? = nil, appId: String? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListExperiencesResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, productId: String? = nil, appId: String? = nil, createdBefore: Date? = nil, createdAfter: Date? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListExperiencesResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/experiences",
@@ -49,17 +52,19 @@ public final class ExperiencesClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId), 
                 "product_id": productId.map { .string($0) }, 
                 "app_id": appId.map { .string($0) }, 
                 "created_before": createdBefore.map { .date($0) }, 
-                "created_after": createdAfter.map { .date($0) }
+                "created_after": createdAfter.map { .date($0) }, 
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListExperiencesResponse.self
         )
     }
 
+    /// Creates an experience for an account, powered by an app such as courses, forums, or chat. Attach it to a product with `POST /experiences/:id/attach` to give that product's customers access.
+    ///
     /// Required permissions:
     ///  - `experience:create`
     ///
@@ -68,11 +73,14 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.create(request: .init(
-    ///         appId: "app_xxxxxxxxxxxxxx",
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
+    ///         appId: "app_xxxxxxxxxxxxxx"
     ///     ))
     /// }
     ///
@@ -97,7 +105,10 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.retrieve(id: "exp_xxxxxxxxxxxxxx")
     /// }
@@ -116,6 +127,8 @@ public final class ExperiencesClient: Sendable {
         )
     }
 
+    /// Deletes an experience and detaches it from every product, removing customer access to it. Returns `true` on success.
+    ///
     /// Required permissions:
     ///  - `experience:delete`
     ///
@@ -124,7 +137,10 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.delete(id: "exp_xxxxxxxxxxxxxx")
     /// }
@@ -143,6 +159,8 @@ public final class ExperiencesClient: Sendable {
         )
     }
 
+    /// Updates an experience's name, logo, visibility, or notification setting, or moves it to another section or position.
+    ///
     /// Required permissions:
     ///  - `experience:update`
     ///
@@ -151,7 +169,10 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.update(
     ///         id: "exp_xxxxxxxxxxxxxx",
@@ -174,7 +195,7 @@ public final class ExperiencesClient: Sendable {
         )
     }
 
-    /// Attach an experience to a product, making it accessible to the product's customers.
+    /// Attaches an experience to a product, giving the product's customers access to it.
     ///
     /// Required permissions:
     ///  - `experience:attach`
@@ -184,7 +205,10 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.attach(
     ///         id: "exp_xxxxxxxxxxxxxx",
@@ -207,7 +231,7 @@ public final class ExperiencesClient: Sendable {
         )
     }
 
-    /// Detach an experience from a product, removing customer access to it through that product.
+    /// Detaches an experience from a product, removing customer access to it through that product.
     ///
     /// Required permissions:
     ///  - `experience:detach`
@@ -217,7 +241,10 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.detach(
     ///         id: "exp_xxxxxxxxxxxxxx",
@@ -240,10 +267,7 @@ public final class ExperiencesClient: Sendable {
         )
     }
 
-    /// Duplicates an existing experience. The name will be copied, unless provided. The new experience will be attached to the same products as the original experience.
-    /// If duplicating a Forum or Chat experience, the new experience will have the same settings as the original experience, e.g. who can post, who can comment, etc.
-    /// No content, e.g. posts, messages, lessons from within the original experience will be copied.
-    ///
+    /// Duplicates an experience and attaches the copy to the same products as the original. Forum and chat copies keep the original's settings, such as who can post or comment. No content, such as posts, messages, or lessons, is copied.
     ///
     /// Required permissions:
     ///  - `experience:create`
@@ -253,7 +277,10 @@ public final class ExperiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.experiences.duplicate(
     ///         id: "exp_xxxxxxxxxxxxxx",

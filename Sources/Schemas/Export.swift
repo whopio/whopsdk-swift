@@ -3,9 +3,9 @@ import Foundation
 public struct Export: Codable, Hashable, Sendable {
     /// When the export was requested, as an ISO 8601 timestamp.
     public let createdAt: String
-    /// A short-lived link to download the finished CSV. `null` until `status` is `completed`, and again once the export has expired.
+    /// A short-lived link to download the finished file. `null` until `status` is `completed`, and again once the export has expired.
     public let downloadUrl: Nullable<String>
-    /// When the CSV is deleted and the export moves to `expired`, as an ISO 8601 timestamp. Exports are retained for 30 days.
+    /// When the file is deleted and the export moves to `expired`, as an ISO 8601 timestamp. Exports are retained for 30 days.
     public let expiresAt: String
     /// Export ID, prefixed `exprt_`.
     public let id: String
@@ -13,7 +13,7 @@ public struct Export: Codable, Hashable, Sendable {
     public let progressPercent: Nullable<Int>
     /// The resource that was exported, e.g. `receipts`, `members`, or `payouts`.
     public let resource: ExportResource
-    /// `pending` or `processing` while the CSV is generated, `completed` when the download is ready, `failed` if it errored, `expired` once the CSV has been deleted.
+    /// `pending` or `processing` while the file is generated, `completed` when the download is ready, `failed` if it errored, `expired` once the file has been deleted.
     public let status: ExportStatus
     /// When the export last changed, as an ISO 8601 timestamp.
     public let updatedAt: String

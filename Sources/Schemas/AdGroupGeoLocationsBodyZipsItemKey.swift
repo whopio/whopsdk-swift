@@ -1,7 +1,7 @@
 import Foundation
 
 public struct AdGroupGeoLocationsBodyZipsItemKey: Codable, Hashable, Sendable {
-    /// The ZIP or postal code.
+    /// The ZIP or postal code's key, as `COUNTRY:CODE`.
     public let key: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

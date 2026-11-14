@@ -9,14 +9,17 @@ public final class NotificationsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists the authenticated user's notifications, newest first. Requires a user credential — an account API key has no notification feed. Without filters the feed spans every experience the user belongs to plus the teams they are a member of.
+    /// Lists the authenticated user's notifications, newest first. Without filters the feed spans every experience the user belongs to plus the teams they are a member of. Requires a user credential — an account API key has no notification feed.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.notifications.list()
     /// }
@@ -28,8 +31,8 @@ public final class NotificationsClient: Sendable {
     /// - Parameter experienceId: Only return notifications from this experience (`exp_` tag).
     /// - Parameter accountId: Only return team notifications for this account (`biz_` tag).
     /// - Parameter mentions: Only return notifications that mention the user directly.
-    /// - Parameter first: The number of notifications to return (default 20, max 100).
-    /// - Parameter after: A cursor (a notification `id` from a previous page); returns notifications older than it.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(unread: Bool? = nil, experienceId: String? = nil, accountId: String? = nil, mentions: Bool? = nil, first: Int? = nil, after: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListNotificationsResponse {
         return try await httpClient.performRequest(
@@ -55,7 +58,10 @@ public final class NotificationsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.notifications.create(request: .init(
     ///         content: "Drop off at 4180 Burnet Rd. Plan on two days for the full coating.",
@@ -84,7 +90,10 @@ public final class NotificationsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.notifications.badges(experienceIds: [
     ///         "exp_xxxxxxxxxxxxxx"
@@ -110,14 +119,17 @@ public final class NotificationsClient: Sendable {
         )
     }
 
-    /// Marks the authenticated user's notifications as read: one experience's (`experience_id`) or everything (`all: true`) — exactly one of the two. Requires a user credential. Responds with the refreshed badge rows for the affected scope.
+    /// Marks the authenticated user's notifications as read, for one experience or all of them, and returns the refreshed badge rows for that scope. Requires a user credential.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.notifications.markRead(request: .init())
     /// }
@@ -136,14 +148,17 @@ public final class NotificationsClient: Sendable {
         )
     }
 
-    /// Retrieves a single notification by id — either an `id` returned by List Notifications, or the ephemeral id delivered with a push/websocket event. Requires a user credential.
+    /// Retrieves a single notification, from the feed or from a push or websocket event. Requires a user credential.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.notifications.retrieve(id: "id")
     /// }
@@ -151,7 +166,7 @@ public final class NotificationsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: A notification `id` from List Notifications, or the id delivered with a push/websocket event.
+    /// - Parameter id: A notification `id` from List Notifications, or the ephemeral id delivered with a push or websocket event.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieve(id: String, requestOptions: RequestOptions? = nil) async throws -> Notification {
         return try await httpClient.performRequest(

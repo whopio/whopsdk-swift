@@ -2,8 +2,10 @@ import Foundation
 
 extension Requests {
     public struct CreateAiChatsRequest: Codable, Hashable, Sendable {
-        /// The unique identifier of the company to set as context for the AI chat (e.g., "biz_XXXXX").
-        public let currentCompanyId: Nullable<String>?
+        /// The AI agent that handles the chat. Defaults to `support`.
+        public let agentIdentifier: Nullable<AiChatAgentIdentifiers>?
+        /// The unique identifier of the account to set as context for the AI chat (e.g., "biz_XXXXX").
+        public let currentAccountId: Nullable<String>?
         /// A list of previously uploaded file attachments to include with the first message.
         public let messageAttachments: Nullable<[CreateAiChatsRequestMessageAttachmentsItem]>?
         /// The source of the message.
@@ -18,7 +20,8 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            currentCompanyId: Nullable<String>? = nil,
+            agentIdentifier: Nullable<AiChatAgentIdentifiers>? = nil,
+            currentAccountId: Nullable<String>? = nil,
             messageAttachments: Nullable<[CreateAiChatsRequestMessageAttachmentsItem]>? = nil,
             messageSource: Nullable<AiChatMessageSourceTypes>? = nil,
             messageText: String,
@@ -26,7 +29,8 @@ extension Requests {
             title: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.currentCompanyId = currentCompanyId
+            self.agentIdentifier = agentIdentifier
+            self.currentAccountId = currentAccountId
             self.messageAttachments = messageAttachments
             self.messageSource = messageSource
             self.messageText = messageText
@@ -37,7 +41,8 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.currentCompanyId = try container.decodeNullableIfPresent(String.self, forKey: .currentCompanyId)
+            self.agentIdentifier = try container.decodeNullableIfPresent(AiChatAgentIdentifiers.self, forKey: .agentIdentifier)
+            self.currentAccountId = try container.decodeNullableIfPresent(String.self, forKey: .currentAccountId)
             self.messageAttachments = try container.decodeNullableIfPresent([CreateAiChatsRequestMessageAttachmentsItem].self, forKey: .messageAttachments)
             self.messageSource = try container.decodeNullableIfPresent(AiChatMessageSourceTypes.self, forKey: .messageSource)
             self.messageText = try container.decode(String.self, forKey: .messageText)
@@ -49,7 +54,8 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeNullableIfPresent(self.currentCompanyId, forKey: .currentCompanyId)
+            try container.encodeNullableIfPresent(self.agentIdentifier, forKey: .agentIdentifier)
+            try container.encodeNullableIfPresent(self.currentAccountId, forKey: .currentAccountId)
             try container.encodeNullableIfPresent(self.messageAttachments, forKey: .messageAttachments)
             try container.encodeNullableIfPresent(self.messageSource, forKey: .messageSource)
             try container.encode(self.messageText, forKey: .messageText)
@@ -59,7 +65,8 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case currentCompanyId = "current_company_id"
+            case agentIdentifier = "agent_identifier"
+            case currentAccountId = "current_account_id"
             case messageAttachments = "message_attachments"
             case messageSource = "message_source"
             case messageText = "message_text"

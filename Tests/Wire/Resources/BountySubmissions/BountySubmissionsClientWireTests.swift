@@ -57,11 +57,11 @@ import WhopSDK
                       "id": "btys_xxxxxxxxxxxxxx",
                       "latest_proof_livestream_feed": {
                         "ended_at": "2026-01-01T12:00:00.000Z",
-                        "id": "lfeed_3",
+                        "id": "lfeed_1",
                         "recording_status": null,
                         "recording_url": "https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "started_at": "2026-01-01T12:00:00.000Z",
-                        "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
+                        "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
                         "title": "Untitled Livestream"
                       },
                       "operator": "mwebb",
@@ -82,7 +82,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -145,11 +145,11 @@ import WhopSDK
                     id: "btys_xxxxxxxxxxxxxx",
                     latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
                         endedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                        id: "lfeed_3",
+                        id: "lfeed_1",
                         recordingStatus: .null,
                         recordingUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                         startedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                        thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
+                        thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
                         title: "Untitled Livestream"
                     )),
                     operator: Nullable<String>.value("mwebb"),
@@ -170,10 +170,423 @@ import WhopSDK
                 )
             ],
             pageInfo: ListBountySubmissionsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.bountySubmissions.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "bounty_id": "bounty_id",
+                      "capture_clips": [
+                        {
+                          "bounty_submission_id": "bounty_submission_id",
+                          "created_at": "created_at",
+                          "duration_seconds": 1,
+                          "failure_code": "failure_code",
+                          "failure_message": "failure_message",
+                          "frames_url": "frames_url",
+                          "id": "id",
+                          "imu_url": "imu_url",
+                          "manifest_url": "manifest_url",
+                          "ready_at": "ready_at",
+                          "sequence": 1,
+                          "status": "recording",
+                          "updated_at": "updated_at",
+                          "video_url": "video_url"
+                        },
+                        {
+                          "bounty_submission_id": "bounty_submission_id",
+                          "created_at": "created_at",
+                          "duration_seconds": 1,
+                          "failure_code": "failure_code",
+                          "failure_message": "failure_message",
+                          "frames_url": "frames_url",
+                          "id": "id",
+                          "imu_url": "imu_url",
+                          "manifest_url": "manifest_url",
+                          "ready_at": "ready_at",
+                          "sequence": 1,
+                          "status": "recording",
+                          "updated_at": "updated_at",
+                          "video_url": "video_url"
+                        }
+                      ],
+                      "capture_filename": "capture_filename",
+                      "captured_clip_count": 1,
+                      "captured_duration_seconds": 1,
+                      "city": "city",
+                      "claimed_at": "claimed_at",
+                      "content": "content",
+                      "country": "country",
+                      "created_at": "created_at",
+                      "deliverable_type": "content_url",
+                      "deliverable_urls": [
+                        "deliverable_urls",
+                        "deliverable_urls"
+                      ],
+                      "denial_reason": "denial_reason",
+                      "device": "device",
+                      "files": [
+                        {
+                          "attachment_type": "image",
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        },
+                        {
+                          "attachment_type": "image",
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        }
+                      ],
+                      "fov": 1,
+                      "id": "id",
+                      "latest_proof_livestream_feed": {
+                        "ended_at": "ended_at",
+                        "id": "id",
+                        "recording_status": "recording",
+                        "recording_url": "recording_url",
+                        "started_at": "started_at",
+                        "thumbnail_url": "thumbnail_url",
+                        "title": "title"
+                      },
+                      "operator": "operator",
+                      "resolved_at": "resolved_at",
+                      "site": "site",
+                      "station": "station",
+                      "status": "in_progress",
+                      "submitted_at": "submitted_at",
+                      "updated_at": "updated_at",
+                      "worker": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "bounty_id": "bounty_id",
+                      "capture_clips": [
+                        {
+                          "bounty_submission_id": "bounty_submission_id",
+                          "created_at": "created_at",
+                          "duration_seconds": 1,
+                          "failure_code": "failure_code",
+                          "failure_message": "failure_message",
+                          "frames_url": "frames_url",
+                          "id": "id",
+                          "imu_url": "imu_url",
+                          "manifest_url": "manifest_url",
+                          "ready_at": "ready_at",
+                          "sequence": 1,
+                          "status": "recording",
+                          "updated_at": "updated_at",
+                          "video_url": "video_url"
+                        },
+                        {
+                          "bounty_submission_id": "bounty_submission_id",
+                          "created_at": "created_at",
+                          "duration_seconds": 1,
+                          "failure_code": "failure_code",
+                          "failure_message": "failure_message",
+                          "frames_url": "frames_url",
+                          "id": "id",
+                          "imu_url": "imu_url",
+                          "manifest_url": "manifest_url",
+                          "ready_at": "ready_at",
+                          "sequence": 1,
+                          "status": "recording",
+                          "updated_at": "updated_at",
+                          "video_url": "video_url"
+                        }
+                      ],
+                      "capture_filename": "capture_filename",
+                      "captured_clip_count": 1,
+                      "captured_duration_seconds": 1,
+                      "city": "city",
+                      "claimed_at": "claimed_at",
+                      "content": "content",
+                      "country": "country",
+                      "created_at": "created_at",
+                      "deliverable_type": "content_url",
+                      "deliverable_urls": [
+                        "deliverable_urls",
+                        "deliverable_urls"
+                      ],
+                      "denial_reason": "denial_reason",
+                      "device": "device",
+                      "files": [
+                        {
+                          "attachment_type": "image",
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        },
+                        {
+                          "attachment_type": "image",
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        }
+                      ],
+                      "fov": 1,
+                      "id": "id",
+                      "latest_proof_livestream_feed": {
+                        "ended_at": "ended_at",
+                        "id": "id",
+                        "recording_status": "recording",
+                        "recording_url": "recording_url",
+                        "started_at": "started_at",
+                        "thumbnail_url": "thumbnail_url",
+                        "title": "title"
+                      },
+                      "operator": "operator",
+                      "resolved_at": "resolved_at",
+                      "site": "site",
+                      "station": "station",
+                      "status": "in_progress",
+                      "submitted_at": "submitted_at",
+                      "updated_at": "updated_at",
+                      "worker": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListBountySubmissionsResponse(
+            data: [
+                BountySubmission(
+                    bountyId: "bounty_id",
+                    captureClips: Nullable<[BountyCaptureClip]>.value([
+                        BountyCaptureClip(
+                            bountySubmissionId: "bounty_submission_id",
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Int>.value(1),
+                            failureCode: Nullable<String>.value("failure_code"),
+                            failureMessage: Nullable<String>.value("failure_message"),
+                            framesUrl: Nullable<String>.value("frames_url"),
+                            id: "id",
+                            imuUrl: Nullable<String>.value("imu_url"),
+                            manifestUrl: Nullable<String>.value("manifest_url"),
+                            readyAt: Nullable<String>.value("ready_at"),
+                            sequence: 1,
+                            status: BountyCaptureClipStatus.recording,
+                            updatedAt: "updated_at",
+                            videoUrl: Nullable<String>.value("video_url")
+                        ),
+                        BountyCaptureClip(
+                            bountySubmissionId: "bounty_submission_id",
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Int>.value(1),
+                            failureCode: Nullable<String>.value("failure_code"),
+                            failureMessage: Nullable<String>.value("failure_message"),
+                            framesUrl: Nullable<String>.value("frames_url"),
+                            id: "id",
+                            imuUrl: Nullable<String>.value("imu_url"),
+                            manifestUrl: Nullable<String>.value("manifest_url"),
+                            readyAt: Nullable<String>.value("ready_at"),
+                            sequence: 1,
+                            status: BountyCaptureClipStatus.recording,
+                            updatedAt: "updated_at",
+                            videoUrl: Nullable<String>.value("video_url")
+                        )
+                    ]),
+                    captureFilename: Nullable<String>.value("capture_filename"),
+                    capturedClipCount: 1,
+                    capturedDurationSeconds: 1,
+                    city: Nullable<String>.value("city"),
+                    claimedAt: Nullable<String>.value("claimed_at"),
+                    content: Nullable<String>.value("content"),
+                    country: Nullable<String>.value("country"),
+                    createdAt: "created_at",
+                    deliverableType: Nullable<BountySubmissionDeliverableType>.value(BountySubmissionDeliverableType.contentUrl),
+                    deliverableUrls: Nullable<[String]>.value([
+                        "deliverable_urls",
+                        "deliverable_urls"
+                    ]),
+                    denialReason: Nullable<String>.value("denial_reason"),
+                    device: Nullable<String>.value("device"),
+                    files: [
+                        BountySubmissionFile(
+                            attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        ),
+                        BountySubmissionFile(
+                            attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    fov: Nullable<Int>.value(1),
+                    id: "id",
+                    latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                        endedAt: Nullable<String>.value("ended_at"),
+                        id: "id",
+                        recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                        recordingUrl: Nullable<String>.value("recording_url"),
+                        startedAt: Nullable<String>.value("started_at"),
+                        thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                        title: "title"
+                    )),
+                    operator: Nullable<String>.value("operator"),
+                    resolvedAt: Nullable<String>.value("resolved_at"),
+                    site: Nullable<String>.value("site"),
+                    station: Nullable<String>.value("station"),
+                    status: Nullable<BountySubmissionStatus>.value(BountySubmissionStatus.inProgress),
+                    submittedAt: Nullable<String>.value("submitted_at"),
+                    updatedAt: "updated_at",
+                    worker: UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )
+                ),
+                BountySubmission(
+                    bountyId: "bounty_id",
+                    captureClips: Nullable<[BountyCaptureClip]>.value([
+                        BountyCaptureClip(
+                            bountySubmissionId: "bounty_submission_id",
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Int>.value(1),
+                            failureCode: Nullable<String>.value("failure_code"),
+                            failureMessage: Nullable<String>.value("failure_message"),
+                            framesUrl: Nullable<String>.value("frames_url"),
+                            id: "id",
+                            imuUrl: Nullable<String>.value("imu_url"),
+                            manifestUrl: Nullable<String>.value("manifest_url"),
+                            readyAt: Nullable<String>.value("ready_at"),
+                            sequence: 1,
+                            status: BountyCaptureClipStatus.recording,
+                            updatedAt: "updated_at",
+                            videoUrl: Nullable<String>.value("video_url")
+                        ),
+                        BountyCaptureClip(
+                            bountySubmissionId: "bounty_submission_id",
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Int>.value(1),
+                            failureCode: Nullable<String>.value("failure_code"),
+                            failureMessage: Nullable<String>.value("failure_message"),
+                            framesUrl: Nullable<String>.value("frames_url"),
+                            id: "id",
+                            imuUrl: Nullable<String>.value("imu_url"),
+                            manifestUrl: Nullable<String>.value("manifest_url"),
+                            readyAt: Nullable<String>.value("ready_at"),
+                            sequence: 1,
+                            status: BountyCaptureClipStatus.recording,
+                            updatedAt: "updated_at",
+                            videoUrl: Nullable<String>.value("video_url")
+                        )
+                    ]),
+                    captureFilename: Nullable<String>.value("capture_filename"),
+                    capturedClipCount: 1,
+                    capturedDurationSeconds: 1,
+                    city: Nullable<String>.value("city"),
+                    claimedAt: Nullable<String>.value("claimed_at"),
+                    content: Nullable<String>.value("content"),
+                    country: Nullable<String>.value("country"),
+                    createdAt: "created_at",
+                    deliverableType: Nullable<BountySubmissionDeliverableType>.value(BountySubmissionDeliverableType.contentUrl),
+                    deliverableUrls: Nullable<[String]>.value([
+                        "deliverable_urls",
+                        "deliverable_urls"
+                    ]),
+                    denialReason: Nullable<String>.value("denial_reason"),
+                    device: Nullable<String>.value("device"),
+                    files: [
+                        BountySubmissionFile(
+                            attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        ),
+                        BountySubmissionFile(
+                            attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    fov: Nullable<Int>.value(1),
+                    id: "id",
+                    latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                        endedAt: Nullable<String>.value("ended_at"),
+                        id: "id",
+                        recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                        recordingUrl: Nullable<String>.value("recording_url"),
+                        startedAt: Nullable<String>.value("started_at"),
+                        thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                        title: "title"
+                    )),
+                    operator: Nullable<String>.value("operator"),
+                    resolvedAt: Nullable<String>.value("resolved_at"),
+                    site: Nullable<String>.value("site"),
+                    station: Nullable<String>.value("station"),
+                    status: Nullable<BountySubmissionStatus>.value(BountySubmissionStatus.inProgress),
+                    submittedAt: Nullable<String>.value("submitted_at"),
+                    updatedAt: "updated_at",
+                    worker: UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )
+                )
+            ],
+            pageInfo: ListBountySubmissionsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
             )
         )
         let response = try await client.bountySubmissions.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -232,11 +645,11 @@ import WhopSDK
                   "id": "btys_xxxxxxxxxxxxxx",
                   "latest_proof_livestream_feed": {
                     "ended_at": "2026-01-01T12:00:00.000Z",
-                    "id": "lfeed_3",
+                    "id": "lfeed_1",
                     "recording_status": "recording",
                     "recording_url": "https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "started_at": "2026-01-01T12:00:00.000Z",
-                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
+                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
                     "title": "Untitled Livestream"
                   },
                   "operator": "mwebb",
@@ -310,11 +723,11 @@ import WhopSDK
             id: "btys_xxxxxxxxxxxxxx",
             latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
                 endedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                id: "lfeed_3",
+                id: "lfeed_1",
                 recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
                 recordingUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 startedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
+                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
                 title: "Untitled Livestream"
             )),
             operator: Nullable<String>.value("mwebb"),
@@ -335,6 +748,214 @@ import WhopSDK
         )
         let response = try await client.bountySubmissions.create(
             request: .init(bountyId: "bnty_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "bounty_id": "bounty_id",
+                  "capture_clips": [
+                    {
+                      "bounty_submission_id": "bounty_submission_id",
+                      "created_at": "created_at",
+                      "duration_seconds": 1,
+                      "failure_code": "failure_code",
+                      "failure_message": "failure_message",
+                      "frames_url": "frames_url",
+                      "id": "id",
+                      "imu_url": "imu_url",
+                      "manifest_url": "manifest_url",
+                      "ready_at": "ready_at",
+                      "sequence": 1,
+                      "status": "recording",
+                      "updated_at": "updated_at",
+                      "video_url": "video_url"
+                    },
+                    {
+                      "bounty_submission_id": "bounty_submission_id",
+                      "created_at": "created_at",
+                      "duration_seconds": 1,
+                      "failure_code": "failure_code",
+                      "failure_message": "failure_message",
+                      "frames_url": "frames_url",
+                      "id": "id",
+                      "imu_url": "imu_url",
+                      "manifest_url": "manifest_url",
+                      "ready_at": "ready_at",
+                      "sequence": 1,
+                      "status": "recording",
+                      "updated_at": "updated_at",
+                      "video_url": "video_url"
+                    }
+                  ],
+                  "capture_filename": "capture_filename",
+                  "captured_clip_count": 1,
+                  "captured_duration_seconds": 1,
+                  "city": "city",
+                  "claimed_at": "claimed_at",
+                  "content": "content",
+                  "country": "country",
+                  "created_at": "created_at",
+                  "deliverable_type": "content_url",
+                  "deliverable_urls": [
+                    "deliverable_urls",
+                    "deliverable_urls"
+                  ],
+                  "denial_reason": "denial_reason",
+                  "device": "device",
+                  "files": [
+                    {
+                      "attachment_type": "image",
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "attachment_type": "image",
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "fov": 1,
+                  "id": "id",
+                  "latest_proof_livestream_feed": {
+                    "ended_at": "ended_at",
+                    "id": "id",
+                    "recording_status": "recording",
+                    "recording_url": "recording_url",
+                    "started_at": "started_at",
+                    "thumbnail_url": "thumbnail_url",
+                    "title": "title"
+                  },
+                  "operator": "operator",
+                  "resolved_at": "resolved_at",
+                  "site": "site",
+                  "station": "station",
+                  "status": "in_progress",
+                  "submitted_at": "submitted_at",
+                  "updated_at": "updated_at",
+                  "worker": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = BountySubmission(
+            bountyId: "bounty_id",
+            captureClips: Nullable<[BountyCaptureClip]>.value([
+                BountyCaptureClip(
+                    bountySubmissionId: "bounty_submission_id",
+                    createdAt: "created_at",
+                    durationSeconds: Nullable<Int>.value(1),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    framesUrl: Nullable<String>.value("frames_url"),
+                    id: "id",
+                    imuUrl: Nullable<String>.value("imu_url"),
+                    manifestUrl: Nullable<String>.value("manifest_url"),
+                    readyAt: Nullable<String>.value("ready_at"),
+                    sequence: 1,
+                    status: BountyCaptureClipStatus.recording,
+                    updatedAt: "updated_at",
+                    videoUrl: Nullable<String>.value("video_url")
+                ),
+                BountyCaptureClip(
+                    bountySubmissionId: "bounty_submission_id",
+                    createdAt: "created_at",
+                    durationSeconds: Nullable<Int>.value(1),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    framesUrl: Nullable<String>.value("frames_url"),
+                    id: "id",
+                    imuUrl: Nullable<String>.value("imu_url"),
+                    manifestUrl: Nullable<String>.value("manifest_url"),
+                    readyAt: Nullable<String>.value("ready_at"),
+                    sequence: 1,
+                    status: BountyCaptureClipStatus.recording,
+                    updatedAt: "updated_at",
+                    videoUrl: Nullable<String>.value("video_url")
+                )
+            ]),
+            captureFilename: Nullable<String>.value("capture_filename"),
+            capturedClipCount: 1,
+            capturedDurationSeconds: 1,
+            city: Nullable<String>.value("city"),
+            claimedAt: Nullable<String>.value("claimed_at"),
+            content: Nullable<String>.value("content"),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            deliverableType: Nullable<BountySubmissionDeliverableType>.value(BountySubmissionDeliverableType.contentUrl),
+            deliverableUrls: Nullable<[String]>.value([
+                "deliverable_urls",
+                "deliverable_urls"
+            ]),
+            denialReason: Nullable<String>.value("denial_reason"),
+            device: Nullable<String>.value("device"),
+            files: [
+                BountySubmissionFile(
+                    attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                BountySubmissionFile(
+                    attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            fov: Nullable<Int>.value(1),
+            id: "id",
+            latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                endedAt: Nullable<String>.value("ended_at"),
+                id: "id",
+                recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                recordingUrl: Nullable<String>.value("recording_url"),
+                startedAt: Nullable<String>.value("started_at"),
+                thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                title: "title"
+            )),
+            operator: Nullable<String>.value("operator"),
+            resolvedAt: Nullable<String>.value("resolved_at"),
+            site: Nullable<String>.value("site"),
+            station: Nullable<String>.value("station"),
+            status: Nullable<BountySubmissionStatus>.value(BountySubmissionStatus.inProgress),
+            submittedAt: Nullable<String>.value("submitted_at"),
+            updatedAt: "updated_at",
+            worker: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )
+        )
+        let response = try await client.bountySubmissions.create(
+            request: .init(bountyId: "bounty_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -392,11 +1013,11 @@ import WhopSDK
                   "id": "btys_xxxxxxxxxxxxxx",
                   "latest_proof_livestream_feed": {
                     "ended_at": "2026-01-01T12:00:00.000Z",
-                    "id": "lfeed_3",
+                    "id": "lfeed_1",
                     "recording_status": "recording",
                     "recording_url": "https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "started_at": "2026-01-01T12:00:00.000Z",
-                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
+                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
                     "title": "Untitled Livestream"
                   },
                   "operator": "mwebb",
@@ -470,11 +1091,11 @@ import WhopSDK
             id: "btys_xxxxxxxxxxxxxx",
             latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
                 endedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                id: "lfeed_3",
+                id: "lfeed_1",
                 recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
                 recordingUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 startedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
+                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
                 title: "Untitled Livestream"
             )),
             operator: Nullable<String>.value("mwebb"),
@@ -491,6 +1112,214 @@ import WhopSDK
                     url: "https://ui-avatars.com/api/"
                 ),
                 username: "danawhitfield"
+            )
+        )
+        let response = try await client.bountySubmissions.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "bounty_id": "bounty_id",
+                  "capture_clips": [
+                    {
+                      "bounty_submission_id": "bounty_submission_id",
+                      "created_at": "created_at",
+                      "duration_seconds": 1,
+                      "failure_code": "failure_code",
+                      "failure_message": "failure_message",
+                      "frames_url": "frames_url",
+                      "id": "id",
+                      "imu_url": "imu_url",
+                      "manifest_url": "manifest_url",
+                      "ready_at": "ready_at",
+                      "sequence": 1,
+                      "status": "recording",
+                      "updated_at": "updated_at",
+                      "video_url": "video_url"
+                    },
+                    {
+                      "bounty_submission_id": "bounty_submission_id",
+                      "created_at": "created_at",
+                      "duration_seconds": 1,
+                      "failure_code": "failure_code",
+                      "failure_message": "failure_message",
+                      "frames_url": "frames_url",
+                      "id": "id",
+                      "imu_url": "imu_url",
+                      "manifest_url": "manifest_url",
+                      "ready_at": "ready_at",
+                      "sequence": 1,
+                      "status": "recording",
+                      "updated_at": "updated_at",
+                      "video_url": "video_url"
+                    }
+                  ],
+                  "capture_filename": "capture_filename",
+                  "captured_clip_count": 1,
+                  "captured_duration_seconds": 1,
+                  "city": "city",
+                  "claimed_at": "claimed_at",
+                  "content": "content",
+                  "country": "country",
+                  "created_at": "created_at",
+                  "deliverable_type": "content_url",
+                  "deliverable_urls": [
+                    "deliverable_urls",
+                    "deliverable_urls"
+                  ],
+                  "denial_reason": "denial_reason",
+                  "device": "device",
+                  "files": [
+                    {
+                      "attachment_type": "image",
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "attachment_type": "image",
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "fov": 1,
+                  "id": "id",
+                  "latest_proof_livestream_feed": {
+                    "ended_at": "ended_at",
+                    "id": "id",
+                    "recording_status": "recording",
+                    "recording_url": "recording_url",
+                    "started_at": "started_at",
+                    "thumbnail_url": "thumbnail_url",
+                    "title": "title"
+                  },
+                  "operator": "operator",
+                  "resolved_at": "resolved_at",
+                  "site": "site",
+                  "station": "station",
+                  "status": "in_progress",
+                  "submitted_at": "submitted_at",
+                  "updated_at": "updated_at",
+                  "worker": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = BountySubmission(
+            bountyId: "bounty_id",
+            captureClips: Nullable<[BountyCaptureClip]>.value([
+                BountyCaptureClip(
+                    bountySubmissionId: "bounty_submission_id",
+                    createdAt: "created_at",
+                    durationSeconds: Nullable<Int>.value(1),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    framesUrl: Nullable<String>.value("frames_url"),
+                    id: "id",
+                    imuUrl: Nullable<String>.value("imu_url"),
+                    manifestUrl: Nullable<String>.value("manifest_url"),
+                    readyAt: Nullable<String>.value("ready_at"),
+                    sequence: 1,
+                    status: BountyCaptureClipStatus.recording,
+                    updatedAt: "updated_at",
+                    videoUrl: Nullable<String>.value("video_url")
+                ),
+                BountyCaptureClip(
+                    bountySubmissionId: "bounty_submission_id",
+                    createdAt: "created_at",
+                    durationSeconds: Nullable<Int>.value(1),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    framesUrl: Nullable<String>.value("frames_url"),
+                    id: "id",
+                    imuUrl: Nullable<String>.value("imu_url"),
+                    manifestUrl: Nullable<String>.value("manifest_url"),
+                    readyAt: Nullable<String>.value("ready_at"),
+                    sequence: 1,
+                    status: BountyCaptureClipStatus.recording,
+                    updatedAt: "updated_at",
+                    videoUrl: Nullable<String>.value("video_url")
+                )
+            ]),
+            captureFilename: Nullable<String>.value("capture_filename"),
+            capturedClipCount: 1,
+            capturedDurationSeconds: 1,
+            city: Nullable<String>.value("city"),
+            claimedAt: Nullable<String>.value("claimed_at"),
+            content: Nullable<String>.value("content"),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            deliverableType: Nullable<BountySubmissionDeliverableType>.value(BountySubmissionDeliverableType.contentUrl),
+            deliverableUrls: Nullable<[String]>.value([
+                "deliverable_urls",
+                "deliverable_urls"
+            ]),
+            denialReason: Nullable<String>.value("denial_reason"),
+            device: Nullable<String>.value("device"),
+            files: [
+                BountySubmissionFile(
+                    attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                BountySubmissionFile(
+                    attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            fov: Nullable<Int>.value(1),
+            id: "id",
+            latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                endedAt: Nullable<String>.value("ended_at"),
+                id: "id",
+                recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                recordingUrl: Nullable<String>.value("recording_url"),
+                startedAt: Nullable<String>.value("started_at"),
+                thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                title: "title"
+            )),
+            operator: Nullable<String>.value("operator"),
+            resolvedAt: Nullable<String>.value("resolved_at"),
+            site: Nullable<String>.value("site"),
+            station: Nullable<String>.value("station"),
+            status: Nullable<BountySubmissionStatus>.value(BountySubmissionStatus.inProgress),
+            submittedAt: Nullable<String>.value("submitted_at"),
+            updatedAt: "updated_at",
+            worker: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
             )
         )
         let response = try await client.bountySubmissions.retrieve(
@@ -520,6 +1349,34 @@ import WhopSDK
         let expectedResponse = DeleteBountySubmissionsResponse(
             deleted: true,
             id: "btys_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.bountySubmissions.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteBountySubmissionsResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.bountySubmissions.delete(
             id: "id",
@@ -580,11 +1437,11 @@ import WhopSDK
                   "id": "btys_xxxxxxxxxxxxxx",
                   "latest_proof_livestream_feed": {
                     "ended_at": "2026-01-01T12:00:00.000Z",
-                    "id": "lfeed_3",
+                    "id": "lfeed_1",
                     "recording_status": "recording",
                     "recording_url": "https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                     "started_at": "2026-01-01T12:00:00.000Z",
-                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
+                    "thumbnail_url": "https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg",
                     "title": "Untitled Livestream"
                   },
                   "operator": "mwebb",
@@ -658,11 +1515,11 @@ import WhopSDK
             id: "btys_xxxxxxxxxxxxxx",
             latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
                 endedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                id: "lfeed_3",
+                id: "lfeed_1",
                 recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
                 recordingUrl: Nullable<String>.value("https://whop-assets-example.s3.amazonaws.com/uploads/video/2026-01-01/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
                 startedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
+                thumbnailUrl: Nullable<String>.value("https://img.whop.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/resize:fit/width:1000/height:500/plain/https://cdn.whop.com/livestreams/paint-correction-proof-cover.jpg"),
                 title: "Untitled Livestream"
             )),
             operator: Nullable<String>.value("mwebb"),
@@ -679,6 +1536,215 @@ import WhopSDK
                     url: "https://ui-avatars.com/api/"
                 ),
                 username: "danawhitfield"
+            )
+        )
+        let response = try await client.bountySubmissions.submit(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func submit2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "bounty_id": "bounty_id",
+                  "capture_clips": [
+                    {
+                      "bounty_submission_id": "bounty_submission_id",
+                      "created_at": "created_at",
+                      "duration_seconds": 1,
+                      "failure_code": "failure_code",
+                      "failure_message": "failure_message",
+                      "frames_url": "frames_url",
+                      "id": "id",
+                      "imu_url": "imu_url",
+                      "manifest_url": "manifest_url",
+                      "ready_at": "ready_at",
+                      "sequence": 1,
+                      "status": "recording",
+                      "updated_at": "updated_at",
+                      "video_url": "video_url"
+                    },
+                    {
+                      "bounty_submission_id": "bounty_submission_id",
+                      "created_at": "created_at",
+                      "duration_seconds": 1,
+                      "failure_code": "failure_code",
+                      "failure_message": "failure_message",
+                      "frames_url": "frames_url",
+                      "id": "id",
+                      "imu_url": "imu_url",
+                      "manifest_url": "manifest_url",
+                      "ready_at": "ready_at",
+                      "sequence": 1,
+                      "status": "recording",
+                      "updated_at": "updated_at",
+                      "video_url": "video_url"
+                    }
+                  ],
+                  "capture_filename": "capture_filename",
+                  "captured_clip_count": 1,
+                  "captured_duration_seconds": 1,
+                  "city": "city",
+                  "claimed_at": "claimed_at",
+                  "content": "content",
+                  "country": "country",
+                  "created_at": "created_at",
+                  "deliverable_type": "content_url",
+                  "deliverable_urls": [
+                    "deliverable_urls",
+                    "deliverable_urls"
+                  ],
+                  "denial_reason": "denial_reason",
+                  "device": "device",
+                  "files": [
+                    {
+                      "attachment_type": "image",
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "attachment_type": "image",
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "fov": 1,
+                  "id": "id",
+                  "latest_proof_livestream_feed": {
+                    "ended_at": "ended_at",
+                    "id": "id",
+                    "recording_status": "recording",
+                    "recording_url": "recording_url",
+                    "started_at": "started_at",
+                    "thumbnail_url": "thumbnail_url",
+                    "title": "title"
+                  },
+                  "operator": "operator",
+                  "resolved_at": "resolved_at",
+                  "site": "site",
+                  "station": "station",
+                  "status": "in_progress",
+                  "submitted_at": "submitted_at",
+                  "updated_at": "updated_at",
+                  "worker": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = BountySubmission(
+            bountyId: "bounty_id",
+            captureClips: Nullable<[BountyCaptureClip]>.value([
+                BountyCaptureClip(
+                    bountySubmissionId: "bounty_submission_id",
+                    createdAt: "created_at",
+                    durationSeconds: Nullable<Int>.value(1),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    framesUrl: Nullable<String>.value("frames_url"),
+                    id: "id",
+                    imuUrl: Nullable<String>.value("imu_url"),
+                    manifestUrl: Nullable<String>.value("manifest_url"),
+                    readyAt: Nullable<String>.value("ready_at"),
+                    sequence: 1,
+                    status: BountyCaptureClipStatus.recording,
+                    updatedAt: "updated_at",
+                    videoUrl: Nullable<String>.value("video_url")
+                ),
+                BountyCaptureClip(
+                    bountySubmissionId: "bounty_submission_id",
+                    createdAt: "created_at",
+                    durationSeconds: Nullable<Int>.value(1),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    framesUrl: Nullable<String>.value("frames_url"),
+                    id: "id",
+                    imuUrl: Nullable<String>.value("imu_url"),
+                    manifestUrl: Nullable<String>.value("manifest_url"),
+                    readyAt: Nullable<String>.value("ready_at"),
+                    sequence: 1,
+                    status: BountyCaptureClipStatus.recording,
+                    updatedAt: "updated_at",
+                    videoUrl: Nullable<String>.value("video_url")
+                )
+            ]),
+            captureFilename: Nullable<String>.value("capture_filename"),
+            capturedClipCount: 1,
+            capturedDurationSeconds: 1,
+            city: Nullable<String>.value("city"),
+            claimedAt: Nullable<String>.value("claimed_at"),
+            content: Nullable<String>.value("content"),
+            country: Nullable<String>.value("country"),
+            createdAt: "created_at",
+            deliverableType: Nullable<BountySubmissionDeliverableType>.value(BountySubmissionDeliverableType.contentUrl),
+            deliverableUrls: Nullable<[String]>.value([
+                "deliverable_urls",
+                "deliverable_urls"
+            ]),
+            denialReason: Nullable<String>.value("denial_reason"),
+            device: Nullable<String>.value("device"),
+            files: [
+                BountySubmissionFile(
+                    attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                BountySubmissionFile(
+                    attachmentType: Nullable<BountySubmissionFileAttachmentType>.value(BountySubmissionFileAttachmentType.image),
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            fov: Nullable<Int>.value(1),
+            id: "id",
+            latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                endedAt: Nullable<String>.value("ended_at"),
+                id: "id",
+                recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                recordingUrl: Nullable<String>.value("recording_url"),
+                startedAt: Nullable<String>.value("started_at"),
+                thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                title: "title"
+            )),
+            operator: Nullable<String>.value("operator"),
+            resolvedAt: Nullable<String>.value("resolved_at"),
+            site: Nullable<String>.value("site"),
+            station: Nullable<String>.value("station"),
+            status: Nullable<BountySubmissionStatus>.value(BountySubmissionStatus.inProgress),
+            submittedAt: Nullable<String>.value("submitted_at"),
+            updatedAt: "updated_at",
+            worker: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
             )
         )
         let response = try await client.bountySubmissions.submit(

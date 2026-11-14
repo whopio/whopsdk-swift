@@ -7,7 +7,7 @@ public final class PayoutMethodsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a list of active payout methods configured for a company, ordered by most recently created.
+    /// Lists the active payout methods configured for an account, newest first.
     ///
     /// Required permissions:
     ///  - `payout:destination:read`
@@ -17,12 +17,15 @@ public final class PayoutMethodsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.payoutMethods.listPayoutMethod(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -33,9 +36,9 @@ public final class PayoutMethodsClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to list payout methods for.
+    /// - Parameter accountId: The unique identifier of the company to list payout methods for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listPayoutMethod(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String, requestOptions: RequestOptions? = nil) async throws -> ListPayoutMethodResponse {
+    public func listPayoutMethod(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, accountId: String, requestOptions: RequestOptions? = nil) async throws -> ListPayoutMethodResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/payout_methods",
@@ -44,7 +47,7 @@ public final class PayoutMethodsClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": .string(companyId)
+                "account_id": .string(accountId)
             ],
             requestOptions: requestOptions,
             responseType: ListPayoutMethodResponse.self
@@ -61,7 +64,10 @@ public final class PayoutMethodsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.payoutMethods.retrievePayoutMethod(id: "potk_xxxxxxxxxxxxx")
     /// }

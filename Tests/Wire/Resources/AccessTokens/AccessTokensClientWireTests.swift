@@ -30,4 +30,32 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "expires_at": "2024-01-15T09:30:00Z",
+                  "token": "token"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AccessToken(
+            expiresAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            token: "token"
+        )
+        let response = try await client.accessTokens.create(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

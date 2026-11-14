@@ -10,6 +10,8 @@ extension Requests {
         public let enabled: Bool?
         /// The events to send the webhook for, in dot form (for example `payment.succeeded`).
         public let events: [UpdateWebhooksRequestEventsItem]?
+        /// A label for the webhook, shown in the dashboard. Up to 255 characters. Pass `null` or an empty string to remove it.
+        public let title: Nullable<String>?
         /// The URL to send the webhook to.
         public let url: String?
         /// Additional properties that are not explicitly defined in the schema
@@ -20,6 +22,7 @@ extension Requests {
             childResourceEvents: Bool? = nil,
             enabled: Bool? = nil,
             events: [UpdateWebhooksRequestEventsItem]? = nil,
+            title: Nullable<String>? = nil,
             url: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -27,6 +30,7 @@ extension Requests {
             self.childResourceEvents = childResourceEvents
             self.enabled = enabled
             self.events = events
+            self.title = title
             self.url = url
             self.additionalProperties = additionalProperties
         }
@@ -37,6 +41,7 @@ extension Requests {
             self.childResourceEvents = try container.decodeIfPresent(Bool.self, forKey: .childResourceEvents)
             self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled)
             self.events = try container.decodeIfPresent([UpdateWebhooksRequestEventsItem].self, forKey: .events)
+            self.title = try container.decodeNullableIfPresent(String.self, forKey: .title)
             self.url = try container.decodeIfPresent(String.self, forKey: .url)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
@@ -48,6 +53,7 @@ extension Requests {
             try container.encodeIfPresent(self.childResourceEvents, forKey: .childResourceEvents)
             try container.encodeIfPresent(self.enabled, forKey: .enabled)
             try container.encodeIfPresent(self.events, forKey: .events)
+            try container.encodeNullableIfPresent(self.title, forKey: .title)
             try container.encodeIfPresent(self.url, forKey: .url)
         }
 
@@ -57,6 +63,7 @@ extension Requests {
             case childResourceEvents = "child_resource_events"
             case enabled
             case events
+            case title
             case url
         }
     }

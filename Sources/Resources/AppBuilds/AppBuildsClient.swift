@@ -14,7 +14,10 @@ public final class AppBuildsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.appBuilds.list(appId: "app_id")
     /// }
@@ -27,10 +30,10 @@ public final class AppBuildsClient: Sendable {
     /// - Parameter status: Filter builds by review status.
     /// - Parameter createdBefore: Only return builds created before this ISO 8601 timestamp.
     /// - Parameter createdAfter: Only return builds created after this ISO 8601 timestamp.
-    /// - Parameter first: The number of builds to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns builds after this position.
-    /// - Parameter last: The number of builds to return from the end of the range.
-    /// - Parameter before: A cursor; returns builds before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(appId: String, platform: ListAppBuildsRequestPlatform? = nil, status: ListAppBuildsRequestStatus? = nil, createdBefore: ListAppBuildsRequestCreatedBefore? = nil, createdAfter: ListAppBuildsRequestCreatedAfter? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAppBuildsResponse {
         return try await httpClient.performRequest(
@@ -52,14 +55,17 @@ public final class AppBuildsClient: Sendable {
         )
     }
 
-    /// Uploads a new build artifact for an app. Upload the file first (POST /files or a direct upload), then reference it here; iOS and Android take a .zip bundle, web takes a JavaScript file or a .zip archive of the hosted site.
+    /// Uploads a new build artifact for an app. Upload the file first with `POST /files` or a direct upload, then reference it in `attachment`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.appBuilds.create(request: .init(
     ///         attachment: CreateAppBuildsRequestAttachment(
@@ -91,7 +97,10 @@ public final class AppBuildsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.appBuilds.retrieve(id: "id")
     /// }
@@ -117,7 +126,10 @@ public final class AppBuildsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.appBuilds.promote(id: "id")
     /// }

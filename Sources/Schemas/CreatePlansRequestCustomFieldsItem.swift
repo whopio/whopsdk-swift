@@ -1,17 +1,11 @@
 import Foundation
 
 public struct CreatePlansRequestCustomFieldsItem: Codable, Hashable, Sendable {
-    /// The type of the custom field.
     public let fieldType: CreatePlansRequestCustomFieldsItemFieldType?
-    /// The ID of the custom field (if being updated).
     public let id: String?
-    /// The name of the custom field.
     public let name: String?
-    /// The order of the field.
     public let order: Int?
-    /// An example response displayed in the input field.
     public let placeholder: Nullable<String>?
-    /// Whether or not the field is required.
     public let required: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

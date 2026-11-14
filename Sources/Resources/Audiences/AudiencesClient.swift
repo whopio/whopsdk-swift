@@ -7,14 +7,17 @@ public final class AudiencesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists uploaded customer-list audiences for an account. Pass `audience_id` to return a specific audience.
+    /// Lists an account's custom and lookalike audiences.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.audiences.list(accountId: "account_id")
     /// }
@@ -24,10 +27,10 @@ public final class AudiencesClient: Sendable {
     ///
     /// - Parameter accountId: Account ID, prefixed `biz_`.
     /// - Parameter audienceId: Audience ID, prefixed `adaud_`, used to filter the response to one audience.
-    /// - Parameter audienceType: Filter by audience type: `custom` (uploaded lists) or `lookalike`.
-    /// - Parameter sourceType: Filter by member source: `csv_upload` (uploaded lists) or `people_filter` (automatic audiences built from saved People filters).
-    /// - Parameter first: Number of audiences to return. Defaults to 20; maximum 100.
-    /// - Parameter after: Cursor for the next page of audiences.
+    /// - Parameter audienceType: Filter by custom or lookalike audiences.
+    /// - Parameter sourceType: Filter by uploaded customer lists, Whop People filters, or social engagement.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String, audienceId: String? = nil, audienceType: ListAudiencesRequestAudienceType? = nil, sourceType: ListAudiencesRequestSourceType? = nil, first: Int? = nil, after: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAudiencesResponse {
         return try await httpClient.performRequest(
@@ -46,14 +49,17 @@ public final class AudiencesClient: Sendable {
         )
     }
 
-    /// Creates an audience. Default (`audience_type` omitted or `custom`): creates one audience from an uploaded customer identity CSV file (`name`, `column_mapping`, and `file_id` required) and starts processing it; responds with the audience object. With `filters`: creates an audience from saved People filters (`name` required) — membership is built from the account's People data, and `auto_refresh` decides whether it keeps tracking the filters or keeps whoever matched at creation. With `audience_type: lookalike`: creates a ladder of Meta lookalike audiences from an existing ready custom audience (`source_audience_id`, `count`, and `percentage` required) — `count` equal similarity bands slicing the top `percentage`% (3 audiences at 6% = 0–2%, 2–4%, 4–6%), each returned as its own audience in a `{ data: [...] }` envelope.
+    /// Creates a custom audience from a customer list or your account's Whop People data, or a lookalike audience that reaches people similar to an existing one. Processing runs asynchronously. A custom audience returns one audience; a lookalike returns the requested similarity bands in `data`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.audiences.create(request: .init(accountId: "biz_xxxxxxxxxxxxxx"))
     /// }
@@ -79,7 +85,10 @@ public final class AudiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.audiences.delete(id: "id")
     /// }
@@ -105,7 +114,10 @@ public final class AudiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.audiences.update(
     ///         id: "id",
@@ -135,7 +147,10 @@ public final class AudiencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.audiences.addPeople(
     ///         id: "id",

@@ -7,7 +7,7 @@ public final class IdentityProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of identity profiles. When company_id is provided, lists IPs currently linked to that company's ledger. When omitted, lists IPs linked to any ledger the actor can read (including child companies under a parent).
+    /// Lists the identity profiles currently linked to an account, or to every account you can read when `account_id` is omitted.
     ///
     /// Required permissions:
     ///  - `identity:read`
@@ -17,12 +17,15 @@ public final class IdentityProfilesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.identityProfiles.listIdentityProfile(
     ///         first: 42,
     ///         last: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -33,9 +36,9 @@ public final class IdentityProfilesClient: Sendable {
     /// - Parameter before: Returns the elements in the list that come before the specified cursor.
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
-    /// - Parameter companyId: The unique identifier of the company to filter to. When omitted, returns IPs across all ledgers the actor can read.
+    /// - Parameter accountId: Account to list identity profiles for, prefixed `biz_`. Omit to list profiles across every account you can read, including child accounts under a parent and, with a user credential, your own user.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listIdentityProfile(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, companyId: String? = nil, profileType: IdentityProfileKinds? = nil, status: IdentityProfileStatuses? = nil, requestOptions: RequestOptions? = nil) async throws -> ListIdentityProfileResponse {
+    public func listIdentityProfile(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, profileType: IdentityProfileKinds? = nil, status: IdentityProfileStatuses? = nil, accountId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListIdentityProfileResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/identity_profiles",
@@ -44,9 +47,9 @@ public final class IdentityProfilesClient: Sendable {
                 "before": before.map { .string($0) }, 
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
-                "company_id": companyId.map { .string($0) }, 
                 "profile_type": profileType.map { .string($0.rawValue) }, 
-                "status": status.map { .string($0.rawValue) }
+                "status": status.map { .string($0.rawValue) }, 
+                "account_id": accountId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListIdentityProfileResponse.self
@@ -63,7 +66,10 @@ public final class IdentityProfilesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.identityProfiles.retrieveIdentityProfile(id: "idpf_xxxxxxxxxxxxx")
     /// }
@@ -82,14 +88,20 @@ public final class IdentityProfilesClient: Sendable {
         )
     }
 
-    /// Unlinks an IdentityProfile from a LedgerAccount (flips the matching link to is_current=false).
+    /// Unlinks an identity profile from the account or user that owns `ledger_account_id`. Requires `identity:write` on that account or user.
+    ///
+    /// Required permissions:
+    ///  - `identity:write`
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.identityProfiles.unlinkIdentityProfile(
     ///         id: "idpf_xxxxxxxxxxxxx",
@@ -125,7 +137,10 @@ public final class IdentityProfilesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.identityProfiles.listVerificationsIdentityProfile(
     ///         id: "idpf_xxxxxxxxxxxxx",

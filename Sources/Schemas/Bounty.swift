@@ -8,9 +8,12 @@ public struct Bounty: Codable, Hashable, Sendable {
     public let acceptedSubmissionsLimit: Int
     /// How many winner slots one worker can win. Defaults to `1`. Wins plus proofs awaiting review never exceed this number, and a worker runs one attempt at a time. Cannot exceed `accepted_submissions_limit`.
     public let acceptedSubmissionsPerUserLimit: Int
+    public let activeProofLivestreamFeeds: [BountyActiveLivestreamFeed]
     /// What a referrer earns per accepted submission when the worker arrived through their affiliate link, in whole currency units, at the standard platform fee rate. Taken out of the worker's post-fee reward rather than added on top. `0` when the bounty pays no affiliate share, including bounties tied to no account, which cannot record a referral.
     public let affiliateShareAmount: Double
     public let allowedCountryCodes: [String]
+    /// Submissions delivered and waiting on review. A subset of `unresolved_submissions_count`, which also counts attempts still in progress.
+    public let awaitingReviewSubmissionsCount: Int
     /// Total gross budget committed to the bounty: `gross_reward_amount` times `accepted_submissions_limit`.
     public let budgetAmount: Double
     /// What the poster wants the work to achieve, declared once at create. `null` for bounties created before the taxonomy rolled out.
@@ -23,6 +26,8 @@ public struct Bounty: Codable, Hashable, Sendable {
     public let createdAt: String
     /// Currency for all amounts on the bounty, as a lowercase ISO 4217 code.
     public let currency: BountyCurrency
+    /// Submissions reviewed and turned down.
+    public let deniedSubmissionsCount: Int
     /// Full task instructions shown to workers.
     public let description: String
     /// Experience the bounty's discussion thread lives in, prefixed `exp_`. Read this — not `experience_id` — to open the thread: a platform-wide bounty has no hosting experience of its own but its discussion still lives in one.
@@ -43,6 +48,8 @@ public struct Bounty: Codable, Hashable, Sendable {
     public let hostingAccount: Nullable<StorefrontAccount>
     /// Bounty ID, prefixed `bnty_`.
     public let id: String
+    /// Total verified footage a submission must accumulate before it can be submitted, in seconds. Always a whole number of hours. Present only on `data_capture` bounties — it is what `net_reward_amount` pays for, so rate displays divide by it. `null` for every other goal type.
+    public let minTotalVerifiedDurationSeconds: Nullable<Int>
     /// What a worker is quoted per accepted submission after the platform fee, in whole currency units. The exact post-fee figure, at the standard platform fee rate — a worker who locked a different rate, or who arrived through an affiliate link, is paid a different amount.
     public let netRewardAmount: Double
     /// User who posted the bounty — the account owner when created with an account API key.
@@ -73,14 +80,17 @@ public struct Bounty: Codable, Hashable, Sendable {
         acceptedSubmissionsCount: Int,
         acceptedSubmissionsLimit: Int,
         acceptedSubmissionsPerUserLimit: Int,
+        activeProofLivestreamFeeds: [BountyActiveLivestreamFeed],
         affiliateShareAmount: Double,
         allowedCountryCodes: [String],
+        awaitingReviewSubmissionsCount: Int,
         budgetAmount: Double,
         businessGoalType: Nullable<BountyBusinessGoalType>,
         cancelRequestedAt: Nullable<String>,
         captureSpec: Nullable<CaptureSpec>,
         createdAt: String,
         currency: BountyCurrency,
+        deniedSubmissionsCount: Int,
         description: String,
         discussionExperienceId: Nullable<String>,
         discussionFeedId: Nullable<String>,
@@ -91,6 +101,7 @@ public struct Bounty: Codable, Hashable, Sendable {
         grossRewardAmount: Double,
         hostingAccount: Nullable<StorefrontAccount>,
         id: String,
+        minTotalVerifiedDurationSeconds: Nullable<Int>,
         netRewardAmount: Double,
         poster: UserSummary,
         scheduledFrequency: Nullable<BountyScheduledFrequency>,
@@ -108,14 +119,17 @@ public struct Bounty: Codable, Hashable, Sendable {
         self.acceptedSubmissionsCount = acceptedSubmissionsCount
         self.acceptedSubmissionsLimit = acceptedSubmissionsLimit
         self.acceptedSubmissionsPerUserLimit = acceptedSubmissionsPerUserLimit
+        self.activeProofLivestreamFeeds = activeProofLivestreamFeeds
         self.affiliateShareAmount = affiliateShareAmount
         self.allowedCountryCodes = allowedCountryCodes
+        self.awaitingReviewSubmissionsCount = awaitingReviewSubmissionsCount
         self.budgetAmount = budgetAmount
         self.businessGoalType = businessGoalType
         self.cancelRequestedAt = cancelRequestedAt
         self.captureSpec = captureSpec
         self.createdAt = createdAt
         self.currency = currency
+        self.deniedSubmissionsCount = deniedSubmissionsCount
         self.description = description
         self.discussionExperienceId = discussionExperienceId
         self.discussionFeedId = discussionFeedId
@@ -126,6 +140,7 @@ public struct Bounty: Codable, Hashable, Sendable {
         self.grossRewardAmount = grossRewardAmount
         self.hostingAccount = hostingAccount
         self.id = id
+        self.minTotalVerifiedDurationSeconds = minTotalVerifiedDurationSeconds
         self.netRewardAmount = netRewardAmount
         self.poster = poster
         self.scheduledFrequency = scheduledFrequency
@@ -146,14 +161,17 @@ public struct Bounty: Codable, Hashable, Sendable {
         self.acceptedSubmissionsCount = try container.decode(Int.self, forKey: .acceptedSubmissionsCount)
         self.acceptedSubmissionsLimit = try container.decode(Int.self, forKey: .acceptedSubmissionsLimit)
         self.acceptedSubmissionsPerUserLimit = try container.decode(Int.self, forKey: .acceptedSubmissionsPerUserLimit)
+        self.activeProofLivestreamFeeds = try container.decode([BountyActiveLivestreamFeed].self, forKey: .activeProofLivestreamFeeds)
         self.affiliateShareAmount = try container.decode(Double.self, forKey: .affiliateShareAmount)
         self.allowedCountryCodes = try container.decode([String].self, forKey: .allowedCountryCodes)
+        self.awaitingReviewSubmissionsCount = try container.decode(Int.self, forKey: .awaitingReviewSubmissionsCount)
         self.budgetAmount = try container.decode(Double.self, forKey: .budgetAmount)
         self.businessGoalType = try container.decode(Nullable<BountyBusinessGoalType>.self, forKey: .businessGoalType)
         self.cancelRequestedAt = try container.decode(Nullable<String>.self, forKey: .cancelRequestedAt)
         self.captureSpec = try container.decode(Nullable<CaptureSpec>.self, forKey: .captureSpec)
         self.createdAt = try container.decode(String.self, forKey: .createdAt)
         self.currency = try container.decode(BountyCurrency.self, forKey: .currency)
+        self.deniedSubmissionsCount = try container.decode(Int.self, forKey: .deniedSubmissionsCount)
         self.description = try container.decode(String.self, forKey: .description)
         self.discussionExperienceId = try container.decode(Nullable<String>.self, forKey: .discussionExperienceId)
         self.discussionFeedId = try container.decode(Nullable<String>.self, forKey: .discussionFeedId)
@@ -164,6 +182,7 @@ public struct Bounty: Codable, Hashable, Sendable {
         self.grossRewardAmount = try container.decode(Double.self, forKey: .grossRewardAmount)
         self.hostingAccount = try container.decode(Nullable<StorefrontAccount>.self, forKey: .hostingAccount)
         self.id = try container.decode(String.self, forKey: .id)
+        self.minTotalVerifiedDurationSeconds = try container.decode(Nullable<Int>.self, forKey: .minTotalVerifiedDurationSeconds)
         self.netRewardAmount = try container.decode(Double.self, forKey: .netRewardAmount)
         self.poster = try container.decode(UserSummary.self, forKey: .poster)
         self.scheduledFrequency = try container.decode(Nullable<BountyScheduledFrequency>.self, forKey: .scheduledFrequency)
@@ -185,14 +204,17 @@ public struct Bounty: Codable, Hashable, Sendable {
         try container.encode(self.acceptedSubmissionsCount, forKey: .acceptedSubmissionsCount)
         try container.encode(self.acceptedSubmissionsLimit, forKey: .acceptedSubmissionsLimit)
         try container.encode(self.acceptedSubmissionsPerUserLimit, forKey: .acceptedSubmissionsPerUserLimit)
+        try container.encode(self.activeProofLivestreamFeeds, forKey: .activeProofLivestreamFeeds)
         try container.encode(self.affiliateShareAmount, forKey: .affiliateShareAmount)
         try container.encode(self.allowedCountryCodes, forKey: .allowedCountryCodes)
+        try container.encode(self.awaitingReviewSubmissionsCount, forKey: .awaitingReviewSubmissionsCount)
         try container.encode(self.budgetAmount, forKey: .budgetAmount)
         try container.encode(self.businessGoalType, forKey: .businessGoalType)
         try container.encode(self.cancelRequestedAt, forKey: .cancelRequestedAt)
         try container.encode(self.captureSpec, forKey: .captureSpec)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.currency, forKey: .currency)
+        try container.encode(self.deniedSubmissionsCount, forKey: .deniedSubmissionsCount)
         try container.encode(self.description, forKey: .description)
         try container.encode(self.discussionExperienceId, forKey: .discussionExperienceId)
         try container.encode(self.discussionFeedId, forKey: .discussionFeedId)
@@ -203,6 +225,7 @@ public struct Bounty: Codable, Hashable, Sendable {
         try container.encode(self.grossRewardAmount, forKey: .grossRewardAmount)
         try container.encode(self.hostingAccount, forKey: .hostingAccount)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.minTotalVerifiedDurationSeconds, forKey: .minTotalVerifiedDurationSeconds)
         try container.encode(self.netRewardAmount, forKey: .netRewardAmount)
         try container.encode(self.poster, forKey: .poster)
         try container.encode(self.scheduledFrequency, forKey: .scheduledFrequency)
@@ -222,14 +245,17 @@ public struct Bounty: Codable, Hashable, Sendable {
         case acceptedSubmissionsCount = "accepted_submissions_count"
         case acceptedSubmissionsLimit = "accepted_submissions_limit"
         case acceptedSubmissionsPerUserLimit = "accepted_submissions_per_user_limit"
+        case activeProofLivestreamFeeds = "active_proof_livestream_feeds"
         case affiliateShareAmount = "affiliate_share_amount"
         case allowedCountryCodes = "allowed_country_codes"
+        case awaitingReviewSubmissionsCount = "awaiting_review_submissions_count"
         case budgetAmount = "budget_amount"
         case businessGoalType = "business_goal_type"
         case cancelRequestedAt = "cancel_requested_at"
         case captureSpec = "capture_spec"
         case createdAt = "created_at"
         case currency
+        case deniedSubmissionsCount = "denied_submissions_count"
         case description
         case discussionExperienceId = "discussion_experience_id"
         case discussionFeedId = "discussion_feed_id"
@@ -240,6 +266,7 @@ public struct Bounty: Codable, Hashable, Sendable {
         case grossRewardAmount = "gross_reward_amount"
         case hostingAccount = "hosting_account"
         case id
+        case minTotalVerifiedDurationSeconds = "min_total_verified_duration_seconds"
         case netRewardAmount = "net_reward_amount"
         case poster
         case scheduledFrequency = "scheduled_frequency"

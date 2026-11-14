@@ -19,6 +19,7 @@ public enum SpecificFeeOrigins: String, Codable, Hashable, CaseIterable, Sendabl
     case stripePayoutFee = "stripe_payout_fee"
     case disputeFee = "dispute_fee"
     case disputeAlertFee = "dispute_alert_fee"
+    case disputeRepresentmentFee = "dispute_representment_fee"
     case appleProcessingFee = "apple_processing_fee"
     case buyerFee = "buyer_fee"
     case sezzleProcessingFee = "sezzle_processing_fee"
@@ -34,4 +35,6 @@ public enum SpecificFeeOrigins: String, Codable, Hashable, CaseIterable, Sendabl
     case revsharePercentageFee = "revshare_percentage_fee"
     case applicationFee = "application_fee"
     case highRiskMerchantFee = "high_risk_merchant_fee"
+    case economicIntelligencePercentageFee = "economic_intelligence_percentage_fee"
+    case paymentReturnFee = "payment_return_fee"
 }

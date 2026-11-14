@@ -9,4 +9,9 @@ public enum SocialAccountPlatform: String, Codable, Hashable, CaseIterable, Send
     case facebook
     case discord
     case telegram
+    case linkedin
+    case snapchat
+    case klaviyo
+    case quickbooks
+    case aimerce
 }

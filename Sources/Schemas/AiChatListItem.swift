@@ -2,6 +2,8 @@ import Foundation
 
 /// An AI-powered chat conversation belonging to a user, with optional scheduled automation.
 public struct AiChatListItem: Codable, Hashable, Sendable {
+    /// The AI agent that handles this chat. Set when the chat is created and fixed for its lifetime.
+    public let agentIdentifier: AiChatAgentIdentifiers
     /// The total number of tokens consumed across all messages in this conversation.
     public let blendedTokenUsage: String
     /// The datetime the ai chat was created.
@@ -24,6 +26,7 @@ public struct AiChatListItem: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        agentIdentifier: AiChatAgentIdentifiers,
         blendedTokenUsage: String,
         createdAt: Date,
         id: String,
@@ -35,6 +38,7 @@ public struct AiChatListItem: Codable, Hashable, Sendable {
         user: AiChatListItemUser,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.agentIdentifier = agentIdentifier
         self.blendedTokenUsage = blendedTokenUsage
         self.createdAt = createdAt
         self.id = id
@@ -49,6 +53,7 @@ public struct AiChatListItem: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.agentIdentifier = try container.decode(AiChatAgentIdentifiers.self, forKey: .agentIdentifier)
         self.blendedTokenUsage = try container.decode(String.self, forKey: .blendedTokenUsage)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.id = try container.decode(String.self, forKey: .id)
@@ -64,6 +69,7 @@ public struct AiChatListItem: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.agentIdentifier, forKey: .agentIdentifier)
         try container.encode(self.blendedTokenUsage, forKey: .blendedTokenUsage)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.id, forKey: .id)
@@ -77,6 +83,7 @@ public struct AiChatListItem: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case agentIdentifier = "agent_identifier"
         case blendedTokenUsage = "blended_token_usage"
         case createdAt = "created_at"
         case id

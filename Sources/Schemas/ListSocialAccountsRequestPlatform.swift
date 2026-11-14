@@ -8,4 +8,9 @@ public enum ListSocialAccountsRequestPlatform: String, Codable, Hashable, CaseIt
     case facebook
     case discord
     case telegram
+    case linkedin
+    case snapchat
+    case klaviyo
+    case quickbooks
+    case aimerce
 }

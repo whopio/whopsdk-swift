@@ -1,6 +1,6 @@
 import Foundation
 
-/// The granular calculated statuses reflecting payout account KYC and withdrawal readiness.
+/// The granular calculated statuses reflecting payout account KYC and payout readiness.
 public enum PayoutAccountCalculatedStatuses: String, Codable, Hashable, CaseIterable, Sendable {
     case connected
     case disabled

@@ -18,12 +18,11 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
     public let escalated: Bool
     /// Resolution center case ID, prefixed `reso_`.
     public let id: String
+    public let lineItems: [ReceiptLineItem]
     /// Who prevailed on the claim. `null` until the case closes. Read `refund` for whether any money actually moved.
     public let outcome: Nullable<ResolutionCenterCaseOutcome>
     /// The payment the case was opened against.
     public let payment: ResolutionPayment
-    /// The plan the payment was made on, prefixed `plan_`.
-    public let planId: Nullable<String>
     /// The product the payment was for, prefixed `prod_`.
     public let productId: Nullable<String>
     /// What the customer says went wrong. Shares the `/disputes` vocabulary, so a case that later becomes a chargeback reports the same complaint.
@@ -36,6 +35,8 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
     public let status: ResolutionCenterCaseStatus
     /// When the case was last changed, as an ISO 8601 timestamp.
     public let updatedAt: String
+    /// The variant the payment was made on, prefixed `plan_`.
+    public let variantId: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -49,15 +50,16 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
         customerAppealed: Bool,
         escalated: Bool,
         id: String,
+        lineItems: [ReceiptLineItem],
         outcome: Nullable<ResolutionCenterCaseOutcome>,
         payment: ResolutionPayment,
-        planId: Nullable<String>,
         productId: Nullable<String>,
         reason: ResolutionCenterCaseReason,
         refund: Nullable<ResolutionCenterCaseRefund>,
         responseDueAt: Nullable<String>,
         status: ResolutionCenterCaseStatus,
         updatedAt: String,
+        variantId: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.account = account
@@ -69,15 +71,16 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
         self.customerAppealed = customerAppealed
         self.escalated = escalated
         self.id = id
+        self.lineItems = lineItems
         self.outcome = outcome
         self.payment = payment
-        self.planId = planId
         self.productId = productId
         self.reason = reason
         self.refund = refund
         self.responseDueAt = responseDueAt
         self.status = status
         self.updatedAt = updatedAt
+        self.variantId = variantId
         self.additionalProperties = additionalProperties
     }
 
@@ -92,15 +95,16 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
         self.customerAppealed = try container.decode(Bool.self, forKey: .customerAppealed)
         self.escalated = try container.decode(Bool.self, forKey: .escalated)
         self.id = try container.decode(String.self, forKey: .id)
+        self.lineItems = try container.decode([ReceiptLineItem].self, forKey: .lineItems)
         self.outcome = try container.decode(Nullable<ResolutionCenterCaseOutcome>.self, forKey: .outcome)
         self.payment = try container.decode(ResolutionPayment.self, forKey: .payment)
-        self.planId = try container.decode(Nullable<String>.self, forKey: .planId)
         self.productId = try container.decode(Nullable<String>.self, forKey: .productId)
         self.reason = try container.decode(ResolutionCenterCaseReason.self, forKey: .reason)
         self.refund = try container.decode(Nullable<ResolutionCenterCaseRefund>.self, forKey: .refund)
         self.responseDueAt = try container.decode(Nullable<String>.self, forKey: .responseDueAt)
         self.status = try container.decode(ResolutionCenterCaseStatus.self, forKey: .status)
         self.updatedAt = try container.decode(String.self, forKey: .updatedAt)
+        self.variantId = try container.decode(Nullable<String>.self, forKey: .variantId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -116,15 +120,16 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
         try container.encode(self.customerAppealed, forKey: .customerAppealed)
         try container.encode(self.escalated, forKey: .escalated)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.lineItems, forKey: .lineItems)
         try container.encode(self.outcome, forKey: .outcome)
         try container.encode(self.payment, forKey: .payment)
-        try container.encode(self.planId, forKey: .planId)
         try container.encode(self.productId, forKey: .productId)
         try container.encode(self.reason, forKey: .reason)
         try container.encode(self.refund, forKey: .refund)
         try container.encode(self.responseDueAt, forKey: .responseDueAt)
         try container.encode(self.status, forKey: .status)
         try container.encode(self.updatedAt, forKey: .updatedAt)
+        try container.encode(self.variantId, forKey: .variantId)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -138,14 +143,15 @@ public struct ResolutionCenterCase: Codable, Hashable, Sendable {
         case customerAppealed = "customer_appealed"
         case escalated
         case id
+        case lineItems = "line_items"
         case outcome
         case payment
-        case planId = "plan_id"
         case productId = "product_id"
         case reason
         case refund
         case responseDueAt = "response_due_at"
         case status
         case updatedAt = "updated_at"
+        case variantId = "variant_id"
     }
 }

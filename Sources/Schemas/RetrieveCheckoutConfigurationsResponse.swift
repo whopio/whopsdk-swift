@@ -9,7 +9,7 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
     public let createdAt: String
     /// Currency used for setup-mode payment method availability; defaults to `usd` when omitted.
     public let currency: Nullable<String>?
-    /// The configuration governing a checkout mounted from this configuration, resolved through every layer (its own overrides, the plan's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults; `payment_method_configuration` stays this configuration's own editable override.
+    /// The configuration governing a checkout mounted from this configuration, resolved through every layer (its own overrides, the variant's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults; `payment_method_configuration` stays this configuration's own editable override.
     public let effectivePaymentMethodConfiguration: Nullable<RetrieveCheckoutConfigurationsResponseEffectivePaymentMethodConfiguration>?
     /// Checkout configuration ID, prefixed `ch_`.
     public let id: String
@@ -17,18 +17,18 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
     public let metadata: Nullable<[String: JSONValue]>?
     /// Controls whether checkout charges the buyer immediately or saves payment details for later.
     public let mode: RetrieveCheckoutConfigurationsResponseMode
-    /// Payment method overrides for this checkout. `null` when it uses the plan or platform defaults.
+    /// Payment method overrides for this checkout. `null` when it uses the variant or platform defaults.
     public let paymentMethodConfiguration: Nullable<RetrieveCheckoutConfigurationsResponsePaymentMethodConfiguration>?
-    /// Plan used for payment checkout. `null` in setup mode.
-    public let plan: Nullable<RetrieveCheckoutConfigurationsResponsePlan>?
     /// Checkout URL you can send to customers.
     public let purchaseUrl: Nullable<String>?
     /// URL customers are sent to after checkout, or `null` when no redirect is configured.
     public let redirectUrl: Nullable<String>?
-    /// 3D Secure behavior for this checkout, or `null` to use the account default.
+    /// 3D Secure behavior for supported on-session card payments. `mandate_challenge` requires a 3DS challenge before payment processing; `mandate_if_required` mandates a challenge only when the payment processor requires it; `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected. Risk and authentication recovery requirements can override the preference. Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the variant policy.
     public let threeDsLevel: Nullable<RetrieveCheckoutConfigurationsResponseThreeDsLevel>?
     /// When the checkout configuration was last updated, as an ISO 8601 timestamp.
     public let updatedAt: String
+    /// Variant used for payment checkout. `null` in setup mode.
+    public let variant: Nullable<RetrieveCheckoutConfigurationsResponseVariant>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -42,11 +42,11 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
         metadata: Nullable<[String: JSONValue]>? = nil,
         mode: RetrieveCheckoutConfigurationsResponseMode,
         paymentMethodConfiguration: Nullable<RetrieveCheckoutConfigurationsResponsePaymentMethodConfiguration>? = nil,
-        plan: Nullable<RetrieveCheckoutConfigurationsResponsePlan>? = nil,
         purchaseUrl: Nullable<String>? = nil,
         redirectUrl: Nullable<String>? = nil,
         threeDsLevel: Nullable<RetrieveCheckoutConfigurationsResponseThreeDsLevel>? = nil,
         updatedAt: String,
+        variant: Nullable<RetrieveCheckoutConfigurationsResponseVariant>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.accountId = accountId
@@ -58,11 +58,11 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
         self.metadata = metadata
         self.mode = mode
         self.paymentMethodConfiguration = paymentMethodConfiguration
-        self.plan = plan
         self.purchaseUrl = purchaseUrl
         self.redirectUrl = redirectUrl
         self.threeDsLevel = threeDsLevel
         self.updatedAt = updatedAt
+        self.variant = variant
         self.additionalProperties = additionalProperties
     }
 
@@ -77,11 +77,11 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
         self.metadata = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .metadata)
         self.mode = try container.decode(RetrieveCheckoutConfigurationsResponseMode.self, forKey: .mode)
         self.paymentMethodConfiguration = try container.decodeNullableIfPresent(RetrieveCheckoutConfigurationsResponsePaymentMethodConfiguration.self, forKey: .paymentMethodConfiguration)
-        self.plan = try container.decodeNullableIfPresent(RetrieveCheckoutConfigurationsResponsePlan.self, forKey: .plan)
         self.purchaseUrl = try container.decodeNullableIfPresent(String.self, forKey: .purchaseUrl)
         self.redirectUrl = try container.decodeNullableIfPresent(String.self, forKey: .redirectUrl)
         self.threeDsLevel = try container.decodeNullableIfPresent(RetrieveCheckoutConfigurationsResponseThreeDsLevel.self, forKey: .threeDsLevel)
         self.updatedAt = try container.decode(String.self, forKey: .updatedAt)
+        self.variant = try container.decodeNullableIfPresent(RetrieveCheckoutConfigurationsResponseVariant.self, forKey: .variant)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -97,11 +97,11 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
         try container.encodeNullableIfPresent(self.metadata, forKey: .metadata)
         try container.encode(self.mode, forKey: .mode)
         try container.encodeNullableIfPresent(self.paymentMethodConfiguration, forKey: .paymentMethodConfiguration)
-        try container.encodeNullableIfPresent(self.plan, forKey: .plan)
         try container.encodeNullableIfPresent(self.purchaseUrl, forKey: .purchaseUrl)
         try container.encodeNullableIfPresent(self.redirectUrl, forKey: .redirectUrl)
         try container.encodeNullableIfPresent(self.threeDsLevel, forKey: .threeDsLevel)
         try container.encode(self.updatedAt, forKey: .updatedAt)
+        try container.encodeNullableIfPresent(self.variant, forKey: .variant)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -115,10 +115,10 @@ public struct RetrieveCheckoutConfigurationsResponse: Codable, Hashable, Sendabl
         case metadata
         case mode
         case paymentMethodConfiguration = "payment_method_configuration"
-        case plan
         case purchaseUrl = "purchase_url"
         case redirectUrl = "redirect_url"
         case threeDsLevel = "three_ds_level"
         case updatedAt = "updated_at"
+        case variant
     }
 }
