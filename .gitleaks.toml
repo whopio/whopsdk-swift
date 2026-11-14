@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated swap quote example uses a public destination token contract address"
+condition = "AND"
+paths = ['''^reference\.md$''']
+regexTarget = "match"
+regexes = ['''toToken: "0x1b64b9025eebb9a6239575df9ea4b9ac46d4d193"''']
