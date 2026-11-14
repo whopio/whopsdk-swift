@@ -264,7 +264,14 @@ final class HTTPClient: Swift.Sendable {
             return tokenString
         }
         if let bearerAuth = clientConfig.bearerAuth {
-            return try await bearerAuth.token.retrieve()
+            do {
+                return try await bearerAuth.token.retrieve()
+            } catch {
+                if Self.isCancellation(error) {
+                    throw WhopSDKError.networkError(error)
+                }
+                throw error
+            }
         }
         return nil
     }
@@ -288,9 +295,7 @@ final class HTTPClient: Swift.Sendable {
             do {
                 encodedBody = try jsonEncoder.encode(encodableBody)
             } catch {
-                preconditionFailure(
-                    "Failed to encode request body: \(error) - this indicates an unexpected error in the SDK."
-                )
+                throw WhopSDKError.encodingError(error)
             }
             if additionalBodyParameters.isEmpty {
                 return encodedBody

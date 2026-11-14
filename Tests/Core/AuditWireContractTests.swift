@@ -35,6 +35,45 @@ struct AuditWireContractTests {
         #expect(components.queryItems?.first(where: { $0.name == "billing_types" })?.value == "renewal")
     }
 
+    @Test func asyncProviderAndRequestTokenPrecedenceArePreserved() async throws {
+        let stub = HTTPStub()
+        stub.setResponse(statusCode: 204, body: Data())
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { "provider-token" }, urlSession: stub.urlSession)
+        try await client.products.delete(id: "prod_audit")
+        #expect(stub.takeLastRequest()?.value(forHTTPHeaderField: "Authorization") == "Bearer provider-token")
+        try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "request-token"))
+        #expect(stub.takeLastRequest()?.value(forHTTPHeaderField: "Authorization") == "Bearer request-token")
+    }
+
+    @Test func providerCancellationIsWrappedBeforeAnyRequest() async throws {
+        let stub = HTTPStub()
+        stub.setResponse(statusCode: 204, body: Data())
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { throw CancellationError() }, urlSession: stub.urlSession)
+        do {
+            try await client.products.delete(id: "prod_audit")
+            Issue.record("Expected provider cancellation")
+        } catch WhopSDKError.networkError(let error) {
+            #expect(error is CancellationError)
+        } catch {
+            Issue.record("Unexpected error: \(error)")
+        }
+        #expect(stub.getRequestCount() == 0)
+    }
+
+    @Test func invalidJSONBodyThrowsBeforeAnyRequest() async throws {
+        let stub = HTTPStub()
+        stub.setResponse(body: Data())
+        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", urlSession: stub.urlSession))
+        do {
+            try await client.performRequest(method: .post, path: "/audit", body: ["amount": Double.nan])
+            Issue.record("Expected body encoding error")
+        } catch WhopSDKError.encodingError(_) {
+        } catch {
+            Issue.record("Unexpected error: \(error)")
+        }
+        #expect(stub.getRequestCount() == 0)
+    }
+
     @Test func scalarUnionFilterIsTransmitted() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data())
