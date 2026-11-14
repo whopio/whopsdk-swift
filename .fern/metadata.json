@@ -6,8 +6,8 @@
     "moduleName": "WhopSDK",
     "clientClassName": "Whop"
   },
-  "originGitCommit": "8da3dbce947ae209e4f8eec2b5af27d0ca0ef8e2",
-  "originGitCommitIsDirty": false,
+  "originGitCommit": "6c2e2119355476e931ab5084119092783f82102e",
+  "originGitCommitIsDirty": true,
   "invokedBy": "ci",
   "requestedVersion": "1.0.11",
   "ciProvider": "unknown",
