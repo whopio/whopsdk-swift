@@ -237,6 +237,12 @@ jobs:
       - name: Build the library that consumers compile
         run: swift build
 
+      - name: Repair proven generator test examples
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends python3
+          python3 Scripts/repair-generated-tests.py
+
       - name: Escape enum cases named after the self keyword in the generated tests
         run: |
           set -euo pipefail
@@ -281,7 +287,7 @@ jobs:
           echo "::notice::nothing to escape — fern-swift-sdk now emits backticked self cases, so this step can be deleted."
 
       - name: Run the generated test suite
-        run: swift test
+        run: swift test --jobs 1
 
       - name: Resolve the package the way SwiftPM will, from a tag
         env:

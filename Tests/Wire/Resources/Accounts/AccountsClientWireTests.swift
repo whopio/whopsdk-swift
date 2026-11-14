@@ -1391,8 +1391,8 @@ import WhopSDK
                     )),
                     useLogoAsOpengraphImageFallback: false,
                     verification: [
-                        "business": JSONValue.value, 
-                        "individual": JSONValue.value
+                        "business": JSONValue.null, 
+                        "individual": JSONValue.null
                     ],
                     volumeL30DUsd: Nullable<Double>.value(0),
                     volumeUsd: Nullable<Double>.value(1.1),
@@ -6155,8 +6155,8 @@ import WhopSDK
             )),
             useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
@@ -9361,8 +9361,8 @@ import WhopSDK
             )),
             useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
@@ -12677,8 +12677,8 @@ import WhopSDK
             )),
             useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
@@ -15939,8 +15939,8 @@ import WhopSDK
             )),
             useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),
@@ -19346,8 +19346,8 @@ import WhopSDK
             )),
             useLogoAsOpengraphImageFallback: false,
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             volumeL30DUsd: Nullable<Double>.value(0),
             volumeUsd: Nullable<Double>.value(1.1),

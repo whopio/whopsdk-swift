@@ -713,8 +713,8 @@ import WhopSDK
                     )),
                     username: "marcuswebb",
                     verification: [
-                        "business": JSONValue.value, 
-                        "individual": JSONValue.value
+                        "business": JSONValue.null, 
+                        "individual": JSONValue.null
                     ],
                     whopPartnerEnabledAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
                     whopPartnerOnboardedAccountsCount: Nullable<Int>.value(1),
@@ -3119,8 +3119,8 @@ import WhopSDK
             )),
             username: "marcuswebb",
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             whopPartnerEnabledAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             whopPartnerOnboardedAccountsCount: Nullable<Int>.value(1),
@@ -4797,8 +4797,8 @@ import WhopSDK
             )),
             username: "marcuswebb",
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             whopPartnerEnabledAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             whopPartnerOnboardedAccountsCount: Nullable<Int>.value(1),
@@ -6481,8 +6481,8 @@ import WhopSDK
             )),
             username: "marcuswebb",
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             whopPartnerEnabledAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             whopPartnerOnboardedAccountsCount: Nullable<Int>.value(1),
@@ -8165,8 +8165,8 @@ import WhopSDK
             )),
             username: "marcuswebb",
             verification: [
-                "business": JSONValue.value, 
-                "individual": JSONValue.value
+                "business": JSONValue.null, 
+                "individual": JSONValue.null
             ],
             whopPartnerEnabledAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
             whopPartnerOnboardedAccountsCount: Nullable<Int>.value(1),

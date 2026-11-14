@@ -6,9 +6,9 @@ import Testing
 struct AuditWireContractTests {
     @Test func defaultPinAndBearerReachTheRequest() async throws {
         let stub = HTTPStub()
-        stub.setResponse(statusCode: 204, body: Data())
+        stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
         let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", urlSession: stub.urlSession)
-        try await client.products.delete(id: "prod_audit")
+        _ = try await client.products.delete(id: "prod_audit")
         let request = try #require(stub.takeLastRequest())
         #expect(request.url?.absoluteString == "https://sandbox.example/api/v1/products/prod_audit")
         #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer audit-token")
@@ -17,9 +17,9 @@ struct AuditWireContractTests {
 
     @Test func requestOverridesKeepExplicitVersionAndToken() async throws {
         let stub = HTTPStub()
-        stub.setResponse(statusCode: 204, body: Data())
+        stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
         let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", apiVersionDate: "2026-11-10", urlSession: stub.urlSession)
-        try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "override-token", additionalHeaders: ["api-version-date": "2026-11-11"]))
+        _ = try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "override-token", additionalHeaders: ["api-version-date": "2026-11-11"]))
         let request = try #require(stub.takeLastRequest())
         #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer override-token")
         #expect(request.value(forHTTPHeaderField: "Api-Version-Date") == "2026-11-11")
@@ -31,26 +31,27 @@ struct AuditWireContractTests {
         let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", urlSession: stub.urlSession)
         _ = try await client.products.list(billingTypes: [.renewal])
         let request = try #require(stub.takeLastRequest())
-        let components = try #require(URLComponents(url: try #require(request.url), resolvingAgainstBaseURL: false))
+        let url = try #require(request.url)
+        let components = try #require(URLComponents(url: url, resolvingAgainstBaseURL: false))
         #expect(components.queryItems?.first(where: { $0.name == "billing_types" })?.value == "renewal")
     }
 
     @Test func asyncProviderAndRequestTokenPrecedenceArePreserved() async throws {
         let stub = HTTPStub()
-        stub.setResponse(statusCode: 204, body: Data())
+        stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
         let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { "provider-token" }, urlSession: stub.urlSession)
-        try await client.products.delete(id: "prod_audit")
+        _ = try await client.products.delete(id: "prod_audit")
         #expect(stub.takeLastRequest()?.value(forHTTPHeaderField: "Authorization") == "Bearer provider-token")
-        try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "request-token"))
+        _ = try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "request-token"))
         #expect(stub.takeLastRequest()?.value(forHTTPHeaderField: "Authorization") == "Bearer request-token")
     }
 
     @Test func providerCancellationIsWrappedBeforeAnyRequest() async throws {
         let stub = HTTPStub()
-        stub.setResponse(statusCode: 204, body: Data())
+        stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
         let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { throw CancellationError() }, urlSession: stub.urlSession)
         do {
-            try await client.products.delete(id: "prod_audit")
+            _ = try await client.products.delete(id: "prod_audit")
             Issue.record("Expected provider cancellation")
         } catch WhopSDKError.networkError(let error) {
             #expect(error is CancellationError)
@@ -80,7 +81,8 @@ struct AuditWireContractTests {
         let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", urlSession: stub.urlSession))
         try await client.performRequest(method: .get, path: "/app_builds", queryParams: ["created_before": .unknown(ListAppBuildsRequestCreatedBefore.string("2026-11-01T00:00:00Z"))])
         let request = try #require(stub.takeLastRequest())
-        let components = try #require(URLComponents(url: try #require(request.url), resolvingAgainstBaseURL: false))
+        let url = try #require(request.url)
+        let components = try #require(URLComponents(url: url, resolvingAgainstBaseURL: false))
         #expect(components.queryItems?.first(where: { $0.name == "created_before" })?.value == "2026-11-01T00:00:00Z")
     }
 
