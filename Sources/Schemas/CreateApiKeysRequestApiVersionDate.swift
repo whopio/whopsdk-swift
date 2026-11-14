@@ -101,4 +101,6 @@ public enum CreateApiKeysRequestApiVersionDate: String, Codable, Hashable, CaseI
     case twoThousandTwentySix11101 = "2026-11-10-1"
     case twoThousandTwentySix1111 = "2026-11-11"
     case twoThousandTwentySix1112 = "2026-11-12"
+    case twoThousandTwentySix1113 = "2026-11-13"
+    case twoThousandTwentySix11131 = "2026-11-13-1"
 }

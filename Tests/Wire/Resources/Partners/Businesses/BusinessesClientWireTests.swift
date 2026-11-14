@@ -330,6 +330,619 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "blueprint_partner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "commission_advance": {
+                        "activity_30_day": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "activity_60_day": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "amount": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "annual_processing": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "clawed_back_at": "clawed_back_at",
+                        "deadline_at": "deadline_at",
+                        "estimated_amount": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "funded_at": "funded_at",
+                        "offer_token": "offer_token",
+                        "processing_target": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "projected_60_day_activity": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "projected_commissions": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "projected_processing_commissions": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "qualified_at": "qualified_at",
+                        "recovery_threshold": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "status": "projected",
+                        "terms_version": "terms_version"
+                      },
+                      "commission_advance_projections_allowed": true,
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "deal_closed_reason": "deal_closed_reason",
+                      "earnings_usd": {
+                        "completed": "completed",
+                        "pending": "pending",
+                        "total": "total"
+                      },
+                      "first_tier_partner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "id": "id",
+                      "my_partner_tier": "first",
+                      "object": "partner_business",
+                      "owner": {
+                        "email": "email",
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "payout_percentages": {
+                        "ad_spend": 1.1,
+                        "card_interchange": 1.1,
+                        "sales": 1.1,
+                        "transfer": 1.1,
+                        "withdrawal": 1.1
+                      },
+                      "referral_expires_at": "2024-01-15T09:30:00Z",
+                      "referral_started_at": "2024-01-15T09:30:00Z",
+                      "referring_business": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "second_tier_partner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "status": "active",
+                      "volume_usd": {
+                        "attributed": "attributed",
+                        "awaiting_settlement": "awaiting_settlement",
+                        "last_30d": "last_30d",
+                        "settled": "settled"
+                      }
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "blueprint_partner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "commission_advance": {
+                        "activity_30_day": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "activity_60_day": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "amount": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "annual_processing": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "clawed_back_at": "clawed_back_at",
+                        "deadline_at": "deadline_at",
+                        "estimated_amount": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "funded_at": "funded_at",
+                        "offer_token": "offer_token",
+                        "processing_target": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "projected_60_day_activity": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "projected_commissions": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "projected_processing_commissions": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "qualified_at": "qualified_at",
+                        "recovery_threshold": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "status": "projected",
+                        "terms_version": "terms_version"
+                      },
+                      "commission_advance_projections_allowed": true,
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "deal_closed_reason": "deal_closed_reason",
+                      "earnings_usd": {
+                        "completed": "completed",
+                        "pending": "pending",
+                        "total": "total"
+                      },
+                      "first_tier_partner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "id": "id",
+                      "my_partner_tier": "first",
+                      "object": "partner_business",
+                      "owner": {
+                        "email": "email",
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "payout_percentages": {
+                        "ad_spend": 1.1,
+                        "card_interchange": 1.1,
+                        "sales": 1.1,
+                        "transfer": 1.1,
+                        "withdrawal": 1.1
+                      },
+                      "referral_expires_at": "2024-01-15T09:30:00Z",
+                      "referral_started_at": "2024-01-15T09:30:00Z",
+                      "referring_business": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "second_tier_partner": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "status": "active",
+                      "volume_usd": {
+                        "attributed": "attributed",
+                        "awaiting_settlement": "awaiting_settlement",
+                        "last_30d": "last_30d",
+                        "settled": "settled"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor",
+                    "total_count": 1,
+                    "total_count_capped": true
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListBusinessesResponse(
+            data: [
+                ListBusinessesResponseDataItem(
+                    account: Nullable<ListBusinessesResponseDataItemAccount>.value(ListBusinessesResponseDataItemAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    blueprintPartner: Nullable<ListBusinessesResponseDataItemBlueprintPartner>.value(ListBusinessesResponseDataItemBlueprintPartner(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemBlueprintPartnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    commissionAdvance: Optional(Nullable<PartnerAdvance>.value(PartnerAdvance(
+                        activity30Day: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        activity60Day: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        amount: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        annualProcessing: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        clawedBackAt: Nullable<String>.value("clawed_back_at"),
+                        deadlineAt: Nullable<String>.value("deadline_at"),
+                        estimatedAmount: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        fundedAt: Nullable<String>.value("funded_at"),
+                        offerToken: Nullable<String>.value("offer_token"),
+                        processingTarget: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        projected60DayActivity: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        projectedCommissions: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        projectedProcessingCommissions: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        qualifiedAt: Nullable<String>.value("qualified_at"),
+                        recoveryThreshold: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        status: PartnerAdvanceStatus.projected,
+                        termsVersion: Nullable<String>.value("terms_version")
+                    ))),
+                    commissionAdvanceProjectionsAllowed: Optional(true),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    dealClosedReason: Nullable<String>.value("deal_closed_reason"),
+                    earningsUsd: ListBusinessesResponseDataItemEarningsUsd(
+                        completed: "completed",
+                        pending: "pending",
+                        total: "total"
+                    ),
+                    firstTierPartner: Nullable<ListBusinessesResponseDataItemFirstTierPartner>.value(ListBusinessesResponseDataItemFirstTierPartner(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemFirstTierPartnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    id: "id",
+                    myPartnerTier: ListBusinessesResponseDataItemMyPartnerTier.first,
+                    object: ListBusinessesResponseDataItemObject.partnerBusiness,
+                    owner: Nullable<ListBusinessesResponseDataItemOwner>.value(ListBusinessesResponseDataItemOwner(
+                        email: Nullable<String>.value("email"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemOwnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    payoutPercentages: ListBusinessesResponseDataItemPayoutPercentages(
+                        adSpend: Nullable<Float>.value(1.1),
+                        cardInterchange: Nullable<Float>.value(1.1),
+                        sales: 1.1,
+                        transfer: Nullable<Float>.value(1.1),
+                        withdrawal: Nullable<Float>.value(1.1)
+                    ),
+                    referralExpiresAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    referralStartedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    referringBusiness: Optional(Nullable<ListBusinessesResponseDataItemReferringBusiness>.value(ListBusinessesResponseDataItemReferringBusiness(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    ))),
+                    secondTierPartner: Nullable<ListBusinessesResponseDataItemSecondTierPartner>.value(ListBusinessesResponseDataItemSecondTierPartner(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemSecondTierPartnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    status: ListBusinessesResponseDataItemStatus.active,
+                    volumeUsd: ListBusinessesResponseDataItemVolumeUsd(
+                        attributed: "attributed",
+                        awaitingSettlement: "awaiting_settlement",
+                        last30D: "last_30d",
+                        settled: "settled"
+                    )
+                ),
+                ListBusinessesResponseDataItem(
+                    account: Nullable<ListBusinessesResponseDataItemAccount>.value(ListBusinessesResponseDataItemAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    blueprintPartner: Nullable<ListBusinessesResponseDataItemBlueprintPartner>.value(ListBusinessesResponseDataItemBlueprintPartner(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemBlueprintPartnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    commissionAdvance: Optional(Nullable<PartnerAdvance>.value(PartnerAdvance(
+                        activity30Day: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        activity60Day: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        amount: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        annualProcessing: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        clawedBackAt: Nullable<String>.value("clawed_back_at"),
+                        deadlineAt: Nullable<String>.value("deadline_at"),
+                        estimatedAmount: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        fundedAt: Nullable<String>.value("funded_at"),
+                        offerToken: Nullable<String>.value("offer_token"),
+                        processingTarget: Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        ),
+                        projected60DayActivity: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        projectedCommissions: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        projectedProcessingCommissions: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        qualifiedAt: Nullable<String>.value("qualified_at"),
+                        recoveryThreshold: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        status: PartnerAdvanceStatus.projected,
+                        termsVersion: Nullable<String>.value("terms_version")
+                    ))),
+                    commissionAdvanceProjectionsAllowed: Optional(true),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    dealClosedReason: Nullable<String>.value("deal_closed_reason"),
+                    earningsUsd: ListBusinessesResponseDataItemEarningsUsd(
+                        completed: "completed",
+                        pending: "pending",
+                        total: "total"
+                    ),
+                    firstTierPartner: Nullable<ListBusinessesResponseDataItemFirstTierPartner>.value(ListBusinessesResponseDataItemFirstTierPartner(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemFirstTierPartnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    id: "id",
+                    myPartnerTier: ListBusinessesResponseDataItemMyPartnerTier.first,
+                    object: ListBusinessesResponseDataItemObject.partnerBusiness,
+                    owner: Nullable<ListBusinessesResponseDataItemOwner>.value(ListBusinessesResponseDataItemOwner(
+                        email: Nullable<String>.value("email"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemOwnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    payoutPercentages: ListBusinessesResponseDataItemPayoutPercentages(
+                        adSpend: Nullable<Float>.value(1.1),
+                        cardInterchange: Nullable<Float>.value(1.1),
+                        sales: 1.1,
+                        transfer: Nullable<Float>.value(1.1),
+                        withdrawal: Nullable<Float>.value(1.1)
+                    ),
+                    referralExpiresAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    referralStartedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    referringBusiness: Optional(Nullable<ListBusinessesResponseDataItemReferringBusiness>.value(ListBusinessesResponseDataItemReferringBusiness(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    ))),
+                    secondTierPartner: Nullable<ListBusinessesResponseDataItemSecondTierPartner>.value(ListBusinessesResponseDataItemSecondTierPartner(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: ListBusinessesResponseDataItemSecondTierPartnerProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    status: ListBusinessesResponseDataItemStatus.active,
+                    volumeUsd: ListBusinessesResponseDataItemVolumeUsd(
+                        attributed: "attributed",
+                        awaitingSettlement: "awaiting_settlement",
+                        last30D: "last_30d",
+                        settled: "settled"
+                    )
+                )
+            ],
+            pageInfo: ListBusinessesResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
+            )
+        )
+        let response = try await client.partners.businesses.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -768,6 +1381,512 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "capabilities": {
+                      "accept_bank_payments": "active",
+                      "accept_bnpl_payments": "active",
+                      "accept_card_payments": "active",
+                      "bank_deposit": "active",
+                      "card_deposit": "active",
+                      "card_issuing": "active",
+                      "crypto_deposit": "active",
+                      "crypto_payout": "active",
+                      "instant_payout": "active",
+                      "run_ads": "active",
+                      "standard_payout": "active",
+                      "transfer": "active"
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "recommended_actions": [
+                      {
+                        "action": "theme_business",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "impact_score": 1,
+                        "reasoning": "reasoning",
+                        "status": "optional",
+                        "title": "title"
+                      },
+                      {
+                        "action": "theme_business",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "impact_score": 1,
+                        "reasoning": "reasoning",
+                        "status": "optional",
+                        "title": "title"
+                      }
+                    ],
+                    "required_actions": [
+                      {
+                        "action": "deposit_funds",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "status": "required",
+                        "title": "title"
+                      },
+                      {
+                        "action": "deposit_funds",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "status": "required",
+                        "title": "title"
+                      }
+                    ],
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "blueprint_partner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "can_edit_fees": true,
+                  "commission_advance": {
+                    "activity_30_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "activity_60_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "annual_processing": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "clawed_back_at": "clawed_back_at",
+                    "deadline_at": "deadline_at",
+                    "estimated_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "funded_at": "funded_at",
+                    "offer_token": "offer_token",
+                    "processing_target": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_60_day_activity": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_processing_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "qualified_at": "qualified_at",
+                    "recovery_threshold": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "status": "projected",
+                    "terms_version": "terms_version"
+                  },
+                  "commission_advance_cap": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "commission_advance_projections_allowed": true,
+                  "commission_advance_rate": "commission_advance_rate",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "deal_closed_reason": "deal_closed_reason",
+                  "earnings_usd": {
+                    "completed": "completed",
+                    "pending": "pending",
+                    "total": "total"
+                  },
+                  "estimated_commission_rate": "estimated_commission_rate",
+                  "first_tier_partner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "id": "id",
+                  "my_partner_tier": "first",
+                  "my_payout_percentages": {
+                    "ad_spend": 1.1,
+                    "card_interchange": 1.1,
+                    "sales": 1.1,
+                    "transfer": 1.1,
+                    "withdrawal": 1.1
+                  },
+                  "object": "partner_business",
+                  "owner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "payout_percentages": {
+                    "ad_spend": 1.1,
+                    "card_interchange": 1.1,
+                    "sales": 1.1,
+                    "transfer": 1.1,
+                    "withdrawal": 1.1
+                  },
+                  "pending_owner_invites": [
+                    {
+                      "email": "email",
+                      "id": "id"
+                    },
+                    {
+                      "email": "email",
+                      "id": "id"
+                    }
+                  ],
+                  "referral_expires_at": "2024-01-15T09:30:00Z",
+                  "referral_started_at": "2024-01-15T09:30:00Z",
+                  "referring_business": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "second_tier_partner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "status": "active",
+                  "volume_usd": {
+                    "attributed": "attributed",
+                    "awaiting_settlement": "awaiting_settlement",
+                    "last_30d": "last_30d",
+                    "settled": "settled"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrieveBusinessesResponse(
+            account: Nullable<RetrieveBusinessesResponseAccount>.value(RetrieveBusinessesResponseAccount(
+                capabilities: AccountCapabilities(
+                    acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                    acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                    acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                    bankDeposit: AccountCapabilitiesBankDeposit.active,
+                    cardDeposit: AccountCapabilitiesCardDeposit.active,
+                    cardIssuing: AccountCapabilitiesCardIssuing.active,
+                    cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                    cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                    instantPayout: AccountCapabilitiesInstantPayout.active,
+                    runAds: AccountCapabilitiesRunAds.active,
+                    standardPayout: AccountCapabilitiesStandardPayout.active,
+                    transfer: AccountCapabilitiesTransfer.active
+                ),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                    AccountRecommendedAction(
+                        action: AccountRecommendedActionAction.themeBusiness,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: "cta",
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        impactScore: Nullable<Int>.value(1),
+                        reasoning: Nullable<String>.value("reasoning"),
+                        status: AccountRecommendedActionStatus.optional,
+                        title: "title"
+                    ),
+                    AccountRecommendedAction(
+                        action: AccountRecommendedActionAction.themeBusiness,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: "cta",
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        impactScore: Nullable<Int>.value(1),
+                        reasoning: Nullable<String>.value("reasoning"),
+                        status: AccountRecommendedActionStatus.optional,
+                        title: "title"
+                    )
+                ]),
+                requiredActions: Nullable<[AccountRequiredAction]>.value([
+                    AccountRequiredAction(
+                        action: AccountRequiredActionAction.depositFunds,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: Nullable<String>.value("cta"),
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        status: AccountRequiredActionStatus.required,
+                        title: "title"
+                    ),
+                    AccountRequiredAction(
+                        action: AccountRequiredActionAction.depositFunds,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: Nullable<String>.value("cta"),
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        status: AccountRequiredActionStatus.required,
+                        title: "title"
+                    )
+                ]),
+                route: "route",
+                title: "title"
+            )),
+            blueprintPartner: Nullable<RetrieveBusinessesResponseBlueprintPartner>.value(RetrieveBusinessesResponseBlueprintPartner(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: RetrieveBusinessesResponseBlueprintPartnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            canEditFees: true,
+            commissionAdvance: Optional(Nullable<PartnerAdvance>.value(PartnerAdvance(
+                activity30Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                activity60Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                amount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                annualProcessing: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                clawedBackAt: Nullable<String>.value("clawed_back_at"),
+                deadlineAt: Nullable<String>.value("deadline_at"),
+                estimatedAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                fundedAt: Nullable<String>.value("funded_at"),
+                offerToken: Nullable<String>.value("offer_token"),
+                processingTarget: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                projected60DayActivity: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedProcessingCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                qualifiedAt: Nullable<String>.value("qualified_at"),
+                recoveryThreshold: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                status: PartnerAdvanceStatus.projected,
+                termsVersion: Nullable<String>.value("terms_version")
+            ))),
+            commissionAdvanceCap: Optional(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            commissionAdvanceProjectionsAllowed: Optional(true),
+            commissionAdvanceRate: Optional(Nullable<String>.value("commission_advance_rate")),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            dealClosedReason: Nullable<String>.value("deal_closed_reason"),
+            earningsUsd: RetrieveBusinessesResponseEarningsUsd(
+                completed: "completed",
+                pending: "pending",
+                total: "total"
+            ),
+            estimatedCommissionRate: Nullable<String>.value("estimated_commission_rate"),
+            firstTierPartner: Nullable<RetrieveBusinessesResponseFirstTierPartner>.value(RetrieveBusinessesResponseFirstTierPartner(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: RetrieveBusinessesResponseFirstTierPartnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            id: "id",
+            myPartnerTier: RetrieveBusinessesResponseMyPartnerTier.first,
+            myPayoutPercentages: Nullable<RetrieveBusinessesResponseMyPayoutPercentages>.value(RetrieveBusinessesResponseMyPayoutPercentages(
+                adSpend: Nullable<Float>.value(1.1),
+                cardInterchange: Nullable<Float>.value(1.1),
+                sales: Nullable<Float>.value(1.1),
+                transfer: Nullable<Float>.value(1.1),
+                withdrawal: Nullable<Float>.value(1.1)
+            )),
+            object: RetrieveBusinessesResponseObject.partnerBusiness,
+            owner: Nullable<RetrieveBusinessesResponseOwner>.value(RetrieveBusinessesResponseOwner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: RetrieveBusinessesResponseOwnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            payoutPercentages: RetrieveBusinessesResponsePayoutPercentages(
+                adSpend: Nullable<Float>.value(1.1),
+                cardInterchange: Nullable<Float>.value(1.1),
+                sales: 1.1,
+                transfer: Nullable<Float>.value(1.1),
+                withdrawal: Nullable<Float>.value(1.1)
+            ),
+            pendingOwnerInvites: Optional([
+                RetrieveBusinessesResponsePendingOwnerInvitesItem(
+                    email: "email",
+                    id: "id"
+                ),
+                RetrieveBusinessesResponsePendingOwnerInvitesItem(
+                    email: "email",
+                    id: "id"
+                )
+            ]),
+            referralExpiresAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            referralStartedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            referringBusiness: Optional(Nullable<RetrieveBusinessesResponseReferringBusiness>.value(RetrieveBusinessesResponseReferringBusiness(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ))),
+            secondTierPartner: Nullable<RetrieveBusinessesResponseSecondTierPartner>.value(RetrieveBusinessesResponseSecondTierPartner(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: RetrieveBusinessesResponseSecondTierPartnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            status: RetrieveBusinessesResponseStatus.active,
+            volumeUsd: RetrieveBusinessesResponseVolumeUsd(
+                attributed: "attributed",
+                awaitingSettlement: "awaiting_settlement",
+                last30D: "last_30d",
+                settled: "settled"
+            )
+        )
+        let response = try await client.partners.businesses.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func update1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -924,6 +2043,171 @@ import WhopSDK
                 termsVersion: Nullable<String>.value("2026-01-01")
             ),
             id: "coma_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.partners.businesses.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "commission_advance": {
+                    "activity_30_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "activity_60_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "annual_processing": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "clawed_back_at": "clawed_back_at",
+                    "deadline_at": "deadline_at",
+                    "estimated_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "funded_at": "funded_at",
+                    "offer_token": "offer_token",
+                    "processing_target": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_60_day_activity": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_processing_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "qualified_at": "qualified_at",
+                    "recovery_threshold": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "status": "projected",
+                    "terms_version": "terms_version"
+                  },
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = UpdateBusinessesResponse(
+            commissionAdvance: PartnerAdvance(
+                activity30Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                activity60Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                amount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                annualProcessing: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                clawedBackAt: Nullable<String>.value("clawed_back_at"),
+                deadlineAt: Nullable<String>.value("deadline_at"),
+                estimatedAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                fundedAt: Nullable<String>.value("funded_at"),
+                offerToken: Nullable<String>.value("offer_token"),
+                processingTarget: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                projected60DayActivity: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedProcessingCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                qualifiedAt: Nullable<String>.value("qualified_at"),
+                recoveryThreshold: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                status: PartnerAdvanceStatus.projected,
+                termsVersion: Nullable<String>.value("terms_version")
+            ),
+            id: "id"
         )
         let response = try await client.partners.businesses.update(
             id: "id",
@@ -1101,6 +2385,179 @@ import WhopSDK
                 expectedAmountUsd: "1079.99",
                 offerToken: "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
                 termsVersion: "2026-01-01"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func acceptCommissionAdvance2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "commission_advance": {
+                    "activity_30_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "activity_60_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "annual_processing": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "clawed_back_at": "clawed_back_at",
+                    "deadline_at": "deadline_at",
+                    "estimated_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "funded_at": "funded_at",
+                    "offer_token": "offer_token",
+                    "processing_target": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_60_day_activity": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_processing_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "qualified_at": "qualified_at",
+                    "recovery_threshold": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "status": "projected",
+                    "terms_version": "terms_version"
+                  },
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AcceptCommissionAdvanceBusinessesResponse(
+            commissionAdvance: PartnerAdvance(
+                activity30Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                activity60Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                amount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                annualProcessing: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                clawedBackAt: Nullable<String>.value("clawed_back_at"),
+                deadlineAt: Nullable<String>.value("deadline_at"),
+                estimatedAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                fundedAt: Nullable<String>.value("funded_at"),
+                offerToken: Nullable<String>.value("offer_token"),
+                processingTarget: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                projected60DayActivity: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedProcessingCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                qualifiedAt: Nullable<String>.value("qualified_at"),
+                recoveryThreshold: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                status: PartnerAdvanceStatus.projected,
+                termsVersion: Nullable<String>.value("terms_version")
+            ),
+            id: "id"
+        )
+        let response = try await client.partners.businesses.acceptCommissionAdvance(
+            id: "id",
+            request: .init(
+                acknowledgments: [
+                    .commissionReplacement,
+                    .commissionReplacement
+                ],
+                expectedAmountUsd: "expected_amount_usd",
+                offerToken: "offer_token",
+                termsVersion: "terms_version"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -1523,6 +2980,495 @@ import WhopSDK
         let response = try await client.partners.businesses.resendInvite(
             id: "id",
             request: .init(inviteId: "ausri_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func resendInvite2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "capabilities": {
+                      "accept_bank_payments": "active",
+                      "accept_bnpl_payments": "active",
+                      "accept_card_payments": "active",
+                      "bank_deposit": "active",
+                      "card_deposit": "active",
+                      "card_issuing": "active",
+                      "crypto_deposit": "active",
+                      "crypto_payout": "active",
+                      "instant_payout": "active",
+                      "run_ads": "active",
+                      "standard_payout": "active",
+                      "transfer": "active"
+                    },
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "recommended_actions": [
+                      {
+                        "action": "theme_business",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "impact_score": 1,
+                        "reasoning": "reasoning",
+                        "status": "optional",
+                        "title": "title"
+                      },
+                      {
+                        "action": "theme_business",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "impact_score": 1,
+                        "reasoning": "reasoning",
+                        "status": "optional",
+                        "title": "title"
+                      }
+                    ],
+                    "required_actions": [
+                      {
+                        "action": "deposit_funds",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "status": "required",
+                        "title": "title"
+                      },
+                      {
+                        "action": "deposit_funds",
+                        "blocked_capabilities": [
+                          "blocked_capabilities",
+                          "blocked_capabilities"
+                        ],
+                        "cta": "cta",
+                        "cta_label": "cta_label",
+                        "description": "description",
+                        "icon_url": "icon_url",
+                        "status": "required",
+                        "title": "title"
+                      }
+                    ],
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "blueprint_partner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "commission_advance": {
+                    "activity_30_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "activity_60_day": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "annual_processing": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "clawed_back_at": "clawed_back_at",
+                    "deadline_at": "deadline_at",
+                    "estimated_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "funded_at": "funded_at",
+                    "offer_token": "offer_token",
+                    "processing_target": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_60_day_activity": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "projected_processing_commissions": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "qualified_at": "qualified_at",
+                    "recovery_threshold": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "status": "projected",
+                    "terms_version": "terms_version"
+                  },
+                  "commission_advance_projections_allowed": true,
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "deal_closed_reason": "deal_closed_reason",
+                  "earnings_usd": {
+                    "completed": "completed",
+                    "pending": "pending",
+                    "total": "total"
+                  },
+                  "first_tier_partner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "id": "id",
+                  "my_partner_tier": "first",
+                  "my_payout_percentages": {
+                    "ad_spend": 1.1,
+                    "card_interchange": 1.1,
+                    "sales": 1.1,
+                    "transfer": 1.1,
+                    "withdrawal": 1.1
+                  },
+                  "object": "partner_business",
+                  "owner": {
+                    "email": "email",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "payout_percentages": {
+                    "ad_spend": 1.1,
+                    "card_interchange": 1.1,
+                    "sales": 1.1,
+                    "transfer": 1.1,
+                    "withdrawal": 1.1
+                  },
+                  "pending_owner_invites": [
+                    {
+                      "email": "email",
+                      "id": "id"
+                    },
+                    {
+                      "email": "email",
+                      "id": "id"
+                    }
+                  ],
+                  "referral_expires_at": "2024-01-15T09:30:00Z",
+                  "referral_started_at": "2024-01-15T09:30:00Z",
+                  "referring_business": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "second_tier_partner": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  },
+                  "status": "active",
+                  "volume_usd": {
+                    "attributed": "attributed",
+                    "awaiting_settlement": "awaiting_settlement",
+                    "last_30d": "last_30d",
+                    "settled": "settled"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ResendInviteBusinessesResponse(
+            account: Nullable<ResendInviteBusinessesResponseAccount>.value(ResendInviteBusinessesResponseAccount(
+                capabilities: AccountCapabilities(
+                    acceptBankPayments: AccountCapabilitiesAcceptBankPayments.active,
+                    acceptBnplPayments: AccountCapabilitiesAcceptBnplPayments.active,
+                    acceptCardPayments: AccountCapabilitiesAcceptCardPayments.active,
+                    bankDeposit: AccountCapabilitiesBankDeposit.active,
+                    cardDeposit: AccountCapabilitiesCardDeposit.active,
+                    cardIssuing: AccountCapabilitiesCardIssuing.active,
+                    cryptoDeposit: AccountCapabilitiesCryptoDeposit.active,
+                    cryptoPayout: AccountCapabilitiesCryptoPayout.active,
+                    instantPayout: AccountCapabilitiesInstantPayout.active,
+                    runAds: AccountCapabilitiesRunAds.active,
+                    standardPayout: AccountCapabilitiesStandardPayout.active,
+                    transfer: AccountCapabilitiesTransfer.active
+                ),
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                recommendedActions: Nullable<[AccountRecommendedAction]>.value([
+                    AccountRecommendedAction(
+                        action: AccountRecommendedActionAction.themeBusiness,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: "cta",
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        impactScore: Nullable<Int>.value(1),
+                        reasoning: Nullable<String>.value("reasoning"),
+                        status: AccountRecommendedActionStatus.optional,
+                        title: "title"
+                    ),
+                    AccountRecommendedAction(
+                        action: AccountRecommendedActionAction.themeBusiness,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: "cta",
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        impactScore: Nullable<Int>.value(1),
+                        reasoning: Nullable<String>.value("reasoning"),
+                        status: AccountRecommendedActionStatus.optional,
+                        title: "title"
+                    )
+                ]),
+                requiredActions: Nullable<[AccountRequiredAction]>.value([
+                    AccountRequiredAction(
+                        action: AccountRequiredActionAction.depositFunds,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: Nullable<String>.value("cta"),
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        status: AccountRequiredActionStatus.required,
+                        title: "title"
+                    ),
+                    AccountRequiredAction(
+                        action: AccountRequiredActionAction.depositFunds,
+                        blockedCapabilities: [
+                            "blocked_capabilities",
+                            "blocked_capabilities"
+                        ],
+                        cta: Nullable<String>.value("cta"),
+                        ctaLabel: "cta_label",
+                        description: "description",
+                        iconUrl: Nullable<String>.value("icon_url"),
+                        status: AccountRequiredActionStatus.required,
+                        title: "title"
+                    )
+                ]),
+                route: "route",
+                title: "title"
+            )),
+            blueprintPartner: Nullable<ResendInviteBusinessesResponseBlueprintPartner>.value(ResendInviteBusinessesResponseBlueprintPartner(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: ResendInviteBusinessesResponseBlueprintPartnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            commissionAdvance: Optional(Nullable<PartnerAdvance>.value(PartnerAdvance(
+                activity30Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                activity60Day: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                amount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                annualProcessing: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                clawedBackAt: Nullable<String>.value("clawed_back_at"),
+                deadlineAt: Nullable<String>.value("deadline_at"),
+                estimatedAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                fundedAt: Nullable<String>.value("funded_at"),
+                offerToken: Nullable<String>.value("offer_token"),
+                processingTarget: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                projected60DayActivity: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                projectedProcessingCommissions: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                qualifiedAt: Nullable<String>.value("qualified_at"),
+                recoveryThreshold: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                status: PartnerAdvanceStatus.projected,
+                termsVersion: Nullable<String>.value("terms_version")
+            ))),
+            commissionAdvanceProjectionsAllowed: Optional(true),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            dealClosedReason: Nullable<String>.value("deal_closed_reason"),
+            earningsUsd: ResendInviteBusinessesResponseEarningsUsd(
+                completed: "completed",
+                pending: "pending",
+                total: "total"
+            ),
+            firstTierPartner: Nullable<ResendInviteBusinessesResponseFirstTierPartner>.value(ResendInviteBusinessesResponseFirstTierPartner(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: ResendInviteBusinessesResponseFirstTierPartnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            id: "id",
+            myPartnerTier: ResendInviteBusinessesResponseMyPartnerTier.first,
+            myPayoutPercentages: Nullable<ResendInviteBusinessesResponseMyPayoutPercentages>.value(ResendInviteBusinessesResponseMyPayoutPercentages(
+                adSpend: Nullable<Float>.value(1.1),
+                cardInterchange: Nullable<Float>.value(1.1),
+                sales: Nullable<Float>.value(1.1),
+                transfer: Nullable<Float>.value(1.1),
+                withdrawal: Nullable<Float>.value(1.1)
+            )),
+            object: ResendInviteBusinessesResponseObject.partnerBusiness,
+            owner: Nullable<ResendInviteBusinessesResponseOwner>.value(ResendInviteBusinessesResponseOwner(
+                email: Nullable<String>.value("email"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: ResendInviteBusinessesResponseOwnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            payoutPercentages: ResendInviteBusinessesResponsePayoutPercentages(
+                adSpend: Nullable<Float>.value(1.1),
+                cardInterchange: Nullable<Float>.value(1.1),
+                sales: 1.1,
+                transfer: Nullable<Float>.value(1.1),
+                withdrawal: Nullable<Float>.value(1.1)
+            ),
+            pendingOwnerInvites: Optional([
+                ResendInviteBusinessesResponsePendingOwnerInvitesItem(
+                    email: "email",
+                    id: "id"
+                ),
+                ResendInviteBusinessesResponsePendingOwnerInvitesItem(
+                    email: "email",
+                    id: "id"
+                )
+            ]),
+            referralExpiresAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            referralStartedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            referringBusiness: Optional(Nullable<ResendInviteBusinessesResponseReferringBusiness>.value(ResendInviteBusinessesResponseReferringBusiness(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ))),
+            secondTierPartner: Nullable<ResendInviteBusinessesResponseSecondTierPartner>.value(ResendInviteBusinessesResponseSecondTierPartner(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: ResendInviteBusinessesResponseSecondTierPartnerProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            )),
+            status: ResendInviteBusinessesResponseStatus.active,
+            volumeUsd: ResendInviteBusinessesResponseVolumeUsd(
+                attributed: "attributed",
+                awaitingSettlement: "awaiting_settlement",
+                last30D: "last_30d",
+                settled: "settled"
+            )
+        )
+        let response = try await client.partners.businesses.resendInvite(
+            id: "id",
+            request: .init(inviteId: "invite_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

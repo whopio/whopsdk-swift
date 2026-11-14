@@ -99,6 +99,158 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "bounty_id": "bounty_id",
+                      "claimed_at": "claimed_at",
+                      "created_at": "created_at",
+                      "denial_reason": "denial_reason",
+                      "id": "id",
+                      "latest_proof_livestream_feed": {
+                        "ended_at": "ended_at",
+                        "id": "id",
+                        "recording_status": "recording",
+                        "recording_url": "recording_url",
+                        "started_at": "started_at",
+                        "thumbnail_url": "thumbnail_url",
+                        "title": "title"
+                      },
+                      "resolved_at": "resolved_at",
+                      "status": "submitted",
+                      "submitted_at": "submitted_at",
+                      "updated_at": "updated_at",
+                      "worker": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "bounty_id": "bounty_id",
+                      "claimed_at": "claimed_at",
+                      "created_at": "created_at",
+                      "denial_reason": "denial_reason",
+                      "id": "id",
+                      "latest_proof_livestream_feed": {
+                        "ended_at": "ended_at",
+                        "id": "id",
+                        "recording_status": "recording",
+                        "recording_url": "recording_url",
+                        "started_at": "started_at",
+                        "thumbnail_url": "thumbnail_url",
+                        "title": "title"
+                      },
+                      "resolved_at": "resolved_at",
+                      "status": "submitted",
+                      "submitted_at": "submitted_at",
+                      "updated_at": "updated_at",
+                      "worker": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListSubmissionsResponse(
+            data: [
+                PublicBountySubmission(
+                    bountyId: "bounty_id",
+                    claimedAt: Nullable<String>.value("claimed_at"),
+                    createdAt: "created_at",
+                    denialReason: Nullable<String>.value("denial_reason"),
+                    id: "id",
+                    latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                        endedAt: Nullable<String>.value("ended_at"),
+                        id: "id",
+                        recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                        recordingUrl: Nullable<String>.value("recording_url"),
+                        startedAt: Nullable<String>.value("started_at"),
+                        thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                        title: "title"
+                    )),
+                    resolvedAt: Nullable<String>.value("resolved_at"),
+                    status: PublicBountySubmissionStatus.submitted,
+                    submittedAt: Nullable<String>.value("submitted_at"),
+                    updatedAt: "updated_at",
+                    worker: UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )
+                ),
+                PublicBountySubmission(
+                    bountyId: "bounty_id",
+                    claimedAt: Nullable<String>.value("claimed_at"),
+                    createdAt: "created_at",
+                    denialReason: Nullable<String>.value("denial_reason"),
+                    id: "id",
+                    latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                        endedAt: Nullable<String>.value("ended_at"),
+                        id: "id",
+                        recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                        recordingUrl: Nullable<String>.value("recording_url"),
+                        startedAt: Nullable<String>.value("started_at"),
+                        thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                        title: "title"
+                    )),
+                    resolvedAt: Nullable<String>.value("resolved_at"),
+                    status: PublicBountySubmissionStatus.submitted,
+                    submittedAt: Nullable<String>.value("submitted_at"),
+                    updatedAt: "updated_at",
+                    worker: UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )
+                )
+            ],
+            pageInfo: ListSubmissionsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.bounties.submissions.list(
+            bountyId: "bounty_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -166,6 +318,83 @@ import WhopSDK
                     url: "https://ui-avatars.com/api/"
                 ),
                 username: "danawhitfield"
+            )
+        )
+        let response = try await client.bounties.submissions.retrieve(
+            bountyId: "bounty_id",
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "bounty_id": "bounty_id",
+                  "claimed_at": "claimed_at",
+                  "created_at": "created_at",
+                  "denial_reason": "denial_reason",
+                  "id": "id",
+                  "latest_proof_livestream_feed": {
+                    "ended_at": "ended_at",
+                    "id": "id",
+                    "recording_status": "recording",
+                    "recording_url": "recording_url",
+                    "started_at": "started_at",
+                    "thumbnail_url": "thumbnail_url",
+                    "title": "title"
+                  },
+                  "resolved_at": "resolved_at",
+                  "status": "submitted",
+                  "submitted_at": "submitted_at",
+                  "updated_at": "updated_at",
+                  "worker": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PublicBountySubmission(
+            bountyId: "bounty_id",
+            claimedAt: Nullable<String>.value("claimed_at"),
+            createdAt: "created_at",
+            denialReason: Nullable<String>.value("denial_reason"),
+            id: "id",
+            latestProofLivestreamFeed: Nullable<BountySubmissionLivestreamFeed>.value(BountySubmissionLivestreamFeed(
+                endedAt: Nullable<String>.value("ended_at"),
+                id: "id",
+                recordingStatus: Nullable<BountySubmissionLivestreamFeedRecordingStatus>.value(BountySubmissionLivestreamFeedRecordingStatus.recording),
+                recordingUrl: Nullable<String>.value("recording_url"),
+                startedAt: Nullable<String>.value("started_at"),
+                thumbnailUrl: Nullable<String>.value("thumbnail_url"),
+                title: "title"
+            )),
+            resolvedAt: Nullable<String>.value("resolved_at"),
+            status: PublicBountySubmissionStatus.submitted,
+            submittedAt: Nullable<String>.value("submitted_at"),
+            updatedAt: "updated_at",
+            worker: UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
             )
         )
         let response = try await client.bounties.submissions.retrieve(

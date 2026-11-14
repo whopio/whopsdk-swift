@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    container: swift:6.1-noble@sha256:98ee3a8469ce2a9c2f543ef2577939ab44e2dfc9b5ed710732a59e5dd64f9c4a
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Trust the workspace checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Report the toolchain
+        run: swift --version
+
+      - name: Build the library that consumers compile
+        run: swift build --jobs 2
+
+      - name: Escape enum cases named after the self keyword in the generated tests
+        run: |
+          set -euo pipefail
+          bt=$(printf '\140')
+
+          enums=""
+          for f in $(grep -rlE "^ *case ${bt}self${bt}" Sources || true); do
+            enum=$(sed -n 's/^public enum \([A-Za-z0-9_]*\).*/\1/p' "$f" | head -1)
+            [ -n "$enum" ] || continue
+            enums="${enums} ${enum}"
+          done
+
+          escaped=0
+          for enum in $enums; do
+            pattern=": ${enum}\.self\b"
+            for t in $(grep -rlE "$pattern" Tests || true); do
+              hits=$(grep -cE "$pattern" "$t" || true)
+              sed -i -E "s/${pattern}/: ${enum}.${bt}self${bt}/g" "$t"
+              echo "escaped ${hits} reference(s) to ${enum}.self in ${t}"
+              escaped=$((escaped + hits))
+            done
+          done
+
+          if [ "$escaped" -gt 0 ]; then
+            echo "::warning::rewrote ${escaped} generated test reference(s) that fern-swift-sdk emitted as a metatype instead of an enum case. Sources/ is unaffected and nothing is committed."
+            exit 0
+          fi
+
+          if [ -z "$enums" ]; then
+            echo "::notice::no generated enum declares a ${bt}self${bt} case, so there is nothing this step could repair."
+            exit 0
+          fi
+
+          residual=$(for enum in $enums; do grep -rnE "${enum}\.self\b" Tests || true; done)
+
+          if [ -n "$residual" ]; then
+            echo "::warning::the escape pattern matched nothing, yet Tests still reference these enums' .self. fern-swift-sdk changed what it emits and this step no longer repairs it — swift test below is the verdict:"
+            printf '%s\n' "$residual"
+            exit 0
+          fi
+
+          echo "::notice::nothing to escape — fern-swift-sdk now emits backticked self cases, so this step can be deleted."
+
+      - name: Run the generated test suite
+        run: swift test --jobs 2
+
+  hand-written-guards:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Check the hand-written wire fixes survived generation
+        env:
+          PATCHES: |
+            Sources/Core/Serde/Serde.swift|outputFormatting = [.sortedKeys]|request bodies go back to being byte-unstable, and Idempotency-Key stops working from Swift
+            Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift|_ type: Nullable<T>.Type|an absent nullable response field goes back to failing the whole decode
+            Sources/Core/Networking/HTTPClient.swift|generatedAgainstApiVersionDate|the client stops sending its generated API-version pin
+            Sources/Core/Networking/HTTPClient.swift|X-Fern-SDK-Version|the client stops identifying itself on the wire
+            Sources/Core/Networking/QueryParameter.swift|func queryItems(name:|structured query filters stop being encoded
+            Sources/Core/Networking/HTTPClient.swift|requestOptions?.additionalBodyProperties|the generated JSONValue extension pipeline has been lost
+            Sources/Core/Networking/HTTPClient.swift|isCancellation|a cancelled request throws a different type depending on maxRetries
+        run: |
+          set -euo pipefail
+          failures=0
+
+          fail() {
+            echo "::error::$*"
+            failures=$((failures + 1))
+          }
+
+          while IFS='|' read -r file marker consequence; do
+            [ -n "$file" ] || continue
+
+            if [ ! -f "$file" ]; then
+              fail "${file} is gone."
+              continue
+            fi
+
+            if grep -qF -- "$marker" "$file"; then
+              echo "ok: ${file} still carries \"${marker}\""
+            else
+              fail "${file} no longer carries \"${marker}\" — ${consequence}. A regeneration overwrote a file .fernignore is supposed to protect; restore the patch before merging."
+            fi
+
+            if grep -qxF -- "$file" .fernignore; then
+              echo "ok: .fernignore protects ${file}"
+            else
+              fail "${file} is patched but .fernignore does not list it, so the next regeneration will overwrite it."
+            fi
+          done <<< "$PATCHES"
+
+          [ "$failures" -eq 0 ]
+
+      - name: Verify generated query inputs have wire fixtures
+        run: python3 Scripts/check-query-inputs.py

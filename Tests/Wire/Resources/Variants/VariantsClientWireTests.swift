@@ -229,6 +229,439 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": true,
+                      "attributes": {
+                        "attributes": "attributes"
+                      },
+                      "billing_period": 1.1,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 1.1,
+                      "cancel_discount_percentage": 1.1,
+                      "checkout_styling": {
+                        "checkout_styling": {
+                          "key": "value"
+                        }
+                      },
+                      "created_at": "created_at",
+                      "currency": "currency",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "id",
+                          "name": "name",
+                          "order": 1.1,
+                          "placeholder": "placeholder",
+                          "required": true
+                        },
+                        {
+                          "field_type": "text",
+                          "id": "id",
+                          "name": "name",
+                          "order": 1.1,
+                          "placeholder": "placeholder",
+                          "required": true
+                        }
+                      ],
+                      "description": "description",
+                      "expiration_days": 1.1,
+                      "formatted_price": "formatted_price",
+                      "id": "id",
+                      "image": {
+                        "image": {
+                          "key": "value"
+                        }
+                      },
+                      "initial_price": 1.1,
+                      "initial_price_due": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "internal_notes": "internal_notes",
+                      "invoice": {
+                        "invoice": {
+                          "key": "value"
+                        }
+                      },
+                      "member_count": 1.1,
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "payment_method_configuration": {
+                          "key": "value"
+                        }
+                      },
+                      "product": {
+                        "product": {
+                          "key": "value"
+                        }
+                      },
+                      "purchase_url": "purchase_url",
+                      "release_method": "buy_now",
+                      "renewal_price": 1.1,
+                      "sku": "sku",
+                      "split_pay_required_payments": 1.1,
+                      "stock": 1.1,
+                      "strike_through_initial_price": 1.1,
+                      "strike_through_renewal_price": 1.1,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "title",
+                      "trial_period_days": 1.1,
+                      "unlimited_stock": true,
+                      "updated_at": "updated_at",
+                      "visibility": "visible"
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "adaptive_pricing_enabled": true,
+                      "allow_multiple_quantity": true,
+                      "attributes": {
+                        "attributes": "attributes"
+                      },
+                      "billing_period": 1.1,
+                      "billing_type": "renewal",
+                      "cancel_discount_intervals": 1.1,
+                      "cancel_discount_percentage": 1.1,
+                      "checkout_styling": {
+                        "checkout_styling": {
+                          "key": "value"
+                        }
+                      },
+                      "created_at": "created_at",
+                      "currency": "currency",
+                      "custom_fields": [
+                        {
+                          "field_type": "text",
+                          "id": "id",
+                          "name": "name",
+                          "order": 1.1,
+                          "placeholder": "placeholder",
+                          "required": true
+                        },
+                        {
+                          "field_type": "text",
+                          "id": "id",
+                          "name": "name",
+                          "order": 1.1,
+                          "placeholder": "placeholder",
+                          "required": true
+                        }
+                      ],
+                      "description": "description",
+                      "expiration_days": 1.1,
+                      "formatted_price": "formatted_price",
+                      "id": "id",
+                      "image": {
+                        "image": {
+                          "key": "value"
+                        }
+                      },
+                      "initial_price": 1.1,
+                      "initial_price_due": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "internal_notes": "internal_notes",
+                      "invoice": {
+                        "invoice": {
+                          "key": "value"
+                        }
+                      },
+                      "member_count": 1.1,
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "offer_cancel_discount": true,
+                      "payment_method_configuration": {
+                        "payment_method_configuration": {
+                          "key": "value"
+                        }
+                      },
+                      "product": {
+                        "product": {
+                          "key": "value"
+                        }
+                      },
+                      "purchase_url": "purchase_url",
+                      "release_method": "buy_now",
+                      "renewal_price": 1.1,
+                      "sku": "sku",
+                      "split_pay_required_payments": 1.1,
+                      "stock": 1.1,
+                      "strike_through_initial_price": 1.1,
+                      "strike_through_renewal_price": 1.1,
+                      "three_ds_level": "mandate_challenge",
+                      "title": "title",
+                      "trial_period_days": 1.1,
+                      "unlimited_stock": true,
+                      "updated_at": "updated_at",
+                      "visibility": "visible"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListVariantsResponse(
+            data: [
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "id",
+                        title: "title"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: true,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "attributes": Nullable<String>.value("attributes")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(1.1),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(1.1),
+                    cancelDiscountPercentage: Nullable<Double>.value(1.1),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "checkout_styling": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    createdAt: "created_at",
+                    currency: "currency",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "id",
+                            name: "name",
+                            order: 1.1,
+                            placeholder: Nullable<String>.value("placeholder"),
+                            required: true
+                        ),
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "id",
+                            name: "name",
+                            order: 1.1,
+                            placeholder: Nullable<String>.value("placeholder"),
+                            required: true
+                        )
+                    ],
+                    description: Nullable<String>.value("description"),
+                    expirationDays: Nullable<Double>.value(1.1),
+                    formattedPrice: "formatted_price",
+                    id: "id",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "image": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    initialPrice: 1.1,
+                    initialPriceDue: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    internalNotes: Nullable<String>.value("internal_notes"),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "invoice": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    memberCount: Nullable<Double>.value(1.1),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "payment_method_configuration": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "product": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    purchaseUrl: "purchase_url",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 1.1,
+                    sku: Nullable<String>.value("sku"),
+                    splitPayRequiredPayments: Nullable<Double>.value(1.1),
+                    stock: Nullable<Double>.value(1.1),
+                    strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("title"),
+                    trialPeriodDays: Nullable<Double>.value(1.1),
+                    unlimitedStock: true,
+                    updatedAt: "updated_at",
+                    visibility: VariantListItemVisibility.visible
+                ),
+                VariantListItem(
+                    account: Nullable<AccountSummary>.value(AccountSummary(
+                        id: "id",
+                        title: "title"
+                    )),
+                    adaptivePricingEnabled: true,
+                    allowMultipleQuantity: true,
+                    attributes: Nullable<[String: Nullable<String>]>.value([
+                        "attributes": Nullable<String>.value("attributes")
+                    ]),
+                    billingPeriod: Nullable<Double>.value(1.1),
+                    billingType: VariantListItemBillingType.renewal,
+                    cancelDiscountIntervals: Nullable<Double>.value(1.1),
+                    cancelDiscountPercentage: Nullable<Double>.value(1.1),
+                    checkoutStyling: Nullable<[String: JSONValue]>.value([
+                        "checkout_styling": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    createdAt: "created_at",
+                    currency: "currency",
+                    customFields: [
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "id",
+                            name: "name",
+                            order: 1.1,
+                            placeholder: Nullable<String>.value("placeholder"),
+                            required: true
+                        ),
+                        PlanCustomField(
+                            fieldType: PlanCustomFieldFieldType.text,
+                            id: "id",
+                            name: "name",
+                            order: 1.1,
+                            placeholder: Nullable<String>.value("placeholder"),
+                            required: true
+                        )
+                    ],
+                    description: Nullable<String>.value("description"),
+                    expirationDays: Nullable<Double>.value(1.1),
+                    formattedPrice: "formatted_price",
+                    id: "id",
+                    image: Nullable<[String: JSONValue]>.value([
+                        "image": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    initialPrice: 1.1,
+                    initialPriceDue: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    internalNotes: Nullable<String>.value("internal_notes"),
+                    invoice: Nullable<[String: JSONValue]>.value([
+                        "invoice": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    memberCount: Nullable<Double>.value(1.1),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    offerCancelDiscount: Nullable<Bool>.value(true),
+                    paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                        "payment_method_configuration": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    product: Nullable<[String: JSONValue]>.value([
+                        "product": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    purchaseUrl: "purchase_url",
+                    releaseMethod: VariantListItemReleaseMethod.buyNow,
+                    renewalPrice: 1.1,
+                    sku: Nullable<String>.value("sku"),
+                    splitPayRequiredPayments: Nullable<Double>.value(1.1),
+                    stock: Nullable<Double>.value(1.1),
+                    strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+                    strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
+                    threeDsLevel: Nullable<VariantListItemThreeDsLevel>.value(VariantListItemThreeDsLevel.mandateChallenge),
+                    title: Nullable<String>.value("title"),
+                    trialPeriodDays: Nullable<Double>.value(1.1),
+                    unlimitedStock: true,
+                    updatedAt: "updated_at",
+                    visibility: VariantListItemVisibility.visible
+                )
+            ],
+            pageInfo: ListVariantsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.variants.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -436,6 +869,252 @@ import WhopSDK
             trialPeriodDays: Nullable<Double>.value(7),
             unlimitedStock: false,
             updatedAt: "2026-01-01T12:00:00.000Z",
+            visibility: VariantVisibility.visible
+        )
+        let response = try await client.variants.create(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "adaptive_pricing_enabled": true,
+                  "allow_multiple_quantity": true,
+                  "attributes": {
+                    "attributes": "attributes"
+                  },
+                  "billing_period": 1.1,
+                  "billing_type": "renewal",
+                  "cancel_discount_intervals": 1.1,
+                  "cancel_discount_percentage": 1.1,
+                  "checkout_styling": {
+                    "checkout_styling": {
+                      "key": "value"
+                    }
+                  },
+                  "collect_tax": true,
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "custom_fields": [
+                    {
+                      "field_type": "text",
+                      "id": "id",
+                      "name": "name",
+                      "order": 1.1,
+                      "placeholder": "placeholder",
+                      "required": true
+                    },
+                    {
+                      "field_type": "text",
+                      "id": "id",
+                      "name": "name",
+                      "order": 1.1,
+                      "placeholder": "placeholder",
+                      "required": true
+                    }
+                  ],
+                  "deletable": true,
+                  "description": "description",
+                  "effective_payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "expiration_days": 1.1,
+                  "formatted_price": "formatted_price",
+                  "id": "id",
+                  "image": {
+                    "image": {
+                      "key": "value"
+                    }
+                  },
+                  "initial_price": 1.1,
+                  "initial_price_due": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "internal_notes": "internal_notes",
+                  "invoice": {
+                    "invoice": {
+                      "key": "value"
+                    }
+                  },
+                  "member_count": 1.1,
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "offer_cancel_discount": true,
+                  "payment_method_configuration": {
+                    "payment_method_configuration": {
+                      "key": "value"
+                    }
+                  },
+                  "product": {
+                    "product": {
+                      "key": "value"
+                    }
+                  },
+                  "purchase_url": "purchase_url",
+                  "release_method": "buy_now",
+                  "renewal_price": 1.1,
+                  "sku": "sku",
+                  "split_pay_required_payments": 1.1,
+                  "stock": 1.1,
+                  "strike_through_initial_price": 1.1,
+                  "strike_through_renewal_price": 1.1,
+                  "tax_type": "inclusive",
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "trial_period_days": 1.1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "visibility": "visible"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Variant(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "id",
+                title: "title"
+            )),
+            adaptivePricingEnabled: true,
+            allowMultipleQuantity: true,
+            attributes: Nullable<[String: Nullable<String>]>.value([
+                "attributes": Nullable<String>.value("attributes")
+            ]),
+            billingPeriod: Nullable<Double>.value(1.1),
+            billingType: VariantBillingType.renewal,
+            cancelDiscountIntervals: Nullable<Double>.value(1.1),
+            cancelDiscountPercentage: Nullable<Double>.value(1.1),
+            checkoutStyling: Nullable<[String: JSONValue]>.value([
+                "checkout_styling": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            collectTax: true,
+            createdAt: "created_at",
+            currency: "currency",
+            customFields: [
+                PlanCustomField(
+                    fieldType: PlanCustomFieldFieldType.text,
+                    id: "id",
+                    name: "name",
+                    order: 1.1,
+                    placeholder: Nullable<String>.value("placeholder"),
+                    required: true
+                ),
+                PlanCustomField(
+                    fieldType: PlanCustomFieldFieldType.text,
+                    id: "id",
+                    name: "name",
+                    order: 1.1,
+                    placeholder: Nullable<String>.value("placeholder"),
+                    required: true
+                )
+            ],
+            deletable: Nullable<Bool>.value(true),
+            description: Nullable<String>.value("description"),
+            effectivePaymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            expirationDays: Nullable<Double>.value(1.1),
+            formattedPrice: "formatted_price",
+            id: "id",
+            image: Nullable<[String: JSONValue]>.value([
+                "image": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            initialPrice: 1.1,
+            initialPriceDue: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            internalNotes: Nullable<String>.value("internal_notes"),
+            invoice: Nullable<[String: JSONValue]>.value([
+                "invoice": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            memberCount: Nullable<Double>.value(1.1),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            offerCancelDiscount: Nullable<Bool>.value(true),
+            paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                "payment_method_configuration": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            product: Nullable<[String: JSONValue]>.value([
+                "product": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            purchaseUrl: "purchase_url",
+            releaseMethod: VariantReleaseMethod.buyNow,
+            renewalPrice: 1.1,
+            sku: Nullable<String>.value("sku"),
+            splitPayRequiredPayments: Nullable<Double>.value(1.1),
+            stock: Nullable<Double>.value(1.1),
+            strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+            strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
+            taxType: VariantTaxType.inclusive,
+            threeDsLevel: Nullable<VariantThreeDsLevel>.value(VariantThreeDsLevel.mandateChallenge),
+            title: Nullable<String>.value("title"),
+            trialPeriodDays: Nullable<Double>.value(1.1),
+            unlimitedStock: true,
+            updatedAt: "updated_at",
             visibility: VariantVisibility.visible
         )
         let response = try await client.variants.create(
@@ -664,6 +1343,252 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "adaptive_pricing_enabled": true,
+                  "allow_multiple_quantity": true,
+                  "attributes": {
+                    "attributes": "attributes"
+                  },
+                  "billing_period": 1.1,
+                  "billing_type": "renewal",
+                  "cancel_discount_intervals": 1.1,
+                  "cancel_discount_percentage": 1.1,
+                  "checkout_styling": {
+                    "checkout_styling": {
+                      "key": "value"
+                    }
+                  },
+                  "collect_tax": true,
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "custom_fields": [
+                    {
+                      "field_type": "text",
+                      "id": "id",
+                      "name": "name",
+                      "order": 1.1,
+                      "placeholder": "placeholder",
+                      "required": true
+                    },
+                    {
+                      "field_type": "text",
+                      "id": "id",
+                      "name": "name",
+                      "order": 1.1,
+                      "placeholder": "placeholder",
+                      "required": true
+                    }
+                  ],
+                  "deletable": true,
+                  "description": "description",
+                  "effective_payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "expiration_days": 1.1,
+                  "formatted_price": "formatted_price",
+                  "id": "id",
+                  "image": {
+                    "image": {
+                      "key": "value"
+                    }
+                  },
+                  "initial_price": 1.1,
+                  "initial_price_due": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "internal_notes": "internal_notes",
+                  "invoice": {
+                    "invoice": {
+                      "key": "value"
+                    }
+                  },
+                  "member_count": 1.1,
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "offer_cancel_discount": true,
+                  "payment_method_configuration": {
+                    "payment_method_configuration": {
+                      "key": "value"
+                    }
+                  },
+                  "product": {
+                    "product": {
+                      "key": "value"
+                    }
+                  },
+                  "purchase_url": "purchase_url",
+                  "release_method": "buy_now",
+                  "renewal_price": 1.1,
+                  "sku": "sku",
+                  "split_pay_required_payments": 1.1,
+                  "stock": 1.1,
+                  "strike_through_initial_price": 1.1,
+                  "strike_through_renewal_price": 1.1,
+                  "tax_type": "inclusive",
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "trial_period_days": 1.1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "visibility": "visible"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Variant(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "id",
+                title: "title"
+            )),
+            adaptivePricingEnabled: true,
+            allowMultipleQuantity: true,
+            attributes: Nullable<[String: Nullable<String>]>.value([
+                "attributes": Nullable<String>.value("attributes")
+            ]),
+            billingPeriod: Nullable<Double>.value(1.1),
+            billingType: VariantBillingType.renewal,
+            cancelDiscountIntervals: Nullable<Double>.value(1.1),
+            cancelDiscountPercentage: Nullable<Double>.value(1.1),
+            checkoutStyling: Nullable<[String: JSONValue]>.value([
+                "checkout_styling": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            collectTax: true,
+            createdAt: "created_at",
+            currency: "currency",
+            customFields: [
+                PlanCustomField(
+                    fieldType: PlanCustomFieldFieldType.text,
+                    id: "id",
+                    name: "name",
+                    order: 1.1,
+                    placeholder: Nullable<String>.value("placeholder"),
+                    required: true
+                ),
+                PlanCustomField(
+                    fieldType: PlanCustomFieldFieldType.text,
+                    id: "id",
+                    name: "name",
+                    order: 1.1,
+                    placeholder: Nullable<String>.value("placeholder"),
+                    required: true
+                )
+            ],
+            deletable: Nullable<Bool>.value(true),
+            description: Nullable<String>.value("description"),
+            effectivePaymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            expirationDays: Nullable<Double>.value(1.1),
+            formattedPrice: "formatted_price",
+            id: "id",
+            image: Nullable<[String: JSONValue]>.value([
+                "image": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            initialPrice: 1.1,
+            initialPriceDue: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            internalNotes: Nullable<String>.value("internal_notes"),
+            invoice: Nullable<[String: JSONValue]>.value([
+                "invoice": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            memberCount: Nullable<Double>.value(1.1),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            offerCancelDiscount: Nullable<Bool>.value(true),
+            paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                "payment_method_configuration": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            product: Nullable<[String: JSONValue]>.value([
+                "product": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            purchaseUrl: "purchase_url",
+            releaseMethod: VariantReleaseMethod.buyNow,
+            renewalPrice: 1.1,
+            sku: Nullable<String>.value("sku"),
+            splitPayRequiredPayments: Nullable<Double>.value(1.1),
+            stock: Nullable<Double>.value(1.1),
+            strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+            strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
+            taxType: VariantTaxType.inclusive,
+            threeDsLevel: Nullable<VariantThreeDsLevel>.value(VariantThreeDsLevel.mandateChallenge),
+            title: Nullable<String>.value("title"),
+            trialPeriodDays: Nullable<Double>.value(1.1),
+            unlimitedStock: true,
+            updatedAt: "updated_at",
+            visibility: VariantVisibility.visible
+        )
+        let response = try await client.variants.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -684,6 +1609,34 @@ import WhopSDK
         let expectedResponse = DeleteVariantsResponse(
             deleted: true,
             id: "plan_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.variants.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteVariantsResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.variants.delete(
             id: "id",
@@ -909,6 +1862,253 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "adaptive_pricing_enabled": true,
+                  "allow_multiple_quantity": true,
+                  "attributes": {
+                    "attributes": "attributes"
+                  },
+                  "billing_period": 1.1,
+                  "billing_type": "renewal",
+                  "cancel_discount_intervals": 1.1,
+                  "cancel_discount_percentage": 1.1,
+                  "checkout_styling": {
+                    "checkout_styling": {
+                      "key": "value"
+                    }
+                  },
+                  "collect_tax": true,
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "custom_fields": [
+                    {
+                      "field_type": "text",
+                      "id": "id",
+                      "name": "name",
+                      "order": 1.1,
+                      "placeholder": "placeholder",
+                      "required": true
+                    },
+                    {
+                      "field_type": "text",
+                      "id": "id",
+                      "name": "name",
+                      "order": 1.1,
+                      "placeholder": "placeholder",
+                      "required": true
+                    }
+                  ],
+                  "deletable": true,
+                  "description": "description",
+                  "effective_payment_method_configuration": {
+                    "disabled": [
+                      "disabled",
+                      "disabled"
+                    ],
+                    "enabled": [
+                      "enabled",
+                      "enabled"
+                    ],
+                    "include_platform_defaults": true
+                  },
+                  "expiration_days": 1.1,
+                  "formatted_price": "formatted_price",
+                  "id": "id",
+                  "image": {
+                    "image": {
+                      "key": "value"
+                    }
+                  },
+                  "initial_price": 1.1,
+                  "initial_price_due": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "internal_notes": "internal_notes",
+                  "invoice": {
+                    "invoice": {
+                      "key": "value"
+                    }
+                  },
+                  "member_count": 1.1,
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "offer_cancel_discount": true,
+                  "payment_method_configuration": {
+                    "payment_method_configuration": {
+                      "key": "value"
+                    }
+                  },
+                  "product": {
+                    "product": {
+                      "key": "value"
+                    }
+                  },
+                  "purchase_url": "purchase_url",
+                  "release_method": "buy_now",
+                  "renewal_price": 1.1,
+                  "sku": "sku",
+                  "split_pay_required_payments": 1.1,
+                  "stock": 1.1,
+                  "strike_through_initial_price": 1.1,
+                  "strike_through_renewal_price": 1.1,
+                  "tax_type": "inclusive",
+                  "three_ds_level": "mandate_challenge",
+                  "title": "title",
+                  "trial_period_days": 1.1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "visibility": "visible"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Variant(
+            account: Nullable<AccountSummary>.value(AccountSummary(
+                id: "id",
+                title: "title"
+            )),
+            adaptivePricingEnabled: true,
+            allowMultipleQuantity: true,
+            attributes: Nullable<[String: Nullable<String>]>.value([
+                "attributes": Nullable<String>.value("attributes")
+            ]),
+            billingPeriod: Nullable<Double>.value(1.1),
+            billingType: VariantBillingType.renewal,
+            cancelDiscountIntervals: Nullable<Double>.value(1.1),
+            cancelDiscountPercentage: Nullable<Double>.value(1.1),
+            checkoutStyling: Nullable<[String: JSONValue]>.value([
+                "checkout_styling": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            collectTax: true,
+            createdAt: "created_at",
+            currency: "currency",
+            customFields: [
+                PlanCustomField(
+                    fieldType: PlanCustomFieldFieldType.text,
+                    id: "id",
+                    name: "name",
+                    order: 1.1,
+                    placeholder: Nullable<String>.value("placeholder"),
+                    required: true
+                ),
+                PlanCustomField(
+                    fieldType: PlanCustomFieldFieldType.text,
+                    id: "id",
+                    name: "name",
+                    order: 1.1,
+                    placeholder: Nullable<String>.value("placeholder"),
+                    required: true
+                )
+            ],
+            deletable: Nullable<Bool>.value(true),
+            description: Nullable<String>.value("description"),
+            effectivePaymentMethodConfiguration: Nullable<CheckoutSessionPaymentMethodConfiguration>.value(CheckoutSessionPaymentMethodConfiguration(
+                disabled: [
+                    "disabled",
+                    "disabled"
+                ],
+                enabled: [
+                    "enabled",
+                    "enabled"
+                ],
+                includePlatformDefaults: true
+            )),
+            expirationDays: Nullable<Double>.value(1.1),
+            formattedPrice: "formatted_price",
+            id: "id",
+            image: Nullable<[String: JSONValue]>.value([
+                "image": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            initialPrice: 1.1,
+            initialPriceDue: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            internalNotes: Nullable<String>.value("internal_notes"),
+            invoice: Nullable<[String: JSONValue]>.value([
+                "invoice": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            memberCount: Nullable<Double>.value(1.1),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            offerCancelDiscount: Nullable<Bool>.value(true),
+            paymentMethodConfiguration: Nullable<[String: JSONValue]>.value([
+                "payment_method_configuration": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            product: Nullable<[String: JSONValue]>.value([
+                "product": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            purchaseUrl: "purchase_url",
+            releaseMethod: VariantReleaseMethod.buyNow,
+            renewalPrice: 1.1,
+            sku: Nullable<String>.value("sku"),
+            splitPayRequiredPayments: Nullable<Double>.value(1.1),
+            stock: Nullable<Double>.value(1.1),
+            strikeThroughInitialPrice: Nullable<Double>.value(1.1),
+            strikeThroughRenewalPrice: Nullable<Double>.value(1.1),
+            taxType: VariantTaxType.inclusive,
+            threeDsLevel: Nullable<VariantThreeDsLevel>.value(VariantThreeDsLevel.mandateChallenge),
+            title: Nullable<String>.value("title"),
+            trialPeriodDays: Nullable<Double>.value(1.1),
+            unlimitedStock: true,
+            updatedAt: "updated_at",
+            visibility: VariantVisibility.visible
+        )
+        let response = try await client.variants.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func calculateTax1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -944,6 +2144,43 @@ import WhopSDK
                 country: "DE",
                 postalCode: .value("10115")
             ))),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func calculateTax2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "currency": "currency",
+                  "status": "calculated",
+                  "subtotal": 1,
+                  "tax_amount": 1,
+                  "tax_behavior": "exclusive",
+                  "total": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CalculateTaxVariantsResponse(
+            currency: "currency",
+            status: CalculateTaxVariantsResponseStatus.calculated,
+            subtotal: 1,
+            taxAmount: 1,
+            taxBehavior: CalculateTaxVariantsResponseTaxBehavior.exclusive,
+            total: 1
+        )
+        let response = try await client.variants.calculateTax(
+            id: "id",
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

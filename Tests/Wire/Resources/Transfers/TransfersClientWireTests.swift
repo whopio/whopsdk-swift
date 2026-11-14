@@ -120,6 +120,215 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "destination": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "name": "name",
+                        "object": "account"
+                      },
+                      "failed_at": "2024-01-15T09:30:00Z",
+                      "failure_code": "failure_code",
+                      "failure_reason": "failure_reason",
+                      "fee": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "id": "id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "notes": "notes",
+                      "object": "transfer",
+                      "origin": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "name": "name",
+                        "object": "account"
+                      },
+                      "status": "processing",
+                      "status_changed_at": "2024-01-15T09:30:00Z",
+                      "succeeded_at": "2024-01-15T09:30:00Z",
+                      "tracking_url": "tracking_url"
+                    },
+                    {
+                      "amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "destination": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "name": "name",
+                        "object": "account"
+                      },
+                      "failed_at": "2024-01-15T09:30:00Z",
+                      "failure_code": "failure_code",
+                      "failure_reason": "failure_reason",
+                      "fee": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "id": "id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "notes": "notes",
+                      "object": "transfer",
+                      "origin": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "name": "name",
+                        "object": "account"
+                      },
+                      "status": "processing",
+                      "status_changed_at": "2024-01-15T09:30:00Z",
+                      "succeeded_at": "2024-01-15T09:30:00Z",
+                      "tracking_url": "tracking_url"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListTransfersResponse(
+            data: [
+                ListTransfersResponseDataItem(
+                    amount: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    destination: Nullable<ListTransfersResponseDataItemDestination>.value(ListTransfersResponseDataItemDestination(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        name: Nullable<String>.value("name"),
+                        object: ListTransfersResponseDataItemDestinationObject.account
+                    )),
+                    failedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureReason: Nullable<String>.value("failure_reason"),
+                    fee: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    id: "id",
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    notes: Nullable<String>.value("notes"),
+                    object: ListTransfersResponseDataItemObject.transfer,
+                    origin: Nullable<ListTransfersResponseDataItemOrigin>.value(ListTransfersResponseDataItemOrigin(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        name: Nullable<String>.value("name"),
+                        object: ListTransfersResponseDataItemOriginObject.account
+                    )),
+                    status: ListTransfersResponseDataItemStatus.processing,
+                    statusChangedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    succeededAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    trackingUrl: "tracking_url"
+                ),
+                ListTransfersResponseDataItem(
+                    amount: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    destination: Nullable<ListTransfersResponseDataItemDestination>.value(ListTransfersResponseDataItemDestination(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        name: Nullable<String>.value("name"),
+                        object: ListTransfersResponseDataItemDestinationObject.account
+                    )),
+                    failedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    failureCode: Nullable<String>.value("failure_code"),
+                    failureReason: Nullable<String>.value("failure_reason"),
+                    fee: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    id: "id",
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    notes: Nullable<String>.value("notes"),
+                    object: ListTransfersResponseDataItemObject.transfer,
+                    origin: Nullable<ListTransfersResponseDataItemOrigin>.value(ListTransfersResponseDataItemOrigin(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        name: Nullable<String>.value("name"),
+                        object: ListTransfersResponseDataItemOriginObject.account
+                    )),
+                    status: ListTransfersResponseDataItemStatus.processing,
+                    statusChangedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    succeededAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    trackingUrl: "tracking_url"
+                )
+            ],
+            pageInfo: ListTransfersResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.transfers.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -231,6 +440,123 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "object": "transfer",
+                  "amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "destination": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "name": "name",
+                    "object": "account"
+                  },
+                  "failed_at": "2024-01-15T09:30:00Z",
+                  "failure_code": "failure_code",
+                  "failure_reason": "failure_reason",
+                  "fee": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "notes": "notes",
+                  "origin": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "name": "name",
+                    "object": "account"
+                  },
+                  "status": "processing",
+                  "status_changed_at": "2024-01-15T09:30:00Z",
+                  "succeeded_at": "2024-01-15T09:30:00Z",
+                  "tracking_url": "tracking_url"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateTransfersResponse.transfer(
+            .init(
+                amount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                destination: Nullable<CreateTransfersResponseTransferDestination>.value(CreateTransfersResponseTransferDestination(
+                    id: "id",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: Nullable<String>.value("name"),
+                    object: CreateTransfersResponseTransferDestinationObject.account
+                )),
+                failedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                failureCode: Nullable<String>.value("failure_code"),
+                failureReason: Nullable<String>.value("failure_reason"),
+                fee: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                id: "id",
+                metadata: [
+                    "metadata": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ],
+                notes: Nullable<String>.value("notes"),
+                origin: Nullable<CreateTransfersResponseTransferOrigin>.value(CreateTransfersResponseTransferOrigin(
+                    id: "id",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    name: Nullable<String>.value("name"),
+                    object: CreateTransfersResponseTransferOriginObject.account
+                )),
+                status: CreateTransfersResponseTransferStatus.processing,
+                statusChangedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                succeededAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                trackingUrl: "tracking_url",
+                additionalProperties: [
+                    "object": JSONValue.string("transfer")
+                ]
+            )
+        )
+        let response = try await client.transfers.create(
+            request: CreateTransfersRequestBody.balance(
+                CreateTransfersRequestBodyBalance(
+                    amount: 1.1,
+                    currency: "currency",
+                    destinationId: "destination_id",
+                    originId: "origin_id"
+                )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listRecipients1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -280,6 +606,82 @@ import WhopSDK
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("MQ")
+            )
+        )
+        let response = try await client.transfers.listRecipients(
+            originId: "origin_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listRecipients2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "object": "user",
+                      "id": "id",
+                      "name": "name",
+                      "profile_picture_url": "profile_picture_url",
+                      "username": "username"
+                    },
+                    {
+                      "object": "user",
+                      "id": "id",
+                      "name": "name",
+                      "profile_picture_url": "profile_picture_url",
+                      "username": "username"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListRecipientsTransfersResponse(
+            data: [
+                ListRecipientsTransfersResponseDataItem.user(
+                    .init(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                        username: Nullable<String>.value("username"),
+                        additionalProperties: [
+                            "object": JSONValue.string("user")
+                        ]
+                    )
+                ),
+                ListRecipientsTransfersResponseDataItem.user(
+                    .init(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                        username: Nullable<String>.value("username"),
+                        additionalProperties: [
+                            "object": JSONValue.string("user")
+                        ]
+                    )
+                )
+            ],
+            pageInfo: ListRecipientsTransfersResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
             )
         )
         let response = try await client.transfers.listRecipients(
@@ -381,6 +783,112 @@ import WhopSDK
             statusChangedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             succeededAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             trackingUrl: "https://whop.com/ctt_xxxxxxxxxxxxxx/"
+        )
+        let response = try await client.transfers.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "destination": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "name": "name",
+                    "object": "account"
+                  },
+                  "failed_at": "2024-01-15T09:30:00Z",
+                  "failure_code": "failure_code",
+                  "failure_reason": "failure_reason",
+                  "fee": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "notes": "notes",
+                  "object": "transfer",
+                  "origin": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "name": "name",
+                    "object": "account"
+                  },
+                  "status": "processing",
+                  "status_changed_at": "2024-01-15T09:30:00Z",
+                  "succeeded_at": "2024-01-15T09:30:00Z",
+                  "tracking_url": "tracking_url"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrieveTransfersResponse(
+            amount: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            destination: Nullable<RetrieveTransfersResponseDestination>.value(RetrieveTransfersResponseDestination(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                name: Nullable<String>.value("name"),
+                object: RetrieveTransfersResponseDestinationObject.account
+            )),
+            failedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            failureCode: Nullable<String>.value("failure_code"),
+            failureReason: Nullable<String>.value("failure_reason"),
+            fee: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            id: "id",
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            notes: Nullable<String>.value("notes"),
+            object: RetrieveTransfersResponseObject.transfer,
+            origin: Nullable<RetrieveTransfersResponseOrigin>.value(RetrieveTransfersResponseOrigin(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                name: Nullable<String>.value("name"),
+                object: RetrieveTransfersResponseOriginObject.account
+            )),
+            status: RetrieveTransfersResponseStatus.processing,
+            statusChangedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            succeededAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            trackingUrl: "tracking_url"
         )
         let response = try await client.transfers.retrieve(
             id: "id",

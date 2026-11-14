@@ -61,4 +61,77 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "created_at": "created_at",
+                      "id": "id",
+                      "reason": "reason",
+                      "review_id": "review_id",
+                      "status": "pending",
+                      "updated_at": "updated_at",
+                      "user_id": "user_id"
+                    },
+                    {
+                      "created_at": "created_at",
+                      "id": "id",
+                      "reason": "reason",
+                      "review_id": "review_id",
+                      "status": "pending",
+                      "updated_at": "updated_at",
+                      "user_id": "user_id"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListReviewReportsResponse(
+            data: [
+                ReviewReport(
+                    createdAt: "created_at",
+                    id: "id",
+                    reason: "reason",
+                    reviewId: "review_id",
+                    status: ReviewReportStatus.pending,
+                    updatedAt: "updated_at",
+                    userId: Nullable<String>.value("user_id")
+                ),
+                ReviewReport(
+                    createdAt: "created_at",
+                    id: "id",
+                    reason: "reason",
+                    reviewId: "review_id",
+                    status: ReviewReportStatus.pending,
+                    updatedAt: "updated_at",
+                    userId: Nullable<String>.value("user_id")
+                )
+            ],
+            pageInfo: ListReviewReportsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.reviewReports.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
 }

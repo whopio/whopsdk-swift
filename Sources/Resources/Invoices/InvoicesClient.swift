@@ -27,13 +27,15 @@ public final class InvoicesClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter scheduled: Set to `true` for drafts with a scheduled send, which are the invoices with a `scheduled_send_at`. Set to `false` for every other invoice. Only a `draft` can be scheduled. An `open` invoice is not scheduled, even with a `scheduled_charge_at`. A draft that sends on its due date (`sends_on_due_date`) is not scheduled. Omit to include both.
+    /// - Parameter order: Field to sort by. Sorting by `due_at` or `scheduled_send_at` puts invoices without that date last in both directions.
     /// - Parameter first: Number of results to return from the start of the range.
     /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     /// - Parameter last: Number of results to return from the end of the range.
     /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter includeTotalCount: Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String? = nil, status: ListInvoicesRequestStatus? = nil, overdue: Bool? = nil, memberId: String? = nil, productId: String? = nil, createdAfter: Date? = nil, createdBefore: Date? = nil, order: ListInvoicesRequestOrder? = nil, direction: ListInvoicesRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, includeTotalCount: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ListInvoicesResponse {
+    public func list(accountId: String? = nil, status: ListInvoicesRequestStatus? = nil, overdue: Bool? = nil, scheduled: Bool? = nil, memberId: String? = nil, productId: String? = nil, createdAfter: Date? = nil, createdBefore: Date? = nil, order: ListInvoicesRequestOrder? = nil, direction: ListInvoicesRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, includeTotalCount: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ListInvoicesResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/invoices",
@@ -41,6 +43,7 @@ public final class InvoicesClient: Sendable {
                 "account_id": accountId.map { .string($0) }, 
                 "status": status.map { .string($0.rawValue) }, 
                 "overdue": overdue.map { .bool($0) }, 
+                "scheduled": scheduled.map { .bool($0) }, 
                 "member_id": memberId.map { .string($0) }, 
                 "product_id": productId.map { .string($0) }, 
                 "created_after": createdAfter.map { .date($0) }, 

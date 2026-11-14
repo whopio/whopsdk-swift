@@ -4628,4 +4628,826 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "bank_deposit": {
+                    "adjustable": true,
+                    "category": "payments",
+                    "default": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "ends_at": "ends_at",
+                    "fixed": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "maximum": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "minimum": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "percentage": 1.1,
+                    "region": "usa",
+                    "regions": {
+                      "regions": {
+                        "default": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "maximum": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "minimum": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "percentage": 1.1,
+                        "reset": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "source": "default"
+                      }
+                    },
+                    "reset": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "source": "default",
+                    "unadjustable_reason": "not_permitted"
+                  },
+                  "payouts": {
+                    "payouts": {
+                      "adjustable": true,
+                      "category": "payments",
+                      "default": {
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "percentage": 1.1
+                      },
+                      "ends_at": "ends_at",
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "maximum": {
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "percentage": 1.1
+                      },
+                      "minimum": {
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "percentage": 1.1
+                      },
+                      "percentage": 1.1,
+                      "region": "usa",
+                      "regions": {
+                        "regions": {
+                          "default": {
+                            "fixed": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "percentage": 1.1
+                          },
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "maximum": {
+                            "fixed": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "percentage": 1.1
+                          },
+                          "minimum": {
+                            "fixed": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "percentage": 1.1
+                          },
+                          "percentage": 1.1,
+                          "reset": {
+                            "fixed": {
+                              "amount": "amount",
+                              "currency": "currency",
+                              "decimals": 1,
+                              "display_decimals": 1
+                            },
+                            "percentage": 1.1
+                          },
+                          "source": "default"
+                        }
+                      },
+                      "reset": {
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "percentage": 1.1
+                      },
+                      "source": "default",
+                      "unadjustable_reason": "not_permitted"
+                    }
+                  },
+                  "pending_auto_topup": {
+                    "adjustable": true,
+                    "category": "payments",
+                    "default": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "ends_at": "ends_at",
+                    "fixed": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "maximum": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "minimum": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "percentage": 1.1,
+                    "region": "usa",
+                    "regions": {
+                      "regions": {
+                        "default": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "maximum": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "minimum": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "percentage": 1.1,
+                        "reset": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "source": "default"
+                      }
+                    },
+                    "reset": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "source": "default",
+                    "unadjustable_reason": "not_permitted"
+                  },
+                  "transfers": {
+                    "adjustable": true,
+                    "category": "payments",
+                    "default": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "ends_at": "ends_at",
+                    "fixed": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "maximum": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "minimum": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "percentage": 1.1,
+                    "region": "usa",
+                    "regions": {
+                      "regions": {
+                        "default": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "fixed": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "maximum": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "minimum": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "percentage": 1.1,
+                        "reset": {
+                          "fixed": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "percentage": 1.1
+                        },
+                        "source": "default"
+                      }
+                    },
+                    "reset": {
+                      "fixed": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "percentage": 1.1
+                    },
+                    "source": "default",
+                    "unadjustable_reason": "not_permitted"
+                  },
+                  "user_id": "user_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = UserFees(
+            bankDeposit: AccountFee(
+                adjustable: true,
+                category: AccountFeeCategory.payments,
+                default: AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                endsAt: Nullable<String>.value("ends_at"),
+                fixed: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                )),
+                minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                )),
+                percentage: Nullable<Double>.value(1.1),
+                region: Nullable<AccountFeeRegion>.value(AccountFeeRegion.usa),
+                regions: [
+                    "regions": AccountFeeRegionalRate(
+                        default: AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        )),
+                        minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        )),
+                        percentage: Nullable<Double>.value(1.1),
+                        reset: AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        source: Nullable<AccountFeeRegionalRateSource>.value(AccountFeeRegionalRateSource.default)
+                    )
+                ],
+                reset: AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                source: Nullable<AccountFeeSource>.value(AccountFeeSource.default),
+                unadjustableReason: Nullable<AccountFeeUnadjustableReason>.value(AccountFeeUnadjustableReason.notPermitted)
+            ),
+            payouts: [
+                "payouts": AccountFee(
+                    adjustable: true,
+                    category: AccountFeeCategory.payments,
+                    default: AccountFeeRate(
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        percentage: Nullable<Double>.value(1.1)
+                    ),
+                    endsAt: Nullable<String>.value("ends_at"),
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        percentage: Nullable<Double>.value(1.1)
+                    )),
+                    minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        percentage: Nullable<Double>.value(1.1)
+                    )),
+                    percentage: Nullable<Double>.value(1.1),
+                    region: Nullable<AccountFeeRegion>.value(AccountFeeRegion.usa),
+                    regions: [
+                        "regions": AccountFeeRegionalRate(
+                            default: AccountFeeRate(
+                                fixed: Nullable<Money>.value(Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                )),
+                                percentage: Nullable<Double>.value(1.1)
+                            ),
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                                fixed: Nullable<Money>.value(Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                )),
+                                percentage: Nullable<Double>.value(1.1)
+                            )),
+                            minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                                fixed: Nullable<Money>.value(Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                )),
+                                percentage: Nullable<Double>.value(1.1)
+                            )),
+                            percentage: Nullable<Double>.value(1.1),
+                            reset: AccountFeeRate(
+                                fixed: Nullable<Money>.value(Money(
+                                    amount: "amount",
+                                    currency: "currency",
+                                    decimals: 1,
+                                    displayDecimals: 1
+                                )),
+                                percentage: Nullable<Double>.value(1.1)
+                            ),
+                            source: Nullable<AccountFeeRegionalRateSource>.value(AccountFeeRegionalRateSource.default)
+                        )
+                    ],
+                    reset: AccountFeeRate(
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        percentage: Nullable<Double>.value(1.1)
+                    ),
+                    source: Nullable<AccountFeeSource>.value(AccountFeeSource.default),
+                    unadjustableReason: Nullable<AccountFeeUnadjustableReason>.value(AccountFeeUnadjustableReason.notPermitted)
+                )
+            ],
+            pendingAutoTopup: AccountFee(
+                adjustable: true,
+                category: AccountFeeCategory.payments,
+                default: AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                endsAt: Nullable<String>.value("ends_at"),
+                fixed: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                )),
+                minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                )),
+                percentage: Nullable<Double>.value(1.1),
+                region: Nullable<AccountFeeRegion>.value(AccountFeeRegion.usa),
+                regions: [
+                    "regions": AccountFeeRegionalRate(
+                        default: AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        )),
+                        minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        )),
+                        percentage: Nullable<Double>.value(1.1),
+                        reset: AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        source: Nullable<AccountFeeRegionalRateSource>.value(AccountFeeRegionalRateSource.default)
+                    )
+                ],
+                reset: AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                source: Nullable<AccountFeeSource>.value(AccountFeeSource.default),
+                unadjustableReason: Nullable<AccountFeeUnadjustableReason>.value(AccountFeeUnadjustableReason.notPermitted)
+            ),
+            transfers: AccountFee(
+                adjustable: true,
+                category: AccountFeeCategory.payments,
+                default: AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                endsAt: Nullable<String>.value("ends_at"),
+                fixed: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                )),
+                minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                )),
+                percentage: Nullable<Double>.value(1.1),
+                region: Nullable<AccountFeeRegion>.value(AccountFeeRegion.usa),
+                regions: [
+                    "regions": AccountFeeRegionalRate(
+                        default: AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        fixed: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        maximum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        )),
+                        minimum: Nullable<AccountFeeRate>.value(AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        )),
+                        percentage: Nullable<Double>.value(1.1),
+                        reset: AccountFeeRate(
+                            fixed: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            percentage: Nullable<Double>.value(1.1)
+                        ),
+                        source: Nullable<AccountFeeRegionalRateSource>.value(AccountFeeRegionalRateSource.default)
+                    )
+                ],
+                reset: AccountFeeRate(
+                    fixed: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    percentage: Nullable<Double>.value(1.1)
+                ),
+                source: Nullable<AccountFeeSource>.value(AccountFeeSource.default),
+                unadjustableReason: Nullable<AccountFeeUnadjustableReason>.value(AccountFeeUnadjustableReason.notPermitted)
+            ),
+            userId: "user_id"
+        )
+        let response = try await client.users.fees.retrieve(
+            userId: "user_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

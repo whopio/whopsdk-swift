@@ -5,6 +5,8 @@ public struct RetrievePayoutsResponse: Codable, Hashable, Sendable {
     public let amount: String?
     /// Whether `POST /payouts/{id}/cancel` would act on this payout right now: `true` while it is `in_review`, while it is `processing` with nothing yet submitted to the payout provider, or while a submitted payout can still be asked to cancel at the provider. `false` once the money has arrived or the payout has already ended. Only returned to callers with payout:withdrawal:read on the owning ledger.
     public let cancelable: Bool?
+    /// How the balance was converted into the payout currency before the payout was sent. `null` when the payout was sent from a balance in its own currency. Only returned to callers with payout:withdrawal:read on the owning ledger.
+    public let conversion: Nullable<RetrievePayoutsResponseConversion>?
     /// When the payout was created.
     public let createdAt: Date
     /// Payout currency.
@@ -68,6 +70,7 @@ public struct RetrievePayoutsResponse: Codable, Hashable, Sendable {
     public init(
         amount: String? = nil,
         cancelable: Bool? = nil,
+        conversion: Nullable<RetrievePayoutsResponseConversion>? = nil,
         createdAt: Date,
         currency: String,
         delayed: Bool? = nil,
@@ -101,6 +104,7 @@ public struct RetrievePayoutsResponse: Codable, Hashable, Sendable {
     ) {
         self.amount = amount
         self.cancelable = cancelable
+        self.conversion = conversion
         self.createdAt = createdAt
         self.currency = currency
         self.delayed = delayed
@@ -137,6 +141,7 @@ public struct RetrievePayoutsResponse: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.amount = try container.decodeIfPresent(String.self, forKey: .amount)
         self.cancelable = try container.decodeIfPresent(Bool.self, forKey: .cancelable)
+        self.conversion = try container.decodeNullableIfPresent(RetrievePayoutsResponseConversion.self, forKey: .conversion)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.currency = try container.decode(String.self, forKey: .currency)
         self.delayed = try container.decodeIfPresent(Bool.self, forKey: .delayed)
@@ -174,6 +179,7 @@ public struct RetrievePayoutsResponse: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.amount, forKey: .amount)
         try container.encodeIfPresent(self.cancelable, forKey: .cancelable)
+        try container.encodeNullableIfPresent(self.conversion, forKey: .conversion)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.currency, forKey: .currency)
         try container.encodeIfPresent(self.delayed, forKey: .delayed)
@@ -209,6 +215,7 @@ public struct RetrievePayoutsResponse: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case amount
         case cancelable
+        case conversion
         case createdAt = "created_at"
         case currency
         case delayed

@@ -63,7 +63,7 @@ public struct AccountFees: Codable, Hashable, Sendable {
     public let sepaDispute: AccountFee
     /// A flat fee in euros (EUR), charged when the buyer's bank returns a SEPA Direct Debit payment unpaid.
     public let sepaReturn: AccountFee
-    /// Charged when tax is calculated on a payment.
+    /// Charged when Whop calculates tax on a payment and the account remits the tax itself. An account whose `tax_remitted_by` is `null` pays it on every taxed payment.
     public let taxCalculation: AccountFee
     /// Charged when Whop collects and remits tax on the account's behalf.
     public let taxService: AccountFee

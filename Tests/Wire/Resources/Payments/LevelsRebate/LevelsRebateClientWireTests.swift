@@ -56,4 +56,58 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "covered_share": 1.1,
+                  "effective_rate_percentage": 1.1,
+                  "ineligible_reason": "not_card_payment",
+                  "level": 1,
+                  "month_started_at": "month_started_at",
+                  "payment_id": "payment_id",
+                  "processing_rate_percentage": 1.1,
+                  "region": "us_and_canada",
+                  "status": "rebated"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PaymentLevelsRebate(
+            amount: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            coveredShare: Nullable<Double>.value(1.1),
+            effectiveRatePercentage: Nullable<Double>.value(1.1),
+            ineligibleReason: Nullable<PaymentLevelsRebateIneligibleReason>.value(PaymentLevelsRebateIneligibleReason.notCardPayment),
+            level: Nullable<Int>.value(1),
+            monthStartedAt: Nullable<String>.value("month_started_at"),
+            paymentId: "payment_id",
+            processingRatePercentage: Nullable<Double>.value(1.1),
+            region: Nullable<PaymentLevelsRebateRegion>.value(PaymentLevelsRebateRegion.usAndCanada),
+            status: PaymentLevelsRebateStatus.rebated
+        )
+        let response = try await client.payments.levelsRebate.retrieve(
+            paymentId: "payment_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

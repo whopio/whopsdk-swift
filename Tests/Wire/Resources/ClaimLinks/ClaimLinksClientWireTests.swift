@@ -77,6 +77,80 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": "amount",
+                  "claim_url": "claim_url",
+                  "claimable": true,
+                  "code": "code",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "currency": "currency",
+                  "expires_at": "2024-01-15T09:30:00Z",
+                  "id": "id",
+                  "object": "claim_link",
+                  "redeemable_count": 1,
+                  "redeemed_count": 1,
+                  "remaining_claims": 1,
+                  "sender": {
+                    "object": "account",
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "source": {
+                    "account_id": "account_id"
+                  },
+                  "status": "pending"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrieveClaimLinksResponse(
+            amount: "amount",
+            claimUrl: Nullable<String>.value("claim_url"),
+            claimable: true,
+            code: Nullable<String>.value("code"),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            currency: "currency",
+            expiresAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            id: "id",
+            object: RetrieveClaimLinksResponseObject.claimLink,
+            redeemableCount: 1,
+            redeemedCount: 1,
+            remainingClaims: 1,
+            sender: RetrieveClaimLinksResponseSender.account(
+                .init(
+                    id: "id",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    route: Nullable<String>.value("route"),
+                    title: Nullable<String>.value("title"),
+                    additionalProperties: [
+                        "object": JSONValue.string("account")
+                    ]
+                )
+            ),
+            source: RetrieveClaimLinksResponseSource(
+                accountId: "account_id"
+            ),
+            status: RetrieveClaimLinksResponseStatus.pending
+        )
+        let response = try await client.claimLinks.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func claim1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -141,6 +215,80 @@ import WhopSDK
             ),
             source: ClaimClaimLinksResponseSource(
                 accountId: "biz_xxxxxxxxxxxxxx"
+            ),
+            status: ClaimClaimLinksResponseStatus.pending
+        )
+        let response = try await client.claimLinks.claim(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func claim2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": "amount",
+                  "claim_url": "claim_url",
+                  "claimable": true,
+                  "code": "code",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "currency": "currency",
+                  "expires_at": "2024-01-15T09:30:00Z",
+                  "id": "id",
+                  "object": "claim_link",
+                  "redeemable_count": 1,
+                  "redeemed_count": 1,
+                  "remaining_claims": 1,
+                  "sender": {
+                    "object": "account",
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "source": {
+                    "account_id": "account_id"
+                  },
+                  "status": "pending"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ClaimClaimLinksResponse(
+            amount: "amount",
+            claimUrl: Nullable<String>.value("claim_url"),
+            claimable: true,
+            code: Nullable<String>.value("code"),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            currency: "currency",
+            expiresAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            id: "id",
+            object: ClaimClaimLinksResponseObject.claimLink,
+            redeemableCount: 1,
+            redeemedCount: 1,
+            remainingClaims: 1,
+            sender: ClaimClaimLinksResponseSender.account(
+                .init(
+                    id: "id",
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    route: Nullable<String>.value("route"),
+                    title: Nullable<String>.value("title"),
+                    additionalProperties: [
+                        "object": JSONValue.string("account")
+                    ]
+                )
+            ),
+            source: ClaimClaimLinksResponseSource(
+                accountId: "account_id"
             ),
             status: ClaimClaimLinksResponseStatus.pending
         )

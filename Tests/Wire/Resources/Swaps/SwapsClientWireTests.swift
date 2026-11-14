@@ -52,6 +52,83 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "amount": "amount",
+                      "error": "error",
+                      "id": "id",
+                      "object": "swap",
+                      "status": "queued",
+                      "tx_hashes": [
+                        "tx_hashes",
+                        "tx_hashes"
+                      ],
+                      "user_id": "user_id"
+                    },
+                    {
+                      "account_id": "account_id",
+                      "amount": "amount",
+                      "error": "error",
+                      "id": "id",
+                      "object": "swap",
+                      "status": "queued",
+                      "tx_hashes": [
+                        "tx_hashes",
+                        "tx_hashes"
+                      ],
+                      "user_id": "user_id"
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListSwapsResponse(
+            data: [
+                ListSwapsResponseDataItem(
+                    accountId: "account_id",
+                    amount: Nullable<String>.value("amount"),
+                    error: Optional(Nullable<String>.value("error")),
+                    id: "id",
+                    object: ListSwapsResponseDataItemObject.swap,
+                    status: ListSwapsResponseDataItemStatus.queued,
+                    txHashes: [
+                        "tx_hashes",
+                        "tx_hashes"
+                    ],
+                    userId: Nullable<String>.value("user_id")
+                ),
+                ListSwapsResponseDataItem(
+                    accountId: "account_id",
+                    amount: Nullable<String>.value("amount"),
+                    error: Optional(Nullable<String>.value("error")),
+                    id: "id",
+                    object: ListSwapsResponseDataItemObject.swap,
+                    status: ListSwapsResponseDataItemStatus.queued,
+                    txHashes: [
+                        "tx_hashes",
+                        "tx_hashes"
+                    ],
+                    userId: Nullable<String>.value("user_id")
+                )
+            ]
+        )
+        let response = try await client.swaps.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -109,6 +186,69 @@ import WhopSDK
             request: .init(
                 fromToken: "usd",
                 toToken: "cad"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "amount": "amount",
+                  "amount_in": 1.1,
+                  "amount_out": 1.1,
+                  "amount_out_expected": "amount_out_expected",
+                  "amount_out_min": "amount_out_min",
+                  "from_token": {
+                    "symbol": "symbol"
+                  },
+                  "id": "id",
+                  "object": "swap",
+                  "rate": "rate",
+                  "status": "queued",
+                  "to_chain": "to_chain",
+                  "to_token": {
+                    "symbol": "symbol"
+                  },
+                  "user_id": "user_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateSwapsResponse(
+            accountId: "account_id",
+            amount: Optional(Nullable<String>.value("amount")),
+            amountIn: Optional(Nullable<Double>.value(1.1)),
+            amountOut: Optional(Nullable<Double>.value(1.1)),
+            amountOutExpected: Optional("amount_out_expected"),
+            amountOutMin: Optional("amount_out_min"),
+            fromToken: Optional(Nullable<CreateSwapsResponseFromToken>.value(CreateSwapsResponseFromToken(
+                symbol: Optional("symbol")
+            ))),
+            id: Optional("id"),
+            object: CreateSwapsResponseObject.swap,
+            rate: Optional("rate"),
+            status: CreateSwapsResponseStatus.queued,
+            toChain: Optional("to_chain"),
+            toToken: Optional(Nullable<CreateSwapsResponseToToken>.value(CreateSwapsResponseToToken(
+                symbol: Optional("symbol")
+            ))),
+            userId: Nullable<String>.value("user_id")
+        )
+        let response = try await client.swaps.create(
+            request: .init(
+                fromToken: "from_token",
+                toToken: "to_token"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -199,6 +339,92 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func createQuote2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount_in": "amount_in",
+                  "amount_out": "amount_out",
+                  "amount_out_min": "amount_out_min",
+                  "bridge_fee": "bridge_fee",
+                  "estimated_duration_seconds": 1,
+                  "fee_bps": 1,
+                  "from_address": "from_address",
+                  "from_token": {
+                    "from_token": {
+                      "key": "value"
+                    }
+                  },
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "object": "swap_quote",
+                  "rate": "rate",
+                  "requires_token_approval": true,
+                  "to_address": "to_address",
+                  "to_token": {
+                    "to_token": {
+                      "key": "value"
+                    }
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateQuoteSwapsResponse(
+            amountIn: "amount_in",
+            amountOut: "amount_out",
+            amountOutMin: Optional("amount_out_min"),
+            bridgeFee: Optional(Nullable<String>.value("bridge_fee")),
+            estimatedDurationSeconds: Optional(Nullable<Int>.value(1)),
+            feeBps: 1,
+            fromAddress: Optional(Nullable<String>.value("from_address")),
+            fromToken: [
+                "from_token": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            object: CreateQuoteSwapsResponseObject.swapQuote,
+            rate: "rate",
+            requiresTokenApproval: Optional(Nullable<Bool>.value(true)),
+            toAddress: Optional(Nullable<String>.value("to_address")),
+            toToken: [
+                "to_token": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]
+        )
+        let response = try await client.swaps.createQuote(
+            request: .init(
+                amount: "amount",
+                fromToken: "from_token",
+                toToken: "to_token"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -233,6 +459,52 @@ import WhopSDK
             status: RetrieveSwapsResponseStatus.queued,
             txHashes: [
                 "0xabc"
+            ],
+            userId: Nullable<String>.value("user_id")
+        )
+        let response = try await client.swaps.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "amount": "amount",
+                  "error": "error",
+                  "id": "id",
+                  "object": "swap",
+                  "status": "queued",
+                  "tx_hashes": [
+                    "tx_hashes",
+                    "tx_hashes"
+                  ],
+                  "user_id": "user_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrieveSwapsResponse(
+            accountId: "account_id",
+            amount: Nullable<String>.value("amount"),
+            error: Optional(Nullable<String>.value("error")),
+            id: "id",
+            object: RetrieveSwapsResponseObject.swap,
+            status: RetrieveSwapsResponseStatus.queued,
+            txHashes: [
+                "tx_hashes",
+                "tx_hashes"
             ],
             userId: Nullable<String>.value("user_id")
         )

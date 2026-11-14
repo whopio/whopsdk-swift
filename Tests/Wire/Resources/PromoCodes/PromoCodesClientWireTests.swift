@@ -125,6 +125,206 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "affiliate": {
+                        "id": "id",
+                        "user": {
+                          "id": "id",
+                          "name": "name",
+                          "profile_pic": "profile_pic",
+                          "username": "username"
+                        }
+                      },
+                      "amount_off": 1.1,
+                      "churned_users_only": true,
+                      "code": "code",
+                      "created_at": "created_at",
+                      "currency": "usd",
+                      "duration": "forever",
+                      "existing_memberships_only": true,
+                      "expires_at": "expires_at",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "new_users_only": true,
+                      "one_per_customer": true,
+                      "product": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "promo_duration_months": 1,
+                      "promo_type": "percentage",
+                      "status": "active",
+                      "stock": 1,
+                      "unlimited_stock": true,
+                      "updated_at": "updated_at",
+                      "uses": 1
+                    },
+                    {
+                      "affiliate": {
+                        "id": "id",
+                        "user": {
+                          "id": "id",
+                          "name": "name",
+                          "profile_pic": "profile_pic",
+                          "username": "username"
+                        }
+                      },
+                      "amount_off": 1.1,
+                      "churned_users_only": true,
+                      "code": "code",
+                      "created_at": "created_at",
+                      "currency": "usd",
+                      "duration": "forever",
+                      "existing_memberships_only": true,
+                      "expires_at": "expires_at",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "new_users_only": true,
+                      "one_per_customer": true,
+                      "product": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "promo_duration_months": 1,
+                      "promo_type": "percentage",
+                      "status": "active",
+                      "stock": 1,
+                      "unlimited_stock": true,
+                      "updated_at": "updated_at",
+                      "uses": 1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor",
+                    "total_count": 1,
+                    "total_count_capped": true
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListPromoCodesResponse(
+            data: [
+                PromoCodeListItem(
+                    affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                        id: "id",
+                        user: PromoCodeAffiliateUser(
+                            id: "id",
+                            name: Nullable<String>.value("name"),
+                            profilePic: "profile_pic",
+                            username: Nullable<String>.value("username")
+                        )
+                    )),
+                    amountOff: 1.1,
+                    churnedUsersOnly: true,
+                    code: Nullable<String>.value("code"),
+                    createdAt: "created_at",
+                    currency: PromoCodeListItemCurrency.usd,
+                    duration: PromoCodeListItemDuration.forever,
+                    existingMembershipsOnly: true,
+                    expiresAt: Nullable<String>.value("expires_at"),
+                    id: "id",
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    newUsersOnly: true,
+                    onePerCustomer: true,
+                    product: Nullable<PromoCodeProduct>.value(PromoCodeProduct(
+                        id: "id",
+                        title: "title"
+                    )),
+                    promoDurationMonths: Nullable<Int>.value(1),
+                    promoType: PromoCodeListItemPromoType.percentage,
+                    status: PromoCodeListItemStatus.active,
+                    stock: 1,
+                    unlimitedStock: true,
+                    updatedAt: "updated_at",
+                    uses: 1
+                ),
+                PromoCodeListItem(
+                    affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                        id: "id",
+                        user: PromoCodeAffiliateUser(
+                            id: "id",
+                            name: Nullable<String>.value("name"),
+                            profilePic: "profile_pic",
+                            username: Nullable<String>.value("username")
+                        )
+                    )),
+                    amountOff: 1.1,
+                    churnedUsersOnly: true,
+                    code: Nullable<String>.value("code"),
+                    createdAt: "created_at",
+                    currency: PromoCodeListItemCurrency.usd,
+                    duration: PromoCodeListItemDuration.forever,
+                    existingMembershipsOnly: true,
+                    expiresAt: Nullable<String>.value("expires_at"),
+                    id: "id",
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    newUsersOnly: true,
+                    onePerCustomer: true,
+                    product: Nullable<PromoCodeProduct>.value(PromoCodeProduct(
+                        id: "id",
+                        title: "title"
+                    )),
+                    promoDurationMonths: Nullable<Int>.value(1),
+                    promoType: PromoCodeListItemPromoType.percentage,
+                    status: PromoCodeListItemStatus.active,
+                    stock: 1,
+                    unlimitedStock: true,
+                    updatedAt: "updated_at",
+                    uses: 1
+                )
+            ],
+            pageInfo: ListPromoCodesResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
+            )
+        )
+        let response = try await client.promoCodes.list(
+            accountId: "account_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -233,6 +433,120 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "id": "id",
+                    "user": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_pic": "profile_pic",
+                      "username": "username"
+                    }
+                  },
+                  "amount_off": 1.1,
+                  "churned_users_only": true,
+                  "code": "code",
+                  "created_at": "created_at",
+                  "currency": "usd",
+                  "duration": "forever",
+                  "existing_memberships_only": true,
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "new_users_only": true,
+                  "one_per_customer": true,
+                  "product": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "promo_duration_months": 1,
+                  "promo_type": "percentage",
+                  "status": "active",
+                  "stock": 1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "uses": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PromoCode(
+            account: AccountSummary(
+                id: "id",
+                title: "title"
+            ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "id",
+                user: PromoCodeAffiliateUser(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePic: "profile_pic",
+                    username: Nullable<String>.value("username")
+                )
+            )),
+            amountOff: 1.1,
+            churnedUsersOnly: true,
+            code: Nullable<String>.value("code"),
+            createdAt: "created_at",
+            currency: PromoCodeCurrency.usd,
+            duration: PromoCodeDuration.forever,
+            existingMembershipsOnly: true,
+            expiresAt: Nullable<String>.value("expires_at"),
+            id: "id",
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            newUsersOnly: true,
+            onePerCustomer: true,
+            product: Nullable<PromoCodeProduct>.value(PromoCodeProduct(
+                id: "id",
+                title: "title"
+            )),
+            promoDurationMonths: Nullable<Int>.value(1),
+            promoType: PromoCodePromoType.percentage,
+            status: PromoCodeStatus.active,
+            stock: 1,
+            unlimitedStock: true,
+            updatedAt: "updated_at",
+            uses: 1
+        )
+        let response = try await client.promoCodes.create(
+            request: .init(
+                accountId: "account_id",
+                amountOff: 1.1,
+                baseCurrency: .usd,
+                code: "code",
+                newUsersOnly: true,
+                promoDurationMonths: 1,
+                promoType: .percentage
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -333,6 +647,112 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "id": "id",
+                    "user": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_pic": "profile_pic",
+                      "username": "username"
+                    }
+                  },
+                  "amount_off": 1.1,
+                  "churned_users_only": true,
+                  "code": "code",
+                  "created_at": "created_at",
+                  "currency": "usd",
+                  "duration": "forever",
+                  "existing_memberships_only": true,
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "new_users_only": true,
+                  "one_per_customer": true,
+                  "product": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "promo_duration_months": 1,
+                  "promo_type": "percentage",
+                  "status": "active",
+                  "stock": 1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "uses": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PromoCode(
+            account: AccountSummary(
+                id: "id",
+                title: "title"
+            ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "id",
+                user: PromoCodeAffiliateUser(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePic: "profile_pic",
+                    username: Nullable<String>.value("username")
+                )
+            )),
+            amountOff: 1.1,
+            churnedUsersOnly: true,
+            code: Nullable<String>.value("code"),
+            createdAt: "created_at",
+            currency: PromoCodeCurrency.usd,
+            duration: PromoCodeDuration.forever,
+            existingMembershipsOnly: true,
+            expiresAt: Nullable<String>.value("expires_at"),
+            id: "id",
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            newUsersOnly: true,
+            onePerCustomer: true,
+            product: Nullable<PromoCodeProduct>.value(PromoCodeProduct(
+                id: "id",
+                title: "title"
+            )),
+            promoDurationMonths: Nullable<Int>.value(1),
+            promoType: PromoCodePromoType.percentage,
+            status: PromoCodeStatus.active,
+            stock: 1,
+            unlimitedStock: true,
+            updatedAt: "updated_at",
+            uses: 1
+        )
+        let response = try await client.promoCodes.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -353,6 +773,34 @@ import WhopSDK
         let expectedResponse = DeletePromoCodesResponse(
             deleted: true,
             id: "promo_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.promoCodes.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeletePromoCodesResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.promoCodes.delete(
             id: "id",
@@ -461,6 +909,112 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func activate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "id": "id",
+                    "user": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_pic": "profile_pic",
+                      "username": "username"
+                    }
+                  },
+                  "amount_off": 1.1,
+                  "churned_users_only": true,
+                  "code": "code",
+                  "created_at": "created_at",
+                  "currency": "usd",
+                  "duration": "forever",
+                  "existing_memberships_only": true,
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "new_users_only": true,
+                  "one_per_customer": true,
+                  "product": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "promo_duration_months": 1,
+                  "promo_type": "percentage",
+                  "status": "active",
+                  "stock": 1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "uses": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PromoCode(
+            account: AccountSummary(
+                id: "id",
+                title: "title"
+            ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "id",
+                user: PromoCodeAffiliateUser(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePic: "profile_pic",
+                    username: Nullable<String>.value("username")
+                )
+            )),
+            amountOff: 1.1,
+            churnedUsersOnly: true,
+            code: Nullable<String>.value("code"),
+            createdAt: "created_at",
+            currency: PromoCodeCurrency.usd,
+            duration: PromoCodeDuration.forever,
+            existingMembershipsOnly: true,
+            expiresAt: Nullable<String>.value("expires_at"),
+            id: "id",
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            newUsersOnly: true,
+            onePerCustomer: true,
+            product: Nullable<PromoCodeProduct>.value(PromoCodeProduct(
+                id: "id",
+                title: "title"
+            )),
+            promoDurationMonths: Nullable<Int>.value(1),
+            promoType: PromoCodePromoType.percentage,
+            status: PromoCodeStatus.active,
+            stock: 1,
+            unlimitedStock: true,
+            updatedAt: "updated_at",
+            uses: 1
+        )
+        let response = try await client.promoCodes.activate(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func deactivate1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -553,6 +1107,112 @@ import WhopSDK
             unlimitedStock: false,
             updatedAt: "2026-01-01T12:00:00.000Z",
             uses: 0
+        )
+        let response = try await client.promoCodes.deactivate(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func deactivate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "id": "id",
+                    "user": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_pic": "profile_pic",
+                      "username": "username"
+                    }
+                  },
+                  "amount_off": 1.1,
+                  "churned_users_only": true,
+                  "code": "code",
+                  "created_at": "created_at",
+                  "currency": "usd",
+                  "duration": "forever",
+                  "existing_memberships_only": true,
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "new_users_only": true,
+                  "one_per_customer": true,
+                  "product": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "promo_duration_months": 1,
+                  "promo_type": "percentage",
+                  "status": "active",
+                  "stock": 1,
+                  "unlimited_stock": true,
+                  "updated_at": "updated_at",
+                  "uses": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PromoCode(
+            account: AccountSummary(
+                id: "id",
+                title: "title"
+            ),
+            affiliate: Nullable<PromoCodeAffiliate>.value(PromoCodeAffiliate(
+                id: "id",
+                user: PromoCodeAffiliateUser(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePic: "profile_pic",
+                    username: Nullable<String>.value("username")
+                )
+            )),
+            amountOff: 1.1,
+            churnedUsersOnly: true,
+            code: Nullable<String>.value("code"),
+            createdAt: "created_at",
+            currency: PromoCodeCurrency.usd,
+            duration: PromoCodeDuration.forever,
+            existingMembershipsOnly: true,
+            expiresAt: Nullable<String>.value("expires_at"),
+            id: "id",
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            newUsersOnly: true,
+            onePerCustomer: true,
+            product: Nullable<PromoCodeProduct>.value(PromoCodeProduct(
+                id: "id",
+                title: "title"
+            )),
+            promoDurationMonths: Nullable<Int>.value(1),
+            promoType: PromoCodePromoType.percentage,
+            status: PromoCodeStatus.active,
+            stock: 1,
+            unlimitedStock: true,
+            updatedAt: "updated_at",
+            uses: 1
         )
         let response = try await client.promoCodes.deactivate(
             id: "id",

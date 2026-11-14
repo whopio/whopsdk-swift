@@ -15,6 +15,8 @@ public struct Market: Codable, Hashable, Sendable {
     public let price: Nullable<Money>
     /// The most decimals an order's `size` can have on this market.
     public let sizeDecimals: Int
+    /// The value of the asset traded on all exchanges in the last 24 hours, in USD. For a tokenized stock, this counts trades of the token. `null` for a perpetual. `null` when the volume is not available.
+    public let volume24H: Nullable<Money>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -26,6 +28,7 @@ public struct Market: Codable, Hashable, Sendable {
         maxLeverage: Nullable<Int>,
         price: Nullable<Money>,
         sizeDecimals: Int,
+        volume24H: Nullable<Money>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.change24HPercentage = change24HPercentage
@@ -35,6 +38,7 @@ public struct Market: Codable, Hashable, Sendable {
         self.maxLeverage = maxLeverage
         self.price = price
         self.sizeDecimals = sizeDecimals
+        self.volume24H = volume24H
         self.additionalProperties = additionalProperties
     }
 
@@ -47,6 +51,7 @@ public struct Market: Codable, Hashable, Sendable {
         self.maxLeverage = try container.decode(Nullable<Int>.self, forKey: .maxLeverage)
         self.price = try container.decode(Nullable<Money>.self, forKey: .price)
         self.sizeDecimals = try container.decode(Int.self, forKey: .sizeDecimals)
+        self.volume24H = try container.decode(Nullable<Money>.self, forKey: .volume24H)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -60,6 +65,7 @@ public struct Market: Codable, Hashable, Sendable {
         try container.encode(self.maxLeverage, forKey: .maxLeverage)
         try container.encode(self.price, forKey: .price)
         try container.encode(self.sizeDecimals, forKey: .sizeDecimals)
+        try container.encode(self.volume24H, forKey: .volume24H)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -71,5 +77,6 @@ public struct Market: Codable, Hashable, Sendable {
         case maxLeverage = "max_leverage"
         case price
         case sizeDecimals = "size_decimals"
+        case volume24H = "volume_24h"
     }
 }

@@ -22,7 +22,8 @@ import WhopSDK
                         "decimals": 6,
                         "display_decimals": 6
                       },
-                      "size_decimals": 5
+                      "size_decimals": 5,
+                      "volume_24h": null
                     },
                     {
                       "change_24h_percentage": null,
@@ -36,7 +37,13 @@ import WhopSDK
                         "decimals": 8,
                         "display_decimals": 8
                       },
-                      "size_decimals": 5
+                      "size_decimals": 5,
+                      "volume_24h": {
+                        "amount": "21622161986.44",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      }
                     },
                     {
                       "change_24h_percentage": null,
@@ -50,7 +57,8 @@ import WhopSDK
                         "decimals": 6,
                         "display_decimals": 6
                       },
-                      "size_decimals": 4
+                      "size_decimals": 4,
+                      "volume_24h": null
                     },
                     {
                       "change_24h_percentage": 1.4235,
@@ -64,7 +72,13 @@ import WhopSDK
                         "decimals": 8,
                         "display_decimals": 8
                       },
-                      "size_decimals": 8
+                      "size_decimals": 8,
+                      "volume_24h": {
+                        "amount": "34341055.48",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      }
                     },
                     {
                       "change_24h_percentage": null,
@@ -78,7 +92,8 @@ import WhopSDK
                         "decimals": 6,
                         "display_decimals": 6
                       },
-                      "size_decimals": 2
+                      "size_decimals": 2,
+                      "volume_24h": null
                     },
                     {
                       "change_24h_percentage": null,
@@ -92,7 +107,8 @@ import WhopSDK
                         "decimals": 8,
                         "display_decimals": 8
                       },
-                      "size_decimals": 3
+                      "size_decimals": 3,
+                      "volume_24h": null
                     },
                     {
                       "change_24h_percentage": null,
@@ -106,7 +122,8 @@ import WhopSDK
                         "decimals": 8,
                         "display_decimals": 8
                       },
-                      "size_decimals": 2
+                      "size_decimals": 2,
+                      "volume_24h": null
                     },
                     {
                       "change_24h_percentage": null,
@@ -120,7 +137,8 @@ import WhopSDK
                         "decimals": 6,
                         "display_decimals": 6
                       },
-                      "size_decimals": 3
+                      "size_decimals": 3,
+                      "volume_24h": null
                     }
                   ],
                   "page_info": {
@@ -152,7 +170,8 @@ import WhopSDK
                         decimals: 6,
                         displayDecimals: 6
                     )),
-                    sizeDecimals: 5
+                    sizeDecimals: 5,
+                    volume24H: .null
                 ),
                 Market(
                     change24HPercentage: .null,
@@ -166,7 +185,13 @@ import WhopSDK
                         decimals: 8,
                         displayDecimals: 8
                     )),
-                    sizeDecimals: 5
+                    sizeDecimals: 5,
+                    volume24H: Nullable<Money>.value(Money(
+                        amount: "21622161986.44",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ))
                 ),
                 Market(
                     change24HPercentage: .null,
@@ -180,7 +205,8 @@ import WhopSDK
                         decimals: 6,
                         displayDecimals: 6
                     )),
-                    sizeDecimals: 4
+                    sizeDecimals: 4,
+                    volume24H: .null
                 ),
                 Market(
                     change24HPercentage: Nullable<Double>.value(1.4235),
@@ -194,7 +220,13 @@ import WhopSDK
                         decimals: 8,
                         displayDecimals: 8
                     )),
-                    sizeDecimals: 8
+                    sizeDecimals: 8,
+                    volume24H: Nullable<Money>.value(Money(
+                        amount: "34341055.48",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ))
                 ),
                 Market(
                     change24HPercentage: .null,
@@ -208,7 +240,8 @@ import WhopSDK
                         decimals: 6,
                         displayDecimals: 6
                     )),
-                    sizeDecimals: 2
+                    sizeDecimals: 2,
+                    volume24H: .null
                 ),
                 Market(
                     change24HPercentage: .null,
@@ -222,7 +255,8 @@ import WhopSDK
                         decimals: 8,
                         displayDecimals: 8
                     )),
-                    sizeDecimals: 3
+                    sizeDecimals: 3,
+                    volume24H: .null
                 ),
                 Market(
                     change24HPercentage: .null,
@@ -236,7 +270,8 @@ import WhopSDK
                         decimals: 8,
                         displayDecimals: 8
                     )),
-                    sizeDecimals: 2
+                    sizeDecimals: 2,
+                    volume24H: .null
                 ),
                 Market(
                     change24HPercentage: .null,
@@ -250,7 +285,8 @@ import WhopSDK
                         decimals: 6,
                         displayDecimals: 6
                     )),
-                    sizeDecimals: 3
+                    sizeDecimals: 3,
+                    volume24H: .null
                 )
             ],
             pageInfo: ListMarketsResponsePageInfo(
@@ -258,6 +294,123 @@ import WhopSDK
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("MQ")
+            )
+        )
+        let response = try await client.trades.markets.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "change_24h_percentage": 1.1,
+                      "id": "id",
+                      "instrument_type": "perpetual",
+                      "logo_url": "logo_url",
+                      "max_leverage": 1,
+                      "price": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "size_decimals": 1,
+                      "volume_24h": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      }
+                    },
+                    {
+                      "change_24h_percentage": 1.1,
+                      "id": "id",
+                      "instrument_type": "perpetual",
+                      "logo_url": "logo_url",
+                      "max_leverage": 1,
+                      "price": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "size_decimals": 1,
+                      "volume_24h": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListMarketsResponse(
+            data: [
+                Market(
+                    change24HPercentage: Nullable<Double>.value(1.1),
+                    id: "id",
+                    instrumentType: MarketInstrumentType.perpetual,
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    maxLeverage: Nullable<Int>.value(1),
+                    price: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    sizeDecimals: 1,
+                    volume24H: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ))
+                ),
+                Market(
+                    change24HPercentage: Nullable<Double>.value(1.1),
+                    id: "id",
+                    instrumentType: MarketInstrumentType.perpetual,
+                    logoUrl: Nullable<String>.value("logo_url"),
+                    maxLeverage: Nullable<Int>.value(1),
+                    price: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    sizeDecimals: 1,
+                    volume24H: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ))
+                )
+            ],
+            pageInfo: ListMarketsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
             )
         )
         let response = try await client.trades.markets.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))

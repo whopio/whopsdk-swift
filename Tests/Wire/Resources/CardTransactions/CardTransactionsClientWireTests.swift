@@ -91,6 +91,123 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "card_id": "card_id",
+                      "cardholder_id": "cardholder_id",
+                      "cashback_usd_amount": 1.1,
+                      "created_at": "created_at",
+                      "currency": "currency",
+                      "declined_reason": "declined_reason",
+                      "id": "id",
+                      "international": true,
+                      "levels_points": 1.1,
+                      "local_amount": 1.1,
+                      "merchant_category": "merchant_category",
+                      "merchant_category_code": "merchant_category_code",
+                      "merchant_icon_url": "merchant_icon_url",
+                      "merchant_name": "merchant_name",
+                      "posted_at": "posted_at",
+                      "status": "pending",
+                      "transaction_type": "spend",
+                      "usd_amount": 1.1
+                    },
+                    {
+                      "card_id": "card_id",
+                      "cardholder_id": "cardholder_id",
+                      "cashback_usd_amount": 1.1,
+                      "created_at": "created_at",
+                      "currency": "currency",
+                      "declined_reason": "declined_reason",
+                      "id": "id",
+                      "international": true,
+                      "levels_points": 1.1,
+                      "local_amount": 1.1,
+                      "merchant_category": "merchant_category",
+                      "merchant_category_code": "merchant_category_code",
+                      "merchant_icon_url": "merchant_icon_url",
+                      "merchant_name": "merchant_name",
+                      "posted_at": "posted_at",
+                      "status": "pending",
+                      "transaction_type": "spend",
+                      "usd_amount": 1.1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListCardTransactionsResponse(
+            data: [
+                CardTransaction(
+                    cardId: "card_id",
+                    cardholderId: Nullable<String>.value("cardholder_id"),
+                    cashbackUsdAmount: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    currency: Nullable<String>.value("currency"),
+                    declinedReason: Nullable<String>.value("declined_reason"),
+                    id: "id",
+                    international: true,
+                    levelsPoints: Nullable<Double>.value(1.1),
+                    localAmount: Nullable<Double>.value(1.1),
+                    merchantCategory: Nullable<String>.value("merchant_category"),
+                    merchantCategoryCode: Nullable<String>.value("merchant_category_code"),
+                    merchantIconUrl: Nullable<String>.value("merchant_icon_url"),
+                    merchantName: Nullable<String>.value("merchant_name"),
+                    postedAt: Nullable<String>.value("posted_at"),
+                    status: CardTransactionStatus.pending,
+                    transactionType: CardTransactionTransactionType.spend,
+                    usdAmount: Nullable<Double>.value(1.1)
+                ),
+                CardTransaction(
+                    cardId: "card_id",
+                    cardholderId: Nullable<String>.value("cardholder_id"),
+                    cashbackUsdAmount: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    currency: Nullable<String>.value("currency"),
+                    declinedReason: Nullable<String>.value("declined_reason"),
+                    id: "id",
+                    international: true,
+                    levelsPoints: Nullable<Double>.value(1.1),
+                    localAmount: Nullable<Double>.value(1.1),
+                    merchantCategory: Nullable<String>.value("merchant_category"),
+                    merchantCategoryCode: Nullable<String>.value("merchant_category_code"),
+                    merchantIconUrl: Nullable<String>.value("merchant_icon_url"),
+                    merchantName: Nullable<String>.value("merchant_name"),
+                    postedAt: Nullable<String>.value("posted_at"),
+                    status: CardTransactionStatus.pending,
+                    transactionType: CardTransactionTransactionType.spend,
+                    usdAmount: Nullable<Double>.value(1.1)
+                )
+            ],
+            pageInfo: ListCardTransactionsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.cardTransactions.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -143,6 +260,66 @@ import WhopSDK
             status: CardTransactionStatus.pending,
             transactionType: CardTransactionTransactionType.spend,
             usdAmount: Nullable<Double>.value(24.99)
+        )
+        let response = try await client.cardTransactions.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "card_id": "card_id",
+                  "cardholder_id": "cardholder_id",
+                  "cashback_usd_amount": 1.1,
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "declined_reason": "declined_reason",
+                  "id": "id",
+                  "international": true,
+                  "levels_points": 1.1,
+                  "local_amount": 1.1,
+                  "merchant_category": "merchant_category",
+                  "merchant_category_code": "merchant_category_code",
+                  "merchant_icon_url": "merchant_icon_url",
+                  "merchant_name": "merchant_name",
+                  "posted_at": "posted_at",
+                  "status": "pending",
+                  "transaction_type": "spend",
+                  "usd_amount": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CardTransaction(
+            cardId: "card_id",
+            cardholderId: Nullable<String>.value("cardholder_id"),
+            cashbackUsdAmount: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            currency: Nullable<String>.value("currency"),
+            declinedReason: Nullable<String>.value("declined_reason"),
+            id: "id",
+            international: true,
+            levelsPoints: Nullable<Double>.value(1.1),
+            localAmount: Nullable<Double>.value(1.1),
+            merchantCategory: Nullable<String>.value("merchant_category"),
+            merchantCategoryCode: Nullable<String>.value("merchant_category_code"),
+            merchantIconUrl: Nullable<String>.value("merchant_icon_url"),
+            merchantName: Nullable<String>.value("merchant_name"),
+            postedAt: Nullable<String>.value("posted_at"),
+            status: CardTransactionStatus.pending,
+            transactionType: CardTransactionTransactionType.spend,
+            usdAmount: Nullable<Double>.value(1.1)
         )
         let response = try await client.cardTransactions.retrieve(
             id: "id",

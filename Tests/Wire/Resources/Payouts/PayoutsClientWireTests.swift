@@ -13,6 +13,11 @@ import WhopSDK
                     {
                       "amount": "500.0",
                       "cancelable": true,
+                      "conversion": {
+                        "from_amount": "1000.0",
+                        "from_currency": "usd",
+                        "rate": 0.9108
+                      },
                       "created_at": "2026-07-29T18:22:00Z",
                       "currency": "usd",
                       "destination_amount": "461.7",
@@ -73,6 +78,11 @@ import WhopSDK
                 ListPayoutsResponseDataItem(
                     amount: "500.0",
                     cancelable: true,
+                    conversion: Nullable<ListPayoutsResponseDataItemConversion>.value(ListPayoutsResponseDataItemConversion(
+                        fromAmount: "1000.0",
+                        fromCurrency: "usd",
+                        rate: 0.9108
+                    )),
                     createdAt: try! Date("2026-07-29T18:22:00Z", strategy: .iso8601),
                     currency: "usd",
                     destinationAmount: Nullable<String>.value("461.7"),
@@ -124,6 +134,231 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "amount": "amount",
+                      "cancelable": true,
+                      "conversion": {
+                        "from_amount": "from_amount",
+                        "from_currency": "from_currency",
+                        "rate": 1.1
+                      },
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "currency": "currency",
+                      "destination_amount": "destination_amount",
+                      "destination_currency": "destination_currency",
+                      "estimated_arrival": "2024-01-15T09:30:00Z",
+                      "exchange_rate": 1.1,
+                      "failure": {
+                        "code": "code",
+                        "funds_returned_at": "2024-01-15T09:30:00Z",
+                        "message": "message"
+                      },
+                      "fee_amount": "fee_amount",
+                      "fee_paid_by": "self",
+                      "id": "id",
+                      "markup_fee": "markup_fee",
+                      "metadata": {
+                        "metadata": "metadata"
+                      },
+                      "net_amount": "net_amount",
+                      "notes": "notes",
+                      "object": "payout",
+                      "payer_name": "payer_name",
+                      "payout_method": {
+                        "nickname": "nickname",
+                        "supported_payout_method": {
+                          "delivery_type": "cash_pickup",
+                          "icon_url": "icon_url",
+                          "payer_name": "payer_name"
+                        },
+                        "type": "external"
+                      },
+                      "payout_request_id": "payout_request_id",
+                      "source": "api",
+                      "speed": "standard",
+                      "statement_descriptor": "alpha",
+                      "status": "requested",
+                      "status_detail": "status_detail",
+                      "trace_code": "trace_code"
+                    },
+                    {
+                      "amount": "amount",
+                      "cancelable": true,
+                      "conversion": {
+                        "from_amount": "from_amount",
+                        "from_currency": "from_currency",
+                        "rate": 1.1
+                      },
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "currency": "currency",
+                      "destination_amount": "destination_amount",
+                      "destination_currency": "destination_currency",
+                      "estimated_arrival": "2024-01-15T09:30:00Z",
+                      "exchange_rate": 1.1,
+                      "failure": {
+                        "code": "code",
+                        "funds_returned_at": "2024-01-15T09:30:00Z",
+                        "message": "message"
+                      },
+                      "fee_amount": "fee_amount",
+                      "fee_paid_by": "self",
+                      "id": "id",
+                      "markup_fee": "markup_fee",
+                      "metadata": {
+                        "metadata": "metadata"
+                      },
+                      "net_amount": "net_amount",
+                      "notes": "notes",
+                      "object": "payout",
+                      "payer_name": "payer_name",
+                      "payout_method": {
+                        "nickname": "nickname",
+                        "supported_payout_method": {
+                          "delivery_type": "cash_pickup",
+                          "icon_url": "icon_url",
+                          "payer_name": "payer_name"
+                        },
+                        "type": "external"
+                      },
+                      "payout_request_id": "payout_request_id",
+                      "source": "api",
+                      "speed": "standard",
+                      "statement_descriptor": "alpha",
+                      "status": "requested",
+                      "status_detail": "status_detail",
+                      "trace_code": "trace_code"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListPayoutsResponse(
+            data: [
+                ListPayoutsResponseDataItem(
+                    amount: "amount",
+                    cancelable: true,
+                    conversion: Nullable<ListPayoutsResponseDataItemConversion>.value(ListPayoutsResponseDataItemConversion(
+                        fromAmount: "from_amount",
+                        fromCurrency: "from_currency",
+                        rate: 1.1
+                    )),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    currency: "currency",
+                    destinationAmount: Nullable<String>.value("destination_amount"),
+                    destinationCurrency: Nullable<String>.value("destination_currency"),
+                    estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    exchangeRate: Nullable<Float>.value(1.1),
+                    failure: Nullable<ListPayoutsResponseDataItemFailure>.value(ListPayoutsResponseDataItemFailure(
+                        code: Nullable<String>.value("code"),
+                        fundsReturnedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                        message: Nullable<String>.value("message")
+                    )),
+                    feeAmount: "fee_amount",
+                    feePaidBy: ListPayoutsResponseDataItemFeePaidBy.self,
+                    id: "id",
+                    markupFee: "markup_fee",
+                    metadata: [
+                        "metadata": "metadata"
+                    ],
+                    netAmount: "net_amount",
+                    notes: Nullable<String>.value("notes"),
+                    object: ListPayoutsResponseDataItemObject.payout,
+                    payerName: Nullable<String>.value("payer_name"),
+                    payoutMethod: Nullable<ListPayoutsResponseDataItemPayoutMethod>.value(ListPayoutsResponseDataItemPayoutMethod(
+                        nickname: Nullable<String>.value("nickname"),
+                        supportedPayoutMethod: Nullable<ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethod>.value(ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethod(
+                            deliveryType: ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethodDeliveryType.cashPickup,
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            payerName: Nullable<String>.value("payer_name")
+                        )),
+                        type: ListPayoutsResponseDataItemPayoutMethodType.external
+                    )),
+                    payoutRequestId: Nullable<String>.value("payout_request_id"),
+                    source: Nullable<ListPayoutsResponseDataItemSource>.value(ListPayoutsResponseDataItemSource.api),
+                    speed: ListPayoutsResponseDataItemSpeed.standard,
+                    statementDescriptor: Nullable<String>.value("alpha"),
+                    status: ListPayoutsResponseDataItemStatus.requested,
+                    statusDetail: "status_detail",
+                    traceCode: Nullable<String>.value("trace_code")
+                ),
+                ListPayoutsResponseDataItem(
+                    amount: "amount",
+                    cancelable: true,
+                    conversion: Nullable<ListPayoutsResponseDataItemConversion>.value(ListPayoutsResponseDataItemConversion(
+                        fromAmount: "from_amount",
+                        fromCurrency: "from_currency",
+                        rate: 1.1
+                    )),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    currency: "currency",
+                    destinationAmount: Nullable<String>.value("destination_amount"),
+                    destinationCurrency: Nullable<String>.value("destination_currency"),
+                    estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    exchangeRate: Nullable<Float>.value(1.1),
+                    failure: Nullable<ListPayoutsResponseDataItemFailure>.value(ListPayoutsResponseDataItemFailure(
+                        code: Nullable<String>.value("code"),
+                        fundsReturnedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                        message: Nullable<String>.value("message")
+                    )),
+                    feeAmount: "fee_amount",
+                    feePaidBy: ListPayoutsResponseDataItemFeePaidBy.self,
+                    id: "id",
+                    markupFee: "markup_fee",
+                    metadata: [
+                        "metadata": "metadata"
+                    ],
+                    netAmount: "net_amount",
+                    notes: Nullable<String>.value("notes"),
+                    object: ListPayoutsResponseDataItemObject.payout,
+                    payerName: Nullable<String>.value("payer_name"),
+                    payoutMethod: Nullable<ListPayoutsResponseDataItemPayoutMethod>.value(ListPayoutsResponseDataItemPayoutMethod(
+                        nickname: Nullable<String>.value("nickname"),
+                        supportedPayoutMethod: Nullable<ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethod>.value(ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethod(
+                            deliveryType: ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethodDeliveryType.cashPickup,
+                            iconUrl: Nullable<String>.value("icon_url"),
+                            payerName: Nullable<String>.value("payer_name")
+                        )),
+                        type: ListPayoutsResponseDataItemPayoutMethodType.external
+                    )),
+                    payoutRequestId: Nullable<String>.value("payout_request_id"),
+                    source: Nullable<ListPayoutsResponseDataItemSource>.value(ListPayoutsResponseDataItemSource.api),
+                    speed: ListPayoutsResponseDataItemSpeed.standard,
+                    statementDescriptor: Nullable<String>.value("alpha"),
+                    status: ListPayoutsResponseDataItemStatus.requested,
+                    statusDetail: "status_detail",
+                    traceCode: Nullable<String>.value("trace_code")
+                )
+            ],
+            pageInfo: ListPayoutsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.payouts.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -132,6 +367,11 @@ import WhopSDK
                 {
                   "amount": "50.0",
                   "cancelable": true,
+                  "conversion": {
+                    "from_amount": "1000.0",
+                    "from_currency": "usd",
+                    "rate": 0.9108
+                  },
                   "created_at": "2026-01-01T12:00:00Z",
                   "currency": "usd",
                   "destination_amount": "destination_amount",
@@ -182,6 +422,11 @@ import WhopSDK
         let expectedResponse = CreatePayoutsResponse(
             amount: "50.0",
             cancelable: true,
+            conversion: Nullable<CreatePayoutsResponseConversion>.value(CreatePayoutsResponseConversion(
+                fromAmount: "1000.0",
+                fromCurrency: "usd",
+                rate: 0.9108
+            )),
             createdAt: try! Date("2026-01-01T12:00:00Z", strategy: .iso8601),
             currency: "usd",
             destinationAmount: Nullable<String>.value("destination_amount"),
@@ -226,6 +471,124 @@ import WhopSDK
                 amount: 50,
                 payoutMethodId: "potk_xxxxxxxxxxxxxx",
                 quoteToken: "signed-payout-quote"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": "amount",
+                  "cancelable": true,
+                  "conversion": {
+                    "from_amount": "from_amount",
+                    "from_currency": "from_currency",
+                    "rate": 1.1
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "currency": "currency",
+                  "destination_amount": "destination_amount",
+                  "destination_currency": "destination_currency",
+                  "estimated_arrival": "2024-01-15T09:30:00Z",
+                  "exchange_rate": 1.1,
+                  "failure": {
+                    "code": "code",
+                    "funds_returned_at": "2024-01-15T09:30:00Z",
+                    "message": "message"
+                  },
+                  "fee_amount": "fee_amount",
+                  "fee_paid_by": "self",
+                  "id": "id",
+                  "markup_fee": "markup_fee",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "net_amount": "net_amount",
+                  "notes": "notes",
+                  "object": "payout",
+                  "payer_name": "payer_name",
+                  "payout_method": {
+                    "nickname": "nickname",
+                    "supported_payout_method": {
+                      "delivery_type": "cash_pickup",
+                      "icon_url": "icon_url",
+                      "payer_name": "payer_name"
+                    },
+                    "type": "external"
+                  },
+                  "payout_request_id": "payout_request_id",
+                  "source": "api",
+                  "speed": "standard",
+                  "statement_descriptor": "alpha",
+                  "status": "requested",
+                  "status_detail": "status_detail",
+                  "trace_code": "trace_code"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreatePayoutsResponse(
+            amount: "amount",
+            cancelable: true,
+            conversion: Nullable<CreatePayoutsResponseConversion>.value(CreatePayoutsResponseConversion(
+                fromAmount: "from_amount",
+                fromCurrency: "from_currency",
+                rate: 1.1
+            )),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            currency: "currency",
+            destinationAmount: Nullable<String>.value("destination_amount"),
+            destinationCurrency: Nullable<String>.value("destination_currency"),
+            estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            exchangeRate: Nullable<Float>.value(1.1),
+            failure: Nullable<CreatePayoutsResponseFailure>.value(CreatePayoutsResponseFailure(
+                code: Nullable<String>.value("code"),
+                fundsReturnedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                message: Nullable<String>.value("message")
+            )),
+            feeAmount: "fee_amount",
+            feePaidBy: CreatePayoutsResponseFeePaidBy.self,
+            id: "id",
+            markupFee: "markup_fee",
+            metadata: [
+                "metadata": "metadata"
+            ],
+            netAmount: "net_amount",
+            notes: Nullable<String>.value("notes"),
+            object: CreatePayoutsResponseObject.payout,
+            payerName: Nullable<String>.value("payer_name"),
+            payoutMethod: Nullable<CreatePayoutsResponsePayoutMethod>.value(CreatePayoutsResponsePayoutMethod(
+                nickname: Nullable<String>.value("nickname"),
+                supportedPayoutMethod: Nullable<CreatePayoutsResponsePayoutMethodSupportedPayoutMethod>.value(CreatePayoutsResponsePayoutMethodSupportedPayoutMethod(
+                    deliveryType: CreatePayoutsResponsePayoutMethodSupportedPayoutMethodDeliveryType.cashPickup,
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    payerName: Nullable<String>.value("payer_name")
+                )),
+                type: CreatePayoutsResponsePayoutMethodType.external
+            )),
+            payoutRequestId: Nullable<String>.value("payout_request_id"),
+            source: Nullable<CreatePayoutsResponseSource>.value(CreatePayoutsResponseSource.api),
+            speed: CreatePayoutsResponseSpeed.standard,
+            statementDescriptor: Nullable<String>.value("alpha"),
+            status: CreatePayoutsResponseStatus.requested,
+            statusDetail: "status_detail",
+            traceCode: Nullable<String>.value("trace_code")
+        )
+        let response = try await client.payouts.create(
+            request: .init(
+                amount: 1.1,
+                payoutMethodId: "payout_method_id",
+                quoteToken: "x"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -398,6 +761,172 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func createQuote2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "conversion": {
+                    "converted_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "estimated_savings": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "payout_fee": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    }
+                  },
+                  "destination_amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "exchange_rate": 1.1,
+                  "expires_at": "2024-01-15T09:30:00Z",
+                  "fee": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "id": "id",
+                  "market_exchange_rate": 1.1,
+                  "market_exchange_rate_at": "2024-01-15T09:30:00Z",
+                  "net_amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "object": "payout_quote",
+                  "quote_token": "quote_token",
+                  "recommended_method": {
+                    "country": "country",
+                    "destination_currency": "destination_currency",
+                    "estimated_arrival": "2024-01-15T09:30:00Z",
+                    "estimated_fee": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "estimated_savings": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "name": "name",
+                    "supported_payout_method_id": "supported_payout_method_id"
+                  },
+                  "server_time": "2024-01-15T09:30:00Z"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateQuotePayoutsResponse(
+            amount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            conversion: Nullable<CreateQuotePayoutsResponseConversion>.value(CreateQuotePayoutsResponseConversion(
+                convertedAmount: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                estimatedSavings: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                payoutFee: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )
+            )),
+            destinationAmount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            exchangeRate: 1.1,
+            expiresAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            fee: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            id: "id",
+            marketExchangeRate: Nullable<Double>.value(1.1),
+            marketExchangeRateAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            netAmount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            object: CreateQuotePayoutsResponseObject.payoutQuote,
+            quoteToken: "quote_token",
+            recommendedMethod: Nullable<CreateQuotePayoutsResponseRecommendedMethod>.value(CreateQuotePayoutsResponseRecommendedMethod(
+                country: "country",
+                destinationCurrency: "destination_currency",
+                estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                estimatedFee: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                estimatedSavings: Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                ),
+                name: "name",
+                supportedPayoutMethodId: "supported_payout_method_id"
+            )),
+            serverTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        )
+        let response = try await client.payouts.createQuote(
+            request: .init(payoutMethodId: "payout_method_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -406,6 +935,11 @@ import WhopSDK
                 {
                   "amount": "500.0",
                   "cancelable": true,
+                  "conversion": {
+                    "from_amount": "1000.0",
+                    "from_currency": "usd",
+                    "rate": 0.9108
+                  },
                   "created_at": "2026-07-29T18:22:00Z",
                   "currency": "usd",
                   "delayed": false,
@@ -469,6 +1003,11 @@ import WhopSDK
         let expectedResponse = RetrievePayoutsResponse(
             amount: Optional("500.0"),
             cancelable: Optional(true),
+            conversion: Optional(Nullable<RetrievePayoutsResponseConversion>.value(RetrievePayoutsResponseConversion(
+                fromAmount: "1000.0",
+                fromCurrency: "usd",
+                rate: 0.9108
+            ))),
             createdAt: try! Date("2026-07-29T18:22:00Z", strategy: .iso8601),
             currency: "usd",
             delayed: Optional(false),
@@ -528,6 +1067,160 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": "amount",
+                  "cancelable": true,
+                  "conversion": {
+                    "from_amount": "from_amount",
+                    "from_currency": "from_currency",
+                    "rate": 1.1
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "currency": "currency",
+                  "delayed": true,
+                  "destination_amount": "destination_amount",
+                  "destination_currency": "destination_currency",
+                  "estimated_arrival": "2024-01-15T09:30:00Z",
+                  "estimated_arrival_end": "2024-01-15T09:30:00Z",
+                  "exchange_rate": 1.1,
+                  "failure": {
+                    "code": "code",
+                    "funds_returned_at": "2024-01-15T09:30:00Z",
+                    "message": "message"
+                  },
+                  "fee_amount": "fee_amount",
+                  "fee_paid_by": "self",
+                  "id": "id",
+                  "markup_fee": "markup_fee",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "net_amount": "net_amount",
+                  "notes": "notes",
+                  "object": "payout",
+                  "payer_name": "payer_name",
+                  "payout_method": {
+                    "nickname": "nickname",
+                    "supported_payout_method": {
+                      "delivery_type": "cash_pickup",
+                      "icon_url": "icon_url",
+                      "payer_name": "payer_name"
+                    },
+                    "type": "external"
+                  },
+                  "payout_request_id": "payout_request_id",
+                  "recipient_name": "recipient_name",
+                  "sender_name": "sender_name",
+                  "source": "api",
+                  "speed": "standard",
+                  "statement_descriptor": "alpha",
+                  "status": "requested",
+                  "status_detail": "status_detail",
+                  "timeline": [
+                    {
+                      "error_message": "error_message",
+                      "estimated_arrival": "2024-01-15T09:30:00Z",
+                      "status": "requested",
+                      "status_detail": "status_detail",
+                      "timestamp": "2024-01-15T09:30:00Z"
+                    },
+                    {
+                      "error_message": "error_message",
+                      "estimated_arrival": "2024-01-15T09:30:00Z",
+                      "status": "requested",
+                      "status_detail": "status_detail",
+                      "timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "trace_code": "trace_code"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrievePayoutsResponse(
+            amount: Optional("amount"),
+            cancelable: Optional(true),
+            conversion: Optional(Nullable<RetrievePayoutsResponseConversion>.value(RetrievePayoutsResponseConversion(
+                fromAmount: "from_amount",
+                fromCurrency: "from_currency",
+                rate: 1.1
+            ))),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            currency: "currency",
+            delayed: Optional(true),
+            destinationAmount: Nullable<String>.value("destination_amount"),
+            destinationCurrency: Nullable<String>.value("destination_currency"),
+            estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            estimatedArrivalEnd: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+            exchangeRate: Nullable<Float>.value(1.1),
+            failure: Nullable<RetrievePayoutsResponseFailure>.value(RetrievePayoutsResponseFailure(
+                code: Nullable<String>.value("code"),
+                fundsReturnedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                message: Nullable<String>.value("message")
+            )),
+            feeAmount: Optional("fee_amount"),
+            feePaidBy: Optional(RetrievePayoutsResponseFeePaidBy.self),
+            id: "id",
+            markupFee: Optional("markup_fee"),
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            netAmount: "net_amount",
+            notes: Nullable<String>.value("notes"),
+            object: RetrievePayoutsResponseObject.payout,
+            payerName: Nullable<String>.value("payer_name"),
+            payoutMethod: Nullable<RetrievePayoutsResponsePayoutMethod>.value(RetrievePayoutsResponsePayoutMethod(
+                nickname: Nullable<String>.value("nickname"),
+                supportedPayoutMethod: Nullable<RetrievePayoutsResponsePayoutMethodSupportedPayoutMethod>.value(RetrievePayoutsResponsePayoutMethodSupportedPayoutMethod(
+                    deliveryType: RetrievePayoutsResponsePayoutMethodSupportedPayoutMethodDeliveryType.cashPickup,
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    payerName: Nullable<String>.value("payer_name")
+                )),
+                type: RetrievePayoutsResponsePayoutMethodType.external
+            )),
+            payoutRequestId: Nullable<String>.value("payout_request_id"),
+            recipientName: Optional(Nullable<String>.value("recipient_name")),
+            senderName: Optional(Nullable<String>.value("sender_name")),
+            source: Optional(Nullable<RetrievePayoutsResponseSource>.value(RetrievePayoutsResponseSource.api)),
+            speed: RetrievePayoutsResponseSpeed.standard,
+            statementDescriptor: Optional(Nullable<String>.value("alpha")),
+            status: RetrievePayoutsResponseStatus.requested,
+            statusDetail: "status_detail",
+            timeline: Optional([
+                RetrievePayoutsResponseTimelineItem(
+                    errorMessage: Nullable<String>.value("error_message"),
+                    estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    status: RetrievePayoutsResponseTimelineItemStatus.requested,
+                    statusDetail: Nullable<String>.value("status_detail"),
+                    timestamp: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                ),
+                RetrievePayoutsResponseTimelineItem(
+                    errorMessage: Nullable<String>.value("error_message"),
+                    estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    status: RetrievePayoutsResponseTimelineItemStatus.requested,
+                    statusDetail: Nullable<String>.value("status_detail"),
+                    timestamp: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                )
+            ]),
+            traceCode: Nullable<String>.value("trace_code")
+        )
+        let response = try await client.payouts.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func cancel1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -536,6 +1229,11 @@ import WhopSDK
                 {
                   "amount": "500.0",
                   "cancelable": false,
+                  "conversion": {
+                    "from_amount": "1000.0",
+                    "from_currency": "usd",
+                    "rate": 0.9108
+                  },
                   "created_at": "2026-07-29T18:22:00Z",
                   "currency": "usd",
                   "destination_amount": "461.7",
@@ -586,6 +1284,11 @@ import WhopSDK
         let expectedResponse = CancelPayoutsResponse(
             amount: "500.0",
             cancelable: false,
+            conversion: Nullable<CancelPayoutsResponseConversion>.value(CancelPayoutsResponseConversion(
+                fromAmount: "1000.0",
+                fromCurrency: "usd",
+                rate: 0.9108
+            )),
             createdAt: try! Date("2026-07-29T18:22:00Z", strategy: .iso8601),
             currency: "usd",
             destinationAmount: Nullable<String>.value("461.7"),
@@ -624,6 +1327,120 @@ import WhopSDK
             status: CancelPayoutsResponseStatus.requested,
             statusDetail: "awaiting_provider_acceptance",
             traceCode: Nullable<String>.value("021000021234567")
+        )
+        let response = try await client.payouts.cancel(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func cancel2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "amount": "amount",
+                  "cancelable": true,
+                  "conversion": {
+                    "from_amount": "from_amount",
+                    "from_currency": "from_currency",
+                    "rate": 1.1
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "currency": "currency",
+                  "destination_amount": "destination_amount",
+                  "destination_currency": "destination_currency",
+                  "estimated_arrival": "2024-01-15T09:30:00Z",
+                  "exchange_rate": 1.1,
+                  "failure": {
+                    "code": "code",
+                    "funds_returned_at": "2024-01-15T09:30:00Z",
+                    "message": "message"
+                  },
+                  "fee_amount": "fee_amount",
+                  "fee_paid_by": "self",
+                  "id": "id",
+                  "markup_fee": "markup_fee",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "net_amount": "net_amount",
+                  "notes": "notes",
+                  "object": "payout",
+                  "payer_name": "payer_name",
+                  "payout_method": {
+                    "nickname": "nickname",
+                    "supported_payout_method": {
+                      "delivery_type": "cash_pickup",
+                      "icon_url": "icon_url",
+                      "payer_name": "payer_name"
+                    },
+                    "type": "external"
+                  },
+                  "payout_request_id": "payout_request_id",
+                  "source": "api",
+                  "speed": "standard",
+                  "statement_descriptor": "alpha",
+                  "status": "requested",
+                  "status_detail": "status_detail",
+                  "trace_code": "trace_code"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CancelPayoutsResponse(
+            amount: "amount",
+            cancelable: true,
+            conversion: Nullable<CancelPayoutsResponseConversion>.value(CancelPayoutsResponseConversion(
+                fromAmount: "from_amount",
+                fromCurrency: "from_currency",
+                rate: 1.1
+            )),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            currency: "currency",
+            destinationAmount: Nullable<String>.value("destination_amount"),
+            destinationCurrency: Nullable<String>.value("destination_currency"),
+            estimatedArrival: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            exchangeRate: Nullable<Float>.value(1.1),
+            failure: Nullable<CancelPayoutsResponseFailure>.value(CancelPayoutsResponseFailure(
+                code: Nullable<String>.value("code"),
+                fundsReturnedAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                message: Nullable<String>.value("message")
+            )),
+            feeAmount: "fee_amount",
+            feePaidBy: CancelPayoutsResponseFeePaidBy.self,
+            id: "id",
+            markupFee: "markup_fee",
+            metadata: [
+                "metadata": "metadata"
+            ],
+            netAmount: "net_amount",
+            notes: Nullable<String>.value("notes"),
+            object: CancelPayoutsResponseObject.payout,
+            payerName: Nullable<String>.value("payer_name"),
+            payoutMethod: Nullable<CancelPayoutsResponsePayoutMethod>.value(CancelPayoutsResponsePayoutMethod(
+                nickname: Nullable<String>.value("nickname"),
+                supportedPayoutMethod: Nullable<CancelPayoutsResponsePayoutMethodSupportedPayoutMethod>.value(CancelPayoutsResponsePayoutMethodSupportedPayoutMethod(
+                    deliveryType: CancelPayoutsResponsePayoutMethodSupportedPayoutMethodDeliveryType.cashPickup,
+                    iconUrl: Nullable<String>.value("icon_url"),
+                    payerName: Nullable<String>.value("payer_name")
+                )),
+                type: CancelPayoutsResponsePayoutMethodType.external
+            )),
+            payoutRequestId: Nullable<String>.value("payout_request_id"),
+            source: Nullable<CancelPayoutsResponseSource>.value(CancelPayoutsResponseSource.api),
+            speed: CancelPayoutsResponseSpeed.standard,
+            statementDescriptor: Nullable<String>.value("alpha"),
+            status: CancelPayoutsResponseStatus.requested,
+            statusDetail: "status_detail",
+            traceCode: Nullable<String>.value("trace_code")
         )
         let response = try await client.payouts.cancel(
             id: "id",

@@ -222,6 +222,411 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "affiliate": {
+                        "applies_to_payments": "first_payment",
+                        "commission_amount": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "commission_percentage": 1.1,
+                        "commission_source": "custom",
+                        "commission_type": "flat_fee",
+                        "enabled": true,
+                        "id": "id",
+                        "user_id": "user_id"
+                      },
+                      "billing_period_days": 1,
+                      "cancel_at_period_end": true,
+                      "cancel_option": "too_expensive",
+                      "canceled_at": "canceled_at",
+                      "cancellation_reason": "cancellation_reason",
+                      "collection_method": "charge_automatically",
+                      "created_at": "created_at",
+                      "current_period_end": "current_period_end",
+                      "current_period_start": "current_period_start",
+                      "expires_at": "expires_at",
+                      "external_accounts": [
+                        {
+                          "external_id": "external_id",
+                          "platform": "discord",
+                          "username": "username"
+                        },
+                        {
+                          "external_id": "external_id",
+                          "platform": "discord",
+                          "username": "username"
+                        }
+                      ],
+                      "feedback_option": {
+                        "label": "label"
+                      },
+                      "id": "id",
+                      "initial_price": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "license_key": "license_key",
+                      "manage_url": "manage_url",
+                      "member": {
+                        "access_level": "no_access",
+                        "last_accessed_at": "last_accessed_at",
+                        "position": 1.1
+                      },
+                      "member_id": "member_id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "most_recent_action": "canceled_on",
+                      "most_recent_action_at": "most_recent_action_at",
+                      "phone_number": "phone_number",
+                      "product": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "title": "title"
+                      },
+                      "product_id": "product_id",
+                      "promo_code_id": "promo_code_id",
+                      "renewal_price": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "split_pay_current_payments": 1,
+                      "split_pay_required_payments": 1,
+                      "status": "trialing",
+                      "updated_at": "updated_at",
+                      "user_id": "user_id",
+                      "variant_id": "variant_id"
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "affiliate": {
+                        "applies_to_payments": "first_payment",
+                        "commission_amount": {
+                          "amount": "amount",
+                          "currency": "currency",
+                          "decimals": 1,
+                          "display_decimals": 1
+                        },
+                        "commission_percentage": 1.1,
+                        "commission_source": "custom",
+                        "commission_type": "flat_fee",
+                        "enabled": true,
+                        "id": "id",
+                        "user_id": "user_id"
+                      },
+                      "billing_period_days": 1,
+                      "cancel_at_period_end": true,
+                      "cancel_option": "too_expensive",
+                      "canceled_at": "canceled_at",
+                      "cancellation_reason": "cancellation_reason",
+                      "collection_method": "charge_automatically",
+                      "created_at": "created_at",
+                      "current_period_end": "current_period_end",
+                      "current_period_start": "current_period_start",
+                      "expires_at": "expires_at",
+                      "external_accounts": [
+                        {
+                          "external_id": "external_id",
+                          "platform": "discord",
+                          "username": "username"
+                        },
+                        {
+                          "external_id": "external_id",
+                          "platform": "discord",
+                          "username": "username"
+                        }
+                      ],
+                      "feedback_option": {
+                        "label": "label"
+                      },
+                      "id": "id",
+                      "initial_price": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "license_key": "license_key",
+                      "manage_url": "manage_url",
+                      "member": {
+                        "access_level": "no_access",
+                        "last_accessed_at": "last_accessed_at",
+                        "position": 1.1
+                      },
+                      "member_id": "member_id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "most_recent_action": "canceled_on",
+                      "most_recent_action_at": "most_recent_action_at",
+                      "phone_number": "phone_number",
+                      "product": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "title": "title"
+                      },
+                      "product_id": "product_id",
+                      "promo_code_id": "promo_code_id",
+                      "renewal_price": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "split_pay_current_payments": 1,
+                      "split_pay_required_payments": 1,
+                      "status": "trialing",
+                      "updated_at": "updated_at",
+                      "user_id": "user_id",
+                      "variant_id": "variant_id"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor",
+                    "total_count": 1,
+                    "total_count_capped": true
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListMembershipsResponse(
+            data: [
+                Membership(
+                    account: StorefrontAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    ),
+                    affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                        appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                        commissionAmount: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        commissionPercentage: Nullable<Double>.value(1.1),
+                        commissionSource: MembershipAffiliateCommissionSource.custom,
+                        commissionType: MembershipAffiliateCommissionType.flatFee,
+                        enabled: true,
+                        id: "id",
+                        userId: "user_id"
+                    )),
+                    billingPeriodDays: Nullable<Int>.value(1),
+                    cancelAtPeriodEnd: true,
+                    cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+                    canceledAt: Nullable<String>.value("canceled_at"),
+                    cancellationReason: Nullable<String>.value("cancellation_reason"),
+                    collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+                    createdAt: "created_at",
+                    currentPeriodEnd: Nullable<String>.value("current_period_end"),
+                    currentPeriodStart: Nullable<String>.value("current_period_start"),
+                    expiresAt: Nullable<String>.value("expires_at"),
+                    externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                        MembershipExternalAccount(
+                            externalId: "external_id",
+                            platform: MembershipExternalAccountPlatform.discord,
+                            username: Nullable<String>.value("username")
+                        ),
+                        MembershipExternalAccount(
+                            externalId: "external_id",
+                            platform: MembershipExternalAccountPlatform.discord,
+                            username: Nullable<String>.value("username")
+                        )
+                    ]),
+                    feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                        label: "label"
+                    )),
+                    id: "id",
+                    initialPrice: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    licenseKey: Nullable<String>.value("license_key"),
+                    manageUrl: Nullable<String>.value("manage_url"),
+                    member: Nullable<MembershipMember>.value(MembershipMember(
+                        accessLevel: MembershipMemberAccessLevel.noAccess,
+                        lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                        position: Nullable<Double>.value(1.1)
+                    )),
+                    memberId: Nullable<String>.value("member_id"),
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+                    mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+                    phoneNumber: Nullable<String>.value("phone_number"),
+                    product: MembershipProduct(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        title: "title"
+                    ),
+                    productId: "product_id",
+                    promoCodeId: Nullable<String>.value("promo_code_id"),
+                    renewalPrice: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    splitPayCurrentPayments: Nullable<Int>.value(1),
+                    splitPayRequiredPayments: Nullable<Int>.value(1),
+                    status: MembershipStatus.trialing,
+                    updatedAt: "updated_at",
+                    userId: Nullable<String>.value("user_id"),
+                    variantId: "variant_id"
+                ),
+                Membership(
+                    account: StorefrontAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    ),
+                    affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                        appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                        commissionAmount: Nullable<Money>.value(Money(
+                            amount: "amount",
+                            currency: "currency",
+                            decimals: 1,
+                            displayDecimals: 1
+                        )),
+                        commissionPercentage: Nullable<Double>.value(1.1),
+                        commissionSource: MembershipAffiliateCommissionSource.custom,
+                        commissionType: MembershipAffiliateCommissionType.flatFee,
+                        enabled: true,
+                        id: "id",
+                        userId: "user_id"
+                    )),
+                    billingPeriodDays: Nullable<Int>.value(1),
+                    cancelAtPeriodEnd: true,
+                    cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+                    canceledAt: Nullable<String>.value("canceled_at"),
+                    cancellationReason: Nullable<String>.value("cancellation_reason"),
+                    collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+                    createdAt: "created_at",
+                    currentPeriodEnd: Nullable<String>.value("current_period_end"),
+                    currentPeriodStart: Nullable<String>.value("current_period_start"),
+                    expiresAt: Nullable<String>.value("expires_at"),
+                    externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                        MembershipExternalAccount(
+                            externalId: "external_id",
+                            platform: MembershipExternalAccountPlatform.discord,
+                            username: Nullable<String>.value("username")
+                        ),
+                        MembershipExternalAccount(
+                            externalId: "external_id",
+                            platform: MembershipExternalAccountPlatform.discord,
+                            username: Nullable<String>.value("username")
+                        )
+                    ]),
+                    feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                        label: "label"
+                    )),
+                    id: "id",
+                    initialPrice: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    licenseKey: Nullable<String>.value("license_key"),
+                    manageUrl: Nullable<String>.value("manage_url"),
+                    member: Nullable<MembershipMember>.value(MembershipMember(
+                        accessLevel: MembershipMemberAccessLevel.noAccess,
+                        lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                        position: Nullable<Double>.value(1.1)
+                    )),
+                    memberId: Nullable<String>.value("member_id"),
+                    metadata: [
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+                    mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+                    phoneNumber: Nullable<String>.value("phone_number"),
+                    product: MembershipProduct(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        title: "title"
+                    ),
+                    productId: "product_id",
+                    promoCodeId: Nullable<String>.value("promo_code_id"),
+                    renewalPrice: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    splitPayCurrentPayments: Nullable<Int>.value(1),
+                    splitPayRequiredPayments: Nullable<Int>.value(1),
+                    status: MembershipStatus.trialing,
+                    updatedAt: "updated_at",
+                    userId: Nullable<String>.value("user_id"),
+                    variantId: "variant_id"
+                )
+            ],
+            pageInfo: ListMembershipsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
+            )
+        )
+        let response = try await client.memberships.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func invite1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -243,6 +648,32 @@ import WhopSDK
         )
         let response = try await client.memberships.invite(
             request: .init(variantId: "plan_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func invite2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "invitation_sent": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = InviteMembershipsResponse(
+            invitationSent: true
+        )
+        let response = try await client.memberships.invite(
+            request: .init(variantId: "variant_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -426,6 +857,208 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             userId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
             variantId: "plan_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.memberships.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
         )
         let response = try await client.memberships.retrieve(
             id: "id",
@@ -995,6 +1628,209 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update4() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
+        )
+        let response = try await client.memberships.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func applyPromoCode1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1177,6 +2013,209 @@ import WhopSDK
         let response = try await client.memberships.applyPromoCode(
             id: "id",
             request: .init(promoCode: "SAVE20"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func applyPromoCode2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
+        )
+        let response = try await client.memberships.applyPromoCode(
+            id: "id",
+            request: .init(promoCode: "promo_code"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -1564,6 +2603,212 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func assignAffiliate3() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
+        )
+        let response = try await client.memberships.assignAffiliate(
+            id: "id",
+            request: .init(
+                commissionType: .flatFee,
+                commissionValue: 1.1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func cancel1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1742,6 +2987,209 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             userId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
             variantId: "plan_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.memberships.cancel(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func cancel2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
         )
         let response = try await client.memberships.cancel(
             id: "id",
@@ -1938,6 +3386,209 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func extend2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
+        )
+        let response = try await client.memberships.extend(
+            id: "id",
+            request: .init(days: 1),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func pause1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -2116,6 +3767,209 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             userId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
             variantId: "plan_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.memberships.pause(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func pause2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
         )
         let response = try await client.memberships.pause(
             id: "id",
@@ -2312,6 +4166,209 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func reactivate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
+        )
+        let response = try await client.memberships.reactivate(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func resume1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -2490,6 +4547,208 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             userId: Nullable<String>.value("user_xxxxxxxxxxxxxx"),
             variantId: "plan_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.memberships.resume(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func resume2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
         )
         let response = try await client.memberships.resume(
             id: "id",
@@ -2684,6 +4943,208 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func resyncAccess2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "affiliate": {
+                    "applies_to_payments": "first_payment",
+                    "commission_amount": {
+                      "amount": "amount",
+                      "currency": "currency",
+                      "decimals": 1,
+                      "display_decimals": 1
+                    },
+                    "commission_percentage": 1.1,
+                    "commission_source": "custom",
+                    "commission_type": "flat_fee",
+                    "enabled": true,
+                    "id": "id",
+                    "user_id": "user_id"
+                  },
+                  "billing_period_days": 1,
+                  "cancel_at_period_end": true,
+                  "cancel_option": "too_expensive",
+                  "canceled_at": "canceled_at",
+                  "cancellation_reason": "cancellation_reason",
+                  "collection_method": "charge_automatically",
+                  "created_at": "created_at",
+                  "current_period_end": "current_period_end",
+                  "current_period_start": "current_period_start",
+                  "expires_at": "expires_at",
+                  "external_accounts": [
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    },
+                    {
+                      "external_id": "external_id",
+                      "platform": "discord",
+                      "username": "username"
+                    }
+                  ],
+                  "feedback_option": {
+                    "label": "label"
+                  },
+                  "id": "id",
+                  "initial_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "license_key": "license_key",
+                  "manage_url": "manage_url",
+                  "member": {
+                    "access_level": "no_access",
+                    "last_accessed_at": "last_accessed_at",
+                    "position": 1.1
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceled_on",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "phone_number": "phone_number",
+                  "product": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "title": "title"
+                  },
+                  "product_id": "product_id",
+                  "promo_code_id": "promo_code_id",
+                  "renewal_price": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "split_pay_current_payments": 1,
+                  "split_pay_required_payments": 1,
+                  "status": "trialing",
+                  "updated_at": "updated_at",
+                  "user_id": "user_id",
+                  "variant_id": "variant_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Membership(
+            account: StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            ),
+            affiliate: Nullable<MembershipAffiliate>.value(MembershipAffiliate(
+                appliesToPayments: MembershipAffiliateAppliesToPayments.firstPayment,
+                commissionAmount: Nullable<Money>.value(Money(
+                    amount: "amount",
+                    currency: "currency",
+                    decimals: 1,
+                    displayDecimals: 1
+                )),
+                commissionPercentage: Nullable<Double>.value(1.1),
+                commissionSource: MembershipAffiliateCommissionSource.custom,
+                commissionType: MembershipAffiliateCommissionType.flatFee,
+                enabled: true,
+                id: "id",
+                userId: "user_id"
+            )),
+            billingPeriodDays: Nullable<Int>.value(1),
+            cancelAtPeriodEnd: true,
+            cancelOption: Nullable<MembershipCancelOption>.value(MembershipCancelOption.tooExpensive),
+            canceledAt: Nullable<String>.value("canceled_at"),
+            cancellationReason: Nullable<String>.value("cancellation_reason"),
+            collectionMethod: Nullable<MembershipCollectionMethod>.value(MembershipCollectionMethod.chargeAutomatically),
+            createdAt: "created_at",
+            currentPeriodEnd: Nullable<String>.value("current_period_end"),
+            currentPeriodStart: Nullable<String>.value("current_period_start"),
+            expiresAt: Nullable<String>.value("expires_at"),
+            externalAccounts: Nullable<[MembershipExternalAccount]>.value([
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                ),
+                MembershipExternalAccount(
+                    externalId: "external_id",
+                    platform: MembershipExternalAccountPlatform.discord,
+                    username: Nullable<String>.value("username")
+                )
+            ]),
+            feedbackOption: Nullable<MembershipFeedbackOption>.value(MembershipFeedbackOption(
+                label: "label"
+            )),
+            id: "id",
+            initialPrice: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            licenseKey: Nullable<String>.value("license_key"),
+            manageUrl: Nullable<String>.value("manage_url"),
+            member: Nullable<MembershipMember>.value(MembershipMember(
+                accessLevel: MembershipMemberAccessLevel.noAccess,
+                lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                position: Nullable<Double>.value(1.1)
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: [
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            mostRecentAction: Nullable<MembershipMostRecentAction>.value(MembershipMostRecentAction.canceledOn),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            product: MembershipProduct(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                title: "title"
+            ),
+            productId: "product_id",
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            renewalPrice: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            splitPayCurrentPayments: Nullable<Int>.value(1),
+            splitPayRequiredPayments: Nullable<Int>.value(1),
+            status: MembershipStatus.trialing,
+            updatedAt: "updated_at",
+            userId: Nullable<String>.value("user_id"),
+            variantId: "variant_id"
+        )
+        let response = try await client.memberships.resyncAccess(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func transfer1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -2702,6 +5163,32 @@ import WhopSDK
         )
         let expectedResponse = TransferMembershipsResponse(
             url: "https://whop.com/activate"
+        )
+        let response = try await client.memberships.transfer(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func transfer2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "url": "url"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = TransferMembershipsResponse(
+            url: "url"
         )
         let response = try await client.memberships.transfer(
             id: "id",

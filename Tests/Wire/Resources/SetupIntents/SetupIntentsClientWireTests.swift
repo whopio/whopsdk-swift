@@ -186,6 +186,347 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "checkout_configuration_id": "checkout_configuration_id",
+                      "client_secret": "client_secret",
+                      "created_at": "created_at",
+                      "id": "id",
+                      "last_setup_error": {
+                        "code": "code",
+                        "message": "message"
+                      },
+                      "member_id": "member_id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "payment_instrument": {
+                        "card": {
+                          "brand": "brand",
+                          "exp_month": 1.1,
+                          "exp_year": 1.1,
+                          "issuer_identification_number": "issuer_identification_number",
+                          "last4": "last4",
+                          "network_transaction_id": "network_transaction_id"
+                        },
+                        "display_name": "display_name",
+                        "icons": {
+                          "card": {
+                            "dark": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            },
+                            "light": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            }
+                          },
+                          "square": {
+                            "dark": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            },
+                            "light": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            }
+                          }
+                        },
+                        "installment_count": 1.1,
+                        "payment_method_type": "payment_method_type"
+                      },
+                      "payment_method_id": "payment_method_id",
+                      "payment_method_type": "acss_debit",
+                      "return_url": "return_url",
+                      "status": "processing",
+                      "three_ds_level": "mandate_challenge",
+                      "three_ds_verified": true,
+                      "updated_at": "updated_at",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "account_id": "account_id",
+                      "checkout_configuration_id": "checkout_configuration_id",
+                      "client_secret": "client_secret",
+                      "created_at": "created_at",
+                      "id": "id",
+                      "last_setup_error": {
+                        "code": "code",
+                        "message": "message"
+                      },
+                      "member_id": "member_id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "payment_instrument": {
+                        "card": {
+                          "brand": "brand",
+                          "exp_month": 1.1,
+                          "exp_year": 1.1,
+                          "issuer_identification_number": "issuer_identification_number",
+                          "last4": "last4",
+                          "network_transaction_id": "network_transaction_id"
+                        },
+                        "display_name": "display_name",
+                        "icons": {
+                          "card": {
+                            "dark": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            },
+                            "light": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            }
+                          },
+                          "square": {
+                            "dark": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            },
+                            "light": {
+                              "png_1x": "png_1x",
+                              "png_2x": "png_2x",
+                              "png_4x": "png_4x",
+                              "svg": "svg"
+                            }
+                          }
+                        },
+                        "installment_count": 1.1,
+                        "payment_method_type": "payment_method_type"
+                      },
+                      "payment_method_id": "payment_method_id",
+                      "payment_method_type": "acss_debit",
+                      "return_url": "return_url",
+                      "status": "processing",
+                      "three_ds_level": "mandate_challenge",
+                      "three_ds_verified": true,
+                      "updated_at": "updated_at",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListSetupIntentsResponse(
+            data: [
+                SetupIntent(
+                    accountId: Nullable<String>.value("account_id"),
+                    checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+                    clientSecret: Nullable<String>.value("client_secret"),
+                    createdAt: "created_at",
+                    id: "id",
+                    lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                        code: Nullable<String>.value("code"),
+                        message: Nullable<String>.value("message")
+                    )),
+                    memberId: Nullable<String>.value("member_id"),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                        card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                            brand: Nullable<String>.value("brand"),
+                            expMonth: Nullable<Double>.value(1.1),
+                            expYear: Nullable<Double>.value(1.1),
+                            issuerIdentificationNumber: Nullable<String>.value("issuer_identification_number"),
+                            last4: Nullable<String>.value("last4"),
+                            networkTransactionId: Nullable<String>.value("network_transaction_id")
+                        )),
+                        displayName: "display_name",
+                        icons: PaymentMethodIcons(
+                            card: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                ),
+                                light: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                )
+                            ),
+                            square: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                ),
+                                light: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                )
+                            )
+                        ),
+                        installmentCount: Nullable<Double>.value(1.1),
+                        paymentMethodType: "payment_method_type"
+                    )),
+                    paymentMethodId: Nullable<String>.value("payment_method_id"),
+                    paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+                    returnUrl: Nullable<String>.value("return_url"),
+                    status: SetupIntentStatus.processing,
+                    threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+                    threeDsVerified: true,
+                    updatedAt: "updated_at",
+                    user: Nullable<UserSummary>.value(UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    ))
+                ),
+                SetupIntent(
+                    accountId: Nullable<String>.value("account_id"),
+                    checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+                    clientSecret: Nullable<String>.value("client_secret"),
+                    createdAt: "created_at",
+                    id: "id",
+                    lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                        code: Nullable<String>.value("code"),
+                        message: Nullable<String>.value("message")
+                    )),
+                    memberId: Nullable<String>.value("member_id"),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                        card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                            brand: Nullable<String>.value("brand"),
+                            expMonth: Nullable<Double>.value(1.1),
+                            expYear: Nullable<Double>.value(1.1),
+                            issuerIdentificationNumber: Nullable<String>.value("issuer_identification_number"),
+                            last4: Nullable<String>.value("last4"),
+                            networkTransactionId: Nullable<String>.value("network_transaction_id")
+                        )),
+                        displayName: "display_name",
+                        icons: PaymentMethodIcons(
+                            card: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                ),
+                                light: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                )
+                            ),
+                            square: PaymentMethodIconVariants(
+                                dark: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                ),
+                                light: PaymentMethodIconFiles(
+                                    png1X: "png_1x",
+                                    png2X: "png_2x",
+                                    png4X: "png_4x",
+                                    svg: "svg"
+                                )
+                            )
+                        ),
+                        installmentCount: Nullable<Double>.value(1.1),
+                        paymentMethodType: "payment_method_type"
+                    )),
+                    paymentMethodId: Nullable<String>.value("payment_method_id"),
+                    paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+                    returnUrl: Nullable<String>.value("return_url"),
+                    status: SetupIntentStatus.processing,
+                    threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+                    threeDsVerified: true,
+                    updatedAt: "updated_at",
+                    user: Nullable<UserSummary>.value(UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    ))
+                )
+            ],
+            pageInfo: ListSetupIntentsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.setupIntents.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -347,6 +688,178 @@ import WhopSDK
         )
         let response = try await client.setupIntents.create(
             request: .init(accountId: "biz_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "client_secret": "client_secret",
+                  "created_at": "created_at",
+                  "id": "id",
+                  "last_setup_error": {
+                    "code": "code",
+                    "message": "message"
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "payment_instrument": {
+                    "card": {
+                      "brand": "brand",
+                      "exp_month": 1.1,
+                      "exp_year": 1.1,
+                      "issuer_identification_number": "issuer_identification_number",
+                      "last4": "last4",
+                      "network_transaction_id": "network_transaction_id"
+                    },
+                    "display_name": "display_name",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        },
+                        "light": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        },
+                        "light": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        }
+                      }
+                    },
+                    "installment_count": 1.1,
+                    "payment_method_type": "payment_method_type"
+                  },
+                  "payment_method_id": "payment_method_id",
+                  "payment_method_type": "acss_debit",
+                  "return_url": "return_url",
+                  "status": "processing",
+                  "three_ds_level": "mandate_challenge",
+                  "three_ds_verified": true,
+                  "updated_at": "updated_at",
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SetupIntent(
+            accountId: Nullable<String>.value("account_id"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            clientSecret: Nullable<String>.value("client_secret"),
+            createdAt: "created_at",
+            id: "id",
+            lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                code: Nullable<String>.value("code"),
+                message: Nullable<String>.value("message")
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("brand"),
+                    expMonth: Nullable<Double>.value(1.1),
+                    expYear: Nullable<Double>.value(1.1),
+                    issuerIdentificationNumber: Nullable<String>.value("issuer_identification_number"),
+                    last4: Nullable<String>.value("last4"),
+                    networkTransactionId: Nullable<String>.value("network_transaction_id")
+                )),
+                displayName: "display_name",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "payment_method_type"
+            )),
+            paymentMethodId: Nullable<String>.value("payment_method_id"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            returnUrl: Nullable<String>.value("return_url"),
+            status: SetupIntentStatus.processing,
+            threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+            threeDsVerified: true,
+            updatedAt: "updated_at",
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ))
+        )
+        let response = try await client.setupIntents.create(
+            request: .init(accountId: "account_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -518,6 +1031,178 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "checkout_configuration_id": "checkout_configuration_id",
+                  "client_secret": "client_secret",
+                  "created_at": "created_at",
+                  "id": "id",
+                  "last_setup_error": {
+                    "code": "code",
+                    "message": "message"
+                  },
+                  "member_id": "member_id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "payment_instrument": {
+                    "card": {
+                      "brand": "brand",
+                      "exp_month": 1.1,
+                      "exp_year": 1.1,
+                      "issuer_identification_number": "issuer_identification_number",
+                      "last4": "last4",
+                      "network_transaction_id": "network_transaction_id"
+                    },
+                    "display_name": "display_name",
+                    "icons": {
+                      "card": {
+                        "dark": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        },
+                        "light": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        }
+                      },
+                      "square": {
+                        "dark": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        },
+                        "light": {
+                          "png_1x": "png_1x",
+                          "png_2x": "png_2x",
+                          "png_4x": "png_4x",
+                          "svg": "svg"
+                        }
+                      }
+                    },
+                    "installment_count": 1.1,
+                    "payment_method_type": "payment_method_type"
+                  },
+                  "payment_method_id": "payment_method_id",
+                  "payment_method_type": "acss_debit",
+                  "return_url": "return_url",
+                  "status": "processing",
+                  "three_ds_level": "mandate_challenge",
+                  "three_ds_verified": true,
+                  "updated_at": "updated_at",
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SetupIntent(
+            accountId: Nullable<String>.value("account_id"),
+            checkoutConfigurationId: Nullable<String>.value("checkout_configuration_id"),
+            clientSecret: Nullable<String>.value("client_secret"),
+            createdAt: "created_at",
+            id: "id",
+            lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                code: Nullable<String>.value("code"),
+                message: Nullable<String>.value("message")
+            )),
+            memberId: Nullable<String>.value("member_id"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            paymentInstrument: Nullable<PaymentInstrument>.value(PaymentInstrument(
+                card: Nullable<PaymentInstrumentCard>.value(PaymentInstrumentCard(
+                    brand: Nullable<String>.value("brand"),
+                    expMonth: Nullable<Double>.value(1.1),
+                    expYear: Nullable<Double>.value(1.1),
+                    issuerIdentificationNumber: Nullable<String>.value("issuer_identification_number"),
+                    last4: Nullable<String>.value("last4"),
+                    networkTransactionId: Nullable<String>.value("network_transaction_id")
+                )),
+                displayName: "display_name",
+                icons: PaymentMethodIcons(
+                    card: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        )
+                    ),
+                    square: PaymentMethodIconVariants(
+                        dark: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        ),
+                        light: PaymentMethodIconFiles(
+                            png1X: "png_1x",
+                            png2X: "png_2x",
+                            png4X: "png_4x",
+                            svg: "svg"
+                        )
+                    )
+                ),
+                installmentCount: Nullable<Double>.value(1.1),
+                paymentMethodType: "payment_method_type"
+            )),
+            paymentMethodId: Nullable<String>.value("payment_method_id"),
+            paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
+            returnUrl: Nullable<String>.value("return_url"),
+            status: SetupIntentStatus.processing,
+            threeDsLevel: Nullable<SetupIntentThreeDsLevel>.value(SetupIntentThreeDsLevel.mandateChallenge),
+            threeDsVerified: true,
+            updatedAt: "updated_at",
+            user: Nullable<UserSummary>.value(UserSummary(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                username: "username"
+            ))
+        )
+        let response = try await client.setupIntents.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateReturnUrl1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -581,6 +1266,71 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func updateReturnUrl2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "id": "id",
+                  "last_setup_error": {
+                    "code": "code",
+                    "message": "message"
+                  },
+                  "next_action": {
+                    "type": "await_confirmation",
+                    "data": {
+                      "expires_at": "expires_at"
+                    },
+                    "render": [
+                      "inline",
+                      "inline"
+                    ]
+                  },
+                  "object": "object",
+                  "return_url": "return_url",
+                  "status": "processing"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SetupStatus(
+            id: "id",
+            lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                code: Nullable<String>.value("code"),
+                message: Nullable<String>.value("message")
+            )),
+            nextAction: Nullable<PaymentNextAction>.value(PaymentNextAction.awaitConfirmation(
+                .init(
+                    data: PaymentNextActionAwaitConfirmationData(
+                        expiresAt: "expires_at"
+                    ),
+                    render: [
+                        PaymentNextActionAwaitConfirmationRenderItem.inline,
+                        PaymentNextActionAwaitConfirmationRenderItem.inline
+                    ],
+                    additionalProperties: [
+                        "type": JSONValue.string("await_confirmation")
+                    ]
+                )
+            )),
+            object: "object",
+            returnUrl: Nullable<String>.value("return_url"),
+            status: SetupStatusStatus.processing
+        )
+        let response = try await client.setupIntents.updateReturnUrl(
+            setupIntentId: "setup_intent_id",
+            request: .init(returnUrl: "return_url"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieveStatus1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -634,6 +1384,70 @@ import WhopSDK
             )),
             object: "setup_status",
             returnUrl: Nullable<String>.value("https://shinetime.example/billing/saved"),
+            status: SetupStatusStatus.processing
+        )
+        let response = try await client.setupIntents.retrieveStatus(
+            setupIntentId: "setup_intent_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieveStatus2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "id": "id",
+                  "last_setup_error": {
+                    "code": "code",
+                    "message": "message"
+                  },
+                  "next_action": {
+                    "type": "await_confirmation",
+                    "data": {
+                      "expires_at": "expires_at"
+                    },
+                    "render": [
+                      "inline",
+                      "inline"
+                    ]
+                  },
+                  "object": "object",
+                  "return_url": "return_url",
+                  "status": "processing"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SetupStatus(
+            id: "id",
+            lastSetupError: Nullable<SetupLastSetupError>.value(SetupLastSetupError(
+                code: Nullable<String>.value("code"),
+                message: Nullable<String>.value("message")
+            )),
+            nextAction: Nullable<PaymentNextAction>.value(PaymentNextAction.awaitConfirmation(
+                .init(
+                    data: PaymentNextActionAwaitConfirmationData(
+                        expiresAt: "expires_at"
+                    ),
+                    render: [
+                        PaymentNextActionAwaitConfirmationRenderItem.inline,
+                        PaymentNextActionAwaitConfirmationRenderItem.inline
+                    ],
+                    additionalProperties: [
+                        "type": JSONValue.string("await_confirmation")
+                    ]
+                )
+            )),
+            object: "object",
+            returnUrl: Nullable<String>.value("return_url"),
             status: SetupStatusStatus.processing
         )
         let response = try await client.setupIntents.retrieveStatus(

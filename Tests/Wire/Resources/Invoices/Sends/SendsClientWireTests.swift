@@ -74,4 +74,112 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "actor": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "kind": "send",
+                      "recipient_count": 1,
+                      "recipients": [
+                        "recipients",
+                        "recipients"
+                      ],
+                      "sent_at": "sent_at"
+                    },
+                    {
+                      "actor": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "username": "username"
+                      },
+                      "kind": "send",
+                      "recipient_count": 1,
+                      "recipients": [
+                        "recipients",
+                        "recipients"
+                      ],
+                      "sent_at": "sent_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListSendsResponse(
+            data: [
+                InvoiceSend(
+                    actor: Nullable<UserSummary>.value(UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    kind: InvoiceSendKind.send,
+                    recipientCount: 1,
+                    recipients: [
+                        "recipients",
+                        "recipients"
+                    ],
+                    sentAt: "sent_at"
+                ),
+                InvoiceSend(
+                    actor: Nullable<UserSummary>.value(UserSummary(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        username: "username"
+                    )),
+                    kind: InvoiceSendKind.send,
+                    recipientCount: 1,
+                    recipients: [
+                        "recipients",
+                        "recipients"
+                    ],
+                    sentAt: "sent_at"
+                )
+            ],
+            pageInfo: ListSendsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.invoices.sends.list(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

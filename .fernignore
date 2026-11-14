@@ -1,4 +1,18 @@
-# Specify files that shouldn't be modified by Fern
+# Core patches bridge fern-swift-sdk 0.37.3 wire defects. Remove each core entry
+# after generation produces the same behavior and its wire-contract tests pass
+# without the patch; do not replace the newer body/retry pipeline with an old template.
 .fern/replay.lock
 .fern/replay.yml
 .gitattributes
+.github/workflows/ci.yml
+.github/workflows/publish-main.yml
+Sources/Core/Networking/HTTPClient.swift
+Sources/Core/Networking/QueryParameter.swift
+Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift
+Sources/Core/Serde/Serde.swift
+Tests/Core/AuditWireContractTests.swift
+Tests/Core/QueryInputCoverageTests.swift
+Tests/Core/QueryStructuredInputTests.swift
+Tests/Core/CancellationContractTests.swift
+Scripts/check-query-inputs.py
+Scripts/query-inputs.json

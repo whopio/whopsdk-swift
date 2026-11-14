@@ -33,4 +33,35 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateFeedbackSubmissionsResponse(
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            id: "id"
+        )
+        let response = try await client.feedbackSubmissions.create(
+            request: .init(
+                content: "x",
+                source: .mcpReportFeedback
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

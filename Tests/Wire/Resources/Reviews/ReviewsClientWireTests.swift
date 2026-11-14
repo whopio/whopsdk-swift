@@ -98,6 +98,171 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "attachments": [
+                        {
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        },
+                        {
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        }
+                      ],
+                      "created_at": "created_at",
+                      "description": "description",
+                      "id": "id",
+                      "joined_at": "joined_at",
+                      "paid_for_product": true,
+                      "published_at": "published_at",
+                      "stars": 1,
+                      "status": "published",
+                      "title": "title",
+                      "updated_at": "updated_at",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "attachments": [
+                        {
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        },
+                        {
+                          "content_type": "content_type",
+                          "filename": "filename",
+                          "id": "id",
+                          "url": "url"
+                        }
+                      ],
+                      "created_at": "created_at",
+                      "description": "description",
+                      "id": "id",
+                      "joined_at": "joined_at",
+                      "paid_for_product": true,
+                      "published_at": "published_at",
+                      "stars": 1,
+                      "status": "published",
+                      "title": "title",
+                      "updated_at": "updated_at",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor",
+                    "total_count": 1,
+                    "total_count_capped": true
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListReviewsResponse(
+            data: [
+                ReviewListItem(
+                    attachments: [
+                        ReviewAttachment(
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        ),
+                        ReviewAttachment(
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    createdAt: "created_at",
+                    description: Nullable<String>.value("description"),
+                    id: "id",
+                    joinedAt: Nullable<String>.value("joined_at"),
+                    paidForProduct: Nullable<Bool>.value(true),
+                    publishedAt: Nullable<String>.value("published_at"),
+                    stars: 1,
+                    status: ReviewListItemStatus.published,
+                    title: Nullable<String>.value("title"),
+                    updatedAt: "updated_at",
+                    user: ReviewUser(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: "username"
+                    )
+                ),
+                ReviewListItem(
+                    attachments: [
+                        ReviewAttachment(
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        ),
+                        ReviewAttachment(
+                            contentType: Nullable<String>.value("content_type"),
+                            filename: Nullable<String>.value("filename"),
+                            id: "id",
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    createdAt: "created_at",
+                    description: Nullable<String>.value("description"),
+                    id: "id",
+                    joinedAt: Nullable<String>.value("joined_at"),
+                    paidForProduct: Nullable<Bool>.value(true),
+                    publishedAt: Nullable<String>.value("published_at"),
+                    stars: 1,
+                    status: ReviewListItemStatus.published,
+                    title: Nullable<String>.value("title"),
+                    updatedAt: "updated_at",
+                    user: ReviewUser(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: "username"
+                    )
+                )
+            ],
+            pageInfo: ListReviewsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
+            )
+        )
+        let response = try await client.reviews.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -186,6 +351,106 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "attachments": [
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "created_at": "created_at",
+                  "description": "description",
+                  "id": "id",
+                  "joined_at": "joined_at",
+                  "paid_for_product": true,
+                  "product": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "published_at": "published_at",
+                  "stars": 1,
+                  "status": "pending",
+                  "title": "title",
+                  "updated_at": "updated_at",
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Review(
+            account: ReviewAccount(
+                id: "id",
+                route: "route",
+                title: "title"
+            ),
+            attachments: [
+                ReviewAttachment(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                ReviewAttachment(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            createdAt: "created_at",
+            description: Nullable<String>.value("description"),
+            id: "id",
+            joinedAt: Nullable<String>.value("joined_at"),
+            paidForProduct: Nullable<Bool>.value(true),
+            product: ReviewProduct(
+                id: "id",
+                title: "title"
+            ),
+            publishedAt: Nullable<String>.value("published_at"),
+            stars: 1,
+            status: ReviewStatus.pending,
+            title: Nullable<String>.value("title"),
+            updatedAt: "updated_at",
+            user: ReviewUser(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                username: "username"
+            )
+        )
+        let response = try await client.reviews.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -209,6 +474,34 @@ import WhopSDK
         )
         let response = try await client.reviews.delete(
             id: "rev_xxxxxxxxxxxxxx",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteReviewsResponse(
+            deleted: true,
+            id: "id"
+        )
+        let response = try await client.reviews.delete(
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

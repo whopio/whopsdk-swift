@@ -88,6 +88,143 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "error": "error",
+                      "external_id": "external_id",
+                      "id": "id",
+                      "name": "name",
+                      "parent_external_account": {
+                        "external_id": "external_id",
+                        "id": "id",
+                        "name": "name",
+                        "platform": "x",
+                        "profile_picture_url": "profile_picture_url",
+                        "username": "username",
+                        "verified": true
+                      },
+                      "partnership_status": "partnership_status",
+                      "platform": "x",
+                      "profile_picture_url": "profile_picture_url",
+                      "scopes": [
+                        "scopes",
+                        "scopes"
+                      ],
+                      "url": "url",
+                      "username": "username",
+                      "verified": true
+                    },
+                    {
+                      "error": "error",
+                      "external_id": "external_id",
+                      "id": "id",
+                      "name": "name",
+                      "parent_external_account": {
+                        "external_id": "external_id",
+                        "id": "id",
+                        "name": "name",
+                        "platform": "x",
+                        "profile_picture_url": "profile_picture_url",
+                        "username": "username",
+                        "verified": true
+                      },
+                      "partnership_status": "partnership_status",
+                      "platform": "x",
+                      "profile_picture_url": "profile_picture_url",
+                      "scopes": [
+                        "scopes",
+                        "scopes"
+                      ],
+                      "url": "url",
+                      "username": "username",
+                      "verified": true
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListExternalAccountsResponse(
+            data: [
+                ExternalAccount(
+                    error: Nullable<String>.value("error"),
+                    externalId: Nullable<String>.value("external_id"),
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    parentExternalAccount: Nullable<ExternalAccountParent>.value(ExternalAccountParent(
+                        externalId: Nullable<String>.value("external_id"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        platform: ExternalAccountParentPlatform.x,
+                        profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                        username: Nullable<String>.value("username"),
+                        verified: true
+                    )),
+                    partnershipStatus: Nullable<String>.value("partnership_status"),
+                    platform: ExternalAccountPlatform.x,
+                    profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                    scopes: [
+                        "scopes",
+                        "scopes"
+                    ],
+                    url: Nullable<String>.value("url"),
+                    username: Nullable<String>.value("username"),
+                    verified: true
+                ),
+                ExternalAccount(
+                    error: Nullable<String>.value("error"),
+                    externalId: Nullable<String>.value("external_id"),
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    parentExternalAccount: Nullable<ExternalAccountParent>.value(ExternalAccountParent(
+                        externalId: Nullable<String>.value("external_id"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        platform: ExternalAccountParentPlatform.x,
+                        profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                        username: Nullable<String>.value("username"),
+                        verified: true
+                    )),
+                    partnershipStatus: Nullable<String>.value("partnership_status"),
+                    platform: ExternalAccountPlatform.x,
+                    profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                    scopes: [
+                        "scopes",
+                        "scopes"
+                    ],
+                    url: Nullable<String>.value("url"),
+                    username: Nullable<String>.value("username"),
+                    verified: true
+                )
+            ],
+            pageInfo: ListExternalAccountsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.externalAccounts.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -160,6 +297,80 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "error": "error",
+                  "external_id": "external_id",
+                  "id": "id",
+                  "name": "name",
+                  "parent_external_account": {
+                    "external_id": "external_id",
+                    "id": "id",
+                    "name": "name",
+                    "platform": "x",
+                    "profile_picture_url": "profile_picture_url",
+                    "username": "username",
+                    "verified": true
+                  },
+                  "partnership_status": "partnership_status",
+                  "platform": "x",
+                  "profile_picture_url": "profile_picture_url",
+                  "scopes": [
+                    "scopes",
+                    "scopes"
+                  ],
+                  "url": "url",
+                  "username": "username",
+                  "verified": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ExternalAccount(
+            error: Nullable<String>.value("error"),
+            externalId: Nullable<String>.value("external_id"),
+            id: "id",
+            name: Nullable<String>.value("name"),
+            parentExternalAccount: Nullable<ExternalAccountParent>.value(ExternalAccountParent(
+                externalId: Nullable<String>.value("external_id"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                platform: ExternalAccountParentPlatform.x,
+                profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                username: Nullable<String>.value("username"),
+                verified: true
+            )),
+            partnershipStatus: Nullable<String>.value("partnership_status"),
+            platform: ExternalAccountPlatform.x,
+            profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+            scopes: [
+                "scopes",
+                "scopes"
+            ],
+            url: Nullable<String>.value("url"),
+            username: Nullable<String>.value("username"),
+            verified: true
+        )
+        let response = try await client.externalAccounts.create(
+            request: CreateExternalAccountsRequestBody.facebook(
+                CreateExternalAccountsRequestBodyFacebook(
+
+                )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func connect1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -189,6 +400,35 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func connect2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "authorize_url": "authorize_url"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ConnectExternalAccountsResponse(
+            authorizeUrl: "authorize_url"
+        )
+        let response = try await client.externalAccounts.connect(
+            request: .init(
+                platform: .tiktok,
+                redirectUrl: "redirect_url"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -209,6 +449,34 @@ import WhopSDK
         let expectedResponse = DeleteExternalAccountsResponse(
             deleted: true,
             id: "sacc_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.externalAccounts.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteExternalAccountsResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.externalAccounts.delete(
             id: "id",
@@ -276,6 +544,77 @@ import WhopSDK
             ],
             url: Nullable<String>.value("https://instagram.com/shinetimedetail"),
             username: Nullable<String>.value("shinetimedetail"),
+            verified: true
+        )
+        let response = try await client.externalAccounts.refresh(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func refresh2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "error": "error",
+                  "external_id": "external_id",
+                  "id": "id",
+                  "name": "name",
+                  "parent_external_account": {
+                    "external_id": "external_id",
+                    "id": "id",
+                    "name": "name",
+                    "platform": "x",
+                    "profile_picture_url": "profile_picture_url",
+                    "username": "username",
+                    "verified": true
+                  },
+                  "partnership_status": "partnership_status",
+                  "platform": "x",
+                  "profile_picture_url": "profile_picture_url",
+                  "scopes": [
+                    "scopes",
+                    "scopes"
+                  ],
+                  "url": "url",
+                  "username": "username",
+                  "verified": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ExternalAccount(
+            error: Nullable<String>.value("error"),
+            externalId: Nullable<String>.value("external_id"),
+            id: "id",
+            name: Nullable<String>.value("name"),
+            parentExternalAccount: Nullable<ExternalAccountParent>.value(ExternalAccountParent(
+                externalId: Nullable<String>.value("external_id"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                platform: ExternalAccountParentPlatform.x,
+                profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                username: Nullable<String>.value("username"),
+                verified: true
+            )),
+            partnershipStatus: Nullable<String>.value("partnership_status"),
+            platform: ExternalAccountPlatform.x,
+            profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+            scopes: [
+                "scopes",
+                "scopes"
+            ],
+            url: Nullable<String>.value("url"),
+            username: Nullable<String>.value("username"),
             verified: true
         )
         let response = try await client.externalAccounts.refresh(

@@ -10,6 +10,8 @@ extension Requests {
         public let channelId: String
         /// Markdown content. May be empty when the message contains media or a poll.
         public let content: String
+        /// Also send this message as an email from this email address. Pass the address, like `support@example.com`, or its ID, prefixed `emaddr_`.
+        public let emailAddress: String?
         /// Up to 10 GIFs to attach. URLs must use HTTPS on static.klipy.com, static1.klipy.com, or static2.klipy.com. Omit to preserve on edit; an empty list clears them.
         public let gifs: [CreateMessagesRequestGifsItem]?
         /// Optional, for clients that show a message before the server confirms it. Use `post_` followed by 22 Base58 characters. Omit to generate an ID. Reuse the same ID and `Idempotency-Key` when retrying a send.
@@ -27,6 +29,7 @@ extension Requests {
             autoDetectLinks: Bool? = nil,
             channelId: String,
             content: String,
+            emailAddress: String? = nil,
             gifs: [CreateMessagesRequestGifsItem]? = nil,
             id: String? = nil,
             linkPreviews: [CreateMessagesRequestLinkPreviewsItem]? = nil,
@@ -38,6 +41,7 @@ extension Requests {
             self.autoDetectLinks = autoDetectLinks
             self.channelId = channelId
             self.content = content
+            self.emailAddress = emailAddress
             self.gifs = gifs
             self.id = id
             self.linkPreviews = linkPreviews
@@ -52,6 +56,7 @@ extension Requests {
             self.autoDetectLinks = try container.decodeIfPresent(Bool.self, forKey: .autoDetectLinks)
             self.channelId = try container.decode(String.self, forKey: .channelId)
             self.content = try container.decode(String.self, forKey: .content)
+            self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
             self.gifs = try container.decodeIfPresent([CreateMessagesRequestGifsItem].self, forKey: .gifs)
             self.id = try container.decodeIfPresent(String.self, forKey: .id)
             self.linkPreviews = try container.decodeIfPresent([CreateMessagesRequestLinkPreviewsItem].self, forKey: .linkPreviews)
@@ -67,6 +72,7 @@ extension Requests {
             try container.encodeIfPresent(self.autoDetectLinks, forKey: .autoDetectLinks)
             try container.encode(self.channelId, forKey: .channelId)
             try container.encode(self.content, forKey: .content)
+            try container.encodeIfPresent(self.emailAddress, forKey: .emailAddress)
             try container.encodeIfPresent(self.gifs, forKey: .gifs)
             try container.encodeIfPresent(self.id, forKey: .id)
             try container.encodeIfPresent(self.linkPreviews, forKey: .linkPreviews)
@@ -80,6 +86,7 @@ extension Requests {
             case autoDetectLinks = "auto_detect_links"
             case channelId = "channel_id"
             case content
+            case emailAddress = "email_address"
             case gifs
             case id
             case linkPreviews = "link_previews"

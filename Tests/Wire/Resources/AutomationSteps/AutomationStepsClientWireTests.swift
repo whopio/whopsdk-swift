@@ -92,6 +92,151 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "action_type": "wait",
+                      "automation_id": "automation_id",
+                      "config": {
+                        "delay_seconds": 1
+                      },
+                      "created_at": "created_at",
+                      "id": "id",
+                      "issues": [
+                        "issues",
+                        "issues"
+                      ],
+                      "key": 1,
+                      "previous_step_id": "previous_step_id",
+                      "sender": {
+                        "object": "email_address",
+                        "address": "address",
+                        "id": "id"
+                      },
+                      "source_code": "source_code",
+                      "updated_at": "updated_at",
+                      "version": 1,
+                      "waiting_enrollments_count": 1
+                    },
+                    {
+                      "action_type": "wait",
+                      "automation_id": "automation_id",
+                      "config": {
+                        "delay_seconds": 1
+                      },
+                      "created_at": "created_at",
+                      "id": "id",
+                      "issues": [
+                        "issues",
+                        "issues"
+                      ],
+                      "key": 1,
+                      "previous_step_id": "previous_step_id",
+                      "sender": {
+                        "object": "email_address",
+                        "address": "address",
+                        "id": "id"
+                      },
+                      "source_code": "source_code",
+                      "updated_at": "updated_at",
+                      "version": 1,
+                      "waiting_enrollments_count": 1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAutomationStepsResponse(
+            data: [
+                AutomationStep(
+                    actionType: AutomationStepActionType.wait,
+                    automationId: "automation_id",
+                    config: AutomationStepConfig.automationStepWaitConfig(
+                        AutomationStepWaitConfig(
+                            delaySeconds: 1
+                        )
+                    ),
+                    createdAt: "created_at",
+                    id: "id",
+                    issues: [
+                        "issues",
+                        "issues"
+                    ],
+                    key: 1,
+                    previousStepId: Nullable<String>.value("previous_step_id"),
+                    sender: Nullable<AutomationStepSender>.value(AutomationStepSender.emailAddress(
+                        .init(
+                            address: "address",
+                            id: "id",
+                            additionalProperties: [
+                                "object": JSONValue.string("email_address")
+                            ]
+                        )
+                    )),
+                    sourceCode: Nullable<String>.value("source_code"),
+                    updatedAt: "updated_at",
+                    version: 1,
+                    waitingEnrollmentsCount: 1
+                ),
+                AutomationStep(
+                    actionType: AutomationStepActionType.wait,
+                    automationId: "automation_id",
+                    config: AutomationStepConfig.automationStepWaitConfig(
+                        AutomationStepWaitConfig(
+                            delaySeconds: 1
+                        )
+                    ),
+                    createdAt: "created_at",
+                    id: "id",
+                    issues: [
+                        "issues",
+                        "issues"
+                    ],
+                    key: 1,
+                    previousStepId: Nullable<String>.value("previous_step_id"),
+                    sender: Nullable<AutomationStepSender>.value(AutomationStepSender.emailAddress(
+                        .init(
+                            address: "address",
+                            id: "id",
+                            additionalProperties: [
+                                "object": JSONValue.string("email_address")
+                            ]
+                        )
+                    )),
+                    sourceCode: Nullable<String>.value("source_code"),
+                    updatedAt: "updated_at",
+                    version: 1,
+                    waitingEnrollmentsCount: 1
+                )
+            ],
+            pageInfo: ListAutomationStepsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.automationSteps.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -161,6 +306,83 @@ import WhopSDK
             request: .init(
                 actionType: .wait,
                 automationId: "ato_xxxxxxxxxxxxxx"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "action_type": "wait",
+                  "automation_id": "automation_id",
+                  "config": {
+                    "delay_seconds": 1
+                  },
+                  "created_at": "created_at",
+                  "id": "id",
+                  "issues": [
+                    "issues",
+                    "issues"
+                  ],
+                  "key": 1,
+                  "previous_step_id": "previous_step_id",
+                  "sender": {
+                    "object": "email_address",
+                    "address": "address",
+                    "id": "id"
+                  },
+                  "source_code": "source_code",
+                  "updated_at": "updated_at",
+                  "version": 1,
+                  "waiting_enrollments_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AutomationStep(
+            actionType: AutomationStepActionType.wait,
+            automationId: "automation_id",
+            config: AutomationStepConfig.automationStepWaitConfig(
+                AutomationStepWaitConfig(
+                    delaySeconds: 1
+                )
+            ),
+            createdAt: "created_at",
+            id: "id",
+            issues: [
+                "issues",
+                "issues"
+            ],
+            key: 1,
+            previousStepId: Nullable<String>.value("previous_step_id"),
+            sender: Nullable<AutomationStepSender>.value(AutomationStepSender.emailAddress(
+                .init(
+                    address: "address",
+                    id: "id",
+                    additionalProperties: [
+                        "object": JSONValue.string("email_address")
+                    ]
+                )
+            )),
+            sourceCode: Nullable<String>.value("source_code"),
+            updatedAt: "updated_at",
+            version: 1,
+            waitingEnrollmentsCount: 1
+        )
+        let response = try await client.automationSteps.create(
+            request: .init(
+                actionType: .wait,
+                automationId: "automation_id"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -239,6 +461,80 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "action_type": "wait",
+                  "automation_id": "automation_id",
+                  "config": {
+                    "delay_seconds": 1
+                  },
+                  "created_at": "created_at",
+                  "id": "id",
+                  "issues": [
+                    "issues",
+                    "issues"
+                  ],
+                  "key": 1,
+                  "previous_step_id": "previous_step_id",
+                  "sender": {
+                    "object": "email_address",
+                    "address": "address",
+                    "id": "id"
+                  },
+                  "source_code": "source_code",
+                  "updated_at": "updated_at",
+                  "version": 1,
+                  "waiting_enrollments_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AutomationStep(
+            actionType: AutomationStepActionType.wait,
+            automationId: "automation_id",
+            config: AutomationStepConfig.automationStepWaitConfig(
+                AutomationStepWaitConfig(
+                    delaySeconds: 1
+                )
+            ),
+            createdAt: "created_at",
+            id: "id",
+            issues: [
+                "issues",
+                "issues"
+            ],
+            key: 1,
+            previousStepId: Nullable<String>.value("previous_step_id"),
+            sender: Nullable<AutomationStepSender>.value(AutomationStepSender.emailAddress(
+                .init(
+                    address: "address",
+                    id: "id",
+                    additionalProperties: [
+                        "object": JSONValue.string("email_address")
+                    ]
+                )
+            )),
+            sourceCode: Nullable<String>.value("source_code"),
+            updatedAt: "updated_at",
+            version: 1,
+            waitingEnrollmentsCount: 1
+        )
+        let response = try await client.automationSteps.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -303,6 +599,80 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             version: 1,
             waitingEnrollmentsCount: 0
+        )
+        let response = try await client.automationSteps.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "action_type": "wait",
+                  "automation_id": "automation_id",
+                  "config": {
+                    "delay_seconds": 1
+                  },
+                  "created_at": "created_at",
+                  "id": "id",
+                  "issues": [
+                    "issues",
+                    "issues"
+                  ],
+                  "key": 1,
+                  "previous_step_id": "previous_step_id",
+                  "sender": {
+                    "object": "email_address",
+                    "address": "address",
+                    "id": "id"
+                  },
+                  "source_code": "source_code",
+                  "updated_at": "updated_at",
+                  "version": 1,
+                  "waiting_enrollments_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AutomationStep(
+            actionType: AutomationStepActionType.wait,
+            automationId: "automation_id",
+            config: AutomationStepConfig.automationStepWaitConfig(
+                AutomationStepWaitConfig(
+                    delaySeconds: 1
+                )
+            ),
+            createdAt: "created_at",
+            id: "id",
+            issues: [
+                "issues",
+                "issues"
+            ],
+            key: 1,
+            previousStepId: Nullable<String>.value("previous_step_id"),
+            sender: Nullable<AutomationStepSender>.value(AutomationStepSender.emailAddress(
+                .init(
+                    address: "address",
+                    id: "id",
+                    additionalProperties: [
+                        "object": JSONValue.string("email_address")
+                    ]
+                )
+            )),
+            sourceCode: Nullable<String>.value("source_code"),
+            updatedAt: "updated_at",
+            version: 1,
+            waitingEnrollmentsCount: 1
         )
         let response = try await client.automationSteps.delete(
             id: "id",
@@ -384,6 +754,81 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "action_type": "wait",
+                  "automation_id": "automation_id",
+                  "config": {
+                    "delay_seconds": 1
+                  },
+                  "created_at": "created_at",
+                  "id": "id",
+                  "issues": [
+                    "issues",
+                    "issues"
+                  ],
+                  "key": 1,
+                  "previous_step_id": "previous_step_id",
+                  "sender": {
+                    "object": "email_address",
+                    "address": "address",
+                    "id": "id"
+                  },
+                  "source_code": "source_code",
+                  "updated_at": "updated_at",
+                  "version": 1,
+                  "waiting_enrollments_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AutomationStep(
+            actionType: AutomationStepActionType.wait,
+            automationId: "automation_id",
+            config: AutomationStepConfig.automationStepWaitConfig(
+                AutomationStepWaitConfig(
+                    delaySeconds: 1
+                )
+            ),
+            createdAt: "created_at",
+            id: "id",
+            issues: [
+                "issues",
+                "issues"
+            ],
+            key: 1,
+            previousStepId: Nullable<String>.value("previous_step_id"),
+            sender: Nullable<AutomationStepSender>.value(AutomationStepSender.emailAddress(
+                .init(
+                    address: "address",
+                    id: "id",
+                    additionalProperties: [
+                        "object": JSONValue.string("email_address")
+                    ]
+                )
+            )),
+            sourceCode: Nullable<String>.value("source_code"),
+            updatedAt: "updated_at",
+            version: 1,
+            waitingEnrollmentsCount: 1
+        )
+        let response = try await client.automationSteps.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func preview1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -418,6 +863,45 @@ import WhopSDK
         let response = try await client.automationSteps.preview(
             id: "id",
             request: .init(memberId: "mber_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func preview2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "action_type": "email",
+                  "html": "html",
+                  "outcome": "sent",
+                  "preheader": "preheader",
+                  "reason": "reason",
+                  "subject": "subject",
+                  "text": "text"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AutomationStepPreview(
+            actionType: AutomationStepPreviewActionType.email,
+            html: Nullable<String>.value("html"),
+            outcome: AutomationStepPreviewOutcome.sent,
+            preheader: Nullable<String>.value("preheader"),
+            reason: Nullable<String>.value("reason"),
+            subject: Nullable<String>.value("subject"),
+            text: Nullable<String>.value("text")
+        )
+        let response = try await client.automationSteps.preview(
+            id: "id",
+            request: .init(memberId: "member_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

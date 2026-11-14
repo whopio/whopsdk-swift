@@ -60,4 +60,80 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "action": "action",
+                      "actor": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      },
+                      "created_at": "2024-01-15T09:30:00Z"
+                    },
+                    {
+                      "action": "action",
+                      "actor": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      },
+                      "created_at": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListLogsResponse(
+            data: [
+                ListLogsResponseDataItem(
+                    action: Nullable<String>.value("action"),
+                    actor: Nullable<ListLogsResponseDataItemActor>.value(ListLogsResponseDataItemActor(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        username: Optional(Nullable<String>.value("username"))
+                    )),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                ListLogsResponseDataItem(
+                    action: Nullable<String>.value("action"),
+                    actor: Nullable<ListLogsResponseDataItemActor>.value(ListLogsResponseDataItemActor(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        username: Optional(Nullable<String>.value("username"))
+                    )),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ],
+            pageInfo: ListLogsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.members.logs.list(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

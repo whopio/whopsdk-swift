@@ -1,28 +1,27 @@
 import Foundation
 
-/// The product the lead expressed interest in. Null if the lead is not associated with a specific product.
-public struct LeadListItemProduct: Codable, Hashable, Sendable {
-    /// The unique identifier for the product.
+public struct PlatformTrendsReportsResponseDataReportsItemRowsItemAccountCountry: Codable, Hashable, Sendable {
+    /// The value's id, such as `options_trading`.
     public let id: String
-    /// The display name of the product shown to customers on the product page and in search results.
-    public let title: String
+    /// The value's display name.
+    public let name: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         id: String,
-        title: String,
+        name: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
-        self.title = title
+        self.name = name
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
+        self.name = try container.decode(String.self, forKey: .name)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -30,12 +29,12 @@ public struct LeadListItemProduct: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.title, forKey: .title)
+        try container.encode(self.name, forKey: .name)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id
-        case title
+        case name
     }
 }

@@ -225,6 +225,294 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "name": "name",
+                    "postal_code": "postal_code",
+                    "state": "state"
+                  },
+                  "base_currency": "base_currency",
+                  "base_total": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "discount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "exchange_rate": "exchange_rate",
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "line_items": [
+                    {
+                      "discount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "quantity": 1,
+                      "subtotal": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "tax_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "total": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "variant_id": "variant_id"
+                    },
+                    {
+                      "discount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "quantity": 1,
+                      "subtotal": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "tax_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "total": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "variant_id": "variant_id"
+                    }
+                  ],
+                  "located_by": "shipping_address",
+                  "payment_id": "payment_id",
+                  "promo_code_id": "promo_code_id",
+                  "recommended_currencies": [
+                    "recommended_currencies",
+                    "recommended_currencies"
+                  ],
+                  "shipping_address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "name": "name",
+                    "postal_code": "postal_code",
+                    "state": "state"
+                  },
+                  "subtotal": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "tax_amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "tax_behavior": "inclusive",
+                  "tax_ids": [
+                    {
+                      "type": "ad_nrt",
+                      "value": "value"
+                    },
+                    {
+                      "type": "ad_nrt",
+                      "value": "value"
+                    }
+                  ],
+                  "tax_status": "calculated",
+                  "total": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PaymentQuote(
+            accountId: "account_id",
+            address: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                line1: Nullable<String>.value("line1"),
+                line2: Nullable<String>.value("line2"),
+                name: Nullable<String>.value("name"),
+                postalCode: Nullable<String>.value("postal_code"),
+                state: Nullable<String>.value("state")
+            )),
+            baseCurrency: "base_currency",
+            baseTotal: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            createdAt: "created_at",
+            currency: "currency",
+            discount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            exchangeRate: Nullable<String>.value("exchange_rate"),
+            expiresAt: "expires_at",
+            id: "id",
+            lineItems: [
+                PaymentQuoteLineItem(
+                    discount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    quantity: 1,
+                    subtotal: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    taxAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    total: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    variantId: Nullable<String>.value("variant_id")
+                ),
+                PaymentQuoteLineItem(
+                    discount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    quantity: 1,
+                    subtotal: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    taxAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    total: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    variantId: Nullable<String>.value("variant_id")
+                )
+            ],
+            locatedBy: Nullable<PaymentQuoteLocatedBy>.value(PaymentQuoteLocatedBy.shippingAddress),
+            paymentId: Nullable<String>.value("payment_id"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            recommendedCurrencies: [
+                "recommended_currencies",
+                "recommended_currencies"
+            ],
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                line1: Nullable<String>.value("line1"),
+                line2: Nullable<String>.value("line2"),
+                name: Nullable<String>.value("name"),
+                postalCode: Nullable<String>.value("postal_code"),
+                state: Nullable<String>.value("state")
+            )),
+            subtotal: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            taxAmount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            taxBehavior: Nullable<PaymentQuoteTaxBehavior>.value(PaymentQuoteTaxBehavior.inclusive),
+            taxIds: [
+                TaxId(
+                    type: TaxIdType.adNrt,
+                    value: "value"
+                ),
+                TaxId(
+                    type: TaxIdType.adNrt,
+                    value: "value"
+                )
+            ],
+            taxStatus: PaymentQuoteTaxStatus.calculated,
+            total: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )
+        )
+        let response = try await client.paymentQuotes.create(
+            request: .init(accountId: "account_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -438,6 +726,294 @@ import WhopSDK
                 currency: "usd",
                 decimals: 2,
                 displayDecimals: 2
+            )
+        )
+        let response = try await client.paymentQuotes.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "name": "name",
+                    "postal_code": "postal_code",
+                    "state": "state"
+                  },
+                  "base_currency": "base_currency",
+                  "base_total": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "created_at": "created_at",
+                  "currency": "currency",
+                  "discount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "exchange_rate": "exchange_rate",
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "line_items": [
+                    {
+                      "discount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "quantity": 1,
+                      "subtotal": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "tax_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "total": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "variant_id": "variant_id"
+                    },
+                    {
+                      "discount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "quantity": 1,
+                      "subtotal": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "tax_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "total": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "variant_id": "variant_id"
+                    }
+                  ],
+                  "located_by": "shipping_address",
+                  "payment_id": "payment_id",
+                  "promo_code_id": "promo_code_id",
+                  "recommended_currencies": [
+                    "recommended_currencies",
+                    "recommended_currencies"
+                  ],
+                  "shipping_address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "name": "name",
+                    "postal_code": "postal_code",
+                    "state": "state"
+                  },
+                  "subtotal": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "tax_amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "tax_behavior": "inclusive",
+                  "tax_ids": [
+                    {
+                      "type": "ad_nrt",
+                      "value": "value"
+                    },
+                    {
+                      "type": "ad_nrt",
+                      "value": "value"
+                    }
+                  ],
+                  "tax_status": "calculated",
+                  "total": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PaymentQuote(
+            accountId: "account_id",
+            address: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                line1: Nullable<String>.value("line1"),
+                line2: Nullable<String>.value("line2"),
+                name: Nullable<String>.value("name"),
+                postalCode: Nullable<String>.value("postal_code"),
+                state: Nullable<String>.value("state")
+            )),
+            baseCurrency: "base_currency",
+            baseTotal: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            createdAt: "created_at",
+            currency: "currency",
+            discount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            exchangeRate: Nullable<String>.value("exchange_rate"),
+            expiresAt: "expires_at",
+            id: "id",
+            lineItems: [
+                PaymentQuoteLineItem(
+                    discount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    quantity: 1,
+                    subtotal: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    taxAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    total: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    variantId: Nullable<String>.value("variant_id")
+                ),
+                PaymentQuoteLineItem(
+                    discount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    quantity: 1,
+                    subtotal: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    taxAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    total: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    variantId: Nullable<String>.value("variant_id")
+                )
+            ],
+            locatedBy: Nullable<PaymentQuoteLocatedBy>.value(PaymentQuoteLocatedBy.shippingAddress),
+            paymentId: Nullable<String>.value("payment_id"),
+            promoCodeId: Nullable<String>.value("promo_code_id"),
+            recommendedCurrencies: [
+                "recommended_currencies",
+                "recommended_currencies"
+            ],
+            shippingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                line1: Nullable<String>.value("line1"),
+                line2: Nullable<String>.value("line2"),
+                name: Nullable<String>.value("name"),
+                postalCode: Nullable<String>.value("postal_code"),
+                state: Nullable<String>.value("state")
+            )),
+            subtotal: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            taxAmount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            taxBehavior: Nullable<PaymentQuoteTaxBehavior>.value(PaymentQuoteTaxBehavior.inclusive),
+            taxIds: [
+                TaxId(
+                    type: TaxIdType.adNrt,
+                    value: "value"
+                ),
+                TaxId(
+                    type: TaxIdType.adNrt,
+                    value: "value"
+                )
+            ],
+            taxStatus: PaymentQuoteTaxStatus.calculated,
+            total: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
             )
         )
         let response = try await client.paymentQuotes.retrieve(

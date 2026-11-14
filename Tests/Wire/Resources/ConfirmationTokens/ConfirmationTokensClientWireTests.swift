@@ -121,4 +121,123 @@ import WhopSDK
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "billing_address": {
+                    "city": "city",
+                    "country": "country",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "name": "name",
+                    "postal_code": "postal_code",
+                    "state": "state"
+                  },
+                  "billing_details": {
+                    "country": "country",
+                    "email": "email",
+                    "name": "name",
+                    "postal_code": "postal_code"
+                  },
+                  "created_at": "created_at",
+                  "expires_at": "expires_at",
+                  "id": "id",
+                  "object": "object",
+                  "payment_method_preview": {
+                    "bank_debit": {
+                      "brand": "brand",
+                      "fingerprint": "fingerprint",
+                      "last4": "last4"
+                    },
+                    "card": {
+                      "brand": "brand",
+                      "fingerprint": "fingerprint",
+                      "last4": "last4"
+                    },
+                    "category": "card",
+                    "display_name": "display_name",
+                    "id": "id",
+                    "saved": {
+                      "brand": "brand",
+                      "fingerprint": "fingerprint",
+                      "last4": "last4"
+                    },
+                    "type": "type",
+                    "wallet": {
+                      "brand": "brand",
+                      "fingerprint": "fingerprint",
+                      "last4": "last4"
+                    }
+                  },
+                  "setup_future_usage": "setup_future_usage",
+                  "status": "pending"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ConfirmationToken(
+            billingAddress: Nullable<PaymentAddress>.value(PaymentAddress(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                line1: Nullable<String>.value("line1"),
+                line2: Nullable<String>.value("line2"),
+                name: Nullable<String>.value("name"),
+                postalCode: Nullable<String>.value("postal_code"),
+                state: Nullable<String>.value("state")
+            )),
+            billingDetails: Nullable<PaymentBillingDetailsPreview>.value(PaymentBillingDetailsPreview(
+                country: Nullable<String>.value("country"),
+                email: Nullable<String>.value("email"),
+                name: Nullable<String>.value("name"),
+                postalCode: Nullable<String>.value("postal_code")
+            )),
+            createdAt: "created_at",
+            expiresAt: "expires_at",
+            id: "id",
+            object: "object",
+            paymentMethodPreview: PaymentMethodDisplay(
+                bankDebit: Optional(PaymentMethodDisplayPreview(
+                    brand: Optional("brand"),
+                    fingerprint: Optional("fingerprint"),
+                    last4: Optional("last4")
+                )),
+                card: Optional(PaymentMethodDisplayPreview(
+                    brand: Optional("brand"),
+                    fingerprint: Optional("fingerprint"),
+                    last4: Optional("last4")
+                )),
+                category: PaymentMethodDisplayCategory.card,
+                displayName: "display_name",
+                id: Nullable<String>.value("id"),
+                saved: Optional(PaymentMethodDisplayPreview(
+                    brand: Optional("brand"),
+                    fingerprint: Optional("fingerprint"),
+                    last4: Optional("last4")
+                )),
+                type: "type",
+                wallet: Optional(PaymentMethodDisplayPreview(
+                    brand: Optional("brand"),
+                    fingerprint: Optional("fingerprint"),
+                    last4: Optional("last4")
+                ))
+            ),
+            setupFutureUsage: Nullable<String>.value("setup_future_usage"),
+            status: ConfirmationTokenStatus.pending
+        )
+        let response = try await client.confirmationTokens.retrieve(
+            id: "id",
+            accountId: "account_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

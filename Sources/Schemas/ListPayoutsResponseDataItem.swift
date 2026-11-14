@@ -5,6 +5,8 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     public let amount: String
     /// Whether `POST /payouts/{id}/cancel` would act on this payout right now: `true` while it is `in_review`, while it is `processing` with nothing yet submitted to the payout provider, or while a submitted payout can still be asked to cancel at the provider. `false` once the money has arrived or the payout has already ended.
     public let cancelable: Bool
+    /// How the balance was converted into the payout currency before the payout was sent. `null` when the payout was sent from a balance in its own currency.
+    public let conversion: Nullable<ListPayoutsResponseDataItemConversion>
     /// When the payout was created.
     public let createdAt: Date
     /// Payout currency.
@@ -58,6 +60,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     public init(
         amount: String,
         cancelable: Bool,
+        conversion: Nullable<ListPayoutsResponseDataItemConversion>,
         createdAt: Date,
         currency: String,
         destinationAmount: Nullable<String>,
@@ -86,6 +89,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     ) {
         self.amount = amount
         self.cancelable = cancelable
+        self.conversion = conversion
         self.createdAt = createdAt
         self.currency = currency
         self.destinationAmount = destinationAmount
@@ -117,6 +121,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.amount = try container.decode(String.self, forKey: .amount)
         self.cancelable = try container.decode(Bool.self, forKey: .cancelable)
+        self.conversion = try container.decode(Nullable<ListPayoutsResponseDataItemConversion>.self, forKey: .conversion)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.currency = try container.decode(String.self, forKey: .currency)
         self.destinationAmount = try container.decode(Nullable<String>.self, forKey: .destinationAmount)
@@ -149,6 +154,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.amount, forKey: .amount)
         try container.encode(self.cancelable, forKey: .cancelable)
+        try container.encode(self.conversion, forKey: .conversion)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.currency, forKey: .currency)
         try container.encode(self.destinationAmount, forKey: .destinationAmount)
@@ -179,6 +185,7 @@ public struct ListPayoutsResponseDataItem: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case amount
         case cancelable
+        case conversion
         case createdAt = "created_at"
         case currency
         case destinationAmount = "destination_amount"

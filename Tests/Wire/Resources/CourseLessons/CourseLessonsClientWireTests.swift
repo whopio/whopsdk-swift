@@ -76,6 +76,103 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "content": "content",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "days_from_course_start_until_unlock": 1,
+                      "embed_id": "embed_id",
+                      "embed_type": "youtube",
+                      "id": "id",
+                      "lesson_type": "text",
+                      "order": 1,
+                      "thumbnail": {
+                        "url": "url"
+                      },
+                      "title": "title",
+                      "visibility": "visible"
+                    },
+                    {
+                      "content": "content",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "days_from_course_start_until_unlock": 1,
+                      "embed_id": "embed_id",
+                      "embed_type": "youtube",
+                      "id": "id",
+                      "lesson_type": "text",
+                      "order": 1,
+                      "thumbnail": {
+                        "url": "url"
+                      },
+                      "title": "title",
+                      "visibility": "visible"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListCourseLessonsResponse(
+            data: [
+                CourseLessonListItem(
+                    content: Nullable<String>.value("content"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    daysFromCourseStartUntilUnlock: Nullable<Int>.value(1),
+                    embedId: Nullable<String>.value("embed_id"),
+                    embedType: Nullable<EmbedTypes>.value(EmbedTypes.youtube),
+                    id: "id",
+                    lessonType: LessonTypes.text,
+                    order: 1,
+                    thumbnail: Nullable<CourseLessonListItemThumbnail>.value(CourseLessonListItemThumbnail(
+                        url: Nullable<String>.value("url")
+                    )),
+                    title: "title",
+                    visibility: LessonVisibilities.visible
+                ),
+                CourseLessonListItem(
+                    content: Nullable<String>.value("content"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    daysFromCourseStartUntilUnlock: Nullable<Int>.value(1),
+                    embedId: Nullable<String>.value("embed_id"),
+                    embedType: Nullable<EmbedTypes>.value(EmbedTypes.youtube),
+                    id: "id",
+                    lessonType: LessonTypes.text,
+                    order: 1,
+                    thumbnail: Nullable<CourseLessonListItemThumbnail>.value(CourseLessonListItemThumbnail(
+                        url: Nullable<String>.value("url")
+                    )),
+                    title: "title",
+                    visibility: LessonVisibilities.visible
+                )
+            ],
+            pageInfo: PageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.courseLessons.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -228,6 +325,245 @@ import WhopSDK
         let response = try await client.courseLessons.create(
             request: .init(
                 chapterId: "chap_xxxxxxxxxxxxx",
+                lessonType: .text
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "assessment_questions": [
+                    {
+                      "correct_answer": "correct_answer",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "image": {
+                        "content_type": "content_type",
+                        "filename": "filename",
+                        "id": "id",
+                        "url": "url"
+                      },
+                      "options": [
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        },
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        }
+                      ],
+                      "order": 1,
+                      "question_text": "question_text",
+                      "question_type": "short_answer"
+                    },
+                    {
+                      "correct_answer": "correct_answer",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "image": {
+                        "content_type": "content_type",
+                        "filename": "filename",
+                        "id": "id",
+                        "url": "url"
+                      },
+                      "options": [
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        },
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        }
+                      ],
+                      "order": 1,
+                      "question_text": "question_text",
+                      "question_type": "short_answer"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "content": "content",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "days_from_course_start_until_unlock": 1,
+                  "embed_id": "embed_id",
+                  "embed_type": "youtube",
+                  "id": "id",
+                  "lesson_type": "text",
+                  "main_pdf": {
+                    "content_type": "content_type",
+                    "filename": "filename",
+                    "id": "id",
+                    "url": "url"
+                  },
+                  "order": 1,
+                  "thumbnail": {
+                    "url": "url"
+                  },
+                  "title": "title",
+                  "video_asset": {
+                    "asset_id": "asset_id",
+                    "audio_only": true,
+                    "created_at": "2024-01-15T09:30:00Z",
+                    "duration_seconds": 1,
+                    "finished_uploading_at": "2024-01-15T09:30:00Z",
+                    "id": "id",
+                    "playback_id": "playback_id",
+                    "signed_playback_id": "signed_playback_id",
+                    "signed_storyboard_playback_token": "signed_storyboard_playback_token",
+                    "signed_thumbnail_playback_token": "signed_thumbnail_playback_token",
+                    "signed_video_playback_token": "signed_video_playback_token",
+                    "status": "uploading",
+                    "updated_at": "2024-01-15T09:30:00Z"
+                  },
+                  "visibility": "visible"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CourseLesson(
+            assessmentQuestions: [
+                CourseLessonAssessmentQuestionsItem(
+                    correctAnswer: Nullable<String>.value("correct_answer"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    image: Nullable<CourseLessonAssessmentQuestionsItemImage>.value(CourseLessonAssessmentQuestionsItemImage(
+                        contentType: Nullable<String>.value("content_type"),
+                        filename: Nullable<String>.value("filename"),
+                        id: "id",
+                        url: Nullable<String>.value("url")
+                    )),
+                    options: [
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        ),
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        )
+                    ],
+                    order: 1,
+                    questionText: "question_text",
+                    questionType: CoursesAssessmentQuestionTypes.shortAnswer
+                ),
+                CourseLessonAssessmentQuestionsItem(
+                    correctAnswer: Nullable<String>.value("correct_answer"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    image: Nullable<CourseLessonAssessmentQuestionsItemImage>.value(CourseLessonAssessmentQuestionsItemImage(
+                        contentType: Nullable<String>.value("content_type"),
+                        filename: Nullable<String>.value("filename"),
+                        id: "id",
+                        url: Nullable<String>.value("url")
+                    )),
+                    options: [
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        ),
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        )
+                    ],
+                    order: 1,
+                    questionText: "question_text",
+                    questionType: CoursesAssessmentQuestionTypes.shortAnswer
+                )
+            ],
+            attachments: [
+                CourseLessonAttachmentsItem(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                CourseLessonAttachmentsItem(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            content: Nullable<String>.value("content"),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            daysFromCourseStartUntilUnlock: Nullable<Int>.value(1),
+            embedId: Nullable<String>.value("embed_id"),
+            embedType: Nullable<EmbedTypes>.value(EmbedTypes.youtube),
+            id: "id",
+            lessonType: LessonTypes.text,
+            mainPdf: Nullable<CourseLessonMainPdf>.value(CourseLessonMainPdf(
+                contentType: Nullable<String>.value("content_type"),
+                filename: Nullable<String>.value("filename"),
+                id: "id",
+                url: Nullable<String>.value("url")
+            )),
+            order: 1,
+            thumbnail: Nullable<CourseLessonThumbnail>.value(CourseLessonThumbnail(
+                url: Nullable<String>.value("url")
+            )),
+            title: "title",
+            videoAsset: Nullable<CourseLessonVideoAsset>.value(CourseLessonVideoAsset(
+                assetId: Nullable<String>.value("asset_id"),
+                audioOnly: true,
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                durationSeconds: Nullable<Int>.value(1),
+                finishedUploadingAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                id: "id",
+                playbackId: Nullable<String>.value("playback_id"),
+                signedPlaybackId: Nullable<String>.value("signed_playback_id"),
+                signedStoryboardPlaybackToken: Nullable<String>.value("signed_storyboard_playback_token"),
+                signedThumbnailPlaybackToken: Nullable<String>.value("signed_thumbnail_playback_token"),
+                signedVideoPlaybackToken: Nullable<String>.value("signed_video_playback_token"),
+                status: MuxAssetStatuses.uploading,
+                updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            )),
+            visibility: LessonVisibilities.visible
+        )
+        let response = try await client.courseLessons.create(
+            request: .init(
+                chapterId: "chapter_id",
                 lessonType: .text
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -391,6 +727,242 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "assessment_questions": [
+                    {
+                      "correct_answer": "correct_answer",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "image": {
+                        "content_type": "content_type",
+                        "filename": "filename",
+                        "id": "id",
+                        "url": "url"
+                      },
+                      "options": [
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        },
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        }
+                      ],
+                      "order": 1,
+                      "question_text": "question_text",
+                      "question_type": "short_answer"
+                    },
+                    {
+                      "correct_answer": "correct_answer",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "image": {
+                        "content_type": "content_type",
+                        "filename": "filename",
+                        "id": "id",
+                        "url": "url"
+                      },
+                      "options": [
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        },
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        }
+                      ],
+                      "order": 1,
+                      "question_text": "question_text",
+                      "question_type": "short_answer"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "content": "content",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "days_from_course_start_until_unlock": 1,
+                  "embed_id": "embed_id",
+                  "embed_type": "youtube",
+                  "id": "id",
+                  "lesson_type": "text",
+                  "main_pdf": {
+                    "content_type": "content_type",
+                    "filename": "filename",
+                    "id": "id",
+                    "url": "url"
+                  },
+                  "order": 1,
+                  "thumbnail": {
+                    "url": "url"
+                  },
+                  "title": "title",
+                  "video_asset": {
+                    "asset_id": "asset_id",
+                    "audio_only": true,
+                    "created_at": "2024-01-15T09:30:00Z",
+                    "duration_seconds": 1,
+                    "finished_uploading_at": "2024-01-15T09:30:00Z",
+                    "id": "id",
+                    "playback_id": "playback_id",
+                    "signed_playback_id": "signed_playback_id",
+                    "signed_storyboard_playback_token": "signed_storyboard_playback_token",
+                    "signed_thumbnail_playback_token": "signed_thumbnail_playback_token",
+                    "signed_video_playback_token": "signed_video_playback_token",
+                    "status": "uploading",
+                    "updated_at": "2024-01-15T09:30:00Z"
+                  },
+                  "visibility": "visible"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CourseLesson(
+            assessmentQuestions: [
+                CourseLessonAssessmentQuestionsItem(
+                    correctAnswer: Nullable<String>.value("correct_answer"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    image: Nullable<CourseLessonAssessmentQuestionsItemImage>.value(CourseLessonAssessmentQuestionsItemImage(
+                        contentType: Nullable<String>.value("content_type"),
+                        filename: Nullable<String>.value("filename"),
+                        id: "id",
+                        url: Nullable<String>.value("url")
+                    )),
+                    options: [
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        ),
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        )
+                    ],
+                    order: 1,
+                    questionText: "question_text",
+                    questionType: CoursesAssessmentQuestionTypes.shortAnswer
+                ),
+                CourseLessonAssessmentQuestionsItem(
+                    correctAnswer: Nullable<String>.value("correct_answer"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    image: Nullable<CourseLessonAssessmentQuestionsItemImage>.value(CourseLessonAssessmentQuestionsItemImage(
+                        contentType: Nullable<String>.value("content_type"),
+                        filename: Nullable<String>.value("filename"),
+                        id: "id",
+                        url: Nullable<String>.value("url")
+                    )),
+                    options: [
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        ),
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        )
+                    ],
+                    order: 1,
+                    questionText: "question_text",
+                    questionType: CoursesAssessmentQuestionTypes.shortAnswer
+                )
+            ],
+            attachments: [
+                CourseLessonAttachmentsItem(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                CourseLessonAttachmentsItem(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            content: Nullable<String>.value("content"),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            daysFromCourseStartUntilUnlock: Nullable<Int>.value(1),
+            embedId: Nullable<String>.value("embed_id"),
+            embedType: Nullable<EmbedTypes>.value(EmbedTypes.youtube),
+            id: "id",
+            lessonType: LessonTypes.text,
+            mainPdf: Nullable<CourseLessonMainPdf>.value(CourseLessonMainPdf(
+                contentType: Nullable<String>.value("content_type"),
+                filename: Nullable<String>.value("filename"),
+                id: "id",
+                url: Nullable<String>.value("url")
+            )),
+            order: 1,
+            thumbnail: Nullable<CourseLessonThumbnail>.value(CourseLessonThumbnail(
+                url: Nullable<String>.value("url")
+            )),
+            title: "title",
+            videoAsset: Nullable<CourseLessonVideoAsset>.value(CourseLessonVideoAsset(
+                assetId: Nullable<String>.value("asset_id"),
+                audioOnly: true,
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                durationSeconds: Nullable<Int>.value(1),
+                finishedUploadingAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                id: "id",
+                playbackId: Nullable<String>.value("playback_id"),
+                signedPlaybackId: Nullable<String>.value("signed_playback_id"),
+                signedStoryboardPlaybackToken: Nullable<String>.value("signed_storyboard_playback_token"),
+                signedThumbnailPlaybackToken: Nullable<String>.value("signed_thumbnail_playback_token"),
+                signedVideoPlaybackToken: Nullable<String>.value("signed_video_playback_token"),
+                status: MuxAssetStatuses.uploading,
+                updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            )),
+            visibility: LessonVisibilities.visible
+        )
+        let response = try await client.courseLessons.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -408,6 +980,28 @@ import WhopSDK
         let expectedResponse = true
         let response = try await client.courseLessons.delete(
             id: "lesn_xxxxxxxxxxxxx",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.courseLessons.delete(
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -570,6 +1164,243 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "assessment_questions": [
+                    {
+                      "correct_answer": "correct_answer",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "image": {
+                        "content_type": "content_type",
+                        "filename": "filename",
+                        "id": "id",
+                        "url": "url"
+                      },
+                      "options": [
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        },
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        }
+                      ],
+                      "order": 1,
+                      "question_text": "question_text",
+                      "question_type": "short_answer"
+                    },
+                    {
+                      "correct_answer": "correct_answer",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "image": {
+                        "content_type": "content_type",
+                        "filename": "filename",
+                        "id": "id",
+                        "url": "url"
+                      },
+                      "options": [
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        },
+                        {
+                          "id": "id",
+                          "is_correct": true,
+                          "option_text": "option_text",
+                          "order": 1
+                        }
+                      ],
+                      "order": 1,
+                      "question_text": "question_text",
+                      "question_type": "short_answer"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    },
+                    {
+                      "content_type": "content_type",
+                      "filename": "filename",
+                      "id": "id",
+                      "url": "url"
+                    }
+                  ],
+                  "content": "content",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "days_from_course_start_until_unlock": 1,
+                  "embed_id": "embed_id",
+                  "embed_type": "youtube",
+                  "id": "id",
+                  "lesson_type": "text",
+                  "main_pdf": {
+                    "content_type": "content_type",
+                    "filename": "filename",
+                    "id": "id",
+                    "url": "url"
+                  },
+                  "order": 1,
+                  "thumbnail": {
+                    "url": "url"
+                  },
+                  "title": "title",
+                  "video_asset": {
+                    "asset_id": "asset_id",
+                    "audio_only": true,
+                    "created_at": "2024-01-15T09:30:00Z",
+                    "duration_seconds": 1,
+                    "finished_uploading_at": "2024-01-15T09:30:00Z",
+                    "id": "id",
+                    "playback_id": "playback_id",
+                    "signed_playback_id": "signed_playback_id",
+                    "signed_storyboard_playback_token": "signed_storyboard_playback_token",
+                    "signed_thumbnail_playback_token": "signed_thumbnail_playback_token",
+                    "signed_video_playback_token": "signed_video_playback_token",
+                    "status": "uploading",
+                    "updated_at": "2024-01-15T09:30:00Z"
+                  },
+                  "visibility": "visible"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CourseLesson(
+            assessmentQuestions: [
+                CourseLessonAssessmentQuestionsItem(
+                    correctAnswer: Nullable<String>.value("correct_answer"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    image: Nullable<CourseLessonAssessmentQuestionsItemImage>.value(CourseLessonAssessmentQuestionsItemImage(
+                        contentType: Nullable<String>.value("content_type"),
+                        filename: Nullable<String>.value("filename"),
+                        id: "id",
+                        url: Nullable<String>.value("url")
+                    )),
+                    options: [
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        ),
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        )
+                    ],
+                    order: 1,
+                    questionText: "question_text",
+                    questionType: CoursesAssessmentQuestionTypes.shortAnswer
+                ),
+                CourseLessonAssessmentQuestionsItem(
+                    correctAnswer: Nullable<String>.value("correct_answer"),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    image: Nullable<CourseLessonAssessmentQuestionsItemImage>.value(CourseLessonAssessmentQuestionsItemImage(
+                        contentType: Nullable<String>.value("content_type"),
+                        filename: Nullable<String>.value("filename"),
+                        id: "id",
+                        url: Nullable<String>.value("url")
+                    )),
+                    options: [
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        ),
+                        CourseLessonAssessmentQuestionsItemOptionsItem(
+                            id: "id",
+                            isCorrect: Nullable<Bool>.value(true),
+                            optionText: "option_text",
+                            order: 1
+                        )
+                    ],
+                    order: 1,
+                    questionText: "question_text",
+                    questionType: CoursesAssessmentQuestionTypes.shortAnswer
+                )
+            ],
+            attachments: [
+                CourseLessonAttachmentsItem(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                ),
+                CourseLessonAttachmentsItem(
+                    contentType: Nullable<String>.value("content_type"),
+                    filename: Nullable<String>.value("filename"),
+                    id: "id",
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            content: Nullable<String>.value("content"),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            daysFromCourseStartUntilUnlock: Nullable<Int>.value(1),
+            embedId: Nullable<String>.value("embed_id"),
+            embedType: Nullable<EmbedTypes>.value(EmbedTypes.youtube),
+            id: "id",
+            lessonType: LessonTypes.text,
+            mainPdf: Nullable<CourseLessonMainPdf>.value(CourseLessonMainPdf(
+                contentType: Nullable<String>.value("content_type"),
+                filename: Nullable<String>.value("filename"),
+                id: "id",
+                url: Nullable<String>.value("url")
+            )),
+            order: 1,
+            thumbnail: Nullable<CourseLessonThumbnail>.value(CourseLessonThumbnail(
+                url: Nullable<String>.value("url")
+            )),
+            title: "title",
+            videoAsset: Nullable<CourseLessonVideoAsset>.value(CourseLessonVideoAsset(
+                assetId: Nullable<String>.value("asset_id"),
+                audioOnly: true,
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                durationSeconds: Nullable<Int>.value(1),
+                finishedUploadingAt: Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                id: "id",
+                playbackId: Nullable<String>.value("playback_id"),
+                signedPlaybackId: Nullable<String>.value("signed_playback_id"),
+                signedStoryboardPlaybackToken: Nullable<String>.value("signed_storyboard_playback_token"),
+                signedThumbnailPlaybackToken: Nullable<String>.value("signed_thumbnail_playback_token"),
+                signedVideoPlaybackToken: Nullable<String>.value("signed_video_playback_token"),
+                status: MuxAssetStatuses.uploading,
+                updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            )),
+            visibility: LessonVisibilities.visible
+        )
+        let response = try await client.courseLessons.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func markAsCompleted1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -592,7 +1423,51 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func markAsCompleted2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.courseLessons.markAsCompleted(
+            lessonId: "lesson_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func start1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.courseLessons.start(
+            lessonId: "lesson_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func start2() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
@@ -674,6 +1549,84 @@ import WhopSDK
         let response = try await client.courseLessons.submitAssessment(
             lessonId: "lesson_id",
             request: .init(answers: [
+                SubmitAssessmentCourseLessonsRequestAnswersItem(
+                    questionId: "question_id"
+                )
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func submitAssessment2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "id": "id",
+                  "lesson": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "result_correct": 1,
+                  "result_grade": 1.1,
+                  "result_graded_questions": {
+                    "result_graded_questions": {
+                      "key": "value"
+                    }
+                  },
+                  "result_passing_grade": true,
+                  "result_question_count": 1,
+                  "score_percent": 1.1,
+                  "updated_at": "2024-01-15T09:30:00Z",
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SubmitAssessmentCourseLessonsResponse(
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            id: "id",
+            lesson: SubmitAssessmentCourseLessonsResponseLesson(
+                id: "id",
+                title: "title"
+            ),
+            resultCorrect: 1,
+            resultGrade: 1.1,
+            resultGradedQuestions: [
+                "result_graded_questions": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            resultPassingGrade: true,
+            resultQuestionCount: 1,
+            scorePercent: 1.1,
+            updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            user: SubmitAssessmentCourseLessonsResponseUser(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                username: "username"
+            )
+        )
+        let response = try await client.courseLessons.submitAssessment(
+            lessonId: "lesson_id",
+            request: .init(answers: [
+                SubmitAssessmentCourseLessonsRequestAnswersItem(
+                    questionId: "question_id"
+                ),
                 SubmitAssessmentCourseLessonsRequestAnswersItem(
                     questionId: "question_id"
                 )

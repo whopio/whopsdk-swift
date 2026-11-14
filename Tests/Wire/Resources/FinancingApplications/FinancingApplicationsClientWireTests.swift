@@ -192,6 +192,799 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "created_at": "created_at",
+                      "feedback": "feedback",
+                      "id": "id",
+                      "requirements": [
+                        {
+                          "accepted_file_formats": [
+                            "accepted_file_formats",
+                            "accepted_file_formats"
+                          ],
+                          "field": "field",
+                          "file_collection_type": "none",
+                          "files": [
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            },
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            }
+                          ],
+                          "id": "id",
+                          "max_file_size": 1,
+                          "minimum_length": 1,
+                          "money": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "required": true,
+                          "text_collection_type": "none",
+                          "text_format": "plain",
+                          "values": [
+                            "values",
+                            "values"
+                          ]
+                        },
+                        {
+                          "accepted_file_formats": [
+                            "accepted_file_formats",
+                            "accepted_file_formats"
+                          ],
+                          "field": "field",
+                          "file_collection_type": "none",
+                          "files": [
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            },
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            }
+                          ],
+                          "id": "id",
+                          "max_file_size": 1,
+                          "minimum_length": 1,
+                          "money": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "required": true,
+                          "text_collection_type": "none",
+                          "text_format": "plain",
+                          "values": [
+                            "values",
+                            "values"
+                          ]
+                        }
+                      ],
+                      "status": "requires_collection",
+                      "terms": {
+                        "content": "content",
+                        "disclosure": "disclosure",
+                        "fees_url": "fees_url",
+                        "policies": [
+                          "policies",
+                          "policies"
+                        ],
+                        "url": "url",
+                        "version": "version"
+                      },
+                      "updated_at": "updated_at"
+                    },
+                    {
+                      "account_id": "account_id",
+                      "created_at": "created_at",
+                      "feedback": "feedback",
+                      "id": "id",
+                      "requirements": [
+                        {
+                          "accepted_file_formats": [
+                            "accepted_file_formats",
+                            "accepted_file_formats"
+                          ],
+                          "field": "field",
+                          "file_collection_type": "none",
+                          "files": [
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            },
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            }
+                          ],
+                          "id": "id",
+                          "max_file_size": 1,
+                          "minimum_length": 1,
+                          "money": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "required": true,
+                          "text_collection_type": "none",
+                          "text_format": "plain",
+                          "values": [
+                            "values",
+                            "values"
+                          ]
+                        },
+                        {
+                          "accepted_file_formats": [
+                            "accepted_file_formats",
+                            "accepted_file_formats"
+                          ],
+                          "field": "field",
+                          "file_collection_type": "none",
+                          "files": [
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            },
+                            {
+                              "blurhash": "blurhash",
+                              "content_type": "content_type",
+                              "created_at": "created_at",
+                              "duration_seconds": 1.1,
+                              "filename": "filename",
+                              "height": 1,
+                              "id": "id",
+                              "multipart_chunk_size": 1,
+                              "multipart_upload_id": "multipart_upload_id",
+                              "multipart_upload_urls": [],
+                              "object": "object",
+                              "removed_by_moderation": true,
+                              "size": 1,
+                              "upload_headers": {
+                                "upload_headers": {
+                                  "key": "value"
+                                }
+                              },
+                              "upload_status": "pending",
+                              "upload_url": "upload_url",
+                              "url": "url",
+                              "visibility": "public",
+                              "waveform_url": "waveform_url",
+                              "width": 1
+                            }
+                          ],
+                          "id": "id",
+                          "max_file_size": 1,
+                          "minimum_length": 1,
+                          "money": {
+                            "amount": "amount",
+                            "currency": "currency",
+                            "decimals": 1,
+                            "display_decimals": 1
+                          },
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "required": true,
+                          "text_collection_type": "none",
+                          "text_format": "plain",
+                          "values": [
+                            "values",
+                            "values"
+                          ]
+                        }
+                      ],
+                      "status": "requires_collection",
+                      "terms": {
+                        "content": "content",
+                        "disclosure": "disclosure",
+                        "fees_url": "fees_url",
+                        "policies": [
+                          "policies",
+                          "policies"
+                        ],
+                        "url": "url",
+                        "version": "version"
+                      },
+                      "updated_at": "updated_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListFinancingApplicationsResponse(
+            data: [
+                FinancingApplication(
+                    accountId: "account_id",
+                    createdAt: "created_at",
+                    feedback: Optional(Nullable<String>.value("feedback")),
+                    id: "id",
+                    requirements: Optional([
+                        FinancingRequirement(
+                            acceptedFileFormats: [
+                                "accepted_file_formats",
+                                "accepted_file_formats"
+                            ],
+                            field: "field",
+                            fileCollectionType: FinancingRequirementFileCollectionType.none,
+                            files: [
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                ),
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                )
+                            ],
+                            id: "id",
+                            maxFileSize: 1,
+                            minimumLength: Nullable<Int>.value(1),
+                            money: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            options: [
+                                "options",
+                                "options"
+                            ],
+                            required: true,
+                            textCollectionType: FinancingRequirementTextCollectionType.none,
+                            textFormat: FinancingRequirementTextFormat.plain,
+                            values: [
+                                "values",
+                                "values"
+                            ]
+                        ),
+                        FinancingRequirement(
+                            acceptedFileFormats: [
+                                "accepted_file_formats",
+                                "accepted_file_formats"
+                            ],
+                            field: "field",
+                            fileCollectionType: FinancingRequirementFileCollectionType.none,
+                            files: [
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                ),
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                )
+                            ],
+                            id: "id",
+                            maxFileSize: 1,
+                            minimumLength: Nullable<Int>.value(1),
+                            money: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            options: [
+                                "options",
+                                "options"
+                            ],
+                            required: true,
+                            textCollectionType: FinancingRequirementTextCollectionType.none,
+                            textFormat: FinancingRequirementTextFormat.plain,
+                            values: [
+                                "values",
+                                "values"
+                            ]
+                        )
+                    ]),
+                    status: FinancingApplicationStatus.requiresCollection,
+                    terms: Optional(FinancingTerms(
+                        content: "content",
+                        disclosure: "disclosure",
+                        feesUrl: "fees_url",
+                        policies: [
+                            "policies",
+                            "policies"
+                        ],
+                        url: "url",
+                        version: "version"
+                    )),
+                    updatedAt: "updated_at"
+                ),
+                FinancingApplication(
+                    accountId: "account_id",
+                    createdAt: "created_at",
+                    feedback: Optional(Nullable<String>.value("feedback")),
+                    id: "id",
+                    requirements: Optional([
+                        FinancingRequirement(
+                            acceptedFileFormats: [
+                                "accepted_file_formats",
+                                "accepted_file_formats"
+                            ],
+                            field: "field",
+                            fileCollectionType: FinancingRequirementFileCollectionType.none,
+                            files: [
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                ),
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                )
+                            ],
+                            id: "id",
+                            maxFileSize: 1,
+                            minimumLength: Nullable<Int>.value(1),
+                            money: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            options: [
+                                "options",
+                                "options"
+                            ],
+                            required: true,
+                            textCollectionType: FinancingRequirementTextCollectionType.none,
+                            textFormat: FinancingRequirementTextFormat.plain,
+                            values: [
+                                "values",
+                                "values"
+                            ]
+                        ),
+                        FinancingRequirement(
+                            acceptedFileFormats: [
+                                "accepted_file_formats",
+                                "accepted_file_formats"
+                            ],
+                            field: "field",
+                            fileCollectionType: FinancingRequirementFileCollectionType.none,
+                            files: [
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                ),
+                                File(
+                                    blurhash: Nullable<String>.value("blurhash"),
+                                    contentType: Nullable<String>.value("content_type"),
+                                    createdAt: "created_at",
+                                    durationSeconds: Nullable<Double>.value(1.1),
+                                    filename: Nullable<String>.value("filename"),
+                                    height: Nullable<Int>.value(1),
+                                    id: "id",
+                                    multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                                    multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                                    multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([])),
+                                    object: "object",
+                                    removedByModeration: true,
+                                    size: Nullable<Int>.value(1),
+                                    uploadHeaders: Optional([
+                                        "upload_headers": JSONValue.object(
+                                            [
+                                                "key": JSONValue.string("value")
+                                            ]
+                                        )
+                                    ]),
+                                    uploadStatus: FileUploadStatus.pending,
+                                    uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                                    url: Nullable<String>.value("url"),
+                                    visibility: FileVisibility.public,
+                                    waveformUrl: Nullable<String>.value("waveform_url"),
+                                    width: Nullable<Int>.value(1)
+                                )
+                            ],
+                            id: "id",
+                            maxFileSize: 1,
+                            minimumLength: Nullable<Int>.value(1),
+                            money: Nullable<Money>.value(Money(
+                                amount: "amount",
+                                currency: "currency",
+                                decimals: 1,
+                                displayDecimals: 1
+                            )),
+                            options: [
+                                "options",
+                                "options"
+                            ],
+                            required: true,
+                            textCollectionType: FinancingRequirementTextCollectionType.none,
+                            textFormat: FinancingRequirementTextFormat.plain,
+                            values: [
+                                "values",
+                                "values"
+                            ]
+                        )
+                    ]),
+                    status: FinancingApplicationStatus.requiresCollection,
+                    terms: Optional(FinancingTerms(
+                        content: "content",
+                        disclosure: "disclosure",
+                        feesUrl: "fees_url",
+                        policies: [
+                            "policies",
+                            "policies"
+                        ],
+                        url: "url",
+                        version: "version"
+                    )),
+                    updatedAt: "updated_at"
+                )
+            ],
+            pageInfo: ListFinancingApplicationsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.financingApplications.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -364,6 +1157,476 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "feedback": "feedback",
+                  "id": "id",
+                  "requirements": [
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    },
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    }
+                  ],
+                  "status": "requires_collection",
+                  "terms": {
+                    "content": "content",
+                    "disclosure": "disclosure",
+                    "fees_url": "fees_url",
+                    "policies": [
+                      "policies",
+                      "policies"
+                    ],
+                    "url": "url",
+                    "version": "version"
+                  },
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = FinancingApplication(
+            accountId: "account_id",
+            createdAt: "created_at",
+            feedback: Optional(Nullable<String>.value("feedback")),
+            id: "id",
+            requirements: Optional([
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                ),
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                )
+            ]),
+            status: FinancingApplicationStatus.requiresCollection,
+            terms: Optional(FinancingTerms(
+                content: "content",
+                disclosure: "disclosure",
+                feesUrl: "fees_url",
+                policies: [
+                    "policies",
+                    "policies"
+                ],
+                url: "url",
+                version: "version"
+            )),
+            updatedAt: "updated_at"
+        )
+        let response = try await client.financingApplications.create(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -528,6 +1791,476 @@ import WhopSDK
                 version: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             )),
             updatedAt: "2026-01-01T12:00:00.000Z"
+        )
+        let response = try await client.financingApplications.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "feedback": "feedback",
+                  "id": "id",
+                  "requirements": [
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    },
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    }
+                  ],
+                  "status": "requires_collection",
+                  "terms": {
+                    "content": "content",
+                    "disclosure": "disclosure",
+                    "fees_url": "fees_url",
+                    "policies": [
+                      "policies",
+                      "policies"
+                    ],
+                    "url": "url",
+                    "version": "version"
+                  },
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = FinancingApplication(
+            accountId: "account_id",
+            createdAt: "created_at",
+            feedback: Optional(Nullable<String>.value("feedback")),
+            id: "id",
+            requirements: Optional([
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                ),
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                )
+            ]),
+            status: FinancingApplicationStatus.requiresCollection,
+            terms: Optional(FinancingTerms(
+                content: "content",
+                disclosure: "disclosure",
+                feesUrl: "fees_url",
+                policies: [
+                    "policies",
+                    "policies"
+                ],
+                url: "url",
+                version: "version"
+            )),
+            updatedAt: "updated_at"
         )
         let response = try await client.financingApplications.retrieve(
             id: "id",
@@ -713,6 +2446,484 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "feedback": "feedback",
+                  "id": "id",
+                  "requirements": [
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    },
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    }
+                  ],
+                  "status": "requires_collection",
+                  "terms": {
+                    "content": "content",
+                    "disclosure": "disclosure",
+                    "fees_url": "fees_url",
+                    "policies": [
+                      "policies",
+                      "policies"
+                    ],
+                    "url": "url",
+                    "version": "version"
+                  },
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = FinancingApplication(
+            accountId: "account_id",
+            createdAt: "created_at",
+            feedback: Optional(Nullable<String>.value("feedback")),
+            id: "id",
+            requirements: Optional([
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                ),
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                )
+            ]),
+            status: FinancingApplicationStatus.requiresCollection,
+            terms: Optional(FinancingTerms(
+                content: "content",
+                disclosure: "disclosure",
+                feesUrl: "fees_url",
+                policies: [
+                    "policies",
+                    "policies"
+                ],
+                url: "url",
+                version: "version"
+            )),
+            updatedAt: "updated_at"
+        )
+        let response = try await client.financingApplications.update(
+            id: "id",
+            request: .init(answers: [
+                UpdateFinancingApplicationsRequestAnswersItem(
+                    requirementId: "requirement_id"
+                ),
+                UpdateFinancingApplicationsRequestAnswersItem(
+                    requirementId: "requirement_id"
+                )
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func submit1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -883,6 +3094,480 @@ import WhopSDK
             request: .init(merchantAcceptance: SubmitFinancingApplicationsRequestMerchantAcceptance(
                 accepted: true,
                 termsVersion: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func submit2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "feedback": "feedback",
+                  "id": "id",
+                  "requirements": [
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    },
+                    {
+                      "accepted_file_formats": [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                      ],
+                      "field": "field",
+                      "file_collection_type": "none",
+                      "files": [
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        },
+                        {
+                          "blurhash": "blurhash",
+                          "content_type": "content_type",
+                          "created_at": "created_at",
+                          "duration_seconds": 1.1,
+                          "filename": "filename",
+                          "height": 1,
+                          "id": "id",
+                          "multipart_chunk_size": 1,
+                          "multipart_upload_id": "multipart_upload_id",
+                          "multipart_upload_urls": [
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            },
+                            {
+                              "part_number": 1,
+                              "url": "url"
+                            }
+                          ],
+                          "object": "object",
+                          "removed_by_moderation": true,
+                          "size": 1,
+                          "upload_headers": {
+                            "upload_headers": {
+                              "key": "value"
+                            }
+                          },
+                          "upload_status": "pending",
+                          "upload_url": "upload_url",
+                          "url": "url",
+                          "visibility": "public",
+                          "waveform_url": "waveform_url",
+                          "width": 1
+                        }
+                      ],
+                      "id": "id",
+                      "max_file_size": 1,
+                      "minimum_length": 1,
+                      "money": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "options": [
+                        "options",
+                        "options"
+                      ],
+                      "required": true,
+                      "text_collection_type": "none",
+                      "text_format": "plain",
+                      "values": [
+                        "values",
+                        "values"
+                      ]
+                    }
+                  ],
+                  "status": "requires_collection",
+                  "terms": {
+                    "content": "content",
+                    "disclosure": "disclosure",
+                    "fees_url": "fees_url",
+                    "policies": [
+                      "policies",
+                      "policies"
+                    ],
+                    "url": "url",
+                    "version": "version"
+                  },
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = FinancingApplication(
+            accountId: "account_id",
+            createdAt: "created_at",
+            feedback: Optional(Nullable<String>.value("feedback")),
+            id: "id",
+            requirements: Optional([
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                ),
+                FinancingRequirement(
+                    acceptedFileFormats: [
+                        "accepted_file_formats",
+                        "accepted_file_formats"
+                    ],
+                    field: "field",
+                    fileCollectionType: FinancingRequirementFileCollectionType.none,
+                    files: [
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        ),
+                        File(
+                            blurhash: Nullable<String>.value("blurhash"),
+                            contentType: Nullable<String>.value("content_type"),
+                            createdAt: "created_at",
+                            durationSeconds: Nullable<Double>.value(1.1),
+                            filename: Nullable<String>.value("filename"),
+                            height: Nullable<Int>.value(1),
+                            id: "id",
+                            multipartChunkSize: Optional(Nullable<Int>.value(1)),
+                            multipartUploadId: Optional(Nullable<String>.value("multipart_upload_id")),
+                            multipartUploadUrls: Optional(Nullable<[FileMultipartUrl]>.value([
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                ),
+                                FileMultipartUrl(
+                                    partNumber: 1,
+                                    url: "url"
+                                )
+                            ])),
+                            object: "object",
+                            removedByModeration: true,
+                            size: Nullable<Int>.value(1),
+                            uploadHeaders: Optional([
+                                "upload_headers": JSONValue.object(
+                                    [
+                                        "key": JSONValue.string("value")
+                                    ]
+                                )
+                            ]),
+                            uploadStatus: FileUploadStatus.pending,
+                            uploadUrl: Optional(Nullable<String>.value("upload_url")),
+                            url: Nullable<String>.value("url"),
+                            visibility: FileVisibility.public,
+                            waveformUrl: Nullable<String>.value("waveform_url"),
+                            width: Nullable<Int>.value(1)
+                        )
+                    ],
+                    id: "id",
+                    maxFileSize: 1,
+                    minimumLength: Nullable<Int>.value(1),
+                    money: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    options: [
+                        "options",
+                        "options"
+                    ],
+                    required: true,
+                    textCollectionType: FinancingRequirementTextCollectionType.none,
+                    textFormat: FinancingRequirementTextFormat.plain,
+                    values: [
+                        "values",
+                        "values"
+                    ]
+                )
+            ]),
+            status: FinancingApplicationStatus.requiresCollection,
+            terms: Optional(FinancingTerms(
+                content: "content",
+                disclosure: "disclosure",
+                feesUrl: "fees_url",
+                policies: [
+                    "policies",
+                    "policies"
+                ],
+                url: "url",
+                version: "version"
+            )),
+            updatedAt: "updated_at"
+        )
+        let response = try await client.financingApplications.submit(
+            id: "id",
+            request: .init(merchantAcceptance: SubmitFinancingApplicationsRequestMerchantAcceptance(
+                accepted: true,
+                termsVersion: "terms_version"
             )),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

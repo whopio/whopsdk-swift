@@ -92,6 +92,143 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "app": {
+                        "developer": {
+                          "id": "id",
+                          "title": "title"
+                        },
+                        "icon": {
+                          "url": "url"
+                        },
+                        "id": "id",
+                        "name": "name"
+                      },
+                      "created_at": "created_at",
+                      "external_id": "external_id",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": "metadata"
+                      },
+                      "requesting_reauthorization": true,
+                      "updated_at": "updated_at"
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "app": {
+                        "developer": {
+                          "id": "id",
+                          "title": "title"
+                        },
+                        "icon": {
+                          "url": "url"
+                        },
+                        "id": "id",
+                        "name": "name"
+                      },
+                      "created_at": "created_at",
+                      "external_id": "external_id",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": "metadata"
+                      },
+                      "requesting_reauthorization": true,
+                      "updated_at": "updated_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAppInstallationsResponse(
+            data: [
+                AppInstallation(
+                    account: AccountSummary(
+                        id: "id",
+                        title: "title"
+                    ),
+                    app: AppSummary(
+                        developer: AccountSummary(
+                            id: "id",
+                            title: "title"
+                        ),
+                        icon: AppIcon(
+                            url: "url"
+                        ),
+                        id: "id",
+                        name: "name"
+                    ),
+                    createdAt: "created_at",
+                    externalId: Nullable<String>.value("external_id"),
+                    id: "id",
+                    metadata: Nullable<[String: Nullable<String>]>.value([
+                        "metadata": Nullable<String>.value("metadata")
+                    ]),
+                    requestingReauthorization: true,
+                    updatedAt: "updated_at"
+                ),
+                AppInstallation(
+                    account: AccountSummary(
+                        id: "id",
+                        title: "title"
+                    ),
+                    app: AppSummary(
+                        developer: AccountSummary(
+                            id: "id",
+                            title: "title"
+                        ),
+                        icon: AppIcon(
+                            url: "url"
+                        ),
+                        id: "id",
+                        name: "name"
+                    ),
+                    createdAt: "created_at",
+                    externalId: Nullable<String>.value("external_id"),
+                    id: "id",
+                    metadata: Nullable<[String: Nullable<String>]>.value([
+                        "metadata": Nullable<String>.value("metadata")
+                    ]),
+                    requestingReauthorization: true,
+                    updatedAt: "updated_at"
+                )
+            ],
+            pageInfo: ListAppInstallationsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.appInstallations.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -164,6 +301,76 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "app": {
+                    "developer": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "icon": {
+                      "url": "url"
+                    },
+                    "id": "id",
+                    "name": "name"
+                  },
+                  "created_at": "created_at",
+                  "external_id": "external_id",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "requesting_reauthorization": true,
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AppInstallation(
+            account: AccountSummary(
+                id: "id",
+                title: "title"
+            ),
+            app: AppSummary(
+                developer: AccountSummary(
+                    id: "id",
+                    title: "title"
+                ),
+                icon: AppIcon(
+                    url: "url"
+                ),
+                id: "id",
+                name: "name"
+            ),
+            createdAt: "created_at",
+            externalId: Nullable<String>.value("external_id"),
+            id: "id",
+            metadata: Nullable<[String: Nullable<String>]>.value([
+                "metadata": Nullable<String>.value("metadata")
+            ]),
+            requestingReauthorization: true,
+            updatedAt: "updated_at"
+        )
+        let response = try await client.appInstallations.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func update1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -228,6 +435,77 @@ import WhopSDK
             ]),
             requestingReauthorization: false,
             updatedAt: "2026-01-01T12:00:00.000Z"
+        )
+        let response = try await client.appInstallations.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "app": {
+                    "developer": {
+                      "id": "id",
+                      "title": "title"
+                    },
+                    "icon": {
+                      "url": "url"
+                    },
+                    "id": "id",
+                    "name": "name"
+                  },
+                  "created_at": "created_at",
+                  "external_id": "external_id",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "requesting_reauthorization": true,
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AppInstallation(
+            account: AccountSummary(
+                id: "id",
+                title: "title"
+            ),
+            app: AppSummary(
+                developer: AccountSummary(
+                    id: "id",
+                    title: "title"
+                ),
+                icon: AppIcon(
+                    url: "url"
+                ),
+                id: "id",
+                name: "name"
+            ),
+            createdAt: "created_at",
+            externalId: Nullable<String>.value("external_id"),
+            id: "id",
+            metadata: Nullable<[String: Nullable<String>]>.value([
+                "metadata": Nullable<String>.value("metadata")
+            ]),
+            requestingReauthorization: true,
+            updatedAt: "updated_at"
         )
         let response = try await client.appInstallations.update(
             id: "id",

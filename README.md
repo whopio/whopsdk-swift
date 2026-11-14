@@ -43,7 +43,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/whopio/whopsdk-swift", from: "1.0.11"),
+    .package(url: "<git-url>", from: "0.1.0"),
 ]
 ```
 

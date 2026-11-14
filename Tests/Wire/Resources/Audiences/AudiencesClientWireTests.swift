@@ -111,6 +111,218 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "audience_type": "custom",
+                      "auto_refresh": true,
+                      "created_at": "created_at",
+                      "error_message": "error_message",
+                      "filters": {
+                        "filters": {
+                          "key": "value"
+                        }
+                      },
+                      "id": "id",
+                      "last_refreshed_at": "last_refreshed_at",
+                      "lookalike_ratio": 1.1,
+                      "lookalike_starting_ratio": 1.1,
+                      "match_rates": [
+                        {
+                          "lower_bound": 1.1,
+                          "platform": "meta",
+                          "status": "calculating",
+                          "upper_bound": 1.1
+                        },
+                        {
+                          "lower_bound": 1.1,
+                          "platform": "meta",
+                          "status": "calculating",
+                          "upper_bound": 1.1
+                        }
+                      ],
+                      "matched_rows": 1.1,
+                      "name": "name",
+                      "platform_audience_ids": [
+                        "platform_audience_ids",
+                        "platform_audience_ids"
+                      ],
+                      "processed_rows": 1.1,
+                      "progress_percent": 1.1,
+                      "source_audience_id": "source_audience_id",
+                      "source_type": "csv_upload",
+                      "status": "pending",
+                      "total_rows": 1.1,
+                      "updated_at": "updated_at"
+                    },
+                    {
+                      "audience_type": "custom",
+                      "auto_refresh": true,
+                      "created_at": "created_at",
+                      "error_message": "error_message",
+                      "filters": {
+                        "filters": {
+                          "key": "value"
+                        }
+                      },
+                      "id": "id",
+                      "last_refreshed_at": "last_refreshed_at",
+                      "lookalike_ratio": 1.1,
+                      "lookalike_starting_ratio": 1.1,
+                      "match_rates": [
+                        {
+                          "lower_bound": 1.1,
+                          "platform": "meta",
+                          "status": "calculating",
+                          "upper_bound": 1.1
+                        },
+                        {
+                          "lower_bound": 1.1,
+                          "platform": "meta",
+                          "status": "calculating",
+                          "upper_bound": 1.1
+                        }
+                      ],
+                      "matched_rows": 1.1,
+                      "name": "name",
+                      "platform_audience_ids": [
+                        "platform_audience_ids",
+                        "platform_audience_ids"
+                      ],
+                      "processed_rows": 1.1,
+                      "progress_percent": 1.1,
+                      "source_audience_id": "source_audience_id",
+                      "source_type": "csv_upload",
+                      "status": "pending",
+                      "total_rows": 1.1,
+                      "updated_at": "updated_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAudiencesResponse(
+            data: [
+                Audience(
+                    audienceType: AudienceAudienceType.custom,
+                    autoRefresh: true,
+                    createdAt: "created_at",
+                    errorMessage: Nullable<String>.value("error_message"),
+                    filters: Nullable<[String: JSONValue]>.value([
+                        "filters": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    id: "id",
+                    lastRefreshedAt: Nullable<String>.value("last_refreshed_at"),
+                    lookalikeRatio: Nullable<Double>.value(1.1),
+                    lookalikeStartingRatio: Nullable<Double>.value(1.1),
+                    matchRates: [
+                        AudienceMatchRate(
+                            lowerBound: Nullable<Double>.value(1.1),
+                            platform: AudienceMatchRatePlatform.meta,
+                            status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                            upperBound: Nullable<Double>.value(1.1)
+                        ),
+                        AudienceMatchRate(
+                            lowerBound: Nullable<Double>.value(1.1),
+                            platform: AudienceMatchRatePlatform.meta,
+                            status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                            upperBound: Nullable<Double>.value(1.1)
+                        )
+                    ],
+                    matchedRows: 1.1,
+                    name: "name",
+                    platformAudienceIds: [
+                        "platform_audience_ids",
+                        "platform_audience_ids"
+                    ],
+                    processedRows: 1.1,
+                    progressPercent: 1.1,
+                    sourceAudienceId: Nullable<String>.value("source_audience_id"),
+                    sourceType: AudienceSourceType.csvUpload,
+                    status: AudienceStatus.pending,
+                    totalRows: 1.1,
+                    updatedAt: "updated_at"
+                ),
+                Audience(
+                    audienceType: AudienceAudienceType.custom,
+                    autoRefresh: true,
+                    createdAt: "created_at",
+                    errorMessage: Nullable<String>.value("error_message"),
+                    filters: Nullable<[String: JSONValue]>.value([
+                        "filters": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    id: "id",
+                    lastRefreshedAt: Nullable<String>.value("last_refreshed_at"),
+                    lookalikeRatio: Nullable<Double>.value(1.1),
+                    lookalikeStartingRatio: Nullable<Double>.value(1.1),
+                    matchRates: [
+                        AudienceMatchRate(
+                            lowerBound: Nullable<Double>.value(1.1),
+                            platform: AudienceMatchRatePlatform.meta,
+                            status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                            upperBound: Nullable<Double>.value(1.1)
+                        ),
+                        AudienceMatchRate(
+                            lowerBound: Nullable<Double>.value(1.1),
+                            platform: AudienceMatchRatePlatform.meta,
+                            status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                            upperBound: Nullable<Double>.value(1.1)
+                        )
+                    ],
+                    matchedRows: 1.1,
+                    name: "name",
+                    platformAudienceIds: [
+                        "platform_audience_ids",
+                        "platform_audience_ids"
+                    ],
+                    processedRows: 1.1,
+                    progressPercent: 1.1,
+                    sourceAudienceId: Nullable<String>.value("source_audience_id"),
+                    sourceType: AudienceSourceType.csvUpload,
+                    status: AudienceStatus.pending,
+                    totalRows: 1.1,
+                    updatedAt: "updated_at"
+                )
+            ],
+            pageInfo: ListAudiencesResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.audiences.list(
+            accountId: "account_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -201,7 +413,141 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "audience_type": "custom",
+                  "auto_refresh": true,
+                  "created_at": "created_at",
+                  "error_message": "error_message",
+                  "filters": {
+                    "filters": {
+                      "key": "value"
+                    }
+                  },
+                  "id": "id",
+                  "last_refreshed_at": "last_refreshed_at",
+                  "lookalike_ratio": 1.1,
+                  "lookalike_starting_ratio": 1.1,
+                  "match_rates": [
+                    {
+                      "lower_bound": 1.1,
+                      "platform": "meta",
+                      "status": "calculating",
+                      "upper_bound": 1.1
+                    },
+                    {
+                      "lower_bound": 1.1,
+                      "platform": "meta",
+                      "status": "calculating",
+                      "upper_bound": 1.1
+                    }
+                  ],
+                  "matched_rows": 1.1,
+                  "name": "name",
+                  "platform_audience_ids": [
+                    "platform_audience_ids",
+                    "platform_audience_ids"
+                  ],
+                  "processed_rows": 1.1,
+                  "progress_percent": 1.1,
+                  "source_audience_id": "source_audience_id",
+                  "source_type": "csv_upload",
+                  "status": "pending",
+                  "total_rows": 1.1,
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateAudiencesResponse.audience(
+            Audience(
+                audienceType: AudienceAudienceType.custom,
+                autoRefresh: true,
+                createdAt: "created_at",
+                errorMessage: Nullable<String>.value("error_message"),
+                filters: Nullable<[String: JSONValue]>.value([
+                    "filters": JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                id: "id",
+                lastRefreshedAt: Nullable<String>.value("last_refreshed_at"),
+                lookalikeRatio: Nullable<Double>.value(1.1),
+                lookalikeStartingRatio: Nullable<Double>.value(1.1),
+                matchRates: [
+                    AudienceMatchRate(
+                        lowerBound: Nullable<Double>.value(1.1),
+                        platform: AudienceMatchRatePlatform.meta,
+                        status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                        upperBound: Nullable<Double>.value(1.1)
+                    ),
+                    AudienceMatchRate(
+                        lowerBound: Nullable<Double>.value(1.1),
+                        platform: AudienceMatchRatePlatform.meta,
+                        status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                        upperBound: Nullable<Double>.value(1.1)
+                    )
+                ],
+                matchedRows: 1.1,
+                name: "name",
+                platformAudienceIds: [
+                    "platform_audience_ids",
+                    "platform_audience_ids"
+                ],
+                processedRows: 1.1,
+                progressPercent: 1.1,
+                sourceAudienceId: Nullable<String>.value("source_audience_id"),
+                sourceType: AudienceSourceType.csvUpload,
+                status: AudienceStatus.pending,
+                totalRows: 1.1,
+                updatedAt: "updated_at"
+            )
+        )
+        let response = try await client.audiences.create(
+            request: .init(accountId: "account_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "success": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteAudiencesResponse(
+            success: true
+        )
+        let response = try await client.audiences.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
@@ -316,6 +662,113 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "audience_type": "custom",
+                  "auto_refresh": true,
+                  "created_at": "created_at",
+                  "error_message": "error_message",
+                  "filters": {
+                    "filters": {
+                      "key": "value"
+                    }
+                  },
+                  "id": "id",
+                  "last_refreshed_at": "last_refreshed_at",
+                  "lookalike_ratio": 1.1,
+                  "lookalike_starting_ratio": 1.1,
+                  "match_rates": [
+                    {
+                      "lower_bound": 1.1,
+                      "platform": "meta",
+                      "status": "calculating",
+                      "upper_bound": 1.1
+                    },
+                    {
+                      "lower_bound": 1.1,
+                      "platform": "meta",
+                      "status": "calculating",
+                      "upper_bound": 1.1
+                    }
+                  ],
+                  "matched_rows": 1.1,
+                  "name": "name",
+                  "platform_audience_ids": [
+                    "platform_audience_ids",
+                    "platform_audience_ids"
+                  ],
+                  "processed_rows": 1.1,
+                  "progress_percent": 1.1,
+                  "source_audience_id": "source_audience_id",
+                  "source_type": "csv_upload",
+                  "status": "pending",
+                  "total_rows": 1.1,
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Audience(
+            audienceType: AudienceAudienceType.custom,
+            autoRefresh: true,
+            createdAt: "created_at",
+            errorMessage: Nullable<String>.value("error_message"),
+            filters: Nullable<[String: JSONValue]>.value([
+                "filters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            id: "id",
+            lastRefreshedAt: Nullable<String>.value("last_refreshed_at"),
+            lookalikeRatio: Nullable<Double>.value(1.1),
+            lookalikeStartingRatio: Nullable<Double>.value(1.1),
+            matchRates: [
+                AudienceMatchRate(
+                    lowerBound: Nullable<Double>.value(1.1),
+                    platform: AudienceMatchRatePlatform.meta,
+                    status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                    upperBound: Nullable<Double>.value(1.1)
+                ),
+                AudienceMatchRate(
+                    lowerBound: Nullable<Double>.value(1.1),
+                    platform: AudienceMatchRatePlatform.meta,
+                    status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                    upperBound: Nullable<Double>.value(1.1)
+                )
+            ],
+            matchedRows: 1.1,
+            name: "name",
+            platformAudienceIds: [
+                "platform_audience_ids",
+                "platform_audience_ids"
+            ],
+            processedRows: 1.1,
+            progressPercent: 1.1,
+            sourceAudienceId: Nullable<String>.value("source_audience_id"),
+            sourceType: AudienceSourceType.csvUpload,
+            status: AudienceStatus.pending,
+            totalRows: 1.1,
+            updatedAt: "updated_at"
+        )
+        let response = try await client.audiences.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func addPeople1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -400,6 +853,113 @@ import WhopSDK
         let response = try await client.audiences.addPeople(
             id: "id",
             request: .init(fileId: "file_xxxxxxxxxxxxxx"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func addPeople2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "audience_type": "custom",
+                  "auto_refresh": true,
+                  "created_at": "created_at",
+                  "error_message": "error_message",
+                  "filters": {
+                    "filters": {
+                      "key": "value"
+                    }
+                  },
+                  "id": "id",
+                  "last_refreshed_at": "last_refreshed_at",
+                  "lookalike_ratio": 1.1,
+                  "lookalike_starting_ratio": 1.1,
+                  "match_rates": [
+                    {
+                      "lower_bound": 1.1,
+                      "platform": "meta",
+                      "status": "calculating",
+                      "upper_bound": 1.1
+                    },
+                    {
+                      "lower_bound": 1.1,
+                      "platform": "meta",
+                      "status": "calculating",
+                      "upper_bound": 1.1
+                    }
+                  ],
+                  "matched_rows": 1.1,
+                  "name": "name",
+                  "platform_audience_ids": [
+                    "platform_audience_ids",
+                    "platform_audience_ids"
+                  ],
+                  "processed_rows": 1.1,
+                  "progress_percent": 1.1,
+                  "source_audience_id": "source_audience_id",
+                  "source_type": "csv_upload",
+                  "status": "pending",
+                  "total_rows": 1.1,
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Audience(
+            audienceType: AudienceAudienceType.custom,
+            autoRefresh: true,
+            createdAt: "created_at",
+            errorMessage: Nullable<String>.value("error_message"),
+            filters: Nullable<[String: JSONValue]>.value([
+                "filters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            id: "id",
+            lastRefreshedAt: Nullable<String>.value("last_refreshed_at"),
+            lookalikeRatio: Nullable<Double>.value(1.1),
+            lookalikeStartingRatio: Nullable<Double>.value(1.1),
+            matchRates: [
+                AudienceMatchRate(
+                    lowerBound: Nullable<Double>.value(1.1),
+                    platform: AudienceMatchRatePlatform.meta,
+                    status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                    upperBound: Nullable<Double>.value(1.1)
+                ),
+                AudienceMatchRate(
+                    lowerBound: Nullable<Double>.value(1.1),
+                    platform: AudienceMatchRatePlatform.meta,
+                    status: Nullable<AudienceMatchRateStatus>.value(AudienceMatchRateStatus.calculating),
+                    upperBound: Nullable<Double>.value(1.1)
+                )
+            ],
+            matchedRows: 1.1,
+            name: "name",
+            platformAudienceIds: [
+                "platform_audience_ids",
+                "platform_audience_ids"
+            ],
+            processedRows: 1.1,
+            progressPercent: 1.1,
+            sourceAudienceId: Nullable<String>.value("source_audience_id"),
+            sourceType: AudienceSourceType.csvUpload,
+            status: AudienceStatus.pending,
+            totalRows: 1.1,
+            updatedAt: "updated_at"
+        )
+        let response = try await client.audiences.addPeople(
+            id: "id",
+            request: .init(fileId: "file_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -1,41 +1,40 @@
 import Foundation
 
-/// The connection type for Lead.
-public struct ListLeadsResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
-    public let data: [LeadListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+public struct PlatformTrendsReportsResponseDataReportsItemRowsItemIndustryType: Codable, Hashable, Sendable {
+    /// The value's id, such as `options_trading`.
+    public let id: String
+    /// The value's display name.
+    public let name: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        data: [LeadListItem],
-        pageInfo: PageInfo,
+        id: String,
+        name: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.data = data
-        self.pageInfo = pageInfo
+        self.id = id
+        self.name = name
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([LeadListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.name = try container.decode(String.self, forKey: .name)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.data, forKey: .data)
-        try container.encode(self.pageInfo, forKey: .pageInfo)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.name, forKey: .name)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case data
-        case pageInfo = "page_info"
+        case id
+        case name
     }
 }

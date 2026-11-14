@@ -118,6 +118,523 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "assignment_seed": "assignment_seed",
+                      "bucket_by": "user",
+                      "configuration_revision": 1,
+                      "control": {
+                        "related_resource": {
+                          "id": "id",
+                          "object": "app"
+                        }
+                      },
+                      "created_at": "created_at",
+                      "created_by": "created_by",
+                      "ended_at": "ended_at",
+                      "feature_flag_only": true,
+                      "findings": "findings",
+                      "flag_key": "flag_key",
+                      "hypothesis": "hypothesis",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": "metadata"
+                      },
+                      "name": "name",
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "started_at": "started_at",
+                      "status": "draft",
+                      "targeting_rules": [
+                        {
+                          "conditions": [
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            },
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            }
+                          ],
+                          "pass_percentage": 100,
+                          "type": "include"
+                        },
+                        {
+                          "conditions": [
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            },
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            }
+                          ],
+                          "pass_percentage": 100,
+                          "type": "include"
+                        }
+                      ],
+                      "updated_at": "updated_at",
+                      "variants": [
+                        {
+                          "name": "name",
+                          "ranges": [
+                            [
+                              1,
+                              1
+                            ],
+                            [
+                              1,
+                              1
+                            ]
+                          ],
+                          "related_resource": {
+                            "id": "id",
+                            "object": "app"
+                          },
+                          "weight": 1
+                        },
+                        {
+                          "name": "name",
+                          "ranges": [
+                            [
+                              1,
+                              1
+                            ],
+                            [
+                              1,
+                              1
+                            ]
+                          ],
+                          "related_resource": {
+                            "id": "id",
+                            "object": "app"
+                          },
+                          "weight": 1
+                        }
+                      ],
+                      "winning_arm": "winning_arm"
+                    },
+                    {
+                      "account_id": "account_id",
+                      "assignment_seed": "assignment_seed",
+                      "bucket_by": "user",
+                      "configuration_revision": 1,
+                      "control": {
+                        "related_resource": {
+                          "id": "id",
+                          "object": "app"
+                        }
+                      },
+                      "created_at": "created_at",
+                      "created_by": "created_by",
+                      "ended_at": "ended_at",
+                      "feature_flag_only": true,
+                      "findings": "findings",
+                      "flag_key": "flag_key",
+                      "hypothesis": "hypothesis",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": "metadata"
+                      },
+                      "name": "name",
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "started_at": "started_at",
+                      "status": "draft",
+                      "targeting_rules": [
+                        {
+                          "conditions": [
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            },
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            }
+                          ],
+                          "pass_percentage": 100,
+                          "type": "include"
+                        },
+                        {
+                          "conditions": [
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            },
+                            {
+                              "field": "field",
+                              "operator": "any",
+                              "type": "user_id",
+                              "value": {
+                                "key": "value"
+                              }
+                            }
+                          ],
+                          "pass_percentage": 100,
+                          "type": "include"
+                        }
+                      ],
+                      "updated_at": "updated_at",
+                      "variants": [
+                        {
+                          "name": "name",
+                          "ranges": [
+                            [
+                              1,
+                              1
+                            ],
+                            [
+                              1,
+                              1
+                            ]
+                          ],
+                          "related_resource": {
+                            "id": "id",
+                            "object": "app"
+                          },
+                          "weight": 1
+                        },
+                        {
+                          "name": "name",
+                          "ranges": [
+                            [
+                              1,
+                              1
+                            ],
+                            [
+                              1,
+                              1
+                            ]
+                          ],
+                          "related_resource": {
+                            "id": "id",
+                            "object": "app"
+                          },
+                          "weight": 1
+                        }
+                      ],
+                      "winning_arm": "winning_arm"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListExperimentsResponse(
+            data: [
+                Experiment(
+                    accountId: "account_id",
+                    assignmentSeed: "assignment_seed",
+                    bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+                    configurationRevision: 1,
+                    control: ExperimentControl(
+                        relatedResource: Optional(ExperimentResourceReference(
+                            id: "id",
+                            object: ExperimentResourceReferenceObject.app
+                        ))
+                    ),
+                    createdAt: Optional(Nullable<String>.value("created_at")),
+                    createdBy: Optional(Nullable<String>.value("created_by")),
+                    endedAt: Optional(Nullable<String>.value("ended_at")),
+                    featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+                    findings: Optional(Nullable<String>.value("findings")),
+                    flagKey: "flag_key",
+                    hypothesis: Optional(Nullable<String>.value("hypothesis")),
+                    id: "id",
+                    metadata: Optional([
+                        "metadata": "metadata"
+                    ]),
+                    name: "name",
+                    relatedResource: ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    ),
+                    startedAt: Optional(Nullable<String>.value("started_at")),
+                    status: ExperimentStatus.draft,
+                    targetingRules: [
+                        ExperimentTargetingRulesItem(
+                            conditions: [
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                ),
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                )
+                            ],
+                            passPercentage: Optional(100),
+                            type: Optional(ExperimentTargetingRulesItemType.include)
+                        ),
+                        ExperimentTargetingRulesItem(
+                            conditions: [
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                ),
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                )
+                            ],
+                            passPercentage: Optional(100),
+                            type: Optional(ExperimentTargetingRulesItemType.include)
+                        )
+                    ],
+                    updatedAt: Nullable<String>.value("updated_at"),
+                    variants: [
+                        ExperimentVariantsItem(
+                            name: "name",
+                            ranges: Optional([
+                                [
+                                    1,
+                                    1
+                                ],
+                                [
+                                    1,
+                                    1
+                                ]
+                            ]),
+                            relatedResource: Optional(ExperimentResourceReference(
+                                id: "id",
+                                object: ExperimentResourceReferenceObject.app
+                            )),
+                            weight: 1
+                        ),
+                        ExperimentVariantsItem(
+                            name: "name",
+                            ranges: Optional([
+                                [
+                                    1,
+                                    1
+                                ],
+                                [
+                                    1,
+                                    1
+                                ]
+                            ]),
+                            relatedResource: Optional(ExperimentResourceReference(
+                                id: "id",
+                                object: ExperimentResourceReferenceObject.app
+                            )),
+                            weight: 1
+                        )
+                    ],
+                    winningArm: Optional(Nullable<String>.value("winning_arm"))
+                ),
+                Experiment(
+                    accountId: "account_id",
+                    assignmentSeed: "assignment_seed",
+                    bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+                    configurationRevision: 1,
+                    control: ExperimentControl(
+                        relatedResource: Optional(ExperimentResourceReference(
+                            id: "id",
+                            object: ExperimentResourceReferenceObject.app
+                        ))
+                    ),
+                    createdAt: Optional(Nullable<String>.value("created_at")),
+                    createdBy: Optional(Nullable<String>.value("created_by")),
+                    endedAt: Optional(Nullable<String>.value("ended_at")),
+                    featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+                    findings: Optional(Nullable<String>.value("findings")),
+                    flagKey: "flag_key",
+                    hypothesis: Optional(Nullable<String>.value("hypothesis")),
+                    id: "id",
+                    metadata: Optional([
+                        "metadata": "metadata"
+                    ]),
+                    name: "name",
+                    relatedResource: ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    ),
+                    startedAt: Optional(Nullable<String>.value("started_at")),
+                    status: ExperimentStatus.draft,
+                    targetingRules: [
+                        ExperimentTargetingRulesItem(
+                            conditions: [
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                ),
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                )
+                            ],
+                            passPercentage: Optional(100),
+                            type: Optional(ExperimentTargetingRulesItemType.include)
+                        ),
+                        ExperimentTargetingRulesItem(
+                            conditions: [
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                ),
+                                ExperimentTargetingRulesItemConditionsItem(
+                                    field: Optional(Nullable<String>.value("field")),
+                                    operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                                    type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                                    value: JSONValue.object(
+                                        [
+                                            "key": JSONValue.string("value")
+                                        ]
+                                    )
+                                )
+                            ],
+                            passPercentage: Optional(100),
+                            type: Optional(ExperimentTargetingRulesItemType.include)
+                        )
+                    ],
+                    updatedAt: Nullable<String>.value("updated_at"),
+                    variants: [
+                        ExperimentVariantsItem(
+                            name: "name",
+                            ranges: Optional([
+                                [
+                                    1,
+                                    1
+                                ],
+                                [
+                                    1,
+                                    1
+                                ]
+                            ]),
+                            relatedResource: Optional(ExperimentResourceReference(
+                                id: "id",
+                                object: ExperimentResourceReferenceObject.app
+                            )),
+                            weight: 1
+                        ),
+                        ExperimentVariantsItem(
+                            name: "name",
+                            ranges: Optional([
+                                [
+                                    1,
+                                    1
+                                ],
+                                [
+                                    1,
+                                    1
+                                ]
+                            ]),
+                            relatedResource: Optional(ExperimentResourceReference(
+                                id: "id",
+                                object: ExperimentResourceReferenceObject.app
+                            )),
+                            weight: 1
+                        )
+                    ],
+                    winningArm: Optional(Nullable<String>.value("winning_arm"))
+                )
+            ],
+            pageInfo: ListExperimentsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.experiments.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -251,6 +768,269 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "assignment_seed": "assignment_seed",
+                  "bucket_by": "user",
+                  "configuration_revision": 1,
+                  "control": {
+                    "related_resource": {
+                      "id": "id",
+                      "object": "app"
+                    }
+                  },
+                  "created_at": "created_at",
+                  "created_by": "created_by",
+                  "ended_at": "ended_at",
+                  "feature_flag_only": true,
+                  "findings": "findings",
+                  "flag_key": "flag_key",
+                  "hypothesis": "hypothesis",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "name": "name",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "started_at": "started_at",
+                  "status": "draft",
+                  "targeting_rules": [
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    }
+                  ],
+                  "updated_at": "updated_at",
+                  "variants": [
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    }
+                  ],
+                  "winning_arm": "winning_arm"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Experiment(
+            accountId: "account_id",
+            assignmentSeed: "assignment_seed",
+            bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+            configurationRevision: 1,
+            control: ExperimentControl(
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                ))
+            ),
+            createdAt: Optional(Nullable<String>.value("created_at")),
+            createdBy: Optional(Nullable<String>.value("created_by")),
+            endedAt: Optional(Nullable<String>.value("ended_at")),
+            featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+            findings: Optional(Nullable<String>.value("findings")),
+            flagKey: "flag_key",
+            hypothesis: Optional(Nullable<String>.value("hypothesis")),
+            id: "id",
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            name: "name",
+            relatedResource: ExperimentResourceReference(
+                id: "id",
+                object: ExperimentResourceReferenceObject.app
+            ),
+            startedAt: Optional(Nullable<String>.value("started_at")),
+            status: ExperimentStatus.draft,
+            targetingRules: [
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                ),
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                )
+            ],
+            updatedAt: Nullable<String>.value("updated_at"),
+            variants: [
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                ),
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                )
+            ],
+            winningArm: Optional(Nullable<String>.value("winning_arm"))
+        )
+        let response = try await client.experiments.create(
+            request: .init(
+                accountId: "account_id",
+                flagKey: "flag_key"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func exposures1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -286,6 +1066,47 @@ import WhopSDK
                     object: ExperimentResourceReferenceObject.app
                 )),
                 variant: Nullable<String>.value("treatment")
+            )
+        )
+        let response = try await client.experiments.exposures(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func exposures2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "configuration_revision": 1,
+                  "enabled": true,
+                  "experiment_id": "experiment_id",
+                  "flag_key": "flag_key",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "variant": "variant"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ExposuresExperimentsResponse.experimentExposure(
+            ExperimentExposure(
+                configurationRevision: Optional(1),
+                enabled: true,
+                experimentId: Optional("experiment_id"),
+                flagKey: Optional("flag_key"),
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                )),
+                variant: Nullable<String>.value("variant")
             )
         )
         let response = try await client.experiments.exposures(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -422,6 +1243,266 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "assignment_seed": "assignment_seed",
+                  "bucket_by": "user",
+                  "configuration_revision": 1,
+                  "control": {
+                    "related_resource": {
+                      "id": "id",
+                      "object": "app"
+                    }
+                  },
+                  "created_at": "created_at",
+                  "created_by": "created_by",
+                  "ended_at": "ended_at",
+                  "feature_flag_only": true,
+                  "findings": "findings",
+                  "flag_key": "flag_key",
+                  "hypothesis": "hypothesis",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "name": "name",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "started_at": "started_at",
+                  "status": "draft",
+                  "targeting_rules": [
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    }
+                  ],
+                  "updated_at": "updated_at",
+                  "variants": [
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    }
+                  ],
+                  "winning_arm": "winning_arm"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Experiment(
+            accountId: "account_id",
+            assignmentSeed: "assignment_seed",
+            bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+            configurationRevision: 1,
+            control: ExperimentControl(
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                ))
+            ),
+            createdAt: Optional(Nullable<String>.value("created_at")),
+            createdBy: Optional(Nullable<String>.value("created_by")),
+            endedAt: Optional(Nullable<String>.value("ended_at")),
+            featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+            findings: Optional(Nullable<String>.value("findings")),
+            flagKey: "flag_key",
+            hypothesis: Optional(Nullable<String>.value("hypothesis")),
+            id: "id",
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            name: "name",
+            relatedResource: ExperimentResourceReference(
+                id: "id",
+                object: ExperimentResourceReferenceObject.app
+            ),
+            startedAt: Optional(Nullable<String>.value("started_at")),
+            status: ExperimentStatus.draft,
+            targetingRules: [
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                ),
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                )
+            ],
+            updatedAt: Nullable<String>.value("updated_at"),
+            variants: [
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                ),
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                )
+            ],
+            winningArm: Optional(Nullable<String>.value("winning_arm"))
+        )
+        let response = try await client.experiments.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func update1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -544,6 +1625,267 @@ import WhopSDK
                 )
             ],
             winningArm: Optional(Nullable<String>.value("treatment"))
+        )
+        let response = try await client.experiments.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "assignment_seed": "assignment_seed",
+                  "bucket_by": "user",
+                  "configuration_revision": 1,
+                  "control": {
+                    "related_resource": {
+                      "id": "id",
+                      "object": "app"
+                    }
+                  },
+                  "created_at": "created_at",
+                  "created_by": "created_by",
+                  "ended_at": "ended_at",
+                  "feature_flag_only": true,
+                  "findings": "findings",
+                  "flag_key": "flag_key",
+                  "hypothesis": "hypothesis",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "name": "name",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "started_at": "started_at",
+                  "status": "draft",
+                  "targeting_rules": [
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    }
+                  ],
+                  "updated_at": "updated_at",
+                  "variants": [
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    }
+                  ],
+                  "winning_arm": "winning_arm"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Experiment(
+            accountId: "account_id",
+            assignmentSeed: "assignment_seed",
+            bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+            configurationRevision: 1,
+            control: ExperimentControl(
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                ))
+            ),
+            createdAt: Optional(Nullable<String>.value("created_at")),
+            createdBy: Optional(Nullable<String>.value("created_by")),
+            endedAt: Optional(Nullable<String>.value("ended_at")),
+            featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+            findings: Optional(Nullable<String>.value("findings")),
+            flagKey: "flag_key",
+            hypothesis: Optional(Nullable<String>.value("hypothesis")),
+            id: "id",
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            name: "name",
+            relatedResource: ExperimentResourceReference(
+                id: "id",
+                object: ExperimentResourceReferenceObject.app
+            ),
+            startedAt: Optional(Nullable<String>.value("started_at")),
+            status: ExperimentStatus.draft,
+            targetingRules: [
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                ),
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                )
+            ],
+            updatedAt: Nullable<String>.value("updated_at"),
+            variants: [
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                ),
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                )
+            ],
+            winningArm: Optional(Nullable<String>.value("winning_arm"))
         )
         let response = try await client.experiments.update(
             id: "id",
@@ -684,6 +2026,267 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func activate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "assignment_seed": "assignment_seed",
+                  "bucket_by": "user",
+                  "configuration_revision": 1,
+                  "control": {
+                    "related_resource": {
+                      "id": "id",
+                      "object": "app"
+                    }
+                  },
+                  "created_at": "created_at",
+                  "created_by": "created_by",
+                  "ended_at": "ended_at",
+                  "feature_flag_only": true,
+                  "findings": "findings",
+                  "flag_key": "flag_key",
+                  "hypothesis": "hypothesis",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "name": "name",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "started_at": "started_at",
+                  "status": "draft",
+                  "targeting_rules": [
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    }
+                  ],
+                  "updated_at": "updated_at",
+                  "variants": [
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    }
+                  ],
+                  "winning_arm": "winning_arm"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Experiment(
+            accountId: "account_id",
+            assignmentSeed: "assignment_seed",
+            bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+            configurationRevision: 1,
+            control: ExperimentControl(
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                ))
+            ),
+            createdAt: Optional(Nullable<String>.value("created_at")),
+            createdBy: Optional(Nullable<String>.value("created_by")),
+            endedAt: Optional(Nullable<String>.value("ended_at")),
+            featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+            findings: Optional(Nullable<String>.value("findings")),
+            flagKey: "flag_key",
+            hypothesis: Optional(Nullable<String>.value("hypothesis")),
+            id: "id",
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            name: "name",
+            relatedResource: ExperimentResourceReference(
+                id: "id",
+                object: ExperimentResourceReferenceObject.app
+            ),
+            startedAt: Optional(Nullable<String>.value("started_at")),
+            status: ExperimentStatus.draft,
+            targetingRules: [
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                ),
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                )
+            ],
+            updatedAt: Nullable<String>.value("updated_at"),
+            variants: [
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                ),
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                )
+            ],
+            winningArm: Optional(Nullable<String>.value("winning_arm"))
+        )
+        let response = try await client.experiments.activate(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func end1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -815,6 +2418,267 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func end2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "assignment_seed": "assignment_seed",
+                  "bucket_by": "user",
+                  "configuration_revision": 1,
+                  "control": {
+                    "related_resource": {
+                      "id": "id",
+                      "object": "app"
+                    }
+                  },
+                  "created_at": "created_at",
+                  "created_by": "created_by",
+                  "ended_at": "ended_at",
+                  "feature_flag_only": true,
+                  "findings": "findings",
+                  "flag_key": "flag_key",
+                  "hypothesis": "hypothesis",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "name": "name",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "started_at": "started_at",
+                  "status": "draft",
+                  "targeting_rules": [
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    }
+                  ],
+                  "updated_at": "updated_at",
+                  "variants": [
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    }
+                  ],
+                  "winning_arm": "winning_arm"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Experiment(
+            accountId: "account_id",
+            assignmentSeed: "assignment_seed",
+            bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+            configurationRevision: 1,
+            control: ExperimentControl(
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                ))
+            ),
+            createdAt: Optional(Nullable<String>.value("created_at")),
+            createdBy: Optional(Nullable<String>.value("created_by")),
+            endedAt: Optional(Nullable<String>.value("ended_at")),
+            featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+            findings: Optional(Nullable<String>.value("findings")),
+            flagKey: "flag_key",
+            hypothesis: Optional(Nullable<String>.value("hypothesis")),
+            id: "id",
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            name: "name",
+            relatedResource: ExperimentResourceReference(
+                id: "id",
+                object: ExperimentResourceReferenceObject.app
+            ),
+            startedAt: Optional(Nullable<String>.value("started_at")),
+            status: ExperimentStatus.draft,
+            targetingRules: [
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                ),
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                )
+            ],
+            updatedAt: Nullable<String>.value("updated_at"),
+            variants: [
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                ),
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                )
+            ],
+            winningArm: Optional(Nullable<String>.value("winning_arm"))
+        )
+        let response = try await client.experiments.end(
+            id: "id",
+            request: .init(findings: "findings"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func pause1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -937,6 +2801,266 @@ import WhopSDK
                 )
             ],
             winningArm: Optional(Nullable<String>.value("treatment"))
+        )
+        let response = try await client.experiments.pause(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func pause2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "assignment_seed": "assignment_seed",
+                  "bucket_by": "user",
+                  "configuration_revision": 1,
+                  "control": {
+                    "related_resource": {
+                      "id": "id",
+                      "object": "app"
+                    }
+                  },
+                  "created_at": "created_at",
+                  "created_by": "created_by",
+                  "ended_at": "ended_at",
+                  "feature_flag_only": true,
+                  "findings": "findings",
+                  "flag_key": "flag_key",
+                  "hypothesis": "hypothesis",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": "metadata"
+                  },
+                  "name": "name",
+                  "related_resource": {
+                    "id": "id",
+                    "object": "app"
+                  },
+                  "started_at": "started_at",
+                  "status": "draft",
+                  "targeting_rules": [
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        },
+                        {
+                          "field": "field",
+                          "operator": "any",
+                          "type": "user_id",
+                          "value": {
+                            "key": "value"
+                          }
+                        }
+                      ],
+                      "pass_percentage": 100,
+                      "type": "include"
+                    }
+                  ],
+                  "updated_at": "updated_at",
+                  "variants": [
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    },
+                    {
+                      "name": "name",
+                      "ranges": [
+                        [
+                          1,
+                          1
+                        ],
+                        [
+                          1,
+                          1
+                        ]
+                      ],
+                      "related_resource": {
+                        "id": "id",
+                        "object": "app"
+                      },
+                      "weight": 1
+                    }
+                  ],
+                  "winning_arm": "winning_arm"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Experiment(
+            accountId: "account_id",
+            assignmentSeed: "assignment_seed",
+            bucketBy: Optional(Nullable<ExperimentBucketBy>.value(ExperimentBucketBy.user)),
+            configurationRevision: 1,
+            control: ExperimentControl(
+                relatedResource: Optional(ExperimentResourceReference(
+                    id: "id",
+                    object: ExperimentResourceReferenceObject.app
+                ))
+            ),
+            createdAt: Optional(Nullable<String>.value("created_at")),
+            createdBy: Optional(Nullable<String>.value("created_by")),
+            endedAt: Optional(Nullable<String>.value("ended_at")),
+            featureFlagOnly: Optional(Nullable<Bool>.value(true)),
+            findings: Optional(Nullable<String>.value("findings")),
+            flagKey: "flag_key",
+            hypothesis: Optional(Nullable<String>.value("hypothesis")),
+            id: "id",
+            metadata: Optional([
+                "metadata": "metadata"
+            ]),
+            name: "name",
+            relatedResource: ExperimentResourceReference(
+                id: "id",
+                object: ExperimentResourceReferenceObject.app
+            ),
+            startedAt: Optional(Nullable<String>.value("started_at")),
+            status: ExperimentStatus.draft,
+            targetingRules: [
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                ),
+                ExperimentTargetingRulesItem(
+                    conditions: [
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        ),
+                        ExperimentTargetingRulesItemConditionsItem(
+                            field: Optional(Nullable<String>.value("field")),
+                            operator: ExperimentTargetingRulesItemConditionsItemOperator.any,
+                            type: ExperimentTargetingRulesItemConditionsItemType.userId,
+                            value: JSONValue.object(
+                                [
+                                    "key": JSONValue.string("value")
+                                ]
+                            )
+                        )
+                    ],
+                    passPercentage: Optional(100),
+                    type: Optional(ExperimentTargetingRulesItemType.include)
+                )
+            ],
+            updatedAt: Nullable<String>.value("updated_at"),
+            variants: [
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                ),
+                ExperimentVariantsItem(
+                    name: "name",
+                    ranges: Optional([
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ]
+                    ]),
+                    relatedResource: Optional(ExperimentResourceReference(
+                        id: "id",
+                        object: ExperimentResourceReferenceObject.app
+                    )),
+                    weight: 1
+                )
+            ],
+            winningArm: Optional(Nullable<String>.value("winning_arm"))
         )
         let response = try await client.experiments.pause(
             id: "id",

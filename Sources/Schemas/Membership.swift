@@ -54,7 +54,7 @@ public struct Membership: Codable, Hashable, Sendable {
     public let productId: String
     /// The promo code discounting this membership, prefixed `promo_`. `null` when none is applied. Set at checkout or by Apply Promo Code to Membership.
     public let promoCodeId: Nullable<String>
-    /// What the next renewal charges, after any promo code that still applies. `null` for non-renewing memberships.
+    /// The variant's renewal price, in the variant's currency, after any promo code that still applies. A membership billed in the buyer's local currency is charged this price converted at the exchange rate on each billing date. `null` for non-renewing memberships.
     public let renewalPrice: Nullable<Money>
     /// Paid installments counted so far on a split pay membership. `null` when the membership is not on split pay, or before its first installment is counted.
     public let splitPayCurrentPayments: Nullable<Int>

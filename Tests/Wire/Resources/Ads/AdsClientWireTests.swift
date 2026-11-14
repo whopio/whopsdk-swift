@@ -55,6 +55,81 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func reportIssues2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "created_at": "created_at",
+                      "id": "id",
+                      "message": "message",
+                      "policy": "misleading",
+                      "reason": "content_rejected",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad",
+                      "updated_at": "updated_at"
+                    },
+                    {
+                      "created_at": "created_at",
+                      "id": "id",
+                      "message": "message",
+                      "policy": "misleading",
+                      "reason": "content_rejected",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad",
+                      "updated_at": "updated_at"
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ReportIssuesAdsResponse(
+            data: [
+                AdIssue(
+                    createdAt: "created_at",
+                    id: "id",
+                    message: "message",
+                    policy: Nullable<AdIssuePolicy>.value(AdIssuePolicy.misleading),
+                    reason: AdIssueReason.contentRejected,
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdIssueResourceType.ad,
+                    updatedAt: "updated_at"
+                ),
+                AdIssue(
+                    createdAt: "created_at",
+                    id: "id",
+                    message: "message",
+                    policy: Nullable<AdIssuePolicy>.value(AdIssuePolicy.misleading),
+                    reason: AdIssueReason.contentRejected,
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdIssueResourceType.ad,
+                    updatedAt: "updated_at"
+                )
+            ]
+        )
+        let response = try await client.ads.reportIssues(
+            request: .init(issues: [
+                ReportIssuesAdsRequestIssuesItem(
+                    reason: .contentRejected
+                ),
+                ReportIssuesAdsRequestIssuesItem(
+                    reason: .contentRejected
+                )
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func reportStats1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -100,6 +175,60 @@ import WhopSDK
             request: .init(
                 adId: "ad_xxxxxxxxxxxxxx",
                 hourStartedAt: try! Date("2026-01-01T12:00:00Z", strategy: .iso8601),
+                spend: ReportStatsAdsRequestSpend.double(
+                    1.1
+                )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func reportStats2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign_id": "ad_campaign_id",
+                  "ad_group_id": "ad_group_id",
+                  "ad_id": "ad_id",
+                  "clicks": 1,
+                  "hour_started_at": "hour_started_at",
+                  "impressions": 1,
+                  "spend": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdStat(
+            adCampaignId: "ad_campaign_id",
+            adGroupId: "ad_group_id",
+            adId: "ad_id",
+            clicks: 1,
+            hourStartedAt: "hour_started_at",
+            impressions: 1,
+            spend: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )
+        )
+        let response = try await client.ads.reportStats(
+            request: .init(
+                adId: "ad_id",
+                hourStartedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 spend: ReportStatsAdsRequestSpend.double(
                     1.1
                 )
@@ -406,6 +535,747 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "ad_campaign": {
+                        "id": "id"
+                      },
+                      "ad_group": {
+                        "id": "id"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "call_to_action": "learn_more",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "content_review": {
+                        "networks": [
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          },
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          }
+                        ],
+                        "status": "reviewed",
+                        "tags": [
+                          {
+                            "message": "message",
+                            "title": "title"
+                          },
+                          {
+                            "message": "message",
+                            "title": "title"
+                          }
+                        ]
+                      },
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "creatives": [
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        },
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        }
+                      ],
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "in_appeal",
+                      "descriptions": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "frequency": 1.1,
+                      "headlines": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "primary_texts": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "url": "url",
+                      "url_parameters": {
+                        "url_parameters": {
+                          "key": "value"
+                        }
+                      },
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    },
+                    {
+                      "ad_campaign": {
+                        "id": "id"
+                      },
+                      "ad_group": {
+                        "id": "id"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "call_to_action": "learn_more",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "content_review": {
+                        "networks": [
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          },
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          }
+                        ],
+                        "status": "reviewed",
+                        "tags": [
+                          {
+                            "message": "message",
+                            "title": "title"
+                          },
+                          {
+                            "message": "message",
+                            "title": "title"
+                          }
+                        ]
+                      },
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "creatives": [
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        },
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        }
+                      ],
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "in_appeal",
+                      "descriptions": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "frequency": 1.1,
+                      "headlines": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "primary_texts": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "url": "url",
+                      "url_parameters": {
+                        "url_parameters": {
+                          "key": "value"
+                        }
+                      },
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAdsResponse(
+            data: [
+                Ad(
+                    adCampaign: AdEntityReference(
+                        id: "id"
+                    ),
+                    adGroup: AdEntityReference(
+                        id: "id"
+                    ),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    contentReview: AdContentReview(
+                        networks: [
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            ),
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            )
+                        ],
+                        status: AdContentReviewStatus.reviewed,
+                        tags: [
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            ),
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            )
+                        ]
+                    ),
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    creatives: [
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        ),
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdDeliveryStatus.inAppeal,
+                    descriptions: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    frequency: Nullable<Double>.value(1.1),
+                    headlines: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    primaryTexts: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    status: AdStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    title: Nullable<String>.value("title"),
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    url: Nullable<String>.value("url"),
+                    urlParameters: [
+                        "url_parameters": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                ),
+                Ad(
+                    adCampaign: AdEntityReference(
+                        id: "id"
+                    ),
+                    adGroup: AdEntityReference(
+                        id: "id"
+                    ),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    contentReview: AdContentReview(
+                        networks: [
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            ),
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            )
+                        ],
+                        status: AdContentReviewStatus.reviewed,
+                        tags: [
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            ),
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            )
+                        ]
+                    ),
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    creatives: [
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        ),
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdDeliveryStatus.inAppeal,
+                    descriptions: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    frequency: Nullable<Double>.value(1.1),
+                    headlines: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    primaryTexts: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    status: AdStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    title: Nullable<String>.value("title"),
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    url: Nullable<String>.value("url"),
+                    urlParameters: [
+                        "url_parameters": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                )
+            ],
+            pageInfo: ListAdsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.ads.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -670,6 +1540,378 @@ import WhopSDK
             ],
             viewedContentValue: 0,
             viewedContents: 2140
+        )
+        let response = try await client.ads.create(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign": {
+                    "id": "id"
+                  },
+                  "ad_group": {
+                    "id": "id"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "call_to_action": "learn_more",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      },
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      },
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "creatives": [
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    },
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    }
+                  ],
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "in_appeal",
+                  "descriptions": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "frequency": 1.1,
+                  "headlines": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "primary_texts": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "url": "url",
+                  "url_parameters": {
+                    "url_parameters": {
+                      "key": "value"
+                    }
+                  },
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Ad(
+            adCampaign: AdEntityReference(
+                id: "id"
+            ),
+            adGroup: AdEntityReference(
+                id: "id"
+            ),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    ),
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    ),
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            creatives: [
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                ),
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdDeliveryStatus.inAppeal,
+            descriptions: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            frequency: Nullable<Double>.value(1.1),
+            headlines: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            primaryTexts: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            status: AdStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            title: Nullable<String>.value("title"),
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            url: Nullable<String>.value("url"),
+            urlParameters: [
+                "url_parameters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
         )
         let response = try await client.ads.create(
             request: .init(),
@@ -950,6 +2192,378 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign": {
+                    "id": "id"
+                  },
+                  "ad_group": {
+                    "id": "id"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "call_to_action": "learn_more",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      },
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      },
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "creatives": [
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    },
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    }
+                  ],
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "in_appeal",
+                  "descriptions": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "frequency": 1.1,
+                  "headlines": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "primary_texts": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "url": "url",
+                  "url_parameters": {
+                    "url_parameters": {
+                      "key": "value"
+                    }
+                  },
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Ad(
+            adCampaign: AdEntityReference(
+                id: "id"
+            ),
+            adGroup: AdEntityReference(
+                id: "id"
+            ),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    ),
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    ),
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            creatives: [
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                ),
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdDeliveryStatus.inAppeal,
+            descriptions: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            frequency: Nullable<Double>.value(1.1),
+            headlines: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            primaryTexts: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            status: AdStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            title: Nullable<String>.value("title"),
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            url: Nullable<String>.value("url"),
+            urlParameters: [
+                "url_parameters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
+        )
+        let response = try await client.ads.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -970,6 +2584,34 @@ import WhopSDK
         let expectedResponse = DeleteAdsResponse(
             deleted: true,
             id: "ad_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.ads.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteAdsResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.ads.delete(
             id: "id",
@@ -1242,6 +2884,379 @@ import WhopSDK
             ],
             viewedContentValue: 0,
             viewedContents: 2140
+        )
+        let response = try await client.ads.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign": {
+                    "id": "id"
+                  },
+                  "ad_group": {
+                    "id": "id"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "call_to_action": "learn_more",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      },
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      },
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "creatives": [
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    },
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    }
+                  ],
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "in_appeal",
+                  "descriptions": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "frequency": 1.1,
+                  "headlines": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "primary_texts": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "url": "url",
+                  "url_parameters": {
+                    "url_parameters": {
+                      "key": "value"
+                    }
+                  },
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Ad(
+            adCampaign: AdEntityReference(
+                id: "id"
+            ),
+            adGroup: AdEntityReference(
+                id: "id"
+            ),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    ),
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    ),
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            creatives: [
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                ),
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdDeliveryStatus.inAppeal,
+            descriptions: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            frequency: Nullable<Double>.value(1.1),
+            headlines: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            primaryTexts: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            status: AdStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            title: Nullable<String>.value("title"),
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            url: Nullable<String>.value("url"),
+            urlParameters: [
+                "url_parameters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
         )
         let response = try await client.ads.update(
             id: "id",
@@ -1532,6 +3547,739 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func duplicate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "ad_campaign": {
+                        "id": "id"
+                      },
+                      "ad_group": {
+                        "id": "id"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "call_to_action": "learn_more",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "content_review": {
+                        "networks": [
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          },
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          }
+                        ],
+                        "status": "reviewed",
+                        "tags": [
+                          {
+                            "message": "message",
+                            "title": "title"
+                          },
+                          {
+                            "message": "message",
+                            "title": "title"
+                          }
+                        ]
+                      },
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "creatives": [
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        },
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        }
+                      ],
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "in_appeal",
+                      "descriptions": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "frequency": 1.1,
+                      "headlines": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "primary_texts": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "url": "url",
+                      "url_parameters": {
+                        "url_parameters": {
+                          "key": "value"
+                        }
+                      },
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    },
+                    {
+                      "ad_campaign": {
+                        "id": "id"
+                      },
+                      "ad_group": {
+                        "id": "id"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "call_to_action": "learn_more",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "content_review": {
+                        "networks": [
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          },
+                          {
+                            "recommended": true,
+                            "title": "whop"
+                          }
+                        ],
+                        "status": "reviewed",
+                        "tags": [
+                          {
+                            "message": "message",
+                            "title": "title"
+                          },
+                          {
+                            "message": "message",
+                            "title": "title"
+                          }
+                        ]
+                      },
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "creatives": [
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        },
+                        {
+                          "crop": {
+                            "height": 1.1,
+                            "width": 1.1,
+                            "x": 1.1,
+                            "y": 1.1
+                          },
+                          "format": "square",
+                          "id": "id",
+                          "language": "language",
+                          "media_type": "media_type",
+                          "url": "url"
+                        }
+                      ],
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "in_appeal",
+                      "descriptions": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "frequency": 1.1,
+                      "headlines": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "primary_texts": [
+                        {
+                          "language": "language",
+                          "text": "text"
+                        },
+                        {
+                          "language": "language",
+                          "text": "text"
+                        }
+                      ],
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "url": "url",
+                      "url_parameters": {
+                        "url_parameters": {
+                          "key": "value"
+                        }
+                      },
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DuplicateAdsResponse(
+            data: [
+                Ad(
+                    adCampaign: AdEntityReference(
+                        id: "id"
+                    ),
+                    adGroup: AdEntityReference(
+                        id: "id"
+                    ),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    contentReview: AdContentReview(
+                        networks: [
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            ),
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            )
+                        ],
+                        status: AdContentReviewStatus.reviewed,
+                        tags: [
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            ),
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            )
+                        ]
+                    ),
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    creatives: [
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        ),
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdDeliveryStatus.inAppeal,
+                    descriptions: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    frequency: Nullable<Double>.value(1.1),
+                    headlines: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    primaryTexts: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    status: AdStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    title: Nullable<String>.value("title"),
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    url: Nullable<String>.value("url"),
+                    urlParameters: [
+                        "url_parameters": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                ),
+                Ad(
+                    adCampaign: AdEntityReference(
+                        id: "id"
+                    ),
+                    adGroup: AdEntityReference(
+                        id: "id"
+                    ),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    contentReview: AdContentReview(
+                        networks: [
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            ),
+                            AdContentReviewNetwork(
+                                recommended: true,
+                                title: AdContentReviewNetworkTitle.whop
+                            )
+                        ],
+                        status: AdContentReviewStatus.reviewed,
+                        tags: [
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            ),
+                            AdContentReviewTag(
+                                message: "message",
+                                title: "title"
+                            )
+                        ]
+                    ),
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    creatives: [
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        ),
+                        AdCreative(
+                            crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                                height: 1.1,
+                                width: 1.1,
+                                x: 1.1,
+                                y: 1.1
+                            )),
+                            format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                            id: "id",
+                            language: Nullable<String>.value("language"),
+                            mediaType: Nullable<String>.value("media_type"),
+                            url: Nullable<String>.value("url")
+                        )
+                    ],
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdDeliveryStatus.inAppeal,
+                    descriptions: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    frequency: Nullable<Double>.value(1.1),
+                    headlines: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    primaryTexts: [
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        ),
+                        AdText(
+                            language: Nullable<String>.value("language"),
+                            text: "text"
+                        )
+                    ],
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    status: AdStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    title: Nullable<String>.value("title"),
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    url: Nullable<String>.value("url"),
+                    urlParameters: [
+                        "url_parameters": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                )
+            ]
+        )
+        let response = try await client.ads.duplicate(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func pause1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1804,6 +4552,378 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func pause2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign": {
+                    "id": "id"
+                  },
+                  "ad_group": {
+                    "id": "id"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "call_to_action": "learn_more",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      },
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      },
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "creatives": [
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    },
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    }
+                  ],
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "in_appeal",
+                  "descriptions": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "frequency": 1.1,
+                  "headlines": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "primary_texts": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "url": "url",
+                  "url_parameters": {
+                    "url_parameters": {
+                      "key": "value"
+                    }
+                  },
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Ad(
+            adCampaign: AdEntityReference(
+                id: "id"
+            ),
+            adGroup: AdEntityReference(
+                id: "id"
+            ),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    ),
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    ),
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            creatives: [
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                ),
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdDeliveryStatus.inAppeal,
+            descriptions: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            frequency: Nullable<Double>.value(1.1),
+            headlines: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            primaryTexts: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            status: AdStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            title: Nullable<String>.value("title"),
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            url: Nullable<String>.value("url"),
+            urlParameters: [
+                "url_parameters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
+        )
+        let response = try await client.ads.pause(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func unpause1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -2068,6 +5188,378 @@ import WhopSDK
             ],
             viewedContentValue: 0,
             viewedContents: 2140
+        )
+        let response = try await client.ads.unpause(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unpause2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "ad_campaign": {
+                    "id": "id"
+                  },
+                  "ad_group": {
+                    "id": "id"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "call_to_action": "learn_more",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "content_review": {
+                    "networks": [
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      },
+                      {
+                        "recommended": true,
+                        "title": "whop"
+                      }
+                    ],
+                    "status": "reviewed",
+                    "tags": [
+                      {
+                        "message": "message",
+                        "title": "title"
+                      },
+                      {
+                        "message": "message",
+                        "title": "title"
+                      }
+                    ]
+                  },
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "creatives": [
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    },
+                    {
+                      "crop": {
+                        "height": 1.1,
+                        "width": 1.1,
+                        "x": 1.1,
+                        "y": 1.1
+                      },
+                      "format": "square",
+                      "id": "id",
+                      "language": "language",
+                      "media_type": "media_type",
+                      "url": "url"
+                    }
+                  ],
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "in_appeal",
+                  "descriptions": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "frequency": 1.1,
+                  "headlines": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "primary_texts": [
+                    {
+                      "language": "language",
+                      "text": "text"
+                    },
+                    {
+                      "language": "language",
+                      "text": "text"
+                    }
+                  ],
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "url": "url",
+                  "url_parameters": {
+                    "url_parameters": {
+                      "key": "value"
+                    }
+                  },
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Ad(
+            adCampaign: AdEntityReference(
+                id: "id"
+            ),
+            adGroup: AdEntityReference(
+                id: "id"
+            ),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            callToAction: Nullable<AdCallToAction>.value(AdCallToAction.learnMore),
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            contentReview: AdContentReview(
+                networks: [
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    ),
+                    AdContentReviewNetwork(
+                        recommended: true,
+                        title: AdContentReviewNetworkTitle.whop
+                    )
+                ],
+                status: AdContentReviewStatus.reviewed,
+                tags: [
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    ),
+                    AdContentReviewTag(
+                        message: "message",
+                        title: "title"
+                    )
+                ]
+            ),
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            creatives: [
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                ),
+                AdCreative(
+                    crop: Nullable<AdCreativeCrop>.value(AdCreativeCrop(
+                        height: 1.1,
+                        width: 1.1,
+                        x: 1.1,
+                        y: 1.1
+                    )),
+                    format: Nullable<AdCreativeFormat>.value(AdCreativeFormat.square),
+                    id: "id",
+                    language: Nullable<String>.value("language"),
+                    mediaType: Nullable<String>.value("media_type"),
+                    url: Nullable<String>.value("url")
+                )
+            ],
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdDeliveryStatus.inAppeal,
+            descriptions: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            frequency: Nullable<Double>.value(1.1),
+            headlines: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            primaryTexts: [
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                ),
+                AdText(
+                    language: Nullable<String>.value("language"),
+                    text: "text"
+                )
+            ],
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdResultEvent>.value(AdResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            status: AdStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            title: Nullable<String>.value("title"),
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            url: Nullable<String>.value("url"),
+            urlParameters: [
+                "url_parameters": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
         )
         let response = try await client.ads.unpause(
             id: "id",

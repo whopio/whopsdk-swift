@@ -61,7 +61,6 @@ public final class Whop: Sendable {
     public let forums: ForumsClient
     public let identityProfiles: IdentityProfilesClient
     public let invoices: InvoicesClient
-    public let leads: LeadsClient
     public let ledgerAccounts: LedgerAccountsClient
     public let livestreams: LivestreamsClient
     public let media: MediaClient
@@ -266,7 +265,6 @@ public final class Whop: Sendable {
         self.forums = ForumsClient(config: config)
         self.identityProfiles = IdentityProfilesClient(config: config)
         self.invoices = InvoicesClient(config: config)
-        self.leads = LeadsClient(config: config)
         self.ledgerAccounts = LedgerAccountsClient(config: config)
         self.livestreams = LivestreamsClient(config: config)
         self.media = MediaClient(config: config)

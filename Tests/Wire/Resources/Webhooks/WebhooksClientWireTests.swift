@@ -12,7 +12,7 @@ import WhopSDK
                   "data": [
                     {
                       "api_version": "v1",
-                      "api_version_date": "2026-01-01",
+                      "api_version_date": "2026-11-13-1",
                       "child_resource_events": false,
                       "consecutive_failures": 0,
                       "created_at": "2026-01-01T12:00:00.000Z",
@@ -50,7 +50,7 @@ import WhopSDK
             data: [
                 WebhookListItem(
                     apiVersion: WebhookListItemApiVersion.v1,
-                    apiVersionDate: Nullable<String>.value("2026-01-01"),
+                    apiVersionDate: Nullable<String>.value("2026-11-13-1"),
                     childResourceEvents: false,
                     consecutiveFailures: 0,
                     createdAt: "2026-01-01T12:00:00.000Z",
@@ -80,6 +80,127 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "api_version": "v1",
+                      "api_version_date": "api_version_date",
+                      "child_resource_events": true,
+                      "consecutive_failures": 1,
+                      "created_at": "created_at",
+                      "disabled_at": "disabled_at",
+                      "disabled_reason": "delivery_failures",
+                      "enabled": true,
+                      "events": [
+                        "account.updated",
+                        "account.updated"
+                      ],
+                      "failing_since": "failing_since",
+                      "id": "id",
+                      "last_failure_at": "last_failure_at",
+                      "resource_id": "resource_id",
+                      "title": "title",
+                      "url": "url",
+                      "webhook_secret": "webhook_secret"
+                    },
+                    {
+                      "api_version": "v1",
+                      "api_version_date": "api_version_date",
+                      "child_resource_events": true,
+                      "consecutive_failures": 1,
+                      "created_at": "created_at",
+                      "disabled_at": "disabled_at",
+                      "disabled_reason": "delivery_failures",
+                      "enabled": true,
+                      "events": [
+                        "account.updated",
+                        "account.updated"
+                      ],
+                      "failing_since": "failing_since",
+                      "id": "id",
+                      "last_failure_at": "last_failure_at",
+                      "resource_id": "resource_id",
+                      "title": "title",
+                      "url": "url",
+                      "webhook_secret": "webhook_secret"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListWebhooksResponse(
+            data: [
+                WebhookListItem(
+                    apiVersion: WebhookListItemApiVersion.v1,
+                    apiVersionDate: Nullable<String>.value("api_version_date"),
+                    childResourceEvents: true,
+                    consecutiveFailures: 1,
+                    createdAt: "created_at",
+                    disabledAt: Nullable<String>.value("disabled_at"),
+                    disabledReason: Nullable<WebhookListItemDisabledReason>.value(WebhookListItemDisabledReason.deliveryFailures),
+                    enabled: true,
+                    events: [
+                        WebhookListItemEventsItem.accountUpdated,
+                        WebhookListItemEventsItem.accountUpdated
+                    ],
+                    failingSince: Nullable<String>.value("failing_since"),
+                    id: "id",
+                    lastFailureAt: Nullable<String>.value("last_failure_at"),
+                    resourceId: "resource_id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    webhookSecret: Nullable<String>.value("webhook_secret")
+                ),
+                WebhookListItem(
+                    apiVersion: WebhookListItemApiVersion.v1,
+                    apiVersionDate: Nullable<String>.value("api_version_date"),
+                    childResourceEvents: true,
+                    consecutiveFailures: 1,
+                    createdAt: "created_at",
+                    disabledAt: Nullable<String>.value("disabled_at"),
+                    disabledReason: Nullable<WebhookListItemDisabledReason>.value(WebhookListItemDisabledReason.deliveryFailures),
+                    enabled: true,
+                    events: [
+                        WebhookListItemEventsItem.accountUpdated,
+                        WebhookListItemEventsItem.accountUpdated
+                    ],
+                    failingSince: Nullable<String>.value("failing_since"),
+                    id: "id",
+                    lastFailureAt: Nullable<String>.value("last_failure_at"),
+                    resourceId: "resource_id",
+                    title: Nullable<String>.value("title"),
+                    url: "url",
+                    webhookSecret: Nullable<String>.value("webhook_secret")
+                )
+            ],
+            pageInfo: ListWebhooksResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.webhooks.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -87,7 +208,7 @@ import WhopSDK
                 #"""
                 {
                   "api_version": "v1",
-                  "api_version_date": "2026-01-01",
+                  "api_version_date": "2026-11-13-1",
                   "child_resource_events": false,
                   "consecutive_failures": 9,
                   "created_at": "2026-01-01T12:00:00.000Z",
@@ -118,7 +239,7 @@ import WhopSDK
         )
         let expectedResponse = Webhook(
             apiVersion: WebhookApiVersion.v1,
-            apiVersionDate: Nullable<String>.value("2026-01-01"),
+            apiVersionDate: Nullable<String>.value("2026-11-13-1"),
             childResourceEvents: false,
             consecutiveFailures: 9,
             createdAt: "2026-01-01T12:00:00.000Z",
@@ -146,6 +267,76 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version": "v1",
+                  "api_version_date": "api_version_date",
+                  "child_resource_events": true,
+                  "consecutive_failures": 1,
+                  "created_at": "created_at",
+                  "disabled_at": "disabled_at",
+                  "disabled_reason": "delivery_failures",
+                  "enabled": true,
+                  "events": [
+                    "account.updated",
+                    "account.updated"
+                  ],
+                  "failing_since": "failing_since",
+                  "id": "id",
+                  "last_failure_at": "last_failure_at",
+                  "resource_id": "resource_id",
+                  "testable_events": [
+                    "account.updated",
+                    "account.updated"
+                  ],
+                  "title": "title",
+                  "url": "url",
+                  "webhook_secret": "webhook_secret"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Webhook(
+            apiVersion: WebhookApiVersion.v1,
+            apiVersionDate: Nullable<String>.value("api_version_date"),
+            childResourceEvents: true,
+            consecutiveFailures: 1,
+            createdAt: "created_at",
+            disabledAt: Nullable<String>.value("disabled_at"),
+            disabledReason: Nullable<WebhookDisabledReason>.value(WebhookDisabledReason.deliveryFailures),
+            enabled: true,
+            events: [
+                WebhookEventsItem.accountUpdated,
+                WebhookEventsItem.accountUpdated
+            ],
+            failingSince: Nullable<String>.value("failing_since"),
+            id: "id",
+            lastFailureAt: Nullable<String>.value("last_failure_at"),
+            resourceId: "resource_id",
+            testableEvents: [
+                WebhookTestableEventsItem.accountUpdated,
+                WebhookTestableEventsItem.accountUpdated
+            ],
+            title: Nullable<String>.value("title"),
+            url: "url",
+            webhookSecret: Nullable<String>.value("webhook_secret")
+        )
+        let response = try await client.webhooks.create(
+            request: .init(url: "url"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -153,7 +344,7 @@ import WhopSDK
                 #"""
                 {
                   "api_version": "v1",
-                  "api_version_date": "2026-01-01",
+                  "api_version_date": "2026-11-13-1",
                   "child_resource_events": false,
                   "consecutive_failures": 9,
                   "created_at": "2026-01-01T12:00:00.000Z",
@@ -184,7 +375,7 @@ import WhopSDK
         )
         let expectedResponse = Webhook(
             apiVersion: WebhookApiVersion.v1,
-            apiVersionDate: Nullable<String>.value("2026-01-01"),
+            apiVersionDate: Nullable<String>.value("2026-11-13-1"),
             childResourceEvents: false,
             consecutiveFailures: 9,
             createdAt: "2026-01-01T12:00:00.000Z",
@@ -204,6 +395,76 @@ import WhopSDK
             title: Nullable<String>.value("Production"),
             url: "https://example.com/hooks",
             webhookSecret: Nullable<String>.value("ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        )
+        let response = try await client.webhooks.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version": "v1",
+                  "api_version_date": "api_version_date",
+                  "child_resource_events": true,
+                  "consecutive_failures": 1,
+                  "created_at": "created_at",
+                  "disabled_at": "disabled_at",
+                  "disabled_reason": "delivery_failures",
+                  "enabled": true,
+                  "events": [
+                    "account.updated",
+                    "account.updated"
+                  ],
+                  "failing_since": "failing_since",
+                  "id": "id",
+                  "last_failure_at": "last_failure_at",
+                  "resource_id": "resource_id",
+                  "testable_events": [
+                    "account.updated",
+                    "account.updated"
+                  ],
+                  "title": "title",
+                  "url": "url",
+                  "webhook_secret": "webhook_secret"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Webhook(
+            apiVersion: WebhookApiVersion.v1,
+            apiVersionDate: Nullable<String>.value("api_version_date"),
+            childResourceEvents: true,
+            consecutiveFailures: 1,
+            createdAt: "created_at",
+            disabledAt: Nullable<String>.value("disabled_at"),
+            disabledReason: Nullable<WebhookDisabledReason>.value(WebhookDisabledReason.deliveryFailures),
+            enabled: true,
+            events: [
+                WebhookEventsItem.accountUpdated,
+                WebhookEventsItem.accountUpdated
+            ],
+            failingSince: Nullable<String>.value("failing_since"),
+            id: "id",
+            lastFailureAt: Nullable<String>.value("last_failure_at"),
+            resourceId: "resource_id",
+            testableEvents: [
+                WebhookTestableEventsItem.accountUpdated,
+                WebhookTestableEventsItem.accountUpdated
+            ],
+            title: Nullable<String>.value("title"),
+            url: "url",
+            webhookSecret: Nullable<String>.value("webhook_secret")
         )
         let response = try await client.webhooks.retrieve(
             id: "id",
@@ -240,6 +501,34 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteWebhooksResponse(
+            deleted: true,
+            id: "id"
+        )
+        let response = try await client.webhooks.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func update1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -247,7 +536,7 @@ import WhopSDK
                 #"""
                 {
                   "api_version": "v1",
-                  "api_version_date": "2026-01-01",
+                  "api_version_date": "2026-11-13-1",
                   "child_resource_events": false,
                   "consecutive_failures": 9,
                   "created_at": "2026-01-01T12:00:00.000Z",
@@ -278,7 +567,7 @@ import WhopSDK
         )
         let expectedResponse = Webhook(
             apiVersion: WebhookApiVersion.v1,
-            apiVersionDate: Nullable<String>.value("2026-01-01"),
+            apiVersionDate: Nullable<String>.value("2026-11-13-1"),
             childResourceEvents: false,
             consecutiveFailures: 9,
             createdAt: "2026-01-01T12:00:00.000Z",
@@ -298,6 +587,77 @@ import WhopSDK
             title: Nullable<String>.value("Production"),
             url: "https://example.com/hooks",
             webhookSecret: Nullable<String>.value("ws_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        )
+        let response = try await client.webhooks.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "api_version": "v1",
+                  "api_version_date": "api_version_date",
+                  "child_resource_events": true,
+                  "consecutive_failures": 1,
+                  "created_at": "created_at",
+                  "disabled_at": "disabled_at",
+                  "disabled_reason": "delivery_failures",
+                  "enabled": true,
+                  "events": [
+                    "account.updated",
+                    "account.updated"
+                  ],
+                  "failing_since": "failing_since",
+                  "id": "id",
+                  "last_failure_at": "last_failure_at",
+                  "resource_id": "resource_id",
+                  "testable_events": [
+                    "account.updated",
+                    "account.updated"
+                  ],
+                  "title": "title",
+                  "url": "url",
+                  "webhook_secret": "webhook_secret"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Webhook(
+            apiVersion: WebhookApiVersion.v1,
+            apiVersionDate: Nullable<String>.value("api_version_date"),
+            childResourceEvents: true,
+            consecutiveFailures: 1,
+            createdAt: "created_at",
+            disabledAt: Nullable<String>.value("disabled_at"),
+            disabledReason: Nullable<WebhookDisabledReason>.value(WebhookDisabledReason.deliveryFailures),
+            enabled: true,
+            events: [
+                WebhookEventsItem.accountUpdated,
+                WebhookEventsItem.accountUpdated
+            ],
+            failingSince: Nullable<String>.value("failing_since"),
+            id: "id",
+            lastFailureAt: Nullable<String>.value("last_failure_at"),
+            resourceId: "resource_id",
+            testableEvents: [
+                WebhookTestableEventsItem.accountUpdated,
+                WebhookTestableEventsItem.accountUpdated
+            ],
+            title: Nullable<String>.value("title"),
+            url: "url",
+            webhookSecret: Nullable<String>.value("webhook_secret")
         )
         let response = try await client.webhooks.update(
             id: "id",
@@ -392,6 +752,138 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func listDeliveries2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "event": "event",
+                      "id": "id",
+                      "replayed_from": "replayed_from",
+                      "request_body": {
+                        "request_body": {
+                          "key": "value"
+                        }
+                      },
+                      "resource_id": "resource_id",
+                      "response_body": {
+                        "response_body": {
+                          "key": "value"
+                        }
+                      },
+                      "response_code": 1.1,
+                      "sent_at": "sent_at",
+                      "status": "success",
+                      "success": true,
+                      "total_time": 1.1
+                    },
+                    {
+                      "event": "event",
+                      "id": "id",
+                      "replayed_from": "replayed_from",
+                      "request_body": {
+                        "request_body": {
+                          "key": "value"
+                        }
+                      },
+                      "resource_id": "resource_id",
+                      "response_body": {
+                        "response_body": {
+                          "key": "value"
+                        }
+                      },
+                      "response_code": 1.1,
+                      "sent_at": "sent_at",
+                      "status": "success",
+                      "success": true,
+                      "total_time": 1.1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListDeliveriesWebhooksResponse(
+            data: [
+                WebhookDelivery(
+                    event: Nullable<String>.value("event"),
+                    id: "id",
+                    replayedFrom: Nullable<String>.value("replayed_from"),
+                    requestBody: [
+                        "request_body": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    responseBody: Nullable<[String: JSONValue]>.value([
+                        "response_body": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    responseCode: 1.1,
+                    sentAt: "sent_at",
+                    status: WebhookDeliveryStatus.success,
+                    success: true,
+                    totalTime: 1.1
+                ),
+                WebhookDelivery(
+                    event: Nullable<String>.value("event"),
+                    id: "id",
+                    replayedFrom: Nullable<String>.value("replayed_from"),
+                    requestBody: [
+                        "request_body": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    resourceId: "resource_id",
+                    responseBody: Nullable<[String: JSONValue]>.value([
+                        "response_body": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    responseCode: 1.1,
+                    sentAt: "sent_at",
+                    status: WebhookDeliveryStatus.success,
+                    success: true,
+                    totalTime: 1.1
+                )
+            ],
+            pageInfo: ListDeliveriesWebhooksResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.webhooks.listDeliveries(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func replayDelivery1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -413,6 +905,38 @@ import WhopSDK
         let expectedResponse = ReplayDeliveryWebhooksResponse(
             body: "OK",
             status: 200,
+            success: true
+        )
+        let response = try await client.webhooks.replayDelivery(
+            id: "id",
+            deliveryId: "delivery_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func replayDelivery2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "body": "body",
+                  "status": 1,
+                  "success": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ReplayDeliveryWebhooksResponse(
+            body: "body",
+            status: 1,
             success: true
         )
         let response = try await client.webhooks.replayDelivery(
@@ -451,6 +975,33 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func replay2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "queued": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ReplayWebhooksResponse(
+            queued: true
+        )
+        let response = try await client.webhooks.replay(
+            id: "id",
+            request: .init(sentAfter: "sent_after"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func test1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -477,6 +1028,43 @@ import WhopSDK
         let response = try await client.webhooks.test(
             id: "id",
             request: .init(event: "payment.succeeded"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func test2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "body": {
+                    "key": "value"
+                  },
+                  "status": 1,
+                  "success": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = TestWebhooksResponse(
+            body: JSONValue.object(
+                [
+                    "key": JSONValue.string("value")
+                ]
+            ),
+            status: 1,
+            success: true
+        )
+        let response = try await client.webhooks.test(
+            id: "id",
+            request: .init(event: "event"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

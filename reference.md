@@ -25212,7 +25212,7 @@ try await main()
 </details>
 
 ## Invoices
-<details><summary><code>client.invoices.<a href="/Sources/Resources/Invoices/InvoicesClient.swift">list</a>(accountId: String?, status: ListInvoicesRequestStatus?, overdue: Bool?, memberId: String?, productId: String?, createdAfter: Date?, createdBefore: Date?, order: ListInvoicesRequestOrder?, direction: ListInvoicesRequestDirection?, first: Int?, after: String?, last: Int?, before: String?, includeTotalCount: Bool?, requestOptions: RequestOptions?) -> ListInvoicesResponse</code></summary>
+<details><summary><code>client.invoices.<a href="/Sources/Resources/Invoices/InvoicesClient.swift">list</a>(accountId: String?, status: ListInvoicesRequestStatus?, overdue: Bool?, scheduled: Bool?, memberId: String?, productId: String?, createdAfter: Date?, createdBefore: Date?, order: ListInvoicesRequestOrder?, direction: ListInvoicesRequestDirection?, first: Int?, after: String?, last: Int?, before: String?, includeTotalCount: Bool?, requestOptions: RequestOptions?) -> ListInvoicesResponse</code></summary>
 <dl>
 <dd>
 
@@ -25290,6 +25290,14 @@ try await main()
 <dl>
 <dd>
 
+**scheduled:** `Bool?` — Set to `true` for drafts with a scheduled send, which are the invoices with a `scheduled_send_at`. Set to `false` for every other invoice. Only a `draft` can be scheduled. An `open` invoice is not scheduled, even with a `scheduled_charge_at`. A draft that sends on its due date (`sends_on_due_date`) is not scheduled. Omit to include both.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **memberId:** `String?` 
     
 </dd>
@@ -25322,7 +25330,7 @@ try await main()
 <dl>
 <dd>
 
-**order:** `ListInvoicesRequestOrder?` 
+**order:** `ListInvoicesRequestOrder?` — Field to sort by. Sorting by `due_at` or `scheduled_send_at` puts invoices without that date last in both directions.
     
 </dd>
 </dl>
@@ -26247,400 +26255,6 @@ try await main()
 <dd>
 
 **id:** `String` — The invoice's pay_ ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Leads
-<details><summary><code>client.leads.<a href="/Sources/Resources/Leads/LeadsClient.swift">list</a>(after: String?, before: String?, first: Int?, last: Int?, createdAfter: Date?, createdBefore: Date?, productIds: [String]?, accountId: String, requestOptions: RequestOptions?) -> ListLeadsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists an account's leads, newest first.
-
-Required permissions:
- - `lead:basic:read`
- - `member:email:read`
- - `access_pass:basic:read`
- - `member:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import WhopSDK
-
-private func main() async throws {
-    let client = Whop(
-        baseURL: "https://api.whop.com/api/v1",
-        token: "<token>"
-    )
-
-    _ = try await client.leads.list(
-        first: 42,
-        last: 42,
-        createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-        createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-        accountId: "biz_xxxxxxxxxxxxxx"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `String?` — Returns the elements in the list that come after the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**before:** `String?` — Returns the elements in the list that come before the specified cursor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**first:** `Int?` — Returns the first _n_ elements from the list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**last:** `Int?` — Returns the last _n_ elements from the list.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**createdAfter:** `Date?` — Only return leads created after this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**createdBefore:** `Date?` — Only return leads created before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**productIds:** `[String]?` — Filter leads to only those associated with these specific product identifiers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**accountId:** `String` — The unique identifier of the company to list leads for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.leads.<a href="/Sources/Resources/Leads/LeadsClient.swift">create</a>(request: Requests.CreateLeadsRequest, requestOptions: RequestOptions?) -> Lead</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Records a lead: a potential customer's interest in an account or one of its products.
-
-Required permissions:
- - `lead:manage`
- - `member:email:read`
- - `access_pass:basic:read`
- - `member:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import WhopSDK
-
-private func main() async throws {
-    let client = Whop(
-        baseURL: "https://api.whop.com/api/v1",
-        token: "<token>"
-    )
-
-    _ = try await client.leads.create(request: .init(accountId: "biz_xxxxxxxxxxxxxx"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CreateLeadsRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.leads.<a href="/Sources/Resources/Leads/LeadsClient.swift">retrieve</a>(id: String, requestOptions: RequestOptions?) -> Lead</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves the details of an existing lead.
-
-Required permissions:
- - `lead:basic:read`
- - `member:email:read`
- - `access_pass:basic:read`
- - `member:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import WhopSDK
-
-private func main() async throws {
-    let client = Whop(
-        baseURL: "https://api.whop.com/api/v1",
-        token: "<token>"
-    )
-
-    _ = try await client.leads.retrieve(id: "lead_xxxxxxxxxxxxx")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unique identifier of the lead to retrieve.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.leads.<a href="/Sources/Resources/Leads/LeadsClient.swift">update</a>(id: String, request: Requests.UpdateLeadsRequest, requestOptions: RequestOptions?) -> Lead</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a lead's `metadata` or `referrer`.
-
-Required permissions:
- - `lead:manage`
- - `member:email:read`
- - `access_pass:basic:read`
- - `member:basic:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import WhopSDK
-
-private func main() async throws {
-    let client = Whop(
-        baseURL: "https://api.whop.com/api/v1",
-        token: "<token>"
-    )
-
-    _ = try await client.leads.update(
-        id: "lead_xxxxxxxxxxxxx",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unique identifier of the lead to update, starting with 'lead_'.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.UpdateLeadsRequest` 
     
 </dd>
 </dl>
@@ -29208,7 +28822,7 @@ try await main()
 <dl>
 <dd>
 
-Sends a Markdown message as the authenticated user or app agent. Channel access, posting restrictions, moderation, and delivery follow the existing chat services. Use Idempotency-Key to safely retry a send. The response and realtime message use the same message ID. Custom author presentation and embeds are read-only.
+Sends a Markdown message as the authenticated user or app agent. Channel access, posting restrictions, moderation, and delivery follow the existing chat services. Use Idempotency-Key to safely retry a send. The response and realtime message use the same message ID. Custom author presentation and embeds are read-only. With email_address, the message's text is also emailed to the customer of a support chat with that address's account, if they're a member with an email address. The email answers the email behind replying_to_message_id, or else continues the chat's latest email. The message is posted even when it isn't emailed. Files, GIFs and polls stay in the chat and are left out of the email, and a message with no text isn't emailed. Sending needs member:email:read, and the address's owner or, for a shared address, email:read and email:send.
 </dd>
 </dl>
 </dd>
@@ -43218,7 +42832,7 @@ try await main()
 </details>
 
 ## Team Members
-<details><summary><code>client.teamMembers.<a href="/Sources/Resources/TeamMembers/TeamMembersClient.swift">list</a>(accountId: String, status: ListTeamMembersRequestStatus?, userId: String?, userIds: [String]?, role: ListTeamMembersRequestRole?, query: String?, reportsToId: String?, directReportsMin: Int?, directReportsMax: Int?, teamLeadId: String?, hasReferredBusinesses: Bool?, createdBefore: String?, createdAfter: String?, order: ListTeamMembersRequestOrder?, direction: ListTeamMembersRequestDirection?, first: Int?, after: String?, last: Int?, before: String?, requestOptions: RequestOptions?) -> ListTeamMembersResponse</code></summary>
+<details><summary><code>client.teamMembers.<a href="/Sources/Resources/TeamMembers/TeamMembersClient.swift">list</a>(accountId: String?, status: ListTeamMembersRequestStatus?, userId: String?, userIds: [String]?, role: ListTeamMembersRequestRole?, query: String?, reportsToId: String?, directReportsMin: Int?, directReportsMax: Int?, teamLeadId: String?, hasReferredBusinesses: Bool?, isPartner: Bool?, createdBefore: String?, createdAfter: String?, order: ListTeamMembersRequestOrder?, direction: ListTeamMembersRequestDirection?, first: Int?, after: String?, last: Int?, before: String?, requestOptions: RequestOptions?) -> ListTeamMembersResponse</code></summary>
 <dl>
 <dd>
 
@@ -43230,7 +42844,7 @@ try await main()
 <dl>
 <dd>
 
-Lists an account's team members, including pending invites. A user credential with `company:basic:read` may list only its own joined membership by passing its own `user_id` and `status=joined`. Listing `role=workforce` is also allowed with the `bounty:create` scope. A signed-in Partner, or a member others report to, without `company:authorized_user:read` lists only their own joined membership and the members who report up to them, never pending invites. Members with the view-only Partner role are listed after all other members.
+Lists team members, including pending invites. Pass `account_id` to list one account's team. Without it, a signed-in user can pass `user_id=me` to list their own joined memberships across accounts. The list has one for each account they can read. An API key without `account_id` lists the team of its own account. With `company:basic:read`, a user can list their own joined membership on one account. To do this, pass `status=joined` and their own `user_id` with the account ID. The `bounty:create` scope also allows listing `role=workforce` members. A signed-in Partner without `company:authorized_user:read` lists only their own joined membership and the members who report up to them. A member others report to gets the same list. Neither of them sees pending invites. Members with the view-only Partner role are listed after all other members.
 </dd>
 </dl>
 </dd>
@@ -43254,7 +42868,7 @@ private func main() async throws {
         token: "<token>"
     )
 
-    _ = try await client.teamMembers.list(accountId: "account_id")
+    _ = try await client.teamMembers.list()
 }
 
 try await main()
@@ -43272,7 +42886,7 @@ try await main()
 <dl>
 <dd>
 
-**accountId:** `String` — Account ID, prefixed `biz_`.
+**accountId:** `String?` — Only return the team of this account, prefixed `biz_`. A signed-in user can omit it only with `user_id=me` or their own user ID. An API key that omits it gets its own account. `reports_to_id`, `direct_reports_min` and `direct_reports_max` need it.
     
 </dd>
 </dl>
@@ -43288,7 +42902,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String?` — Only return the membership for this user ID, prefixed `user_`.
+**userId:** `String?` — Only return the memberships of this user ID, prefixed `user_`. Pass `me` for the signed-in user.
     
 </dd>
 </dl>
@@ -43353,6 +42967,14 @@ try await main()
 <dd>
 
 **hasReferredBusinesses:** `Bool?` — When true, only members who referred at least one business for their account; when false, only members who referred none. Pending invites are excluded, and the list pages in `created_at` order without moving Partner-role members last.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPartner:** `Bool?` — When true, only members and invites with the view-only Partner role. When false, only the ones without it.
     
 </dd>
 </dl>
@@ -51282,6 +50904,192 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.stats.reports.<a href="/Sources/Resources/Stats/Reports/ReportsClient.swift">platformTrends</a>(breakdownBy: PlatformTrendsReportsRequestBreakdownBy?, columns: String?, windows: String?, timeZone: String?, order: PlatformTrendsReportsRequestOrder?, direction: PlatformTrendsReportsRequestDirection?, convertTo: String?, businessType: String?, industryType: String?, productCategory: String?, accountCountry: String?, customerCountry: String?, blueprint: String?, first: Int?, after: String?, requestOptions: RequestOptions?) -> PlatformTrendsReportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves payments across all of Whop for up to four windows at once. Pass `breakdown_by` to split them by business type, industry type, product category, account country or customer country. The report covers the whole platform, so it takes no `account_id`. Only users with Trends access can read it, from whop.com, the Whop apps, the Whop CLI or the Whop MCP.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import WhopSDK
+
+private func main() async throws {
+    let client = Whop(
+        baseURL: "https://api.whop.com/api/v1",
+        token: "<token>"
+    )
+
+    _ = try await client.stats.reports.platformTrends()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**breakdownBy:** `PlatformTrendsReportsRequestBreakdownBy?` — What each row is. Omit it for one row per window, holding the window's total.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**columns:** `String?` — Comma-separated properties and metrics to return on each row. `business_type` can ride along on `industry_type` rows. Defaults to `gross_revenue,businesses`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**windows:** `String?` — Comma-separated windows, at most four: `1d`, `7d`, `30d`, `90d`, `365d`, `mtd`, `qtd`, `ytd`, `all_time`, an explicit `2026-09-01..2026-10-01`, any of these prefixed `prev:` for the equal-length period before, or suffixed `@2026-09-01` to end earlier. Defaults to `30d`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timeZone:** `String?` — IANA zone that day, month, quarter and year boundaries fall in. Defaults to `Etc/UTC`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `PlatformTrendsReportsRequestOrder?` — The requested metric that ranks rows, by its value in the first window. Defaults to the first requested metric.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `PlatformTrendsReportsRequestDirection?` — Ranking direction. Defaults to `desc`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**convertTo:** `String?` — Currency every money metric is converted into. Defaults to `usd`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessType:** `String?` — Only counts payments to businesses of these comma-separated business types, such as `education`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**industryType:** `String?` — Only counts payments to businesses in these comma-separated industry types, such as `options_trading`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**productCategory:** `String?` — Only counts payments for products in these comma-separated product categories, such as `algo_trading_course`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountCountry:** `String?` — Only counts payments to accounts located in these comma-separated countries, as ISO 3166-1 alpha-2 codes such as `US`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customerCountry:** `String?` — Only counts payments from customers in these comma-separated countries, as ISO 3166-1 alpha-2 codes such as `US`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**blueprint:** `String?` — Only counts payments to businesses with an app created from one of these comma-separated blueprint app IDs, such as `app_xxxxxxxxxxxxxx`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**first:** `Int?` — Number of results to return from the start of the range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `String?` — Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Stats TimeSeries
 <details><summary><code>client.stats.timeSeries.<a href="/Sources/Resources/Stats/TimeSeries/TimeSeriesClient.swift">list</a>(requestOptions: RequestOptions?) -> ListTimeSeriesResponse</code></summary>
 <dl>
@@ -52199,7 +52007,7 @@ try await main()
 
 Returns every market you can trade on Whop.
 
-- **Spot:** listed by symbol: `BTC`, `SOL` and `XAUT` (gold), and tokenized stocks by ticker, such as `AAPL`, with their 24-hour change and logo.
+- **Spot:** listed by symbol: `BTC`, `SOL` and `XAUT` (gold), and tokenized stocks by ticker, such as `AAPL`, with their 24-hour change and logo. Spot markets also carry `volume_24h`, the value traded across exchanges over the last 24 hours.
 - **Perpetuals:** such as `BTC`, and stock and commodity perpetuals from Hyperliquid's `xyz` exchange, such as `xyz:TSLA`. Send the `id` as `market` when you create a trade.
 
 The same symbol can appear twice, once as a perpetual and once as spot, so use `id` together with `instrument_type` to tell them apart. Results are sorted by `id`, then `instrument_type`.

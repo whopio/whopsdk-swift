@@ -220,6 +220,455 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "budget_amount": 1.1,
+                      "budget_amount_local": 1.1,
+                      "budget_currency": "budget_currency",
+                      "budget_optimization": "ad_campaign",
+                      "budget_type": "daily",
+                      "campaign_type": "standard",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "payment_failed",
+                      "desired_cost_per_result": 1.1,
+                      "ends_at": "ends_at",
+                      "frequency": 1.1,
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "objective": "awareness",
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "special_ad_categories": [
+                        "housing",
+                        "housing"
+                      ],
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "starts_at": "starts_at",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "target_cost_per_result": 1.1,
+                      "target_result_event": "target_result_event",
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "budget_amount": 1.1,
+                      "budget_amount_local": 1.1,
+                      "budget_currency": "budget_currency",
+                      "budget_optimization": "ad_campaign",
+                      "budget_type": "daily",
+                      "campaign_type": "standard",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "payment_failed",
+                      "desired_cost_per_result": 1.1,
+                      "ends_at": "ends_at",
+                      "frequency": 1.1,
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "objective": "awareness",
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "special_ad_categories": [
+                        "housing",
+                        "housing"
+                      ],
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "starts_at": "starts_at",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "target_cost_per_result": 1.1,
+                      "target_result_event": "target_result_event",
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAdCampaignsResponse(
+            data: [
+                AdCampaign(
+                    account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    budgetAmount: Nullable<Double>.value(1.1),
+                    budgetAmountLocal: Nullable<Double>.value(1.1),
+                    budgetCurrency: "budget_currency",
+                    budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+                    budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+                    campaignType: AdCampaignCampaignType.standard,
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+                    desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+                    endsAt: Nullable<String>.value("ends_at"),
+                    frequency: Nullable<Double>.value(1.1),
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    specialAdCategories: [
+                        AdCampaignSpecialAdCategoriesItem.housing,
+                        AdCampaignSpecialAdCategoriesItem.housing
+                    ],
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    startsAt: Nullable<String>.value("starts_at"),
+                    status: AdCampaignStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    targetCostPerResult: Nullable<Double>.value(1.1),
+                    targetResultEvent: Nullable<String>.value("target_result_event"),
+                    title: "title",
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                ),
+                AdCampaign(
+                    account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    budgetAmount: Nullable<Double>.value(1.1),
+                    budgetAmountLocal: Nullable<Double>.value(1.1),
+                    budgetCurrency: "budget_currency",
+                    budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+                    budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+                    campaignType: AdCampaignCampaignType.standard,
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+                    desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+                    endsAt: Nullable<String>.value("ends_at"),
+                    frequency: Nullable<Double>.value(1.1),
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    specialAdCategories: [
+                        AdCampaignSpecialAdCategoriesItem.housing,
+                        AdCampaignSpecialAdCategoriesItem.housing
+                    ],
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    startsAt: Nullable<String>.value("starts_at"),
+                    status: AdCampaignStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    targetCostPerResult: Nullable<Double>.value(1.1),
+                    targetResultEvent: Nullable<String>.value("target_result_event"),
+                    title: "title",
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                )
+            ],
+            pageInfo: ListAdCampaignsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.adCampaigns.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -417,6 +866,235 @@ import WhopSDK
             request: .init(
                 objective: .traffic,
                 title: "Now hiring mobile detailers — Austin"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "budget_amount": 1.1,
+                  "budget_amount_local": 1.1,
+                  "budget_currency": "budget_currency",
+                  "budget_optimization": "ad_campaign",
+                  "budget_type": "daily",
+                  "campaign_type": "standard",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "payment_failed",
+                  "desired_cost_per_result": 1.1,
+                  "ends_at": "ends_at",
+                  "frequency": 1.1,
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "objective": "awareness",
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "special_ad_categories": [
+                    "housing",
+                    "housing"
+                  ],
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "starts_at": "starts_at",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "target_cost_per_result": 1.1,
+                  "target_result_event": "target_result_event",
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdCampaign(
+            account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            budgetAmount: Nullable<Double>.value(1.1),
+            budgetAmountLocal: Nullable<Double>.value(1.1),
+            budgetCurrency: "budget_currency",
+            budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+            budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+            campaignType: AdCampaignCampaignType.standard,
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+            desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+            endsAt: Nullable<String>.value("ends_at"),
+            frequency: Nullable<Double>.value(1.1),
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            specialAdCategories: [
+                AdCampaignSpecialAdCategoriesItem.housing,
+                AdCampaignSpecialAdCategoriesItem.housing
+            ],
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            startsAt: Nullable<String>.value("starts_at"),
+            status: AdCampaignStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            targetCostPerResult: Nullable<Double>.value(1.1),
+            targetResultEvent: Nullable<String>.value("target_result_event"),
+            title: "title",
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
+        )
+        let response = try await client.adCampaigns.create(
+            request: .init(
+                objective: .traffic,
+                title: "title"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -623,6 +1301,232 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "budget_amount": 1.1,
+                  "budget_amount_local": 1.1,
+                  "budget_currency": "budget_currency",
+                  "budget_optimization": "ad_campaign",
+                  "budget_type": "daily",
+                  "campaign_type": "standard",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "payment_failed",
+                  "desired_cost_per_result": 1.1,
+                  "ends_at": "ends_at",
+                  "frequency": 1.1,
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "objective": "awareness",
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "special_ad_categories": [
+                    "housing",
+                    "housing"
+                  ],
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "starts_at": "starts_at",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "target_cost_per_result": 1.1,
+                  "target_result_event": "target_result_event",
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdCampaign(
+            account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            budgetAmount: Nullable<Double>.value(1.1),
+            budgetAmountLocal: Nullable<Double>.value(1.1),
+            budgetCurrency: "budget_currency",
+            budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+            budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+            campaignType: AdCampaignCampaignType.standard,
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+            desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+            endsAt: Nullable<String>.value("ends_at"),
+            frequency: Nullable<Double>.value(1.1),
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            specialAdCategories: [
+                AdCampaignSpecialAdCategoriesItem.housing,
+                AdCampaignSpecialAdCategoriesItem.housing
+            ],
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            startsAt: Nullable<String>.value("starts_at"),
+            status: AdCampaignStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            targetCostPerResult: Nullable<Double>.value(1.1),
+            targetResultEvent: Nullable<String>.value("target_result_event"),
+            title: "title",
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
+        )
+        let response = try await client.adCampaigns.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func delete1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -643,6 +1547,34 @@ import WhopSDK
         let expectedResponse = DeleteAdCampaignsResponse(
             deleted: true,
             id: "adcamp_xxxxxxxxxxxxxx"
+        )
+        let response = try await client.adCampaigns.delete(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func delete2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "deleted": true,
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeleteAdCampaignsResponse(
+            deleted: true,
+            id: "id"
         )
         let response = try await client.adCampaigns.delete(
             id: "id",
@@ -852,6 +1784,233 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "budget_amount": 1.1,
+                  "budget_amount_local": 1.1,
+                  "budget_currency": "budget_currency",
+                  "budget_optimization": "ad_campaign",
+                  "budget_type": "daily",
+                  "campaign_type": "standard",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "payment_failed",
+                  "desired_cost_per_result": 1.1,
+                  "ends_at": "ends_at",
+                  "frequency": 1.1,
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "objective": "awareness",
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "special_ad_categories": [
+                    "housing",
+                    "housing"
+                  ],
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "starts_at": "starts_at",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "target_cost_per_result": 1.1,
+                  "target_result_event": "target_result_event",
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdCampaign(
+            account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            budgetAmount: Nullable<Double>.value(1.1),
+            budgetAmountLocal: Nullable<Double>.value(1.1),
+            budgetCurrency: "budget_currency",
+            budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+            budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+            campaignType: AdCampaignCampaignType.standard,
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+            desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+            endsAt: Nullable<String>.value("ends_at"),
+            frequency: Nullable<Double>.value(1.1),
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            specialAdCategories: [
+                AdCampaignSpecialAdCategoriesItem.housing,
+                AdCampaignSpecialAdCategoriesItem.housing
+            ],
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            startsAt: Nullable<String>.value("starts_at"),
+            status: AdCampaignStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            targetCostPerResult: Nullable<Double>.value(1.1),
+            targetResultEvent: Nullable<String>.value("target_result_event"),
+            title: "title",
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
+        )
+        let response = try await client.adCampaigns.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func claim1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1044,6 +2203,232 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             viewedContentValue: 8400,
             viewedContents: 1200
+        )
+        let response = try await client.adCampaigns.claim(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func claim2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "budget_amount": 1.1,
+                  "budget_amount_local": 1.1,
+                  "budget_currency": "budget_currency",
+                  "budget_optimization": "ad_campaign",
+                  "budget_type": "daily",
+                  "campaign_type": "standard",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "payment_failed",
+                  "desired_cost_per_result": 1.1,
+                  "ends_at": "ends_at",
+                  "frequency": 1.1,
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "objective": "awareness",
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "special_ad_categories": [
+                    "housing",
+                    "housing"
+                  ],
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "starts_at": "starts_at",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "target_cost_per_result": 1.1,
+                  "target_result_event": "target_result_event",
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdCampaign(
+            account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            budgetAmount: Nullable<Double>.value(1.1),
+            budgetAmountLocal: Nullable<Double>.value(1.1),
+            budgetCurrency: "budget_currency",
+            budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+            budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+            campaignType: AdCampaignCampaignType.standard,
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+            desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+            endsAt: Nullable<String>.value("ends_at"),
+            frequency: Nullable<Double>.value(1.1),
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            specialAdCategories: [
+                AdCampaignSpecialAdCategoriesItem.housing,
+                AdCampaignSpecialAdCategoriesItem.housing
+            ],
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            startsAt: Nullable<String>.value("starts_at"),
+            status: AdCampaignStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            targetCostPerResult: Nullable<Double>.value(1.1),
+            targetResultEvent: Nullable<String>.value("target_result_event"),
+            title: "title",
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
         )
         let response = try await client.adCampaigns.claim(
             id: "id",
@@ -1261,6 +2646,447 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func duplicate2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "budget_amount": 1.1,
+                      "budget_amount_local": 1.1,
+                      "budget_currency": "budget_currency",
+                      "budget_optimization": "ad_campaign",
+                      "budget_type": "daily",
+                      "campaign_type": "standard",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "payment_failed",
+                      "desired_cost_per_result": 1.1,
+                      "ends_at": "ends_at",
+                      "frequency": 1.1,
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "objective": "awareness",
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "special_ad_categories": [
+                        "housing",
+                        "housing"
+                      ],
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "starts_at": "starts_at",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "target_cost_per_result": 1.1,
+                      "target_result_event": "target_result_event",
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "added_to_cart_value": 1.1,
+                      "added_to_carts": 1.1,
+                      "budget_amount": 1.1,
+                      "budget_amount_local": 1.1,
+                      "budget_currency": "budget_currency",
+                      "budget_optimization": "ad_campaign",
+                      "budget_type": "daily",
+                      "campaign_type": "standard",
+                      "click_through_rate": 1.1,
+                      "clicks": 1.1,
+                      "completed_registration_value": 1.1,
+                      "completed_registrations": 1.1,
+                      "contact_value": 1.1,
+                      "contacts": 1.1,
+                      "cost_per_added_to_cart": 1.1,
+                      "cost_per_click": 1.1,
+                      "cost_per_completed_registration": 1.1,
+                      "cost_per_contact": 1.1,
+                      "cost_per_lead": 1.1,
+                      "cost_per_mille": 1.1,
+                      "cost_per_purchase": 1.1,
+                      "cost_per_result": 1.1,
+                      "cost_per_schedule": 1.1,
+                      "cost_per_submitted_application": 1.1,
+                      "cost_per_unique_click": 1.1,
+                      "cost_per_viewed_content": 1.1,
+                      "created_at": "created_at",
+                      "custom_conversions": 1.1,
+                      "custom_event_counts": {
+                        "custom_event_counts": {
+                          "key": "value"
+                        }
+                      },
+                      "custom_event_values": {
+                        "custom_event_values": {
+                          "key": "value"
+                        }
+                      },
+                      "delivery_status": "payment_failed",
+                      "desired_cost_per_result": 1.1,
+                      "ends_at": "ends_at",
+                      "frequency": 1.1,
+                      "id": "id",
+                      "impressions": 1.1,
+                      "issues": [
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        },
+                        {
+                          "category": "information",
+                          "id": "id",
+                          "message": "message",
+                          "resource_id": "resource_id",
+                          "resource_type": "ad_campaign",
+                          "title": "title"
+                        }
+                      ],
+                      "lead_value": 1.1,
+                      "leads": 1.1,
+                      "link_clicks": 1.1,
+                      "objective": "awareness",
+                      "purchase_value": 1.1,
+                      "purchases": 1.1,
+                      "reach": 1.1,
+                      "result_event": "purchase",
+                      "result_event_name": "result_event_name",
+                      "results": 1.1,
+                      "return_on_ad_spend": 1.1,
+                      "schedule_value": 1.1,
+                      "schedules": 1.1,
+                      "special_ad_categories": [
+                        "housing",
+                        "housing"
+                      ],
+                      "spend": 1.1,
+                      "spend_currency": "spend_currency",
+                      "starts_at": "starts_at",
+                      "status": "active",
+                      "submitted_application_value": 1.1,
+                      "submitted_applications": 1.1,
+                      "target_cost_per_result": 1.1,
+                      "target_result_event": "target_result_event",
+                      "title": "title",
+                      "unique_click_through_rate": 1.1,
+                      "unique_clicks": 1.1,
+                      "updated_at": "updated_at",
+                      "viewed_content_value": 1.1,
+                      "viewed_contents": 1.1
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DuplicateAdCampaignsResponse(
+            data: [
+                AdCampaign(
+                    account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    budgetAmount: Nullable<Double>.value(1.1),
+                    budgetAmountLocal: Nullable<Double>.value(1.1),
+                    budgetCurrency: "budget_currency",
+                    budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+                    budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+                    campaignType: AdCampaignCampaignType.standard,
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+                    desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+                    endsAt: Nullable<String>.value("ends_at"),
+                    frequency: Nullable<Double>.value(1.1),
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    specialAdCategories: [
+                        AdCampaignSpecialAdCategoriesItem.housing,
+                        AdCampaignSpecialAdCategoriesItem.housing
+                    ],
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    startsAt: Nullable<String>.value("starts_at"),
+                    status: AdCampaignStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    targetCostPerResult: Nullable<Double>.value(1.1),
+                    targetResultEvent: Nullable<String>.value("target_result_event"),
+                    title: "title",
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                ),
+                AdCampaign(
+                    account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: "route",
+                        title: "title"
+                    )),
+                    addedToCartValue: 1.1,
+                    addedToCarts: 1.1,
+                    budgetAmount: Nullable<Double>.value(1.1),
+                    budgetAmountLocal: Nullable<Double>.value(1.1),
+                    budgetCurrency: "budget_currency",
+                    budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+                    budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+                    campaignType: AdCampaignCampaignType.standard,
+                    clickThroughRate: 1.1,
+                    clicks: 1.1,
+                    completedRegistrationValue: 1.1,
+                    completedRegistrations: 1.1,
+                    contactValue: 1.1,
+                    contacts: 1.1,
+                    costPerAddedToCart: Nullable<Double>.value(1.1),
+                    costPerClick: 1.1,
+                    costPerCompletedRegistration: Nullable<Double>.value(1.1),
+                    costPerContact: Nullable<Double>.value(1.1),
+                    costPerLead: Nullable<Double>.value(1.1),
+                    costPerMille: 1.1,
+                    costPerPurchase: Nullable<Double>.value(1.1),
+                    costPerResult: Nullable<Double>.value(1.1),
+                    costPerSchedule: Nullable<Double>.value(1.1),
+                    costPerSubmittedApplication: Nullable<Double>.value(1.1),
+                    costPerUniqueClick: Nullable<Double>.value(1.1),
+                    costPerViewedContent: Nullable<Double>.value(1.1),
+                    createdAt: "created_at",
+                    customConversions: 1.1,
+                    customEventCounts: [
+                        "custom_event_counts": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    customEventValues: [
+                        "custom_event_values": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ],
+                    deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+                    desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+                    endsAt: Nullable<String>.value("ends_at"),
+                    frequency: Nullable<Double>.value(1.1),
+                    id: "id",
+                    impressions: 1.1,
+                    issues: [
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        ),
+                        AdPlatformIssue(
+                            category: AdPlatformIssueCategory.information,
+                            id: "id",
+                            message: "message",
+                            resourceId: Nullable<String>.value("resource_id"),
+                            resourceType: AdPlatformIssueResourceType.adCampaign,
+                            title: "title"
+                        )
+                    ],
+                    leadValue: 1.1,
+                    leads: 1.1,
+                    linkClicks: 1.1,
+                    objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+                    purchaseValue: 1.1,
+                    purchases: 1.1,
+                    reach: 1.1,
+                    resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+                    resultEventName: Nullable<String>.value("result_event_name"),
+                    results: Nullable<Double>.value(1.1),
+                    returnOnAdSpend: 1.1,
+                    scheduleValue: 1.1,
+                    schedules: 1.1,
+                    specialAdCategories: [
+                        AdCampaignSpecialAdCategoriesItem.housing,
+                        AdCampaignSpecialAdCategoriesItem.housing
+                    ],
+                    spend: 1.1,
+                    spendCurrency: Nullable<String>.value("spend_currency"),
+                    startsAt: Nullable<String>.value("starts_at"),
+                    status: AdCampaignStatus.active,
+                    submittedApplicationValue: 1.1,
+                    submittedApplications: 1.1,
+                    targetCostPerResult: Nullable<Double>.value(1.1),
+                    targetResultEvent: Nullable<String>.value("target_result_event"),
+                    title: "title",
+                    uniqueClickThroughRate: Nullable<Double>.value(1.1),
+                    uniqueClicks: 1.1,
+                    updatedAt: "updated_at",
+                    viewedContentValue: 1.1,
+                    viewedContents: 1.1
+                )
+            ]
+        )
+        let response = try await client.adCampaigns.duplicate(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func pause1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1461,6 +3287,232 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func pause2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "budget_amount": 1.1,
+                  "budget_amount_local": 1.1,
+                  "budget_currency": "budget_currency",
+                  "budget_optimization": "ad_campaign",
+                  "budget_type": "daily",
+                  "campaign_type": "standard",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "payment_failed",
+                  "desired_cost_per_result": 1.1,
+                  "ends_at": "ends_at",
+                  "frequency": 1.1,
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "objective": "awareness",
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "special_ad_categories": [
+                    "housing",
+                    "housing"
+                  ],
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "starts_at": "starts_at",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "target_cost_per_result": 1.1,
+                  "target_result_event": "target_result_event",
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdCampaign(
+            account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            budgetAmount: Nullable<Double>.value(1.1),
+            budgetAmountLocal: Nullable<Double>.value(1.1),
+            budgetCurrency: "budget_currency",
+            budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+            budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+            campaignType: AdCampaignCampaignType.standard,
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+            desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+            endsAt: Nullable<String>.value("ends_at"),
+            frequency: Nullable<Double>.value(1.1),
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            specialAdCategories: [
+                AdCampaignSpecialAdCategoriesItem.housing,
+                AdCampaignSpecialAdCategoriesItem.housing
+            ],
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            startsAt: Nullable<String>.value("starts_at"),
+            status: AdCampaignStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            targetCostPerResult: Nullable<Double>.value(1.1),
+            targetResultEvent: Nullable<String>.value("target_result_event"),
+            title: "title",
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
+        )
+        let response = try await client.adCampaigns.pause(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func unpause1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1653,6 +3705,232 @@ import WhopSDK
             updatedAt: "2026-01-01T12:00:00.000Z",
             viewedContentValue: 8400,
             viewedContents: 1200
+        )
+        let response = try await client.adCampaigns.unpause(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unpause2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "added_to_cart_value": 1.1,
+                  "added_to_carts": 1.1,
+                  "budget_amount": 1.1,
+                  "budget_amount_local": 1.1,
+                  "budget_currency": "budget_currency",
+                  "budget_optimization": "ad_campaign",
+                  "budget_type": "daily",
+                  "campaign_type": "standard",
+                  "click_through_rate": 1.1,
+                  "clicks": 1.1,
+                  "completed_registration_value": 1.1,
+                  "completed_registrations": 1.1,
+                  "contact_value": 1.1,
+                  "contacts": 1.1,
+                  "cost_per_added_to_cart": 1.1,
+                  "cost_per_click": 1.1,
+                  "cost_per_completed_registration": 1.1,
+                  "cost_per_contact": 1.1,
+                  "cost_per_lead": 1.1,
+                  "cost_per_mille": 1.1,
+                  "cost_per_purchase": 1.1,
+                  "cost_per_result": 1.1,
+                  "cost_per_schedule": 1.1,
+                  "cost_per_submitted_application": 1.1,
+                  "cost_per_unique_click": 1.1,
+                  "cost_per_viewed_content": 1.1,
+                  "created_at": "created_at",
+                  "custom_conversions": 1.1,
+                  "custom_event_counts": {
+                    "custom_event_counts": {
+                      "key": "value"
+                    }
+                  },
+                  "custom_event_values": {
+                    "custom_event_values": {
+                      "key": "value"
+                    }
+                  },
+                  "delivery_status": "payment_failed",
+                  "desired_cost_per_result": 1.1,
+                  "ends_at": "ends_at",
+                  "frequency": 1.1,
+                  "id": "id",
+                  "impressions": 1.1,
+                  "issues": [
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    },
+                    {
+                      "category": "information",
+                      "id": "id",
+                      "message": "message",
+                      "resource_id": "resource_id",
+                      "resource_type": "ad_campaign",
+                      "title": "title"
+                    }
+                  ],
+                  "lead_value": 1.1,
+                  "leads": 1.1,
+                  "link_clicks": 1.1,
+                  "objective": "awareness",
+                  "purchase_value": 1.1,
+                  "purchases": 1.1,
+                  "reach": 1.1,
+                  "result_event": "purchase",
+                  "result_event_name": "result_event_name",
+                  "results": 1.1,
+                  "return_on_ad_spend": 1.1,
+                  "schedule_value": 1.1,
+                  "schedules": 1.1,
+                  "special_ad_categories": [
+                    "housing",
+                    "housing"
+                  ],
+                  "spend": 1.1,
+                  "spend_currency": "spend_currency",
+                  "starts_at": "starts_at",
+                  "status": "active",
+                  "submitted_application_value": 1.1,
+                  "submitted_applications": 1.1,
+                  "target_cost_per_result": 1.1,
+                  "target_result_event": "target_result_event",
+                  "title": "title",
+                  "unique_click_through_rate": 1.1,
+                  "unique_clicks": 1.1,
+                  "updated_at": "updated_at",
+                  "viewed_content_value": 1.1,
+                  "viewed_contents": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = AdCampaign(
+            account: Nullable<StorefrontAccount>.value(StorefrontAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: "route",
+                title: "title"
+            )),
+            addedToCartValue: 1.1,
+            addedToCarts: 1.1,
+            budgetAmount: Nullable<Double>.value(1.1),
+            budgetAmountLocal: Nullable<Double>.value(1.1),
+            budgetCurrency: "budget_currency",
+            budgetOptimization: Nullable<AdCampaignBudgetOptimization>.value(AdCampaignBudgetOptimization.adCampaign),
+            budgetType: Nullable<AdCampaignBudgetType>.value(AdCampaignBudgetType.daily),
+            campaignType: AdCampaignCampaignType.standard,
+            clickThroughRate: 1.1,
+            clicks: 1.1,
+            completedRegistrationValue: 1.1,
+            completedRegistrations: 1.1,
+            contactValue: 1.1,
+            contacts: 1.1,
+            costPerAddedToCart: Nullable<Double>.value(1.1),
+            costPerClick: 1.1,
+            costPerCompletedRegistration: Nullable<Double>.value(1.1),
+            costPerContact: Nullable<Double>.value(1.1),
+            costPerLead: Nullable<Double>.value(1.1),
+            costPerMille: 1.1,
+            costPerPurchase: Nullable<Double>.value(1.1),
+            costPerResult: Nullable<Double>.value(1.1),
+            costPerSchedule: Nullable<Double>.value(1.1),
+            costPerSubmittedApplication: Nullable<Double>.value(1.1),
+            costPerUniqueClick: Nullable<Double>.value(1.1),
+            costPerViewedContent: Nullable<Double>.value(1.1),
+            createdAt: "created_at",
+            customConversions: 1.1,
+            customEventCounts: [
+                "custom_event_counts": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            customEventValues: [
+                "custom_event_values": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            deliveryStatus: AdCampaignDeliveryStatus.paymentFailed,
+            desiredCostPerResult: Optional(Nullable<Double>.value(1.1)),
+            endsAt: Nullable<String>.value("ends_at"),
+            frequency: Nullable<Double>.value(1.1),
+            id: "id",
+            impressions: 1.1,
+            issues: [
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                ),
+                AdPlatformIssue(
+                    category: AdPlatformIssueCategory.information,
+                    id: "id",
+                    message: "message",
+                    resourceId: Nullable<String>.value("resource_id"),
+                    resourceType: AdPlatformIssueResourceType.adCampaign,
+                    title: "title"
+                )
+            ],
+            leadValue: 1.1,
+            leads: 1.1,
+            linkClicks: 1.1,
+            objective: Nullable<AdCampaignObjective>.value(AdCampaignObjective.awareness),
+            purchaseValue: 1.1,
+            purchases: 1.1,
+            reach: 1.1,
+            resultEvent: Nullable<AdCampaignResultEvent>.value(AdCampaignResultEvent.purchase),
+            resultEventName: Nullable<String>.value("result_event_name"),
+            results: Nullable<Double>.value(1.1),
+            returnOnAdSpend: 1.1,
+            scheduleValue: 1.1,
+            schedules: 1.1,
+            specialAdCategories: [
+                AdCampaignSpecialAdCategoriesItem.housing,
+                AdCampaignSpecialAdCategoriesItem.housing
+            ],
+            spend: 1.1,
+            spendCurrency: Nullable<String>.value("spend_currency"),
+            startsAt: Nullable<String>.value("starts_at"),
+            status: AdCampaignStatus.active,
+            submittedApplicationValue: 1.1,
+            submittedApplications: 1.1,
+            targetCostPerResult: Nullable<Double>.value(1.1),
+            targetResultEvent: Nullable<String>.value("target_result_event"),
+            title: "title",
+            uniqueClickThroughRate: Nullable<Double>.value(1.1),
+            uniqueClicks: 1.1,
+            updatedAt: "updated_at",
+            viewedContentValue: 1.1,
+            viewedContents: 1.1
         )
         let response = try await client.adCampaigns.unpause(
             id: "id",

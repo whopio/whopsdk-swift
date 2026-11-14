@@ -176,6 +176,295 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "access_level": "no_access",
+                      "account_id": "account_id",
+                      "created_at": "created_at",
+                      "display_name": "display_name",
+                      "earnings_usd": {
+                        "last_24_hours": "last_24_hours",
+                        "last_30_days": "last_30_days",
+                        "last_7_days": "last_7_days",
+                        "lifetime": "lifetime"
+                      },
+                      "email": "email",
+                      "id": "id",
+                      "joined_at": "joined_at",
+                      "last_accessed_at": "last_accessed_at",
+                      "last_activity": {
+                        "author": {
+                          "id": "id",
+                          "name": "name",
+                          "profile_picture": {
+                            "url": "url"
+                          },
+                          "username": "username"
+                        },
+                        "channel_id": "channel_id",
+                        "created_at": "created_at",
+                        "id": "id",
+                        "object": "message",
+                        "plain_content": "plain_content"
+                      },
+                      "last_activity_at": "last_activity_at",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "most_recent_action": "canceling",
+                      "most_recent_action_at": "most_recent_action_at",
+                      "name": "name",
+                      "phone_number": "phone_number",
+                      "status": "joined",
+                      "token_balance": 1.1,
+                      "unsubscribe_status": "unsubscribed",
+                      "usd_total_spent": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "user": {
+                        "city": "city",
+                        "country": "country",
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "state": "state",
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "access_level": "no_access",
+                      "account_id": "account_id",
+                      "created_at": "created_at",
+                      "display_name": "display_name",
+                      "earnings_usd": {
+                        "last_24_hours": "last_24_hours",
+                        "last_30_days": "last_30_days",
+                        "last_7_days": "last_7_days",
+                        "lifetime": "lifetime"
+                      },
+                      "email": "email",
+                      "id": "id",
+                      "joined_at": "joined_at",
+                      "last_accessed_at": "last_accessed_at",
+                      "last_activity": {
+                        "author": {
+                          "id": "id",
+                          "name": "name",
+                          "profile_picture": {
+                            "url": "url"
+                          },
+                          "username": "username"
+                        },
+                        "channel_id": "channel_id",
+                        "created_at": "created_at",
+                        "id": "id",
+                        "object": "message",
+                        "plain_content": "plain_content"
+                      },
+                      "last_activity_at": "last_activity_at",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "most_recent_action": "canceling",
+                      "most_recent_action_at": "most_recent_action_at",
+                      "name": "name",
+                      "phone_number": "phone_number",
+                      "status": "joined",
+                      "token_balance": 1.1,
+                      "unsubscribe_status": "unsubscribed",
+                      "usd_total_spent": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "user": {
+                        "city": "city",
+                        "country": "country",
+                        "id": "id",
+                        "name": "name",
+                        "profile_picture": {
+                          "url": "url"
+                        },
+                        "state": "state",
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor",
+                    "total_count": 1,
+                    "total_count_capped": true
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListMembersResponse(
+            data: [
+                Member(
+                    accessLevel: MemberAccessLevel.noAccess,
+                    accountId: "account_id",
+                    createdAt: "created_at",
+                    displayName: "display_name",
+                    earningsUsd: Nullable<UserEarningsAmount>.value(UserEarningsAmount(
+                        last24Hours: "last_24_hours",
+                        last30Days: "last_30_days",
+                        last7Days: "last_7_days",
+                        lifetime: "lifetime"
+                    )),
+                    email: Nullable<String>.value("email"),
+                    id: "id",
+                    joinedAt: "joined_at",
+                    lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                    lastActivity: Nullable<MemberLastActivity>.value(MemberLastActivityMessage(
+                        author: Nullable<UserSummary>.value(UserSummary(
+                            id: "id",
+                            name: Nullable<String>.value("name"),
+                            profilePicture: UserProfilePicture(
+                                url: "url"
+                            ),
+                            username: "username"
+                        )),
+                        channelId: "channel_id",
+                        createdAt: "created_at",
+                        id: "id",
+                        object: MemberLastActivityMessageObject.message,
+                        plainContent: Nullable<String>.value("plain_content")
+                    )),
+                    lastActivityAt: Nullable<String>.value("last_activity_at"),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    mostRecentAction: Nullable<MemberMostRecentAction>.value(MemberMostRecentAction.canceling),
+                    mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+                    name: Nullable<String>.value("name"),
+                    phoneNumber: Nullable<String>.value("phone_number"),
+                    status: MemberStatus.joined,
+                    tokenBalance: 1.1,
+                    unsubscribeStatus: Nullable<MemberUnsubscribeStatus>.value(MemberUnsubscribeStatus.unsubscribed),
+                    usdTotalSpent: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    user: Nullable<MemberUser>.value(MemberUser(
+                        city: Nullable<String>.value("city"),
+                        country: Nullable<String>.value("country"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        state: Nullable<String>.value("state"),
+                        username: "username"
+                    ))
+                ),
+                Member(
+                    accessLevel: MemberAccessLevel.noAccess,
+                    accountId: "account_id",
+                    createdAt: "created_at",
+                    displayName: "display_name",
+                    earningsUsd: Nullable<UserEarningsAmount>.value(UserEarningsAmount(
+                        last24Hours: "last_24_hours",
+                        last30Days: "last_30_days",
+                        last7Days: "last_7_days",
+                        lifetime: "lifetime"
+                    )),
+                    email: Nullable<String>.value("email"),
+                    id: "id",
+                    joinedAt: "joined_at",
+                    lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+                    lastActivity: Nullable<MemberLastActivity>.value(MemberLastActivityMessage(
+                        author: Nullable<UserSummary>.value(UserSummary(
+                            id: "id",
+                            name: Nullable<String>.value("name"),
+                            profilePicture: UserProfilePicture(
+                                url: "url"
+                            ),
+                            username: "username"
+                        )),
+                        channelId: "channel_id",
+                        createdAt: "created_at",
+                        id: "id",
+                        object: MemberLastActivityMessageObject.message,
+                        plainContent: Nullable<String>.value("plain_content")
+                    )),
+                    lastActivityAt: Nullable<String>.value("last_activity_at"),
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    mostRecentAction: Nullable<MemberMostRecentAction>.value(MemberMostRecentAction.canceling),
+                    mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+                    name: Nullable<String>.value("name"),
+                    phoneNumber: Nullable<String>.value("phone_number"),
+                    status: MemberStatus.joined,
+                    tokenBalance: 1.1,
+                    unsubscribeStatus: Nullable<MemberUnsubscribeStatus>.value(MemberUnsubscribeStatus.unsubscribed),
+                    usdTotalSpent: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    user: Nullable<MemberUser>.value(MemberUser(
+                        city: Nullable<String>.value("city"),
+                        country: Nullable<String>.value("country"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        profilePicture: UserProfilePicture(
+                            url: "url"
+                        ),
+                        state: Nullable<String>.value("state"),
+                        username: "username"
+                    ))
+                )
+            ],
+            pageInfo: ListMembersResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor"),
+                totalCount: Nullable<Int>.value(1),
+                totalCountCapped: true
+            )
+        )
+        let response = try await client.members.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -309,6 +598,150 @@ import WhopSDK
         )
         let response = try await client.members.create(
             request: .init(email: "jane@example.com"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "access_level": "no_access",
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "display_name": "display_name",
+                  "earnings_usd": {
+                    "last_24_hours": "last_24_hours",
+                    "last_30_days": "last_30_days",
+                    "last_7_days": "last_7_days",
+                    "lifetime": "lifetime"
+                  },
+                  "email": "email",
+                  "id": "id",
+                  "joined_at": "joined_at",
+                  "last_accessed_at": "last_accessed_at",
+                  "last_activity": {
+                    "author": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_picture": {
+                        "url": "url"
+                      },
+                      "username": "username"
+                    },
+                    "channel_id": "channel_id",
+                    "created_at": "created_at",
+                    "id": "id",
+                    "object": "message",
+                    "plain_content": "plain_content"
+                  },
+                  "last_activity_at": "last_activity_at",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceling",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "name": "name",
+                  "phone_number": "phone_number",
+                  "status": "joined",
+                  "token_balance": 1.1,
+                  "unsubscribe_status": "unsubscribed",
+                  "usd_total_spent": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "user": {
+                    "city": "city",
+                    "country": "country",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "state": "state",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Member(
+            accessLevel: MemberAccessLevel.noAccess,
+            accountId: "account_id",
+            createdAt: "created_at",
+            displayName: "display_name",
+            earningsUsd: Nullable<UserEarningsAmount>.value(UserEarningsAmount(
+                last24Hours: "last_24_hours",
+                last30Days: "last_30_days",
+                last7Days: "last_7_days",
+                lifetime: "lifetime"
+            )),
+            email: Nullable<String>.value("email"),
+            id: "id",
+            joinedAt: "joined_at",
+            lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+            lastActivity: Nullable<MemberLastActivity>.value(MemberLastActivityMessage(
+                author: Nullable<UserSummary>.value(UserSummary(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePicture: UserProfilePicture(
+                        url: "url"
+                    ),
+                    username: "username"
+                )),
+                channelId: "channel_id",
+                createdAt: "created_at",
+                id: "id",
+                object: MemberLastActivityMessageObject.message,
+                plainContent: Nullable<String>.value("plain_content")
+            )),
+            lastActivityAt: Nullable<String>.value("last_activity_at"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            mostRecentAction: Nullable<MemberMostRecentAction>.value(MemberMostRecentAction.canceling),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            name: Nullable<String>.value("name"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            status: MemberStatus.joined,
+            tokenBalance: 1.1,
+            unsubscribeStatus: Nullable<MemberUnsubscribeStatus>.value(MemberUnsubscribeStatus.unsubscribed),
+            usdTotalSpent: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            user: Nullable<MemberUser>.value(MemberUser(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                state: Nullable<String>.value("state"),
+                username: "username"
+            ))
+        )
+        let response = try await client.members.create(
+            request: .init(email: "email"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -452,6 +885,150 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "access_level": "no_access",
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "display_name": "display_name",
+                  "earnings_usd": {
+                    "last_24_hours": "last_24_hours",
+                    "last_30_days": "last_30_days",
+                    "last_7_days": "last_7_days",
+                    "lifetime": "lifetime"
+                  },
+                  "email": "email",
+                  "id": "id",
+                  "joined_at": "joined_at",
+                  "last_accessed_at": "last_accessed_at",
+                  "last_activity": {
+                    "author": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_picture": {
+                        "url": "url"
+                      },
+                      "username": "username"
+                    },
+                    "channel_id": "channel_id",
+                    "created_at": "created_at",
+                    "id": "id",
+                    "object": "message",
+                    "plain_content": "plain_content"
+                  },
+                  "last_activity_at": "last_activity_at",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceling",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "name": "name",
+                  "phone_number": "phone_number",
+                  "status": "joined",
+                  "token_balance": 1.1,
+                  "unsubscribe_status": "unsubscribed",
+                  "usd_total_spent": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "user": {
+                    "city": "city",
+                    "country": "country",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "state": "state",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Member(
+            accessLevel: MemberAccessLevel.noAccess,
+            accountId: "account_id",
+            createdAt: "created_at",
+            displayName: "display_name",
+            earningsUsd: Nullable<UserEarningsAmount>.value(UserEarningsAmount(
+                last24Hours: "last_24_hours",
+                last30Days: "last_30_days",
+                last7Days: "last_7_days",
+                lifetime: "lifetime"
+            )),
+            email: Nullable<String>.value("email"),
+            id: "id",
+            joinedAt: "joined_at",
+            lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+            lastActivity: Nullable<MemberLastActivity>.value(MemberLastActivityMessage(
+                author: Nullable<UserSummary>.value(UserSummary(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePicture: UserProfilePicture(
+                        url: "url"
+                    ),
+                    username: "username"
+                )),
+                channelId: "channel_id",
+                createdAt: "created_at",
+                id: "id",
+                object: MemberLastActivityMessageObject.message,
+                plainContent: Nullable<String>.value("plain_content")
+            )),
+            lastActivityAt: Nullable<String>.value("last_activity_at"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            mostRecentAction: Nullable<MemberMostRecentAction>.value(MemberMostRecentAction.canceling),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            name: Nullable<String>.value("name"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            status: MemberStatus.joined,
+            tokenBalance: 1.1,
+            unsubscribeStatus: Nullable<MemberUnsubscribeStatus>.value(MemberUnsubscribeStatus.unsubscribed),
+            usdTotalSpent: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            user: Nullable<MemberUser>.value(MemberUser(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                state: Nullable<String>.value("state"),
+                username: "username"
+            ))
+        )
+        let response = try await client.members.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func update1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -581,6 +1158,151 @@ import WhopSDK
                 ),
                 state: Nullable<String>.value("TX"),
                 username: "danawhitfield"
+            ))
+        )
+        let response = try await client.members.update(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "access_level": "no_access",
+                  "account_id": "account_id",
+                  "created_at": "created_at",
+                  "display_name": "display_name",
+                  "earnings_usd": {
+                    "last_24_hours": "last_24_hours",
+                    "last_30_days": "last_30_days",
+                    "last_7_days": "last_7_days",
+                    "lifetime": "lifetime"
+                  },
+                  "email": "email",
+                  "id": "id",
+                  "joined_at": "joined_at",
+                  "last_accessed_at": "last_accessed_at",
+                  "last_activity": {
+                    "author": {
+                      "id": "id",
+                      "name": "name",
+                      "profile_picture": {
+                        "url": "url"
+                      },
+                      "username": "username"
+                    },
+                    "channel_id": "channel_id",
+                    "created_at": "created_at",
+                    "id": "id",
+                    "object": "message",
+                    "plain_content": "plain_content"
+                  },
+                  "last_activity_at": "last_activity_at",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "most_recent_action": "canceling",
+                  "most_recent_action_at": "most_recent_action_at",
+                  "name": "name",
+                  "phone_number": "phone_number",
+                  "status": "joined",
+                  "token_balance": 1.1,
+                  "unsubscribe_status": "unsubscribed",
+                  "usd_total_spent": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "user": {
+                    "city": "city",
+                    "country": "country",
+                    "id": "id",
+                    "name": "name",
+                    "profile_picture": {
+                      "url": "url"
+                    },
+                    "state": "state",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Member(
+            accessLevel: MemberAccessLevel.noAccess,
+            accountId: "account_id",
+            createdAt: "created_at",
+            displayName: "display_name",
+            earningsUsd: Nullable<UserEarningsAmount>.value(UserEarningsAmount(
+                last24Hours: "last_24_hours",
+                last30Days: "last_30_days",
+                last7Days: "last_7_days",
+                lifetime: "lifetime"
+            )),
+            email: Nullable<String>.value("email"),
+            id: "id",
+            joinedAt: "joined_at",
+            lastAccessedAt: Nullable<String>.value("last_accessed_at"),
+            lastActivity: Nullable<MemberLastActivity>.value(MemberLastActivityMessage(
+                author: Nullable<UserSummary>.value(UserSummary(
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    profilePicture: UserProfilePicture(
+                        url: "url"
+                    ),
+                    username: "username"
+                )),
+                channelId: "channel_id",
+                createdAt: "created_at",
+                id: "id",
+                object: MemberLastActivityMessageObject.message,
+                plainContent: Nullable<String>.value("plain_content")
+            )),
+            lastActivityAt: Nullable<String>.value("last_activity_at"),
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            mostRecentAction: Nullable<MemberMostRecentAction>.value(MemberMostRecentAction.canceling),
+            mostRecentActionAt: Nullable<String>.value("most_recent_action_at"),
+            name: Nullable<String>.value("name"),
+            phoneNumber: Nullable<String>.value("phone_number"),
+            status: MemberStatus.joined,
+            tokenBalance: 1.1,
+            unsubscribeStatus: Nullable<MemberUnsubscribeStatus>.value(MemberUnsubscribeStatus.unsubscribed),
+            usdTotalSpent: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            user: Nullable<MemberUser>.value(MemberUser(
+                city: Nullable<String>.value("city"),
+                country: Nullable<String>.value("country"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                profilePicture: UserProfilePicture(
+                    url: "url"
+                ),
+                state: Nullable<String>.value("state"),
+                username: "username"
             ))
         )
         let response = try await client.members.update(

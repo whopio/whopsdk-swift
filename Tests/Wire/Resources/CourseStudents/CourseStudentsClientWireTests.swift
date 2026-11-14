@@ -71,6 +71,98 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "completed_lessons_count": 1,
+                      "completion_rate": 1.1,
+                      "first_interaction_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "last_interaction_at": "2024-01-15T09:30:00Z",
+                      "total_lessons_count": 1,
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "completed_lessons_count": 1,
+                      "completion_rate": 1.1,
+                      "first_interaction_at": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "last_interaction_at": "2024-01-15T09:30:00Z",
+                      "total_lessons_count": 1,
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListCourseStudentsResponse(
+            data: [
+                CourseStudentListItem(
+                    completedLessonsCount: 1,
+                    completionRate: 1.1,
+                    firstInteractionAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    lastInteractionAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    totalLessonsCount: 1,
+                    user: CourseStudentListItemUser(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: "username"
+                    )
+                ),
+                CourseStudentListItem(
+                    completedLessonsCount: 1,
+                    completionRate: 1.1,
+                    firstInteractionAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    lastInteractionAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    totalLessonsCount: 1,
+                    user: CourseStudentListItemUser(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: "username"
+                    )
+                )
+            ],
+            pageInfo: PageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.courseStudents.list(
+            courseId: "course_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -122,6 +214,66 @@ import WhopSDK
                 id: "user_xxxxxxxxxxxxx",
                 name: Nullable<String>.value("John Doe"),
                 username: "johndoe42"
+            )
+        )
+        let response = try await client.courseStudents.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "completed_lessons_count": 1,
+                  "completion_rate": 1.1,
+                  "course": {
+                    "experience": {
+                      "id": "id"
+                    },
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "first_interaction_at": "2024-01-15T09:30:00Z",
+                  "id": "id",
+                  "last_interaction_at": "2024-01-15T09:30:00Z",
+                  "total_lessons_count": 1,
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CourseStudent(
+            completedLessonsCount: 1,
+            completionRate: 1.1,
+            course: CourseStudentCourse(
+                experience: CourseStudentCourseExperience(
+                    id: "id"
+                ),
+                id: "id",
+                title: Nullable<String>.value("title")
+            ),
+            firstInteractionAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            id: "id",
+            lastInteractionAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            totalLessonsCount: 1,
+            user: CourseStudentUser(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                username: "username"
             )
         )
         let response = try await client.courseStudents.retrieve(
