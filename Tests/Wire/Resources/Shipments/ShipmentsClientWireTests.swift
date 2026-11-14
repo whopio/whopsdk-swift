@@ -31,7 +31,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -68,7 +68,7 @@ import WhopSDK
                 )
             ],
             pageInfo: ListShipmentsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
@@ -80,6 +80,143 @@ import WhopSDK
             ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "carrier": "carrier",
+                      "checkpoints": [
+                        {
+                          "location": "location",
+                          "message": "message",
+                          "status": "unknown",
+                          "timestamp": "timestamp"
+                        },
+                        {
+                          "location": "location",
+                          "message": "message",
+                          "status": "unknown",
+                          "timestamp": "timestamp"
+                        }
+                      ],
+                      "created_at": "created_at",
+                      "id": "id",
+                      "payment_id": "payment_id",
+                      "status": "unknown",
+                      "tracking_number": "tracking_number",
+                      "tracking_url": "tracking_url",
+                      "updated_at": "updated_at"
+                    },
+                    {
+                      "account_id": "account_id",
+                      "carrier": "carrier",
+                      "checkpoints": [
+                        {
+                          "location": "location",
+                          "message": "message",
+                          "status": "unknown",
+                          "timestamp": "timestamp"
+                        },
+                        {
+                          "location": "location",
+                          "message": "message",
+                          "status": "unknown",
+                          "timestamp": "timestamp"
+                        }
+                      ],
+                      "created_at": "created_at",
+                      "id": "id",
+                      "payment_id": "payment_id",
+                      "status": "unknown",
+                      "tracking_number": "tracking_number",
+                      "tracking_url": "tracking_url",
+                      "updated_at": "updated_at"
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListShipmentsResponse(
+            data: [
+                Shipment(
+                    accountId: "account_id",
+                    carrier: Nullable<String>.value("carrier"),
+                    checkpoints: [
+                        ShipmentCheckpoint(
+                            location: Nullable<String>.value("location"),
+                            message: Nullable<String>.value("message"),
+                            status: ShipmentCheckpointStatus.unknown,
+                            timestamp: Nullable<String>.value("timestamp")
+                        ),
+                        ShipmentCheckpoint(
+                            location: Nullable<String>.value("location"),
+                            message: Nullable<String>.value("message"),
+                            status: ShipmentCheckpointStatus.unknown,
+                            timestamp: Nullable<String>.value("timestamp")
+                        )
+                    ],
+                    createdAt: "created_at",
+                    id: "id",
+                    paymentId: "payment_id",
+                    status: ShipmentStatus.unknown,
+                    trackingNumber: "tracking_number",
+                    trackingUrl: "tracking_url",
+                    updatedAt: "updated_at"
+                ),
+                Shipment(
+                    accountId: "account_id",
+                    carrier: Nullable<String>.value("carrier"),
+                    checkpoints: [
+                        ShipmentCheckpoint(
+                            location: Nullable<String>.value("location"),
+                            message: Nullable<String>.value("message"),
+                            status: ShipmentCheckpointStatus.unknown,
+                            timestamp: Nullable<String>.value("timestamp")
+                        ),
+                        ShipmentCheckpoint(
+                            location: Nullable<String>.value("location"),
+                            message: Nullable<String>.value("message"),
+                            status: ShipmentCheckpointStatus.unknown,
+                            timestamp: Nullable<String>.value("timestamp")
+                        )
+                    ],
+                    createdAt: "created_at",
+                    id: "id",
+                    paymentId: "payment_id",
+                    status: ShipmentStatus.unknown,
+                    trackingNumber: "tracking_number",
+                    trackingUrl: "tracking_url",
+                    updatedAt: "updated_at"
+                )
+            ],
+            pageInfo: ListShipmentsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.shipments.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -144,6 +281,225 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "carrier": "carrier",
+                  "checkpoints": [
+                    {
+                      "location": "location",
+                      "message": "message",
+                      "status": "unknown",
+                      "timestamp": "timestamp"
+                    },
+                    {
+                      "location": "location",
+                      "message": "message",
+                      "status": "unknown",
+                      "timestamp": "timestamp"
+                    }
+                  ],
+                  "created_at": "created_at",
+                  "id": "id",
+                  "payment_id": "payment_id",
+                  "status": "unknown",
+                  "tracking_number": "tracking_number",
+                  "tracking_url": "tracking_url",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Shipment(
+            accountId: "account_id",
+            carrier: Nullable<String>.value("carrier"),
+            checkpoints: [
+                ShipmentCheckpoint(
+                    location: Nullable<String>.value("location"),
+                    message: Nullable<String>.value("message"),
+                    status: ShipmentCheckpointStatus.unknown,
+                    timestamp: Nullable<String>.value("timestamp")
+                ),
+                ShipmentCheckpoint(
+                    location: Nullable<String>.value("location"),
+                    message: Nullable<String>.value("message"),
+                    status: ShipmentCheckpointStatus.unknown,
+                    timestamp: Nullable<String>.value("timestamp")
+                )
+            ],
+            createdAt: "created_at",
+            id: "id",
+            paymentId: "payment_id",
+            status: ShipmentStatus.unknown,
+            trackingNumber: "tracking_number",
+            trackingUrl: "tracking_url",
+            updatedAt: "updated_at"
+        )
+        let response = try await client.shipments.create(
+            request: .init(
+                paymentId: "payment_id",
+                trackingNumber: "tracking_number"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func lookup1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "payment_id": "pay_xxxxxxxxxxxxxx",
+                  "shipment": {
+                    "account_id": "biz_xxxxxxxxxxxxxx",
+                    "carrier": "ups",
+                    "checkpoints": [
+                      {
+                        "location": "PHILADELPHIA, PA",
+                        "message": "Picked up",
+                        "status": "unknown",
+                        "timestamp": "2026-01-01T12:00:00.000Z"
+                      }
+                    ],
+                    "created_at": "2026-01-01T12:00:00.000Z",
+                    "id": "ship_xxxxxxxxxxxxxx",
+                    "payment_id": "pay_xxxxxxxxxxxxxx",
+                    "status": "unknown",
+                    "tracking_number": "1Z999AA10123456784",
+                    "tracking_url": "https://track.aftership.com/xxxxxxxxxxxxxxxxxx",
+                    "updated_at": "2026-01-01T12:00:00.000Z"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ShipmentLookup(
+            paymentId: "pay_xxxxxxxxxxxxxx",
+            shipment: Nullable<Shipment>.value(Shipment(
+                accountId: "biz_xxxxxxxxxxxxxx",
+                carrier: Nullable<String>.value("ups"),
+                checkpoints: [
+                    ShipmentCheckpoint(
+                        location: Nullable<String>.value("PHILADELPHIA, PA"),
+                        message: Nullable<String>.value("Picked up"),
+                        status: ShipmentCheckpointStatus.unknown,
+                        timestamp: Nullable<String>.value("2026-01-01T12:00:00.000Z")
+                    )
+                ],
+                createdAt: "2026-01-01T12:00:00.000Z",
+                id: "ship_xxxxxxxxxxxxxx",
+                paymentId: "pay_xxxxxxxxxxxxxx",
+                status: ShipmentStatus.unknown,
+                trackingNumber: "1Z999AA10123456784",
+                trackingUrl: "https://track.aftership.com/xxxxxxxxxxxxxxxxxx",
+                updatedAt: "2026-01-01T12:00:00.000Z"
+            ))
+        )
+        let response = try await client.shipments.lookup(
+            request: .init(
+                accountId: "biz_xxxxxxxxxxxxxx",
+                email: "marcus@shinetime.example"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func lookup2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "payment_id": "payment_id",
+                  "shipment": {
+                    "account_id": "account_id",
+                    "carrier": "carrier",
+                    "checkpoints": [
+                      {
+                        "location": "location",
+                        "message": "message",
+                        "status": "unknown",
+                        "timestamp": "timestamp"
+                      },
+                      {
+                        "location": "location",
+                        "message": "message",
+                        "status": "unknown",
+                        "timestamp": "timestamp"
+                      }
+                    ],
+                    "created_at": "created_at",
+                    "id": "id",
+                    "payment_id": "payment_id",
+                    "status": "unknown",
+                    "tracking_number": "tracking_number",
+                    "tracking_url": "tracking_url",
+                    "updated_at": "updated_at"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ShipmentLookup(
+            paymentId: "payment_id",
+            shipment: Nullable<Shipment>.value(Shipment(
+                accountId: "account_id",
+                carrier: Nullable<String>.value("carrier"),
+                checkpoints: [
+                    ShipmentCheckpoint(
+                        location: Nullable<String>.value("location"),
+                        message: Nullable<String>.value("message"),
+                        status: ShipmentCheckpointStatus.unknown,
+                        timestamp: Nullable<String>.value("timestamp")
+                    ),
+                    ShipmentCheckpoint(
+                        location: Nullable<String>.value("location"),
+                        message: Nullable<String>.value("message"),
+                        status: ShipmentCheckpointStatus.unknown,
+                        timestamp: Nullable<String>.value("timestamp")
+                    )
+                ],
+                createdAt: "created_at",
+                id: "id",
+                paymentId: "payment_id",
+                status: ShipmentStatus.unknown,
+                trackingNumber: "tracking_number",
+                trackingUrl: "tracking_url",
+                updatedAt: "updated_at"
+            ))
+        )
+        let response = try await client.shipments.lookup(
+            request: .init(
+                accountId: "account_id",
+                email: "email"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -194,6 +550,76 @@ import WhopSDK
             trackingNumber: "1Z999AA10123456784",
             trackingUrl: "https://track.aftership.com/xxxxxxxxxxxxxxxxxx",
             updatedAt: "2026-01-01T12:00:00.000Z"
+        )
+        let response = try await client.shipments.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "carrier": "carrier",
+                  "checkpoints": [
+                    {
+                      "location": "location",
+                      "message": "message",
+                      "status": "unknown",
+                      "timestamp": "timestamp"
+                    },
+                    {
+                      "location": "location",
+                      "message": "message",
+                      "status": "unknown",
+                      "timestamp": "timestamp"
+                    }
+                  ],
+                  "created_at": "created_at",
+                  "id": "id",
+                  "payment_id": "payment_id",
+                  "status": "unknown",
+                  "tracking_number": "tracking_number",
+                  "tracking_url": "tracking_url",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Shipment(
+            accountId: "account_id",
+            carrier: Nullable<String>.value("carrier"),
+            checkpoints: [
+                ShipmentCheckpoint(
+                    location: Nullable<String>.value("location"),
+                    message: Nullable<String>.value("message"),
+                    status: ShipmentCheckpointStatus.unknown,
+                    timestamp: Nullable<String>.value("timestamp")
+                ),
+                ShipmentCheckpoint(
+                    location: Nullable<String>.value("location"),
+                    message: Nullable<String>.value("message"),
+                    status: ShipmentCheckpointStatus.unknown,
+                    timestamp: Nullable<String>.value("timestamp")
+                )
+            ],
+            createdAt: "created_at",
+            id: "id",
+            paymentId: "payment_id",
+            status: ShipmentStatus.unknown,
+            trackingNumber: "tracking_number",
+            trackingUrl: "tracking_url",
+            updatedAt: "updated_at"
         )
         let response = try await client.shipments.retrieve(
             id: "id",
@@ -256,6 +682,77 @@ import WhopSDK
         let response = try await client.shipments.update(
             id: "id",
             request: .init(trackingNumber: "9400111899223456789012"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func update2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "carrier": "carrier",
+                  "checkpoints": [
+                    {
+                      "location": "location",
+                      "message": "message",
+                      "status": "unknown",
+                      "timestamp": "timestamp"
+                    },
+                    {
+                      "location": "location",
+                      "message": "message",
+                      "status": "unknown",
+                      "timestamp": "timestamp"
+                    }
+                  ],
+                  "created_at": "created_at",
+                  "id": "id",
+                  "payment_id": "payment_id",
+                  "status": "unknown",
+                  "tracking_number": "tracking_number",
+                  "tracking_url": "tracking_url",
+                  "updated_at": "updated_at"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Shipment(
+            accountId: "account_id",
+            carrier: Nullable<String>.value("carrier"),
+            checkpoints: [
+                ShipmentCheckpoint(
+                    location: Nullable<String>.value("location"),
+                    message: Nullable<String>.value("message"),
+                    status: ShipmentCheckpointStatus.unknown,
+                    timestamp: Nullable<String>.value("timestamp")
+                ),
+                ShipmentCheckpoint(
+                    location: Nullable<String>.value("location"),
+                    message: Nullable<String>.value("message"),
+                    status: ShipmentCheckpointStatus.unknown,
+                    timestamp: Nullable<String>.value("timestamp")
+                )
+            ],
+            createdAt: "created_at",
+            id: "id",
+            paymentId: "payment_id",
+            status: ShipmentStatus.unknown,
+            trackingNumber: "tracking_number",
+            trackingUrl: "tracking_url",
+            updatedAt: "updated_at"
+        )
+        let response = try await client.shipments.update(
+            id: "id",
+            request: .init(trackingNumber: "tracking_number"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

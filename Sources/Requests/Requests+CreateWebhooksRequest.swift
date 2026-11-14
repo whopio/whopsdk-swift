@@ -4,7 +4,7 @@ extension Requests {
     public struct CreateWebhooksRequest: Codable, Hashable, Sendable {
         /// The dated API version (Api-Version-Date) to pin this webhook's payloads to. Omit to leave the webhook unpinned, tracking the current payload shape.
         public let apiVersionDate: Nullable<String>?
-        /// Whether to send events for child resources. For example, if the webhook is created for an account, enabling this sends events only from its connected accounts.
+        /// Whether to send events for child resources. For example, if the webhook is created for an account, enabling this sends events only from its subaccounts.
         public let childResourceEvents: Bool?
         /// Whether or not the webhook is enabled. Defaults to `true`.
         public let enabled: Bool?
@@ -12,6 +12,8 @@ extension Requests {
         public let events: [CreateWebhooksRequestEventsItem]?
         /// The account or app to create the webhook for. Defaults to the current account.
         public let resourceId: Nullable<String>?
+        /// A label for the webhook, shown in the dashboard. Up to 255 characters.
+        public let title: Nullable<String>?
         /// The URL to send the webhook to.
         public let url: String
         /// Additional properties that are not explicitly defined in the schema
@@ -23,6 +25,7 @@ extension Requests {
             enabled: Bool? = nil,
             events: [CreateWebhooksRequestEventsItem]? = nil,
             resourceId: Nullable<String>? = nil,
+            title: Nullable<String>? = nil,
             url: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -31,6 +34,7 @@ extension Requests {
             self.enabled = enabled
             self.events = events
             self.resourceId = resourceId
+            self.title = title
             self.url = url
             self.additionalProperties = additionalProperties
         }
@@ -42,6 +46,7 @@ extension Requests {
             self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled)
             self.events = try container.decodeIfPresent([CreateWebhooksRequestEventsItem].self, forKey: .events)
             self.resourceId = try container.decodeNullableIfPresent(String.self, forKey: .resourceId)
+            self.title = try container.decodeNullableIfPresent(String.self, forKey: .title)
             self.url = try container.decode(String.self, forKey: .url)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
@@ -54,6 +59,7 @@ extension Requests {
             try container.encodeIfPresent(self.enabled, forKey: .enabled)
             try container.encodeIfPresent(self.events, forKey: .events)
             try container.encodeNullableIfPresent(self.resourceId, forKey: .resourceId)
+            try container.encodeNullableIfPresent(self.title, forKey: .title)
             try container.encode(self.url, forKey: .url)
         }
 
@@ -64,6 +70,7 @@ extension Requests {
             case enabled
             case events
             case resourceId = "resource_id"
+            case title
             case url
         }
     }

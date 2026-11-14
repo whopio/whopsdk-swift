@@ -4,24 +4,26 @@ extension Requests {
     public struct CreateAudiencesRequest: Codable, Hashable, Sendable {
         /// Account ID, prefixed `biz_`.
         public let accountId: String
-        /// What to create. Defaults to `custom` (CSV upload).
+        /// Audience type. Defaults to `custom`.
         public let audienceType: CreateAudiencesRequestAudienceType?
         /// Filter audiences only, and set only at creation. `true` (the default) rebuilds membership from the filters twice a day. `false` keeps whoever matched at creation and never rebuilds.
         public let autoRefresh: Bool?
-        /// Custom audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or `phone`.
+        /// CSV audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or `phone`.
         public let columnMapping: CreateAudiencesRequestColumnMapping?
         /// Lookalikes only. Number of lookalike audiences to create (1–6).
         public let count: Int?
-        /// Custom audiences only. The uploaded customer CSV — a file id (`file_...`) returned by `POST /files`.
+        /// CSV audiences only. The uploaded customer CSV — a file id (`file_...`) returned by `POST /files`.
         public let fileId: String?
-        /// Filter audiences only. The People filters that define membership, keyed exactly as `GET /people` accepts them — for example `{"os": "iOS", "country": "US"}`. Date filters must be rolling windows — `first_seen_within_days` or `last_seen_within_days` — so the audience re-anchors on every refresh; fixed dates such as `first_seen_after` are rejected. Source values are canonical source paths (`whop:<campaign>:<group>:<ad>`, `ext:<platform>:...`, `referrer:<domain>`, `direct`), exact or with a trailing `:*` wildcard.
+        /// Filter audiences only. The People filters that define membership, keyed exactly as `GET /people` accepts them — for example `{"os": "iOS", "country": "US"}`. Activity dates `event_from` and `event_to` are inclusive and remain fixed on refresh. Use `event_within_days`, `first_seen_within_days` or `last_seen_within_days` for a rolling window. Source values are canonical source paths (`whop:<campaign>:<group>:<ad>`, `ext:<platform>:...`, `referrer:<domain>`, `direct`), exact or with a trailing `:*` wildcard.
         public let filters: [String: JSONValue]?
         /// Audience display name. Required for custom audiences; lookalike names are generated from the source audience.
         public let name: String?
-        /// Lookalikes only. Total similarity reach as a whole percent (1–20), sliced evenly across `count` — must be divisible by `count`.
+        /// Lookalikes only. Total similarity reach as a whole percent (1–20), sliced evenly across `count` — must be divisible by `count`. For example, 3 audiences at 6% creates 0–2%, 2–4%, and 4–6% bands.
         public let percentage: Int?
-        /// Lookalikes only. The ready custom audience (`adaud_`) to build from; it needs at least 100 matched people.
+        /// Lookalikes only. The ready custom audience (`adaud_`) to build from; uploaded and People audiences need at least 100 matched people.
         public let sourceAudienceId: String?
+        /// Custom audience source. Inferred from `filters`, otherwise defaults to `csv_upload`. Supply only the fields for the selected source.
+        public let sourceType: CreateAudiencesRequestSourceType?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -36,6 +38,7 @@ extension Requests {
             name: String? = nil,
             percentage: Int? = nil,
             sourceAudienceId: String? = nil,
+            sourceType: CreateAudiencesRequestSourceType? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.accountId = accountId
@@ -48,6 +51,7 @@ extension Requests {
             self.name = name
             self.percentage = percentage
             self.sourceAudienceId = sourceAudienceId
+            self.sourceType = sourceType
             self.additionalProperties = additionalProperties
         }
 
@@ -63,6 +67,7 @@ extension Requests {
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.percentage = try container.decodeIfPresent(Int.self, forKey: .percentage)
             self.sourceAudienceId = try container.decodeIfPresent(String.self, forKey: .sourceAudienceId)
+            self.sourceType = try container.decodeIfPresent(CreateAudiencesRequestSourceType.self, forKey: .sourceType)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -79,6 +84,7 @@ extension Requests {
             try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.percentage, forKey: .percentage)
             try container.encodeIfPresent(self.sourceAudienceId, forKey: .sourceAudienceId)
+            try container.encodeIfPresent(self.sourceType, forKey: .sourceType)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -93,6 +99,7 @@ extension Requests {
             case name
             case percentage
             case sourceAudienceId = "source_audience_id"
+            case sourceType = "source_type"
         }
     }
 }

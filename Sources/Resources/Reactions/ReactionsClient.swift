@@ -21,7 +21,10 @@ public final class ReactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.reactions.list(
     ///         first: 42,
@@ -69,7 +72,10 @@ public final class ReactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.reactions.create(request: .init(resourceId: "resource_id"))
     /// }
@@ -102,7 +108,10 @@ public final class ReactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.reactions.retrieve(id: "reac_xxxxxxxxxxxxxxxxxxxxxx")
     /// }
@@ -135,7 +144,10 @@ public final class ReactionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.reactions.delete(id: "reac_xxxxxxxxxxxxxxxxxxxxxx")
     /// }

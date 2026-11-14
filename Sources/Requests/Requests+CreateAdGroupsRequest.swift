@@ -8,46 +8,27 @@ extension Requests {
         public let audiences: AdGroupAudiencesBody?
         /// How delivery bids are set in the ad auction. Target-based strategies use `desired_cost_per_result`.
         public let bidType: CreateAdGroupsRequestBidType?
-        /// This ad group's budget, in the ad account's currency. Omit when the budget is set on the campaign instead.
+        /// This ad group's budget in USD, which is what it is stored and billed in. Omit when the budget is set on the campaign instead.
         public let budgetAmount: Double?
+        /// This ad group's budget stated in the account's ads reporting currency (`budget_currency` on the response) instead of USD. Converted to USD at the current exchange rate and stored as budget_amount; on an update, an amount equal to the current budget_amount_local keeps the stored USD budget as is. Provide this or budget_amount, not both.
+        public let budgetAmountLocal: Double?
         /// Whether budget_amount is spent per day (`daily`) or over the ad group's full run (`lifetime`).
         public let budgetType: CreateAdGroupsRequestBudgetType?
         public let conversionEvent: Nullable<ConversionEvent>?
-        /// Where the outcome being optimized for occurs, such as a website visit, social-profile visit, messaging conversation, ad interaction, or lead-form submission. The lead form itself is set on the ad.
-        public let conversionLocation: CreateAdGroupsRequestConversionLocation?
+        /// Hours the ad group delivers in each week, keyed by day. Each window runs from `start` to `end` on the hour, with `24:00` for midnight, and a day's windows can't overlap or touch. A day that's empty or left out doesn't deliver. Replaces the whole schedule; `null` delivers at every hour. Some platforms need a lifetime `budget_type` for a schedule, on the ad group or on its campaign when the campaign holds the budget.
+        public let deliverySchedule: Nullable<CreateAdGroupsRequestDeliverySchedule>?
         /// Age, gender, and automatic-audience targeting.
         public let demographics: AdGroupDemographicsBody?
         /// Cost per result to aim for (`average_target`) or never exceed (`maximum_target`).
         public let desiredCostPerResult: Double?
-        /// Interest, behavior, and demographic targeting, using categories from the ad platform's targeting taxonomy. Entries across interests, behaviors, and demographics are OR'd together (anyone matching any entry is reached), matching Ads Manager's detailed-targeting box. At most 100 entries per section. Can't be combined with demographics.automatic, and unavailable to campaigns with special_ad_categories. Send the complete intended state — a section you omit is cleared.
-        public let detailedTargeting: AdGroupDetailedTargetingBody?
         /// Device platforms and operating systems to target.
         public let devices: AdGroupDevicesBody?
-        /// Let the ad platform automatically mix and match this ad group's creatives and copy to find the best-performing combinations. Set at creation; can't be changed afterward.
-        public let dynamicCreative: Bool?
         /// When the ad group stops delivering, as an ISO 8601 timestamp. Omit to run until paused.
         public let endsAt: String?
-        /// Cap on how often one person sees ads from this ad group. Only available on campaigns with the `awareness` objective.
-        public let frequencyCap: CreateAdGroupsRequestFrequencyCap?
+        /// Search terms the ad group's ads can show for, and terms they never show for. Only search campaigns take keywords, and each of their ad groups needs at least one before launch. Replaces the stored list; omit to keep it.
+        public let keywords: [CreateAdGroupsRequestKeywordsItem]?
         /// Languages to target, as ISO 639 codes such as `en` or `es`. Empty or omitted targets all languages.
         public let languages: [String]?
-        /// Apps the conversation opens in. Required when setting `conversion_location` to `messaging`, and rejected unless the ad group's conversion location is `messaging`.
-        public let messageApps: [CreateAdGroupsRequestMessageAppsItem]?
-        /// Minimum the ad group tries to spend each day.
-        public let minimumDailySpend: Double?
-        /// The result the ad group's delivery is optimized to get the most of.
-        public let optimizationGoal: CreateAdGroupsRequestOptimizationGoal?
-        /// `automatic` to let the ad platform choose placements, or the list of platforms and positions to target. Omit a platform's positions to target all of them.
-        ///
-        /// Valid positions per platform:
-        ///
-        /// - `facebook`: `feed`, `right_hand_column`, `marketplace`, `search`, `profile_feed`, `notification`, `story`, `instream_video`, `facebook_reels`, `facebook_reels_overlay`, `biz_disco_feed`
-        /// - `instagram`: `stream`, `story`, `explore`, `explore_home`, `reels`, `profile_feed`, `profile_reels`, `ig_search`
-        /// - `messenger`: `story`
-        /// - `audience_network`: `classic`, `rewarded_video`
-        /// - `threads`: `threads_stream`
-        /// - `whatsapp`: `status`
-        public let placements: CreateAdGroupsRequestPlacements?
         /// Locations to target and exclude.
         public let regions: AdGroupRegionsBody?
         /// When the ad group starts delivering, as an ISO 8601 timestamp. Omit to start as soon as it's active.
@@ -64,21 +45,16 @@ extension Requests {
             audiences: AdGroupAudiencesBody? = nil,
             bidType: CreateAdGroupsRequestBidType? = nil,
             budgetAmount: Double? = nil,
+            budgetAmountLocal: Double? = nil,
             budgetType: CreateAdGroupsRequestBudgetType? = nil,
             conversionEvent: Nullable<ConversionEvent>? = nil,
-            conversionLocation: CreateAdGroupsRequestConversionLocation? = nil,
+            deliverySchedule: Nullable<CreateAdGroupsRequestDeliverySchedule>? = nil,
             demographics: AdGroupDemographicsBody? = nil,
             desiredCostPerResult: Double? = nil,
-            detailedTargeting: AdGroupDetailedTargetingBody? = nil,
             devices: AdGroupDevicesBody? = nil,
-            dynamicCreative: Bool? = nil,
             endsAt: String? = nil,
-            frequencyCap: CreateAdGroupsRequestFrequencyCap? = nil,
+            keywords: [CreateAdGroupsRequestKeywordsItem]? = nil,
             languages: [String]? = nil,
-            messageApps: [CreateAdGroupsRequestMessageAppsItem]? = nil,
-            minimumDailySpend: Double? = nil,
-            optimizationGoal: CreateAdGroupsRequestOptimizationGoal? = nil,
-            placements: CreateAdGroupsRequestPlacements? = nil,
             regions: AdGroupRegionsBody? = nil,
             startsAt: String? = nil,
             status: CreateAdGroupsRequestStatus? = nil,
@@ -89,21 +65,16 @@ extension Requests {
             self.audiences = audiences
             self.bidType = bidType
             self.budgetAmount = budgetAmount
+            self.budgetAmountLocal = budgetAmountLocal
             self.budgetType = budgetType
             self.conversionEvent = conversionEvent
-            self.conversionLocation = conversionLocation
+            self.deliverySchedule = deliverySchedule
             self.demographics = demographics
             self.desiredCostPerResult = desiredCostPerResult
-            self.detailedTargeting = detailedTargeting
             self.devices = devices
-            self.dynamicCreative = dynamicCreative
             self.endsAt = endsAt
-            self.frequencyCap = frequencyCap
+            self.keywords = keywords
             self.languages = languages
-            self.messageApps = messageApps
-            self.minimumDailySpend = minimumDailySpend
-            self.optimizationGoal = optimizationGoal
-            self.placements = placements
             self.regions = regions
             self.startsAt = startsAt
             self.status = status
@@ -117,21 +88,16 @@ extension Requests {
             self.audiences = try container.decodeIfPresent(AdGroupAudiencesBody.self, forKey: .audiences)
             self.bidType = try container.decodeIfPresent(CreateAdGroupsRequestBidType.self, forKey: .bidType)
             self.budgetAmount = try container.decodeIfPresent(Double.self, forKey: .budgetAmount)
+            self.budgetAmountLocal = try container.decodeIfPresent(Double.self, forKey: .budgetAmountLocal)
             self.budgetType = try container.decodeIfPresent(CreateAdGroupsRequestBudgetType.self, forKey: .budgetType)
             self.conversionEvent = try container.decodeNullableIfPresent(ConversionEvent.self, forKey: .conversionEvent)
-            self.conversionLocation = try container.decodeIfPresent(CreateAdGroupsRequestConversionLocation.self, forKey: .conversionLocation)
+            self.deliverySchedule = try container.decodeNullableIfPresent(CreateAdGroupsRequestDeliverySchedule.self, forKey: .deliverySchedule)
             self.demographics = try container.decodeIfPresent(AdGroupDemographicsBody.self, forKey: .demographics)
             self.desiredCostPerResult = try container.decodeIfPresent(Double.self, forKey: .desiredCostPerResult)
-            self.detailedTargeting = try container.decodeIfPresent(AdGroupDetailedTargetingBody.self, forKey: .detailedTargeting)
             self.devices = try container.decodeIfPresent(AdGroupDevicesBody.self, forKey: .devices)
-            self.dynamicCreative = try container.decodeIfPresent(Bool.self, forKey: .dynamicCreative)
             self.endsAt = try container.decodeIfPresent(String.self, forKey: .endsAt)
-            self.frequencyCap = try container.decodeIfPresent(CreateAdGroupsRequestFrequencyCap.self, forKey: .frequencyCap)
+            self.keywords = try container.decodeIfPresent([CreateAdGroupsRequestKeywordsItem].self, forKey: .keywords)
             self.languages = try container.decodeIfPresent([String].self, forKey: .languages)
-            self.messageApps = try container.decodeIfPresent([CreateAdGroupsRequestMessageAppsItem].self, forKey: .messageApps)
-            self.minimumDailySpend = try container.decodeIfPresent(Double.self, forKey: .minimumDailySpend)
-            self.optimizationGoal = try container.decodeIfPresent(CreateAdGroupsRequestOptimizationGoal.self, forKey: .optimizationGoal)
-            self.placements = try container.decodeIfPresent(CreateAdGroupsRequestPlacements.self, forKey: .placements)
             self.regions = try container.decodeIfPresent(AdGroupRegionsBody.self, forKey: .regions)
             self.startsAt = try container.decodeIfPresent(String.self, forKey: .startsAt)
             self.status = try container.decodeIfPresent(CreateAdGroupsRequestStatus.self, forKey: .status)
@@ -146,21 +112,16 @@ extension Requests {
             try container.encodeIfPresent(self.audiences, forKey: .audiences)
             try container.encodeIfPresent(self.bidType, forKey: .bidType)
             try container.encodeIfPresent(self.budgetAmount, forKey: .budgetAmount)
+            try container.encodeIfPresent(self.budgetAmountLocal, forKey: .budgetAmountLocal)
             try container.encodeIfPresent(self.budgetType, forKey: .budgetType)
             try container.encodeNullableIfPresent(self.conversionEvent, forKey: .conversionEvent)
-            try container.encodeIfPresent(self.conversionLocation, forKey: .conversionLocation)
+            try container.encodeNullableIfPresent(self.deliverySchedule, forKey: .deliverySchedule)
             try container.encodeIfPresent(self.demographics, forKey: .demographics)
             try container.encodeIfPresent(self.desiredCostPerResult, forKey: .desiredCostPerResult)
-            try container.encodeIfPresent(self.detailedTargeting, forKey: .detailedTargeting)
             try container.encodeIfPresent(self.devices, forKey: .devices)
-            try container.encodeIfPresent(self.dynamicCreative, forKey: .dynamicCreative)
             try container.encodeIfPresent(self.endsAt, forKey: .endsAt)
-            try container.encodeIfPresent(self.frequencyCap, forKey: .frequencyCap)
+            try container.encodeIfPresent(self.keywords, forKey: .keywords)
             try container.encodeIfPresent(self.languages, forKey: .languages)
-            try container.encodeIfPresent(self.messageApps, forKey: .messageApps)
-            try container.encodeIfPresent(self.minimumDailySpend, forKey: .minimumDailySpend)
-            try container.encodeIfPresent(self.optimizationGoal, forKey: .optimizationGoal)
-            try container.encodeIfPresent(self.placements, forKey: .placements)
             try container.encodeIfPresent(self.regions, forKey: .regions)
             try container.encodeIfPresent(self.startsAt, forKey: .startsAt)
             try container.encodeIfPresent(self.status, forKey: .status)
@@ -173,21 +134,16 @@ extension Requests {
             case audiences
             case bidType = "bid_type"
             case budgetAmount = "budget_amount"
+            case budgetAmountLocal = "budget_amount_local"
             case budgetType = "budget_type"
             case conversionEvent = "conversion_event"
-            case conversionLocation = "conversion_location"
+            case deliverySchedule = "delivery_schedule"
             case demographics
             case desiredCostPerResult = "desired_cost_per_result"
-            case detailedTargeting = "detailed_targeting"
             case devices
-            case dynamicCreative = "dynamic_creative"
             case endsAt = "ends_at"
-            case frequencyCap = "frequency_cap"
+            case keywords
             case languages
-            case messageApps = "message_apps"
-            case minimumDailySpend = "minimum_daily_spend"
-            case optimizationGoal = "optimization_goal"
-            case placements
             case regions
             case startsAt = "starts_at"
             case status

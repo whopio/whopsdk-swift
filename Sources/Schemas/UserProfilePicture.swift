@@ -1,7 +1,7 @@
 import Foundation
 
 public struct UserProfilePicture: Codable, Hashable, Sendable {
-    /// Avatar image URL. Always present — a generated placeholder when the user set no picture.
+    /// Avatar image URL. Always present. It is a generated placeholder when the user set no picture.
     public let url: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

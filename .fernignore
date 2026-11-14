@@ -1,15 +1,27 @@
-# Files Fern must not modify or delete when regenerating this repo.
-#
-# Fern owns the SDK source and prunes anything it did not generate — it reads this file
-# from the pull request's base branch, so an entry only protects a file once it is on
-# main. This file has to land before Fern's first PR merges.
-#
-# publish-main.yml is hand-written. There is no Swift package registry: SwiftPM resolves
-# this git repository and its tags directly, so the tag *is* the release. The workflow
-# tags main when a merge lands a Sources/Version.swift that the remote has no tag for.
-#
-# Unlike the Ruby and Java generators, fern-swift-sdk 0.36.0 emits no .github directory
-# at all, so there is no generated ci.yml holding a second, tag-triggered publish job.
-# Verified against the generated tree on 2026-08-21; if a future generator version starts
-# emitting one, add .github/workflows/ci.yml here alongside a hand-written copy.
+# Core patches bridge fern-swift-sdk 0.37.3 wire defects. Remove each core entry
+# after generation produces the same behavior and its wire-contract tests pass
+# without the patch; do not replace the newer body/retry pipeline with an old template.
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes
+.github/workflows/ci.yml
 .github/workflows/publish-main.yml
+Sources/Core/Networking/HTTPClient.swift
+Sources/Core/Networking/QueryParameter.swift
+Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift
+Sources/Core/Serde/Serde.swift
+Sources/Core/Serde/Encoder+AdditionalProperties.swift
+Tests/Core/AuditWireContractTests.swift
+Tests/Core/QueryInputCoverageTests.swift
+Tests/Core/QueryStructuredInputTests.swift
+Tests/Core/CancellationContractTests.swift
+Tests/Core/EmptyObjectEncodingTests.swift
+Scripts/check-query-inputs.py
+Scripts/query-inputs.json
+# Remove this test-only repair when Fern emits valid null values and escaped optional self cases.
+Scripts/repair-generated-tests.py
+Scripts/test_repair_generated_tests.py
+
+# Remove after Fern emits bounded expected expressions that compile without factoring.
+Scripts/factor-generated-tests.py
+Scripts/test_factor_generated_tests.py

@@ -19,7 +19,7 @@ public struct AccountCapabilities: Codable, Hashable, Sendable {
     public let cryptoPayout: AccountCapabilitiesCryptoPayout
     /// Instant payouts to an eligible payout destination
     public let instantPayout: AccountCapabilitiesInstantPayout
-    /// Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature.
+    /// Launching ad campaigns through Whop Ads. `inactive` until the account's identity or business is verified, while a requested ads services agreement is awaiting the account's signature, and while the account is suspended from Whop Ads.
     public let runAds: AccountCapabilitiesRunAds
     /// Standard payouts to an external payout destination
     public let standardPayout: AccountCapabilitiesStandardPayout

@@ -12,16 +12,16 @@ extension Requests {
         public let metadata: Nullable<[String: JSONValue]>?
         /// Controls whether checkout charges the buyer immediately or saves payment details for later. Defaults to `payment`.
         public let mode: CreateCheckoutConfigurationsRequestMode?
-        /// Payment method overrides for this checkout. `null` uses the plan or platform defaults.
+        /// Payment method overrides for this checkout. `null` uses the variant or platform defaults.
         public let paymentMethodConfiguration: Nullable<CreateCheckoutConfigurationsRequestPaymentMethodConfiguration>?
-        /// Plan attributes used to create or find a plan for this checkout configuration. Mutually exclusive with `plan_id`.
-        public let plan: Nullable<CreateCheckoutConfigurationsRequestPlan>?
-        /// Existing plan ID, prefixed `plan_`. Mutually exclusive with `plan`.
-        public let planId: Nullable<String>?
         /// URL customers are sent to after checkout.
         public let redirectUrl: Nullable<String>?
-        /// 3D Secure behavior for this checkout.
+        /// 3D Secure behavior for supported on-session card payments. `mandate_challenge` requires a 3DS challenge before payment processing; `mandate_if_required` mandates a challenge only when the payment processor requires it; `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected. Risk and authentication recovery requirements can override the preference. Applies in setup mode; `null` uses frictionless 3DS. Payment mode uses the variant policy.
         public let threeDsLevel: Nullable<CreateCheckoutConfigurationsRequestThreeDsLevel>?
+        /// Variant attributes used to create or find a variant for this checkout configuration. Mutually exclusive with `variant_id`.
+        public let variant: Nullable<CreateCheckoutConfigurationsRequestVariant>?
+        /// Existing variant ID, prefixed `plan_`. Mutually exclusive with `variant`.
+        public let variantId: Nullable<String>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -32,10 +32,10 @@ extension Requests {
             metadata: Nullable<[String: JSONValue]>? = nil,
             mode: CreateCheckoutConfigurationsRequestMode? = nil,
             paymentMethodConfiguration: Nullable<CreateCheckoutConfigurationsRequestPaymentMethodConfiguration>? = nil,
-            plan: Nullable<CreateCheckoutConfigurationsRequestPlan>? = nil,
-            planId: Nullable<String>? = nil,
             redirectUrl: Nullable<String>? = nil,
             threeDsLevel: Nullable<CreateCheckoutConfigurationsRequestThreeDsLevel>? = nil,
+            variant: Nullable<CreateCheckoutConfigurationsRequestVariant>? = nil,
+            variantId: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.accountId = accountId
@@ -44,10 +44,10 @@ extension Requests {
             self.metadata = metadata
             self.mode = mode
             self.paymentMethodConfiguration = paymentMethodConfiguration
-            self.plan = plan
-            self.planId = planId
             self.redirectUrl = redirectUrl
             self.threeDsLevel = threeDsLevel
+            self.variant = variant
+            self.variantId = variantId
             self.additionalProperties = additionalProperties
         }
 
@@ -59,10 +59,10 @@ extension Requests {
             self.metadata = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .metadata)
             self.mode = try container.decodeIfPresent(CreateCheckoutConfigurationsRequestMode.self, forKey: .mode)
             self.paymentMethodConfiguration = try container.decodeNullableIfPresent(CreateCheckoutConfigurationsRequestPaymentMethodConfiguration.self, forKey: .paymentMethodConfiguration)
-            self.plan = try container.decodeNullableIfPresent(CreateCheckoutConfigurationsRequestPlan.self, forKey: .plan)
-            self.planId = try container.decodeNullableIfPresent(String.self, forKey: .planId)
             self.redirectUrl = try container.decodeNullableIfPresent(String.self, forKey: .redirectUrl)
             self.threeDsLevel = try container.decodeNullableIfPresent(CreateCheckoutConfigurationsRequestThreeDsLevel.self, forKey: .threeDsLevel)
+            self.variant = try container.decodeNullableIfPresent(CreateCheckoutConfigurationsRequestVariant.self, forKey: .variant)
+            self.variantId = try container.decodeNullableIfPresent(String.self, forKey: .variantId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -75,10 +75,10 @@ extension Requests {
             try container.encodeNullableIfPresent(self.metadata, forKey: .metadata)
             try container.encodeIfPresent(self.mode, forKey: .mode)
             try container.encodeNullableIfPresent(self.paymentMethodConfiguration, forKey: .paymentMethodConfiguration)
-            try container.encodeNullableIfPresent(self.plan, forKey: .plan)
-            try container.encodeNullableIfPresent(self.planId, forKey: .planId)
             try container.encodeNullableIfPresent(self.redirectUrl, forKey: .redirectUrl)
             try container.encodeNullableIfPresent(self.threeDsLevel, forKey: .threeDsLevel)
+            try container.encodeNullableIfPresent(self.variant, forKey: .variant)
+            try container.encodeNullableIfPresent(self.variantId, forKey: .variantId)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -89,10 +89,10 @@ extension Requests {
             case metadata
             case mode
             case paymentMethodConfiguration = "payment_method_configuration"
-            case plan
-            case planId = "plan_id"
             case redirectUrl = "redirect_url"
             case threeDsLevel = "three_ds_level"
+            case variant
+            case variantId = "variant_id"
         }
     }
 }

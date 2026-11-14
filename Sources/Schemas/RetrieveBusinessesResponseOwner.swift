@@ -2,6 +2,8 @@ import Foundation
 
 /// The owner of the referred business.
 public struct RetrieveBusinessesResponseOwner: Codable, Hashable, Sendable {
+    /// The business owner's email address, so a partner can follow up on a referral they made. Requires the `partner:email:read` scope; `null` without it, or while the account has no reachable address of its own.
+    public let email: Nullable<String>
     /// User ID, prefixed `user_`.
     public let id: String
     /// The user's display name.
@@ -14,12 +16,14 @@ public struct RetrieveBusinessesResponseOwner: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        email: Nullable<String>,
         id: String,
         name: Nullable<String>,
         profilePicture: RetrieveBusinessesResponseOwnerProfilePicture,
         username: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.email = email
         self.id = id
         self.name = name
         self.profilePicture = profilePicture
@@ -29,6 +33,7 @@ public struct RetrieveBusinessesResponseOwner: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.email = try container.decode(Nullable<String>.self, forKey: .email)
         self.id = try container.decode(String.self, forKey: .id)
         self.name = try container.decode(Nullable<String>.self, forKey: .name)
         self.profilePicture = try container.decode(RetrieveBusinessesResponseOwnerProfilePicture.self, forKey: .profilePicture)
@@ -39,6 +44,7 @@ public struct RetrieveBusinessesResponseOwner: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.email, forKey: .email)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.profilePicture, forKey: .profilePicture)
@@ -47,6 +53,7 @@ public struct RetrieveBusinessesResponseOwner: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case email
         case id
         case name
         case profilePicture = "profile_picture"

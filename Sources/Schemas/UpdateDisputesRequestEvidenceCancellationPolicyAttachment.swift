@@ -1,6 +1,6 @@
 import Foundation
 
-/// The cancellation policy document.
+/// The cancellation policy document. Defaults to the account's cancellation policy, then its terms of service, when not set.
 public struct UpdateDisputesRequestEvidenceCancellationPolicyAttachment: Codable, Hashable, Sendable {
     /// The ID returned by a direct upload.
     public let directUploadId: String?

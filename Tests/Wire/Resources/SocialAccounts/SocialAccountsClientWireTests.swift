@@ -11,12 +11,12 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "error": "You don't have permission to share this account. Ask an admin of its Meta Business Portfolio to grant you full control, then share it again.",
-                      "external_id": "1234567891",
+                      "error": "error",
+                      "external_id": "17841479809129315",
                       "id": "sacc_xxxxxxxxxxxxxx",
-                      "name": "Shine Time Auto Detailing",
+                      "name": "Shine Time Detail",
                       "parent_social_account": {
-                        "external_id": "555111",
+                        "external_id": "page_1",
                         "id": "sacc_xxxxxxxxxxxxxx",
                         "name": "Shine Time Auto Detailing",
                         "platform": "x",
@@ -24,8 +24,9 @@ import WhopSDK
                         "username": "shinetimedetailing",
                         "verified": true
                       },
+                      "partnership_status": "partnership_status",
                       "platform": "x",
-                      "profile_picture_url": "https://shinetime.example/logo.png",
+                      "profile_picture_url": "https://shinetime.example/instagram.png",
                       "scopes": [
                         "advertise"
                       ],
@@ -35,7 +36,7 @@ import WhopSDK
                     }
                   ],
                   "page_info": {
-                    "end_cursor": "WyJjdXJzb3IiLDFd",
+                    "end_cursor": "end_cursor",
                     "has_next_page": false,
                     "has_previous_page": false,
                     "start_cursor": "WyJjdXJzb3IiLDFd"
@@ -52,12 +53,12 @@ import WhopSDK
         let expectedResponse = ListSocialAccountsResponse(
             data: [
                 SocialAccount(
-                    error: Nullable<String>.value("You don't have permission to share this account. Ask an admin of its Meta Business Portfolio to grant you full control, then share it again."),
-                    externalId: Nullable<String>.value("1234567891"),
+                    error: Nullable<String>.value("error"),
+                    externalId: Nullable<String>.value("17841479809129315"),
                     id: "sacc_xxxxxxxxxxxxxx",
-                    name: Nullable<String>.value("Shine Time Auto Detailing"),
+                    name: Nullable<String>.value("Shine Time Detail"),
                     parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
-                        externalId: Nullable<String>.value("555111"),
+                        externalId: Nullable<String>.value("page_1"),
                         id: "sacc_xxxxxxxxxxxxxx",
                         name: Nullable<String>.value("Shine Time Auto Detailing"),
                         platform: SocialAccountParentPlatform.x,
@@ -65,8 +66,9 @@ import WhopSDK
                         username: Nullable<String>.value("shinetimedetailing"),
                         verified: true
                     )),
+                    partnershipStatus: Nullable<String>.value("partnership_status"),
                     platform: SocialAccountPlatform.x,
-                    profilePictureUrl: Nullable<String>.value("https://shinetime.example/logo.png"),
+                    profilePictureUrl: Nullable<String>.value("https://shinetime.example/instagram.png"),
                     scopes: [
                         "advertise"
                     ],
@@ -76,10 +78,147 @@ import WhopSDK
                 )
             ],
             pageInfo: ListSocialAccountsResponsePageInfo(
-                endCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd"),
+                endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.socialAccounts.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "error": "error",
+                      "external_id": "external_id",
+                      "id": "id",
+                      "name": "name",
+                      "parent_social_account": {
+                        "external_id": "external_id",
+                        "id": "id",
+                        "name": "name",
+                        "platform": "x",
+                        "profile_picture_url": "profile_picture_url",
+                        "username": "username",
+                        "verified": true
+                      },
+                      "partnership_status": "partnership_status",
+                      "platform": "x",
+                      "profile_picture_url": "profile_picture_url",
+                      "scopes": [
+                        "scopes",
+                        "scopes"
+                      ],
+                      "url": "url",
+                      "username": "username",
+                      "verified": true
+                    },
+                    {
+                      "error": "error",
+                      "external_id": "external_id",
+                      "id": "id",
+                      "name": "name",
+                      "parent_social_account": {
+                        "external_id": "external_id",
+                        "id": "id",
+                        "name": "name",
+                        "platform": "x",
+                        "profile_picture_url": "profile_picture_url",
+                        "username": "username",
+                        "verified": true
+                      },
+                      "partnership_status": "partnership_status",
+                      "platform": "x",
+                      "profile_picture_url": "profile_picture_url",
+                      "scopes": [
+                        "scopes",
+                        "scopes"
+                      ],
+                      "url": "url",
+                      "username": "username",
+                      "verified": true
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListSocialAccountsResponse(
+            data: [
+                SocialAccount(
+                    error: Nullable<String>.value("error"),
+                    externalId: Nullable<String>.value("external_id"),
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
+                        externalId: Nullable<String>.value("external_id"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        platform: SocialAccountParentPlatform.x,
+                        profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                        username: Nullable<String>.value("username"),
+                        verified: true
+                    )),
+                    partnershipStatus: Nullable<String>.value("partnership_status"),
+                    platform: SocialAccountPlatform.x,
+                    profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                    scopes: [
+                        "scopes",
+                        "scopes"
+                    ],
+                    url: Nullable<String>.value("url"),
+                    username: Nullable<String>.value("username"),
+                    verified: true
+                ),
+                SocialAccount(
+                    error: Nullable<String>.value("error"),
+                    externalId: Nullable<String>.value("external_id"),
+                    id: "id",
+                    name: Nullable<String>.value("name"),
+                    parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
+                        externalId: Nullable<String>.value("external_id"),
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        platform: SocialAccountParentPlatform.x,
+                        profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                        username: Nullable<String>.value("username"),
+                        verified: true
+                    )),
+                    partnershipStatus: Nullable<String>.value("partnership_status"),
+                    platform: SocialAccountPlatform.x,
+                    profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                    scopes: [
+                        "scopes",
+                        "scopes"
+                    ],
+                    url: Nullable<String>.value("url"),
+                    username: Nullable<String>.value("username"),
+                    verified: true
+                )
+            ],
+            pageInfo: ListSocialAccountsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
             )
         )
         let response = try await client.socialAccounts.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -92,12 +231,12 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "error": "You don't have permission to share this account. Ask an admin of its Meta Business Portfolio to grant you full control, then share it again.",
-                  "external_id": "1234567891",
+                  "error": "error",
+                  "external_id": "17841479809129315",
                   "id": "sacc_xxxxxxxxxxxxxx",
-                  "name": "Shine Time Auto Detailing",
+                  "name": "Shine Time Detail",
                   "parent_social_account": {
-                    "external_id": "555111",
+                    "external_id": "page_1",
                     "id": "sacc_xxxxxxxxxxxxxx",
                     "name": "Shine Time Auto Detailing",
                     "platform": "x",
@@ -105,8 +244,9 @@ import WhopSDK
                     "username": "shinetimedetailing",
                     "verified": true
                   },
+                  "partnership_status": "partnership_status",
                   "platform": "x",
-                  "profile_picture_url": "https://shinetime.example/logo.png",
+                  "profile_picture_url": "https://shinetime.example/instagram.png",
                   "scopes": [
                     "advertise"
                   ],
@@ -123,12 +263,12 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = SocialAccount(
-            error: Nullable<String>.value("You don't have permission to share this account. Ask an admin of its Meta Business Portfolio to grant you full control, then share it again."),
-            externalId: Nullable<String>.value("1234567891"),
+            error: Nullable<String>.value("error"),
+            externalId: Nullable<String>.value("17841479809129315"),
             id: "sacc_xxxxxxxxxxxxxx",
-            name: Nullable<String>.value("Shine Time Auto Detailing"),
+            name: Nullable<String>.value("Shine Time Detail"),
             parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
-                externalId: Nullable<String>.value("555111"),
+                externalId: Nullable<String>.value("page_1"),
                 id: "sacc_xxxxxxxxxxxxxx",
                 name: Nullable<String>.value("Shine Time Auto Detailing"),
                 platform: SocialAccountParentPlatform.x,
@@ -136,8 +276,9 @@ import WhopSDK
                 username: Nullable<String>.value("shinetimedetailing"),
                 verified: true
             )),
+            partnershipStatus: Nullable<String>.value("partnership_status"),
             platform: SocialAccountPlatform.x,
-            profilePictureUrl: Nullable<String>.value("https://shinetime.example/logo.png"),
+            profilePictureUrl: Nullable<String>.value("https://shinetime.example/instagram.png"),
             scopes: [
                 "advertise"
             ],
@@ -146,7 +287,85 @@ import WhopSDK
             verified: true
         )
         let response = try await client.socialAccounts.create(
-            request: .init(platform: .facebook),
+            request: CreateSocialAccountsRequestBody.facebook(
+                CreateSocialAccountsRequestBodyFacebook(
+
+                )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "error": "error",
+                  "external_id": "external_id",
+                  "id": "id",
+                  "name": "name",
+                  "parent_social_account": {
+                    "external_id": "external_id",
+                    "id": "id",
+                    "name": "name",
+                    "platform": "x",
+                    "profile_picture_url": "profile_picture_url",
+                    "username": "username",
+                    "verified": true
+                  },
+                  "partnership_status": "partnership_status",
+                  "platform": "x",
+                  "profile_picture_url": "profile_picture_url",
+                  "scopes": [
+                    "scopes",
+                    "scopes"
+                  ],
+                  "url": "url",
+                  "username": "username",
+                  "verified": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SocialAccount(
+            error: Nullable<String>.value("error"),
+            externalId: Nullable<String>.value("external_id"),
+            id: "id",
+            name: Nullable<String>.value("name"),
+            parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
+                externalId: Nullable<String>.value("external_id"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                platform: SocialAccountParentPlatform.x,
+                profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                username: Nullable<String>.value("username"),
+                verified: true
+            )),
+            partnershipStatus: Nullable<String>.value("partnership_status"),
+            platform: SocialAccountPlatform.x,
+            profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+            scopes: [
+                "scopes",
+                "scopes"
+            ],
+            url: Nullable<String>.value("url"),
+            username: Nullable<String>.value("username"),
+            verified: true
+        )
+        let response = try await client.socialAccounts.create(
+            request: CreateSocialAccountsRequestBody.facebook(
+                CreateSocialAccountsRequestBodyFacebook(
+
+                )
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -158,7 +377,7 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "authorize_url": "https://www.facebook.com/v25.0/dialog/oauth"
+                  "authorize_url": "https://appcenter.intuit.com/connect/oauth2"
                 }
                 """#.utf8
             )
@@ -169,10 +388,42 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = ConnectSocialAccountsResponse(
-            authorizeUrl: "https://www.facebook.com/v25.0/dialog/oauth"
+            authorizeUrl: "https://appcenter.intuit.com/connect/oauth2"
         )
         let response = try await client.socialAccounts.connect(
-            request: .init(platform: .metaBusiness),
+            request: .init(
+                platform: .tiktok,
+                redirectUrl: "https://whop.com/dashboard/biz_xxxxxxxxxxxxxx/settings"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func connect2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "authorize_url": "authorize_url"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ConnectSocialAccountsResponse(
+            authorizeUrl: "authorize_url"
+        )
+        let response = try await client.socialAccounts.connect(
+            request: .init(
+                platform: .tiktok,
+                redirectUrl: "redirect_url"
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -206,66 +457,14 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
-    @Test func leadForms1() async throws -> Void {
+    @Test func delete2() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
                 {
-                  "data": [
-                    {
-                      "completion": {
-                        "button_text": "See our work",
-                        "description": "We book coatings two days out, so pick a slot when we ring.",
-                        "headline": "Thanks — we will call you today",
-                        "url": "https://shinetime.example/gallery"
-                      },
-                      "created_at": "2026-01-01T12:00:00.000Z",
-                      "disclaimer": {
-                        "body": "Ceramic coating requires the vehicle for two days.",
-                        "checkboxes": [
-                          {
-                            "checked_by_default": false,
-                            "key": "consent_1",
-                            "required": true,
-                            "text": "I agree"
-                          }
-                        ],
-                        "title": "Before you submit"
-                      },
-                      "form_type": "more_volume",
-                      "id": "24839",
-                      "intro": {
-                        "description": "Tell us about your vehicle and we will send a fixed price.",
-                        "headline": "Get a ceramic coating quote"
-                      },
-                      "locale": "en_US",
-                      "name": "Ceramic coating quote requests",
-                      "privacy_policy_link_text": "Shine Time privacy policy",
-                      "privacy_policy_url": "https://shinetime.example/privacy",
-                      "question_labels": [
-                        "Email"
-                      ],
-                      "questions": [
-                        {
-                          "format": "multiple_choice",
-                          "label": "What vehicle are we detailing?",
-                          "options": [
-                            {
-                              "key": "ceramic_coating",
-                              "logic": {
-                                "action": "go_to_question",
-                                "target_end_page_index": 0,
-                                "target_question_index": 3
-                              },
-                              "value": "Ceramic coating"
-                            }
-                          ],
-                          "type": "custom"
-                        }
-                      ]
-                    }
-                  ]
+                  "deleted": true,
+                  "id": "id"
                 }
                 """#.utf8
             )
@@ -275,93 +474,45 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = LeadFormsSocialAccountsResponse(
-            data: [
-                SocialAccountLeadForm(
-                    completion: Nullable<AdLeadFormCompletion>.value(AdLeadFormCompletion(
-                        buttonText: Nullable<String>.value("See our work"),
-                        description: Nullable<String>.value("We book coatings two days out, so pick a slot when we ring."),
-                        headline: Nullable<String>.value("Thanks — we will call you today"),
-                        url: Nullable<String>.value("https://shinetime.example/gallery")
-                    )),
-                    createdAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
-                    disclaimer: Nullable<AdLeadFormDisclaimer>.value(AdLeadFormDisclaimer(
-                        body: Nullable<String>.value("Ceramic coating requires the vehicle for two days."),
-                        checkboxes: [
-                            AdLeadFormDisclaimerCheckbox(
-                                checkedByDefault: Nullable<Bool>.value(false),
-                                key: Nullable<String>.value("consent_1"),
-                                required: Nullable<Bool>.value(true),
-                                text: "I agree"
-                            )
-                        ],
-                        title: Nullable<String>.value("Before you submit")
-                    )),
-                    formType: SocialAccountLeadFormFormType.moreVolume,
-                    id: "24839",
-                    intro: Nullable<AdLeadFormIntro>.value(AdLeadFormIntro(
-                        description: Nullable<String>.value("Tell us about your vehicle and we will send a fixed price."),
-                        headline: Nullable<String>.value("Get a ceramic coating quote")
-                    )),
-                    locale: Nullable<String>.value("en_US"),
-                    name: Nullable<String>.value("Ceramic coating quote requests"),
-                    privacyPolicyLinkText: Nullable<String>.value("Shine Time privacy policy"),
-                    privacyPolicyUrl: Nullable<String>.value("https://shinetime.example/privacy"),
-                    questionLabels: [
-                        "Email"
-                    ],
-                    questions: [
-                        AdLeadFormQuestion(
-                            format: Optional("multiple_choice"),
-                            label: Optional("What vehicle are we detailing?"),
-                            options: Optional([
-                                AdLeadFormQuestionOption(
-                                    key: Optional(Nullable<String>.value("ceramic_coating")),
-                                    logic: Optional(AdLeadFormOptionLogic(
-                                        action: AdLeadFormOptionLogicAction.goToQuestion,
-                                        targetEndPageIndex: Optional(0),
-                                        targetQuestionIndex: Optional(3)
-                                    )),
-                                    value: "Ceramic coating"
-                                )
-                            ]),
-                            type: "custom"
-                        )
-                    ]
-                )
-            ]
+        let expectedResponse = DeleteSocialAccountsResponse(
+            deleted: true,
+            id: "id"
         )
-        let response = try await client.socialAccounts.leadForms(
+        let response = try await client.socialAccounts.delete(
             id: "id",
-            accountId: "account_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func posts1() async throws -> Void {
+    @Test func refresh1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
                 {
-                  "data": [
-                    {
-                      "call_to_action": "learn_more",
-                      "destination_url": "https://shinetime.example/book",
-                      "embed_url": "https://www.facebook.com/plugins/post.php",
-                      "id": "media_1",
-                      "media_url": "https://shinetime.example/ceramic-coating-reel.mp4",
-                      "restrictions": [
-                        "lead_form_ineligible"
-                      ],
-                      "thumbnail_url": "https://shinetime.example/ceramic-coating-poster.jpg"
-                    }
+                  "error": "error",
+                  "external_id": "17841479809129315",
+                  "id": "sacc_xxxxxxxxxxxxxx",
+                  "name": "Shine Time Detail",
+                  "parent_social_account": {
+                    "external_id": "page_1",
+                    "id": "sacc_xxxxxxxxxxxxxx",
+                    "name": "Shine Time Auto Detailing",
+                    "platform": "x",
+                    "profile_picture_url": "https://shinetime.example/logo.png",
+                    "username": "shinetimedetailing",
+                    "verified": true
+                  },
+                  "partnership_status": "partnership_status",
+                  "platform": "x",
+                  "profile_picture_url": "https://shinetime.example/instagram.png",
+                  "scopes": [
+                    "advertise"
                   ],
-                  "page_info": {
-                    "end_cursor": "MTI=",
-                    "has_next_page": true
-                  }
+                  "url": "https://instagram.com/shinetimedetail",
+                  "username": "shinetimedetail",
+                  "verified": true
                 }
                 """#.utf8
             )
@@ -371,28 +522,104 @@ import WhopSDK
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = PostsSocialAccountsResponse(
-            data: [
-                SocialAccountPost(
-                    callToAction: Nullable<SocialAccountPostCallToAction>.value(SocialAccountPostCallToAction.learnMore),
-                    destinationUrl: Nullable<String>.value("https://shinetime.example/book"),
-                    embedUrl: Nullable<String>.value("https://www.facebook.com/plugins/post.php"),
-                    id: "media_1",
-                    mediaUrl: Nullable<String>.value("https://shinetime.example/ceramic-coating-reel.mp4"),
-                    restrictions: [
-                        SocialAccountPostRestrictionsItem.leadFormIneligible
-                    ],
-                    thumbnailUrl: Nullable<String>.value("https://shinetime.example/ceramic-coating-poster.jpg")
-                )
+        let expectedResponse = SocialAccount(
+            error: Nullable<String>.value("error"),
+            externalId: Nullable<String>.value("17841479809129315"),
+            id: "sacc_xxxxxxxxxxxxxx",
+            name: Nullable<String>.value("Shine Time Detail"),
+            parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
+                externalId: Nullable<String>.value("page_1"),
+                id: "sacc_xxxxxxxxxxxxxx",
+                name: Nullable<String>.value("Shine Time Auto Detailing"),
+                platform: SocialAccountParentPlatform.x,
+                profilePictureUrl: Nullable<String>.value("https://shinetime.example/logo.png"),
+                username: Nullable<String>.value("shinetimedetailing"),
+                verified: true
+            )),
+            partnershipStatus: Nullable<String>.value("partnership_status"),
+            platform: SocialAccountPlatform.x,
+            profilePictureUrl: Nullable<String>.value("https://shinetime.example/instagram.png"),
+            scopes: [
+                "advertise"
             ],
-            pageInfo: PostsSocialAccountsResponsePageInfo(
-                endCursor: Nullable<String>.value("MTI="),
-                hasNextPage: true
+            url: Nullable<String>.value("https://instagram.com/shinetimedetail"),
+            username: Nullable<String>.value("shinetimedetail"),
+            verified: true
+        )
+        let response = try await client.socialAccounts.refresh(
+            id: "id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func refresh2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "error": "error",
+                  "external_id": "external_id",
+                  "id": "id",
+                  "name": "name",
+                  "parent_social_account": {
+                    "external_id": "external_id",
+                    "id": "id",
+                    "name": "name",
+                    "platform": "x",
+                    "profile_picture_url": "profile_picture_url",
+                    "username": "username",
+                    "verified": true
+                  },
+                  "partnership_status": "partnership_status",
+                  "platform": "x",
+                  "profile_picture_url": "profile_picture_url",
+                  "scopes": [
+                    "scopes",
+                    "scopes"
+                  ],
+                  "url": "url",
+                  "username": "username",
+                  "verified": true
+                }
+                """#.utf8
             )
         )
-        let response = try await client.socialAccounts.posts(
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SocialAccount(
+            error: Nullable<String>.value("error"),
+            externalId: Nullable<String>.value("external_id"),
             id: "id",
-            accountId: "account_id",
+            name: Nullable<String>.value("name"),
+            parentSocialAccount: Nullable<SocialAccountParent>.value(SocialAccountParent(
+                externalId: Nullable<String>.value("external_id"),
+                id: "id",
+                name: Nullable<String>.value("name"),
+                platform: SocialAccountParentPlatform.x,
+                profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+                username: Nullable<String>.value("username"),
+                verified: true
+            )),
+            partnershipStatus: Nullable<String>.value("partnership_status"),
+            platform: SocialAccountPlatform.x,
+            profilePictureUrl: Nullable<String>.value("profile_picture_url"),
+            scopes: [
+                "scopes",
+                "scopes"
+            ],
+            url: Nullable<String>.value("url"),
+            username: Nullable<String>.value("username"),
+            verified: true
+        )
+        let response = try await client.socialAccounts.refresh(
+            id: "id",
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

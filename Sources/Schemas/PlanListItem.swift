@@ -1,76 +1,84 @@
 import Foundation
 
 public struct PlanListItem: Codable, Hashable, Sendable {
-    /// Account that sells this plan; `null` for standalone invoice plans.
+    /// Account that sells this variant; `null` for standalone invoice variants.
     public let account: Nullable<AccountSummary>
-    /// Whether adaptive pricing is enabled for this plan. Raw setting — does not check processor compatibility or feature flags.
+    /// Whether adaptive pricing is enabled for this variant. Raw setting — does not check processor compatibility or feature flags.
     public let adaptivePricingEnabled: Bool
-    /// Number of days between recurring charges, such as 30 for monthly or 365 for annual. `null` for one-time plans.
+    /// Whether more than one unit can be purchased in an order. Renewal variants cannot enable it. When `false`, checkouts, carts, and invoices reject a quantity above 1.
+    public let allowMultipleQuantity: Bool
+    /// Attribute values that distinguish this variant within its product, as a map of attribute name to value, e.g. `{"color": "Blue", "size": "Large"}`. Names are snake_case identifiers and come back in alphabetical order. Every attributed variant on a product carries the same attribute names and a distinct set of values; the product lists the full option set as `variant_attributes`. `null` when the variant has no attributes.
+    public let attributes: Nullable<[String: Nullable<String>]>
+    /// Number of days between recurring charges, such as 30 for monthly or 365 for annual. `null` for one-time variants.
     public let billingPeriod: Nullable<Double>
-    /// Billing intervals the cancellation discount applies to (`0` forever, `1` first payment, or a month count). `null` when none is offered or the actor lacks the `plan:basic:read` scope.
+    /// Billing model for this variant.
+    public let billingType: PlanListItemBillingType
+    /// How long the cancellation discount lasts: `0` forever, `1` the next payment only, or a number of calendar months from when the customer accepts it. `null` when none is offered or the actor lacks the `plan:basic:read` scope.
     public let cancelDiscountIntervals: Nullable<Double>
     /// Cancellation discount as a whole-number percentage. `null` when none is offered or the actor lacks the `plan:basic:read` scope.
     public let cancelDiscountPercentage: Nullable<Double>
-    /// Plan-level checkout styling (`background_color`, `button_color`, `font_family`, `border_style`); `null` inherits the account default.
+    /// Variant-level checkout styling (`background_color`, `button_color`, `font_family`, `border_style`); `null` inherits the account default.
     public let checkoutStyling: Nullable<[String: JSONValue]>
-    /// When the plan was created, as an ISO 8601 timestamp.
+    /// When the variant was created, as an ISO 8601 timestamp.
     public let createdAt: String
-    /// Three-letter ISO currency code for this plan's prices.
+    /// Three-letter ISO 4217 code of the currency every price on this variant is stated in, lowercase: the variant's own currency, or the `presentment_currency` the read asked for when the variant can be converted into it.
     public let currency: String
     public let customFields: [PlanCustomField]
-    /// Customer-visible plan description. Maximum 1000 characters. `null` if no description is set.
+    /// Customer-visible variant description. Maximum 1000 characters. `null` if no description is set.
     public let description: Nullable<String>
-    /// Access duration in days for expiration-based plans, such as 365 for a one-year pass. `null` for plans without an expiration.
+    /// Access duration in days for expiration-based variants, such as 365 for a one-year pass. `null` for variants without an expiration.
     public let expirationDays: Nullable<Double>
-    /// Human-readable price for display (currency + interval), e.g. "$10 / month".
+    /// Human-readable price for display (currency + interval) in `currency`, e.g. "$10 / month".
     public let formattedPrice: String
-    /// Plan ID, prefixed `plan_`.
+    /// Variant ID, prefixed `plan_`.
     public let id: String
     /// Pricing-tier image (`url`, `blurhash`) shown on the product page; `null` when no image is set.
     public let image: Nullable<[String: JSONValue]>
-    /// Initial purchase price in plan currency.
+    /// Initial purchase price, in `currency`.
     public let initialPrice: Double
-    /// Private notes not shown to customers. `null` unless the actor has the `plan:basic:read` scope on the plan's account.
+    /// Total charged at checkout for one unit, before promo codes and tax: `initial_price` plus the first `renewal_price` for recurring variants, or `initial_price` alone while a free trial applies. The trial does not apply when the viewing user has already used one for this variant. Stated in `currency`.
+    public let initialPriceDue: Money
+    /// Private notes not shown to customers. `null` unless the actor has the `plan:basic:read` scope on the variant's account.
     public let internalNotes: Nullable<String>
-    /// Invoice this plan was generated for; `null` unless created for an invoice.
+    /// Invoice this variant was generated for; `null` unless created for an invoice.
     public let invoice: Nullable<[String: JSONValue]>
-    /// Active memberships through this plan. `null` unless the actor has the `plan:basic:read` scope on the plan's account.
+    /// Active memberships through this variant. `null` unless the actor has the `plan:basic:read` scope on the variant's account.
     public let memberCount: Nullable<Double>
-    /// Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Maximum 50 keys, 100 characters per key, 500 characters per value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan.
+    /// Custom key-value pairs stored on the variant. Included in webhook payloads for payment and membership events. Maximum 50 keys, 100 characters per key, 500 characters per value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this variant.
     public let metadata: Nullable<[String: JSONValue]>
-    /// Whether a cancellation discount is offered. `null` unless the actor has the `plan:basic:read` scope on the plan's account.
+    /// Whether a cancellation discount is offered. `null` unless the actor has the `plan:basic:read` scope on the variant's account.
     public let offerCancelDiscount: Nullable<Bool>
-    /// Payment method configuration (`enabled`, `disabled`, `include_platform_defaults`); `null` when plan uses default settings.
+    /// Payment method configuration (`enabled`, `disabled`, `include_platform_defaults`); `null` when variant uses default settings.
     public let paymentMethodConfiguration: Nullable<[String: JSONValue]>
-    /// Billing model for this plan.
-    public let planType: PlanListItemPlanType
-    /// Product this plan belongs to; `null` for standalone plans.
+    /// Product this variant belongs to; `null` for standalone variants.
     public let product: Nullable<[String: JSONValue]>
-    /// URL where customers can purchase this plan directly.
+    /// URL where customers can purchase this variant directly.
     public let purchaseUrl: String
-    /// Sales method for this plan.
+    /// Sales method for this variant.
     public let releaseMethod: PlanListItemReleaseMethod
-    /// Recurring price charged every billing period.
+    /// Recurring price charged every billing period, in `currency`.
     public let renewalPrice: Double
+    /// Stock keeping unit, free text set by the seller (e.g. `TSHIRT-LARGE-BLUE`). Not enforced unique. `null` when unset.
+    public let sku: Nullable<String>
     /// Installment payments required before the subscription pauses. Must be greater than 1. `null` if split pay is not configured.
     public let splitPayRequiredPayments: Nullable<Double>
-    /// Units available for purchase. `null` unless the actor has the `plan:basic:read` scope on the plan's account.
+    /// Units available for purchase. `null` unless the actor has the `plan:basic:read` scope on the variant's account.
     public let stock: Nullable<Double>
-    /// Original initial price shown with a strikethrough, in the plan's currency. `null` when no strikethrough is set.
+    /// Original initial price shown with a strikethrough, in `currency`. `null` when no strikethrough is set.
     public let strikeThroughInitialPrice: Nullable<Double>
-    /// Original renewal price shown with a strikethrough, in the plan's currency. `null` when no strikethrough is set.
+    /// Original renewal price shown with a strikethrough, in `currency`. `null` when no strikethrough is set.
     public let strikeThroughRenewalPrice: Nullable<Double>
-    /// 3D Secure behavior for this plan; `null` inherits the account default.
+    /// 3D Secure behavior for supported on-session card payments. `mandate_challenge` requires a 3DS challenge before payment processing; `mandate_if_required` mandates a challenge only when the payment processor requires it; `frictionless_if_required` uses the regular frictionless 3DS flow. Payments of $1,000 or more use `mandate_if_required` unless `mandate_challenge` is selected. Risk and authentication recovery requirements can override the preference. `null` inherits the account default.
     public let threeDsLevel: Nullable<PlanListItemThreeDsLevel>
-    /// Plan display name shown to customers. Maximum 30 characters. `null` if no title has been set.
+    /// Variant display name shown to customers. Maximum 30 characters. A variant created without one defaults to its attribute values joined with ` / `. `null` if no title has been set.
     public let title: Nullable<String>
-    /// Free trial days before the first renewal charge. `null` if no trial is configured or the user has already used a trial for this plan.
+    /// Free trial days before the first renewal charge. `null` if no trial is configured or the user has already used a trial for this variant.
     public let trialPeriodDays: Nullable<Double>
-    /// Whether the plan has unlimited stock. When `true`, the `stock` field is ignored; waitlist plans always report `true`.
+    /// Whether the variant has unlimited stock. When `true`, the `stock` field is ignored; waitlist variants always report `true`.
     public let unlimitedStock: Bool
-    /// When the plan was last updated, as an ISO 8601 timestamp.
+    /// When the variant was last updated, as an ISO 8601 timestamp.
     public let updatedAt: String
-    /// Controls where this plan can be seen. When `hidden`, the plan is reachable only by its direct link.
+    /// Controls where this variant can be seen. When `hidden`, the variant is reachable only by its direct link.
     public let visibility: PlanListItemVisibility
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -78,7 +86,10 @@ public struct PlanListItem: Codable, Hashable, Sendable {
     public init(
         account: Nullable<AccountSummary>,
         adaptivePricingEnabled: Bool,
+        allowMultipleQuantity: Bool,
+        attributes: Nullable<[String: Nullable<String>]>,
         billingPeriod: Nullable<Double>,
+        billingType: PlanListItemBillingType,
         cancelDiscountIntervals: Nullable<Double>,
         cancelDiscountPercentage: Nullable<Double>,
         checkoutStyling: Nullable<[String: JSONValue]>,
@@ -91,17 +102,18 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         id: String,
         image: Nullable<[String: JSONValue]>,
         initialPrice: Double,
+        initialPriceDue: Money,
         internalNotes: Nullable<String>,
         invoice: Nullable<[String: JSONValue]>,
         memberCount: Nullable<Double>,
         metadata: Nullable<[String: JSONValue]>,
         offerCancelDiscount: Nullable<Bool>,
         paymentMethodConfiguration: Nullable<[String: JSONValue]>,
-        planType: PlanListItemPlanType,
         product: Nullable<[String: JSONValue]>,
         purchaseUrl: String,
         releaseMethod: PlanListItemReleaseMethod,
         renewalPrice: Double,
+        sku: Nullable<String>,
         splitPayRequiredPayments: Nullable<Double>,
         stock: Nullable<Double>,
         strikeThroughInitialPrice: Nullable<Double>,
@@ -116,7 +128,10 @@ public struct PlanListItem: Codable, Hashable, Sendable {
     ) {
         self.account = account
         self.adaptivePricingEnabled = adaptivePricingEnabled
+        self.allowMultipleQuantity = allowMultipleQuantity
+        self.attributes = attributes
         self.billingPeriod = billingPeriod
+        self.billingType = billingType
         self.cancelDiscountIntervals = cancelDiscountIntervals
         self.cancelDiscountPercentage = cancelDiscountPercentage
         self.checkoutStyling = checkoutStyling
@@ -129,17 +144,18 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         self.id = id
         self.image = image
         self.initialPrice = initialPrice
+        self.initialPriceDue = initialPriceDue
         self.internalNotes = internalNotes
         self.invoice = invoice
         self.memberCount = memberCount
         self.metadata = metadata
         self.offerCancelDiscount = offerCancelDiscount
         self.paymentMethodConfiguration = paymentMethodConfiguration
-        self.planType = planType
         self.product = product
         self.purchaseUrl = purchaseUrl
         self.releaseMethod = releaseMethod
         self.renewalPrice = renewalPrice
+        self.sku = sku
         self.splitPayRequiredPayments = splitPayRequiredPayments
         self.stock = stock
         self.strikeThroughInitialPrice = strikeThroughInitialPrice
@@ -157,7 +173,10 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.account = try container.decode(Nullable<AccountSummary>.self, forKey: .account)
         self.adaptivePricingEnabled = try container.decode(Bool.self, forKey: .adaptivePricingEnabled)
+        self.allowMultipleQuantity = try container.decode(Bool.self, forKey: .allowMultipleQuantity)
+        self.attributes = try container.decode(Nullable<[String: Nullable<String>]>.self, forKey: .attributes)
         self.billingPeriod = try container.decode(Nullable<Double>.self, forKey: .billingPeriod)
+        self.billingType = try container.decode(PlanListItemBillingType.self, forKey: .billingType)
         self.cancelDiscountIntervals = try container.decode(Nullable<Double>.self, forKey: .cancelDiscountIntervals)
         self.cancelDiscountPercentage = try container.decode(Nullable<Double>.self, forKey: .cancelDiscountPercentage)
         self.checkoutStyling = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .checkoutStyling)
@@ -170,17 +189,18 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.image = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .image)
         self.initialPrice = try container.decode(Double.self, forKey: .initialPrice)
+        self.initialPriceDue = try container.decode(Money.self, forKey: .initialPriceDue)
         self.internalNotes = try container.decode(Nullable<String>.self, forKey: .internalNotes)
         self.invoice = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .invoice)
         self.memberCount = try container.decode(Nullable<Double>.self, forKey: .memberCount)
         self.metadata = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .metadata)
         self.offerCancelDiscount = try container.decode(Nullable<Bool>.self, forKey: .offerCancelDiscount)
         self.paymentMethodConfiguration = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .paymentMethodConfiguration)
-        self.planType = try container.decode(PlanListItemPlanType.self, forKey: .planType)
         self.product = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .product)
         self.purchaseUrl = try container.decode(String.self, forKey: .purchaseUrl)
         self.releaseMethod = try container.decode(PlanListItemReleaseMethod.self, forKey: .releaseMethod)
         self.renewalPrice = try container.decode(Double.self, forKey: .renewalPrice)
+        self.sku = try container.decode(Nullable<String>.self, forKey: .sku)
         self.splitPayRequiredPayments = try container.decode(Nullable<Double>.self, forKey: .splitPayRequiredPayments)
         self.stock = try container.decode(Nullable<Double>.self, forKey: .stock)
         self.strikeThroughInitialPrice = try container.decode(Nullable<Double>.self, forKey: .strikeThroughInitialPrice)
@@ -199,7 +219,10 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.account, forKey: .account)
         try container.encode(self.adaptivePricingEnabled, forKey: .adaptivePricingEnabled)
+        try container.encode(self.allowMultipleQuantity, forKey: .allowMultipleQuantity)
+        try container.encode(self.attributes, forKey: .attributes)
         try container.encode(self.billingPeriod, forKey: .billingPeriod)
+        try container.encode(self.billingType, forKey: .billingType)
         try container.encode(self.cancelDiscountIntervals, forKey: .cancelDiscountIntervals)
         try container.encode(self.cancelDiscountPercentage, forKey: .cancelDiscountPercentage)
         try container.encode(self.checkoutStyling, forKey: .checkoutStyling)
@@ -212,17 +235,18 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.image, forKey: .image)
         try container.encode(self.initialPrice, forKey: .initialPrice)
+        try container.encode(self.initialPriceDue, forKey: .initialPriceDue)
         try container.encode(self.internalNotes, forKey: .internalNotes)
         try container.encode(self.invoice, forKey: .invoice)
         try container.encode(self.memberCount, forKey: .memberCount)
         try container.encode(self.metadata, forKey: .metadata)
         try container.encode(self.offerCancelDiscount, forKey: .offerCancelDiscount)
         try container.encode(self.paymentMethodConfiguration, forKey: .paymentMethodConfiguration)
-        try container.encode(self.planType, forKey: .planType)
         try container.encode(self.product, forKey: .product)
         try container.encode(self.purchaseUrl, forKey: .purchaseUrl)
         try container.encode(self.releaseMethod, forKey: .releaseMethod)
         try container.encode(self.renewalPrice, forKey: .renewalPrice)
+        try container.encode(self.sku, forKey: .sku)
         try container.encode(self.splitPayRequiredPayments, forKey: .splitPayRequiredPayments)
         try container.encode(self.stock, forKey: .stock)
         try container.encode(self.strikeThroughInitialPrice, forKey: .strikeThroughInitialPrice)
@@ -239,7 +263,10 @@ public struct PlanListItem: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case account
         case adaptivePricingEnabled = "adaptive_pricing_enabled"
+        case allowMultipleQuantity = "allow_multiple_quantity"
+        case attributes
         case billingPeriod = "billing_period"
+        case billingType = "billing_type"
         case cancelDiscountIntervals = "cancel_discount_intervals"
         case cancelDiscountPercentage = "cancel_discount_percentage"
         case checkoutStyling = "checkout_styling"
@@ -252,17 +279,18 @@ public struct PlanListItem: Codable, Hashable, Sendable {
         case id
         case image
         case initialPrice = "initial_price"
+        case initialPriceDue = "initial_price_due"
         case internalNotes = "internal_notes"
         case invoice
         case memberCount = "member_count"
         case metadata
         case offerCancelDiscount = "offer_cancel_discount"
         case paymentMethodConfiguration = "payment_method_configuration"
-        case planType = "plan_type"
         case product
         case purchaseUrl = "purchase_url"
         case releaseMethod = "release_method"
         case renewalPrice = "renewal_price"
+        case sku
         case splitPayRequiredPayments = "split_pay_required_payments"
         case stock
         case strikeThroughInitialPrice = "strike_through_initial_price"

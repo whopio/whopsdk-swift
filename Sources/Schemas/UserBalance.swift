@@ -12,9 +12,9 @@ public struct UserBalance: Codable, Hashable, Sendable {
     public let cryptoUsd: String
     /// Fiat pending and in-transit balances, plus in-flight treasury deposits, in USD.
     public let pendingUsd: String
-    /// The user's personal balance in USD: cash (available + pending + in-transit + reserve) + crypto + in-flight treasury deposits. Excludes account balances (see businesses_total_usd).
+    /// The user's personal balance in USD: cash (available + pending + in-transit + reserve) + other holdings + deposits still in flight. Excludes account balances (see businesses_total_usd).
     public let totalUsd: String
-    /// Balance-to-wallet USDT0 withdrawals still in flight, in USD.
+    /// Balance moves into the user's wallet still in flight, in USD.
     public let treasuryPendingUsd: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

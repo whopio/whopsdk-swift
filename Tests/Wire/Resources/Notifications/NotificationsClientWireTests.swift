@@ -112,6 +112,187 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "attachment_url": "attachment_url",
+                      "content": "content",
+                      "created_at": "created_at",
+                      "experience": {
+                        "app": {
+                          "icon_url": "icon_url",
+                          "id": "id"
+                        },
+                        "id": "id",
+                        "name": "name"
+                      },
+                      "id": "id",
+                      "iframe_link": "iframe_link",
+                      "link": "link",
+                      "mentions_me": true,
+                      "rest_path": "rest_path",
+                      "sender": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      },
+                      "subject": "subject",
+                      "topic": {
+                        "default_preference_value": true,
+                        "id": "id",
+                        "is_mention": true,
+                        "topic_type": "account"
+                      }
+                    },
+                    {
+                      "account": {
+                        "id": "id",
+                        "logo_url": "logo_url",
+                        "route": "route",
+                        "title": "title"
+                      },
+                      "attachment_url": "attachment_url",
+                      "content": "content",
+                      "created_at": "created_at",
+                      "experience": {
+                        "app": {
+                          "icon_url": "icon_url",
+                          "id": "id"
+                        },
+                        "id": "id",
+                        "name": "name"
+                      },
+                      "id": "id",
+                      "iframe_link": "iframe_link",
+                      "link": "link",
+                      "mentions_me": true,
+                      "rest_path": "rest_path",
+                      "sender": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      },
+                      "subject": "subject",
+                      "topic": {
+                        "default_preference_value": true,
+                        "id": "id",
+                        "is_mention": true,
+                        "topic_type": "account"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListNotificationsResponse(
+            data: [
+                Notification(
+                    account: Nullable<NotificationAccount>.value(NotificationAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: Nullable<String>.value("route"),
+                        title: "title"
+                    )),
+                    attachmentUrl: "attachment_url",
+                    content: "content",
+                    createdAt: "created_at",
+                    experience: Nullable<NotificationExperience>.value(NotificationExperience(
+                        app: Nullable<NotificationExperienceApp>.value(NotificationExperienceApp(
+                            iconUrl: "icon_url",
+                            id: "id"
+                        )),
+                        id: "id",
+                        name: Nullable<String>.value("name")
+                    )),
+                    id: "id",
+                    iframeLink: Nullable<String>.value("iframe_link"),
+                    link: Nullable<String>.value("link"),
+                    mentionsMe: true,
+                    restPath: Nullable<String>.value("rest_path"),
+                    sender: Nullable<NotificationSender>.value(NotificationSender(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: "username"
+                    )),
+                    subject: "subject",
+                    topic: Nullable<NotificationTopicSummary>.value(NotificationTopicSummary(
+                        defaultPreferenceValue: true,
+                        id: "id",
+                        isMention: true,
+                        topicType: NotificationTopicSummaryTopicType.account
+                    ))
+                ),
+                Notification(
+                    account: Nullable<NotificationAccount>.value(NotificationAccount(
+                        id: "id",
+                        logoUrl: Nullable<String>.value("logo_url"),
+                        route: Nullable<String>.value("route"),
+                        title: "title"
+                    )),
+                    attachmentUrl: "attachment_url",
+                    content: "content",
+                    createdAt: "created_at",
+                    experience: Nullable<NotificationExperience>.value(NotificationExperience(
+                        app: Nullable<NotificationExperienceApp>.value(NotificationExperienceApp(
+                            iconUrl: "icon_url",
+                            id: "id"
+                        )),
+                        id: "id",
+                        name: Nullable<String>.value("name")
+                    )),
+                    id: "id",
+                    iframeLink: Nullable<String>.value("iframe_link"),
+                    link: Nullable<String>.value("link"),
+                    mentionsMe: true,
+                    restPath: Nullable<String>.value("rest_path"),
+                    sender: Nullable<NotificationSender>.value(NotificationSender(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: "username"
+                    )),
+                    subject: "subject",
+                    topic: Nullable<NotificationTopicSummary>.value(NotificationTopicSummary(
+                        defaultPreferenceValue: true,
+                        id: "id",
+                        isMention: true,
+                        topicType: NotificationTopicSummaryTopicType.account
+                    ))
+                )
+            ],
+            pageInfo: ListNotificationsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.notifications.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func create1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -135,6 +316,35 @@ import WhopSDK
             request: .init(
                 content: "Drop off at 4180 Burnet Rd. Plan on two days for the full coating.",
                 title: "Your ceramic coating is booked"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "success": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateNotificationsResponse(
+            success: true
+        )
+        let response = try await client.notifications.create(
+            request: .init(
+                content: "content",
+                title: "title"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -185,6 +395,59 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func badges2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "experience_id": "experience_id",
+                      "has_unread": true,
+                      "important_count": 1,
+                      "last_viewed_at": "last_viewed_at"
+                    },
+                    {
+                      "account_id": "account_id",
+                      "experience_id": "experience_id",
+                      "has_unread": true,
+                      "important_count": 1,
+                      "last_viewed_at": "last_viewed_at"
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = BadgesNotificationsResponse(
+            data: [
+                NotificationBadge(
+                    accountId: Nullable<String>.value("account_id"),
+                    experienceId: "experience_id",
+                    hasUnread: true,
+                    importantCount: 1,
+                    lastViewedAt: Nullable<String>.value("last_viewed_at")
+                ),
+                NotificationBadge(
+                    accountId: Nullable<String>.value("account_id"),
+                    experienceId: "experience_id",
+                    hasUnread: true,
+                    importantCount: 1,
+                    lastViewedAt: Nullable<String>.value("last_viewed_at")
+                )
+            ]
+        )
+        let response = try await client.notifications.badges(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func markRead1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -217,6 +480,62 @@ import WhopSDK
                     hasUnread: false,
                     importantCount: 0,
                     lastViewedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z")
+                )
+            ]
+        )
+        let response = try await client.notifications.markRead(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func markRead2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "experience_id": "experience_id",
+                      "has_unread": true,
+                      "important_count": 1,
+                      "last_viewed_at": "last_viewed_at"
+                    },
+                    {
+                      "account_id": "account_id",
+                      "experience_id": "experience_id",
+                      "has_unread": true,
+                      "important_count": 1,
+                      "last_viewed_at": "last_viewed_at"
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = MarkReadNotificationsResponse(
+            data: [
+                NotificationBadge(
+                    accountId: Nullable<String>.value("account_id"),
+                    experienceId: "experience_id",
+                    hasUnread: true,
+                    importantCount: 1,
+                    lastViewedAt: Nullable<String>.value("last_viewed_at")
+                ),
+                NotificationBadge(
+                    accountId: Nullable<String>.value("account_id"),
+                    experienceId: "experience_id",
+                    hasUnread: true,
+                    importantCount: 1,
+                    lastViewedAt: Nullable<String>.value("last_viewed_at")
                 )
             ]
         )
@@ -309,6 +628,98 @@ import WhopSDK
                 defaultPreferenceValue: true,
                 id: "topic_xxxxxxxxxxxxxx",
                 isMention: false,
+                topicType: NotificationTopicSummaryTopicType.account
+            ))
+        )
+        let response = try await client.notifications.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account": {
+                    "id": "id",
+                    "logo_url": "logo_url",
+                    "route": "route",
+                    "title": "title"
+                  },
+                  "attachment_url": "attachment_url",
+                  "content": "content",
+                  "created_at": "created_at",
+                  "experience": {
+                    "app": {
+                      "icon_url": "icon_url",
+                      "id": "id"
+                    },
+                    "id": "id",
+                    "name": "name"
+                  },
+                  "id": "id",
+                  "iframe_link": "iframe_link",
+                  "link": "link",
+                  "mentions_me": true,
+                  "rest_path": "rest_path",
+                  "sender": {
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  },
+                  "subject": "subject",
+                  "topic": {
+                    "default_preference_value": true,
+                    "id": "id",
+                    "is_mention": true,
+                    "topic_type": "account"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Notification(
+            account: Nullable<NotificationAccount>.value(NotificationAccount(
+                id: "id",
+                logoUrl: Nullable<String>.value("logo_url"),
+                route: Nullable<String>.value("route"),
+                title: "title"
+            )),
+            attachmentUrl: "attachment_url",
+            content: "content",
+            createdAt: "created_at",
+            experience: Nullable<NotificationExperience>.value(NotificationExperience(
+                app: Nullable<NotificationExperienceApp>.value(NotificationExperienceApp(
+                    iconUrl: "icon_url",
+                    id: "id"
+                )),
+                id: "id",
+                name: Nullable<String>.value("name")
+            )),
+            id: "id",
+            iframeLink: Nullable<String>.value("iframe_link"),
+            link: Nullable<String>.value("link"),
+            mentionsMe: true,
+            restPath: Nullable<String>.value("rest_path"),
+            sender: Nullable<NotificationSender>.value(NotificationSender(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                username: "username"
+            )),
+            subject: "subject",
+            topic: Nullable<NotificationTopicSummary>.value(NotificationTopicSummary(
+                defaultPreferenceValue: true,
+                id: "id",
+                isMention: true,
                 topicType: NotificationTopicSummaryTopicType.account
             ))
         )

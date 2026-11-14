@@ -1,9 +1,9 @@
 import Foundation
 
 public struct AdGroupCity: Codable, Hashable, Sendable {
-    /// The ad platform's key for the city in its location taxonomy.
+    /// The city's key in the location taxonomy.
     public let key: String
-    /// City name, such as `Austin`. Absent when the platform doesn't return one.
+    /// City name, such as `Austin`. Absent when the location taxonomy has none.
     public let name: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

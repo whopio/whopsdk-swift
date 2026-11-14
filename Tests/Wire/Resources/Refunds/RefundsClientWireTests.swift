@@ -11,19 +11,173 @@ import WhopSDK
                 {
                   "data": [
                     {
-                      "amount": 6.9,
-                      "created_at": "2023-12-01T05:00:00Z",
-                      "currency": "usd",
-                      "id": "rf_xxxxxxxxxxxxxxx",
-                      "payment": {
-                        "id": "pay_xxxxxxxxxxxxxx"
+                      "account_id": "biz_xxxxxxxxxxxxxx",
+                      "amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
                       },
+                      "created_at": "2026-01-01T12:00:00.000Z",
+                      "failure_message": "The customer's card is expired or was canceled.",
+                      "failure_reason": "bank_declined",
+                      "id": "rf_xxxxxxxxxxxxxx",
+                      "metadata": {
+                        "key": "value"
+                      },
+                      "original_amount": {
+                        "amount": "-1234.56",
+                        "currency": "usd",
+                        "decimals": 2,
+                        "display_decimals": 2
+                      },
+                      "payment_id": "pay_xxxxxxxxxxxxxx",
                       "provider": "stripe",
-                      "provider_created_at": "2023-12-01T05:00:00Z",
+                      "provider_created_at": "2026-01-01T12:00:00.000Z",
+                      "reason": "duplicate",
                       "reference_status": "available",
                       "reference_type": "acquirer_reference_number",
-                      "reference_value": "74850120752",
-                      "status": "pending"
+                      "reference_value": "reference_value",
+                      "status": "pending",
+                      "updated_at": "2026-01-01T12:00:00.000Z",
+                      "visa_rdr": false
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": false,
+                    "has_previous_page": false,
+                    "start_cursor": "WyJjdXJzb3IiLDFd"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListRefundsResponse(
+            data: [
+                Refund(
+                    accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+                    amount: Nullable<Money>.value(Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    )),
+                    createdAt: "2026-01-01T12:00:00.000Z",
+                    failureMessage: Nullable<String>.value("The customer's card is expired or was canceled."),
+                    failureReason: Nullable<RefundFailureReason>.value(RefundFailureReason.bankDeclined),
+                    id: "rf_xxxxxxxxxxxxxx",
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "key": JSONValue.string("value")
+                    ]),
+                    originalAmount: Money(
+                        amount: "-1234.56",
+                        currency: "usd",
+                        decimals: 2,
+                        displayDecimals: 2
+                    ),
+                    paymentId: "pay_xxxxxxxxxxxxxx",
+                    provider: "stripe",
+                    providerCreatedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+                    reason: Nullable<RefundReason>.value(RefundReason.duplicate),
+                    referenceStatus: Nullable<RefundReferenceStatus>.value(RefundReferenceStatus.available),
+                    referenceType: Nullable<RefundReferenceType>.value(RefundReferenceType.acquirerReferenceNumber),
+                    referenceValue: Nullable<String>.value("reference_value"),
+                    status: RefundStatus.pending,
+                    updatedAt: "2026-01-01T12:00:00.000Z",
+                    visaRdr: false
+                )
+            ],
+            pageInfo: ListRefundsResponsePageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: false,
+                hasPreviousPage: false,
+                startCursor: Nullable<String>.value("WyJjdXJzb3IiLDFd")
+            )
+        )
+        let response = try await client.refunds.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "created_at": "created_at",
+                      "failure_message": "failure_message",
+                      "failure_reason": "bank_declined",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "original_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "payment_id": "payment_id",
+                      "provider": "provider",
+                      "provider_created_at": "provider_created_at",
+                      "reason": "duplicate",
+                      "reference_status": "available",
+                      "reference_type": "acquirer_reference_number",
+                      "reference_value": "reference_value",
+                      "status": "pending",
+                      "updated_at": "updated_at",
+                      "visa_rdr": true
+                    },
+                    {
+                      "account_id": "account_id",
+                      "amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "created_at": "created_at",
+                      "failure_message": "failure_message",
+                      "failure_reason": "bank_declined",
+                      "id": "id",
+                      "metadata": {
+                        "metadata": {
+                          "key": "value"
+                        }
+                      },
+                      "original_amount": {
+                        "amount": "amount",
+                        "currency": "currency",
+                        "decimals": 1,
+                        "display_decimals": 1
+                      },
+                      "payment_id": "payment_id",
+                      "provider": "provider",
+                      "provider_created_at": "provider_created_at",
+                      "reason": "duplicate",
+                      "reference_status": "available",
+                      "reference_type": "acquirer_reference_number",
+                      "reference_value": "reference_value",
+                      "status": "pending",
+                      "updated_at": "updated_at",
+                      "visa_rdr": true
                     }
                   ],
                   "page_info": {
@@ -43,39 +197,87 @@ import WhopSDK
         )
         let expectedResponse = ListRefundsResponse(
             data: [
-                RefundListItem(
-                    amount: 6.9,
-                    createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                    currency: Currencies.usd,
-                    id: "rf_xxxxxxxxxxxxxxx",
-                    payment: Nullable<RefundListItemPayment>.value(RefundListItemPayment(
-                        id: "pay_xxxxxxxxxxxxxx"
+                Refund(
+                    accountId: Nullable<String>.value("account_id"),
+                    amount: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
                     )),
-                    provider: PaymentProviders.stripe,
-                    providerCreatedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                    referenceStatus: Nullable<RefundReferenceStatuses>.value(RefundReferenceStatuses.available),
-                    referenceType: Nullable<RefundReferenceTypes>.value(RefundReferenceTypes.acquirerReferenceNumber),
-                    referenceValue: Nullable<String>.value("74850120752"),
-                    status: RefundStatuses.pending
+                    createdAt: "created_at",
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    failureReason: Nullable<RefundFailureReason>.value(RefundFailureReason.bankDeclined),
+                    id: "id",
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    originalAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    paymentId: "payment_id",
+                    provider: "provider",
+                    providerCreatedAt: Nullable<String>.value("provider_created_at"),
+                    reason: Nullable<RefundReason>.value(RefundReason.duplicate),
+                    referenceStatus: Nullable<RefundReferenceStatus>.value(RefundReferenceStatus.available),
+                    referenceType: Nullable<RefundReferenceType>.value(RefundReferenceType.acquirerReferenceNumber),
+                    referenceValue: Nullable<String>.value("reference_value"),
+                    status: RefundStatus.pending,
+                    updatedAt: "updated_at",
+                    visaRdr: true
+                ),
+                Refund(
+                    accountId: Nullable<String>.value("account_id"),
+                    amount: Nullable<Money>.value(Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    )),
+                    createdAt: "created_at",
+                    failureMessage: Nullable<String>.value("failure_message"),
+                    failureReason: Nullable<RefundFailureReason>.value(RefundFailureReason.bankDeclined),
+                    id: "id",
+                    metadata: Nullable<[String: JSONValue]>.value([
+                        "metadata": JSONValue.object(
+                            [
+                                "key": JSONValue.string("value")
+                            ]
+                        )
+                    ]),
+                    originalAmount: Money(
+                        amount: "amount",
+                        currency: "currency",
+                        decimals: 1,
+                        displayDecimals: 1
+                    ),
+                    paymentId: "payment_id",
+                    provider: "provider",
+                    providerCreatedAt: Nullable<String>.value("provider_created_at"),
+                    reason: Nullable<RefundReason>.value(RefundReason.duplicate),
+                    referenceStatus: Nullable<RefundReferenceStatus>.value(RefundReferenceStatus.available),
+                    referenceType: Nullable<RefundReferenceType>.value(RefundReferenceType.acquirerReferenceNumber),
+                    referenceValue: Nullable<String>.value("reference_value"),
+                    status: RefundStatus.pending,
+                    updatedAt: "updated_at",
+                    visaRdr: true
                 )
             ],
-            pageInfo: PageInfo(
+            pageInfo: ListRefundsResponsePageInfo(
                 endCursor: Nullable<String>.value("end_cursor"),
                 hasNextPage: true,
                 hasPreviousPage: true,
                 startCursor: Nullable<String>.value("start_cursor")
             )
         )
-        let response = try await client.refunds.list(
-            first: 42,
-            last: 42,
-            paymentId: "pay_xxxxxxxxxxxxxx",
-            companyId: "biz_xxxxxxxxxxxxxx",
-            userId: "user_xxxxxxxxxxxxx",
-            createdBefore: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            createdAfter: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
+        let response = try await client.refunds.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -85,62 +287,36 @@ import WhopSDK
             body: Foundation.Data(
                 #"""
                 {
-                  "amount": 6.9,
-                  "created_at": "2023-12-01T05:00:00Z",
-                  "currency": "usd",
-                  "id": "rf_xxxxxxxxxxxxxxx",
-                  "payment": {
-                    "billing_reason": "subscription_create",
-                    "card_brand": "mastercard",
-                    "card_last4": "4242",
-                    "created_at": "2023-12-01T05:00:00Z",
+                  "account_id": "biz_xxxxxxxxxxxxxx",
+                  "amount": {
+                    "amount": "-1234.56",
                     "currency": "usd",
-                    "dispute_alerted_at": "2023-12-01T05:00:00Z",
-                    "id": "pay_xxxxxxxxxxxxxx",
-                    "member": {
-                      "id": "id",
-                      "phone": "phone"
-                    },
-                    "membership": {
-                      "id": "mem_xxxxxxxxxxxxxx",
-                      "status": "trialing"
-                    },
-                    "metadata": {
-                      "key": "value"
-                    },
-                    "paid_at": "2023-12-01T05:00:00Z",
-                    "payment_method_type": "acss_debit",
-                    "plan": {
-                      "id": "plan_xxxxxxxxxxxxx",
-                      "metadata": {
-                        "key": "value"
-                      }
-                    },
-                    "product": {
-                      "id": "prod_xxxxxxxxxxxxx",
-                      "metadata": {
-                        "key": "value"
-                      }
-                    },
-                    "subtotal": 6.9,
-                    "tax_amount": 6.9,
-                    "tax_behavior": "exclusive",
-                    "tax_refunded_amount": 6.9,
-                    "total": 6.9,
-                    "usd_total": 6.9,
-                    "user": {
-                      "email": "john.doe@example.com",
-                      "id": "user_xxxxxxxxxxxxx",
-                      "name": "John Doe",
-                      "username": "johndoe42"
-                    }
+                    "decimals": 2,
+                    "display_decimals": 2
                   },
+                  "created_at": "2026-01-01T12:00:00.000Z",
+                  "failure_message": "The customer's card is expired or was canceled.",
+                  "failure_reason": "bank_declined",
+                  "id": "rf_xxxxxxxxxxxxxx",
+                  "metadata": {
+                    "key": "value"
+                  },
+                  "original_amount": {
+                    "amount": "-1234.56",
+                    "currency": "usd",
+                    "decimals": 2,
+                    "display_decimals": 2
+                  },
+                  "payment_id": "pay_xxxxxxxxxxxxxx",
                   "provider": "stripe",
-                  "provider_created_at": "2023-12-01T05:00:00Z",
+                  "provider_created_at": "2026-01-01T12:00:00.000Z",
+                  "reason": "duplicate",
                   "reference_status": "available",
                   "reference_type": "acquirer_reference_number",
-                  "reference_value": "74850120752",
-                  "status": "pending"
+                  "reference_value": "reference_value",
+                  "status": "pending",
+                  "updated_at": "2026-01-01T12:00:00.000Z",
+                  "visa_rdr": false
                 }
                 """#.utf8
             )
@@ -151,65 +327,129 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = Refund(
-            amount: 6.9,
-            createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-            currency: Currencies.usd,
-            id: "rf_xxxxxxxxxxxxxxx",
-            payment: Nullable<RefundPayment>.value(RefundPayment(
-                billingReason: Nullable<BillingReasons>.value(BillingReasons.subscriptionCreate),
-                cardBrand: Nullable<CardBrands>.value(CardBrands.mastercard),
-                cardLast4: Nullable<String>.value("4242"),
-                createdAt: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-                currency: Currencies.usd,
-                disputeAlertedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                id: "pay_xxxxxxxxxxxxxx",
-                member: Nullable<RefundPaymentMember>.value(RefundPaymentMember(
-                    id: "id",
-                    phone: Nullable<String>.value("phone")
-                )),
-                membership: Nullable<RefundPaymentMembership>.value(RefundPaymentMembership(
-                    id: "mem_xxxxxxxxxxxxxx",
-                    status: MembershipStatus.trialing
-                )),
-                metadata: Nullable<[String: JSONValue]>.value([
-                    "key": JSONValue.string("value")
-                ]),
-                paidAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-                paymentMethodType: Nullable<PaymentMethodTypes>.value(PaymentMethodTypes.acssDebit),
-                plan: Nullable<RefundPaymentPlan>.value(RefundPaymentPlan(
-                    id: "plan_xxxxxxxxxxxxx",
-                    metadata: Nullable<[String: JSONValue]>.value([
-                        "key": JSONValue.string("value")
-                    ])
-                )),
-                product: Nullable<RefundPaymentProduct>.value(RefundPaymentProduct(
-                    id: "prod_xxxxxxxxxxxxx",
-                    metadata: Nullable<[String: JSONValue]>.value([
-                        "key": JSONValue.string("value")
-                    ])
-                )),
-                subtotal: Nullable<Double>.value(6.9),
-                taxAmount: Nullable<Double>.value(6.9),
-                taxBehavior: Nullable<ReceiptTaxBehaviors>.value(ReceiptTaxBehaviors.exclusive),
-                taxRefundedAmount: Nullable<Double>.value(6.9),
-                total: Nullable<Double>.value(6.9),
-                usdTotal: Nullable<Double>.value(6.9),
-                user: Nullable<RefundPaymentUser>.value(RefundPaymentUser(
-                    email: Nullable<String>.value("john.doe@example.com"),
-                    id: "user_xxxxxxxxxxxxx",
-                    name: Nullable<String>.value("John Doe"),
-                    username: "johndoe42"
-                ))
+            accountId: Nullable<String>.value("biz_xxxxxxxxxxxxxx"),
+            amount: Nullable<Money>.value(Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
             )),
-            provider: PaymentProviders.stripe,
-            providerCreatedAt: Nullable<Date>.value(try! Date("2023-12-01T05:00:00Z", strategy: .iso8601)),
-            referenceStatus: Nullable<RefundReferenceStatuses>.value(RefundReferenceStatuses.available),
-            referenceType: Nullable<RefundReferenceTypes>.value(RefundReferenceTypes.acquirerReferenceNumber),
-            referenceValue: Nullable<String>.value("74850120752"),
-            status: RefundStatuses.pending
+            createdAt: "2026-01-01T12:00:00.000Z",
+            failureMessage: Nullable<String>.value("The customer's card is expired or was canceled."),
+            failureReason: Nullable<RefundFailureReason>.value(RefundFailureReason.bankDeclined),
+            id: "rf_xxxxxxxxxxxxxx",
+            metadata: Nullable<[String: JSONValue]>.value([
+                "key": JSONValue.string("value")
+            ]),
+            originalAmount: Money(
+                amount: "-1234.56",
+                currency: "usd",
+                decimals: 2,
+                displayDecimals: 2
+            ),
+            paymentId: "pay_xxxxxxxxxxxxxx",
+            provider: "stripe",
+            providerCreatedAt: Nullable<String>.value("2026-01-01T12:00:00.000Z"),
+            reason: Nullable<RefundReason>.value(RefundReason.duplicate),
+            referenceStatus: Nullable<RefundReferenceStatus>.value(RefundReferenceStatus.available),
+            referenceType: Nullable<RefundReferenceType>.value(RefundReferenceType.acquirerReferenceNumber),
+            referenceValue: Nullable<String>.value("reference_value"),
+            status: RefundStatus.pending,
+            updatedAt: "2026-01-01T12:00:00.000Z",
+            visaRdr: false
         )
         let response = try await client.refunds.retrieve(
-            id: "rf_xxxxxxxxxxxxxxx",
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "created_at": "created_at",
+                  "failure_message": "failure_message",
+                  "failure_reason": "bank_declined",
+                  "id": "id",
+                  "metadata": {
+                    "metadata": {
+                      "key": "value"
+                    }
+                  },
+                  "original_amount": {
+                    "amount": "amount",
+                    "currency": "currency",
+                    "decimals": 1,
+                    "display_decimals": 1
+                  },
+                  "payment_id": "payment_id",
+                  "provider": "provider",
+                  "provider_created_at": "provider_created_at",
+                  "reason": "duplicate",
+                  "reference_status": "available",
+                  "reference_type": "acquirer_reference_number",
+                  "reference_value": "reference_value",
+                  "status": "pending",
+                  "updated_at": "updated_at",
+                  "visa_rdr": true
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Refund(
+            accountId: Nullable<String>.value("account_id"),
+            amount: Nullable<Money>.value(Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            )),
+            createdAt: "created_at",
+            failureMessage: Nullable<String>.value("failure_message"),
+            failureReason: Nullable<RefundFailureReason>.value(RefundFailureReason.bankDeclined),
+            id: "id",
+            metadata: Nullable<[String: JSONValue]>.value([
+                "metadata": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ]),
+            originalAmount: Money(
+                amount: "amount",
+                currency: "currency",
+                decimals: 1,
+                displayDecimals: 1
+            ),
+            paymentId: "payment_id",
+            provider: "provider",
+            providerCreatedAt: Nullable<String>.value("provider_created_at"),
+            reason: Nullable<RefundReason>.value(RefundReason.duplicate),
+            referenceStatus: Nullable<RefundReferenceStatus>.value(RefundReferenceStatus.available),
+            referenceType: Nullable<RefundReferenceType>.value(RefundReferenceType.acquirerReferenceNumber),
+            referenceValue: Nullable<String>.value("reference_value"),
+            status: RefundStatus.pending,
+            updatedAt: "updated_at",
+            visaRdr: true
+        )
+        let response = try await client.refunds.retrieve(
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

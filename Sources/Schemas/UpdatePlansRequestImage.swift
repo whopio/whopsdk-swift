@@ -1,6 +1,5 @@
 import Foundation
 
-/// An image displayed on the product page to represent this plan.
 public struct UpdatePlansRequestImage: Codable, Hashable, Sendable {
     public let directUploadId: String?
     public let id: String?

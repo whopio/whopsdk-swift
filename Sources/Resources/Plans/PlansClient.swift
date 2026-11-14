@@ -7,60 +7,40 @@ public final class PlansClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of plans belonging to an account, with optional filtering by visibility, type, release method, and product.
+    /// Deprecated compatibility endpoint. List variants with `GET /variants` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.plans.list(
-    ///         accountId: "account_id",
-    ///         releaseMethods: [
-    ///             "buy_now"
-    ///         ],
-    ///         visibilities: [
-    ///             "visible"
-    ///         ],
-    ///         planTypes: [
-    ///             "renewal"
-    ///         ],
-    ///         productIds: [
-    ///             "prod_xxxxxxxxxxxxxx"
-    ///         ]
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
     ///     )
+    ///
+    ///     _ = try await client.plans.list()
     /// }
     ///
     /// try await main()
     /// ```
     ///
-    /// - Parameter accountId: The unique identifier of the account to list plans for.
-    /// - Parameter direction: The sort direction for results. Defaults to descending.
-    /// - Parameter order: The field to sort results by. Defaults to created_at.
-    /// - Parameter releaseMethods: Filter to only plans matching these release methods.
-    /// - Parameter visibilities: Filter to only plans matching these visibility states.
-    /// - Parameter planTypes: Filter to only plans matching these billing types.
-    /// - Parameter productIds: Filter to only plans belonging to these product identifiers.
-    /// - Parameter createdBefore: Only return plans created before this timestamp.
-    /// - Parameter createdAfter: Only return plans created after this timestamp.
-    /// - Parameter first: The number of plans to return (default and max 100).
-    /// - Parameter after: A cursor; returns plans after this position.
-    /// - Parameter last: The number of plans to return from the end of the range.
-    /// - Parameter before: A cursor; returns plans before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String, direction: ListPlansRequestDirection? = nil, order: ListPlansRequestOrder? = nil, releaseMethods: [String]? = nil, visibilities: [String]? = nil, planTypes: [String]? = nil, productIds: [String]? = nil, createdBefore: String? = nil, createdAfter: String? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListPlansResponse {
+    public func list(accountId: String? = nil, direction: ListPlansRequestDirection? = nil, order: ListPlansRequestOrder? = nil, releaseMethods: [String]? = nil, visibilities: [String]? = nil, billingTypes: [String]? = nil, productIds: [String]? = nil, createdBefore: String? = nil, createdAfter: String? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListPlansResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/plans",
             queryParams: [
-                "account_id": .string(accountId), 
+                "account_id": accountId.map { .string($0) }, 
                 "direction": direction.map { .string($0.rawValue) }, 
                 "order": order.map { .string($0.rawValue) }, 
                 "release_methods": releaseMethods.map { .stringArray($0) }, 
                 "visibilities": visibilities.map { .stringArray($0) }, 
-                "plan_types": planTypes.map { .stringArray($0) }, 
+                "billing_types": billingTypes.map { .stringArray($0) }, 
                 "product_ids": productIds.map { .stringArray($0) }, 
                 "created_before": createdBefore.map { .string($0) }, 
                 "created_after": createdAfter.map { .string($0) }, 
@@ -74,14 +54,17 @@ public final class PlansClient: Sendable {
         )
     }
 
-    /// Create a new pricing plan for a product. The plan defines the billing interval, price, and availability for customers.
+    /// Deprecated compatibility endpoint. Create variants with `POST /variants` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.plans.create(request: .init())
     /// }
@@ -100,14 +83,17 @@ public final class PlansClient: Sendable {
         )
     }
 
-    /// Retrieves the details of an existing plan.
+    /// Deprecated compatibility endpoint. Retrieve variants with `GET /variants/{id}` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.plans.retrieve(id: "id")
     /// }
@@ -115,7 +101,7 @@ public final class PlansClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: Plan ID, prefixed `plan_`.
+    /// - Parameter id: Variant ID, prefixed `plan_`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieve(id: String, requestOptions: RequestOptions? = nil) async throws -> Plan {
         return try await httpClient.performRequest(
@@ -126,14 +112,17 @@ public final class PlansClient: Sendable {
         )
     }
 
-    /// Permanently delete a plan from a product. Existing memberships on this plan will not be affected.
+    /// Deprecated compatibility endpoint. Delete variants with `DELETE /variants/{id}` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.plans.delete(id: "id")
     /// }
@@ -141,7 +130,7 @@ public final class PlansClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: Plan ID, prefixed `plan_`.
+    /// - Parameter id: Variant ID, prefixed `plan_`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func delete(id: String, requestOptions: RequestOptions? = nil) async throws -> DeletePlansResponse {
         return try await httpClient.performRequest(
@@ -152,14 +141,17 @@ public final class PlansClient: Sendable {
         )
     }
 
-    /// Update a plan's pricing, billing interval, visibility, stock, and other settings.
+    /// Deprecated compatibility endpoint. Update variants with `PATCH /variants/{id}` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.plans.update(
     ///         id: "id",
@@ -170,7 +162,7 @@ public final class PlansClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: Plan ID, prefixed `plan_`.
+    /// - Parameter id: Variant ID, prefixed `plan_`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func update(id: String, request: Requests.UpdatePlansRequest, requestOptions: RequestOptions? = nil) async throws -> Plan {
         return try await httpClient.performRequest(
@@ -182,28 +174,28 @@ public final class PlansClient: Sendable {
         )
     }
 
-    /// Previews tax for a plan before checkout, based on the buyer's location.
+    /// Deprecated compatibility endpoint. Quote tax with `POST /payment_quotes` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.plans.calculateTax(
     ///         id: "id",
-    ///         request: .init(address: .value(CalculateTaxPlansRequestAddress(
-    ///             country: "DE",
-    ///             postalCode: .value("10115")
-    ///         )))
+    ///         request: .init()
     ///     )
     /// }
     ///
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: Plan ID, prefixed `plan_`.
+    /// - Parameter id: Variant ID, prefixed `plan_`.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func calculateTax(id: String, request: Requests.CalculateTaxPlansRequest, requestOptions: RequestOptions? = nil) async throws -> CalculateTaxPlansResponse {
         return try await httpClient.performRequest(

@@ -14,7 +14,10 @@ public final class SubmissionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.submissions.list(bountyId: "bounty_id")
     /// }
@@ -28,10 +31,10 @@ public final class SubmissionsClient: Sendable {
     /// - Parameter createdBefore: Only submissions created before this ISO 8601 timestamp.
     /// - Parameter order: Sort field.
     /// - Parameter direction: Sort direction.
-    /// - Parameter first: Number of submissions to return from the start of the window.
-    /// - Parameter after: Cursor to paginate forwards from.
-    /// - Parameter last: Number of submissions to return from the end of the window.
-    /// - Parameter before: Cursor to paginate backwards from.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(bountyId: String, status: ListSubmissionsRequestStatus? = nil, createdAfter: String? = nil, createdBefore: String? = nil, order: ListSubmissionsRequestOrder? = nil, direction: ListSubmissionsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListSubmissionsResponse {
         return try await httpClient.performRequest(
@@ -60,7 +63,10 @@ public final class SubmissionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.submissions.retrieve(
     ///         bountyId: "bounty_id",

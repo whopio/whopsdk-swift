@@ -7,23 +7,32 @@ public final class Whop: Sendable {
     public let accounts: AccountsClient
     public let adCampaigns: AdCampaignsClient
     public let adGroups: AdGroupsClient
-    public let adReports: AdReportsClient
     public let ads: AdsClient
+    public let adPixels: AdPixelsClient
     public let affiliates: AffiliatesClient
     public let aiChats: AiChatsClient
     public let apiKeys: ApiKeysClient
+    public let apiLogs: ApiLogsClient
     public let appBuilds: AppBuildsClient
+    public let appInstallations: AppInstallationsClient
     public let apps: AppsClient
     public let audiences: AudiencesClient
     public let authorizedUsers: AuthorizedUsersClient
+    public let automationEnrollments: AutomationEnrollmentsClient
+    public let automationSteps: AutomationStepsClient
+    public let automations: AutomationsClient
     public let bounties: BountiesClient
     public let bountySubmissions: BountySubmissionsClient
     public let cardTransactions: CardTransactionsClient
     public let cards: CardsClient
+    public let cashbackRules: CashbackRulesClient
+    public let channelMembers: ChannelMembersClient
+    public let channels: ChannelsClient
     public let chatChannels: ChatChannelsClient
     public let checkoutConfigurations: CheckoutConfigurationsClient
-    public let companies: CompaniesClient
+    public let claimLinks: ClaimLinksClient
     public let companyTokenTransactions: CompanyTokenTransactionsClient
+    public let confirmationTokens: ConfirmationTokensClient
     public let courseChapters: CourseChaptersClient
     public let courseLessonInteractions: CourseLessonInteractionsClient
     public let courseLessons: CourseLessonsClient
@@ -34,28 +43,37 @@ public final class Whop: Sendable {
     public let disputes: DisputesClient
     public let dmChannels: DmChannelsClient
     public let dmMembers: DmMembersClient
-    public let entries: EntriesClient
+    public let domains: DomainsClient
+    public let economicIntelligence: EconomicIntelligenceClient
+    public let emailAddresses: EmailAddressesClient
     public let events: EventsClient
     public let experiences: ExperiencesClient
+    public let experiments: ExperimentsClient
     public let exports: ExportsClient
+    public let externalAccounts: ExternalAccountsClient
     public let feeMarkups: FeeMarkupsClient
+    public let feedbackSubmissions: FeedbackSubmissionsClient
     public let files: FilesClient
     public let financialActivity: FinancialActivityClient
-    public let ledgers: LedgersClient
+    public let financialReports: FinancialReportsClient
+    public let financingApplications: FinancingApplicationsClient
     public let forumPosts: ForumPostsClient
     public let forums: ForumsClient
     public let identityProfiles: IdentityProfilesClient
     public let invoices: InvoicesClient
-    public let leads: LeadsClient
     public let ledgerAccounts: LedgerAccountsClient
+    public let livestreams: LivestreamsClient
     public let media: MediaClient
     public let members: MembersClient
     public let memberships: MembershipsClient
     public let messages: MessagesClient
     public let notifications: NotificationsClient
+    public let partnerReferralRequests: PartnerReferralRequestsClient
     public let partners: PartnersClient
     public let paymentMethodDomains: PaymentMethodDomainsClient
     public let paymentMethods: PaymentMethodsClient
+    public let paymentQuotes: PaymentQuotesClient
+    public let paymentRules: PaymentRulesClient
     public let payments: PaymentsClient
     public let payoutAccounts: PayoutAccountsClient
     public let payoutMethods: PayoutMethodsClient
@@ -63,13 +81,15 @@ public final class Whop: Sendable {
     public let people: PeopleClient
     public let permissions: PermissionsClient
     public let plans: PlansClient
+    public let productAffiliates: ProductAffiliatesClient
     public let products: ProductsClient
     public let promoCodes: PromoCodesClient
     public let reactions: ReactionsClient
-    public let recommendedActions: RecommendedActionsClient
     public let refunds: RefundsClient
     public let resolutionCenterCases: ResolutionCenterCasesClient
+    public let reviewReports: ReviewReportsClient
     public let reviews: ReviewsClient
+    public let search: SearchClient
     public let setupIntents: SetupIntentsClient
     public let shipments: ShipmentsClient
     public let socialAccounts: SocialAccountsClient
@@ -77,12 +97,15 @@ public final class Whop: Sendable {
     public let supportChannels: SupportChannelsClient
     public let swaps: SwapsClient
     public let teamMembers: TeamMembersClient
-    public let topups: TopupsClient
+    public let trades: TradesClient
     public let transfers: TransfersClient
     public let users: UsersClient
+    public let variants: VariantsClient
     public let verifications: VerificationsClient
+    public let waitlistEntries: WaitlistEntriesClient
     public let webhooks: WebhooksClient
-    public let withdrawals: WithdrawalsClient
+    public let entries: EntriesClient
+    public let ledgers: LedgersClient
     private let httpClient: HTTPClient
 
     /// Initialize the client with the specified configuration and a static bearer token.
@@ -94,7 +117,7 @@ public final class Whop: Sendable {
     /// - Parameter maxRetries: Maximum number of retries for failed requests. Defaults to 2.
     /// - Parameter urlSession: Custom `URLSession` to use for requests. If not provided, a default session will be created with the specified timeout.
     public convenience init(
-        baseURL: String = WhopSDKEnvironment.default.rawValue,
+        baseURL: String,
         token: String? = nil,
         apiVersionDate: String? = nil,
         idempotencyKey: String? = nil,
@@ -133,7 +156,7 @@ public final class Whop: Sendable {
     /// - Parameter maxRetries: Maximum number of retries for failed requests. Defaults to 2.
     /// - Parameter urlSession: Custom `URLSession` to use for requests. If not provided, a default session will be created with the specified timeout.
     public convenience init(
-        baseURL: String = WhopSDKEnvironment.default.rawValue,
+        baseURL: String,
         token: ClientConfig.CredentialProvider? = nil,
         apiVersionDate: String? = nil,
         idempotencyKey: String? = nil,
@@ -188,23 +211,32 @@ public final class Whop: Sendable {
         self.accounts = AccountsClient(config: config)
         self.adCampaigns = AdCampaignsClient(config: config)
         self.adGroups = AdGroupsClient(config: config)
-        self.adReports = AdReportsClient(config: config)
         self.ads = AdsClient(config: config)
+        self.adPixels = AdPixelsClient(config: config)
         self.affiliates = AffiliatesClient(config: config)
         self.aiChats = AiChatsClient(config: config)
         self.apiKeys = ApiKeysClient(config: config)
+        self.apiLogs = ApiLogsClient(config: config)
         self.appBuilds = AppBuildsClient(config: config)
+        self.appInstallations = AppInstallationsClient(config: config)
         self.apps = AppsClient(config: config)
         self.audiences = AudiencesClient(config: config)
         self.authorizedUsers = AuthorizedUsersClient(config: config)
+        self.automationEnrollments = AutomationEnrollmentsClient(config: config)
+        self.automationSteps = AutomationStepsClient(config: config)
+        self.automations = AutomationsClient(config: config)
         self.bounties = BountiesClient(config: config)
         self.bountySubmissions = BountySubmissionsClient(config: config)
         self.cardTransactions = CardTransactionsClient(config: config)
         self.cards = CardsClient(config: config)
+        self.cashbackRules = CashbackRulesClient(config: config)
+        self.channelMembers = ChannelMembersClient(config: config)
+        self.channels = ChannelsClient(config: config)
         self.chatChannels = ChatChannelsClient(config: config)
         self.checkoutConfigurations = CheckoutConfigurationsClient(config: config)
-        self.companies = CompaniesClient(config: config)
+        self.claimLinks = ClaimLinksClient(config: config)
         self.companyTokenTransactions = CompanyTokenTransactionsClient(config: config)
+        self.confirmationTokens = ConfirmationTokensClient(config: config)
         self.courseChapters = CourseChaptersClient(config: config)
         self.courseLessonInteractions = CourseLessonInteractionsClient(config: config)
         self.courseLessons = CourseLessonsClient(config: config)
@@ -215,28 +247,37 @@ public final class Whop: Sendable {
         self.disputes = DisputesClient(config: config)
         self.dmChannels = DmChannelsClient(config: config)
         self.dmMembers = DmMembersClient(config: config)
-        self.entries = EntriesClient(config: config)
+        self.domains = DomainsClient(config: config)
+        self.economicIntelligence = EconomicIntelligenceClient(config: config)
+        self.emailAddresses = EmailAddressesClient(config: config)
         self.events = EventsClient(config: config)
         self.experiences = ExperiencesClient(config: config)
+        self.experiments = ExperimentsClient(config: config)
         self.exports = ExportsClient(config: config)
+        self.externalAccounts = ExternalAccountsClient(config: config)
         self.feeMarkups = FeeMarkupsClient(config: config)
+        self.feedbackSubmissions = FeedbackSubmissionsClient(config: config)
         self.files = FilesClient(config: config)
         self.financialActivity = FinancialActivityClient(config: config)
-        self.ledgers = LedgersClient(config: config)
+        self.financialReports = FinancialReportsClient(config: config)
+        self.financingApplications = FinancingApplicationsClient(config: config)
         self.forumPosts = ForumPostsClient(config: config)
         self.forums = ForumsClient(config: config)
         self.identityProfiles = IdentityProfilesClient(config: config)
         self.invoices = InvoicesClient(config: config)
-        self.leads = LeadsClient(config: config)
         self.ledgerAccounts = LedgerAccountsClient(config: config)
+        self.livestreams = LivestreamsClient(config: config)
         self.media = MediaClient(config: config)
         self.members = MembersClient(config: config)
         self.memberships = MembershipsClient(config: config)
         self.messages = MessagesClient(config: config)
         self.notifications = NotificationsClient(config: config)
+        self.partnerReferralRequests = PartnerReferralRequestsClient(config: config)
         self.partners = PartnersClient(config: config)
         self.paymentMethodDomains = PaymentMethodDomainsClient(config: config)
         self.paymentMethods = PaymentMethodsClient(config: config)
+        self.paymentQuotes = PaymentQuotesClient(config: config)
+        self.paymentRules = PaymentRulesClient(config: config)
         self.payments = PaymentsClient(config: config)
         self.payoutAccounts = PayoutAccountsClient(config: config)
         self.payoutMethods = PayoutMethodsClient(config: config)
@@ -244,13 +285,15 @@ public final class Whop: Sendable {
         self.people = PeopleClient(config: config)
         self.permissions = PermissionsClient(config: config)
         self.plans = PlansClient(config: config)
+        self.productAffiliates = ProductAffiliatesClient(config: config)
         self.products = ProductsClient(config: config)
         self.promoCodes = PromoCodesClient(config: config)
         self.reactions = ReactionsClient(config: config)
-        self.recommendedActions = RecommendedActionsClient(config: config)
         self.refunds = RefundsClient(config: config)
         self.resolutionCenterCases = ResolutionCenterCasesClient(config: config)
+        self.reviewReports = ReviewReportsClient(config: config)
         self.reviews = ReviewsClient(config: config)
+        self.search = SearchClient(config: config)
         self.setupIntents = SetupIntentsClient(config: config)
         self.shipments = ShipmentsClient(config: config)
         self.socialAccounts = SocialAccountsClient(config: config)
@@ -258,12 +301,15 @@ public final class Whop: Sendable {
         self.supportChannels = SupportChannelsClient(config: config)
         self.swaps = SwapsClient(config: config)
         self.teamMembers = TeamMembersClient(config: config)
-        self.topups = TopupsClient(config: config)
+        self.trades = TradesClient(config: config)
         self.transfers = TransfersClient(config: config)
         self.users = UsersClient(config: config)
+        self.variants = VariantsClient(config: config)
         self.verifications = VerificationsClient(config: config)
+        self.waitlistEntries = WaitlistEntriesClient(config: config)
         self.webhooks = WebhooksClient(config: config)
-        self.withdrawals = WithdrawalsClient(config: config)
+        self.entries = EntriesClient(config: config)
+        self.ledgers = LedgersClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

@@ -4,6 +4,7 @@ import Foundation
 public enum ReceiptStatus: String, Codable, Hashable, CaseIterable, Sendable {
     case draft
     case open
+    case authorized
     case paid
     case pending
     case uncollectible

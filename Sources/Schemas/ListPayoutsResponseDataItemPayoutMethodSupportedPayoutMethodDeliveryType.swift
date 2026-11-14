@@ -6,8 +6,8 @@ public enum ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethodDelivery
     case bankDeposit = "bank_deposit"
     case homeDelivery = "home_delivery"
     case mobileWallet = "mobile_wallet"
-    case masspayCard = "masspay_card"
-    case paperCheck = "paper_check"
+    case card
+    case check
     case bill
     case cryptocurrency
     case unknown

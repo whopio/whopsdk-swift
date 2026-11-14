@@ -14,7 +14,10 @@ public final class DisputeAlertsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.disputeAlerts.list()
     /// }
@@ -25,10 +28,10 @@ public final class DisputeAlertsClient: Sendable {
     /// - Parameter accountId: Only alerts on this account's payments (`biz_` tag). Omit it to cover every account you can read.
     /// - Parameter paymentId: Only alerts on this payment (`pay_` tag). A payment can carry several.
     /// - Parameter type: Only alerts of this kind. `early_fraud_warning` for issuer fraud reports, `dispute_alert` for pre-dispute notices, `rapid_dispute_resolution` for Visa RDR cases the network already closed.
-    /// - Parameter first: The number of alerts to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns alerts after this position.
-    /// - Parameter last: The number of alerts to return from the end of the range.
-    /// - Parameter before: A cursor; returns alerts before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter order: The field to sort alerts by.
     /// - Parameter direction: Sort direction.
     /// - Parameter createdBefore: Only alerts Whop received before this ISO 8601 timestamp.
@@ -63,7 +66,10 @@ public final class DisputeAlertsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.disputeAlerts.retrieve(id: "id")
     /// }

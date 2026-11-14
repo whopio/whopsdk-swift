@@ -11,8 +11,6 @@ public struct ListEventsResponseDataItem: Codable, Hashable, Sendable {
     public let path: Nullable<String>?
     public let personId: String
     public let questions: Nullable<[ListEventsResponseDataItemQuestionsItem]>?
-    public let recommendedActionChainId: Nullable<String>?
-    public let recommendedActionShownPosition: Nullable<Int>?
     public let referrerUrl: Nullable<String>?
     /// Hydrated details for the records this event references. Only present keys resolved.
     public let related: Nullable<ListEventsResponseDataItemRelated>?
@@ -34,8 +32,6 @@ public struct ListEventsResponseDataItem: Codable, Hashable, Sendable {
         path: Nullable<String>? = nil,
         personId: String,
         questions: Nullable<[ListEventsResponseDataItemQuestionsItem]>? = nil,
-        recommendedActionChainId: Nullable<String>? = nil,
-        recommendedActionShownPosition: Nullable<Int>? = nil,
         referrerUrl: Nullable<String>? = nil,
         related: Nullable<ListEventsResponseDataItemRelated>? = nil,
         totalUsdAmount: Nullable<Double>? = nil,
@@ -54,8 +50,6 @@ public struct ListEventsResponseDataItem: Codable, Hashable, Sendable {
         self.path = path
         self.personId = personId
         self.questions = questions
-        self.recommendedActionChainId = recommendedActionChainId
-        self.recommendedActionShownPosition = recommendedActionShownPosition
         self.referrerUrl = referrerUrl
         self.related = related
         self.totalUsdAmount = totalUsdAmount
@@ -77,8 +71,6 @@ public struct ListEventsResponseDataItem: Codable, Hashable, Sendable {
         self.path = try container.decodeNullableIfPresent(String.self, forKey: .path)
         self.personId = try container.decode(String.self, forKey: .personId)
         self.questions = try container.decodeNullableIfPresent([ListEventsResponseDataItemQuestionsItem].self, forKey: .questions)
-        self.recommendedActionChainId = try container.decodeNullableIfPresent(String.self, forKey: .recommendedActionChainId)
-        self.recommendedActionShownPosition = try container.decodeNullableIfPresent(Int.self, forKey: .recommendedActionShownPosition)
         self.referrerUrl = try container.decodeNullableIfPresent(String.self, forKey: .referrerUrl)
         self.related = try container.decodeNullableIfPresent(ListEventsResponseDataItemRelated.self, forKey: .related)
         self.totalUsdAmount = try container.decodeNullableIfPresent(Double.self, forKey: .totalUsdAmount)
@@ -101,8 +93,6 @@ public struct ListEventsResponseDataItem: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.path, forKey: .path)
         try container.encode(self.personId, forKey: .personId)
         try container.encodeNullableIfPresent(self.questions, forKey: .questions)
-        try container.encodeNullableIfPresent(self.recommendedActionChainId, forKey: .recommendedActionChainId)
-        try container.encodeNullableIfPresent(self.recommendedActionShownPosition, forKey: .recommendedActionShownPosition)
         try container.encodeNullableIfPresent(self.referrerUrl, forKey: .referrerUrl)
         try container.encodeNullableIfPresent(self.related, forKey: .related)
         try container.encodeNullableIfPresent(self.totalUsdAmount, forKey: .totalUsdAmount)
@@ -123,8 +113,6 @@ public struct ListEventsResponseDataItem: Codable, Hashable, Sendable {
         case path
         case personId = "person_id"
         case questions
-        case recommendedActionChainId = "recommended_action_chain_id"
-        case recommendedActionShownPosition = "recommended_action_shown_position"
         case referrerUrl = "referrer_url"
         case related
         case totalUsdAmount = "total_usd_amount"

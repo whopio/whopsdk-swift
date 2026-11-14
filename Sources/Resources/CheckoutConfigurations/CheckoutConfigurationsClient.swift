@@ -14,7 +14,10 @@ public final class CheckoutConfigurationsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.checkoutConfigurations.list(accountId: "account_id")
     /// }
@@ -23,21 +26,21 @@ public final class CheckoutConfigurationsClient: Sendable {
     /// ```
     ///
     /// - Parameter accountId: Account ID, prefixed `biz_`.
-    /// - Parameter planId: Only return checkout configurations for this plan ID, prefixed `plan_`.
+    /// - Parameter variantId: Only return checkout configurations for this variant ID, prefixed `plan_`.
     /// - Parameter createdBefore: Only return checkout configurations created before this ISO 8601 timestamp.
     /// - Parameter createdAfter: Only return checkout configurations created after this ISO 8601 timestamp.
     /// - Parameter order: Field used to sort checkout configurations.
     /// - Parameter direction: Sort direction. Defaults to `desc`.
-    /// - Parameter first: Number of checkout configurations to return.
-    /// - Parameter after: Cursor for the next page of results.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String, planId: String? = nil, createdBefore: String? = nil, createdAfter: String? = nil, order: ListCheckoutConfigurationsRequestOrder? = nil, direction: ListCheckoutConfigurationsRequestDirection? = nil, first: Int? = nil, after: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCheckoutConfigurationsResponse {
+    public func list(accountId: String, variantId: String? = nil, createdBefore: String? = nil, createdAfter: String? = nil, order: ListCheckoutConfigurationsRequestOrder? = nil, direction: ListCheckoutConfigurationsRequestDirection? = nil, first: Int? = nil, after: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCheckoutConfigurationsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/checkout_configurations",
             queryParams: [
                 "account_id": .string(accountId), 
-                "plan_id": planId.map { .string($0) }, 
+                "variant_id": variantId.map { .string($0) }, 
                 "created_before": createdBefore.map { .string($0) }, 
                 "created_after": createdAfter.map { .string($0) }, 
                 "order": order.map { .string($0.rawValue) }, 
@@ -50,18 +53,21 @@ public final class CheckoutConfigurationsClient: Sendable {
         )
     }
 
-    /// Creates a reusable checkout configuration for an existing or inline plan.
+    /// Creates a reusable checkout configuration for an existing or inline variant. Send customers to its `purchase_url` to check out.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.checkoutConfigurations.create(request: .init(
     ///         accountId: "biz_xxxxxxxxxxxxxx",
-    ///         planId: .value("plan_xxxxxxxxxxxxx")
+    ///         variantId: .value("plan_xxxxxxxxxxxxx")
     ///     ))
     /// }
     ///
@@ -86,7 +92,10 @@ public final class CheckoutConfigurationsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.checkoutConfigurations.retrieve(id: "id")
     /// }
@@ -112,7 +121,10 @@ public final class CheckoutConfigurationsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.checkoutConfigurations.delete(id: "id")
     /// }

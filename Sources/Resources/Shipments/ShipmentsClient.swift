@@ -7,14 +7,17 @@ public final class ShipmentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of shipments for an account.
+    /// Lists an account's shipments.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.shipments.list(paymentId: [
     ///         "pay_xxxxxxxxxxxxxx"
@@ -31,10 +34,10 @@ public final class ShipmentsClient: Sendable {
     /// - Parameter createdAfter: Return shipments created after this ISO 8601 timestamp.
     /// - Parameter order: The field to sort by.
     /// - Parameter direction: The sort direction.
-    /// - Parameter first: The number of shipments to return.
-    /// - Parameter after: A cursor; returns shipments after this position.
-    /// - Parameter last: The number of shipments to return from the end of the range.
-    /// - Parameter before: A cursor; returns shipments before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String? = nil, status: ListShipmentsRequestStatus? = nil, paymentId: [String]? = nil, createdBefore: String? = nil, createdAfter: String? = nil, order: ListShipmentsRequestOrder? = nil, direction: ListShipmentsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListShipmentsResponse {
         return try await httpClient.performRequest(
@@ -65,7 +68,10 @@ public final class ShipmentsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.shipments.create(request: .init(
     ///         paymentId: "pay_xxxxxxxxxxxxxx",
@@ -87,14 +93,49 @@ public final class ShipmentsClient: Sendable {
         )
     }
 
-    /// Retrieves a shipment by its id, or by the payment id it fulfills.
+    /// Finds the delivery for a purchase from an account with customer tracking turned on, using exactly one order or tracking number plus the buyer's current receipt email. No authentication is required and no sign-in or session is created. Email matching ignores case and surrounding whitespace, but dots and +tags must match. Every miss returns the same 404: an unknown account, tracking turned off, a wrong number or email, an unpaid order or a purchase with nothing to ship. `shipment` is `null` while a paid physical purchase has no tracking yet, unless it has been fully refunded. Limited to 10 attempts per hour per order or tracking number within the account, and 30 attempts per five minutes per client IP and per email within the account. Responses are never cached or replayed with Idempotency-Key.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
+    ///
+    ///     _ = try await client.shipments.lookup(request: .init(
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
+    ///         email: "marcus@shinetime.example"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func lookup(request: Requests.LookupShipmentsRequest, requestOptions: RequestOptions? = nil) async throws -> ShipmentLookup {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipments/lookup",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ShipmentLookup.self
+        )
+    }
+
+    /// Retrieves a shipment by its ID, or by the ID of the payment it fulfills.
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import WhopSDK
+    ///
+    /// private func main() async throws {
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.shipments.retrieve(id: "id")
     /// }
@@ -120,7 +161,10 @@ public final class ShipmentsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.shipments.update(
     ///         id: "id",

@@ -4,7 +4,7 @@ import Foundation
 public struct ExperienceCompany: Codable, Hashable, Sendable {
     /// The unique identifier for the company.
     public let id: String
-    /// URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
+    /// URL slug for the account's store page. For example, `pickaxe` in whop.com/pickaxe.
     public let route: String
     /// The display name of the company shown to customers.
     public let title: String

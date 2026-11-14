@@ -37,8 +37,12 @@ public struct BountyListItem: Codable, Hashable, Sendable {
     public let grossPaidOutAmount: Double
     /// Gross bounty-pool amount allocated per accepted submission, in whole currency units.
     public let grossRewardAmount: Double
+    /// Account hosting the bounty's forum — the one whose `route` and `experience_id` address its discussion thread, and where its submissions dashboard lives. `null` for a platform-wide bounty with no host. May differ from `funding_account`.
+    public let hostingAccount: Nullable<StorefrontAccount>
     /// Bounty ID, prefixed `bnty_`.
     public let id: String
+    /// Total verified footage a submission must accumulate before it can be submitted, in seconds. Always a whole number of hours. Present only on `data_capture` bounties — it is what `net_reward_amount` pays for, so rate displays divide by it. `null` for every other goal type.
+    public let minTotalVerifiedDurationSeconds: Nullable<Int>
     /// What a worker is quoted per accepted submission after the platform fee, in whole currency units. The exact post-fee figure, at the standard platform fee rate — a worker who locked a different rate, or who arrived through an affiliate link, is paid a different amount.
     public let netRewardAmount: Double
     /// User who posted the bounty — the account owner when created with an account API key.
@@ -84,7 +88,9 @@ public struct BountyListItem: Codable, Hashable, Sendable {
         fundingAccount: Nullable<AccountSummary>,
         grossPaidOutAmount: Double,
         grossRewardAmount: Double,
+        hostingAccount: Nullable<StorefrontAccount>,
         id: String,
+        minTotalVerifiedDurationSeconds: Nullable<Int>,
         netRewardAmount: Double,
         poster: UserSummary,
         scheduledFrequency: Nullable<BountyListItemScheduledFrequency>,
@@ -117,7 +123,9 @@ public struct BountyListItem: Codable, Hashable, Sendable {
         self.fundingAccount = fundingAccount
         self.grossPaidOutAmount = grossPaidOutAmount
         self.grossRewardAmount = grossRewardAmount
+        self.hostingAccount = hostingAccount
         self.id = id
+        self.minTotalVerifiedDurationSeconds = minTotalVerifiedDurationSeconds
         self.netRewardAmount = netRewardAmount
         self.poster = poster
         self.scheduledFrequency = scheduledFrequency
@@ -153,7 +161,9 @@ public struct BountyListItem: Codable, Hashable, Sendable {
         self.fundingAccount = try container.decode(Nullable<AccountSummary>.self, forKey: .fundingAccount)
         self.grossPaidOutAmount = try container.decode(Double.self, forKey: .grossPaidOutAmount)
         self.grossRewardAmount = try container.decode(Double.self, forKey: .grossRewardAmount)
+        self.hostingAccount = try container.decode(Nullable<StorefrontAccount>.self, forKey: .hostingAccount)
         self.id = try container.decode(String.self, forKey: .id)
+        self.minTotalVerifiedDurationSeconds = try container.decode(Nullable<Int>.self, forKey: .minTotalVerifiedDurationSeconds)
         self.netRewardAmount = try container.decode(Double.self, forKey: .netRewardAmount)
         self.poster = try container.decode(UserSummary.self, forKey: .poster)
         self.scheduledFrequency = try container.decode(Nullable<BountyListItemScheduledFrequency>.self, forKey: .scheduledFrequency)
@@ -190,7 +200,9 @@ public struct BountyListItem: Codable, Hashable, Sendable {
         try container.encode(self.fundingAccount, forKey: .fundingAccount)
         try container.encode(self.grossPaidOutAmount, forKey: .grossPaidOutAmount)
         try container.encode(self.grossRewardAmount, forKey: .grossRewardAmount)
+        try container.encode(self.hostingAccount, forKey: .hostingAccount)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.minTotalVerifiedDurationSeconds, forKey: .minTotalVerifiedDurationSeconds)
         try container.encode(self.netRewardAmount, forKey: .netRewardAmount)
         try container.encode(self.poster, forKey: .poster)
         try container.encode(self.scheduledFrequency, forKey: .scheduledFrequency)
@@ -225,7 +237,9 @@ public struct BountyListItem: Codable, Hashable, Sendable {
         case fundingAccount = "funding_account"
         case grossPaidOutAmount = "gross_paid_out_amount"
         case grossRewardAmount = "gross_reward_amount"
+        case hostingAccount = "hosting_account"
         case id
+        case minTotalVerifiedDurationSeconds = "min_total_verified_duration_seconds"
         case netRewardAmount = "net_reward_amount"
         case poster
         case scheduledFrequency = "scheduled_frequency"

@@ -1,7 +1,6 @@
 import Foundation
 
 public struct ConnectSocialAccountsResponse: Codable, Hashable, Sendable {
-    /// The OAuth authorization URL to redirect the user to.
     public let authorizeUrl: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

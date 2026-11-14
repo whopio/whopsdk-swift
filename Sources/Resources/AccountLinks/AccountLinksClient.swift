@@ -7,17 +7,20 @@ public final class AccountLinksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Generate a URL that directs a sub-merchant to their account portal, such as the hosted payouts dashboard or the KYC onboarding flow.
+    /// Generates a URL that sends a sub-merchant to a hosted Whop page, such as the payouts dashboard or the KYC onboarding flow. Requires an API key.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.accountLinks.create(request: .init(
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
+    ///         accountId: "biz_xxxxxxxxxxxxxx",
     ///         refreshUrl: "refresh_url",
     ///         returnUrl: "return_url",
     ///         useCase: .accountOnboarding

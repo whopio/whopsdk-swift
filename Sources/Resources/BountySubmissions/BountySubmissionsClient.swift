@@ -14,7 +14,10 @@ public final class BountySubmissionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bountySubmissions.list()
     /// }
@@ -29,10 +32,10 @@ public final class BountySubmissionsClient: Sendable {
     /// - Parameter createdBefore: Only submissions created before this ISO 8601 timestamp.
     /// - Parameter order: Sort field.
     /// - Parameter direction: Sort direction.
-    /// - Parameter first: Number of submissions to return from the start of the window.
-    /// - Parameter after: Cursor to paginate forwards from.
-    /// - Parameter last: Number of submissions to return from the end of the window.
-    /// - Parameter before: Cursor to paginate backwards from.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String? = nil, bountyId: String? = nil, status: ListBountySubmissionsRequestStatus? = nil, createdAfter: String? = nil, createdBefore: String? = nil, order: ListBountySubmissionsRequestOrder? = nil, direction: ListBountySubmissionsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListBountySubmissionsResponse {
         return try await httpClient.performRequest(
@@ -56,14 +59,17 @@ public final class BountySubmissionsClient: Sendable {
         )
     }
 
-    /// Creates a submission on a workforce bounty. Include a `deliverable` payload — any combination of links and uploaded files, with at least one of the two — and the submission goes straight to review; create is the only step. For `data_capture` bounties, omit the deliverable: this starts a claimed attempt whose proof accumulates server-side, and the separate submit endpoint sends it to review once complete. Requires a user credential — account API keys cannot author submissions.
+    /// Creates a submission on a workforce bounty. Include a `deliverable` and the submission goes straight to review; create is the only step. For `data_capture` bounties, omit the deliverable: this starts a claimed attempt whose proof accumulates server-side, and `POST /bounty_submissions/:id/submit` sends it to review once complete. Requires a user credential — account API keys cannot author submissions.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bountySubmissions.create(request: .init(bountyId: "bnty_xxxxxxxxxxxxxx"))
     /// }
@@ -89,7 +95,10 @@ public final class BountySubmissionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bountySubmissions.retrieve(id: "id")
     /// }
@@ -119,7 +128,10 @@ public final class BountySubmissionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bountySubmissions.delete(id: "id")
     /// }
@@ -138,14 +150,17 @@ public final class BountySubmissionsClient: Sendable {
         )
     }
 
-    /// Submits a claimed attempt for review. A livestream attempt needs an ended proof stream and can attach an optional `deliverable` — links, files, and a caption in any combination; if the attempt already went to review when its stream ended, the payload attaches to it once, until reviewers start voting. A data capture attempt instead needs enough validated clip time and takes no payload. Only the worker who started the attempt can submit it — account API keys cannot.
+    /// Submits a claimed attempt for review. A livestream attempt needs an ended proof stream and can attach a `deliverable`; a data capture attempt instead needs enough validated clip time and takes no payload. Only the worker who started the attempt can submit it — account API keys cannot.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bountySubmissions.submit(
     ///         id: "id",

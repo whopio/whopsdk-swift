@@ -1,0 +1,36 @@
+import Foundation
+
+/// The value to compare against. A whole number from 0 to 100 for `risk_score`, a number of at least 0 for `amount_in_usd`, a string for the other fields, and an array of strings for the `in` and `not_in` operators.
+public enum PaymentRuleConditionValue: Codable, Hashable, Sendable {
+    case double(Double)
+    case string(String)
+    case stringArray([String])
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Double.self) {
+            self = .double(value)
+        } else if let value = try? container.decode(String.self) {
+            self = .string(value)
+        } else if let value = try? container.decode([String].self) {
+            self = .stringArray(value)
+        } else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Unexpected value."
+            )
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws -> Void {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .double(let value):
+            try container.encode(value)
+        case .string(let value):
+            try container.encode(value)
+        case .stringArray(let value):
+            try container.encode(value)
+        }
+    }
+}

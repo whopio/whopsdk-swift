@@ -1,6 +1,8 @@
 import Foundation
 
 public struct AdGroupGeoLocationsBodyCustomLocationsItem: Codable, Hashable, Sendable {
+    /// ISO 3166-1 alpha-2 country the point falls in, as `DE`. Send it under a special ad category: the campaign must declare the countries its ad sets reach, and a coordinate names none.
+    public let countryCode: String?
     /// Unit for `radius`. Defaults to `mile`.
     public let distanceUnit: AdGroupGeoLocationsBodyCustomLocationsItemDistanceUnit?
     /// Latitude of the center point.
@@ -15,6 +17,7 @@ public struct AdGroupGeoLocationsBodyCustomLocationsItem: Codable, Hashable, Sen
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        countryCode: String? = nil,
         distanceUnit: AdGroupGeoLocationsBodyCustomLocationsItemDistanceUnit? = nil,
         latitude: Double,
         longitude: Double,
@@ -22,6 +25,7 @@ public struct AdGroupGeoLocationsBodyCustomLocationsItem: Codable, Hashable, Sen
         radius: Double,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.countryCode = countryCode
         self.distanceUnit = distanceUnit
         self.latitude = latitude
         self.longitude = longitude
@@ -32,6 +36,7 @@ public struct AdGroupGeoLocationsBodyCustomLocationsItem: Codable, Hashable, Sen
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.countryCode = try container.decodeIfPresent(String.self, forKey: .countryCode)
         self.distanceUnit = try container.decodeIfPresent(AdGroupGeoLocationsBodyCustomLocationsItemDistanceUnit.self, forKey: .distanceUnit)
         self.latitude = try container.decode(Double.self, forKey: .latitude)
         self.longitude = try container.decode(Double.self, forKey: .longitude)
@@ -43,6 +48,7 @@ public struct AdGroupGeoLocationsBodyCustomLocationsItem: Codable, Hashable, Sen
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.countryCode, forKey: .countryCode)
         try container.encodeIfPresent(self.distanceUnit, forKey: .distanceUnit)
         try container.encode(self.latitude, forKey: .latitude)
         try container.encode(self.longitude, forKey: .longitude)
@@ -52,6 +58,7 @@ public struct AdGroupGeoLocationsBodyCustomLocationsItem: Codable, Hashable, Sen
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case countryCode = "country_code"
         case distanceUnit = "distance_unit"
         case latitude
         case longitude

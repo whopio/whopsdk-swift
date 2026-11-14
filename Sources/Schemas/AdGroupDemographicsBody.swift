@@ -2,7 +2,7 @@ import Foundation
 
 /// Age, gender, and automatic-audience targeting.
 public struct AdGroupDemographicsBody: Codable, Hashable, Sendable {
-    /// Turn on automatic audience targeting (Advantage+ on Meta): the platform can deliver beyond the ages, genders, and detailed targeting you set, treating them as suggestions.
+    /// Turn on automatic audience targeting: delivery can reach beyond the ages and genders you set, treating them as suggestions.
     public let automatic: Bool?
     /// Gender to target.
     public let gender: AdGroupDemographicsBodyGender?

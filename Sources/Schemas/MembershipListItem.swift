@@ -20,6 +20,10 @@ public struct MembershipListItem: Codable, Hashable, Sendable {
     public let createdAt: Date
     /// The three-letter ISO currency code for this membership's billing. Null if the membership is free.
     public let currency: Nullable<Currencies>
+    /// The member's accounts on outside platforms, such as Discord and Telegram. Empty when the member has none linked. Null in webhooks.
+    public let externalAccounts: Nullable<[MembershipListItemExternalAccountsItem]>
+    /// The account's own cancel reason the member picked, as they saw it. `null` when the member picked a default category or gave no reason.
+    public let feedbackOption: Nullable<MembershipListItemFeedbackOption>
     /// The recurring renewal price for this membership, formatted with currency symbol and billing interval. Null if the membership is not recurring.
     public let formattedRenewalPrice: Nullable<String>
     /// The unique identifier for the membership.
@@ -67,6 +71,8 @@ public struct MembershipListItem: Codable, Hashable, Sendable {
         company: MembershipListItemCompany,
         createdAt: Date,
         currency: Nullable<Currencies>,
+        externalAccounts: Nullable<[MembershipListItemExternalAccountsItem]>,
+        feedbackOption: Nullable<MembershipListItemFeedbackOption>,
         formattedRenewalPrice: Nullable<String>,
         id: String,
         initialPricePaid: String,
@@ -95,6 +101,8 @@ public struct MembershipListItem: Codable, Hashable, Sendable {
         self.company = company
         self.createdAt = createdAt
         self.currency = currency
+        self.externalAccounts = externalAccounts
+        self.feedbackOption = feedbackOption
         self.formattedRenewalPrice = formattedRenewalPrice
         self.id = id
         self.initialPricePaid = initialPricePaid
@@ -126,6 +134,8 @@ public struct MembershipListItem: Codable, Hashable, Sendable {
         self.company = try container.decode(MembershipListItemCompany.self, forKey: .company)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.currency = try container.decode(Nullable<Currencies>.self, forKey: .currency)
+        self.externalAccounts = try container.decode(Nullable<[MembershipListItemExternalAccountsItem]>.self, forKey: .externalAccounts)
+        self.feedbackOption = try container.decode(Nullable<MembershipListItemFeedbackOption>.self, forKey: .feedbackOption)
         self.formattedRenewalPrice = try container.decode(Nullable<String>.self, forKey: .formattedRenewalPrice)
         self.id = try container.decode(String.self, forKey: .id)
         self.initialPricePaid = try container.decode(String.self, forKey: .initialPricePaid)
@@ -158,6 +168,8 @@ public struct MembershipListItem: Codable, Hashable, Sendable {
         try container.encode(self.company, forKey: .company)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.currency, forKey: .currency)
+        try container.encode(self.externalAccounts, forKey: .externalAccounts)
+        try container.encode(self.feedbackOption, forKey: .feedbackOption)
         try container.encode(self.formattedRenewalPrice, forKey: .formattedRenewalPrice)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.initialPricePaid, forKey: .initialPricePaid)
@@ -188,6 +200,8 @@ public struct MembershipListItem: Codable, Hashable, Sendable {
         case company
         case createdAt = "created_at"
         case currency
+        case externalAccounts = "external_accounts"
+        case feedbackOption = "feedback_option"
         case formattedRenewalPrice = "formatted_renewal_price"
         case id
         case initialPricePaid = "initial_price_paid"

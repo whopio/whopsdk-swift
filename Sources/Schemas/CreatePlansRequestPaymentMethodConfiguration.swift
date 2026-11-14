@@ -1,16 +1,15 @@
 import Foundation
 
-/// Explicit payment method configuration for the plan. When not provided, the account's defaults apply.
 public struct CreatePlansRequestPaymentMethodConfiguration: Codable, Hashable, Sendable {
-    public let disabled: [String]?
-    public let enabled: [String]?
+    public let disabled: [PaymentMethodTypes]?
+    public let enabled: [PaymentMethodTypes]?
     public let includePlatformDefaults: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        disabled: [String]? = nil,
-        enabled: [String]? = nil,
+        disabled: [PaymentMethodTypes]? = nil,
+        enabled: [PaymentMethodTypes]? = nil,
         includePlatformDefaults: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -22,8 +21,8 @@ public struct CreatePlansRequestPaymentMethodConfiguration: Codable, Hashable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.disabled = try container.decodeIfPresent([String].self, forKey: .disabled)
-        self.enabled = try container.decodeIfPresent([String].self, forKey: .enabled)
+        self.disabled = try container.decodeIfPresent([PaymentMethodTypes].self, forKey: .disabled)
+        self.enabled = try container.decodeIfPresent([PaymentMethodTypes].self, forKey: .enabled)
         self.includePlatformDefaults = try container.decodeIfPresent(Bool.self, forKey: .includePlatformDefaults)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

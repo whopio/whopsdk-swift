@@ -43,8 +43,6 @@ import WhopSDK
                           "type": "custom"
                         }
                       ],
-                      "recommended_action_chain_id": "recommended_action_chain_id",
-                      "recommended_action_shown_position": 1,
                       "referrer_url": "https://google.com",
                       "related": {
                         "account": {
@@ -60,7 +58,7 @@ import WhopSDK
                         },
                         "ad_campaign": {
                           "id": "adcamp_xxxxxxxxxxxxxx",
-                          "platform": "meta",
+                          "platform": "whop_ads",
                           "title": "Ceramic coating — spring push"
                         },
                         "ad_group": {
@@ -82,15 +80,25 @@ import WhopSDK
                           "card_brand": "visa",
                           "card_last4": "4242",
                           "id": "pay_xxxxxxxxxxxxxx",
+                          "line_items": [
+                            {
+                              "id": "li_xxxxxxxxxxxxxx",
+                              "label": "Ceramic Coating Package",
+                              "product_id": "prod_xxxxxxxxxxxxxx",
+                              "product_title": "Ceramic Coating Package",
+                              "quantity": 1,
+                              "sku": null,
+                              "subtotal": {
+                                "amount": "-1234.56",
+                                "currency": "usd",
+                                "decimals": 2,
+                                "display_decimals": 2
+                              },
+                              "variant_id": "plan_xxxxxxxxxxxxxx",
+                              "variant_title": "Ceramic Coating — Full Vehicle"
+                            }
+                          ],
                           "provider": "stripe"
-                        },
-                        "plan": {
-                          "billing_period": 30,
-                          "currency": "usd",
-                          "id": "plan_xxxxxxxxxxxxxx",
-                          "initial_price": 0,
-                          "renewal_price": 59,
-                          "title": "Unlimited Wash Club"
                         },
                         "product": {
                           "id": "prod_xxxxxxxxxxxxxx",
@@ -102,6 +110,14 @@ import WhopSDK
                           "id": "user_xxxxxxxxxxxxxx",
                           "name": "Dana Whitfield",
                           "username": "danawhitfield"
+                        },
+                        "variant": {
+                          "billing_period": 30,
+                          "currency": "usd",
+                          "id": "plan_xxxxxxxxxxxxxx",
+                          "initial_price": 0,
+                          "renewal_price": 59,
+                          "title": "Unlimited Wash Club"
                         }
                       },
                       "total_usd_amount": 249,
@@ -168,8 +184,6 @@ import WhopSDK
                             type: Optional(Nullable<String>.value("custom"))
                         )
                     ])),
-                    recommendedActionChainId: Optional(Nullable<String>.value("recommended_action_chain_id")),
-                    recommendedActionShownPosition: Optional(Nullable<Int>.value(1)),
                     referrerUrl: Optional(Nullable<String>.value("https://google.com")),
                     related: Optional(Nullable<ListEventsResponseDataItemRelated>.value(ListEventsResponseDataItemRelated(
                         account: Optional(Nullable<ListEventsResponseDataItemRelatedAccount>.value(ListEventsResponseDataItemRelatedAccount(
@@ -185,7 +199,7 @@ import WhopSDK
                         ))),
                         adCampaign: Optional(Nullable<ListEventsResponseDataItemRelatedAdCampaign>.value(ListEventsResponseDataItemRelatedAdCampaign(
                             id: Optional("adcamp_xxxxxxxxxxxxxx"),
-                            platform: Optional(Nullable<String>.value("meta")),
+                            platform: Optional(Nullable<String>.value("whop_ads")),
                             title: Optional(Nullable<String>.value("Ceramic coating — spring push"))
                         ))),
                         adGroup: Optional(Nullable<ListEventsResponseDataItemRelatedAdGroup>.value(ListEventsResponseDataItemRelatedAdGroup(
@@ -207,15 +221,25 @@ import WhopSDK
                             cardBrand: Optional(Nullable<String>.value("visa")),
                             cardLast4: Optional(Nullable<String>.value("4242")),
                             id: Optional("pay_xxxxxxxxxxxxxx"),
+                            lineItems: Optional([
+                                ReceiptLineItem(
+                                    id: Nullable<String>.value("li_xxxxxxxxxxxxxx"),
+                                    label: Nullable<String>.value("Ceramic Coating Package"),
+                                    productId: Nullable<String>.value("prod_xxxxxxxxxxxxxx"),
+                                    productTitle: Nullable<String>.value("Ceramic Coating Package"),
+                                    quantity: 1,
+                                    sku: .null,
+                                    subtotal: Nullable<Money>.value(Money(
+                                        amount: "-1234.56",
+                                        currency: "usd",
+                                        decimals: 2,
+                                        displayDecimals: 2
+                                    )),
+                                    variantId: Nullable<String>.value("plan_xxxxxxxxxxxxxx"),
+                                    variantTitle: Nullable<String>.value("Ceramic Coating — Full Vehicle")
+                                )
+                            ]),
                             provider: Optional(Nullable<String>.value("stripe"))
-                        ))),
-                        plan: Optional(Nullable<ListEventsResponseDataItemRelatedPlan>.value(ListEventsResponseDataItemRelatedPlan(
-                            billingPeriod: Optional(Nullable<Int>.value(30)),
-                            currency: Optional(Nullable<String>.value("usd")),
-                            id: Optional("plan_xxxxxxxxxxxxxx"),
-                            initialPrice: Optional(Nullable<Double>.value(0)),
-                            renewalPrice: Optional(Nullable<Double>.value(59)),
-                            title: Optional(Nullable<String>.value("Unlimited Wash Club"))
                         ))),
                         product: Optional(Nullable<ListEventsResponseDataItemRelatedProduct>.value(ListEventsResponseDataItemRelatedProduct(
                             id: Optional("prod_xxxxxxxxxxxxxx"),
@@ -227,6 +251,14 @@ import WhopSDK
                             id: Optional("user_xxxxxxxxxxxxxx"),
                             name: Optional(Nullable<String>.value("Dana Whitfield")),
                             username: Optional(Nullable<String>.value("danawhitfield"))
+                        ))),
+                        variant: Optional(Nullable<ListEventsResponseDataItemRelatedVariant>.value(ListEventsResponseDataItemRelatedVariant(
+                            billingPeriod: Optional(Nullable<Int>.value(30)),
+                            currency: Optional(Nullable<String>.value("usd")),
+                            id: Optional("plan_xxxxxxxxxxxxxx"),
+                            initialPrice: Optional(Nullable<Double>.value(0)),
+                            renewalPrice: Optional(Nullable<Double>.value(59)),
+                            title: Optional(Nullable<String>.value("Unlimited Wash Club"))
                         )))
                     ))),
                     totalUsdAmount: Optional(Nullable<Double>.value(249)),
@@ -248,6 +280,527 @@ import WhopSDK
                 hasNextPage: false,
                 hasPreviousPage: false,
                 startCursor: Optional(Nullable<String>.value("cursor_start"))
+            )
+        )
+        let response = try await client.events.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "context": {
+                        "ad_campaign_id": "ad_campaign_id",
+                        "ad_click_id": "ad_click_id",
+                        "ad_click_type": "ad_click_type",
+                        "ad_id": "ad_id",
+                        "ad_set_id": "ad_set_id",
+                        "source_type": "ad_click",
+                        "utm_campaign": "utm_campaign",
+                        "utm_content": "utm_content",
+                        "utm_medium": "utm_medium",
+                        "utm_source": "utm_source",
+                        "utm_term": "utm_term"
+                      },
+                      "currency": "currency",
+                      "custom_name": "custom_name",
+                      "event_id": "event_id",
+                      "event_name": "event_name",
+                      "event_time": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "path": "path",
+                      "person_id": "person_id",
+                      "questions": [
+                        {
+                          "answer": "answer",
+                          "id": "id",
+                          "key": "key",
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "question": "question",
+                          "type": "type"
+                        },
+                        {
+                          "answer": "answer",
+                          "id": "id",
+                          "key": "key",
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "question": "question",
+                          "type": "type"
+                        }
+                      ],
+                      "referrer_url": "referrer_url",
+                      "related": {
+                        "account": {
+                          "id": "id",
+                          "logo_url": null,
+                          "route": null,
+                          "title": null
+                        },
+                        "ad": {
+                          "id": "id",
+                          "thumbnail_url": null,
+                          "title": null
+                        },
+                        "ad_campaign": {
+                          "id": "id",
+                          "platform": null,
+                          "title": null
+                        },
+                        "ad_group": {
+                          "id": "id",
+                          "title": null
+                        },
+                        "app": {
+                          "domain_id": null,
+                          "icon_url": null,
+                          "id": "id",
+                          "title": null
+                        },
+                        "audience": {
+                          "audience_type": null,
+                          "file_name": null,
+                          "id": "id",
+                          "source_type": null,
+                          "title": null
+                        },
+                        "payment": {
+                          "card_brand": null,
+                          "card_last4": null,
+                          "id": "id",
+                          "line_items": [],
+                          "provider": null
+                        },
+                        "product": {
+                          "id": "id",
+                          "route": null,
+                          "title": null
+                        },
+                        "user": {
+                          "avatar_url": null,
+                          "id": "id",
+                          "name": null,
+                          "username": null
+                        },
+                        "variant": {
+                          "billing_period": null,
+                          "currency": null,
+                          "id": "id",
+                          "initial_price": null,
+                          "renewal_price": null,
+                          "title": null
+                        }
+                      },
+                      "total_usd_amount": 1.1,
+                      "url": "url",
+                      "user": {
+                        "city": "city",
+                        "country": "country",
+                        "email": "email",
+                        "first_name": "first_name",
+                        "last_name": "last_name",
+                        "name": "name",
+                        "phone": "phone"
+                      },
+                      "value": 1.1
+                    },
+                    {
+                      "context": {
+                        "ad_campaign_id": "ad_campaign_id",
+                        "ad_click_id": "ad_click_id",
+                        "ad_click_type": "ad_click_type",
+                        "ad_id": "ad_id",
+                        "ad_set_id": "ad_set_id",
+                        "source_type": "ad_click",
+                        "utm_campaign": "utm_campaign",
+                        "utm_content": "utm_content",
+                        "utm_medium": "utm_medium",
+                        "utm_source": "utm_source",
+                        "utm_term": "utm_term"
+                      },
+                      "currency": "currency",
+                      "custom_name": "custom_name",
+                      "event_id": "event_id",
+                      "event_name": "event_name",
+                      "event_time": "2024-01-15T09:30:00Z",
+                      "id": "id",
+                      "path": "path",
+                      "person_id": "person_id",
+                      "questions": [
+                        {
+                          "answer": "answer",
+                          "id": "id",
+                          "key": "key",
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "question": "question",
+                          "type": "type"
+                        },
+                        {
+                          "answer": "answer",
+                          "id": "id",
+                          "key": "key",
+                          "options": [
+                            "options",
+                            "options"
+                          ],
+                          "question": "question",
+                          "type": "type"
+                        }
+                      ],
+                      "referrer_url": "referrer_url",
+                      "related": {
+                        "account": {
+                          "id": "id",
+                          "logo_url": null,
+                          "route": null,
+                          "title": null
+                        },
+                        "ad": {
+                          "id": "id",
+                          "thumbnail_url": null,
+                          "title": null
+                        },
+                        "ad_campaign": {
+                          "id": "id",
+                          "platform": null,
+                          "title": null
+                        },
+                        "ad_group": {
+                          "id": "id",
+                          "title": null
+                        },
+                        "app": {
+                          "domain_id": null,
+                          "icon_url": null,
+                          "id": "id",
+                          "title": null
+                        },
+                        "audience": {
+                          "audience_type": null,
+                          "file_name": null,
+                          "id": "id",
+                          "source_type": null,
+                          "title": null
+                        },
+                        "payment": {
+                          "card_brand": null,
+                          "card_last4": null,
+                          "id": "id",
+                          "line_items": [],
+                          "provider": null
+                        },
+                        "product": {
+                          "id": "id",
+                          "route": null,
+                          "title": null
+                        },
+                        "user": {
+                          "avatar_url": null,
+                          "id": "id",
+                          "name": null,
+                          "username": null
+                        },
+                        "variant": {
+                          "billing_period": null,
+                          "currency": null,
+                          "id": "id",
+                          "initial_price": null,
+                          "renewal_price": null,
+                          "title": null
+                        }
+                      },
+                      "total_usd_amount": 1.1,
+                      "url": "url",
+                      "user": {
+                        "city": "city",
+                        "country": "country",
+                        "email": "email",
+                        "first_name": "first_name",
+                        "last_name": "last_name",
+                        "name": "name",
+                        "phone": "phone"
+                      },
+                      "value": 1.1
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListEventsResponse(
+            data: [
+                ListEventsResponseDataItem(
+                    context: Optional(Nullable<ListEventsResponseDataItemContext>.value(ListEventsResponseDataItemContext(
+                        adCampaignId: Optional(Nullable<String>.value("ad_campaign_id")),
+                        adClickId: Optional(Nullable<String>.value("ad_click_id")),
+                        adClickType: Optional(Nullable<String>.value("ad_click_type")),
+                        adId: Optional(Nullable<String>.value("ad_id")),
+                        adSetId: Optional(Nullable<String>.value("ad_set_id")),
+                        sourceType: Optional(Nullable<ListEventsResponseDataItemContextSourceType>.value(ListEventsResponseDataItemContextSourceType.adClick)),
+                        utmCampaign: Optional(Nullable<String>.value("utm_campaign")),
+                        utmContent: Optional(Nullable<String>.value("utm_content")),
+                        utmMedium: Optional(Nullable<String>.value("utm_medium")),
+                        utmSource: Optional(Nullable<String>.value("utm_source")),
+                        utmTerm: Optional(Nullable<String>.value("utm_term"))
+                    ))),
+                    currency: Optional(Nullable<String>.value("currency")),
+                    customName: Optional(Nullable<String>.value("custom_name")),
+                    eventId: "event_id",
+                    eventName: "event_name",
+                    eventTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    path: Optional(Nullable<String>.value("path")),
+                    personId: "person_id",
+                    questions: Optional(Nullable<[ListEventsResponseDataItemQuestionsItem]>.value([
+                        ListEventsResponseDataItemQuestionsItem(
+                            answer: Optional(Nullable<String>.value("answer")),
+                            id: Optional(Nullable<String>.value("id")),
+                            key: Optional(Nullable<String>.value("key")),
+                            options: Optional(Nullable<[String]>.value([
+                                "options",
+                                "options"
+                            ])),
+                            question: Optional(Nullable<String>.value("question")),
+                            type: Optional(Nullable<String>.value("type"))
+                        ),
+                        ListEventsResponseDataItemQuestionsItem(
+                            answer: Optional(Nullable<String>.value("answer")),
+                            id: Optional(Nullable<String>.value("id")),
+                            key: Optional(Nullable<String>.value("key")),
+                            options: Optional(Nullable<[String]>.value([
+                                "options",
+                                "options"
+                            ])),
+                            question: Optional(Nullable<String>.value("question")),
+                            type: Optional(Nullable<String>.value("type"))
+                        )
+                    ])),
+                    referrerUrl: Optional(Nullable<String>.value("referrer_url")),
+                    related: Optional(Nullable<ListEventsResponseDataItemRelated>.value(ListEventsResponseDataItemRelated(
+                        account: Optional(Nullable<ListEventsResponseDataItemRelatedAccount>.value(ListEventsResponseDataItemRelatedAccount(
+                            id: Optional("id"),
+                            logoUrl: Optional(.null),
+                            route: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        ad: Optional(Nullable<ListEventsResponseDataItemRelatedAd>.value(ListEventsResponseDataItemRelatedAd(
+                            id: Optional("id"),
+                            thumbnailUrl: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        adCampaign: Optional(Nullable<ListEventsResponseDataItemRelatedAdCampaign>.value(ListEventsResponseDataItemRelatedAdCampaign(
+                            id: Optional("id"),
+                            platform: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        adGroup: Optional(Nullable<ListEventsResponseDataItemRelatedAdGroup>.value(ListEventsResponseDataItemRelatedAdGroup(
+                            id: Optional("id"),
+                            title: Optional(.null)
+                        ))),
+                        app: Optional(Nullable<ListEventsResponseDataItemRelatedApp>.value(ListEventsResponseDataItemRelatedApp(
+                            domainId: Optional(.null),
+                            iconUrl: Optional(.null),
+                            id: Optional("id"),
+                            title: Optional(.null)
+                        ))),
+                        audience: Optional(Nullable<ListEventsResponseDataItemRelatedAudience>.value(ListEventsResponseDataItemRelatedAudience(
+                            audienceType: Optional(.null),
+                            fileName: Optional(.null),
+                            id: Optional("id"),
+                            sourceType: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        payment: Optional(Nullable<ListEventsResponseDataItemRelatedPayment>.value(ListEventsResponseDataItemRelatedPayment(
+                            cardBrand: Optional(.null),
+                            cardLast4: Optional(.null),
+                            id: Optional("id"),
+                            lineItems: Optional([]),
+                            provider: Optional(.null)
+                        ))),
+                        product: Optional(Nullable<ListEventsResponseDataItemRelatedProduct>.value(ListEventsResponseDataItemRelatedProduct(
+                            id: Optional("id"),
+                            route: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        user: Optional(Nullable<ListEventsResponseDataItemRelatedUser>.value(ListEventsResponseDataItemRelatedUser(
+                            avatarUrl: Optional(.null),
+                            id: Optional("id"),
+                            name: Optional(.null),
+                            username: Optional(.null)
+                        ))),
+                        variant: Optional(Nullable<ListEventsResponseDataItemRelatedVariant>.value(ListEventsResponseDataItemRelatedVariant(
+                            billingPeriod: Optional(.null),
+                            currency: Optional(.null),
+                            id: Optional("id"),
+                            initialPrice: Optional(.null),
+                            renewalPrice: Optional(.null),
+                            title: Optional(.null)
+                        )))
+                    ))),
+                    totalUsdAmount: Optional(Nullable<Double>.value(1.1)),
+                    url: Optional(Nullable<String>.value("url")),
+                    user: Optional(Nullable<ListEventsResponseDataItemUser>.value(ListEventsResponseDataItemUser(
+                        city: Optional(Nullable<String>.value("city")),
+                        country: Optional(Nullable<String>.value("country")),
+                        email: Optional(Nullable<String>.value("email")),
+                        firstName: Optional(Nullable<String>.value("first_name")),
+                        lastName: Optional(Nullable<String>.value("last_name")),
+                        name: Optional(Nullable<String>.value("name")),
+                        phone: Optional(Nullable<String>.value("phone"))
+                    ))),
+                    value: Optional(Nullable<Double>.value(1.1))
+                ),
+                ListEventsResponseDataItem(
+                    context: Optional(Nullable<ListEventsResponseDataItemContext>.value(ListEventsResponseDataItemContext(
+                        adCampaignId: Optional(Nullable<String>.value("ad_campaign_id")),
+                        adClickId: Optional(Nullable<String>.value("ad_click_id")),
+                        adClickType: Optional(Nullable<String>.value("ad_click_type")),
+                        adId: Optional(Nullable<String>.value("ad_id")),
+                        adSetId: Optional(Nullable<String>.value("ad_set_id")),
+                        sourceType: Optional(Nullable<ListEventsResponseDataItemContextSourceType>.value(ListEventsResponseDataItemContextSourceType.adClick)),
+                        utmCampaign: Optional(Nullable<String>.value("utm_campaign")),
+                        utmContent: Optional(Nullable<String>.value("utm_content")),
+                        utmMedium: Optional(Nullable<String>.value("utm_medium")),
+                        utmSource: Optional(Nullable<String>.value("utm_source")),
+                        utmTerm: Optional(Nullable<String>.value("utm_term"))
+                    ))),
+                    currency: Optional(Nullable<String>.value("currency")),
+                    customName: Optional(Nullable<String>.value("custom_name")),
+                    eventId: "event_id",
+                    eventName: "event_name",
+                    eventTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "id",
+                    path: Optional(Nullable<String>.value("path")),
+                    personId: "person_id",
+                    questions: Optional(Nullable<[ListEventsResponseDataItemQuestionsItem]>.value([
+                        ListEventsResponseDataItemQuestionsItem(
+                            answer: Optional(Nullable<String>.value("answer")),
+                            id: Optional(Nullable<String>.value("id")),
+                            key: Optional(Nullable<String>.value("key")),
+                            options: Optional(Nullable<[String]>.value([
+                                "options",
+                                "options"
+                            ])),
+                            question: Optional(Nullable<String>.value("question")),
+                            type: Optional(Nullable<String>.value("type"))
+                        ),
+                        ListEventsResponseDataItemQuestionsItem(
+                            answer: Optional(Nullable<String>.value("answer")),
+                            id: Optional(Nullable<String>.value("id")),
+                            key: Optional(Nullable<String>.value("key")),
+                            options: Optional(Nullable<[String]>.value([
+                                "options",
+                                "options"
+                            ])),
+                            question: Optional(Nullable<String>.value("question")),
+                            type: Optional(Nullable<String>.value("type"))
+                        )
+                    ])),
+                    referrerUrl: Optional(Nullable<String>.value("referrer_url")),
+                    related: Optional(Nullable<ListEventsResponseDataItemRelated>.value(ListEventsResponseDataItemRelated(
+                        account: Optional(Nullable<ListEventsResponseDataItemRelatedAccount>.value(ListEventsResponseDataItemRelatedAccount(
+                            id: Optional("id"),
+                            logoUrl: Optional(.null),
+                            route: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        ad: Optional(Nullable<ListEventsResponseDataItemRelatedAd>.value(ListEventsResponseDataItemRelatedAd(
+                            id: Optional("id"),
+                            thumbnailUrl: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        adCampaign: Optional(Nullable<ListEventsResponseDataItemRelatedAdCampaign>.value(ListEventsResponseDataItemRelatedAdCampaign(
+                            id: Optional("id"),
+                            platform: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        adGroup: Optional(Nullable<ListEventsResponseDataItemRelatedAdGroup>.value(ListEventsResponseDataItemRelatedAdGroup(
+                            id: Optional("id"),
+                            title: Optional(.null)
+                        ))),
+                        app: Optional(Nullable<ListEventsResponseDataItemRelatedApp>.value(ListEventsResponseDataItemRelatedApp(
+                            domainId: Optional(.null),
+                            iconUrl: Optional(.null),
+                            id: Optional("id"),
+                            title: Optional(.null)
+                        ))),
+                        audience: Optional(Nullable<ListEventsResponseDataItemRelatedAudience>.value(ListEventsResponseDataItemRelatedAudience(
+                            audienceType: Optional(.null),
+                            fileName: Optional(.null),
+                            id: Optional("id"),
+                            sourceType: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        payment: Optional(Nullable<ListEventsResponseDataItemRelatedPayment>.value(ListEventsResponseDataItemRelatedPayment(
+                            cardBrand: Optional(.null),
+                            cardLast4: Optional(.null),
+                            id: Optional("id"),
+                            lineItems: Optional([]),
+                            provider: Optional(.null)
+                        ))),
+                        product: Optional(Nullable<ListEventsResponseDataItemRelatedProduct>.value(ListEventsResponseDataItemRelatedProduct(
+                            id: Optional("id"),
+                            route: Optional(.null),
+                            title: Optional(.null)
+                        ))),
+                        user: Optional(Nullable<ListEventsResponseDataItemRelatedUser>.value(ListEventsResponseDataItemRelatedUser(
+                            avatarUrl: Optional(.null),
+                            id: Optional("id"),
+                            name: Optional(.null),
+                            username: Optional(.null)
+                        ))),
+                        variant: Optional(Nullable<ListEventsResponseDataItemRelatedVariant>.value(ListEventsResponseDataItemRelatedVariant(
+                            billingPeriod: Optional(.null),
+                            currency: Optional(.null),
+                            id: Optional("id"),
+                            initialPrice: Optional(.null),
+                            renewalPrice: Optional(.null),
+                            title: Optional(.null)
+                        )))
+                    ))),
+                    totalUsdAmount: Optional(Nullable<Double>.value(1.1)),
+                    url: Optional(Nullable<String>.value("url")),
+                    user: Optional(Nullable<ListEventsResponseDataItemUser>.value(ListEventsResponseDataItemUser(
+                        city: Optional(Nullable<String>.value("city")),
+                        country: Optional(Nullable<String>.value("country")),
+                        email: Optional(Nullable<String>.value("email")),
+                        firstName: Optional(Nullable<String>.value("first_name")),
+                        lastName: Optional(Nullable<String>.value("last_name")),
+                        name: Optional(Nullable<String>.value("name")),
+                        phone: Optional(Nullable<String>.value("phone"))
+                    ))),
+                    value: Optional(Nullable<Double>.value(1.1))
+                )
+            ],
+            pageInfo: ListEventsResponsePageInfo(
+                endCursor: Optional(Nullable<String>.value("end_cursor")),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Optional(Nullable<String>.value("start_cursor"))
             )
         )
         let response = try await client.events.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -277,6 +830,35 @@ import WhopSDK
             request: .init(
                 accountId: "biz_xxxxxxxxxxxxxx",
                 eventName: "coating_deposit_paid"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "id": "id"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateEventsResponse(
+            id: "id"
+        )
+        let response = try await client.events.create(
+            request: .init(
+                accountId: "account_id",
+                eventName: "event_name"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -340,17 +922,95 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func pulse2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "event_name": "ledger_line.created",
+                      "event_time": "2024-01-15T09:30:00Z",
+                      "total_usd_amount": 1.1,
+                      "type": "purchase",
+                      "user": {
+                        "city": "city",
+                        "country": "country"
+                      }
+                    },
+                    {
+                      "event_name": "ledger_line.created",
+                      "event_time": "2024-01-15T09:30:00Z",
+                      "total_usd_amount": 1.1,
+                      "type": "purchase",
+                      "user": {
+                        "city": "city",
+                        "country": "country"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PulseEventsResponse(
+            data: [
+                PulseEventsResponseDataItem(
+                    eventName: PulseEventsResponseDataItemEventName.ledgerLineCreated,
+                    eventTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    totalUsdAmount: Optional(Nullable<Double>.value(1.1)),
+                    type: PulseEventsResponseDataItemType.purchase,
+                    user: Optional(PulseEventsResponseDataItemUser(
+                        city: Optional("city"),
+                        country: Optional("country")
+                    ))
+                ),
+                PulseEventsResponseDataItem(
+                    eventName: PulseEventsResponseDataItemEventName.ledgerLineCreated,
+                    eventTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    totalUsdAmount: Optional(Nullable<Double>.value(1.1)),
+                    type: PulseEventsResponseDataItemType.purchase,
+                    user: Optional(PulseEventsResponseDataItemUser(
+                        city: Optional("city"),
+                        country: Optional("country")
+                    ))
+                )
+            ],
+            pageInfo: PulseEventsResponsePageInfo(
+                endCursor: Optional(Nullable<String>.value("end_cursor")),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Optional(Nullable<String>.value("start_cursor"))
+            )
+        )
+        let response = try await client.events.pulse(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func validatePixel1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
                 {
+                  "affiliate_tracking_detected": false,
                   "firing_data_ok": true,
                   "host_events": [
                     "lead"
                   ],
-                  "installed": true,
+                  "installed": false,
                   "last_fired_days": {
                     "lead": 2
                   },
@@ -360,7 +1020,7 @@ import WhopSDK
                     "lead"
                   ],
                   "reachable": true,
-                  "url": "https://shinetime.example/checkout/complete"
+                  "url": "https://shinetime.example/"
                 }
                 """#.utf8
             )
@@ -371,11 +1031,12 @@ import WhopSDK
             urlSession: stub.urlSession
         )
         let expectedResponse = PixelValidation(
+            affiliateTrackingDetected: false,
             firingDataOk: true,
             hostEvents: [
                 "lead"
             ],
-            installed: true,
+            installed: false,
             lastFiredDays: [
                 "lead": JSONValue.number(2)
             ],
@@ -385,7 +1046,73 @@ import WhopSDK
                 "lead"
             ],
             reachable: Nullable<Bool>.value(true),
-            url: Nullable<String>.value("https://shinetime.example/checkout/complete")
+            url: Nullable<String>.value("https://shinetime.example/")
+        )
+        let response = try await client.events.validatePixel(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func validatePixel2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "affiliate_tracking_detected": true,
+                  "firing_data_ok": true,
+                  "host_events": [
+                    "host_events",
+                    "host_events"
+                  ],
+                  "installed": true,
+                  "last_fired_days": {
+                    "last_fired_days": {
+                      "key": "value"
+                    }
+                  },
+                  "last_seen_days": 1.1,
+                  "native_tracking": true,
+                  "page_events": [
+                    "page_events",
+                    "page_events"
+                  ],
+                  "reachable": true,
+                  "url": "url"
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PixelValidation(
+            affiliateTrackingDetected: true,
+            firingDataOk: true,
+            hostEvents: [
+                "host_events",
+                "host_events"
+            ],
+            installed: true,
+            lastFiredDays: [
+                "last_fired_days": JSONValue.object(
+                    [
+                        "key": JSONValue.string("value")
+                    ]
+                )
+            ],
+            lastSeenDays: Nullable<Double>.value(1.1),
+            nativeTracking: true,
+            pageEvents: [
+                "page_events",
+                "page_events"
+            ],
+            reachable: Nullable<Bool>.value(true),
+            url: Nullable<String>.value("url")
         )
         let response = try await client.events.validatePixel(
             request: .init(),

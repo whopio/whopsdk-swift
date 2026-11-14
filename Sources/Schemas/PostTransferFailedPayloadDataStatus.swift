@@ -1,6 +1,6 @@
 import Foundation
 
-/// Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`.
+/// Current transfer status. A transfer can be created `processing` and settle a few seconds later; poll Retrieve Transfer or listen for the `transfer.completed` and `transfer.failed` webhooks instead of treating the create response as final. `succeeded` and `failed` are final.
 public enum PostTransferFailedPayloadDataStatus: String, Codable, Hashable, CaseIterable, Sendable {
     case processing
     case succeeded

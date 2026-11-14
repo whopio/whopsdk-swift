@@ -17,7 +17,10 @@ public final class ForumPostsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forumPosts.list(
     ///         first: 42,
@@ -57,7 +60,7 @@ public final class ForumPostsClient: Sendable {
         )
     }
 
-    /// Create a new forum post or comment within an experience. Supports text content, attachments, polls, paywalling, and pinning. Pass experience_id 'public' with a company_id to post to a company's public forum.
+    /// Create a new forum post or comment within an experience. Supports text content, attachments, polls, paywalling, and pinning.
     ///
     /// Required permissions:
     ///  - `forum:post:create`
@@ -67,7 +70,10 @@ public final class ForumPostsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forumPosts.create(request: .init(experienceId: "exp_xxxxxxxxxxxxxx"))
     /// }
@@ -96,7 +102,10 @@ public final class ForumPostsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forumPosts.retrieve(id: "id")
     /// }
@@ -122,7 +131,10 @@ public final class ForumPostsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.forumPosts.update(
     ///         id: "id",

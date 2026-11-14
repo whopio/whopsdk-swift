@@ -7,7 +7,7 @@ public final class CourseLessonInteractionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of lesson interactions, filtered by lesson, course, user, or completion status.
+    /// Returns a paginated list of lesson interactions for a lesson or course. Callers without admin access to the course's experience see only their own interactions.
     ///
     /// Required permissions:
     ///  - `courses:read`
@@ -18,7 +18,10 @@ public final class CourseLessonInteractionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessonInteractions.list(
     ///         first: 42,
@@ -71,7 +74,10 @@ public final class CourseLessonInteractionsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courseLessonInteractions.retrieve(id: "crsli_xxxxxxxxxxxx")
     /// }

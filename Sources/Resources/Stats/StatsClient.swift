@@ -1,20 +1,27 @@
 import Foundation
 
 public final class StatsClient: Sendable {
+    public let reports: ReportsClient
+    public let timeSeries: TimeSeriesClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.reports = ReportsClient(config: config)
+        self.timeSeries = TimeSeriesClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists every metric you can query, with its unit and the properties you can filter or break it down by.
+    /// Deprecated. Lists every metric without saying which ones you can chart. List chartable metrics with `GET /stats/time_series`, and aggregates that are not bucketed over time with `GET /stats/reports`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.stats.list()
     /// }
@@ -32,161 +39,17 @@ public final class StatsClient: Sendable {
         )
     }
 
-    /// Describe available stats schema. Without resource returns root nodes and metrics. With resource returns node columns, associations, and available metrics.
-    ///
-    /// Required permissions:
-    ///  - `stats:read`
+    /// Deprecated compatibility endpoint. Retrieve a metric's time series with `GET /stats/time_series/{metric}` instead.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.stats.describeStats(
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
-    ///         userId: "user_xxxxxxxxxxxxx"
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
     ///     )
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter resource: Resource path using : as separator (e.g., 'receipts', 'payments:membership', 'receipts:gross_revenue').
-    /// - Parameter companyId: Scope query to a specific company.
-    /// - Parameter userId: Scope query to a specific user.
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func describeStats(resource: String? = nil, companyId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> DescribeStatsResponse {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/stats/describe",
-            queryParams: [
-                "resource": resource.map { .string($0) }, 
-                "company_id": companyId.map { .string($0) }, 
-                "user_id": userId.map { .string($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: DescribeStatsResponse.self
-        )
-    }
-
-    /// Query an aggregated metric. Returns data grouped by period with optional breakdowns.
-    ///
-    /// Required permissions:
-    ///  - `stats:read`
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.stats.metricStats(
-    ///         resource: "resource",
-    ///         from: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         to: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
-    ///         userId: "user_xxxxxxxxxxxxx"
-    ///     )
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter resource: Metric resource using : as separator (e.g., 'receipts:gross_revenue', 'members:new_users').
-    /// - Parameter granularity: Time granularity (daily, weekly, monthly).
-    /// - Parameter breakdowns: Columns to break down the metric by.
-    /// - Parameter filters: Key-value pairs to filter the data.
-    /// - Parameter timeZone: IANA timezone for period bucketing (e.g. 'America/New_York'). Defaults to UTC. Only applies to ClickHouse metrics.
-    /// - Parameter from: Start of time range (unix timestamp).
-    /// - Parameter to: End of time range (unix timestamp).
-    /// - Parameter companyId: Scope query to a specific company.
-    /// - Parameter userId: Scope query to a specific user.
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func metricStats(resource: String, granularity: String? = nil, breakdowns: [String]? = nil, filters: [String: JSONValue]? = nil, timeZone: String? = nil, from: Date? = nil, to: Date? = nil, companyId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> MetricStatsResponse {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/stats/metric",
-            queryParams: [
-                "resource": .string(resource), 
-                "granularity": granularity.map { .string($0) }, 
-                "breakdowns": breakdowns.map { .stringArray($0) }, 
-                "filters": filters.map { .unknown($0) }, 
-                "time_zone": timeZone.map { .string($0) }, 
-                "from": from.map { .date($0) }, 
-                "to": to.map { .date($0) }, 
-                "company_id": companyId.map { .string($0) }, 
-                "user_id": userId.map { .string($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: MetricStatsResponse.self
-        )
-    }
-
-    /// Query raw data from a resource. Returns paginated rows with all columns.
-    ///
-    /// Required permissions:
-    ///  - `stats:read`
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.stats.rawStats(
-    ///         resource: "resource",
-    ///         from: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         to: try! Date("2023-12-01T05:00:00Z", strategy: .iso8601),
-    ///         limit: 42,
-    ///         companyId: "biz_xxxxxxxxxxxxxx",
-    ///         userId: "user_xxxxxxxxxxxxx"
-    ///     )
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter resource: Resource path using : as separator (e.g., 'members', 'payments:membership').
-    /// - Parameter from: Start of time range (unix timestamp).
-    /// - Parameter to: End of time range (unix timestamp).
-    /// - Parameter limit: Number of records to return (max 10000).
-    /// - Parameter cursor: Pagination cursor for next page.
-    /// - Parameter sort: Column to sort by.
-    /// - Parameter companyId: Scope query to a specific company.
-    /// - Parameter userId: Scope query to a specific user.
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func rawStats(resource: String, from: Date? = nil, to: Date? = nil, limit: Int? = nil, cursor: String? = nil, sort: String? = nil, sortDirection: Direction? = nil, companyId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> RawStatsResponse {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/stats/raw",
-            queryParams: [
-                "resource": .string(resource), 
-                "from": from.map { .date($0) }, 
-                "to": to.map { .date($0) }, 
-                "limit": limit.map { .int($0) }, 
-                "cursor": cursor.map { .string($0) }, 
-                "sort": sort.map { .string($0) }, 
-                "sort_direction": sortDirection.map { .string($0.rawValue) }, 
-                "company_id": companyId.map { .string($0) }, 
-                "user_id": userId.map { .string($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: RawStatsResponse.self
-        )
-    }
-
-    /// Retrieves a metric as a time series of points for an account or user over a time range. The `market_prices` metric is public and requires no authentication.
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
     ///
     ///     _ = try await client.stats.retrieve(
     ///         metric: "metric",
@@ -207,13 +70,13 @@ public final class StatsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter metric: The metric to retrieve, for example net_revenue. Use GET /stats to see every metric key. The metric sets the unit and the properties you can filter or break down by.
-    /// - Parameter accountId: The account this query concerns, for example biz_AbC123.
+    /// - Parameter metric: The metric to retrieve, for example net_revenue.
+    /// - Parameter accountId: Account this query concerns, prefixed `biz_`, or `platform` for all of Whop.
     /// - Parameter userId: The user this query concerns, for example user_AbC123. Available on metrics that support user subjects, such as account_balance.
     /// - Parameter from: Start of the range — a date (YYYY-MM-DD), expanded to the start of that day, or an ISO 8601 timestamp (for example 2026-07-16T16:37:00Z), used exactly.
-    /// - Parameter to: End of the range — a date (YYYY-MM-DD), expanded to the end of that day, or an ISO 8601 timestamp (for example 2026-07-17T16:37:00Z), used exactly.
-    /// - Parameter interval: How wide each point is. Defaults to day. Snapshot metrics are day-only.
-    /// - Parameter breakdownBy: Split the metric out by one of its properties — each point gets a breakdown array. For example breakdown_by=currency returns an entry for usd, an entry for eur, and so on.
+    /// - Parameter to: End of the range — a date (YYYY-MM-DD), expanded to the end of that day, or an ISO 8601 timestamp (for example 2026-07-17T16:37:00Z), used exactly. Funnel entry ranges cannot exceed 90 days.
+    /// - Parameter interval: How wide each point is. Defaults to day. Snapshot metrics are day-only. Funnels support at most 2,000 first-entry cohort buckets.
+    /// - Parameter breakdownBy: Split the metric out by one of its properties — each point gets a breakdown array. For example breakdown_by=currency returns an entry for usd, an entry for eur, and so on. Funnels use a property of the first matched event, with at most 300 groups. experiment_id and variant require an exposure as step 1. For funnel source breakdowns, steps[1][source]=whop:* groups by campaign, whop:<campaign>:* by ad group, and whop:<campaign>:<group>:* by ad. See the metric catalog for supported breakdowns.
     /// - Parameter convertTo: Display currency for money metrics — every amount is converted into this ISO currency using the exchange rate on each period's date. Defaults to usd. For the ads metrics (ad_spend, ad_delivery), pass the account's ads reporting currency to match the ad entity endpoints. On transaction metrics, it is ignored when you filter or break down by currency (those report the original transaction currency, unconverted).
     /// - Parameter currency: Select the source currency or asset on metrics that list currency. For transaction metrics, for example currency=eur, values are reported without conversion. For market_prices, use btc or xaut and convert_to=usd. Pair with breakdown_by=currency to split a metric by currency.
     /// - Parameter timeZone: IANA time zone to bucket the series in, for example America/New_York. Defaults to UTC. Not accepted by snapshot metrics, which are UTC only.
@@ -221,7 +84,7 @@ public final class StatsClient: Sendable {
     /// - Parameter cardNetwork: Filter to a single card brand, for example visa. A refinement of payment_method=card. Available on metrics that list card_network.
     /// - Parameter disputeReason: Filter disputes to a normalized reason, for example product_not_received. Pair with breakdown_by=dispute_reason to split dispute counts by reason.
     /// - Parameter source: Filter to a single GMV source, for example payments — or, on the traffic metrics, a visit source (whop_ads, direct, or a utm_source value). Pair with breakdown_by=source to split by source. Available on metrics that list source.
-    /// - Parameter hostname: Filter traffic metrics to one website hostname, for example shop.example.com. Pair with breakdown_by=hostname to split by website.
+    /// - Parameter hostname: Filter traffic metrics to one website hostname, for example shop.example.com. On the events and people metrics, comma-separated hostnames match any listed hostname. Pair with breakdown_by=hostname to split by website.
     /// - Parameter page: Filter traffic metrics to one page — a hostname plus normalized path, for example shop.example.com/pricing. Pair with breakdown_by=page to split by page.
     /// - Parameter deviceType: Filter traffic metrics to one device type: desktop, mobile, tablet, or unknown. Pair with breakdown_by=device_type to split by device.
     /// - Parameter countryCode: Filter traffic metrics to one visitor country (uppercase ISO 3166-1 alpha-2, for example US). Pair with breakdown_by=country_code to split by country.
@@ -240,10 +103,52 @@ public final class StatsClient: Sendable {
     /// - Parameter adCampaignIds: Ad campaign ids (adcamp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_campaign_ids.
     /// - Parameter adGroupIds: Ad group ids (adgrp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_group_ids.
     /// - Parameter adIds: Ad ids (ad_...) to scope the report to; stats are summed across them. Available on metrics that list ad_ids.
-    /// - Parameter snapshotWindow: Window used by a snapshot metric. Ordinary snapshots accept 30d as their trailing activity window. Cohorted dispute metrics accept 7d or 28d as the sales-transaction pool; their attribution window is fixed in the metric name. Each metric lists its accepted values in the catalog.
-    /// - Parameter event: Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separate several to break the metric down by each event. Available on metrics that list event.
+    /// - Parameter snapshotWindow: Window used by a snapshot metric. Ordinary snapshots accept 30d as their trailing activity window. Cohorted dispute metrics accept 7d or 28d as the sales-transaction pool; their attribution window is fixed in the metric name. Card network program metrics accept 7d, 14d, 28d, or 56d. Each metric lists its accepted values in the catalog.
+    /// - Parameter event: Filter the events metric to one or more full event names, for example payment.completed or pixel.lead. Comma-separated names match any listed event. Use group_by=event for separate groups. Available on metrics that list event.
+    /// - Parameter businessType: Filter to one business type, for example `education`. Pair with `breakdown_by=business_type` to split by business type. Available on metrics that list `business_type`.
+    /// - Parameter industryType: Filter to one industry type, for example `options_trading`. Pair with `breakdown_by=industry_type` to split by industry type. Available on metrics that list `industry_type`.
+    /// - Parameter productCategory: Filter to one product category, for example `algo_trading_course`. Pair with `breakdown_by=product_category` to split by product category. Available on metrics that list `product_category`.
+    /// - Parameter accountCountry: Filter to accounts located in one country, as an ISO 3166-1 alpha-2 code such as `US`. Pair with `breakdown_by=account_country` to split by account country. Available on metrics that list `account_country`.
+    /// - Parameter issuer: Filter to one card-issuing bank, named as the processor reports it, for example JPMORGAN CHASE BANK N A, or unknown for payments with no reported bank. Available on metrics that list issuer.
+    /// - Parameter webhookId: The webhook to count deliveries for, for example hook_AbC123. Required by webhook_deliveries, and must belong to account_id or one of its apps.
+    /// - Parameter conversionWindow: Funnel only. Time allowed from the first event to the final event: integer minutes, hours, or days, up to 30d.
+    /// - Parameter matureOnly: Funnel only. Include only entrants whose full conversion window has elapsed. Required for confidence intervals and comparisons.
+    /// - Parameter steps: Funnel only. Required when metric=funnel. 2 to 10 ordered events per person, as consecutive one-based bracket parameters such as `steps[1][event]=pixel.page&steps[1][page]=/pricing*&steps[2][event]=payment.completed`. Values are scalar strings, never JSON. A person's first step 1 match inside `from`/`to` anchors their cohort, breakdown, and conversion window; later matches do not restart it. Other events may occur between steps, and conversions may land after `to`. For an experiment funnel, make `experiment.exposure` step 1 and pass `breakdown_by=variant`.
+    /// - Parameter compareTo: Funnel only. The breakdown value to use as baseline for whole-window final conversion. Requires breakdown_by and mature_only=true; defaults confidence_level to 0.95.
+    /// - Parameter confidenceLevel: Funnel only. Confidence level for whole-window final conversion intervals, for example 0.95. Requires mature_only=true. Exposure steps must each filter one user- or visitor-randomized experiment.
+    /// - Parameter contactable: People metric only: contactable equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter hasPurchased: People metric only: has_purchased equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter firstSeenAfter: People metric only: first_seen_at greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter firstSeenBefore: People metric only: first_seen_at less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter lastSeenAfter: People metric only: last_seen_at greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter lastSeenBefore: People metric only: last_seen_at less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter firstSeenWithinDays: People metric only: first_seen_at within this many days of now. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter lastSeenWithinDays: People metric only: last_seen_at within this many days of now. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter known: People metric only: known equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter hasEmail: People metric only: has_email equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter hasPhone: People metric only: has_phone equals this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter ltvGt: People metric only: ltv greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter ltvGte: People metric only: ltv greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter ltvLt: People metric only: ltv less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter ltvLte: People metric only: ltv less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter aovGt: People metric only: aov greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter aovGte: People metric only: aov greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter aovLt: People metric only: aov less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter aovLte: People metric only: aov less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter purchaseCountGt: People metric only: purchase_count greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter purchaseCountGte: People metric only: purchase_count greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter purchaseCountLt: People metric only: purchase_count less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter purchaseCountLte: People metric only: purchase_count less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter eventCountGt: People metric only: event_count greater than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter eventCountGte: People metric only: event_count greater than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter eventCountLt: People metric only: event_count less than this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter eventCountLte: People metric only: event_count less than or equal this value. Applies to the current person profile for every time bucket. LTV and AOV are in USD. Not accepted by the Events metric.
+    /// - Parameter referringAccountId: Read a referral metric for a business instead of the caller: the referrals its team members made, past members included, for example biz_AbC123. Requires company:basic:read on that business and cannot be combined with user_id. Available on metrics that list referring_account_id.
+    /// - Parameter teamLeadId: Read a partner metric for one team lead and everyone under them in today's org chart, for example user_AbC123. Needs referring_account_id or a global query. As breakdown_by=team_lead_id, figures sit under the highest lead above the partner who earned them, so each group matches that lead's team_lead_id filter and the groups add up to the total. With team_lead_id set, or for a caller who reads only their own team, the groups are the leads under that person, who keeps the rest. Anyone with no lead is in a null group. Available on metrics that list team_lead_id.
+    /// - Parameter activity: On partner_reps, all counts the period's roster, earning counts those who earned in the period, and not_earning counts the roster minus them. On the other partner metrics, earning keeps the figures of the people partner_reps counts as earning over the whole range and not_earning keeps the figures of everyone else; those need referring_account_id or a global query. Defaults to all. Available on metrics that list activity.
+    /// - Parameter breakdownLimit: With a single breakdown_by, keep the groups with the highest whole-range values, up to this many, and fold every other group into one entry named other. A rate or an average ranks its groups by the deals it divides by. The other entry is measured from the underlying rows, so a distinct count or a rate stays exact rather than being added up from groups. Available on partner metrics only.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func retrieve(metric: String, accountId: String? = nil, userId: String? = nil, from: String, to: String, interval: RetrieveStatsRequestInterval? = nil, breakdownBy: String? = nil, convertTo: String? = nil, currency: String? = nil, timeZone: String? = nil, paymentMethod: String? = nil, cardNetwork: String? = nil, disputeReason: String? = nil, source: String? = nil, hostname: String? = nil, page: String? = nil, deviceType: String? = nil, countryCode: String? = nil, eventName: String? = nil, eventType: RetrieveStatsRequestEventType? = nil, customName: String? = nil, segment: String? = nil, category: String? = nil, merchant: String? = nil, feeType: String? = nil, product: String? = nil, status: String? = nil, accessLevel: String? = nil, mostRecentAction: String? = nil, referredUserId: String? = nil, adCampaignIds: [String]? = nil, adGroupIds: [String]? = nil, adIds: [String]? = nil, snapshotWindow: RetrieveStatsRequestSnapshotWindow? = nil, event: String? = nil, requestOptions: RequestOptions? = nil) async throws -> RetrieveStatsResponse {
+    public func retrieve(metric: String, accountId: String? = nil, userId: String? = nil, from: String, to: String, interval: RetrieveStatsRequestInterval? = nil, breakdownBy: String? = nil, convertTo: String? = nil, currency: String? = nil, timeZone: String? = nil, paymentMethod: String? = nil, cardNetwork: String? = nil, disputeReason: String? = nil, source: String? = nil, hostname: String? = nil, page: String? = nil, deviceType: String? = nil, countryCode: String? = nil, eventName: String? = nil, eventType: RetrieveStatsRequestEventType? = nil, customName: String? = nil, segment: String? = nil, category: String? = nil, merchant: String? = nil, feeType: String? = nil, product: String? = nil, status: String? = nil, accessLevel: String? = nil, mostRecentAction: String? = nil, referredUserId: String? = nil, adCampaignIds: [String]? = nil, adGroupIds: [String]? = nil, adIds: [String]? = nil, snapshotWindow: RetrieveStatsRequestSnapshotWindow? = nil, event: String? = nil, businessType: String? = nil, industryType: String? = nil, productCategory: String? = nil, accountCountry: String? = nil, issuer: String? = nil, webhookId: String? = nil, conversionWindow: String? = nil, matureOnly: Bool? = nil, steps: RetrieveStatsRequestSteps? = nil, compareTo: String? = nil, confidenceLevel: Double? = nil, contactable: Bool? = nil, hasPurchased: Bool? = nil, firstSeenAfter: Date? = nil, firstSeenBefore: Date? = nil, lastSeenAfter: Date? = nil, lastSeenBefore: Date? = nil, firstSeenWithinDays: Int? = nil, lastSeenWithinDays: Int? = nil, known: Bool? = nil, hasEmail: Bool? = nil, hasPhone: Bool? = nil, ltvGt: Double? = nil, ltvGte: Double? = nil, ltvLt: Double? = nil, ltvLte: Double? = nil, aovGt: Double? = nil, aovGte: Double? = nil, aovLt: Double? = nil, aovLte: Double? = nil, purchaseCountGt: Double? = nil, purchaseCountGte: Double? = nil, purchaseCountLt: Double? = nil, purchaseCountLte: Double? = nil, eventCountGt: Double? = nil, eventCountGte: Double? = nil, eventCountLt: Double? = nil, eventCountLte: Double? = nil, referringAccountId: String? = nil, teamLeadId: String? = nil, activity: RetrieveStatsRequestActivity? = nil, breakdownLimit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> RetrieveStatsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/stats/\(metric)",
@@ -281,7 +186,49 @@ public final class StatsClient: Sendable {
                 "ad_group_ids": adGroupIds.map { .stringArray($0) }, 
                 "ad_ids": adIds.map { .stringArray($0) }, 
                 "snapshot_window": snapshotWindow.map { .string($0.rawValue) }, 
-                "event": event.map { .string($0) }
+                "event": event.map { .string($0) }, 
+                "business_type": businessType.map { .string($0) }, 
+                "industry_type": industryType.map { .string($0) }, 
+                "product_category": productCategory.map { .string($0) }, 
+                "account_country": accountCountry.map { .string($0) }, 
+                "issuer": issuer.map { .string($0) }, 
+                "webhook_id": webhookId.map { .string($0) }, 
+                "conversion_window": conversionWindow.map { .string($0) }, 
+                "mature_only": matureOnly.map { .bool($0) }, 
+                "steps": steps.map { .unknown($0) }, 
+                "compare_to": compareTo.map { .string($0) }, 
+                "confidence_level": confidenceLevel.map { .double($0) }, 
+                "contactable": contactable.map { .bool($0) }, 
+                "has_purchased": hasPurchased.map { .bool($0) }, 
+                "first_seen_after": firstSeenAfter.map { .date($0) }, 
+                "first_seen_before": firstSeenBefore.map { .date($0) }, 
+                "last_seen_after": lastSeenAfter.map { .date($0) }, 
+                "last_seen_before": lastSeenBefore.map { .date($0) }, 
+                "first_seen_within_days": firstSeenWithinDays.map { .int($0) }, 
+                "last_seen_within_days": lastSeenWithinDays.map { .int($0) }, 
+                "known": known.map { .bool($0) }, 
+                "has_email": hasEmail.map { .bool($0) }, 
+                "has_phone": hasPhone.map { .bool($0) }, 
+                "ltv_gt": ltvGt.map { .double($0) }, 
+                "ltv_gte": ltvGte.map { .double($0) }, 
+                "ltv_lt": ltvLt.map { .double($0) }, 
+                "ltv_lte": ltvLte.map { .double($0) }, 
+                "aov_gt": aovGt.map { .double($0) }, 
+                "aov_gte": aovGte.map { .double($0) }, 
+                "aov_lt": aovLt.map { .double($0) }, 
+                "aov_lte": aovLte.map { .double($0) }, 
+                "purchase_count_gt": purchaseCountGt.map { .double($0) }, 
+                "purchase_count_gte": purchaseCountGte.map { .double($0) }, 
+                "purchase_count_lt": purchaseCountLt.map { .double($0) }, 
+                "purchase_count_lte": purchaseCountLte.map { .double($0) }, 
+                "event_count_gt": eventCountGt.map { .double($0) }, 
+                "event_count_gte": eventCountGte.map { .double($0) }, 
+                "event_count_lt": eventCountLt.map { .double($0) }, 
+                "event_count_lte": eventCountLte.map { .double($0) }, 
+                "referring_account_id": referringAccountId.map { .string($0) }, 
+                "team_lead_id": teamLeadId.map { .string($0) }, 
+                "activity": activity.map { .string($0.rawValue) }, 
+                "breakdown_limit": breakdownLimit.map { .int($0) }
             ],
             requestOptions: requestOptions,
             responseType: RetrieveStatsResponse.self

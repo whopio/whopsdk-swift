@@ -7,17 +7,19 @@ public final class ProductsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of products belonging to an account.
+    /// Lists an account's products, or searches the public marketplace when you omit `account_id`. Without the `access_pass:basic:read` permission on the account, including when signed out, the list holds only the products its store page lists.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.list(
-    ///         accountId: "account_id",
     ///         visibilities: [
     ///             "visible"
     ///         ],
@@ -30,32 +32,48 @@ public final class ProductsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter accountId: The unique identifier of the account to list products for.
-    /// - Parameter visibilities: Filter to only products matching these visibility states.
+    /// - Parameter accountId: Account to list products for, prefixed `biz_`. Without the `access_pass:basic:read` permission on it, only the products its store page lists are returned. Omit to search the public marketplace.
+    /// - Parameter query: Filters products by text. The public marketplace list searches product title, account name, headline and description, ranking products that match every word first and the closest partial matches after them; an account's own list is a plain substring match over title, headline and description. Omit to browse by recency.
+    /// - Parameter marketplaceCategoryRoute: Only return marketplace products assigned to this category route, such as `trading`.
+    /// - Parameter billingTypes: Filter to products with a buyable variant of these billing models, such as `one_time` or `renewal`. On an account list, needs the `access_pass:basic:read` permission.
+    /// - Parameter priceMinimum: Only return products whose advertised buyable variant has a displayed price of at least this amount. Recurring variants use renewal price. On an account list, needs the `access_pass:basic:read` permission.
+    /// - Parameter priceMaximum: Only return products whose advertised buyable variant has a displayed price of at most this amount. Recurring variants use renewal price. On an account list, needs the `access_pass:basic:read` permission.
+    /// - Parameter visibilities: Filter to only products matching these visibility states. Ignored on the public marketplace list, which only returns visible products. Without the `access_pass:basic:read` permission on the account, only `visible` matches anything.
     /// - Parameter accessPassTypes: Filter to only products matching these types.
     /// - Parameter labels: Filter to only products carrying all of these labels. Labels are matched lowercased.
     /// - Parameter direction: The sort direction for results. Defaults to descending.
-    /// - Parameter order: The field to sort results by. Defaults to created_at.
-    /// - Parameter first: The number of products to return (default and max 100).
-    /// - Parameter after: A cursor; returns products after this position.
-    /// - Parameter last: The number of products to return from the end of the range.
-    /// - Parameter before: A cursor; returns products before this position.
+    /// - Parameter order: Field to sort results by. Account lists default to `created_at`, and `position` with `direction` `asc` matches the order the store page shows. Without the `access_pass:basic:read` permission, an account list sorts only by `created_at` or `position`. Marketplace lists default to `discoverable_at`, accept only `created_at` or `discoverable_at`, and can't be combined with `query`.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    /// - Parameter includeTotalCount: Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
+    /// - Parameter createdAfter: Only return products created after this ISO 8601 timestamp.
+    /// - Parameter createdBefore: Only return products created before this ISO 8601 timestamp.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String, visibilities: [String]? = nil, accessPassTypes: [String]? = nil, labels: [String]? = nil, direction: ListProductsRequestDirection? = nil, order: String? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListProductsResponse {
+    public func list(accountId: String? = nil, query: String? = nil, marketplaceCategoryRoute: String? = nil, billingTypes: [ListProductsRequestBillingTypesItem]? = nil, priceMinimum: Double? = nil, priceMaximum: Double? = nil, visibilities: [String]? = nil, accessPassTypes: [String]? = nil, labels: [String]? = nil, direction: ListProductsRequestDirection? = nil, order: ListProductsRequestOrder? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, includeTotalCount: Bool? = nil, createdAfter: String? = nil, createdBefore: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListProductsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/products",
             queryParams: [
-                "account_id": .string(accountId), 
+                "account_id": accountId.map { .string($0) }, 
+                "query": query.map { .string($0) }, 
+                "marketplace_category_route": marketplaceCategoryRoute.map { .string($0) }, 
+                "billing_types": billingTypes.map { .unknown($0) }, 
+                "price_minimum": priceMinimum.map { .double($0) }, 
+                "price_maximum": priceMaximum.map { .double($0) }, 
                 "visibilities": visibilities.map { .stringArray($0) }, 
                 "access_pass_types": accessPassTypes.map { .stringArray($0) }, 
                 "labels": labels.map { .stringArray($0) }, 
                 "direction": direction.map { .string($0.rawValue) }, 
-                "order": order.map { .string($0) }, 
+                "order": order.map { .string($0.rawValue) }, 
                 "first": first.map { .int($0) }, 
                 "after": after.map { .string($0) }, 
                 "last": last.map { .int($0) }, 
-                "before": before.map { .string($0) }
+                "before": before.map { .string($0) }, 
+                "include_total_count": includeTotalCount.map { .bool($0) }, 
+                "created_after": createdAfter.map { .string($0) }, 
+                "created_before": createdBefore.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListProductsResponse.self
@@ -69,7 +87,10 @@ public final class ProductsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.create(request: .init(title: "Interior Deep Clean"))
     /// }
@@ -88,14 +109,17 @@ public final class ProductsClient: Sendable {
         )
     }
 
-    /// Retrieves the details of an existing product. This endpoint is publicly accessible.
+    /// Retrieves a product. Requires no authentication.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.retrieve(id: "id")
     /// }
@@ -121,7 +145,10 @@ public final class ProductsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.delete(id: "id")
     /// }
@@ -147,7 +174,10 @@ public final class ProductsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.update(
     ///         id: "id",
@@ -170,14 +200,17 @@ public final class ProductsClient: Sendable {
         )
     }
 
-    /// Submits a product to the whop.com marketplace for review. The product moves to `pending_review`; a Whop reviewer approves it before it goes live.
+    /// Submits an App Store app's product for review. The product moves to `pending_review`; a Whop reviewer approves it before it goes live. Other products can no longer be listed on the whop.com marketplace, so the request fails with `discover_listing_discontinued`.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.publish(id: "id")
     /// }
@@ -203,7 +236,10 @@ public final class ProductsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.products.unpublish(id: "id")
     /// }

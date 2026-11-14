@@ -4,6 +4,11 @@ final class Serde {
     static var jsonEncoder: Foundation.JSONEncoder {
         let encoder = Foundation.JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
+        // Foundation makes no key-order promise for a keyed container, so without this
+        // one request value encodes to different bytes on different calls. Whop
+        // fingerprints Idempotency-Key over the body, so an unstable encoding turns a
+        // safe retry into "this key was already used with a different request".
+        encoder.outputFormatting = [.sortedKeys]
         return encoder
     }
 

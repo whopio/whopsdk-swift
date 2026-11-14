@@ -1,6 +1,6 @@
 import Foundation
 
-/// New billing address. Requires line1, city, region, postal_code, and country_code. On an invited card, passing billing alone (as the invited user) completes onboarding and starts card provisioning.
+/// The billing address. On an issued card this replaces the card's billing address and region is also required. On an invited card, sending it as the invited user completes onboarding and starts card provisioning.
 public struct UpdateCardsRequestBilling: Codable, Hashable, Sendable {
     /// Billing city.
     public let city: String
@@ -12,8 +12,8 @@ public struct UpdateCardsRequestBilling: Codable, Hashable, Sendable {
     public let line2: String?
     /// Billing postal code.
     public let postalCode: String
-    /// Billing region or state.
-    public let region: String
+    /// Billing region or state. Required when updating an issued card's billing address.
+    public let region: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -23,7 +23,7 @@ public struct UpdateCardsRequestBilling: Codable, Hashable, Sendable {
         line1: String,
         line2: String? = nil,
         postalCode: String,
-        region: String,
+        region: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.city = city
@@ -42,7 +42,7 @@ public struct UpdateCardsRequestBilling: Codable, Hashable, Sendable {
         self.line1 = try container.decode(String.self, forKey: .line1)
         self.line2 = try container.decodeIfPresent(String.self, forKey: .line2)
         self.postalCode = try container.decode(String.self, forKey: .postalCode)
-        self.region = try container.decode(String.self, forKey: .region)
+        self.region = try container.decodeIfPresent(String.self, forKey: .region)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -54,7 +54,7 @@ public struct UpdateCardsRequestBilling: Codable, Hashable, Sendable {
         try container.encode(self.line1, forKey: .line1)
         try container.encodeIfPresent(self.line2, forKey: .line2)
         try container.encode(self.postalCode, forKey: .postalCode)
-        try container.encode(self.region, forKey: .region)
+        try container.encodeIfPresent(self.region, forKey: .region)
     }
 
     /// Keys for encoding/decoding struct properties.

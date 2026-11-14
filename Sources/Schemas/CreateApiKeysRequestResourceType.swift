@@ -4,4 +4,5 @@ import Foundation
 public enum CreateApiKeysRequestResourceType: String, Codable, Hashable, CaseIterable, Sendable {
     case account
     case app
+    case user
 }
