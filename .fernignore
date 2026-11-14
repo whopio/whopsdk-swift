@@ -16,7 +16,7 @@ Tests/Core/QueryStructuredInputTests.swift
 Tests/Core/CancellationContractTests.swift
 Scripts/check-query-inputs.py
 Scripts/query-inputs.json
-# Delete this test-only repair once Fern correctly emits JSONValue.null for these examples.
+# Remove this test-only repair when Fern emits valid null values and escaped optional self cases.
 Scripts/repair-generated-tests.py
 Scripts/test_repair_generated_tests.py
 

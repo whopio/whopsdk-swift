@@ -52,5 +52,30 @@ class RepairGeneratedTests(unittest.TestCase):
         self.assertEqual(count, 0)
 
 
+    def test_repairs_optional_self_case_with_source_and_fixture_proof(self):
+        original = '@Test func sample() { let body = #"""{"fee_paid_by":"self"}"""#.utf8; let expected = Payout(feePaidBy: Optional(FeePaidBy.self)) }'
+        result, count = repair.repair_text(original, {"FeePaidBy"})
+        self.assertEqual(count, 1)
+        self.assertEqual(result, original.replace("Optional(FeePaidBy.self)", "Optional(FeePaidBy.`self`)"))
+        self.assertEqual(repair.repair_text(result, {"FeePaidBy"}), (result, 0))
+
+    def test_rejects_optional_self_with_non_self_fixture(self):
+        original = '@Test func sample() { let body = #"""{"fee_paid_by":"platform"}"""#.utf8; let expected = Payout(feePaidBy: Optional(FeePaidBy.self)) }'
+        with self.assertRaisesRegex(ValueError, "Cannot prove"):
+            repair.repair_text(original, {"FeePaidBy"})
+
+    def test_rejects_optional_self_without_a_fixture(self):
+        with self.assertRaisesRegex(ValueError, "Cannot prove"):
+            repair.repair_text('Payout(feePaidBy: Optional(FeePaidBy.self))', {"FeePaidBy"})
+
+    def test_preserves_legitimate_enum_metatypes(self):
+        original = 'let value = try decoder.decode(FeePaidBy.self, from: data)'
+        self.assertEqual(repair.repair_text(original, {"FeePaidBy"}), (original, 0))
+
+    def test_requires_source_proof_of_the_self_enum_case(self):
+        original = '@Test func sample() { let body = #"""{"fee_paid_by":"self"}"""#.utf8; let value = Payout(feePaidBy: Optional(FeePaidBy.self)) }'
+        self.assertEqual(repair.repair_text(original), (original, 0))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1022,7 +1022,7 @@ import WhopSDK
                 message: Nullable<String>.value("message")
             )),
             feeAmount: Optional("0.25"),
-            feePaidBy: Optional(RetrievePayoutsResponseFeePaidBy.self),
+            feePaidBy: Optional(RetrievePayoutsResponseFeePaidBy.`self`),
             id: "wdrl_xxxxxxxxxxxxx",
             markupFee: Optional("0.0"),
             metadata: Optional([
@@ -1169,7 +1169,7 @@ import WhopSDK
                 message: Nullable<String>.value("message")
             )),
             feeAmount: Optional("fee_amount"),
-            feePaidBy: Optional(RetrievePayoutsResponseFeePaidBy.self),
+            feePaidBy: Optional(RetrievePayoutsResponseFeePaidBy.`self`),
             id: "id",
             markupFee: Optional("markup_fee"),
             metadata: Optional([
