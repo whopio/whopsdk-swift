@@ -10,10 +10,12 @@ Sources/Core/Networking/HTTPClient.swift
 Sources/Core/Networking/QueryParameter.swift
 Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift
 Sources/Core/Serde/Serde.swift
+Sources/Core/Serde/Encoder+AdditionalProperties.swift
 Tests/Core/AuditWireContractTests.swift
 Tests/Core/QueryInputCoverageTests.swift
 Tests/Core/QueryStructuredInputTests.swift
 Tests/Core/CancellationContractTests.swift
+Tests/Core/EmptyObjectEncodingTests.swift
 Scripts/check-query-inputs.py
 Scripts/query-inputs.json
 # Remove this test-only repair when Fern emits valid null values and escaped optional self cases.

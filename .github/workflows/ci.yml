@@ -113,6 +113,7 @@ jobs:
         env:
           PATCHES: |
             Sources/Core/Serde/Serde.swift|outputFormatting = [.sortedKeys]|request bodies go back to being byte-unstable, and Idempotency-Key stops working from Swift
+            Sources/Core/Serde/Encoder+AdditionalProperties.swift|var container = self.container(keyedBy: StringKey.self)|open empty request objects fail to encode before HTTP
             Sources/Core/Serde/KeyedDecodingContainer+Nullable.swift|_ type: Nullable<T>.Type|an absent nullable response field goes back to failing the whole decode
             Sources/Core/Networking/HTTPClient.swift|generatedAgainstApiVersionDate|the client stops sending its generated API-version pin
             Sources/Core/Networking/HTTPClient.swift|X-Fern-SDK-Version|the client stops identifying itself on the wire
