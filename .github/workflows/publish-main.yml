@@ -216,7 +216,7 @@ jobs:
   verify:
     needs: decide
     if: needs.decide.outputs.release == 'true'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-8vcpu-ubuntu-2204
     permissions:
       contents: read
     container: swift:6.1-noble@sha256:98ee3a8469ce2a9c2f543ef2577939ab44e2dfc9b5ed710732a59e5dd64f9c4a
@@ -235,10 +235,11 @@ jobs:
         run: swift --version
 
       - name: Build the library that consumers compile
-        run: swift build
+        run: swift build --jobs 2
 
       - name: Repair proven generator test examples
         run: |
+          set -euo pipefail
           apt-get update -qq
           apt-get install -y --no-install-recommends python3
           python3 Scripts/repair-generated-tests.py
@@ -288,6 +289,17 @@ jobs:
 
       - name: Run the generated test suite
         run: swift test --jobs 1
+
+      - name: Report compiler memory diagnostics
+        if: always()
+        run: |
+          set -euo pipefail
+          for file in /sys/fs/cgroup/memory.peak /sys/fs/cgroup/memory.events /sys/fs/cgroup/memory.max /proc/meminfo; do
+            if [ -r "$file" ]; then
+              printf '%s\n' "$file"
+              cat "$file"
+            fi
+          done
 
       - name: Resolve the package the way SwiftPM will, from a tag
         env:

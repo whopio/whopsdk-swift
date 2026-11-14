@@ -7,7 +7,7 @@ struct AuditWireContractTests {
     @Test func defaultPinAndBearerReachTheRequest() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
-        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", urlSession: stub.urlSession)
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", headers: stub.headers, urlSession: stub.urlSession)
         _ = try await client.products.delete(id: "prod_audit")
         let request = try #require(stub.takeLastRequest())
         #expect(request.url?.absoluteString == "https://sandbox.example/api/v1/products/prod_audit")
@@ -18,7 +18,7 @@ struct AuditWireContractTests {
     @Test func requestOverridesKeepExplicitVersionAndToken() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
-        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", apiVersionDate: "2026-11-10", urlSession: stub.urlSession)
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", apiVersionDate: "2026-11-10", headers: stub.headers, urlSession: stub.urlSession)
         _ = try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "override-token", additionalHeaders: ["api-version-date": "2026-11-11"]))
         let request = try #require(stub.takeLastRequest())
         #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer override-token")
@@ -28,7 +28,7 @@ struct AuditWireContractTests {
     @Test func enumArrayFilterIsTransmitted() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data(#"{"data":[],"page_info":{"end_cursor":null,"start_cursor":null,"has_next_page":false,"has_previous_page":false,"total_count":null,"total_count_capped":false}}"#.utf8))
-        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", urlSession: stub.urlSession)
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: "audit-token", headers: stub.headers, urlSession: stub.urlSession)
         _ = try await client.products.list(billingTypes: [.renewal])
         let request = try #require(stub.takeLastRequest())
         let url = try #require(request.url)
@@ -39,7 +39,7 @@ struct AuditWireContractTests {
     @Test func asyncProviderAndRequestTokenPrecedenceArePreserved() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
-        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { "provider-token" }, urlSession: stub.urlSession)
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { "provider-token" }, headers: stub.headers, urlSession: stub.urlSession)
         _ = try await client.products.delete(id: "prod_audit")
         #expect(stub.takeLastRequest()?.value(forHTTPHeaderField: "Authorization") == "Bearer provider-token")
         _ = try await client.products.delete(id: "prod_audit", requestOptions: RequestOptions(token: "request-token"))
@@ -49,7 +49,7 @@ struct AuditWireContractTests {
     @Test func providerCancellationIsWrappedBeforeAnyRequest() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data(#"{"deleted":true,"id":"prod_audit"}"#.utf8))
-        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { throw CancellationError() }, urlSession: stub.urlSession)
+        let client = Whop(baseURL: "https://sandbox.example/api/v1", token: { throw CancellationError() }, headers: stub.headers, urlSession: stub.urlSession)
         do {
             _ = try await client.products.delete(id: "prod_audit")
             Issue.record("Expected provider cancellation")
@@ -64,7 +64,7 @@ struct AuditWireContractTests {
     @Test func invalidJSONBodyThrowsBeforeAnyRequest() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data())
-        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", urlSession: stub.urlSession))
+        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", headers: stub.headers, urlSession: stub.urlSession))
         do {
             try await client.performRequest(method: .post, path: "/audit", body: ["amount": Double.nan])
             Issue.record("Expected body encoding error")
@@ -78,7 +78,7 @@ struct AuditWireContractTests {
     @Test func scalarUnionFilterIsTransmitted() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data())
-        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", urlSession: stub.urlSession))
+        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", headers: stub.headers, urlSession: stub.urlSession))
         try await client.performRequest(method: .get, path: "/app_builds", queryParams: ["created_before": .unknown(ListAppBuildsRequestCreatedBefore.string("2026-11-01T00:00:00Z"))])
         let request = try #require(stub.takeLastRequest())
         let url = try #require(request.url)
@@ -96,7 +96,7 @@ struct AuditWireContractTests {
     @Test func bodyExtensionsKeepCanonicalIdempotencyBytes() async throws {
         let stub = HTTPStub()
         stub.setResponse(body: Data())
-        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", urlSession: stub.urlSession))
+        let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", headers: stub.headers, urlSession: stub.urlSession))
         try await client.performRequest(method: .post, path: "/audit", body: ["amount": 1], requestOptions: RequestOptions(additionalBodyProperties: ["zeta": 2]))
         let body = try #require(stub.takeLastRequest()?.httpBody)
         #expect(String(data: body, encoding: .utf8) == #"{"amount":1,"zeta":2}"#)
@@ -107,7 +107,7 @@ struct AuditWireContractTests {
         for index in 0..<16 {
             let stub = HTTPStub()
             stub.setResponse(body: Data())
-            let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", urlSession: stub.urlSession))
+            let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", headers: stub.headers, urlSession: stub.urlSession))
             var body: [String: JSONValue] = [:]
             let keys = index.isMultiple(of: 2) ? ["zeta", "alpha"] : ["alpha", "zeta"]
             for key in keys { body[key] = key == "alpha" ? 1 : 2 }
@@ -117,5 +117,24 @@ struct AuditWireContractTests {
             bodies.insert(try #require(request.httpBody))
         }
         #expect(bodies == Set([Data(#"{"alpha":1,"zeta":2}"#.utf8)]))
+    }
+
+    @Test func separatelyConstructedAdditionalQueriesKeepTheSameIdempotencyBytes() async throws {
+        var urls = Set<String>()
+        var bodies = Set<Data>()
+        for index in 0..<16 {
+            let stub = HTTPStub()
+            stub.setResponse(body: Data())
+            let client = HTTPClient(config: ClientConfig(baseURL: "https://sandbox.example/api/v1", headers: stub.headers, urlSession: stub.urlSession))
+            var query: [String: String] = [:]
+            let keys = index.isMultiple(of: 2) ? ["zeta", "alpha"] : ["alpha", "zeta"]
+            for key in keys { query[key] = key == "alpha" ? "1" : "2" }
+            try await client.performRequest(method: .post, path: "/audit", body: ["amount": 1], requestOptions: RequestOptions(additionalHeaders: ["Idempotency-Key": "audit-fixed-key"], additionalQueryParameters: query))
+            let request = try #require(stub.takeLastRequest())
+            urls.insert(try #require(request.url?.absoluteString))
+            bodies.insert(try #require(request.httpBody))
+        }
+        #expect(urls == Set(["https://sandbox.example/api/v1/audit?alpha=1&zeta=2"]))
+        #expect(bodies == Set([Data(#"{"amount":1}"#.utf8)]))
     }
 }

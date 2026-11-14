@@ -184,7 +184,7 @@ final class HTTPClient: Swift.Sendable {
             }
         }
         if let additionalQueryParams = requestOptions?.additionalQueryParameters {
-            let extraItems = additionalQueryParams.compactMap { key, value in
+            let extraItems = additionalQueryParams.sorted { $0.key < $1.key }.compactMap { key, value in
                 value.isEmpty ? nil : Foundation.URLQueryItem(name: key, value: value)
             }
             if components.queryItems == nil {
