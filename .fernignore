@@ -19,3 +19,7 @@ Scripts/query-inputs.json
 # Delete this test-only repair once Fern correctly emits JSONValue.null for these examples.
 Scripts/repair-generated-tests.py
 Scripts/test_repair_generated_tests.py
+
+# Remove after Fern emits bounded expected expressions that compile without factoring.
+Scripts/factor-generated-tests.py
+Scripts/test_factor_generated_tests.py
