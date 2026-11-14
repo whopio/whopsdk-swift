@@ -1,6 +1,6 @@
 import Foundation
 
-/// How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails.
+/// How the account pays for Whop Ads spend. Requires `primary`; `backup` is optional and covers the charge when the primary fails. Requires the `ad_campaign:create` scope on your API key. Configuring a `card` requires a user token; account API keys can configure only `platform_balance` sources.
 public struct UpdatePreferencesRequestAdsPaymentMethods: Codable, Hashable, Sendable {
     /// Optional second method charged if the primary fails. Any pairing is allowed (two cards, card+balance, balance+card); omit it to run on a single method. Must differ from the primary.
     public let backup: UpdatePreferencesRequestAdsPaymentMethodsBackup?

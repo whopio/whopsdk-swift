@@ -7,6 +7,8 @@ public struct AdCreative: Codable, Hashable, Sendable {
     public let format: Nullable<AdCreativeFormat>
     /// The creative attachment's file id.
     public let id: String
+    /// Always `null`. Translations are no longer available.
+    public let language: Nullable<String>
     /// The kind of asset, image or video.
     public let mediaType: Nullable<String>
     /// CDN url of the asset.
@@ -18,6 +20,7 @@ public struct AdCreative: Codable, Hashable, Sendable {
         crop: Nullable<AdCreativeCrop>,
         format: Nullable<AdCreativeFormat>,
         id: String,
+        language: Nullable<String>,
         mediaType: Nullable<String>,
         url: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
@@ -25,6 +28,7 @@ public struct AdCreative: Codable, Hashable, Sendable {
         self.crop = crop
         self.format = format
         self.id = id
+        self.language = language
         self.mediaType = mediaType
         self.url = url
         self.additionalProperties = additionalProperties
@@ -35,6 +39,7 @@ public struct AdCreative: Codable, Hashable, Sendable {
         self.crop = try container.decode(Nullable<AdCreativeCrop>.self, forKey: .crop)
         self.format = try container.decode(Nullable<AdCreativeFormat>.self, forKey: .format)
         self.id = try container.decode(String.self, forKey: .id)
+        self.language = try container.decode(Nullable<String>.self, forKey: .language)
         self.mediaType = try container.decode(Nullable<String>.self, forKey: .mediaType)
         self.url = try container.decode(Nullable<String>.self, forKey: .url)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -46,6 +51,7 @@ public struct AdCreative: Codable, Hashable, Sendable {
         try container.encode(self.crop, forKey: .crop)
         try container.encode(self.format, forKey: .format)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.language, forKey: .language)
         try container.encode(self.mediaType, forKey: .mediaType)
         try container.encode(self.url, forKey: .url)
     }
@@ -55,6 +61,7 @@ public struct AdCreative: Codable, Hashable, Sendable {
         case crop
         case format
         case id
+        case language
         case mediaType = "media_type"
         case url
     }

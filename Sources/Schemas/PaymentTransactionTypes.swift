@@ -14,4 +14,5 @@ public enum PaymentTransactionTypes: String, Codable, Hashable, CaseIterable, Se
     case fraudScreening = "fraud_screening"
     case authorization
     case installment
+    case deposit
 }

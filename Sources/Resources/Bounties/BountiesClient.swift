@@ -16,7 +16,10 @@ public final class BountiesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.list()
     /// }
@@ -24,7 +27,7 @@ public final class BountiesClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter accountId: Scope the list to this account (`biz_` tag). Requires read access to the account; account API keys may pass their own account or a connected account.
+    /// - Parameter accountId: Scope the list to this account (`biz_` tag). Requires read access to the account; account API keys may pass their own account or a subaccount.
     /// - Parameter userId: List the bounties this user participated in (`user_` tag). Must be the authenticated user.
     /// - Parameter status: Filter by lifecycle state.
     /// - Parameter businessGoalType: Filter by the poster's declared goal. Bounties created before the goal taxonomy carry no goal and never match this filter.
@@ -35,10 +38,10 @@ public final class BountiesClient: Sendable {
     /// - Parameter createdBefore: Only bounties created before this ISO 8601 timestamp.
     /// - Parameter order: Sort field.
     /// - Parameter direction: Sort direction.
-    /// - Parameter first: Number of bounties to return from the start of the window.
-    /// - Parameter after: Cursor to paginate forwards from.
-    /// - Parameter last: Number of bounties to return from the end of the window.
-    /// - Parameter before: Cursor to paginate backwards from.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String? = nil, userId: String? = nil, status: ListBountiesRequestStatus? = nil, businessGoalType: ListBountiesRequestBusinessGoalType? = nil, country: String? = nil, experienceId: String? = nil, query: String? = nil, createdAfter: String? = nil, createdBefore: String? = nil, order: ListBountiesRequestOrder? = nil, direction: ListBountiesRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListBountiesResponse {
         return try await httpClient.performRequest(
@@ -73,7 +76,10 @@ public final class BountiesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.create(request: .init(
     ///         description: "Record one continuous pass of a full interior detail, dash to trunk, on a customer vehicle.",
@@ -103,7 +109,10 @@ public final class BountiesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.retrieve(id: "id")
     /// }
@@ -129,7 +138,10 @@ public final class BountiesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.update(
     ///         id: "id",
@@ -159,7 +171,10 @@ public final class BountiesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.bounties.cancel(id: "id")
     /// }

@@ -7,6 +7,7 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case affirm
     case afterpayClearpay = "afterpay_clearpay"
     case alipay
+    case alipayhk
     case alma
     case amazonPay = "amazon_pay"
     case apple
@@ -18,13 +19,13 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case bancontact
     case bankWire = "bank_wire"
     case billie
-    case bizum
     case blik
     case boleto
     case breB = "bre_b"
     case caBankTransfer = "ca_bank_transfer"
     case capchasePay = "capchase_pay"
     case card
+    case cardPresent = "card_present"
     case cardInstallmentsThree = "card_installments_three"
     case cardInstallmentsSix = "card_installments_six"
     case cardInstallmentsTwelve = "card_installments_twelve"
@@ -32,14 +33,18 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case claritypay
     case coinbase
     case crypto
+    case cryptoSubscription = "crypto_subscription"
     case custom
     case customerBalance = "customer_balance"
     case demoPay = "demo_pay"
+    case duitnowQr = "duitnow_qr"
     case efecty
     case eps
     case euBankTransfer = "eu_bank_transfer"
     case fpx
+    case flexPay = "flex_pay"
     case gbBankTransfer = "gb_bank_transfer"
+    case gcash
     case giropay
     case googlePay = "google_pay"
     case gopay
@@ -47,6 +52,7 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case idBankTransfer = "id_bank_transfer"
     case ideal
     case interac
+    case internationalBankWire = "international_bank_wire"
     case kakaoPay = "kakao_pay"
     case klarna
     case klarnaPayNow = "klarna_pay_now"
@@ -59,6 +65,8 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case mbWay = "mb_way"
     case mPesa = "m_pesa"
     case mercadoPago = "mercado_pago"
+    case mercadoPagoAr = "mercado_pago_ar"
+    case mercadoPagoMx = "mercado_pago_mx"
     case mobilepay
     case modo
     case mondu
@@ -72,7 +80,12 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case ngMarket = "ng_market"
     case ngUssd = "ng_ussd"
     case ngWallet = "ng_wallet"
+    case nupay
     case nzBankAccount = "nz_bank_account"
+    case oney
+    case oney3X = "oney_3x"
+    case oney4X = "oney_4x"
+    case opay
     case oxxo
     case p24
     case pagoEfectivo = "pago_efectivo"
@@ -81,8 +94,12 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case payco
     case paynow
     case paypal
+    case paypalExpress = "paypal_express"
     case paypay
     case payto
+    case paytoEmail = "payto_email"
+    case paytoPhone = "payto_phone"
+    case paytoBankAccount = "payto_bank_account"
     case pix
     case platformBalance = "platform_balance"
     case promptpay
@@ -106,15 +123,19 @@ public enum PaymentMethodTypes: String, Codable, Hashable, CaseIterable, Sendabl
     case splitit
     case sunbit
     case swish
+    case tabby
     case tamara
+    case touchNGo = "touch_n_go"
     case twint
     case upi
     case usBankAccount = "us_bank_account"
     case usBankTransfer = "us_bank_transfer"
     case venmo
+    case verve
     case vipps
     case webpay
     case wechatPay = "wechat_pay"
+    case whopPay = "whop_pay"
     case yape
     case zip
     case coinflow

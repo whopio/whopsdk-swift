@@ -7,14 +7,17 @@ public final class CardTransactionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists an account's card transactions, newest first. Defaults to the account the credential belongs to. Covers every card the owner has ever had, including canceled cards and spend that predates a re-application, and team members only see transactions on the cards assigned to them. Pass `transaction_ids` to fetch specific transactions instead of paging for them.
+    /// Lists the card transactions of an account or a user, newest first. Covers every card the owner has ever had, including canceled cards and spend that predates a re-application, and team members only see transactions on the cards assigned to them. Pass `transaction_ids` to fetch specific transactions instead of paging for them.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.cardTransactions.list(
     ///         transactionIds: [
@@ -32,7 +35,8 @@ public final class CardTransactionsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter accountId: The account whose card transactions to list, prefixed `biz_`. Defaults to the credential's account.
+    /// - Parameter accountId: The account whose card transactions to list, prefixed `biz_`. Provide this or `user_id`. Defaults to the credential's account.
+    /// - Parameter userId: The user whose personal card transactions to list, prefixed `user_`. Provide this or `account_id`. Only that user can read them.
     /// - Parameter transactionIds: Return only these card transactions, each prefixed `citx_`. Repeat the parameter, or pass one comma-separated value.
     /// - Parameter cardId: Return only transactions charged to these cards, each prefixed `icrd_`.
     /// - Parameter cardholderId: Return only transactions on cards assigned to these users, each prefixed `user_`.
@@ -41,17 +45,18 @@ public final class CardTransactionsClient: Sendable {
     /// - Parameter createdBefore: Return only transactions authorized at or before this ISO 8601 timestamp.
     /// - Parameter order: The field to sort by. Defaults to `created_at`.
     /// - Parameter direction: The sort direction. Defaults to `desc`.
-    /// - Parameter first: The number of card transactions to return.
-    /// - Parameter after: A cursor; returns card transactions after this position.
-    /// - Parameter last: The number of card transactions to return, counting back from the end.
-    /// - Parameter before: A cursor; returns card transactions before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String? = nil, transactionIds: [String]? = nil, cardId: [String]? = nil, cardholderId: [String]? = nil, status: ListCardTransactionsRequestStatus? = nil, createdAfter: String? = nil, createdBefore: String? = nil, order: ListCardTransactionsRequestOrder? = nil, direction: ListCardTransactionsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCardTransactionsResponse {
+    public func list(accountId: String? = nil, userId: String? = nil, transactionIds: [String]? = nil, cardId: [String]? = nil, cardholderId: [String]? = nil, status: ListCardTransactionsRequestStatus? = nil, createdAfter: String? = nil, createdBefore: String? = nil, order: ListCardTransactionsRequestOrder? = nil, direction: ListCardTransactionsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCardTransactionsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/card_transactions",
             queryParams: [
                 "account_id": accountId.map { .string($0) }, 
+                "user_id": userId.map { .string($0) }, 
                 "transaction_ids": transactionIds.map { .stringArray($0) }, 
                 "card_id": cardId.map { .stringArray($0) }, 
                 "cardholder_id": cardholderId.map { .stringArray($0) }, 
@@ -70,14 +75,17 @@ public final class CardTransactionsClient: Sendable {
         )
     }
 
-    /// Fetches a single card transaction by its `citx_` identifier. The owner defaults to the account the credential belongs to.
+    /// Retrieves a single card transaction from any card the owner has ever had, including canceled cards. Team members can retrieve only transactions on the cards assigned to them.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.cardTransactions.retrieve(id: "id")
     /// }
@@ -86,14 +94,16 @@ public final class CardTransactionsClient: Sendable {
     /// ```
     ///
     /// - Parameter id: The card transaction ID, prefixed `citx_`.
-    /// - Parameter accountId: The account that owns the transaction, prefixed `biz_`. Defaults to the credential's account.
+    /// - Parameter accountId: The account that owns the transaction, prefixed `biz_`. Provide this or `user_id`. Defaults to the credential's account.
+    /// - Parameter userId: The user that owns the transaction, prefixed `user_`. Provide this or `account_id`. Only that user can read it.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func retrieve(id: String, accountId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> CardTransaction {
+    public func retrieve(id: String, accountId: String? = nil, userId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> CardTransaction {
         return try await httpClient.performRequest(
             method: .get,
             path: "/card_transactions/\(id)",
             queryParams: [
-                "account_id": accountId.map { .string($0) }
+                "account_id": accountId.map { .string($0) }, 
+                "user_id": userId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: CardTransaction.self

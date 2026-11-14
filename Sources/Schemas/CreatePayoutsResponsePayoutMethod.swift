@@ -6,16 +6,20 @@ public struct CreatePayoutsResponsePayoutMethod: Codable, Hashable, Sendable {
     public let nickname: Nullable<String>
     /// Supported payout method display details.
     public let supportedPayoutMethod: Nullable<CreatePayoutsResponsePayoutMethodSupportedPayoutMethod>
+    /// The kind of payout method the payout used. `external` sent funds out of Whop. `whop_card` moved funds onto the account's own Whop Card.
+    public let type: CreatePayoutsResponsePayoutMethodType
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         nickname: Nullable<String>,
         supportedPayoutMethod: Nullable<CreatePayoutsResponsePayoutMethodSupportedPayoutMethod>,
+        type: CreatePayoutsResponsePayoutMethodType,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.nickname = nickname
         self.supportedPayoutMethod = supportedPayoutMethod
+        self.type = type
         self.additionalProperties = additionalProperties
     }
 
@@ -23,6 +27,7 @@ public struct CreatePayoutsResponsePayoutMethod: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.nickname = try container.decode(Nullable<String>.self, forKey: .nickname)
         self.supportedPayoutMethod = try container.decode(Nullable<CreatePayoutsResponsePayoutMethodSupportedPayoutMethod>.self, forKey: .supportedPayoutMethod)
+        self.type = try container.decode(CreatePayoutsResponsePayoutMethodType.self, forKey: .type)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -31,11 +36,13 @@ public struct CreatePayoutsResponsePayoutMethod: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.nickname, forKey: .nickname)
         try container.encode(self.supportedPayoutMethod, forKey: .supportedPayoutMethod)
+        try container.encode(self.type, forKey: .type)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case nickname
         case supportedPayoutMethod = "supported_payout_method"
+        case type
     }
 }

@@ -9,14 +9,17 @@ public final class UsersPreferencesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the authenticated user's settings document. Addressed only as `me` — the document always belongs to the session user.
+    /// Retrieves the authenticated user's settings document.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.preferences.retrieve()
     /// }
@@ -41,7 +44,10 @@ public final class UsersPreferencesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.preferences.update(request: .init())
     /// }

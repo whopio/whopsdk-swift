@@ -36,6 +36,8 @@ public struct CreateEventsRequestContext: Codable, Hashable, Sendable {
     public let msclkid: Nullable<String>?
     /// Reddit click ID.
     public let rdtCid: Nullable<String>?
+    /// Whop SC identifier.
+    public let sc: Nullable<String>?
     /// Snapchat click ID.
     public let sccid: Nullable<String>?
     /// Screen resolution (e.g. 1920x1080).
@@ -85,6 +87,7 @@ public struct CreateEventsRequestContext: Codable, Hashable, Sendable {
         liFatId: Nullable<String>? = nil,
         msclkid: Nullable<String>? = nil,
         rdtCid: Nullable<String>? = nil,
+        sc: Nullable<String>? = nil,
         sccid: Nullable<String>? = nil,
         screenResolution: Nullable<String>? = nil,
         timezone: Nullable<String>? = nil,
@@ -118,6 +121,7 @@ public struct CreateEventsRequestContext: Codable, Hashable, Sendable {
         self.liFatId = liFatId
         self.msclkid = msclkid
         self.rdtCid = rdtCid
+        self.sc = sc
         self.sccid = sccid
         self.screenResolution = screenResolution
         self.timezone = timezone
@@ -154,6 +158,7 @@ public struct CreateEventsRequestContext: Codable, Hashable, Sendable {
         self.liFatId = try container.decodeNullableIfPresent(String.self, forKey: .liFatId)
         self.msclkid = try container.decodeNullableIfPresent(String.self, forKey: .msclkid)
         self.rdtCid = try container.decodeNullableIfPresent(String.self, forKey: .rdtCid)
+        self.sc = try container.decodeNullableIfPresent(String.self, forKey: .sc)
         self.sccid = try container.decodeNullableIfPresent(String.self, forKey: .sccid)
         self.screenResolution = try container.decodeNullableIfPresent(String.self, forKey: .screenResolution)
         self.timezone = try container.decodeNullableIfPresent(String.self, forKey: .timezone)
@@ -191,6 +196,7 @@ public struct CreateEventsRequestContext: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.liFatId, forKey: .liFatId)
         try container.encodeNullableIfPresent(self.msclkid, forKey: .msclkid)
         try container.encodeNullableIfPresent(self.rdtCid, forKey: .rdtCid)
+        try container.encodeNullableIfPresent(self.sc, forKey: .sc)
         try container.encodeNullableIfPresent(self.sccid, forKey: .sccid)
         try container.encodeNullableIfPresent(self.screenResolution, forKey: .screenResolution)
         try container.encodeNullableIfPresent(self.timezone, forKey: .timezone)
@@ -226,6 +232,7 @@ public struct CreateEventsRequestContext: Codable, Hashable, Sendable {
         case liFatId = "li_fat_id"
         case msclkid
         case rdtCid = "rdt_cid"
+        case sc
         case sccid
         case screenResolution = "screen_resolution"
         case timezone

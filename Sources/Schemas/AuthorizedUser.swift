@@ -4,7 +4,7 @@ import Foundation
 public struct AuthorizedUser: Codable, Hashable, Sendable {
     /// The company this authorized user has access to.
     public let company: AuthorizedUserCompany
-    /// The unique identifier for the authorized user.
+    /// The team member's ID. It may start with `ausr_` or `mber_`; treat it as opaque.
     public let id: String
     /// The permission role assigned to this authorized user within the company.
     public let role: AuthorizedUserRoles

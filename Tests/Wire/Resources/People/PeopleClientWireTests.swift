@@ -216,6 +216,377 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "account_id": "account_id",
+                      "aov": 1.1,
+                      "device": {
+                        "browser": "browser",
+                        "device": "device",
+                        "os": "os"
+                      },
+                      "email": "email",
+                      "event_count": 1,
+                      "first_purchase_at": "2024-01-15T09:30:00Z",
+                      "first_seen_at": "2024-01-15T09:30:00Z",
+                      "first_source": {
+                        "ad": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "ad_group": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "campaign": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "domain": "domain",
+                        "occurred_at": "2024-01-15T09:30:00Z",
+                        "platform": "platform",
+                        "type": "ad_click",
+                        "utm_source": "utm_source"
+                      },
+                      "id": "id",
+                      "last_ip": "last_ip",
+                      "last_purchase_at": "2024-01-15T09:30:00Z",
+                      "last_seen_at": "2024-01-15T09:30:00Z",
+                      "last_source": {
+                        "ad": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "ad_group": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "campaign": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "domain": "domain",
+                        "occurred_at": "2024-01-15T09:30:00Z",
+                        "platform": "platform",
+                        "type": "ad_click",
+                        "utm_source": "utm_source"
+                      },
+                      "location": {
+                        "city": "city",
+                        "continent": "continent",
+                        "country": "country"
+                      },
+                      "ltv": 1.1,
+                      "member": {
+                        "id": "id",
+                        "joined_at": "2024-01-15T09:30:00Z",
+                        "status": "status",
+                        "usd_total_spend": 1.1
+                      },
+                      "name": "name",
+                      "phone": "phone",
+                      "purchase_count": 1,
+                      "timezone": "timezone",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_pic_url": "profile_pic_url",
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "account_id": "account_id",
+                      "aov": 1.1,
+                      "device": {
+                        "browser": "browser",
+                        "device": "device",
+                        "os": "os"
+                      },
+                      "email": "email",
+                      "event_count": 1,
+                      "first_purchase_at": "2024-01-15T09:30:00Z",
+                      "first_seen_at": "2024-01-15T09:30:00Z",
+                      "first_source": {
+                        "ad": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "ad_group": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "campaign": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "domain": "domain",
+                        "occurred_at": "2024-01-15T09:30:00Z",
+                        "platform": "platform",
+                        "type": "ad_click",
+                        "utm_source": "utm_source"
+                      },
+                      "id": "id",
+                      "last_ip": "last_ip",
+                      "last_purchase_at": "2024-01-15T09:30:00Z",
+                      "last_seen_at": "2024-01-15T09:30:00Z",
+                      "last_source": {
+                        "ad": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "ad_group": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "campaign": {
+                          "id": "id",
+                          "name": null,
+                          "thumbnail_url": null
+                        },
+                        "domain": "domain",
+                        "occurred_at": "2024-01-15T09:30:00Z",
+                        "platform": "platform",
+                        "type": "ad_click",
+                        "utm_source": "utm_source"
+                      },
+                      "location": {
+                        "city": "city",
+                        "continent": "continent",
+                        "country": "country"
+                      },
+                      "ltv": 1.1,
+                      "member": {
+                        "id": "id",
+                        "joined_at": "2024-01-15T09:30:00Z",
+                        "status": "status",
+                        "usd_total_spend": 1.1
+                      },
+                      "name": "name",
+                      "phone": "phone",
+                      "purchase_count": 1,
+                      "timezone": "timezone",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "profile_pic_url": "profile_pic_url",
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  },
+                  "total_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListPeopleResponse(
+            data: [
+                ListPeopleResponseDataItem(
+                    accountId: "account_id",
+                    aov: Optional(1.1),
+                    device: Optional(ListPeopleResponseDataItemDevice(
+                        browser: Optional(Nullable<String>.value("browser")),
+                        device: Optional(Nullable<String>.value("device")),
+                        os: Optional(Nullable<String>.value("os"))
+                    )),
+                    email: Optional(Nullable<String>.value("email")),
+                    eventCount: 1,
+                    firstPurchaseAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                    firstSeenAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    firstSource: Optional(Nullable<ListPeopleResponseDataItemFirstSource>.value(ListPeopleResponseDataItemFirstSource(
+                        ad: Optional(Nullable<ListPeopleResponseDataItemFirstSourceAd>.value(ListPeopleResponseDataItemFirstSourceAd(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        adGroup: Optional(Nullable<ListPeopleResponseDataItemFirstSourceAdGroup>.value(ListPeopleResponseDataItemFirstSourceAdGroup(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        campaign: Optional(Nullable<ListPeopleResponseDataItemFirstSourceCampaign>.value(ListPeopleResponseDataItemFirstSourceCampaign(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        domain: Optional(Nullable<String>.value("domain")),
+                        occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                        platform: Optional(Nullable<String>.value("platform")),
+                        type: ListPeopleResponseDataItemFirstSourceType.adClick,
+                        utmSource: Optional(Nullable<String>.value("utm_source"))
+                    ))),
+                    id: "id",
+                    lastIp: Optional(Nullable<String>.value("last_ip")),
+                    lastPurchaseAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                    lastSeenAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastSource: Optional(Nullable<ListPeopleResponseDataItemLastSource>.value(ListPeopleResponseDataItemLastSource(
+                        ad: Optional(Nullable<ListPeopleResponseDataItemLastSourceAd>.value(ListPeopleResponseDataItemLastSourceAd(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        adGroup: Optional(Nullable<ListPeopleResponseDataItemLastSourceAdGroup>.value(ListPeopleResponseDataItemLastSourceAdGroup(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        campaign: Optional(Nullable<ListPeopleResponseDataItemLastSourceCampaign>.value(ListPeopleResponseDataItemLastSourceCampaign(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        domain: Optional(Nullable<String>.value("domain")),
+                        occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                        platform: Optional(Nullable<String>.value("platform")),
+                        type: ListPeopleResponseDataItemLastSourceType.adClick,
+                        utmSource: Optional(Nullable<String>.value("utm_source"))
+                    ))),
+                    location: Optional(ListPeopleResponseDataItemLocation(
+                        city: Optional(Nullable<String>.value("city")),
+                        continent: Optional(Nullable<String>.value("continent")),
+                        country: Optional(Nullable<String>.value("country"))
+                    )),
+                    ltv: Optional(1.1),
+                    member: Optional(Nullable<ListPeopleResponseDataItemMember>.value(ListPeopleResponseDataItemMember(
+                        id: "id",
+                        joinedAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                        status: Optional(Nullable<String>.value("status")),
+                        usdTotalSpend: Optional(1.1)
+                    ))),
+                    name: Optional(Nullable<String>.value("name")),
+                    phone: Optional(Nullable<String>.value("phone")),
+                    purchaseCount: 1,
+                    timezone: Optional(Nullable<String>.value("timezone")),
+                    user: Optional(Nullable<ListPeopleResponseDataItemUser>.value(ListPeopleResponseDataItemUser(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        profilePicUrl: Optional(Nullable<String>.value("profile_pic_url")),
+                        username: "username"
+                    )))
+                ),
+                ListPeopleResponseDataItem(
+                    accountId: "account_id",
+                    aov: Optional(1.1),
+                    device: Optional(ListPeopleResponseDataItemDevice(
+                        browser: Optional(Nullable<String>.value("browser")),
+                        device: Optional(Nullable<String>.value("device")),
+                        os: Optional(Nullable<String>.value("os"))
+                    )),
+                    email: Optional(Nullable<String>.value("email")),
+                    eventCount: 1,
+                    firstPurchaseAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                    firstSeenAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    firstSource: Optional(Nullable<ListPeopleResponseDataItemFirstSource>.value(ListPeopleResponseDataItemFirstSource(
+                        ad: Optional(Nullable<ListPeopleResponseDataItemFirstSourceAd>.value(ListPeopleResponseDataItemFirstSourceAd(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        adGroup: Optional(Nullable<ListPeopleResponseDataItemFirstSourceAdGroup>.value(ListPeopleResponseDataItemFirstSourceAdGroup(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        campaign: Optional(Nullable<ListPeopleResponseDataItemFirstSourceCampaign>.value(ListPeopleResponseDataItemFirstSourceCampaign(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        domain: Optional(Nullable<String>.value("domain")),
+                        occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                        platform: Optional(Nullable<String>.value("platform")),
+                        type: ListPeopleResponseDataItemFirstSourceType.adClick,
+                        utmSource: Optional(Nullable<String>.value("utm_source"))
+                    ))),
+                    id: "id",
+                    lastIp: Optional(Nullable<String>.value("last_ip")),
+                    lastPurchaseAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                    lastSeenAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastSource: Optional(Nullable<ListPeopleResponseDataItemLastSource>.value(ListPeopleResponseDataItemLastSource(
+                        ad: Optional(Nullable<ListPeopleResponseDataItemLastSourceAd>.value(ListPeopleResponseDataItemLastSourceAd(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        adGroup: Optional(Nullable<ListPeopleResponseDataItemLastSourceAdGroup>.value(ListPeopleResponseDataItemLastSourceAdGroup(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        campaign: Optional(Nullable<ListPeopleResponseDataItemLastSourceCampaign>.value(ListPeopleResponseDataItemLastSourceCampaign(
+                            id: "id",
+                            name: Optional(.null),
+                            thumbnailUrl: Optional(.null)
+                        ))),
+                        domain: Optional(Nullable<String>.value("domain")),
+                        occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                        platform: Optional(Nullable<String>.value("platform")),
+                        type: ListPeopleResponseDataItemLastSourceType.adClick,
+                        utmSource: Optional(Nullable<String>.value("utm_source"))
+                    ))),
+                    location: Optional(ListPeopleResponseDataItemLocation(
+                        city: Optional(Nullable<String>.value("city")),
+                        continent: Optional(Nullable<String>.value("continent")),
+                        country: Optional(Nullable<String>.value("country"))
+                    )),
+                    ltv: Optional(1.1),
+                    member: Optional(Nullable<ListPeopleResponseDataItemMember>.value(ListPeopleResponseDataItemMember(
+                        id: "id",
+                        joinedAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                        status: Optional(Nullable<String>.value("status")),
+                        usdTotalSpend: Optional(1.1)
+                    ))),
+                    name: Optional(Nullable<String>.value("name")),
+                    phone: Optional(Nullable<String>.value("phone")),
+                    purchaseCount: 1,
+                    timezone: Optional(Nullable<String>.value("timezone")),
+                    user: Optional(Nullable<ListPeopleResponseDataItemUser>.value(ListPeopleResponseDataItemUser(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        profilePicUrl: Optional(Nullable<String>.value("profile_pic_url")),
+                        username: "username"
+                    )))
+                )
+            ],
+            pageInfo: ListPeopleResponsePageInfo(
+                endCursor: Optional(Nullable<String>.value("end_cursor")),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Optional(Nullable<String>.value("start_cursor"))
+            ),
+            totalCount: Optional(1)
+        )
+        let response = try await client.people.list(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func retrieve1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -603,6 +974,536 @@ import WhopSDK
             ))),
             userIds: Optional([
                 "Dana Whitfield"
+            ])
+        )
+        let response = try await client.people.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "account_id": "account_id",
+                  "aov": 1.1,
+                  "audience_ids": [
+                    "audience_ids",
+                    "audience_ids"
+                  ],
+                  "custom_event_names": [
+                    "custom_event_names",
+                    "custom_event_names"
+                  ],
+                  "device": {
+                    "browser": "browser",
+                    "device": "device",
+                    "os": "os"
+                  },
+                  "email": "email",
+                  "emails": [
+                    "emails",
+                    "emails"
+                  ],
+                  "event_count": 1,
+                  "event_names": [
+                    "event_names",
+                    "event_names"
+                  ],
+                  "first_purchase_at": "2024-01-15T09:30:00Z",
+                  "first_seen_at": "2024-01-15T09:30:00Z",
+                  "first_source": {
+                    "ad": {
+                      "id": "id",
+                      "name": "name",
+                      "thumbnail_url": "thumbnail_url"
+                    },
+                    "ad_group": {
+                      "id": "id",
+                      "name": "name",
+                      "thumbnail_url": "thumbnail_url"
+                    },
+                    "campaign": {
+                      "id": "id",
+                      "name": "name",
+                      "thumbnail_url": "thumbnail_url"
+                    },
+                    "domain": "domain",
+                    "occurred_at": "2024-01-15T09:30:00Z",
+                    "platform": "platform",
+                    "type": "ad_click",
+                    "utm_source": "utm_source"
+                  },
+                  "id": "id",
+                  "last_ip": "last_ip",
+                  "last_purchase_at": "2024-01-15T09:30:00Z",
+                  "last_seen_at": "2024-01-15T09:30:00Z",
+                  "last_source": {
+                    "ad": {
+                      "id": "id",
+                      "name": "name",
+                      "thumbnail_url": "thumbnail_url"
+                    },
+                    "ad_group": {
+                      "id": "id",
+                      "name": "name",
+                      "thumbnail_url": "thumbnail_url"
+                    },
+                    "campaign": {
+                      "id": "id",
+                      "name": "name",
+                      "thumbnail_url": "thumbnail_url"
+                    },
+                    "domain": "domain",
+                    "occurred_at": "2024-01-15T09:30:00Z",
+                    "platform": "platform",
+                    "type": "ad_click",
+                    "utm_source": "utm_source"
+                  },
+                  "location": {
+                    "city": "city",
+                    "continent": "continent",
+                    "country": "country"
+                  },
+                  "ltv": 1.1,
+                  "member": {
+                    "id": "id",
+                    "joined_at": "2024-01-15T09:30:00Z",
+                    "status": "status",
+                    "usd_total_spend": 1.1
+                  },
+                  "name": "name",
+                  "names": [
+                    "names",
+                    "names"
+                  ],
+                  "phone": "phone",
+                  "phones": [
+                    "phones",
+                    "phones"
+                  ],
+                  "purchase_count": 1,
+                  "purchases": [
+                    {
+                      "event_id": "event_id",
+                      "occurred_at": "2024-01-15T09:30:00Z",
+                      "usd_value": 1.1
+                    },
+                    {
+                      "event_id": "event_id",
+                      "occurred_at": "2024-01-15T09:30:00Z",
+                      "usd_value": 1.1
+                    }
+                  ],
+                  "roles": [
+                    "roles",
+                    "roles"
+                  ],
+                  "sources": [
+                    {
+                      "ad": {
+                        "id": "id",
+                        "name": "name",
+                        "thumbnail_url": "thumbnail_url"
+                      },
+                      "ad_group": {
+                        "id": "id",
+                        "name": "name",
+                        "thumbnail_url": "thumbnail_url"
+                      },
+                      "campaign": {
+                        "id": "id",
+                        "name": "name",
+                        "thumbnail_url": "thumbnail_url"
+                      },
+                      "domain": "domain",
+                      "occurred_at": "2024-01-15T09:30:00Z",
+                      "platform": "platform",
+                      "type": "ad_click",
+                      "utm_source": "utm_source"
+                    },
+                    {
+                      "ad": {
+                        "id": "id",
+                        "name": "name",
+                        "thumbnail_url": "thumbnail_url"
+                      },
+                      "ad_group": {
+                        "id": "id",
+                        "name": "name",
+                        "thumbnail_url": "thumbnail_url"
+                      },
+                      "campaign": {
+                        "id": "id",
+                        "name": "name",
+                        "thumbnail_url": "thumbnail_url"
+                      },
+                      "domain": "domain",
+                      "occurred_at": "2024-01-15T09:30:00Z",
+                      "platform": "platform",
+                      "type": "ad_click",
+                      "utm_source": "utm_source"
+                    }
+                  ],
+                  "timezone": "timezone",
+                  "usage": {
+                    "browser": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "city": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "country": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "device": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "ip": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "os": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "referrer": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ],
+                    "timezone": [
+                      {
+                        "events": 1,
+                        "value": "value"
+                      },
+                      {
+                        "events": 1,
+                        "value": "value"
+                      }
+                    ]
+                  },
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "profile_pic_url": "profile_pic_url",
+                    "username": "username"
+                  },
+                  "user_ids": [
+                    "user_ids",
+                    "user_ids"
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = RetrievePeopleResponse(
+            accountId: "account_id",
+            aov: Optional(1.1),
+            audienceIds: Optional([
+                "audience_ids",
+                "audience_ids"
+            ]),
+            customEventNames: Optional([
+                "custom_event_names",
+                "custom_event_names"
+            ]),
+            device: Optional(RetrievePeopleResponseDevice(
+                browser: Optional(Nullable<String>.value("browser")),
+                device: Optional(Nullable<String>.value("device")),
+                os: Optional(Nullable<String>.value("os"))
+            )),
+            email: Optional(Nullable<String>.value("email")),
+            emails: Optional([
+                "emails",
+                "emails"
+            ]),
+            eventCount: 1,
+            eventNames: Optional([
+                "event_names",
+                "event_names"
+            ]),
+            firstPurchaseAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+            firstSeenAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            firstSource: Optional(Nullable<RetrievePeopleResponseFirstSource>.value(RetrievePeopleResponseFirstSource(
+                ad: Optional(Nullable<RetrievePeopleResponseFirstSourceAd>.value(RetrievePeopleResponseFirstSourceAd(
+                    id: "id",
+                    name: Optional(Nullable<String>.value("name")),
+                    thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                ))),
+                adGroup: Optional(Nullable<RetrievePeopleResponseFirstSourceAdGroup>.value(RetrievePeopleResponseFirstSourceAdGroup(
+                    id: "id",
+                    name: Optional(Nullable<String>.value("name")),
+                    thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                ))),
+                campaign: Optional(Nullable<RetrievePeopleResponseFirstSourceCampaign>.value(RetrievePeopleResponseFirstSourceCampaign(
+                    id: "id",
+                    name: Optional(Nullable<String>.value("name")),
+                    thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                ))),
+                domain: Optional(Nullable<String>.value("domain")),
+                occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                platform: Optional(Nullable<String>.value("platform")),
+                type: RetrievePeopleResponseFirstSourceType.adClick,
+                utmSource: Optional(Nullable<String>.value("utm_source"))
+            ))),
+            id: "id",
+            lastIp: Optional(Nullable<String>.value("last_ip")),
+            lastPurchaseAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+            lastSeenAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            lastSource: Optional(Nullable<RetrievePeopleResponseLastSource>.value(RetrievePeopleResponseLastSource(
+                ad: Optional(Nullable<RetrievePeopleResponseLastSourceAd>.value(RetrievePeopleResponseLastSourceAd(
+                    id: "id",
+                    name: Optional(Nullable<String>.value("name")),
+                    thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                ))),
+                adGroup: Optional(Nullable<RetrievePeopleResponseLastSourceAdGroup>.value(RetrievePeopleResponseLastSourceAdGroup(
+                    id: "id",
+                    name: Optional(Nullable<String>.value("name")),
+                    thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                ))),
+                campaign: Optional(Nullable<RetrievePeopleResponseLastSourceCampaign>.value(RetrievePeopleResponseLastSourceCampaign(
+                    id: "id",
+                    name: Optional(Nullable<String>.value("name")),
+                    thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                ))),
+                domain: Optional(Nullable<String>.value("domain")),
+                occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                platform: Optional(Nullable<String>.value("platform")),
+                type: RetrievePeopleResponseLastSourceType.adClick,
+                utmSource: Optional(Nullable<String>.value("utm_source"))
+            ))),
+            location: Optional(RetrievePeopleResponseLocation(
+                city: Optional(Nullable<String>.value("city")),
+                continent: Optional(Nullable<String>.value("continent")),
+                country: Optional(Nullable<String>.value("country"))
+            )),
+            ltv: Optional(1.1),
+            member: Optional(Nullable<RetrievePeopleResponseMember>.value(RetrievePeopleResponseMember(
+                id: "id",
+                joinedAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                status: Optional(Nullable<String>.value("status")),
+                usdTotalSpend: Optional(1.1)
+            ))),
+            name: Optional(Nullable<String>.value("name")),
+            names: Optional([
+                "names",
+                "names"
+            ]),
+            phone: Optional(Nullable<String>.value("phone")),
+            phones: Optional([
+                "phones",
+                "phones"
+            ]),
+            purchaseCount: 1,
+            purchases: Optional([
+                RetrievePeopleResponsePurchasesItem(
+                    eventId: "event_id",
+                    occurredAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    usdValue: 1.1
+                ),
+                RetrievePeopleResponsePurchasesItem(
+                    eventId: "event_id",
+                    occurredAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    usdValue: 1.1
+                )
+            ]),
+            roles: Optional([
+                "roles",
+                "roles"
+            ]),
+            sources: Optional([
+                RetrievePeopleResponseSourcesItem(
+                    ad: Optional(Nullable<RetrievePeopleResponseSourcesItemAd>.value(RetrievePeopleResponseSourcesItemAd(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                    ))),
+                    adGroup: Optional(Nullable<RetrievePeopleResponseSourcesItemAdGroup>.value(RetrievePeopleResponseSourcesItemAdGroup(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                    ))),
+                    campaign: Optional(Nullable<RetrievePeopleResponseSourcesItemCampaign>.value(RetrievePeopleResponseSourcesItemCampaign(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                    ))),
+                    domain: Optional(Nullable<String>.value("domain")),
+                    occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                    platform: Optional(Nullable<String>.value("platform")),
+                    type: RetrievePeopleResponseSourcesItemType.adClick,
+                    utmSource: Optional(Nullable<String>.value("utm_source"))
+                ),
+                RetrievePeopleResponseSourcesItem(
+                    ad: Optional(Nullable<RetrievePeopleResponseSourcesItemAd>.value(RetrievePeopleResponseSourcesItemAd(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                    ))),
+                    adGroup: Optional(Nullable<RetrievePeopleResponseSourcesItemAdGroup>.value(RetrievePeopleResponseSourcesItemAdGroup(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                    ))),
+                    campaign: Optional(Nullable<RetrievePeopleResponseSourcesItemCampaign>.value(RetrievePeopleResponseSourcesItemCampaign(
+                        id: "id",
+                        name: Optional(Nullable<String>.value("name")),
+                        thumbnailUrl: Optional(Nullable<String>.value("thumbnail_url"))
+                    ))),
+                    domain: Optional(Nullable<String>.value("domain")),
+                    occurredAt: Optional(Nullable<Date>.value(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))),
+                    platform: Optional(Nullable<String>.value("platform")),
+                    type: RetrievePeopleResponseSourcesItemType.adClick,
+                    utmSource: Optional(Nullable<String>.value("utm_source"))
+                )
+            ]),
+            timezone: Optional(Nullable<String>.value("timezone")),
+            usage: Optional(RetrievePeopleResponseUsage(
+                browser: Optional([
+                    RetrievePeopleResponseUsageBrowserItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageBrowserItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                city: Optional([
+                    RetrievePeopleResponseUsageCityItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageCityItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                country: Optional([
+                    RetrievePeopleResponseUsageCountryItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageCountryItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                device: Optional([
+                    RetrievePeopleResponseUsageDeviceItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageDeviceItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                ip: Optional([
+                    RetrievePeopleResponseUsageIpItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageIpItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                os: Optional([
+                    RetrievePeopleResponseUsageOsItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageOsItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                referrer: Optional([
+                    RetrievePeopleResponseUsageReferrerItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageReferrerItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ]),
+                timezone: Optional([
+                    RetrievePeopleResponseUsageTimezoneItem(
+                        events: 1,
+                        value: "value"
+                    ),
+                    RetrievePeopleResponseUsageTimezoneItem(
+                        events: 1,
+                        value: "value"
+                    )
+                ])
+            )),
+            user: Optional(Nullable<RetrievePeopleResponseUser>.value(RetrievePeopleResponseUser(
+                id: "id",
+                name: Optional(Nullable<String>.value("name")),
+                profilePicUrl: Optional(Nullable<String>.value("profile_pic_url")),
+                username: "username"
+            ))),
+            userIds: Optional([
+                "user_ids",
+                "user_ids"
             ])
         )
         let response = try await client.people.retrieve(

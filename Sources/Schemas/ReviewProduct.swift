@@ -1,6 +1,5 @@
 import Foundation
 
-/// The product that this review was written for.
 public struct ReviewProduct: Codable, Hashable, Sendable {
     /// The unique identifier for the product.
     public let id: String

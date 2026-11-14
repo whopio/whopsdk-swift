@@ -9,6 +9,23 @@ final class HTTPClient: Swift.Sendable {
     private static let maxRetryDelay: Foundation.TimeInterval = 60.0  // 60 seconds
     private static let jitterFactor: Swift.Double = 0.2  // 20% jitter
 
+    private static let apiVersionDateHeader = "Api-Version-Date"
+
+    /// The newest Api-Version-Date this SDK was generated against.
+    ///
+    /// Read off a generated enum rather than written down, so a regeneration carries it
+    /// forward on its own and it can never drift from the models in the same tree.
+    /// Server or key defaults can otherwise select a contract that differs from these models.
+    private static let generatedAgainstApiVersionDate: Swift.String? =
+        ApiKeyApiVersionDate.allCases.last?.rawValue
+
+    private static let platformHeaders: [Swift.String: Swift.String] = [
+        "User-Agent": "WhopSDK/\(sdkVersion) (Swift)",
+        "X-Fern-Language": "Swift",
+        "X-Fern-SDK-Name": "WhopSDK",
+        "X-Fern-SDK-Version": sdkVersion,
+    ]
+
     init(config: ClientConfig) {
         self.clientConfig = config
     }
@@ -21,7 +38,8 @@ final class HTTPClient: Swift.Sendable {
         headers requestHeaders: [Swift.String: Swift.String?] = [:],
         queryParams requestQueryParams: [Swift.String: QueryParameter?] = [:],
         body requestBody: Any? = nil,
-        requestOptions: RequestOptions? = nil
+        requestOptions: RequestOptions? = nil,
+        retriesDisabled: Swift.Bool = false
     ) async throws {
         _ = try await performRequest(
             method: method,
@@ -31,6 +49,7 @@ final class HTTPClient: Swift.Sendable {
             queryParams: requestQueryParams,
             body: requestBody,
             requestOptions: requestOptions,
+            retriesDisabled: retriesDisabled,
             responseType: Foundation.Data.self
         )
     }
@@ -44,6 +63,7 @@ final class HTTPClient: Swift.Sendable {
         queryParams requestQueryParams: [Swift.String: QueryParameter?] = [:],
         body requestBody: Any? = nil,
         requestOptions: RequestOptions? = nil,
+        retriesDisabled: Swift.Bool = false,
         responseType: T.Type
     ) async throws -> T {
         let requestBody: HTTP.RequestBody? = requestBody.map { body in
@@ -70,7 +90,8 @@ final class HTTPClient: Swift.Sendable {
 
         let (data, _) = try await executeRequestWithURLSession(
             request,
-            requestOptions: requestOptions
+            requestOptions: requestOptions,
+            retriesDisabled: retriesDisabled
         )
 
         if responseType == Foundation.Data.self {
@@ -106,7 +127,7 @@ final class HTTPClient: Swift.Sendable {
         requestOptions: RequestOptions? = nil
     ) async throws -> Networking.URLRequest {
         // Init with URL
-        let url = buildRequestURL(
+        let url = try buildRequestURL(
             path: path, requestQueryParams: requestQueryParams, requestOptions: requestOptions
         )
         var request = Networking.URLRequest(url: url)
@@ -131,12 +152,11 @@ final class HTTPClient: Swift.Sendable {
         }
 
         // Set body
-        if let requestBody = requestBody {
-            request.httpBody = buildRequestBody(
-                requestBody: requestBody,
-                requestOptions: requestOptions
-            )
-        }
+        request.httpBody = try buildRequestBody(
+            method: method,
+            requestBody: requestBody,
+            requestOptions: requestOptions
+        )
 
         return request
     }
@@ -145,7 +165,7 @@ final class HTTPClient: Swift.Sendable {
         path: Swift.String,
         requestQueryParams: [Swift.String: QueryParameter?],
         requestOptions: RequestOptions? = nil
-    ) -> URL {
+    ) throws -> URL {
         let endpointURL = "\(clientConfig.baseURL)\(path)"
         guard var components = Foundation.URLComponents(string: endpointURL) else {
             preconditionFailure(
@@ -153,18 +173,18 @@ final class HTTPClient: Swift.Sendable {
             )
         }
         if !requestQueryParams.isEmpty {
-            let baseItems: [Foundation.URLQueryItem] = requestQueryParams.compactMap { key, value in
-                guard let unwrapped = value else { return nil }
-                let stringValue = unwrapped.toString()
-                guard !stringValue.isEmpty else { return nil }
-                return Foundation.URLQueryItem(name: key, value: stringValue)
+            let baseItems: [Foundation.URLQueryItem] = try requestQueryParams.sorted {
+                $0.key < $1.key
+            }.flatMap { key, value -> [Foundation.URLQueryItem] in
+                guard let unwrapped = value else { return [] }
+                return try unwrapped.queryItems(name: key)
             }
             if !baseItems.isEmpty {
                 components.queryItems = baseItems
             }
         }
         if let additionalQueryParams = requestOptions?.additionalQueryParameters {
-            let extraItems = additionalQueryParams.compactMap { key, value in
+            let extraItems = additionalQueryParams.sorted { $0.key < $1.key }.compactMap { key, value in
                 value.isEmpty ? nil : Foundation.URLQueryItem(name: key, value: value)
             }
             if components.queryItems == nil {
@@ -187,29 +207,35 @@ final class HTTPClient: Swift.Sendable {
         requestHeaders: [Swift.String: Swift.String?],
         requestOptions: RequestOptions? = nil
     ) async throws -> [Swift.String: Swift.String] {
-        var headers = clientConfig.headers ?? [:]
+        var headers = Swift.Dictionary(uniqueKeysWithValues: Self.platformHeaders.map { ($0.key.lowercased(), $0.value) })
+        if let generatedAgainst = Self.generatedAgainstApiVersionDate {
+            headers[Self.apiVersionDateHeader.lowercased()] = generatedAgainst
+        }
+        for (key, value) in clientConfig.headers ?? [:] {
+            headers[key.lowercased()] = value
+        }
 
-        headers["Content-Type"] = buildContentTypeHeader(
+        headers["content-type"] = buildContentTypeHeader(
             requestBody: requestBody,
             requestContentType: requestContentType
         )
 
         if let headerAuth = clientConfig.headerAuth {
-            headers[headerAuth.header] = requestOptions?.apiKey ?? headerAuth.key
+            headers[headerAuth.header.lowercased()] = requestOptions?.apiKey ?? headerAuth.key
         }
         if let basicAuthToken = clientConfig.basicAuth?.token {
-            headers["Authorization"] = "Basic \(basicAuthToken)"
+            headers["authorization"] = "Basic \(basicAuthToken)"
         }
         if let bearerAuthToken = try await getBearerAuthToken(requestOptions) {
-            headers["Authorization"] = "Bearer \(bearerAuthToken)"
+            headers["authorization"] = "Bearer \(bearerAuthToken)"
         }
         for (key, value) in requestHeaders {
             if let value = value {
-                headers[key] = value
+                headers[key.lowercased()] = value
             }
         }
         for (key, value) in requestOptions?.additionalHeaders ?? [:] {
-            headers[key] = value
+            headers[key.lowercased()] = value
         }
 
         return headers
@@ -238,36 +264,111 @@ final class HTTPClient: Swift.Sendable {
             return tokenString
         }
         if let bearerAuth = clientConfig.bearerAuth {
-            return try await bearerAuth.token.retrieve()
+            do {
+                return try await bearerAuth.token.retrieve()
+            } catch {
+                if Self.isCancellation(error) {
+                    throw WhopSDKError.networkError(error)
+                }
+                throw error
+            }
         }
         return nil
     }
 
     private func buildRequestBody(
-        requestBody: HTTP.RequestBody,
+        method: HTTP.Method,
+        requestBody: HTTP.RequestBody?,
         requestOptions: RequestOptions? = nil
-    ) -> Foundation.Data {
+    ) throws -> Foundation.Data? {
+        let additionalBodyParameters = mergedAdditionalBodyParameters(requestOptions: requestOptions)
+        guard let requestBody else {
+            // URLSession rejects GET/HEAD requests that carry a body, so additional body parameters are not applied.
+            if additionalBodyParameters.isEmpty || method == .get || method == .head {
+                return nil
+            }
+            return try encodeAdditionalBodyParameters(.object(additionalBodyParameters))
+        }
         switch requestBody {
         case .jsonEncodable(let encodableBody):
+            let encodedBody: Foundation.Data
             do {
-                return try jsonEncoder.encode(encodableBody)
+                encodedBody = try jsonEncoder.encode(encodableBody)
             } catch {
-                preconditionFailure(
-                    "Failed to encode request body: \(error) - this indicates an unexpected error in the SDK."
-                )
+                throw WhopSDKError.encodingError(error)
             }
+            if additionalBodyParameters.isEmpty {
+                return encodedBody
+            }
+            return try mergeAdditionalBodyParameters(
+                additionalBodyParameters,
+                into: encodedBody
+            )
         case .data(let dataBody):
+            // Raw data bodies are sent as-is; additional body parameters are not applied.
             return dataBody
         case .multipartFormData(let multipartData):
+            // Multipart form data bodies are sent as-is; additional body parameters are not applied.
             return multipartData.data()
+        }
+    }
+
+    /// Combines `additionalBodyParameters` (sent as JSON strings) and `additionalBodyProperties`;
+    /// `additionalBodyProperties` wins when both set the same key.
+    private func mergedAdditionalBodyParameters(requestOptions: RequestOptions?) -> [Swift.String: JSONValue] {
+        let stringParameters = (requestOptions?.additionalBodyParameters ?? [:]).mapValues(JSONValue.string)
+        return stringParameters.merging(requestOptions?.additionalBodyProperties ?? [:]) { _, property in property }
+    }
+
+    /// Merges additional body parameters into an encoded JSON body. Additional parameters take precedence
+    /// over existing keys. Bodies that are `null` are replaced with the additional parameters, and bodies that
+    /// are not JSON objects (e.g. arrays or primitives) are returned unchanged.
+    private func mergeAdditionalBodyParameters(
+        _ additionalBodyParameters: [Swift.String: JSONValue],
+        into encodedBody: Foundation.Data
+    ) throws -> Foundation.Data {
+        let decodedBody = try? Foundation.JSONSerialization.jsonObject(
+            with: encodedBody,
+            options: [.fragmentsAllowed]
+        )
+        if decodedBody is Foundation.NSNull {
+            return try encodeAdditionalBodyParameters(.object(additionalBodyParameters))
+        }
+        guard var bodyObject = decodedBody as? [Swift.String: Any] else {
+            return encodedBody
+        }
+        for (key, value) in additionalBodyParameters {
+            bodyObject[key] = try Foundation.JSONSerialization.jsonObject(
+                with: encodeAdditionalBodyParameters(value),
+                options: [.fragmentsAllowed]
+            )
+        }
+        do {
+            return try Foundation.JSONSerialization.data(
+                withJSONObject: bodyObject,
+                options: [.sortedKeys, .withoutEscapingSlashes]
+            )
+        } catch {
+            throw WhopSDKError.encodingError(error)
+        }
+    }
+
+    private func encodeAdditionalBodyParameters(_ value: JSONValue) throws -> Foundation.Data {
+        do {
+            return try jsonEncoder.encode(value)
+        } catch {
+            throw WhopSDKError.encodingError(error)
         }
     }
 
     private func executeRequestWithURLSession(
         _ request: Networking.URLRequest,
-        requestOptions: RequestOptions? = nil
+        requestOptions: RequestOptions? = nil,
+        retriesDisabled: Swift.Bool = false
     ) async throws -> (Foundation.Data, Swift.String?) {
-        let maxRetries = requestOptions?.maxRetries ?? clientConfig.maxRetries
+        // Endpoints declaring `retries: { disabled: true }` never retry, taking precedence over both
+        // the client-level and the per-request retry configuration.
+        let maxRetries = retriesDisabled ? 0 : (requestOptions?.maxRetries ?? clientConfig.maxRetries)
         var lastResponse: (Foundation.Data, Networking.HTTPURLResponse)?
 
         for attempt in 0...maxRetries {
@@ -288,8 +389,7 @@ final class HTTPClient: Swift.Sendable {
 
                 if attempt < maxRetries && shouldRetry(statusCode: httpResponse.statusCode) {
                     let delay = getRetryDelay(response: httpResponse, retryAttempt: attempt)
-                    try await _Concurrency.Task.sleep(
-                        nanoseconds: Swift.UInt64(delay * 1_000_000_000))
+                    try await sleepBetweenRetries(seconds: delay)
                     continue
                 }
 
@@ -298,6 +398,15 @@ final class HTTPClient: Swift.Sendable {
                     data: data
                 )
             } catch {
+                // Cancellation is the caller's own decision, so it is never retried and
+                // always leaves through WhopSDKError. Without this it escapes as
+                // URLError.cancelled wrapped in .networkError on the last attempt and as a
+                // bare CancellationError out of the retry sleep on every earlier one, so
+                // what a caller catches depends on maxRetries.
+                if Self.isCancellation(error) {
+                    throw WhopSDKError.networkError(error)
+                }
+
                 let clientError: WhopSDKError?
 
                 // Treat timeouts as a first-class, non-retryable error
@@ -318,9 +427,7 @@ final class HTTPClient: Swift.Sendable {
                 }
                 let delay = Self.initialRetryDelay * pow(2.0, Swift.Double(attempt))
                 let cappedDelay = min(delay, Self.maxRetryDelay)
-                let jitteredDelay = addSymmetricJitter(to: cappedDelay)
-                try await _Concurrency.Task.sleep(
-                    nanoseconds: Swift.UInt64(jitteredDelay * 1_000_000_000))
+                try await sleepBetweenRetries(seconds: addSymmetricJitter(to: cappedDelay))
             }
         }
 
@@ -328,6 +435,24 @@ final class HTTPClient: Swift.Sendable {
             throw makeErrorFromResponse(statusCode: httpResponse.statusCode, data: data)
         }
         throw WhopSDKError.invalidResponse
+    }
+
+    private static func isCancellation(_ error: Swift.Error) -> Swift.Bool {
+        if error is _Concurrency.CancellationError {
+            return true
+        }
+        if let urlError = error as? Foundation.URLError, urlError.code == .cancelled {
+            return true
+        }
+        return false
+    }
+
+    private func sleepBetweenRetries(seconds: Foundation.TimeInterval) async throws {
+        do {
+            try await _Concurrency.Task.sleep(nanoseconds: Swift.UInt64(seconds * 1_000_000_000))
+        } catch {
+            throw WhopSDKError.networkError(error)
+        }
     }
 
     private func shouldRetry(statusCode: Swift.Int) -> Swift.Bool {

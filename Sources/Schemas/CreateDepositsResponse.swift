@@ -1,14 +1,12 @@
 import Foundation
 
 public struct CreateDepositsResponse: Codable, Hashable, Sendable {
-    /// Account ID of the destination owner. Null for raw wallet address destinations.
+    /// Account ID of the destination owner.
     public let accountId: Nullable<String>
     /// Requested deposit amount.
     public let amount: String?
     /// URL of the hosted deposit page. Only present for business destinations.
     public let hostedUrl: Nullable<String>
-    /// Metadata from the request.
-    public let metadata: [String: JSONValue]
     /// Available deposit methods for destination.
     public let methods: CreateDepositsResponseMethods
     public let object: CreateDepositsResponseObject
@@ -19,7 +17,6 @@ public struct CreateDepositsResponse: Codable, Hashable, Sendable {
         accountId: Nullable<String>,
         amount: String? = nil,
         hostedUrl: Nullable<String>,
-        metadata: [String: JSONValue],
         methods: CreateDepositsResponseMethods,
         object: CreateDepositsResponseObject,
         additionalProperties: [String: JSONValue] = .init()
@@ -27,7 +24,6 @@ public struct CreateDepositsResponse: Codable, Hashable, Sendable {
         self.accountId = accountId
         self.amount = amount
         self.hostedUrl = hostedUrl
-        self.metadata = metadata
         self.methods = methods
         self.object = object
         self.additionalProperties = additionalProperties
@@ -38,7 +34,6 @@ public struct CreateDepositsResponse: Codable, Hashable, Sendable {
         self.accountId = try container.decode(Nullable<String>.self, forKey: .accountId)
         self.amount = try container.decodeIfPresent(String.self, forKey: .amount)
         self.hostedUrl = try container.decode(Nullable<String>.self, forKey: .hostedUrl)
-        self.metadata = try container.decode([String: JSONValue].self, forKey: .metadata)
         self.methods = try container.decode(CreateDepositsResponseMethods.self, forKey: .methods)
         self.object = try container.decode(CreateDepositsResponseObject.self, forKey: .object)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -50,7 +45,6 @@ public struct CreateDepositsResponse: Codable, Hashable, Sendable {
         try container.encode(self.accountId, forKey: .accountId)
         try container.encodeIfPresent(self.amount, forKey: .amount)
         try container.encode(self.hostedUrl, forKey: .hostedUrl)
-        try container.encode(self.metadata, forKey: .metadata)
         try container.encode(self.methods, forKey: .methods)
         try container.encode(self.object, forKey: .object)
     }
@@ -60,7 +54,6 @@ public struct CreateDepositsResponse: Codable, Hashable, Sendable {
         case accountId = "account_id"
         case amount
         case hostedUrl = "hosted_url"
-        case metadata
         case methods
         case object
     }

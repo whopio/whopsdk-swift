@@ -1,6 +1,5 @@
 import Foundation
 
-/// The user account of the person who wrote this review.
 public struct ReviewUser: Codable, Hashable, Sendable {
     /// The unique identifier for the user.
     public let id: String

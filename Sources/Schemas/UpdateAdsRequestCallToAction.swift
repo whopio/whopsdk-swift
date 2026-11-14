@@ -6,6 +6,7 @@ public enum UpdateAdsRequestCallToAction: String, Codable, Hashable, CaseIterabl
     case bookNow = "book_now"
     case callNow = "call_now"
     case contactUs = "contact_us"
+    case donateNow = "donate_now"
     case download
     case getDirections = "get_directions"
     case getOffer = "get_offer"
@@ -19,9 +20,11 @@ public enum UpdateAdsRequestCallToAction: String, Codable, Hashable, CaseIterabl
     case requestTime = "request_time"
     case seeDetails = "see_details"
     case seeMenu = "see_menu"
+    case seeMore = "see_more"
     case sendUpdates = "send_updates"
     case shopNow = "shop_now"
     case signUp = "sign_up"
     case subscribe
+    case visitSite = "visit_site"
     case watchMore = "watch_more"
 }

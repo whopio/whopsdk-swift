@@ -1,17 +1,14 @@
 import Foundation
 
-/// The connection type for Review.
 public struct ListReviewsResponse: Codable, Hashable, Sendable {
-    /// A list of nodes.
     public let data: [ReviewListItem]
-    /// Information to aid in pagination.
-    public let pageInfo: PageInfo
+    public let pageInfo: ListReviewsResponsePageInfo
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         data: [ReviewListItem],
-        pageInfo: PageInfo,
+        pageInfo: ListReviewsResponsePageInfo,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.data = data
@@ -22,7 +19,7 @@ public struct ListReviewsResponse: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.data = try container.decode([ReviewListItem].self, forKey: .data)
-        self.pageInfo = try container.decode(PageInfo.self, forKey: .pageInfo)
+        self.pageInfo = try container.decode(ListReviewsResponsePageInfo.self, forKey: .pageInfo)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

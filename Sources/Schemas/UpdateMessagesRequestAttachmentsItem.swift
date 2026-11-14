@@ -1,8 +1,7 @@
 import Foundation
 
-/// Input for an attachment
 public struct UpdateMessagesRequestAttachmentsItem: Codable, Hashable, Sendable {
-    /// The ID of an existing file object.
+    /// Uploaded file ID.
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

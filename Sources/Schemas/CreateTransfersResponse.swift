@@ -1,11 +1,9 @@
 import Foundation
 
 public enum CreateTransfersResponse: Codable, Hashable, Sendable {
-    /// Returned for a claim_link: a shareable URL anyone can open to claim the funds.
+    /// A shareable link anyone holding its code can open to claim the funds.
     case claimLink(CreateTransfersResponseClaimLink)
-    /// Returned for a wallet_send: an onchain USDT send to a recipient.
-    case send(CreateTransfersResponseSend)
-    /// A transfer of credit between two ledger accounts.
+    /// A transfer between Whop accounts or users.
     case transfer(CreateTransfersResponseTransfer)
 
     public init(from decoder: Decoder) throws {
@@ -14,8 +12,6 @@ public enum CreateTransfersResponse: Codable, Hashable, Sendable {
         switch discriminant {
         case "claim_link":
             self = .claimLink(try CreateTransfersResponseClaimLink(from: decoder))
-        case "send":
-            self = .send(try CreateTransfersResponseSend(from: decoder))
         case "transfer":
             self = .transfer(try CreateTransfersResponseTransfer(from: decoder))
         default:
@@ -33,9 +29,6 @@ public enum CreateTransfersResponse: Codable, Hashable, Sendable {
         switch self {
         case .claimLink(let data):
             try container.encode("claim_link", forKey: .object)
-            try data.encode(to: encoder)
-        case .send(let data):
-            try container.encode("send", forKey: .object)
             try data.encode(to: encoder)
         case .transfer(let data):
             try container.encode("transfer", forKey: .object)

@@ -2,6 +2,10 @@ import Foundation
 
 /// A discussion forum where members can create posts, comment, and react, belonging to an experience.
 public struct Forum: Codable, Hashable, Sendable {
+    /// A list of words that are automatically filtered from posts in this forum.
+    public let bannedWords: [String]
+    /// The banner image displayed at the top of the forum page. Null if no banner has been uploaded.
+    public let bannerImage: Nullable<ForumBannerImage>
     /// The email notification setting that controls which posts trigger email alerts. One of: all_admin_posts, only_weekly_summary, none.
     public let emailNotificationPreference: ForumEmailNotificationPreferences
     /// The parent experience that this forum belongs to.
@@ -16,6 +20,8 @@ public struct Forum: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        bannedWords: [String],
+        bannerImage: Nullable<ForumBannerImage>,
         emailNotificationPreference: ForumEmailNotificationPreferences,
         experience: ForumExperience,
         id: String,
@@ -23,6 +29,8 @@ public struct Forum: Codable, Hashable, Sendable {
         whoCanPost: ForumWhoCanPostTypes,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.bannedWords = bannedWords
+        self.bannerImage = bannerImage
         self.emailNotificationPreference = emailNotificationPreference
         self.experience = experience
         self.id = id
@@ -33,6 +41,8 @@ public struct Forum: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.bannedWords = try container.decode([String].self, forKey: .bannedWords)
+        self.bannerImage = try container.decode(Nullable<ForumBannerImage>.self, forKey: .bannerImage)
         self.emailNotificationPreference = try container.decode(ForumEmailNotificationPreferences.self, forKey: .emailNotificationPreference)
         self.experience = try container.decode(ForumExperience.self, forKey: .experience)
         self.id = try container.decode(String.self, forKey: .id)
@@ -44,6 +54,8 @@ public struct Forum: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.bannedWords, forKey: .bannedWords)
+        try container.encode(self.bannerImage, forKey: .bannerImage)
         try container.encode(self.emailNotificationPreference, forKey: .emailNotificationPreference)
         try container.encode(self.experience, forKey: .experience)
         try container.encode(self.id, forKey: .id)
@@ -53,6 +65,8 @@ public struct Forum: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case bannedWords = "banned_words"
+        case bannerImage = "banner_image"
         case emailNotificationPreference = "email_notification_preference"
         case experience
         case id

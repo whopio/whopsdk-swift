@@ -4,6 +4,7 @@ import Foundation
 public enum CreateDepositsResponseMethodsCryptoItemName: String, Codable, Hashable, CaseIterable, Sendable {
     case ethereum = "Ethereum"
     case solana = "Solana"
+    case bitcoin = "Bitcoin"
     case base = "Base"
     case bnbSmartChain = "BNB Smart Chain"
     case hyperliquid = "Hyperliquid"

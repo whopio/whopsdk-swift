@@ -1,6 +1,6 @@
 import Foundation
 
-/// The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%).
+/// The commission rate this referral pays for each income source, as a fraction (0.3 = 30%). A solo partner earns it directly; the team of a referring partner business splits it by their shares.
 public struct RetrieveBusinessesResponsePayoutPercentages: Codable, Hashable, Sendable {
     /// Share of the referred business's Whop Ads spend.
     public let adSpend: Nullable<Float>
@@ -10,6 +10,8 @@ public struct RetrieveBusinessesResponsePayoutPercentages: Codable, Hashable, Se
     public let sales: Float
     /// Share of Whop's profit from platform balance transfers.
     public let transfer: Nullable<Float>
+    /// Share of Whop's profit from withdrawals.
+    public let withdrawal: Nullable<Float>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -18,12 +20,14 @@ public struct RetrieveBusinessesResponsePayoutPercentages: Codable, Hashable, Se
         cardInterchange: Nullable<Float>,
         sales: Float,
         transfer: Nullable<Float>,
+        withdrawal: Nullable<Float>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.adSpend = adSpend
         self.cardInterchange = cardInterchange
         self.sales = sales
         self.transfer = transfer
+        self.withdrawal = withdrawal
         self.additionalProperties = additionalProperties
     }
 
@@ -33,6 +37,7 @@ public struct RetrieveBusinessesResponsePayoutPercentages: Codable, Hashable, Se
         self.cardInterchange = try container.decode(Nullable<Float>.self, forKey: .cardInterchange)
         self.sales = try container.decode(Float.self, forKey: .sales)
         self.transfer = try container.decode(Nullable<Float>.self, forKey: .transfer)
+        self.withdrawal = try container.decode(Nullable<Float>.self, forKey: .withdrawal)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -43,6 +48,7 @@ public struct RetrieveBusinessesResponsePayoutPercentages: Codable, Hashable, Se
         try container.encode(self.cardInterchange, forKey: .cardInterchange)
         try container.encode(self.sales, forKey: .sales)
         try container.encode(self.transfer, forKey: .transfer)
+        try container.encode(self.withdrawal, forKey: .withdrawal)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -51,5 +57,6 @@ public struct RetrieveBusinessesResponsePayoutPercentages: Codable, Hashable, Se
         case cardInterchange = "card_interchange"
         case sales
         case transfer
+        case withdrawal
     }
 }

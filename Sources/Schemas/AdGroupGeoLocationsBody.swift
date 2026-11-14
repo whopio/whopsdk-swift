@@ -1,7 +1,7 @@
 import Foundation
 
 public struct AdGroupGeoLocationsBody: Codable, Hashable, Sendable {
-    /// Cities, keyed by the ad platform's location taxonomy.
+    /// Cities, keyed by the location taxonomy.
     public let cities: [AdGroupGeoLocationsBodyCitiesItem]?
     /// Countries, as ISO 3166-1 alpha-2 codes such as `US`.
     public let countries: [String]?
@@ -11,7 +11,7 @@ public struct AdGroupGeoLocationsBody: Codable, Hashable, Sendable {
     public let customLocations: [AdGroupGeoLocationsBodyCustomLocationsItem]?
     /// US states and DC, as ISO 3166-2 codes such as `US-CA`. US territories (`PR`, `GU`, `VI`, `AS`, `MP`) and everywhere outside the US are targeted through `countries`.
     public let regions: [String]?
-    /// ZIP and postal codes, as bare strings or objects with a key.
+    /// ZIP and postal codes, keyed as `COUNTRY:CODE`, such as `US:78756`. Include the country: a bare code is ambiguous, because the same one exists in several countries.
     public let zips: [AdGroupGeoLocationsBodyZipsItem]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

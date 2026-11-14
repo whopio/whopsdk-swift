@@ -1,19 +1,19 @@
 import Foundation
 
 public struct ListSupportedMethodsResponseDataItemQuotesItem: Codable, Hashable, Sendable {
-    /// The withdrawal amount the quote is for.
+    /// The payout amount the quote is for.
     public let amount: Float
     /// Currency of the quoted amount.
     public let currency: String
     /// Currency the funds are delivered in.
     public let destinationCurrency: String
-    /// Exchange rate from the withdrawal currency to the destination currency.
+    /// Exchange rate from the payout currency to the destination currency.
     public let exchangeRate: Float
     /// Instant-delivery estimate. Null if unsupported, unavailable for the account, or the amount does not cover the fee.
     public let instant: Nullable<ListSupportedMethodsResponseDataItemQuotesItemInstant>
-    /// Maximum withdrawal amount, in the withdrawal currency.
+    /// Maximum payout amount, in the payout currency.
     public let maxLimit: Nullable<Float>
-    /// Minimum withdrawal amount, in the withdrawal currency.
+    /// Minimum payout amount, in the payout currency.
     public let minLimit: Float
     /// Standard-delivery estimate. Null if unsupported or the amount does not cover the fee.
     public let standard: Nullable<ListSupportedMethodsResponseDataItemQuotesItemStandard>

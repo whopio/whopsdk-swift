@@ -68,7 +68,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
     public let refundedAmount: Nullable<Double>
     /// When the payment was refunded (if applicable).
     public let refundedAt: Nullable<Date>
-    /// True when the payment status is `open` and its membership is in one of the retry-eligible states (`active`, `trialing`, `completed`, or `past_due`), or when it is a failed initial billing-engine payment on a `drafted` membership with an unlimited-stock plan; otherwise false. Used to decide if Whop can attempt the charge again.
+    /// True when the payment is `open`, its processor can be charged again, its membership is `active`, `trialing`, or `past_due` (or it is a failed initial payment on a `drafted` membership), it is not paid through an invoice link, and its one manual retry is not used up. Used to decide if the payment can be retried by hand. A retry can still be refused when the company cannot accept payments.
     public let retryable: Bool
     /// The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
     public let settlementCurrency: Currencies
@@ -76,6 +76,8 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
     public let shipment: Nullable<PaymentListItemShipment>
     /// The shipping address provided by the customer for physical goods. Null if no shipping address was collected.
     public let shippingAddress: Nullable<PaymentListItemShippingAddress>
+    /// The stock keeping unit of the variant this payment charged for (the first item, on a cart), as set by the seller. Accounts with billing-reason SKU suffixes enabled receive it stamped with why the charge happened: `-S` for a first subscription charge, `-R` for a renewal, `-C` for a one-time purchase, `-U` when the payment's own metadata carries `upsell: true`, `-F` when nothing was charged. Other billing reasons carry the bare SKU. Null when the variant has no SKU.
+    public let sku: Nullable<String>
     /// The current lifecycle state of this payment (e.g., 'draft', 'open', 'paid', 'void').
     public let status: Nullable<ReceiptStatus>
     /// The friendly status of the payment.
@@ -94,7 +96,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
     public let usdTotal: Nullable<Double>
     /// The user that made this payment.
     public let user: Nullable<PaymentListItemUser>
-    /// True when the payment is tied to a membership in `past_due`, the payment status is `open`, and the processor allows voiding payments; otherwise false.
+    /// True when the payment can be voided or canceled. The request is rejected if the payment is no longer eligible.
     public let voidable: Bool
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -137,6 +139,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
         settlementCurrency: Currencies,
         shipment: Nullable<PaymentListItemShipment>,
         shippingAddress: Nullable<PaymentListItemShippingAddress>,
+        sku: Nullable<String>,
         status: Nullable<ReceiptStatus>,
         substatus: FriendlyReceiptStatus,
         subtotal: Nullable<Double>,
@@ -186,6 +189,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
         self.settlementCurrency = settlementCurrency
         self.shipment = shipment
         self.shippingAddress = shippingAddress
+        self.sku = sku
         self.status = status
         self.substatus = substatus
         self.subtotal = subtotal
@@ -238,6 +242,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
         self.settlementCurrency = try container.decode(Currencies.self, forKey: .settlementCurrency)
         self.shipment = try container.decode(Nullable<PaymentListItemShipment>.self, forKey: .shipment)
         self.shippingAddress = try container.decode(Nullable<PaymentListItemShippingAddress>.self, forKey: .shippingAddress)
+        self.sku = try container.decode(Nullable<String>.self, forKey: .sku)
         self.status = try container.decode(Nullable<ReceiptStatus>.self, forKey: .status)
         self.substatus = try container.decode(FriendlyReceiptStatus.self, forKey: .substatus)
         self.subtotal = try container.decode(Nullable<Double>.self, forKey: .subtotal)
@@ -291,6 +296,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
         try container.encode(self.settlementCurrency, forKey: .settlementCurrency)
         try container.encode(self.shipment, forKey: .shipment)
         try container.encode(self.shippingAddress, forKey: .shippingAddress)
+        try container.encode(self.sku, forKey: .sku)
         try container.encode(self.status, forKey: .status)
         try container.encode(self.substatus, forKey: .substatus)
         try container.encode(self.subtotal, forKey: .subtotal)
@@ -342,6 +348,7 @@ public struct PaymentListItem: Codable, Hashable, Sendable {
         case settlementCurrency = "settlement_currency"
         case shipment
         case shippingAddress = "shipping_address"
+        case sku
         case status
         case substatus
         case subtotal

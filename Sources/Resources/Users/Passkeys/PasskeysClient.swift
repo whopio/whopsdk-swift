@@ -7,14 +7,17 @@ public final class PasskeysClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists the authenticated user's own passkeys, newest first. The list is always the caller's own; there is no parameter for reading another user's passkeys. Requires a user session: an API key or an OAuth token is refused, because a passkey confirms the account holder before a sensitive action and no app may enumerate one.
+    /// Lists the authenticated user's own passkeys, newest first. You cannot read another user's passkeys. Requires a user session: an API key or an OAuth token is refused, because a passkey confirms the account holder before a sensitive action and no app may enumerate one.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.passkeys.list()
     /// }
@@ -22,10 +25,10 @@ public final class PasskeysClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter first: The number of passkeys to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns passkeys after this position.
-    /// - Parameter last: The number of passkeys to return from the end of the range.
-    /// - Parameter before: A cursor; returns passkeys before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter order: The field to sort passkeys by.
     /// - Parameter direction: Sort direction.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -46,20 +49,24 @@ public final class PasskeysClient: Sendable {
         )
     }
 
-    /// Registers a passkey for the authenticated user from the attestation a browser produced for a `registration` challenge. Mint that challenge first with `POST /users/me/passkeys/challenge`; it is single-use and expires 5 minutes after it is issued. Requires a user session.
+    /// Registers a passkey for the authenticated user from the attestation a browser produced for a `registration` challenge. Mint that challenge first with `POST /users/me/passkeys/challenge` and run the ceremony with its `creation_options`; it is single-use and expires 5 minutes after it is issued. Send back the `user_handle` the options carried; a registration without it is refused. Registering replaces the account's passkeys made before Whop issued options, which can only be deleted. Requires a user session that has completed step-up verification.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.passkeys.create(request: .init(
     ///         attestationObject: "YXR0ZXN0YXRpb24",
     ///         clientDataJson: "Y2xpZW50LWRhdGE",
     ///         credentialId: "bmV3LWNyZWRlbnRpYWw",
-    ///         nickname: "Work laptop"
+    ///         nickname: "Work laptop",
+    ///         userHandle: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     ///     ))
     /// }
     ///
@@ -77,14 +84,17 @@ public final class PasskeysClient: Sendable {
         )
     }
 
-    /// Mints the challenge a browser needs to run a WebAuthn ceremony against the authenticated user's own passkeys. A `registration` challenge enrolls a new passkey; a `deletion` challenge is bound to the one passkey named by `passkey_id` and proves the user still holds it. Challenges are single-use and expire 5 minutes after they are issued, so send a fresh `Idempotency-Key` per ceremony — a replayed key returns the original challenge, which may already have expired. Requires a user session.
+    /// Mints the challenge and WebAuthn options a browser needs to run a ceremony against the authenticated user's own passkeys. A `registration` challenge enrolls a new passkey; a `deletion` challenge is bound to the one passkey named by `passkey_id` and proves the user still holds it. The options are in wire snake_case: convert the keys to camelCase before passing them to the browser. Challenges are single-use and expire 5 minutes after they are issued, so send a fresh `Idempotency-Key` per ceremony — a replayed key returns the original challenge, which may already have expired. Requires a user session. A `registration` challenge also requires step-up verification, so the user completes it before the browser ceremony.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.passkeys.challenge(request: .init(challengeType: .registration))
     /// }
@@ -93,13 +103,13 @@ public final class PasskeysClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func challenge(request: Requests.ChallengePasskeysRequest, requestOptions: RequestOptions? = nil) async throws -> ChallengePasskeysResponse {
+    public func challenge(request: Requests.ChallengePasskeysRequest, requestOptions: RequestOptions? = nil) async throws -> PasskeyChallenge {
         return try await httpClient.performRequest(
             method: .post,
             path: "/users/me/passkeys/challenge",
             body: request,
             requestOptions: requestOptions,
-            responseType: ChallengePasskeysResponse.self
+            responseType: PasskeyChallenge.self
         )
     }
 
@@ -110,7 +120,10 @@ public final class PasskeysClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.users.passkeys.delete(
     ///         id: "id",

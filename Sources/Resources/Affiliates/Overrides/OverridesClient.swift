@@ -17,7 +17,10 @@ public final class OverridesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.overrides.list(
     ///         id: "aff_xxxxxxxxxxxxxx",
@@ -61,7 +64,10 @@ public final class OverridesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.overrides.create(
     ///         id: "aff_xxxxxxxxxxxxxx",
@@ -101,7 +107,10 @@ public final class OverridesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.overrides.retrieve(
     ///         id: "aff_xxxxxxxxxxxxxx",
@@ -134,7 +143,10 @@ public final class OverridesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.overrides.delete(
     ///         id: "aff_xxxxxxxxxxxxxx",
@@ -167,7 +179,10 @@ public final class OverridesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.affiliates.overrides.update(
     ///         id: "aff_xxxxxxxxxxxxxx",

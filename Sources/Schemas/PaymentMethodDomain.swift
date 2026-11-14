@@ -7,7 +7,7 @@ public struct PaymentMethodDomain: Codable, Hashable, Sendable {
     public let createdAt: String
     /// Hostname the checkout is served from (e.g. `checkout.example.com`).
     public let hostname: String
-    /// Payment method domain ID, prefixed `pmd_`.
+    /// Payment method domain ID: the ID of the account's domain for the hostname, prefixed `dom_`, or `pmd_` for some older domains.
     public let id: String
     /// Wallet provider the domain is registered with.
     public let provider: PaymentMethodDomainProvider

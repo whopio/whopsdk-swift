@@ -17,6 +17,8 @@ public struct WebhookDelivery: Codable, Hashable, Sendable {
     public let responseCode: Double
     /// When the webhook was sent, as an ISO 8601 timestamp.
     public let sentAt: String
+    /// Outcome of this delivery attempt: `success` when the endpoint returned a 2xx response, `error` otherwise.
+    public let status: WebhookDeliveryStatus
     /// Whether the endpoint acknowledged this attempt with a 2xx response.
     public let success: Bool
     /// Total time taken to send the webhook request, in seconds.
@@ -33,6 +35,7 @@ public struct WebhookDelivery: Codable, Hashable, Sendable {
         responseBody: Nullable<[String: JSONValue]>,
         responseCode: Double,
         sentAt: String,
+        status: WebhookDeliveryStatus,
         success: Bool,
         totalTime: Double,
         additionalProperties: [String: JSONValue] = .init()
@@ -45,6 +48,7 @@ public struct WebhookDelivery: Codable, Hashable, Sendable {
         self.responseBody = responseBody
         self.responseCode = responseCode
         self.sentAt = sentAt
+        self.status = status
         self.success = success
         self.totalTime = totalTime
         self.additionalProperties = additionalProperties
@@ -60,6 +64,7 @@ public struct WebhookDelivery: Codable, Hashable, Sendable {
         self.responseBody = try container.decode(Nullable<[String: JSONValue]>.self, forKey: .responseBody)
         self.responseCode = try container.decode(Double.self, forKey: .responseCode)
         self.sentAt = try container.decode(String.self, forKey: .sentAt)
+        self.status = try container.decode(WebhookDeliveryStatus.self, forKey: .status)
         self.success = try container.decode(Bool.self, forKey: .success)
         self.totalTime = try container.decode(Double.self, forKey: .totalTime)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -76,6 +81,7 @@ public struct WebhookDelivery: Codable, Hashable, Sendable {
         try container.encode(self.responseBody, forKey: .responseBody)
         try container.encode(self.responseCode, forKey: .responseCode)
         try container.encode(self.sentAt, forKey: .sentAt)
+        try container.encode(self.status, forKey: .status)
         try container.encode(self.success, forKey: .success)
         try container.encode(self.totalTime, forKey: .totalTime)
     }
@@ -90,6 +96,7 @@ public struct WebhookDelivery: Codable, Hashable, Sendable {
         case responseBody = "response_body"
         case responseCode = "response_code"
         case sentAt = "sent_at"
+        case status
         case success
         case totalTime = "total_time"
     }

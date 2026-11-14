@@ -85,7 +85,139 @@ import WhopSDK
         let response = try await client.affiliates.list(
             first: 42,
             last: 42,
-            companyId: "biz_xxxxxxxxxxxxxx",
+            accountId: "biz_xxxxxxxxxxxxxx",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func list2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "data": [
+                    {
+                      "active_members_count": 1,
+                      "company": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "customer_retention_rate": "customer_retention_rate",
+                      "customer_retention_rate_ninety_days": "customer_retention_rate_ninety_days",
+                      "id": "id",
+                      "monthly_recurring_revenue_usd": "monthly_recurring_revenue_usd",
+                      "status": "active",
+                      "total_overrides_count": 1,
+                      "total_referral_earnings_usd": "total_referral_earnings_usd",
+                      "total_referrals_count": 1,
+                      "total_revenue_usd": "total_revenue_usd",
+                      "updated_at": "2024-01-15T09:30:00Z",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      }
+                    },
+                    {
+                      "active_members_count": 1,
+                      "company": {
+                        "id": "id",
+                        "title": "title"
+                      },
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "customer_retention_rate": "customer_retention_rate",
+                      "customer_retention_rate_ninety_days": "customer_retention_rate_ninety_days",
+                      "id": "id",
+                      "monthly_recurring_revenue_usd": "monthly_recurring_revenue_usd",
+                      "status": "active",
+                      "total_overrides_count": 1,
+                      "total_referral_earnings_usd": "total_referral_earnings_usd",
+                      "total_referrals_count": 1,
+                      "total_revenue_usd": "total_revenue_usd",
+                      "updated_at": "2024-01-15T09:30:00Z",
+                      "user": {
+                        "id": "id",
+                        "name": "name",
+                        "username": "username"
+                      }
+                    }
+                  ],
+                  "page_info": {
+                    "end_cursor": "end_cursor",
+                    "has_next_page": true,
+                    "has_previous_page": true,
+                    "start_cursor": "start_cursor"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ListAffiliatesResponse(
+            data: [
+                AffiliateListItem(
+                    activeMembersCount: 1,
+                    company: AffiliateListItemCompany(
+                        id: "id",
+                        title: "title"
+                    ),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    customerRetentionRate: "customer_retention_rate",
+                    customerRetentionRateNinetyDays: "customer_retention_rate_ninety_days",
+                    id: "id",
+                    monthlyRecurringRevenueUsd: "monthly_recurring_revenue_usd",
+                    status: Nullable<Status>.value(Status.active),
+                    totalOverridesCount: 1,
+                    totalReferralEarningsUsd: "total_referral_earnings_usd",
+                    totalReferralsCount: 1,
+                    totalRevenueUsd: "total_revenue_usd",
+                    updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    user: AffiliateListItemUser(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: Nullable<String>.value("username")
+                    )
+                ),
+                AffiliateListItem(
+                    activeMembersCount: 1,
+                    company: AffiliateListItemCompany(
+                        id: "id",
+                        title: "title"
+                    ),
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    customerRetentionRate: "customer_retention_rate",
+                    customerRetentionRateNinetyDays: "customer_retention_rate_ninety_days",
+                    id: "id",
+                    monthlyRecurringRevenueUsd: "monthly_recurring_revenue_usd",
+                    status: Nullable<Status>.value(Status.active),
+                    totalOverridesCount: 1,
+                    totalReferralEarningsUsd: "total_referral_earnings_usd",
+                    totalReferralsCount: 1,
+                    totalRevenueUsd: "total_revenue_usd",
+                    updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    user: AffiliateListItemUser(
+                        id: "id",
+                        name: Nullable<String>.value("name"),
+                        username: Nullable<String>.value("username")
+                    )
+                )
+            ],
+            pageInfo: PageInfo(
+                endCursor: Nullable<String>.value("end_cursor"),
+                hasNextPage: true,
+                hasPreviousPage: true,
+                startCursor: Nullable<String>.value("start_cursor")
+            )
+        )
+        let response = try await client.affiliates.list(
+            accountId: "account_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -152,7 +284,76 @@ import WhopSDK
         )
         let response = try await client.affiliates.create(
             request: .init(
-                companyId: "biz_xxxxxxxxxxxxxx",
+                accountId: "biz_xxxxxxxxxxxxxx",
+                userIdentifier: "user_identifier"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func create2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "active_members_count": 1,
+                  "company": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "customer_retention_rate": "customer_retention_rate",
+                  "customer_retention_rate_ninety_days": "customer_retention_rate_ninety_days",
+                  "id": "id",
+                  "monthly_recurring_revenue_usd": "monthly_recurring_revenue_usd",
+                  "status": "active",
+                  "total_overrides_count": 1,
+                  "total_referral_earnings_usd": "total_referral_earnings_usd",
+                  "total_referrals_count": 1,
+                  "total_revenue_usd": "total_revenue_usd",
+                  "updated_at": "2024-01-15T09:30:00Z",
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Affiliate(
+            activeMembersCount: 1,
+            company: AffiliateCompany(
+                id: "id",
+                title: "title"
+            ),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            customerRetentionRate: "customer_retention_rate",
+            customerRetentionRateNinetyDays: "customer_retention_rate_ninety_days",
+            id: "id",
+            monthlyRecurringRevenueUsd: "monthly_recurring_revenue_usd",
+            status: Nullable<Status>.value(Status.active),
+            totalOverridesCount: 1,
+            totalReferralEarningsUsd: "total_referral_earnings_usd",
+            totalReferralsCount: 1,
+            totalRevenueUsd: "total_revenue_usd",
+            updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            user: AffiliateUser(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                username: Nullable<String>.value("username")
+            )
+        )
+        let response = try await client.affiliates.create(
+            request: .init(
+                accountId: "account_id",
                 userIdentifier: "user_identifier"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -226,6 +427,72 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func retrieve2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "active_members_count": 1,
+                  "company": {
+                    "id": "id",
+                    "title": "title"
+                  },
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "customer_retention_rate": "customer_retention_rate",
+                  "customer_retention_rate_ninety_days": "customer_retention_rate_ninety_days",
+                  "id": "id",
+                  "monthly_recurring_revenue_usd": "monthly_recurring_revenue_usd",
+                  "status": "active",
+                  "total_overrides_count": 1,
+                  "total_referral_earnings_usd": "total_referral_earnings_usd",
+                  "total_referrals_count": 1,
+                  "total_revenue_usd": "total_revenue_usd",
+                  "updated_at": "2024-01-15T09:30:00Z",
+                  "user": {
+                    "id": "id",
+                    "name": "name",
+                    "username": "username"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Affiliate(
+            activeMembersCount: 1,
+            company: AffiliateCompany(
+                id: "id",
+                title: "title"
+            ),
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            customerRetentionRate: "customer_retention_rate",
+            customerRetentionRateNinetyDays: "customer_retention_rate_ninety_days",
+            id: "id",
+            monthlyRecurringRevenueUsd: "monthly_recurring_revenue_usd",
+            status: Nullable<Status>.value(Status.active),
+            totalOverridesCount: 1,
+            totalReferralEarningsUsd: "total_referral_earnings_usd",
+            totalReferralsCount: 1,
+            totalRevenueUsd: "total_revenue_usd",
+            updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            user: AffiliateUser(
+                id: "id",
+                name: Nullable<String>.value("name"),
+                username: Nullable<String>.value("username")
+            )
+        )
+        let response = try await client.affiliates.retrieve(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func archive1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -248,6 +515,28 @@ import WhopSDK
         try #require(response == expectedResponse)
     }
 
+    @Test func archive2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.affiliates.archive(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func unarchive1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -265,6 +554,28 @@ import WhopSDK
         let expectedResponse = true
         let response = try await client.affiliates.unarchive(
             id: "aff_xxxxxxxxxxxxxx",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unarchive2() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = Whop(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.affiliates.unarchive(
+            id: "id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

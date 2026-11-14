@@ -17,7 +17,10 @@ public final class PayoutAccountsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.payoutAccounts.retrieve(id: "poact_xxxxxxxxxxxx")
     /// }

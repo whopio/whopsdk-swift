@@ -2,13 +2,13 @@ import Foundation
 
 extension Requests {
     public struct CreateForumPostsRequest: Codable, Hashable, Sendable {
+        /// The unique identifier of the company whose public forum to post in. Required when experience_id is 'public'. For example, 'biz_xxxxx'.
+        public let accountId: Nullable<String>?
         /// A list of file attachments to include with the post, such as images or videos.
         public let attachments: Nullable<[CreateForumPostsRequestAttachmentsItem]>?
-        /// The unique identifier of the company whose public forum to post in. Required when experience_id is 'public'. For example, 'biz_xxxxx'.
-        public let companyId: Nullable<String>?
         /// The main body of the post in Markdown format. For example, 'Check out this **update**'. Hidden if the post is paywalled and the viewer has not purchased access.
         public let content: Nullable<String>?
-        /// The unique identifier of the experience to create this post in. For example, 'exp_xxxxx'. Pass 'public' along with company_id to automatically use the company's public forum.
+        /// The unique identifier of the experience to create this post in. For example, 'exp_xxxxx'. Pass 'public' along with account_id to automatically use the account's public forum.
         public let experienceId: String
         /// Whether to send this post as a mention notification to all users in the experience who have mentions enabled.
         public let isMention: Nullable<Bool>?
@@ -32,8 +32,8 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            accountId: Nullable<String>? = nil,
             attachments: Nullable<[CreateForumPostsRequestAttachmentsItem]>? = nil,
-            companyId: Nullable<String>? = nil,
             content: Nullable<String>? = nil,
             experienceId: String,
             isMention: Nullable<Bool>? = nil,
@@ -47,8 +47,8 @@ extension Requests {
             visibility: Nullable<ForumPostVisibilityTypes>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.accountId = accountId
             self.attachments = attachments
-            self.companyId = companyId
             self.content = content
             self.experienceId = experienceId
             self.isMention = isMention
@@ -65,8 +65,8 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.accountId = try container.decodeNullableIfPresent(String.self, forKey: .accountId)
             self.attachments = try container.decodeNullableIfPresent([CreateForumPostsRequestAttachmentsItem].self, forKey: .attachments)
-            self.companyId = try container.decodeNullableIfPresent(String.self, forKey: .companyId)
             self.content = try container.decodeNullableIfPresent(String.self, forKey: .content)
             self.experienceId = try container.decode(String.self, forKey: .experienceId)
             self.isMention = try container.decodeNullableIfPresent(Bool.self, forKey: .isMention)
@@ -84,8 +84,8 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encodeNullableIfPresent(self.accountId, forKey: .accountId)
             try container.encodeNullableIfPresent(self.attachments, forKey: .attachments)
-            try container.encodeNullableIfPresent(self.companyId, forKey: .companyId)
             try container.encodeNullableIfPresent(self.content, forKey: .content)
             try container.encode(self.experienceId, forKey: .experienceId)
             try container.encodeNullableIfPresent(self.isMention, forKey: .isMention)
@@ -101,8 +101,8 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case accountId = "account_id"
             case attachments
-            case companyId = "company_id"
             case content
             case experienceId = "experience_id"
             case isMention = "is_mention"

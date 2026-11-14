@@ -1,12 +1,14 @@
 # Whop Swift Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fwhopio%2Fwhopsdk-swift)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Whop%2FSwift)
 ![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-orange.svg)
 
-The Whop Swift library provides convenient access to the Whop APIs from Swift.
+The Whop SDK gives you typed access to the Whop API. Pass your API key to the client explicitly — the SDK reads no environment variables, so a client built without a key sends unauthenticated requests and the API answers 401.
+
 
 ## Table of Contents
 
+- [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Reference](#reference)
@@ -17,9 +19,14 @@ The Whop Swift library provides convenient access to the Whop APIs from Swift.
 - [Advanced](#advanced)
   - [Additional Headers](#additional-headers)
   - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Additional Body Properties](#additional-body-properties)
   - [Timeouts](#timeouts)
   - [Custom Networking Client](#custom-networking-client)
 - [Contributing](#contributing)
+
+## Documentation
+
+API reference documentation is available [here](https://docs.whop.com/api-reference).
 
 ## Requirements
 
@@ -36,13 +43,13 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/whopio/whopsdk-swift", from: "1.0.11"),
+    .package(url: "<git-url>", from: "0.1.0"),
 ]
 ```
 
 ## Reference
 
-A full reference for this library is available [here](https://github.com/whopio/whopsdk-swift/blob/HEAD/./reference.md).
+A full reference for this library is available [here](./reference.md).
 
 ## Usage
 
@@ -53,7 +60,10 @@ import Foundation
 import WhopSDK
 
 private func main() async throws {
-    let client = Whop(token: "<token>")
+    let client = Whop(
+        baseURL: "https://api.whop.com/api/v1",
+        token: "<token>"
+    )
 
     _ = try await client.accessTokens.create(request: .init())
 }
@@ -70,7 +80,7 @@ import WhopSDK
 
 let client = Whop(
     token: "YOUR_API_KEY",
-    environment: .default
+    environment: .production
 )
 ```
 
@@ -138,6 +148,19 @@ If you would like to send additional query string parameters as part of the requ
 try await client.accessTokens.create(..., requestOptions: .init(
     additionalQueryParameters: [
         "custom_query_param_key": "custom_query_param_value"
+    ]
+))
+```
+
+### Additional Body Properties
+
+If you would like to send additional properties as part of a JSON request body (for example, undocumented or beta fields), use the `additionalBodyProperties` request option. Keys are sent as-is, values can be any JSON value, and they override any generated fields with the same name. If the endpoint has no request body, a JSON body is created from these properties (except for GET and HEAD requests, which are sent without a body). Multipart and raw binary request bodies are not modified. The `additionalBodyParameters` request option accepts string values only and is merged the same way; if both options set the same key, `additionalBodyProperties` wins.
+
+```swift
+try await client.accessTokens.create(..., requestOptions: .init(
+    additionalBodyProperties: [
+        "beta_feature": true, 
+        "beta_options": ["mode": "fast"]
     ]
 ))
 ```

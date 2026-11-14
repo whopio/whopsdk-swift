@@ -17,7 +17,7 @@ public struct CreateDepositsResponseMethodsBankCurrenciesItem: Codable, Hashable
     public let rails: [CreateDepositsResponseMethodsBankCurrenciesItemRailsItem]
     /// Bank routing number for deposits in this currency.
     public let routingNumber: Nullable<String>
-    /// SWIFT/BIC code for international wires, when available.
+    /// SWIFT/BIC of the intermediary bank the sending bank routes an international wire through. Null unless `origin_bic` is provided and an intermediary is published for that bank and currency.
     public let swiftBic: Nullable<String>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

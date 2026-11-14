@@ -1,6 +1,8 @@
 import Foundation
 
 public struct PixelValidation: Codable, Hashable, Sendable {
+    /// Whether an affiliate tracking SDK was found on the page at `url`. Supported platforms: Everflow.
+    public let affiliateTrackingDetected: Bool
     /// False when the event lookup failed, meaning `host_events` and `last_seen_days` are incomplete.
     public let firingDataOk: Bool
     public let hostEvents: [String]
@@ -21,6 +23,7 @@ public struct PixelValidation: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        affiliateTrackingDetected: Bool,
         firingDataOk: Bool,
         hostEvents: [String],
         installed: Bool,
@@ -32,6 +35,7 @@ public struct PixelValidation: Codable, Hashable, Sendable {
         url: Nullable<String>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.affiliateTrackingDetected = affiliateTrackingDetected
         self.firingDataOk = firingDataOk
         self.hostEvents = hostEvents
         self.installed = installed
@@ -46,6 +50,7 @@ public struct PixelValidation: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.affiliateTrackingDetected = try container.decode(Bool.self, forKey: .affiliateTrackingDetected)
         self.firingDataOk = try container.decode(Bool.self, forKey: .firingDataOk)
         self.hostEvents = try container.decode([String].self, forKey: .hostEvents)
         self.installed = try container.decode(Bool.self, forKey: .installed)
@@ -61,6 +66,7 @@ public struct PixelValidation: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.affiliateTrackingDetected, forKey: .affiliateTrackingDetected)
         try container.encode(self.firingDataOk, forKey: .firingDataOk)
         try container.encode(self.hostEvents, forKey: .hostEvents)
         try container.encode(self.installed, forKey: .installed)
@@ -74,6 +80,7 @@ public struct PixelValidation: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case affiliateTrackingDetected = "affiliate_tracking_detected"
         case firingDataOk = "firing_data_ok"
         case hostEvents = "host_events"
         case installed

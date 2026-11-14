@@ -7,6 +7,74 @@ public final class AdsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Reports why one of a runner's ads or ad groups can't deliver yet, and replaces what the runner reported for it before. The account running the campaign sees each issue, with what to change when it can fix it. An empty `issues` list clears the object's issues, and they also clear when the runner stops holding the campaign. Takes the runner's Whop session, a user API key, or a user OAuth token with `ad_campaign:update`. A token without that scope gets a 403, and anyone not holding the whole campaign gets a 404.
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import WhopSDK
+    ///
+    /// private func main() async throws {
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
+    ///
+    ///     _ = try await client.ads.reportIssues(request: .init(issues: [
+    ///         ReportIssuesAdsRequestIssuesItem(
+    ///             reason: .contentRejected
+    ///         )
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func reportIssues(request: Requests.ReportIssuesAdsRequest, requestOptions: RequestOptions? = nil) async throws -> ReportIssuesAdsResponse {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/ad_issues",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ReportIssuesAdsResponse.self
+        )
+    }
+
+    /// Records a runner's stats for one of their ads in one hour, and pays them for the spend. Send the ad's totals so far for an hour that has started; they replace what the ad held for that hour, and its ad group's and campaign's hours are rebuilt from their ads. The spend can go up but never down. Hours before the runner's first report on the campaign can be reported too. The spend is recorded and paid exactly as sent, with no markup added, so send it with the runner's markup already applied. Takes the runner's Whop session, a user API key, or a user OAuth token with `ad_campaign:update`. A token without that scope gets a 403, and anyone not holding the ad's campaign gets a 404.
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import WhopSDK
+    ///
+    /// private func main() async throws {
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
+    ///
+    ///     _ = try await client.ads.reportStats(request: .init(
+    ///         adId: "ad_xxxxxxxxxxxxxx",
+    ///         hourStartedAt: try! Date("2026-01-01T12:00:00Z", strategy: .iso8601),
+    ///         spend: ReportStatsAdsRequestSpend.double(
+    ///             1.1
+    ///         )
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func reportStats(request: Requests.ReportStatsAdsRequest, requestOptions: RequestOptions? = nil) async throws -> AdStat {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/ad_stats",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: AdStat.self
+        )
+    }
+
     /// Lists the ads for an account, with stats over the requested window.
     ///
     /// ```swift
@@ -14,7 +82,10 @@ public final class AdsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.list(
     ///         adCampaignIds: [
@@ -36,7 +107,7 @@ public final class AdsClient: Sendable {
     /// - Parameter adGroupIds: Only return ads in these ad groups (max 100). Repeat the parameter for each id (ad_group_ids=a&ad_group_ids=b).
     /// - Parameter status: Only return ads with this status.
     /// - Parameter query: Filter ads by a title or ID substring.
-    /// - Parameter order: The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports.
+    /// - Parameter order: The field to sort by. Defaults to created_at. Stat columns (spend, impressions, …) rank over the stats_from/stats_to window across the whole list, not just the current page. results, cost_per_result and return_on_ad_spend rank by the same Whop pixel-attributed values the response reports, and link_clicks by the same Whop pixel page views.
     /// - Parameter direction: The sort direction. Defaults to desc.
     /// - Parameter createdBefore: Only return ads created before this timestamp.
     /// - Parameter createdAfter: Only return ads created after this timestamp.
@@ -44,10 +115,10 @@ public final class AdsClient: Sendable {
     /// - Parameter statsTo: End of the stats window. Defaults to now.
     /// - Parameter timeZone: IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare stats_from/stats_to dates resolve to day boundaries on this clock. Defaults to UTC.
     /// - Parameter attributionModel: Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise.
-    /// - Parameter first: The number of ads to return.
-    /// - Parameter after: Cursor to fetch the page after (from page_info.end_cursor).
-    /// - Parameter last: The number of ads to return from the end of the range.
-    /// - Parameter before: Cursor to fetch the page before (from page_info.start_cursor).
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func list(accountId: String? = nil, adCampaignId: String? = nil, adCampaignIds: [String]? = nil, adGroupId: String? = nil, adGroupIds: [String]? = nil, status: ListAdsRequestStatus? = nil, query: String? = nil, order: ListAdsRequestOrder? = nil, direction: ListAdsRequestDirection? = nil, createdBefore: String? = nil, createdAfter: String? = nil, statsFrom: String? = nil, statsTo: String? = nil, timeZone: String? = nil, attributionModel: ListAdsRequestAttributionModel? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAdsResponse {
         return try await httpClient.performRequest(
@@ -79,14 +150,17 @@ public final class AdsClient: Sendable {
         )
     }
 
-    /// Creates an ad in an ad group.
+    /// Creates an ad in an ad group. Any campaign status other than `draft` launches the campaign, which requires an ads payment method on the account.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.create(request: .init())
     /// }
@@ -112,7 +186,10 @@ public final class AdsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.retrieve(id: "id")
     /// }
@@ -148,7 +225,10 @@ public final class AdsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.delete(id: "id")
     /// }
@@ -174,7 +254,10 @@ public final class AdsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.update(
     ///         id: "id",
@@ -197,14 +280,17 @@ public final class AdsClient: Sendable {
         )
     }
 
-    /// Copies the ad into its own ad group, or into target_ad_group_id (which must belong to the same account and be compatible with the ad). Copies keep the source ad's active/paused state.
+    /// Copies an ad into its own ad group or into another one. Copies keep the source ad's active or paused state.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.duplicate(
     ///         id: "id",
@@ -234,7 +320,10 @@ public final class AdsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.pause(id: "id")
     /// }
@@ -260,7 +349,10 @@ public final class AdsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.ads.unpause(id: "id")
     /// }

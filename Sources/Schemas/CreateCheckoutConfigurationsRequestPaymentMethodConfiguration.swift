@@ -1,19 +1,19 @@
 import Foundation
 
-/// Payment method overrides for this checkout. `null` uses the plan or platform defaults.
+/// Payment method overrides for this checkout. `null` uses the variant or platform defaults.
 public struct CreateCheckoutConfigurationsRequestPaymentMethodConfiguration: Codable, Hashable, Sendable {
-    /// Payment methods explicitly disabled for checkout.
-    public let disabled: [String]?
-    /// Payment methods explicitly enabled for checkout.
-    public let enabled: [String]?
+    /// Payment method types explicitly disabled for checkout — the `type` values from the payment method types catalogue. Types Whop no longer offers, and the read-only `unknown` placeholder, are dropped.
+    public let disabled: [PaymentMethodTypes]?
+    /// Payment method types explicitly enabled for checkout — the `type` values from the payment method types catalogue. Types Whop no longer offers, and the read-only `unknown` placeholder, are dropped.
+    public let enabled: [PaymentMethodTypes]?
     /// Whether platform default payment methods are included.
     public let includePlatformDefaults: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        disabled: [String]? = nil,
-        enabled: [String]? = nil,
+        disabled: [PaymentMethodTypes]? = nil,
+        enabled: [PaymentMethodTypes]? = nil,
         includePlatformDefaults: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -25,8 +25,8 @@ public struct CreateCheckoutConfigurationsRequestPaymentMethodConfiguration: Cod
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.disabled = try container.decodeIfPresent([String].self, forKey: .disabled)
-        self.enabled = try container.decodeIfPresent([String].self, forKey: .enabled)
+        self.disabled = try container.decodeIfPresent([PaymentMethodTypes].self, forKey: .disabled)
+        self.enabled = try container.decodeIfPresent([PaymentMethodTypes].self, forKey: .enabled)
         self.includePlatformDefaults = try container.decodeIfPresent(Bool.self, forKey: .includePlatformDefaults)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

@@ -7,6 +7,7 @@ public enum ListAdGroupsRequestOrder: String, Codable, Hashable, CaseIterable, S
     case impressions
     case reach
     case clicks
+    case linkClicks = "link_clicks"
     case uniqueClicks = "unique_clicks"
     case frequency
     case clickThroughRate = "click_through_rate"

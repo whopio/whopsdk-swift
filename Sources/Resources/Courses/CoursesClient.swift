@@ -7,7 +7,7 @@ public final class CoursesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns a paginated list of courses, filtered by either an experience or a company.
+    /// Returns a paginated list of the courses in an experience or an account. `hidden` courses are included only for callers with `courses:update`.
     ///
     /// Required permissions:
     ///  - `courses:read`
@@ -17,13 +17,16 @@ public final class CoursesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courses.list(
     ///         first: 42,
     ///         last: 42,
     ///         experienceId: "exp_xxxxxxxxxxxxxx",
-    ///         companyId: "biz_xxxxxxxxxxxxxx"
+    ///         accountId: "biz_xxxxxxxxxxxxxx"
     ///     )
     /// }
     ///
@@ -35,9 +38,9 @@ public final class CoursesClient: Sendable {
     /// - Parameter first: Returns the first _n_ elements from the list.
     /// - Parameter last: Returns the last _n_ elements from the list.
     /// - Parameter experienceId: The unique identifier of the experience to list courses for.
-    /// - Parameter companyId: The unique identifier of the company to list courses for.
+    /// - Parameter accountId: The unique identifier of the company to list courses for.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, experienceId: String? = nil, companyId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCoursesResponse {
+    public func list(after: String? = nil, before: String? = nil, first: Int? = nil, last: Int? = nil, experienceId: String? = nil, accountId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListCoursesResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/courses",
@@ -47,7 +50,7 @@ public final class CoursesClient: Sendable {
                 "first": first.map { .int($0) }, 
                 "last": last.map { .int($0) }, 
                 "experience_id": experienceId.map { .string($0) }, 
-                "company_id": companyId.map { .string($0) }
+                "account_id": accountId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListCoursesResponse.self
@@ -64,7 +67,10 @@ public final class CoursesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courses.create(request: .init(
     ///         experienceId: "exp_xxxxxxxxxxxxxx",
@@ -86,7 +92,7 @@ public final class CoursesClient: Sendable {
         )
     }
 
-    /// Retrieves the details of an existing course.
+    /// Retrieves the details of an existing course. A `hidden` course is returned only to callers with `courses:update`.
     ///
     /// Required permissions:
     ///  - `courses:read`
@@ -96,7 +102,10 @@ public final class CoursesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courses.retrieve(id: "cors_xxxxxxxxxxxxx")
     /// }
@@ -125,7 +134,10 @@ public final class CoursesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courses.delete(id: "cors_xxxxxxxxxxxxx")
     /// }
@@ -154,7 +166,10 @@ public final class CoursesClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.courses.update(
     ///         id: "cors_xxxxxxxxxxxxx",

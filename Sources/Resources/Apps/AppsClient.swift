@@ -1,20 +1,25 @@
 import Foundation
 
 public final class AppsClient: Sendable {
+    public let categories: CategoriesClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.categories = CategoriesClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists apps on the Whop platform: the app store's live apps, or — with `account_id` and developer access to that account — every app the account owns. Requires authentication, except for the publicly readable lists: `verified_apps_only=true`, and `app_type=website` with no `account_id`, which returns every live deployed website that Whop has not verified — verified templates are the curated `verified_apps_only=true` list instead.
+    /// Lists published apps approved for the app store without authentication. With `account_id` and developer access, also includes unpublished apps that the account owns. Public website discovery includes built official blueprints and built, live community blueprints that Whop recommends.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.list()
     /// }
@@ -25,16 +30,23 @@ public final class AppsClient: Sendable {
     /// - Parameter accountId: Only return apps created by this account (`biz_` tag). With developer access to the account this includes its unlisted and hidden apps.
     /// - Parameter appType: Filter apps by the type of end-user they are built for. Apps of type `website` are left out unless you ask for them by name.
     /// - Parameter viewType: Only return apps supporting this view type, such as `dashboard` or `hub`.
-    /// - Parameter verifiedAppsOnly: Whether to only return apps verified by Whop. Verified website templates — websites with a published web build — are included, even though websites are otherwise left out of app lists.
+    /// - Parameter verified: Only return apps whose Whop verification status matches this value. Omit this filter to include every verification status the caller can see.
+    /// - Parameter verifiedAppsOnly: Legacy compatibility filter. Use `verified` for field equality. `true` returns verified apps; clients pinned before `2026-08-25-2` retain the earlier public website discovery behavior.
+    /// - Parameter recommended: Only return apps Whop recommends (or, with `false`, only those it does not), independently of verification status.
     /// - Parameter query: A search string matched against app names.
-    /// - Parameter order: The field to sort apps by. Defaults to discoverable_at, showing the most recently published apps first. `template_usage` ranks Whop-verified apps first, then apps with a banner image, then by how many apps were created from each app as a template.
+    /// - Parameter productCategory: Only return apps whose `product_category` is this product category, such as `pressure_washing`. An unknown product category is rejected.
+    /// - Parameter businessType: Only return apps whose `product_category` sits under this business type in Whop's business taxonomy, such as `services`. An unknown business type is rejected.
+    /// - Parameter industryType: Only return apps whose `product_category` sits under this industry type of `business_type`, such as `exterior_cleaning`. Requires `business_type`. An industry type outside it is rejected.
+    /// - Parameter marketplaceCategoryRoute: Only return apps in this app store category. Use a `route` from `GET /apps/categories`, such as `business-productivity`. An unknown route is rejected.
+    /// - Parameter order: The field to sort apps by. Defaults to discoverable_at, showing the most recently published apps first. `template_usage` ranks Whop-verified apps first, then by how many businesses created apps from each app as a template. `template_recent_sales` ranks them by how many of those businesses processed a payment in the last 24 hours, recounted hourly, breaking ties by `template_usage`.
     /// - Parameter direction: Sort direction.
-    /// - Parameter first: The number of apps to return (default 20, max 100).
-    /// - Parameter after: A cursor; returns apps after this position.
-    /// - Parameter last: The number of apps to return from the end of the range.
-    /// - Parameter before: A cursor; returns apps before this position.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter last: Number of results to return from the end of the range.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
+    /// - Parameter includeTotalCount: Set to `true` to return the number of matching results in `page_info.total_count`. Send `first=0` as well to return the count without any results.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(accountId: String? = nil, appType: ListAppsRequestAppType? = nil, viewType: ListAppsRequestViewType? = nil, verifiedAppsOnly: Bool? = nil, query: String? = nil, order: ListAppsRequestOrder? = nil, direction: ListAppsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAppsResponse {
+    public func list(accountId: String? = nil, appType: ListAppsRequestAppType? = nil, viewType: ListAppsRequestViewType? = nil, verified: Bool? = nil, verifiedAppsOnly: Bool? = nil, recommended: Bool? = nil, query: String? = nil, productCategory: String? = nil, businessType: String? = nil, industryType: String? = nil, marketplaceCategoryRoute: String? = nil, order: ListAppsRequestOrder? = nil, direction: ListAppsRequestDirection? = nil, first: Int? = nil, after: String? = nil, last: Int? = nil, before: String? = nil, includeTotalCount: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ListAppsResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/apps",
@@ -42,14 +54,21 @@ public final class AppsClient: Sendable {
                 "account_id": accountId.map { .string($0) }, 
                 "app_type": appType.map { .string($0.rawValue) }, 
                 "view_type": viewType.map { .string($0.rawValue) }, 
+                "verified": verified.map { .bool($0) }, 
                 "verified_apps_only": verifiedAppsOnly.map { .bool($0) }, 
+                "recommended": recommended.map { .bool($0) }, 
                 "query": query.map { .string($0) }, 
+                "product_category": productCategory.map { .string($0) }, 
+                "business_type": businessType.map { .string($0) }, 
+                "industry_type": industryType.map { .string($0) }, 
+                "marketplace_category_route": marketplaceCategoryRoute.map { .string($0) }, 
                 "order": order.map { .string($0.rawValue) }, 
                 "direction": direction.map { .string($0.rawValue) }, 
                 "first": first.map { .int($0) }, 
                 "after": after.map { .string($0) }, 
                 "last": last.map { .int($0) }, 
-                "before": before.map { .string($0) }
+                "before": before.map { .string($0) }, 
+                "include_total_count": includeTotalCount.map { .bool($0) }
             ],
             requestOptions: requestOptions,
             responseType: ListAppsResponse.self
@@ -63,7 +82,10 @@ public final class AppsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.create(request: .init(name: "Shine Time Booking"))
     /// }
@@ -82,53 +104,17 @@ public final class AppsClient: Sendable {
         )
     }
 
-    /// Updates the permission requirements for an app
-    ///
-    /// Required permissions:
-    ///  - `developer:update_app_authorization`
+    /// Retrieves an app by ID, claimed route, active verified custom hostname, or proxy domain id. Authentication is optional; credential fields stay `null` unless you have the matching developer permission on the owning account.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
-    ///
-    ///     _ = try await client.apps.updatePermissionsApp(
-    ///         appId: "app_id",
-    ///         request: .init(requestedPermissions: [
-    ///             UpdatePermissionsAppRequestRequestedPermissionsItem(
-    ///                 action: "action",
-    ///                 isRequired: true,
-    ///                 justification: "justification"
-    ///             )
-    ///         ])
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
     ///     )
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter appId: The ID of the app the permission requirements are being updated for
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updatePermissionsApp(appId: String, request: Requests.UpdatePermissionsAppRequest, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/apps/\(appId)/permissions",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Retrieves an app by ID, claimed route, or proxy domain id. Credential fields (api_key, default_api_key, secrets) render `null` unless the caller has the corresponding developer permission on the owning account.
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import WhopSDK
-    ///
-    /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
     ///
     ///     _ = try await client.apps.retrieve(id: "id")
     /// }
@@ -136,7 +122,7 @@ public final class AppsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: App ID (prefixed `app_`), the app's claimed route, or its proxy domain id.
+    /// - Parameter id: App ID (prefixed `app_`). Retrieval also accepts the app's claimed route, an active verified custom hostname, or its proxy domain id; a custom hostname returns `404` when its assignment is inactive, the owning account is suspended, or the app is deleted.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieve(id: String, requestOptions: RequestOptions? = nil) async throws -> App {
         return try await httpClient.performRequest(
@@ -154,7 +140,10 @@ public final class AppsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.delete(id: "id")
     /// }
@@ -162,7 +151,7 @@ public final class AppsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: App ID (prefixed `app_`), the app's claimed route, or its proxy domain id.
+    /// - Parameter id: App ID (prefixed `app_`). Retrieval also accepts the app's claimed route, an active verified custom hostname, or its proxy domain id; a custom hostname returns `404` when its assignment is inactive, the owning account is suspended, or the app is deleted.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func delete(id: String, requestOptions: RequestOptions? = nil) async throws -> DeleteAppsResponse {
         return try await httpClient.performRequest(
@@ -180,7 +169,10 @@ public final class AppsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.update(
     ///         id: "id",
@@ -191,7 +183,7 @@ public final class AppsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter id: App ID (prefixed `app_`), the app's claimed route, or its proxy domain id.
+    /// - Parameter id: App ID (prefixed `app_`). Retrieval also accepts the app's claimed route, an active verified custom hostname, or its proxy domain id; a custom hostname returns `404` when its assignment is inactive, the owning account is suspended, or the app is deleted.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func update(id: String, request: Requests.UpdateAppsRequest, requestOptions: RequestOptions? = nil) async throws -> App {
         return try await httpClient.performRequest(
@@ -210,7 +202,10 @@ public final class AppsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.deploy(
     ///         id: "id",
@@ -233,14 +228,17 @@ public final class AppsClient: Sendable {
         )
     }
 
-    /// Lists a hosted app's server runtime logs, most recent first: console output, uncaught exceptions, and failed-request summaries captured on whop.app hosting. Logs are retained for 7 days.
+    /// Lists a hosted app's server runtime logs, most recent first: console output, uncaught exceptions, and failed-request summaries captured on whop.site hosting. Logs are retained for 7 days.
     ///
     /// ```swift
     /// import Foundation
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.logs(id: "id")
     /// }
@@ -254,9 +252,9 @@ public final class AppsClient: Sendable {
     /// - Parameter query: Only return logs whose message contains this text (case-insensitive).
     /// - Parameter createdAfter: Start of the time window as an ISO 8601 timestamp. Defaults to 7 days before created_before.
     /// - Parameter createdBefore: End of the time window as an ISO 8601 timestamp. Defaults to now.
-    /// - Parameter first: The number of log lines to return (max 500).
-    /// - Parameter after: A cursor for fetching logs after a previous page.
-    /// - Parameter before: A cursor for fetching logs before a later page.
+    /// - Parameter first: Number of results to return from the start of the range.
+    /// - Parameter after: Return results after this cursor. Use `page_info.end_cursor` from the previous response to fetch the next page.
+    /// - Parameter before: Return results before this cursor. Use `page_info.start_cursor` from the previous response to fetch the previous page.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func logs(id: String, appBuildId: String? = nil, level: LogsAppsRequestLevel? = nil, query: String? = nil, createdAfter: Date? = nil, createdBefore: Date? = nil, first: Int? = nil, after: String? = nil, before: String? = nil, requestOptions: RequestOptions? = nil) async throws -> LogsAppsResponse {
         return try await httpClient.performRequest(
@@ -284,7 +282,10 @@ public final class AppsClient: Sendable {
     /// import WhopSDK
     ///
     /// private func main() async throws {
-    ///     let client = Whop(token: "<token>")
+    ///     let client = Whop(
+    ///         baseURL: "https://api.whop.com/api/v1",
+    ///         token: "<token>"
+    ///     )
     ///
     ///     _ = try await client.apps.updatePermissions(
     ///         id: "id",

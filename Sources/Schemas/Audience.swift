@@ -1,15 +1,15 @@
 import Foundation
 
 public struct Audience: Codable, Hashable, Sendable {
-    /// `custom` = a customer list (uploaded, or built from saved People filters); `lookalike` = Meta lookalike built from a custom audience.
+    /// Whether the audience targets a defined group of people or people similar to an existing audience.
     public let audienceType: AudienceAudienceType
-    /// Whether membership keeps updating. `true` rebuilds it from the saved filters twice a day, so people join and leave as they start and stop matching. `false` keeps whoever matched when it was built and never rebuilds. Always `false` for uploaded lists and lookalikes.
+    /// Whether Whop rebuilds membership from saved People filters twice a day. When `false`, People audiences keep the members matched at creation. Always `false` for uploaded lists, lookalikes, and engagement audiences.
     public let autoRefresh: Bool
     /// When the audience was created, as an ISO 8601 timestamp.
     public let createdAt: String
-    /// Processing error message. `null` unless processing is partial or failed.
+    /// Why a `pending` audience hasn't started, or why a `partial` or `failed` one isn't fully built. `null` when there is nothing to report.
     public let errorMessage: Nullable<String>
-    /// For audiences built from People filters: the filters that define membership, keyed exactly as `GET /people` accepts them — for example `{"os": "iOS", "country": "US"}`. `null` for uploaded lists and lookalikes.
+    /// Saved Whop People filters that define membership, using the same keys as `GET /people`. `null` for uploaded lists, engagement audiences, and lookalikes.
     public let filters: Nullable<[String: JSONValue]>
     /// Audience ID, prefixed `adaud_`.
     public let id: String
@@ -20,22 +20,22 @@ public struct Audience: Codable, Hashable, Sendable {
     /// For lookalikes: the lower bound of the similarity band as a fraction. `null` for custom audiences and first-tier lookalikes.
     public let lookalikeStartingRatio: Nullable<Double>
     public let matchRates: [AudienceMatchRate]
-    /// Members successfully uploaded to connected ad accounts. Always 0 for lookalikes.
+    /// Members successfully uploaded to connected ad accounts. Always 0 for lookalikes and engagement audiences.
     public let matchedRows: Double
     /// Audience display name.
     public let name: String
     public let platformAudienceIds: [String]
-    /// Members processed from the source so far. Always 0 for lookalikes.
+    /// Members processed from the source so far. Always 0 for lookalikes and engagement audiences.
     public let processedRows: Double
     /// Processing progress from 0 to 100.
     public let progressPercent: Double
     /// For lookalikes: the audience this lookalike was built from. `null` for custom audiences.
     public let sourceAudienceId: Nullable<String>
-    /// Where members come from. `csv_upload` = an uploaded customer list; `people_filter` = built from saved People filters. See `auto_refresh` for whether a `people_filter` audience keeps updating.
+    /// Membership source: an uploaded CSV, Whop People filters, or social engagement. Engagement audiences can no longer be created.
     public let sourceType: AudienceSourceType
-    /// Current state of the audience import. `syncing` means Whop is sending matched rows to connected ad accounts. When status is `partial` or `failed`, `error_message` explains what went wrong.
+    /// Current state of audience creation. When a `pending` audience is waiting on something, such as an ad account to upload to, `error_message` says what. When status is `partial` or `failed`, `error_message` explains what went wrong.
     public let status: AudienceStatus
-    /// Total members detected in the source — CSV rows for uploaded lists, matching people for automatic audiences. Always 0 for lookalikes.
+    /// Total members detected in the source — CSV rows for uploaded lists, matching people for automatic audiences. Always 0 for lookalikes and engagement audiences.
     public let totalRows: Double
     /// When the audience was last updated, as an ISO 8601 timestamp.
     public let updatedAt: String

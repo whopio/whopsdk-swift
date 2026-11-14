@@ -5,7 +5,7 @@ public struct AccountTaxIdentifier: Codable, Hashable, Sendable {
     public let id: String
     /// Tax ID type.
     public let taxIdType: AccountTaxIdentifierTaxIdType
-    /// Tax ID value.
+    /// Tax ID value, for example `DE123456789`. See the [tax IDs guide](/developer/guides/tax-ids).
     public let taxIdValue: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

@@ -3,7 +3,7 @@ import Foundation
 public struct UserRecommendedAction: Codable, Hashable, Sendable {
     /// The account (`biz_`) a business recommendation is for, or `null` for personal recommendations
     public let accountId: Nullable<String>
-    /// The account's display name, or `null`
+    /// The account's display name, or `null` for personal recommendations
     public let accountName: Nullable<String>
     /// The recommendation; new values may be added, so handle unknown actions gracefully
     public let action: UserRecommendedActionAction

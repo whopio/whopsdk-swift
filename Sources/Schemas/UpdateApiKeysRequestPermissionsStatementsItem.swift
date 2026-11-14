@@ -5,7 +5,7 @@ public struct UpdateApiKeysRequestPermissionsStatementsItem: Codable, Hashable, 
     public let actions: [String]
     /// Whether the actions are granted (`true`) or denied (`false`).
     public let grant: Bool
-    /// Resource identifiers the statement applies to, for example `biz_xxx` or `biz_xxx|pass_*`. Defaults to the key's owning resource when omitted.
+    /// Resource identifiers the statement applies to, for example `biz_xxx` or `biz_xxx|prod_*`. Defaults to the key's owning resource when omitted.
     public let resources: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

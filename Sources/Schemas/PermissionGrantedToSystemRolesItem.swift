@@ -7,4 +7,5 @@ public enum PermissionGrantedToSystemRolesItem: String, Codable, Hashable, CaseI
     case moderator
     case salesManager = "sales_manager"
     case advertiser
+    case partner
 }

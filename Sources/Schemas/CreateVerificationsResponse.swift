@@ -1,6 +1,8 @@
 import Foundation
 
 public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
+    /// Accounts this verification was read for, each prefixed `biz_`: the account you listed by, the account or subaccount it belongs to with `include_subaccounts`, or every account you can read that it belongs to when retrieved by ID. Usually one. Empty for a personal verification.
+    public let accountIds: [String]
     /// Address on the verification profile. `null` when no address is set.
     public let address: Nullable<CreateVerificationsResponseAddress>?
     /// Legal business name.
@@ -18,13 +20,21 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
     public let firstName: Nullable<String>?
     /// Verification profile ID, prefixed `idpf_`.
     public let id: String?
+    /// Date the business was incorporated, formatted as `YYYY-MM-DD`, as on file for the business verification. Business verifications only; `null` until it is sent.
+    public let incorporationDate: Nullable<String>?
     public let kind: CreateVerificationsResponseKind?
     public let lastName: Nullable<String>?
+    /// Owners of the business and the progress of each one's own verification. Empty for individual verifications.
+    public let owners: [CreateVerificationsResponseOwnersItem]
     /// Phone number on the verification profile.
     public let phone: Nullable<String>?
-    /// What Whop still needs before review can continue — one requirement per entry. Answer with Update Verification; nothing from the response is echoed back. Keys that don't apply are omitted.
+    /// State or region where the business is incorporated, as on file for the business verification. Business verifications only; `null` until it is sent.
+    public let placeOfIncorporation: Nullable<String>?
+    /// Number the business was registered under in its place of incorporation, such as a state file number in the US or a Company Number in the UK. Business verifications only; as on file for the business verification, or `null` until it is sent.
+    public let registrationNumber: Nullable<String>?
+    /// What Whop still needs before review can continue — one requirement per entry. Answer with Update Verification; nothing from the response is echoed back. Keys that don't apply are omitted. For a business verification created with `documents` or `owners`, this includes the company details and documents still missing before it can be sent for review; each owner's documents are listed under that owner.
     public let requestedInformation: [CreateVerificationsResponseRequestedInformationItem]?
-    /// Documents for a document-upload verification and their progress. Present only on verifications created by sending `documents`. `pending_upload` documents were not accepted yet — send the full set again with another Create Verification call.
+    /// Documents for a document-upload verification and their progress. Present only on individual verifications created by sending `documents`. `pending_upload` documents were not accepted yet — send the full set again with another Create Verification call.
     public let requiredDocuments: [CreateVerificationsResponseRequiredDocumentsItem]?
     /// Hosted verification session URL for the user to complete identity checks. Expires 7 days after creation.
     public let sessionUrl: Nullable<String>?
@@ -36,6 +46,7 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        accountIds: [String],
         address: Nullable<CreateVerificationsResponseAddress>? = nil,
         businessName: Nullable<String>? = nil,
         businessStructure: Nullable<String>? = nil,
@@ -45,9 +56,13 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
         email: Nullable<String>? = nil,
         firstName: Nullable<String>? = nil,
         id: String? = nil,
+        incorporationDate: Nullable<String>? = nil,
         kind: CreateVerificationsResponseKind? = nil,
         lastName: Nullable<String>? = nil,
+        owners: [CreateVerificationsResponseOwnersItem],
         phone: Nullable<String>? = nil,
+        placeOfIncorporation: Nullable<String>? = nil,
+        registrationNumber: Nullable<String>? = nil,
         requestedInformation: [CreateVerificationsResponseRequestedInformationItem]? = nil,
         requiredDocuments: [CreateVerificationsResponseRequiredDocumentsItem]? = nil,
         sessionUrl: Nullable<String>? = nil,
@@ -55,6 +70,7 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
         updatedAt: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.accountIds = accountIds
         self.address = address
         self.businessName = businessName
         self.businessStructure = businessStructure
@@ -64,9 +80,13 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
         self.email = email
         self.firstName = firstName
         self.id = id
+        self.incorporationDate = incorporationDate
         self.kind = kind
         self.lastName = lastName
+        self.owners = owners
         self.phone = phone
+        self.placeOfIncorporation = placeOfIncorporation
+        self.registrationNumber = registrationNumber
         self.requestedInformation = requestedInformation
         self.requiredDocuments = requiredDocuments
         self.sessionUrl = sessionUrl
@@ -77,6 +97,7 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.accountIds = try container.decode([String].self, forKey: .accountIds)
         self.address = try container.decodeNullableIfPresent(CreateVerificationsResponseAddress.self, forKey: .address)
         self.businessName = try container.decodeNullableIfPresent(String.self, forKey: .businessName)
         self.businessStructure = try container.decodeNullableIfPresent(String.self, forKey: .businessStructure)
@@ -86,9 +107,13 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
         self.email = try container.decodeNullableIfPresent(String.self, forKey: .email)
         self.firstName = try container.decodeNullableIfPresent(String.self, forKey: .firstName)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
+        self.incorporationDate = try container.decodeNullableIfPresent(String.self, forKey: .incorporationDate)
         self.kind = try container.decodeIfPresent(CreateVerificationsResponseKind.self, forKey: .kind)
         self.lastName = try container.decodeNullableIfPresent(String.self, forKey: .lastName)
+        self.owners = try container.decode([CreateVerificationsResponseOwnersItem].self, forKey: .owners)
         self.phone = try container.decodeNullableIfPresent(String.self, forKey: .phone)
+        self.placeOfIncorporation = try container.decodeNullableIfPresent(String.self, forKey: .placeOfIncorporation)
+        self.registrationNumber = try container.decodeNullableIfPresent(String.self, forKey: .registrationNumber)
         self.requestedInformation = try container.decodeIfPresent([CreateVerificationsResponseRequestedInformationItem].self, forKey: .requestedInformation)
         self.requiredDocuments = try container.decodeIfPresent([CreateVerificationsResponseRequiredDocumentsItem].self, forKey: .requiredDocuments)
         self.sessionUrl = try container.decodeNullableIfPresent(String.self, forKey: .sessionUrl)
@@ -100,6 +125,7 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.accountIds, forKey: .accountIds)
         try container.encodeNullableIfPresent(self.address, forKey: .address)
         try container.encodeNullableIfPresent(self.businessName, forKey: .businessName)
         try container.encodeNullableIfPresent(self.businessStructure, forKey: .businessStructure)
@@ -109,9 +135,13 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.email, forKey: .email)
         try container.encodeNullableIfPresent(self.firstName, forKey: .firstName)
         try container.encodeIfPresent(self.id, forKey: .id)
+        try container.encodeNullableIfPresent(self.incorporationDate, forKey: .incorporationDate)
         try container.encodeIfPresent(self.kind, forKey: .kind)
         try container.encodeNullableIfPresent(self.lastName, forKey: .lastName)
+        try container.encode(self.owners, forKey: .owners)
         try container.encodeNullableIfPresent(self.phone, forKey: .phone)
+        try container.encodeNullableIfPresent(self.placeOfIncorporation, forKey: .placeOfIncorporation)
+        try container.encodeNullableIfPresent(self.registrationNumber, forKey: .registrationNumber)
         try container.encodeIfPresent(self.requestedInformation, forKey: .requestedInformation)
         try container.encodeIfPresent(self.requiredDocuments, forKey: .requiredDocuments)
         try container.encodeNullableIfPresent(self.sessionUrl, forKey: .sessionUrl)
@@ -121,6 +151,7 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case accountIds = "account_ids"
         case address
         case businessName = "business_name"
         case businessStructure = "business_structure"
@@ -130,9 +161,13 @@ public struct CreateVerificationsResponse: Codable, Hashable, Sendable {
         case email
         case firstName = "first_name"
         case id
+        case incorporationDate = "incorporation_date"
         case kind
         case lastName = "last_name"
+        case owners
         case phone
+        case placeOfIncorporation = "place_of_incorporation"
+        case registrationNumber = "registration_number"
         case requestedInformation = "requested_information"
         case requiredDocuments = "required_documents"
         case sessionUrl = "session_url"
