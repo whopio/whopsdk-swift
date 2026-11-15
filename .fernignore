@@ -25,3 +25,6 @@ Scripts/test_repair_generated_tests.py
 # Remove after Fern emits bounded expected expressions that compile without factoring.
 Scripts/factor-generated-tests.py
 Scripts/test_factor_generated_tests.py
+
+# Hand-written quick start. Remove when Fern emits this format with verified install steps.
+README.md
