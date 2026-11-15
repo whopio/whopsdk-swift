@@ -14,6 +14,8 @@ For SwiftPM, add this entry to `dependencies` in `Package.swift`:
 .package(url: "https://github.com/whopio/whopsdk-swift", from: "1.0.11")
 ```
 
+Add `.product(name: "WhopSDK", package: "whopsdk-swift")` to your target dependencies.
+
 ## Read products
 
 This example reads public products from the test environment.
